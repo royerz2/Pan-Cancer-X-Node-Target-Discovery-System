@@ -990,7 +990,7 @@ def export_validation_results(validations: List[CombinationValidation],
     df.to_csv(output_path / "validation_summary.csv", index=False)
     
     # 2. Detailed reports
-    from utils import sanitize_cancer_name
+    from alin.utils import sanitize_cancer_name
     for val in validations:
         targets_str = '_'.join(sorted(val.targets))
         cancer_str = sanitize_cancer_name(val.cancer_type)

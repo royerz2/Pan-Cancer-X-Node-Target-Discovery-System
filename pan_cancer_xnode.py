@@ -48,12 +48,12 @@ except ImportError:
     def tqdm(iterable, *args, **kwargs):
         return iterable
 
-from utils import sanitize_cancer_name
+from alin.utils import sanitize_cancer_name
 
 # Import validation module
 try:
-    from validation_module import (
-        ValidationEngine, 
+    from alin.validation import (
+        ValidationEngine,
         CombinationValidation,
         generate_validation_report,
         export_validation_results
@@ -61,7 +61,7 @@ try:
     VALIDATION_AVAILABLE = True
 except ImportError:
     VALIDATION_AVAILABLE = False
-    logger.warning("Validation module not available. Install dependencies or check import.")
+    logging.warning("Validation module not available. Install dependencies or check import.")
 
 warnings.filterwarnings('ignore')
 
@@ -1162,7 +1162,7 @@ class CostFunction:
         """Get toxicity score, enhanced by OpenTargets if available."""
         base_toxicity = self.drug_db.get_toxicity_score(gene)
         try:
-            from toxicity_enhancement import (
+            from alin.toxicity import (
                 get_opentargets_toxicity,
                 get_tissue_expression_weight,
             )

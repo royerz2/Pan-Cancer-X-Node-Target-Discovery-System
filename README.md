@@ -264,16 +264,17 @@ figures/
 | Module | Role |
 |--------|------|
 | `pan_cancer_xnode.py` | Main discovery engine (DepMap, OmniPath, hitting set, triple finder) |
-| `validation_module.py` | Built-in validation (literature, PPI, drug synergy) |
-| `api_validators.py` | PubMed + STRING API validation with caching |
-| `drug_sensitivity_module.py` | PRISM/GDSC drug sensitivity, gene–drug correlation |
-| `clinical_trial_matcher.py` | ClinicalTrials.gov search |
-| `patient_stratification_module.py` | Patient subgroups, biomarkers, companion diagnostics |
+| `alin/validation.py` | Built-in validation (literature, PPI, drug synergy) |
+| `alin/api_validators.py` | PubMed + STRING API validation with caching |
+| `alin/drug_sensitivity.py` | PRISM/GDSC drug sensitivity, gene–drug correlation |
+| `alin/clinical_trials.py` | ClinicalTrials.gov search |
+| `alin/patient_stratification.py` | Patient subgroups, biomarkers, companion diagnostics |
+| `alin/toxicity.py` | OpenTargets toxicity, tissue expression (cost function) |
+| `alin/utils.py` | Shared utilities (sanitize_cancer_name, load_depmap_crispr_subset) |
 | `benchmarking_module.py` | Gold standard comparison, random/top-genes baselines |
 | `run_priority_pipeline.py` | Orchestrates validation, trials, stratification, drug sensitivity |
 | `finish_pipeline.py` | Resume drug sensitivity step if pipeline times out |
 | `generate_figures.py` | Publication-ready figures |
-| `utils.py` | Shared utilities (sanitize_cancer_name, load_depmap_crispr_subset) |
 
 ---
 

@@ -16,7 +16,7 @@ from pathlib import Path
 # Add project root
 sys.path.insert(0, str(Path(__file__).parent))
 
-from utils import sanitize_cancer_name, load_depmap_crispr_subset
+from alin.utils import sanitize_cancer_name, load_depmap_crispr_subset
 
 
 def run_drug_sensitivity_and_report(df: pd.DataFrame, base: Path, output_dir: Path) -> None:
@@ -24,7 +24,7 @@ def run_drug_sensitivity_and_report(df: pd.DataFrame, base: Path, output_dir: Pa
     genes_needed = {row['Target_1'] for _, row in df.iterrows()} | {row['Target_2'] for _, row in df.iterrows()} | {row['Target_3'] for _, row in df.iterrows()}
     depmap_subset = load_depmap_crispr_subset(base, genes_needed, fallback_genes={'KRAS', 'CDK6', 'STAT3', 'BRAF', 'EGFR', 'MET', 'CDK2'})
     
-    from drug_sensitivity_module import DrugSensitivityValidator, generate_sensitivity_report
+    from alin.drug_sensitivity import DrugSensitivityValidator, generate_sensitivity_report
     validator = DrugSensitivityValidator(data_dir=str(base / "drug_sensitivity_data"), depmap_data=depmap_subset)
     (output_dir / "drug_sensitivity").mkdir(exist_ok=True)
     
@@ -68,7 +68,7 @@ def main():
     # 1. API Validation (PubMed, STRING)
     print("\n[1/4] API Validation (PubMed + STRING)...")
     try:
-        from api_validators import CombinedAPIValidator
+        from alin.api_validators import CombinedAPIValidator
         api_val = CombinedAPIValidator(cache_dir=str(base / "api_cache"))
         api_results = []
         for i, row in df.iterrows():
@@ -91,7 +91,7 @@ def main():
     # 2. Clinical Trial Matching
     print("\n[2/4] Clinical Trial Matching...")
     try:
-        from clinical_trial_matcher import ClinicalTrialMatcher, export_trial_matches
+        from alin.clinical_trials import ClinicalTrialMatcher, export_trial_matches
         matcher = ClinicalTrialMatcher(cache_dir=str(base / "trial_cache"))
         all_matches = {}
         for i, row in df.iterrows():
@@ -108,7 +108,7 @@ def main():
     # 3. Patient Stratification
     print("\n[3/4] Patient Stratification...")
     try:
-        from patient_stratification_module import PatientStratifier, StratificationResult, export_stratification_results
+        from alin.patient_stratification import PatientStratifier, StratificationResult, export_stratification_results
         stratifier = PatientStratifier()
         strat_results = []
         for i, row in df.iterrows():
