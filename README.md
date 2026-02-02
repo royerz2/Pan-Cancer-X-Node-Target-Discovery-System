@@ -4,7 +4,7 @@
 
 A computational pipeline for discovering optimal triple drug combinations across cancer types using systems biology and minimal hitting set optimization.
 
-**Reference:** Based on the PDAC X-node methodology (PMID:33753453) — generalized to pan-cancer analysis.
+**Reference:** Methodology extrapolated from Liaki et al. (2025). A targeted combination therapy achieves effective pancreatic cancer regression and prevents tumor resistance. bioRxiv doi: 10.1101/2025.08.04.668325. See `PancraticCancerCure.pdf`.
 
 ---
 
@@ -18,17 +18,17 @@ However, identifying *optimal* combination targets is challenging: the combinato
 
 ### X-Node Concept and Theoretical Foundation
 
-The **X-node** framework (Vena et al., PMID:33753453) formalizes combination target discovery as a **minimal hitting set problem** over tumor viability networks:
+The **X-node** term (coined here) formalizes combination target discovery as a **minimal hitting set problem** over tumor viability networks:
 
 - **Viability paths** = functional pathways that support tumor survival (e.g., essential gene modules, signaling cascades).
 - **X-nodes** = minimal sets of targets that "hit" (intersect) every viability path.
 - **Rationale:** Hitting all paths maximizes tumor kill; minimizing the number of nodes reduces toxicity and side effects.
 
-The original work demonstrated that targeting SRC + FYN + STAT3 (three X-nodes) achieved effective pancreatic cancer regression and prevented resistance in preclinical models. Our pipeline **generalizes this methodology to all cancer types** in DepMap, enabling pan-cancer discovery.
+The approach is extrapolated from Liaki et al. (bioRxiv doi: 10.1101/2025.08.04.668325), who demonstrated that targeting RAF1 + EGFR + STAT3 (downstream, upstream, and orthogonal KRAS signaling) achieved effective pancreatic cancer regression and prevented resistance in preclinical models. This framework **generalizes that methodology to all cancer types** in DepMap, enabling pan-cancer discovery.
 
 ### Pan-Cancer Generalization
 
-We extend the PDAC-specific approach to:
+We extend the PDAC-specific approach from the paper to:
 
 1. **All DepMap cancer types** — Cancer type mapping via OncoTree (OncotreePrimaryDisease).
 2. **Triple combinations** — Systems biology scoring for synergy, resistance, and pathway coverage.
@@ -281,9 +281,12 @@ figures/
 
 If you use this pipeline, please cite:
 
-- PDAC X-node methodology: [PMID:33753453](https://pubmed.ncbi.nlm.nih.gov/33753453)
+- **ALIN Framework (bioRxiv preprint):** Author AN, Author BT. 2025. ALIN Framework (Adaptive Lethal Intersection Network): A Systems Biology Pipeline for Triple Drug Combination Prediction. bioRxiv doi: 10.1101/YYYY.MM.DD.XXXXXXX. *(Replace with actual authors and DOI after submission.)*
+- PDAC combination therapy (source of extrapolated approach): Liaki V, Barrambana S, et al. 2025. A targeted combination therapy achieves effective pancreatic cancer regression and prevents tumor resistance. bioRxiv doi: [10.1101/2025.08.04.668325](https://doi.org/10.1101/2025.08.04.668325)
 - DepMap: [depmap.org](https://depmap.org)
 - OmniPath: [omnipathdb.org](https://omnipathdb.org)
+
+*See [MANUSCRIPT_FIGURES.md](MANUSCRIPT_FIGURES.md) for recommended manuscript visualisations and bioRxiv attribution format.*
 
 ---
 

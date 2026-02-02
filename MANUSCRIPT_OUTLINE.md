@@ -16,7 +16,7 @@
 
 ## Introduction
 - Drug resistance in cancer
-- Rational combination design (PDAC X-node paper PMID:33753453)
+- Rational combination design (Liaki et al., bioRxiv doi: 10.1101/2025.08.04.668325)
 - Gap: pan-cancer generalization, triple combinations
 - Our contribution: integrated pipeline, benchmarking, validation
 
@@ -53,5 +53,11 @@
 - Table S1: Full triple combinations
 - Table S2: Gold standard benchmark
 - Table S3: Novel combinations for lab testing
-- Figure S1: Pipeline flowchart
+- Figure S1: Detailed pipeline flowchart
+- Figure S2: Co-essentiality clustering schematic
+- Figure S3: Network path inference example
+- Figure S4: Benchmark rank distribution
+- Figure S5: Novel combinations (no clinical trials)
 - Data availability, code availability
+
+*See [MANUSCRIPT_FIGURES.md](MANUSCRIPT_FIGURES.md) for full figure specification and bioRxiv citation format.*
