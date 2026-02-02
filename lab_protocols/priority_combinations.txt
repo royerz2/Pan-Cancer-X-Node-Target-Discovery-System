@@ -1,0 +1,272 @@
+
+================================================================================
+          PAN-CANCER X-NODE TARGET DISCOVERY - LAB PROTOCOLS
+================================================================================
+Generated: 2026-02-01
+Method: High-throughput systems biology (DepMap + Network Analysis)
+Reference: Based on PDAC X-node methodology (targeted combination therapy)
+
+================================================================================
+PRIORITY COMBINATIONS FOR IN VIVO TESTING
+================================================================================
+
+--------------------------------------------------------------------------------
+PROTOCOL 1: Ovarian Germ Cell Tumor
+--------------------------------------------------------------------------------
+TARGET COMBINATION:
+  • Target 1: KRAS
+  • Target 2: MET  
+  • Target 3: STAT3
+
+DRUG PROTOCOL:
+  • Drug 1: sotorasib
+  • Drug 2: capmatinib
+  • Drug 3: napabucasin
+
+COMPUTATIONAL METRICS:
+  • Synergy Score: 0.92 (higher = better)
+  • Resistance Score: 0.35 (lower = better)
+  • Path Coverage: 100.0%
+  • Literature Validation: 0.56 (low = NOVEL)
+
+RATIONALE:
+  This triple combination targets 3 cancer pathways
+  with predicted high synergy and low resistance probability.
+  All 3 targets have approved/clinical-stage drugs available.
+
+
+--------------------------------------------------------------------------------
+PROTOCOL 2: Anaplastic Thyroid Cancer
+--------------------------------------------------------------------------------
+TARGET COMBINATION:
+  • Target 1: BRAF
+  • Target 2: KRAS  
+  • Target 3: STAT3
+
+DRUG PROTOCOL:
+  • Drug 1: vemurafenib
+  • Drug 2: sotorasib
+  • Drug 3: napabucasin
+
+COMPUTATIONAL METRICS:
+  • Synergy Score: 0.92 (higher = better)
+  • Resistance Score: 0.39 (lower = better)
+  • Path Coverage: 84.6%
+  • Literature Validation: 0.56 (low = NOVEL)
+
+RATIONALE:
+  This triple combination targets 2 cancer pathways
+  with predicted high synergy and low resistance probability.
+  All 3 targets have approved/clinical-stage drugs available.
+
+
+--------------------------------------------------------------------------------
+PROTOCOL 3: Ampullary Carcinoma
+--------------------------------------------------------------------------------
+TARGET COMBINATION:
+  • Target 1: EGFR
+  • Target 2: KRAS  
+  • Target 3: STAT3
+
+DRUG PROTOCOL:
+  • Drug 1: erlotinib
+  • Drug 2: sotorasib
+  • Drug 3: napabucasin
+
+COMPUTATIONAL METRICS:
+  • Synergy Score: 0.92 (higher = better)
+  • Resistance Score: 0.39 (lower = better)
+  • Path Coverage: 100.0%
+  • Literature Validation: 0.56 (low = NOVEL)
+
+RATIONALE:
+  This triple combination targets 3 cancer pathways
+  with predicted high synergy and low resistance probability.
+  All 3 targets have approved/clinical-stage drugs available.
+
+
+--------------------------------------------------------------------------------
+PROTOCOL 4: Mucosal Melanoma of the Vulva/Vagina
+--------------------------------------------------------------------------------
+TARGET COMBINATION:
+  • Target 1: BRAF
+  • Target 2: KRAS  
+  • Target 3: STAT3
+
+DRUG PROTOCOL:
+  • Drug 1: vemurafenib
+  • Drug 2: sotorasib
+  • Drug 3: napabucasin
+
+COMPUTATIONAL METRICS:
+  • Synergy Score: 0.92 (higher = better)
+  • Resistance Score: 0.39 (lower = better)
+  • Path Coverage: 100.0%
+  • Literature Validation: 0.56 (low = NOVEL)
+
+RATIONALE:
+  This triple combination targets 2 cancer pathways
+  with predicted high synergy and low resistance probability.
+  All 3 targets have approved/clinical-stage drugs available.
+
+
+--------------------------------------------------------------------------------
+PROTOCOL 5: Hepatoblastoma
+--------------------------------------------------------------------------------
+TARGET COMBINATION:
+  • Target 1: BRAF
+  • Target 2: KRAS  
+  • Target 3: STAT3
+
+DRUG PROTOCOL:
+  • Drug 1: vemurafenib
+  • Drug 2: sotorasib
+  • Drug 3: napabucasin
+
+COMPUTATIONAL METRICS:
+  • Synergy Score: 0.92 (higher = better)
+  • Resistance Score: 0.39 (lower = better)
+  • Path Coverage: 85.7%
+  • Literature Validation: 0.56 (low = NOVEL)
+
+RATIONALE:
+  This triple combination targets 2 cancer pathways
+  with predicted high synergy and low resistance probability.
+  All 3 targets have approved/clinical-stage drugs available.
+
+
+--------------------------------------------------------------------------------
+PROTOCOL 6: Lung Neuroendocrine Tumor
+--------------------------------------------------------------------------------
+TARGET COMBINATION:
+  • Target 1: CDK2
+  • Target 2: KRAS  
+  • Target 3: STAT3
+
+DRUG PROTOCOL:
+  • Drug 1: dinaciclib
+  • Drug 2: sotorasib
+  • Drug 3: napabucasin
+
+COMPUTATIONAL METRICS:
+  • Synergy Score: 0.92 (higher = better)
+  • Resistance Score: 0.44 (lower = better)
+  • Path Coverage: 96.9%
+  • Literature Validation: 0.56 (low = NOVEL)
+
+RATIONALE:
+  This triple combination targets 3 cancer pathways
+  with predicted high synergy and low resistance probability.
+  All 3 targets have approved/clinical-stage drugs available.
+
+
+--------------------------------------------------------------------------------
+PROTOCOL 7: Ovarian Epithelial Tumor
+--------------------------------------------------------------------------------
+TARGET COMBINATION:
+  • Target 1: CDK2
+  • Target 2: KRAS  
+  • Target 3: STAT3
+
+DRUG PROTOCOL:
+  • Drug 1: dinaciclib
+  • Drug 2: sotorasib
+  • Drug 3: napabucasin
+
+COMPUTATIONAL METRICS:
+  • Synergy Score: 0.92 (higher = better)
+  • Resistance Score: 0.44 (lower = better)
+  • Path Coverage: 92.2%
+  • Literature Validation: 0.56 (low = NOVEL)
+
+RATIONALE:
+  This triple combination targets 3 cancer pathways
+  with predicted high synergy and low resistance probability.
+  All 3 targets have approved/clinical-stage drugs available.
+
+
+--------------------------------------------------------------------------------
+PROTOCOL 8: Endometrial Carcinoma
+--------------------------------------------------------------------------------
+TARGET COMBINATION:
+  • Target 1: CDK2
+  • Target 2: KRAS  
+  • Target 3: STAT3
+
+DRUG PROTOCOL:
+  • Drug 1: dinaciclib
+  • Drug 2: sotorasib
+  • Drug 3: napabucasin
+
+COMPUTATIONAL METRICS:
+  • Synergy Score: 0.92 (higher = better)
+  • Resistance Score: 0.44 (lower = better)
+  • Path Coverage: 97.1%
+  • Literature Validation: 0.56 (low = NOVEL)
+
+RATIONALE:
+  This triple combination targets 3 cancer pathways
+  with predicted high synergy and low resistance probability.
+  All 3 targets have approved/clinical-stage drugs available.
+
+
+--------------------------------------------------------------------------------
+PROTOCOL 9: Cervical Squamous Cell Carcinoma
+--------------------------------------------------------------------------------
+TARGET COMBINATION:
+  • Target 1: CDK2
+  • Target 2: KRAS  
+  • Target 3: STAT3
+
+DRUG PROTOCOL:
+  • Drug 1: dinaciclib
+  • Drug 2: sotorasib
+  • Drug 3: napabucasin
+
+COMPUTATIONAL METRICS:
+  • Synergy Score: 0.92 (higher = better)
+  • Resistance Score: 0.44 (lower = better)
+  • Path Coverage: 88.2%
+  • Literature Validation: 0.56 (low = NOVEL)
+
+RATIONALE:
+  This triple combination targets 3 cancer pathways
+  with predicted high synergy and low resistance probability.
+  All 3 targets have approved/clinical-stage drugs available.
+
+
+--------------------------------------------------------------------------------
+PROTOCOL 10: Merkel Cell Carcinoma
+--------------------------------------------------------------------------------
+TARGET COMBINATION:
+  • Target 1: CDK2
+  • Target 2: KRAS  
+  • Target 3: STAT3
+
+DRUG PROTOCOL:
+  • Drug 1: dinaciclib
+  • Drug 2: sotorasib
+  • Drug 3: napabucasin
+
+COMPUTATIONAL METRICS:
+  • Synergy Score: 0.92 (higher = better)
+  • Resistance Score: 0.44 (lower = better)
+  • Path Coverage: 100.0%
+  • Literature Validation: 0.56 (low = NOVEL)
+
+RATIONALE:
+  This triple combination targets 3 cancer pathways
+  with predicted high synergy and low resistance probability.
+  All 3 targets have approved/clinical-stage drugs available.
+
+
+================================================================================
+SUGGESTED EXPERIMENTAL DESIGN
+================================================================================
+1. Cell Lines: Use DepMap-validated lines for each cancer type
+2. In Vitro: Test single, double, and triple combinations
+3. Synergy Analysis: Calculate Bliss/Loewe synergy scores
+4. In Vivo: Xenograft models with combination dosing
+5. Endpoints: Tumor volume, survival, resistance emergence
+
+================================================================================
