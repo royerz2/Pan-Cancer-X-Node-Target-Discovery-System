@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Enhanced API-Based Validators for X-Node Target Discovery
+Enhanced API-Based Validators for ALIN Framework (Adaptive Lethal Intersection Network)
 ==========================================================
 Real implementations of PubMed and STRING API validation.
 

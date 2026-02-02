@@ -1,4 +1,6 @@
-# Pan-Cancer X-Node Target Discovery System
+# ALIN Framework
+
+**Adaptive Lethal Intersection Network**
 
 A computational pipeline for discovering optimal triple drug combinations across cancer types using systems biology and minimal hitting set optimization.
 
@@ -61,9 +63,9 @@ Cancer types are normalized via **OncoTree** (OncotreePrimaryDisease, OncotreeCo
 
 We infer **viability paths** — sets of genes that collectively support tumor survival — using three methods:
 
-1. **Essential gene modules (per cell line):** Genes with CRISPR dependency &lt; −0.5 in a cell line, excluding pan-essential genes (essential in &gt;90% of all cell lines).
+1. **Co-essentiality clustering (refined):** Genes essential together across cell lines are clustered into pathway-like modules. Uses hierarchical clustering on co-occurrence (Jaccard-like) matrix. Only genes essential in &gt;30% of cancer cell lines (selectivity filter). Optional expression filter: if CCLE expression data is available, only count essential if expressed in tumor (TPM &gt; threshold).
 2. **Consensus essential modules:** Genes consistently essential across cell lines of a cancer type.
-3. **Signaling pathway dependencies:** Active paths in the OmniPath network where driver genes and downstream effectors show cancer-specific dependency. Paths follow Driver → Intermediate → Essential effector topology.
+3. **Signaling pathway dependencies:** NetworkX `all_simple_paths()` with length limits (2–4 hops). Paths scored by mean dependency in cancer; low-confidence paths (confidence &lt; 0.5) pruned.
 
 Pan-essential genes are filtered to focus on **cancer-specific** dependencies.
 
@@ -73,7 +75,7 @@ Given viability paths *P*, we find minimal-cost sets *T* such that every path in
 
 **Cost function** (per gene):
 
-- **Toxicity** — Penalty for known toxicities (from drug database).
+- **Toxicity** — DrugTargetDB (clinical data) + optional OpenTargets API (off-target safety liabilities) + tissue expression weight (GCN portal placeholder) + FDA MedWatch ADRs (placeholder).
 - **Tumor specificity** — Reward for stronger dependency in cancer vs. pan-cancer.
 - **Druggability** — Reward for approved/clinical-stage drugs.
 - **Pan-essential penalty** — Strong penalty if gene is pan-essential.
@@ -141,7 +143,7 @@ We compare predictions against a **gold standard** of 23 FDA-approved and clinic
 
 ```bash
 git clone <repository>
-cd "Pan-Cancer X-Node Target Discovery System"
+cd "ALIN Framework"
 pip install -r requirements.txt
 ```
 

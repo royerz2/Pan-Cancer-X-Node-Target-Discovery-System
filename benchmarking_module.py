@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Benchmarking Module for Pan-Cancer X-Node Target Discovery
+Benchmarking Module for ALIN Framework (Adaptive Lethal Intersection Network)
 ===========================================================
 Compares predicted combinations against known FDA-approved and clinically
 validated combinations to assess methodology performance.
@@ -405,7 +405,7 @@ def generate_benchmark_report(results: List[BenchmarkResult], metrics: Dict) -> 
     
     report = f"""
 {'='*80}
-BENCHMARK REPORT: Pan-Cancer X-Node Target Discovery
+BENCHMARK REPORT: ALIN Framework (Adaptive Lethal Intersection Network)
 {'='*80}
 Comparison against {metrics['total_gold_standard']} known FDA-approved and clinically validated combinations
 

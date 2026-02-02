@@ -1,9 +1,9 @@
 #!/bin/bash
-# Full reproducibility pipeline for Pan-Cancer X-Node Target Discovery
+# Full reproducibility pipeline for ALIN Framework (Adaptive Lethal Intersection Network)
 # Run from project root: bash run_full_pipeline.sh
 
 set -e
-echo "=== Pan-Cancer X-Node Full Pipeline ==="
+echo "=== ALIN Framework Full Pipeline ==="
 
 # 1. Discovery (requires DepMap data in depmap_data/)
 echo "[1/5] Running pan-cancer discovery..."

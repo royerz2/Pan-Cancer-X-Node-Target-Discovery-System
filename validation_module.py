@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Automated Validation Module for X-Node Target Discovery
+Automated Validation Module for ALIN Framework (Adaptive Lethal Intersection Network)
 ========================================================
 Validates predicted drug combinations against multiple independent datasets and knowledge bases.
 

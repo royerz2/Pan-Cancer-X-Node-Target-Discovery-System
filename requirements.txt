@@ -1,4 +1,4 @@
-# Pan-Cancer X-Node Target Discovery System
+# ALIN Framework — Adaptive Lethal Intersection Network
 # Python 3.8+
 
 # Core
@@ -11,6 +11,9 @@ tqdm>=4.64.0
 
 # API / Network
 requests>=2.28.0
+
+# Network analysis (path inference)
+networkx>=3.0
 
 # Optional: for figure generation
 matplotlib>=3.5.0

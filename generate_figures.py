@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generate publication figures for Pan-Cancer X-Node Target Discovery
+Generate publication figures for ALIN Framework (Adaptive Lethal Intersection Network)
 """
 
 import pandas as pd
@@ -27,7 +27,7 @@ def main():
             metrics = json.load(f)
         
         fig, ax = plt.subplots(figsize=(6, 4))
-        methods = ['X-Node\n(ours)', 'Random\nbaseline', 'Top-genes\nbaseline']
+        methods = ['ALIN\n(ours)', 'Random\nbaseline', 'Top-genes\nbaseline']
         recalls = [
             metrics.get('recall_any', 0),
             metrics.get('random_baseline_mean', 0),

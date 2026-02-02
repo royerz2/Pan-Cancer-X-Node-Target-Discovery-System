@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Clinical Trial Matcher for X-Node Target Discovery
+Clinical Trial Matcher for ALIN Framework (Adaptive Lethal Intersection Network)
 ===================================================
 Searches ClinicalTrials.gov for trials matching discovered drug combinations.
 
@@ -318,7 +318,7 @@ def generate_trial_report(all_matches: Dict[str, List[TrialMatch]]) -> str:
 ================================================================================
 CLINICAL TRIAL MATCHING REPORT
 ================================================================================
-Pan-Cancer X-Node Target Discovery System
+ALIN Framework (Adaptive Lethal Intersection Network)
 Generated: 2026-02-01
 
 This report matches our discovered triple combinations against existing

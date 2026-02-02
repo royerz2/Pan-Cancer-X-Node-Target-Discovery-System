@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Pan-Cancer X-Node Target Discovery System
-=========================================
+ALIN Framework — Adaptive Lethal Intersection Network
+====================================================
 Generalized minimal hitting set framework for discovering optimal drug combination targets
 across all cancer types using DepMap + OmniPath integration.
 
@@ -226,6 +226,7 @@ class DepMapLoader:
         self._model_df = None
         self._crispr_df = None
         self._subtype_df = None
+        self._expression_df = None
         self._gene_name_map = {}  # Entrez ID -> Gene symbol
         logger.info(f"DepMap loader initialized. Data dir: {self.data_dir}")
         
@@ -338,6 +339,22 @@ class DepMapLoader:
         logger.info("Loading subtype features from SubtypeMatrix.csv")
         self._subtype_df = pd.read_csv(subtype_path, index_col=0)
         return self._subtype_df
+    
+    def load_expression(self) -> Optional[pd.DataFrame]:
+        """
+        Load optional CCLE expression data for expression-filtered essentiality.
+        Looks for CCLE_expression.csv or CCLE_RNAseq_reads.csv in depmap_data/.
+        Returns None if not found. Rows=cell lines (ModelID), cols=genes.
+        """
+        if self._expression_df is not None:
+            return self._expression_df
+        for fname in ('CCLE_expression.csv', 'CCLE_RNAseq_reads.csv', 'OmicsExpressionProteinCodingGenesTPMLogp1.csv'):
+            expr_path = self.data_dir / fname
+            if expr_path.exists():
+                logger.info(f"Loading expression from {fname}")
+                self._expression_df = pd.read_csv(expr_path, index_col=0)
+                return self._expression_df
+        return None
     
     def get_pan_essential_genes(self, threshold: float = 0.9, show_progress: bool = False) -> Set[str]:
         """
@@ -760,13 +777,18 @@ class ViabilityPathInference:
         
     def infer_essential_modules(self, cancer_type: str, 
                                  dependency_threshold: float = -0.5,
-                                 min_cell_lines: int = 3) -> List[ViabilityPath]:
+                                 min_cell_lines: int = 3,
+                                 min_selectivity_fraction: float = 0.3,
+                                 expression_threshold: float = 1.0) -> List[ViabilityPath]:
         """
-        Infer essential gene modules for a cancer type
+        Infer essential gene modules for a cancer type (refined).
         
-        A gene is considered essential if dependency < threshold in multiple cell lines
+        Refinements:
+        1. Selectivity: only genes essential in >min_selectivity_fraction of cancer cell lines
+        2. Co-essentiality clustering: genes essential together = same pathway (clustered)
+        3. Expression filter: if expression data available, only count essential if expressed
         """
-        logger.info(f"Inferring essential modules for {cancer_type}")
+        logger.info(f"Inferring essential modules for {cancer_type} (selectivity>{min_selectivity_fraction:.0%})")
         
         crispr = self.depmap.load_crispr_dependencies()
         cell_lines = self.depmap.get_cell_lines_for_cancer(cancer_type)
@@ -776,62 +798,140 @@ class ViabilityPathInference:
             logger.warning(f"No cell lines found for {cancer_type}")
             return []
         
-        # Filter to available cell lines
         available_lines = [cl for cl in cell_lines if cl in crispr.index]
-        if len(available_lines) == 0:
-            logger.warning(f"No CRISPR data for {cancer_type} cell lines")
+        if len(available_lines) < min_cell_lines:
+            logger.warning(f"Too few cell lines ({len(available_lines)}) for {cancer_type}")
             return []
             
         crispr_subset = crispr.loc[available_lines]
-        logger.info(f"Found {len(available_lines)} cell lines with CRISPR data")
+        n_lines = len(available_lines)
+        min_lines_essential = max(1, int(n_lines * min_selectivity_fraction))
+        
+        # Optional expression filter
+        expr_df = self.depmap.load_expression()
+        expr_available = expr_df is not None and len(set(expr_df.index) & set(available_lines)) > 0
+        
+        def _is_essential_in_line(gene: str, cl: str) -> bool:
+            if gene not in crispr_subset.columns or cl not in crispr_subset.index:
+                return False
+            if crispr_subset.loc[cl, gene] >= dependency_threshold:
+                return False
+            if expr_available and gene in expr_df.columns:
+                # Only count essential if expressed in tumor (TPM > threshold)
+                try:
+                    expr_val = expr_df.loc[cl, gene] if cl in expr_df.index else np.nan
+                    if pd.isna(expr_val) or expr_val < expression_threshold:
+                        return False
+                except (KeyError, TypeError):
+                    pass
+            return True
+        
+        # Build per-line essential sets (with selectivity + expression filter)
+        line_essential_sets = {}
+        for cl in available_lines:
+            essential_genes = [
+                g for g in crispr_subset.columns
+                if g not in pan_essential and _is_essential_in_line(g, cl)
+            ]
+            if len(essential_genes) >= 2:
+                line_essential_sets[cl] = set(essential_genes)
+        
+        # Selectivity filter: only genes essential in >= min_lines_essential cell lines
+        gene_essential_count = defaultdict(int)
+        for ess_set in line_essential_sets.values():
+            for g in ess_set:
+                gene_essential_count[g] += 1
+        
+        selective_genes = {g for g, c in gene_essential_count.items() if c >= min_lines_essential}
+        if len(selective_genes) < 2:
+            logger.info(f"Few selective genes ({len(selective_genes)}); falling back to consensus")
+            mean_dep = crispr_subset.mean(axis=0)
+            selective_genes = set(mean_dep[mean_dep < dependency_threshold].index) - pan_essential
+        
+        # Co-essentiality clustering: genes that co-occur in essential sets = pathway modules
+        from scipy.cluster.hierarchy import fcluster, linkage
+        from scipy.spatial.distance import squareform
+        
+        selective_list = list(selective_genes)
+        if len(selective_list) < 2:
+            return []
+        
+        # Co-occurrence matrix (Jaccard-like: fraction of lines where both essential)
+        n_genes = len(selective_list)
+        co_essential = np.zeros((n_genes, n_genes))
+        for i, g1 in enumerate(selective_list):
+            for j, g2 in enumerate(selective_list):
+                if i == j:
+                    co_essential[i, j] = 0
+                    continue
+                co_count = sum(1 for ess in line_essential_sets.values() 
+                              if g1 in ess and g2 in ess)
+                co_essential[i, j] = co_count / max(1, n_lines)
+        
+        # Convert to distance (1 - similarity) for linkage; ensure symmetry
+        dist = 1 - co_essential
+        dist = (dist + dist.T) / 2
+        np.fill_diagonal(dist, 0)
+        
+        # Hierarchical clustering; cut to get ~5-15 clusters
+        n_clusters = min(15, max(3, n_genes // 5))
+        try:
+            from scipy.spatial.distance import squareform
+            from scipy.cluster.hierarchy import fcluster, linkage
+            condensed = squareform(dist, checks=False)
+            Z = linkage(condensed, method='average')
+            clusters = fcluster(Z, n_clusters, criterion='maxclust')
+            cluster_to_genes = defaultdict(set)
+            for gene, c in zip(selective_list, clusters):
+                cluster_to_genes[c].add(gene)
+        except Exception as e:
+            logger.debug(f"Co-essentiality clustering failed ({e}), using single module")
+            cluster_to_genes = {0: selective_genes}
         
         paths = []
-        
-        # Method 1: Per-cell-line essential genes (filtered)
-        for cl in available_lines:
-            essential_genes = crispr_subset.loc[cl][
-                crispr_subset.loc[cl] < dependency_threshold
-            ].index.tolist()
-            
-            # Filter out pan-essential genes
-            cancer_specific = [g for g in essential_genes if g not in pan_essential]
-            
-            if len(cancer_specific) >= 2:
+        for cid, genes in cluster_to_genes.items():
+            if len(genes) >= 2:
                 path = ViabilityPath(
-                    path_id=f"{cl}_essential",
-                    nodes=frozenset(cancer_specific),
-                    context=cl,
+                    path_id=f"{cancer_type}_coessential_cluster_{cid}",
+                    nodes=frozenset(genes),
+                    context=cancer_type,
                     confidence=0.9,
-                    path_type="essential_module"
+                    path_type="co_essential_module"
                 )
                 paths.append(path)
         
-        # Method 2: Consistently essential across cell lines
-        mean_dep = crispr_subset.mean(axis=0)
-        consistent_essential = mean_dep[mean_dep < dependency_threshold].index.tolist()
-        consistent_essential = [g for g in consistent_essential if g not in pan_essential]
-        
-        if len(consistent_essential) >= 2:
-            path = ViabilityPath(
+        # Consensus path (all selective genes) for full coverage
+        if len(selective_genes) >= 2:
+            paths.append(ViabilityPath(
                 path_id=f"{cancer_type}_consensus_essential",
-                nodes=frozenset(consistent_essential),
+                nodes=frozenset(selective_genes),
                 context=cancer_type,
                 confidence=1.0,
                 path_type="essential_module"
-            )
-            paths.append(path)
+            ))
         
-        logger.info(f"Inferred {len(paths)} essential module paths")
+        logger.info(f"Inferred {len(paths)} essential module paths ({len(selective_genes)} selective genes)")
         return paths
     
     def infer_signaling_paths(self, cancer_type: str,
-                              dependency_threshold: float = -0.5) -> List[ViabilityPath]:
+                              dependency_threshold: float = -0.5,
+                              max_path_length: int = 4,
+                              min_confidence: float = 0.5) -> List[ViabilityPath]:
         """
-        Infer active signaling paths using network + dependency data
+        Infer active signaling paths using NetworkX all_simple_paths.
         
-        Find paths: Driver -> Intermediate -> Essential effector
+        Refinements:
+        1. Use NetworkX all_simple_paths() with length limits (2-4 hops)
+        2. Score paths by mean dependency in cancer type (stronger dep = higher confidence)
+        3. Prune low-confidence paths (confidence < min_confidence)
         """
-        logger.info(f"Inferring signaling paths for {cancer_type}")
+        logger.info(f"Inferring signaling paths for {cancer_type} (max_len={max_path_length})")
+        
+        try:
+            import networkx as nx
+        except ImportError:
+            logger.warning("NetworkX not installed; falling back to 2-hop paths")
+            return self._infer_signaling_paths_legacy(cancer_type, dependency_threshold)
         
         network = self.omnipath.load_signaling_network()
         crispr = self.depmap.load_crispr_dependencies()
@@ -845,55 +945,104 @@ class ViabilityPathInference:
         crispr_subset = crispr.loc[available_lines]
         mean_dep = crispr_subset.mean(axis=0)
         
-        # Find essential genes in this cancer
         essential_genes = set(mean_dep[mean_dep < dependency_threshold].index)
         essential_genes -= pan_essential
         
-        # Known cancer drivers
         drivers = {'KRAS', 'BRAF', 'EGFR', 'ERBB2', 'MET', 'PIK3CA', 'TP53', 
                    'NRAS', 'HRAS', 'FGFR1', 'FGFR2', 'ALK', 'ROS1', 'RET'}
+        effectors = {'MYC', 'CCND1', 'CDK4', 'CDK6', 'BCL2', 'MCL1', 'STAT3',
+                     'MTOR', 'RPS6KB1', 'E2F1'}
         
-        # Known effectors (survival/proliferation)
+        # Build directed graph
+        G = nx.DiGraph()
+        for _, row in network.iterrows():
+            src, tgt = row['source'], row['target']
+            if src in crispr.columns and tgt in crispr.columns:
+                G.add_edge(src, tgt)
+        
+        paths = []
+        seen_nodes = set()
+        
+        for driver in drivers:
+            if driver not in G or G.out_degree(driver) == 0:
+                continue
+            
+            for effector in effectors:
+                if effector not in G or effector not in essential_genes:
+                    continue
+                
+                try:
+                    for path_nodes in nx.all_simple_paths(
+                            G, driver, effector, cutoff=max_path_length):
+                        if len(path_nodes) < 2:
+                            continue
+                        
+                        # Score by mean dependency (more negative = higher confidence)
+                        path_deps = [mean_dep.get(g, 0) for g in path_nodes if g in mean_dep.index]
+                        mean_path_dep = np.mean(path_deps) if path_deps else 0
+                        # Convert: dep < -0.5 -> high conf; dep > 0 -> low conf
+                        confidence = max(0, min(1, 0.5 - mean_path_dep))
+                        
+                        if confidence < min_confidence:
+                            continue
+                        
+                        path_id = f"{cancer_type}_{'_'.join(path_nodes[:5])}"
+                        if len(path_nodes) > 5:
+                            path_id += "_trunc"
+                        
+                        path = ViabilityPath(
+                            path_id=path_id,
+                            nodes=frozenset(path_nodes),
+                            context=cancer_type,
+                            confidence=round(confidence, 2),
+                            path_type="signaling_path"
+                        )
+                        paths.append(path)
+                        seen_nodes.update(path_nodes)
+                        
+                except nx.NetworkXNoPath:
+                    pass
+        
+        logger.info(f"Inferred {len(paths)} signaling paths (confidence >= {min_confidence})")
+        return paths
+    
+    def _infer_signaling_paths_legacy(self, cancer_type: str, 
+                                      dependency_threshold: float) -> List[ViabilityPath]:
+        """Fallback 2-hop paths when NetworkX unavailable."""
+        network = self.omnipath.load_signaling_network()
+        crispr = self.depmap.load_crispr_dependencies()
+        cell_lines = self.depmap.get_cell_lines_for_cancer(cancer_type)
+        pan_essential = self._get_pan_essential()
+        available_lines = [cl for cl in cell_lines if cl in crispr.index]
+        if not available_lines:
+            return []
+        
+        crispr_subset = crispr.loc[available_lines]
+        mean_dep = crispr_subset.mean(axis=0)
+        essential_genes = set(mean_dep[mean_dep < dependency_threshold].index) - pan_essential
+        drivers = {'KRAS', 'BRAF', 'EGFR', 'ERBB2', 'MET', 'PIK3CA', 'TP53', 
+                   'NRAS', 'HRAS', 'FGFR1', 'FGFR2', 'ALK', 'ROS1', 'RET'}
         effectors = {'MYC', 'CCND1', 'CDK4', 'CDK6', 'BCL2', 'MCL1', 'STAT3',
                      'MTOR', 'RPS6KB1', 'E2F1'}
         
         paths = []
-        
-        # Find paths: driver -> intermediate -> effector
         for driver in drivers:
             if driver not in network['source'].values:
                 continue
-            
-            # Direct targets of driver
             direct_targets = set(network[network['source'] == driver]['target'])
-            
-            # Check which targets are essential or lead to essential effectors
             for target in direct_targets:
-                # Direct path: driver -> target (if target is essential effector)
                 if target in effectors and target in essential_genes:
-                    path = ViabilityPath(
+                    paths.append(ViabilityPath(
                         path_id=f"{cancer_type}_{driver}_to_{target}",
                         nodes=frozenset([driver, target]),
-                        context=cancer_type,
-                        confidence=0.8,
-                        path_type="signaling_path"
-                    )
-                    paths.append(path)
-                
-                # Two-hop: driver -> target -> effector
+                        context=cancer_type, confidence=0.8, path_type="signaling_path"))
                 second_hop = set(network[network['source'] == target]['target'])
                 for effector in second_hop:
                     if effector in effectors and effector in essential_genes:
-                        path = ViabilityPath(
+                        paths.append(ViabilityPath(
                             path_id=f"{cancer_type}_{driver}_via_{target}_to_{effector}",
                             nodes=frozenset([driver, target, effector]),
-                            context=cancer_type,
-                            confidence=0.6,
-                            path_type="signaling_path"
-                        )
-                        paths.append(path)
-        
-        logger.info(f"Inferred {len(paths)} signaling paths")
+                            context=cancer_type, confidence=0.6, path_type="signaling_path"))
         return paths
     
     def infer_cancer_specific_dependencies(self, cancer_type: str,
@@ -960,13 +1109,16 @@ class ViabilityPathInference:
         
         return []
     
-    def infer_all_paths(self, cancer_type: str) -> List[ViabilityPath]:
-        """Combine all path inference methods"""
+    def infer_all_paths(self, cancer_type: str, min_confidence: float = 0.5) -> List[ViabilityPath]:
+        """Combine all path inference methods; prune paths with confidence < min_confidence."""
         paths = []
         
         paths.extend(self.infer_essential_modules(cancer_type))
-        paths.extend(self.infer_signaling_paths(cancer_type))
+        paths.extend(self.infer_signaling_paths(cancer_type, min_confidence=min_confidence))
         paths.extend(self.infer_cancer_specific_dependencies(cancer_type))
+        
+        # Prune low-confidence paths
+        paths = [p for p in paths if p.confidence >= min_confidence]
         
         # Deduplicate by path_id
         seen = set()
@@ -976,7 +1128,7 @@ class ViabilityPathInference:
                 seen.add(path.path_id)
                 unique_paths.append(path)
         
-        logger.info(f"Total: {len(unique_paths)} unique viability paths for {cancer_type}")
+        logger.info(f"Total: {len(unique_paths)} unique viability paths for {cancer_type} (conf >= {min_confidence})")
         return unique_paths
 
 # ============================================================================
@@ -984,17 +1136,44 @@ class ViabilityPathInference:
 # ============================================================================
 
 class CostFunction:
-    """Compute node costs based on toxicity, specificity, druggability"""
+    """
+    Compute node costs based on toxicity, specificity, druggability.
     
-    def __init__(self, depmap: DepMapLoader, drug_db: DrugTargetDB):
+    Toxicity sources (refined):
+    1. DrugTargetDB (built-in clinical data)
+    2. OpenTargets API (off-target safety liabilities) - optional
+    3. Tissue expression weight (GCN portal) - placeholder
+    4. FDA MedWatch ADRs - placeholder
+    """
+    
+    def __init__(self, depmap: DepMapLoader, drug_db: DrugTargetDB,
+                 toxicity_cache_dir: Optional[str] = None):
         self.depmap = depmap
         self.drug_db = drug_db
+        self.toxicity_cache_dir = toxicity_cache_dir
         self._pan_essential = None
         
     def _get_pan_essential(self) -> Set[str]:
         if self._pan_essential is None:
             self._pan_essential = self.depmap.get_pan_essential_genes()
         return self._pan_essential
+    
+    def _get_toxicity_score(self, gene: str) -> float:
+        """Get toxicity score, enhanced by OpenTargets if available."""
+        base_toxicity = self.drug_db.get_toxicity_score(gene)
+        try:
+            from toxicity_enhancement import (
+                get_opentargets_toxicity,
+                get_tissue_expression_weight,
+            )
+            ot_tox = get_opentargets_toxicity(gene, self.toxicity_cache_dir)
+            if ot_tox is not None:
+                base_toxicity = 0.6 * base_toxicity + 0.4 * ot_tox
+            tissue_weight = get_tissue_expression_weight(gene)
+            base_toxicity *= tissue_weight
+        except ImportError:
+            pass
+        return max(0, min(1, base_toxicity))
         
     def compute_cost(self, gene: str, cancer_type: str) -> NodeCost:
         """Compute comprehensive cost for a gene in a cancer context"""
@@ -1002,8 +1181,8 @@ class CostFunction:
         # Druggability
         druggability = self.drug_db.get_druggability_score(gene)
         
-        # Toxicity
-        toxicity = self.drug_db.get_toxicity_score(gene)
+        # Toxicity (enhanced by OpenTargets, tissue expression)
+        toxicity = self._get_toxicity_score(gene)
         
         # Pan-essential penalty
         pan_essential = self._get_pan_essential()
@@ -1522,14 +1701,15 @@ class TripleCombinationFinder:
     5. Prioritize druggable targets
     """
     
-    def __init__(self, depmap: DepMapLoader, omnipath: OmniPathLoader, drug_db: DrugTargetDB):
+    def __init__(self, depmap: DepMapLoader, omnipath: OmniPathLoader, drug_db: DrugTargetDB,
+                 toxicity_cache_dir: Optional[str] = None):
         self.depmap = depmap
         self.omnipath = omnipath
         self.drug_db = drug_db
         self.network_analyzer = XNodeNetworkAnalyzer(omnipath)
         self.synergy_scorer = SynergyScorer(omnipath)
         self.resistance_estimator = ResistanceProbabilityEstimator(omnipath, depmap)
-        self.cost_fn = CostFunction(depmap, drug_db)
+        self.cost_fn = CostFunction(depmap, drug_db, toxicity_cache_dir=toxicity_cache_dir)
         
     def find_triple_combinations(self, 
                                   paths: List[ViabilityPath], 
@@ -1948,14 +2128,18 @@ CLINICAL ACTIONABILITY ASSESSMENT
 class PanCancerXNodeAnalyzer:
     """Main analysis engine for all cancer types"""
     
-    def __init__(self, data_dir: str = "./depmap_data", validation_data_dir: str = "./validation_data"):
+    def __init__(self, data_dir: str = "./depmap_data", validation_data_dir: str = "./validation_data",
+                 toxicity_cache_dir: Optional[str] = None):
         self.depmap = DepMapLoader(data_dir)
         self.omnipath = OmniPathLoader(data_dir)
         self.drug_db = DrugTargetDB()
         self.path_inference = ViabilityPathInference(self.depmap, self.omnipath)
-        self.cost_fn = CostFunction(self.depmap, self.drug_db)
+        self.cost_fn = CostFunction(self.depmap, self.drug_db, toxicity_cache_dir=toxicity_cache_dir)
         self.solver = MinimalHittingSetSolver(self.cost_fn)
-        self.triple_finder = TripleCombinationFinder(self.depmap, self.omnipath, self.drug_db)
+        self.triple_finder = TripleCombinationFinder(
+            self.depmap, self.omnipath, self.drug_db,
+            toxicity_cache_dir=toxicity_cache_dir
+        )
         self.validation_integrator = XNodeValidationIntegrator(validation_data_dir)
         
     def analyze_cancer_type(self, cancer_type: str) -> CancerTypeAnalysis:
@@ -2571,7 +2755,7 @@ if __name__ == "__main__":
     import argparse
     
     parser = argparse.ArgumentParser(
-        description="Pan-Cancer X-Node Target Discovery System - High-Throughput Systems Biology",
+        description="ALIN Framework (Adaptive Lethal Intersection Network) - High-Throughput Systems Biology",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:

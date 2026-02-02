@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Shared utilities for Pan-Cancer X-Node Target Discovery System.
+Shared utilities for ALIN Framework (Adaptive Lethal Intersection Network).
 Keeps common logic DRY across modules.
 """
 

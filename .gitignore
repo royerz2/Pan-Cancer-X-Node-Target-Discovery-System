@@ -49,6 +49,7 @@ figures/
 # Project-specific: caches (regenerated on demand)
 api_cache/
 trial_cache/
+toxicity_cache/
 
 # Project-specific: large data (download separately per DATA_AVAILABILITY.md)
 depmap_data/

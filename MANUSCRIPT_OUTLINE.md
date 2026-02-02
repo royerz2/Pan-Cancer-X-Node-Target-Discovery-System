@@ -1,7 +1,7 @@
-# Manuscript Outline: Pan-Cancer X-Node Target Discovery
+# Manuscript Outline: ALIN Framework
 
 ## Title (draft)
-**Pan-Cancer X-Node Target Discovery: A Systems Biology Pipeline for Triple Drug Combination Prediction**
+**ALIN Framework (Adaptive Lethal Intersection Network): A Systems Biology Pipeline for Triple Drug Combination Prediction**
 
 ---
 

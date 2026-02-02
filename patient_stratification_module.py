@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Patient Stratification Module for X-Node Target Discovery
+Patient Stratification Module for ALIN Framework (Adaptive Lethal Intersection Network)
 ==========================================================
 Identifies patient subgroups most likely to benefit from predicted combinations.
 
