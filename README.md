@@ -4,7 +4,7 @@
 
 A computational pipeline for discovering optimal triple drug combinations across cancer types using systems biology and minimal hitting set optimization.
 
-**Reference:** Methodology extrapolated from Liaki et al. (2025). A targeted combination therapy achieves effective pancreatic cancer regression and prevents tumor resistance. bioRxiv doi: 10.1101/2025.08.04.668325. See `PancraticCancerCure.pdf`.
+**Reference:** Methodology extrapolated from Liaki et al. (2025). A targeted combination therapy achieves effective pancreatic cancer regression and prevents tumor resistance. bioRxiv doi: 10.1101/2025.08.04.668325.
 
 ---
 
@@ -190,9 +190,6 @@ python finish_pipeline.py
 
 # Full reproducibility pipeline
 bash run_full_pipeline.sh
-
-# Generate publication figures
-python generate_figures.py
 ```
 
 ---
@@ -238,12 +235,6 @@ priority_pipeline_results/
 ├── stratification/
 ├── drug_sensitivity/
 └── priority_combined_summary.csv
-
-figures/
-├── benchmark_comparison.png
-├── target_frequency.png
-├── triple_patterns.png
-└── synergy_resistance.png
 ```
 
 ---
@@ -274,7 +265,6 @@ figures/
 | `benchmarking_module.py` | Gold standard comparison, random/top-genes baselines |
 | `run_priority_pipeline.py` | Orchestrates validation, trials, stratification, drug sensitivity |
 | `finish_pipeline.py` | Resume drug sensitivity step if pipeline times out |
-| `generate_figures.py` | Publication-ready figures |
 
 ---
 
@@ -286,8 +276,6 @@ If you use this pipeline, please cite:
 - PDAC combination therapy (source of extrapolated approach): Liaki V, Barrambana S, et al. 2025. A targeted combination therapy achieves effective pancreatic cancer regression and prevents tumor resistance. bioRxiv doi: [10.1101/2025.08.04.668325](https://doi.org/10.1101/2025.08.04.668325)
 - DepMap: [depmap.org](https://depmap.org)
 - OmniPath: [omnipathdb.org](https://omnipathdb.org)
-
-*See [MANUSCRIPT_FIGURES.md](MANUSCRIPT_FIGURES.md) for recommended manuscript visualisations and bioRxiv attribution format.*
 
 ---
 

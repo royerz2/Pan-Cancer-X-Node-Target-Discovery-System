@@ -64,4 +64,29 @@ drug_sensitivity_data/
 .coverage
 htmlcov/
 .tox/
-.pdf
+
+# --- Not relevant for researchers who clone and run (author / manuscript workflow) ---
+ALIN_manuscript_project_tracker.xlsx
+create_project_tracker.py
+METHODOLOGY_JUSTIFICATION.md
+CITATIONS_NEEDED.md
+PUBLICATION_CHECKLIST.md
+MANUSCRIPT_OUTLINE.md
+MANUSCRIPT_FIGURES.md
+generate_figures.py
+generate_manuscript_pdf.py
+ALIN_Manuscript.pdf
+# Reference PDF (copyright; obtain from doi)
+PancraticCancerCure.pdf
+# LaTeX build artifacts (researchers run pdflatex/bibtex themselves)
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+# Optional: uncomment to track compiled paper in repo
+# paper.pdf
