@@ -50,6 +50,14 @@ except ImportError:
 
 from alin.utils import sanitize_cancer_name
 
+
+def _progress(msg: str, step: str = "") -> None:
+    """Print progress message so user always sees what's happening (flush immediately)."""
+    if step:
+        print(f"    -> {msg} [{step}]", flush=True)
+    else:
+        print(f"    -> {msg}...", flush=True)
+
 # Import validation module
 try:
     from alin.validation import (
@@ -1113,8 +1121,11 @@ class ViabilityPathInference:
         """Combine all path inference methods; prune paths with confidence < min_confidence."""
         paths = []
         
+        _progress("Essential modules (co-essentiality)", step="")
         paths.extend(self.infer_essential_modules(cancer_type))
+        _progress("Signaling paths (OmniPath)", step="")
         paths.extend(self.infer_signaling_paths(cancer_type, min_confidence=min_confidence))
+        _progress("Cancer-specific dependencies", step="")
         paths.extend(self.infer_cancer_specific_dependencies(cancer_type))
         
         # Prune low-confidence paths
@@ -1784,7 +1795,7 @@ class TripleCombinationFinder:
         triple_combinations = []
         
         combos = list(combinations(candidate_genes, 3))
-        for triple in tqdm(combos, desc="Scoring triples", leave=False):
+        for triple in tqdm(combos, desc="Scoring triples", leave=False, mininterval=0.5, miniters=10):
             triple_set = set(triple)
             
             # Calculate coverage
@@ -2175,7 +2186,7 @@ class PanCancerXNodeAnalyzer:
                 statistics={'error': f'No cell lines found for {cancer_type_normalized}'}
             )
         
-        logger.info(f"Found {n_cell_lines} cell lines")
+        _progress(f"{cancer_type_normalized}: {n_cell_lines} cell lines")
         
         # Get lineage
         lineage_df = self.depmap.load_lineage_annotations()
@@ -2213,7 +2224,9 @@ class PanCancerXNodeAnalyzer:
             driver_mutations = {}
         
         # Infer viability paths
+        _progress("Inferring viability paths (essential + signaling + cancer-specific)", step="")
         all_paths = self.path_inference.infer_all_paths(cancer_type_normalized)
+        _progress(f"Inferred {len(all_paths)} viability paths", step="done")
         
         if len(all_paths) == 0:
             logger.warning(f"No viability paths found for {cancer_type_normalized}")
@@ -2232,17 +2245,21 @@ class PanCancerXNodeAnalyzer:
             )
         
         # Solve minimal hitting set
+        _progress("Solving minimal hitting set", step="")
         hitting_sets = self.solver.solve(all_paths, cancer_type_normalized, max_size=4)
+        _progress(f"Found {len(hitting_sets)} hitting set solutions", step="done")
         
         # Extract top combinations
         top_sets = [(hs.targets, hs.total_cost) for hs in hitting_sets[:10]]
         
         # Find triple combinations using systems biology approach
-        logger.info("Finding optimal triple combinations...")
+        _progress("Scoring triple combinations", step="")
         triple_combinations = self.triple_finder.find_triple_combinations(
             all_paths, cancer_type_normalized, top_n=10, min_coverage=0.5
         )
         best_triple = triple_combinations[0] if triple_combinations else None
+        if triple_combinations:
+            _progress(f"Best triple: {' + '.join(sorted(best_triple.targets))}", step="done")
         
         # Best recommendation (prefer triple from systems biology analysis)
         if best_triple:
@@ -2292,16 +2309,20 @@ class PanCancerXNodeAnalyzer:
         
         results = {}
         valid_cancers = [(ct, c) for ct, c in cancer_types if pd.notna(ct)]
+        n_total = len(valid_cancers)
+        print(f"\n  Analyzing {n_total} cancer types (progress below):\n", flush=True)
         
         # Reduce logging verbosity during batch analysis
         original_level = logger.level
         logger.setLevel(logging.WARNING)
         
-        for cancer_type, count in tqdm(valid_cancers, desc="Analyzing cancers", unit="type"):
+        for idx, (cancer_type, count) in enumerate(tqdm(valid_cancers, desc="Cancers", unit="", leave=True), start=1):
             try:
+                print(f"\n  [{idx}/{n_total}] {cancer_type}", flush=True)
                 analysis = self.analyze_cancer_type(cancer_type)
                 results[cancer_type] = analysis
             except Exception as e:
+                print(f"    (skipped: {e})", flush=True)
                 continue
         
         # Restore logging
@@ -2784,8 +2805,8 @@ Validation:
                         help='Cancer type to analyze (e.g., "Pancreatic Adenocarcinoma" or "PAAD")')
     parser.add_argument('--all-cancers', action='store_true', 
                         help='Analyze all cancer types')
-    parser.add_argument('--top-n', type=int, default=20, 
-                        help='Number of cancer types to analyze (default: 20)')
+    parser.add_argument('--top-n', type=int, default=999, 
+                        help='Max number of cancer types to analyze (default: all)')
     parser.add_argument('--output', type=str, default='results', 
                         help='Output directory (default: results)')
     parser.add_argument('--list-cancers', action='store_true',
@@ -2945,7 +2966,11 @@ Validation:
     
     elif args.all_cancers:
         # Pan-cancer analysis
-        logger.info(f"Running pan-cancer analysis (top {args.top_n} cancer types)")
+        print("\n" + "="*60, flush=True)
+        print("  PAN-CANCER DISCOVERY (step 1/4)", flush=True)
+        print("  Each cancer: paths -> hitting set -> triple scoring", flush=True)
+        print("="*60 + "\n", flush=True)
+        logger.info(f"Running pan-cancer analysis (max {args.top_n} cancer types)")
         results = analyzer.analyze_all_cancers(top_n=args.top_n)
         
         # Save results

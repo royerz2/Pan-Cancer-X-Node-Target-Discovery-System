@@ -121,8 +121,9 @@ class ClinicalTrialMatcher:
         Returns:
             List of ClinicalTrial objects
         """
-        # Check cache first
-        cache_key = query.lower().replace(' ', '_')[:50]
+        # Check cache first - sanitize filename (remove/replace problematic chars)
+        cache_key = query.lower().replace(' ', '_').replace('/', '_').replace('\\', '_')
+        cache_key = ''.join(c if c.isalnum() or c == '_' else '_' for c in cache_key)[:80]
         cache_file = self.cache_dir / f"{cache_key}.json"
         
         if cache_file.exists():

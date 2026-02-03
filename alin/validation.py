@@ -330,23 +330,24 @@ class DrugSynergyValidator:
     def check_oneil_dataset(self, targets: List[str]) -> Optional[float]:
         """
         Check O'Neil et al. 2016 large-scale synergy screen (Mol Cancer Ther).
-        Load from validation_data/oneil_2016_synergy.csv with columns:
-        drug1, drug2, synergy_score (or gene1, gene2, synergy_score).
-        Download supplementary data from https://pubmed.ncbi.nlm.nih.gov/27397505/
-        or use a processed file mapping drug/gene pairs to a 0-1 synergy score.
+        Load from validation_data/oneil_2016_synergy.csv. Supported formats:
+        - gene1, gene2, synergy_score (or score)
+        - drug1, drug2, synergy_score (or score)
+        - Raw O'Neil: drugA_name, drugB_name, and viability column (mu/muMax or viability1..4)
+          → genes matched via GENE_TO_DRUGS; synergy_score = 1 - mean_viability (lower viability = higher synergy).
         """
         oneil_file = self.data_dir / "oneil_2016_synergy.csv"
         if not oneil_file.exists():
             return None
         try:
             df = pd.read_csv(oneil_file)
-            score_col = "synergy_score" if "synergy_score" in df.columns else "score"
-            if score_col not in df.columns:
-                return None
             tset = {t.upper() for t in targets}
             matches = []
 
-            if "gene1" in df.columns and "gene2" in df.columns:
+            # Prefer explicit synergy/score column
+            score_col = "synergy_score" if "synergy_score" in df.columns else "score" if "score" in df.columns else None
+
+            if "gene1" in df.columns and "gene2" in df.columns and score_col and score_col in df.columns:
                 for _, r in df.iterrows():
                     row_genes = {str(r.get("gene1", "")).upper(), str(r.get("gene2", "")).upper()} - {""}
                     if row_genes <= tset and len(row_genes) >= 2:
@@ -354,20 +355,44 @@ class DrugSynergyValidator:
                             matches.append(float(r[score_col]))
                         except (TypeError, ValueError, KeyError):
                             pass
-            elif "drug1" in df.columns and "drug2" in df.columns:
+            elif "drug1" in df.columns and "drug2" in df.columns and score_col and score_col in df.columns:
                 from alin.toxicity import GENE_TO_DRUGS
                 drug_to_gene = {}
                 for g, drugs in GENE_TO_DRUGS.items():
                     for d in drugs:
                         drug_to_gene[d.upper()] = g
                 for _, r in df.iterrows():
-                    d1 = str(r.get("drug1", "")).upper()
-                    d2 = str(r.get("drug2", "")).upper()
+                    d1 = str(r.get("drug1", "")).strip().upper()
+                    d2 = str(r.get("drug2", "")).strip().upper()
                     row_genes = {drug_to_gene.get(d1), drug_to_gene.get(d2)} - {None}
                     if row_genes <= tset and len(row_genes) >= 2:
                         try:
                             matches.append(float(r[score_col]))
                         except (TypeError, ValueError):
+                            pass
+            elif "drugA_name" in df.columns and "drugB_name" in df.columns:
+                # Raw O'Neil format: drugA_name, drugB_name, viability columns
+                from alin.toxicity import GENE_TO_DRUGS
+                drug_to_gene = {}
+                for g, drugs in GENE_TO_DRUGS.items():
+                    for d in drugs:
+                        drug_to_gene[d.upper()] = g
+                # Viability column: prefer mu/muMax, else mean of viability1..4
+                viability_cols = [c for c in df.columns if c.startswith("viability") or c == "mu/muMax" or c == "X/X0"]
+                if not viability_cols:
+                    return None
+                for _, r in df.iterrows():
+                    da = str(r.get("drugA_name", "")).strip().upper().split()[0]
+                    db = str(r.get("drugB_name", "")).strip().upper().split()[0]
+                    row_genes = {drug_to_gene.get(da), drug_to_gene.get(db)} - {None}
+                    if row_genes <= tset and len(row_genes) >= 2:
+                        try:
+                            vals = [float(r[c]) for c in viability_cols if c in r and pd.notna(r.get(c))]
+                            if vals:
+                                mean_viab = np.mean(vals)
+                                synergy = 1.0 - min(1.0, max(0.0, mean_viab))
+                                matches.append(synergy)
+                        except (TypeError, ValueError, KeyError):
                             pass
             else:
                 return None
