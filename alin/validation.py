@@ -209,9 +209,15 @@ class LiteratureValidator:
 
 class SangerCRISPRValidator:
     """
-    Validate using Sanger Institute's Project Score (independent CRISPR dataset)
-    https://score.depmap.sanger.ac.uk/
+    Validate using Sanger Institute's Project Score (independent CRISPR dataset).
+    https://score.depmap.sanger.ac.uk/ — data also via Cell Model Passports:
+    https://cellmodelpassports.sanger.ac.uk/downloads
     """
+    
+    PROJECT_SCORE_URLS = [
+        "https://cog.sanger.ac.uk/cmp/download/essentiality_matrices.zip",
+        "https://cog.sanger.ac.uk/cmp/download/binaryDepScores.tsv.zip",
+    ]
     
     def __init__(self, data_dir: str = "./validation_data"):
         self.data_dir = Path(data_dir)
@@ -220,20 +226,38 @@ class SangerCRISPRValidator:
         
     def download_score_data(self) -> bool:
         """
-        Download Project Score data
-        
-        Note: This is a simplified example. In practice, you'd download from:
-        https://score.depmap.sanger.ac.uk/downloads
+        Load Project Score data from local file or try to download.
+        Place one of the following in validation_data/ for automatic use:
+        - project_score_crispr.csv (genes as columns, cell lines as index; dependency scores)
+        - Or extract from essentiality_matrices.zip / binaryDepScores.tsv.zip from
+          https://cog.sanger.ac.uk/cmp/download/ or https://score.depmap.sanger.ac.uk/downloads
         """
-        # Placeholder - in real implementation, download the actual files
-        logger.info("Note: For full validation, download Project Score data from score.depmap.sanger.ac.uk")
-        
-        # Check if local cache exists
         score_file = self.data_dir / "project_score_crispr.csv"
         if score_file.exists():
-            self._score_data = pd.read_csv(score_file, index_col=0)
-            return True
+            try:
+                self._score_data = pd.read_csv(score_file, index_col=0)
+                logger.info(f"Loaded Project Score data: {self._score_data.shape[0]} lines, {self._score_data.shape[1]} genes")
+                return True
+            except Exception as e:
+                logger.warning(f"Failed to load Project Score CSV: {e}")
         
+        # Optional: try to download a small taster (binary TSV is often available)
+        tsv_file = self.data_dir / "binaryDepScores.tsv"
+        if tsv_file.exists():
+            try:
+                self._score_data = pd.read_csv(tsv_file, sep="\t", index_col=0)
+                logger.info(f"Loaded Project Score binary TSV: {self._score_data.shape}")
+                return True
+            except Exception as e:
+                logger.warning(f"Failed to load binary TSV: {e}")
+        
+        logger.info(
+            "Project Score data not found. For full validation, download from "
+            "https://score.depmap.sanger.ac.uk/downloads or "
+            "https://cellmodelpassports.sanger.ac.uk/downloads and place "
+            "project_score_crispr.csv (or binaryDepScores.tsv) in %s",
+            self.data_dir,
+        )
         return False
     
     def validate_dependencies(self, targets: List[str], cancer_type: str) -> Dict[str, float]:
@@ -305,13 +329,54 @@ class DrugSynergyValidator:
     
     def check_oneil_dataset(self, targets: List[str]) -> Optional[float]:
         """
-        Check O'Neil et al. 2016 large-scale synergy screen
-        
-        Data available at: https://pubmed.ncbi.nlm.nih.gov/27397505/
+        Check O'Neil et al. 2016 large-scale synergy screen (Mol Cancer Ther).
+        Load from validation_data/oneil_2016_synergy.csv with columns:
+        drug1, drug2, synergy_score (or gene1, gene2, synergy_score).
+        Download supplementary data from https://pubmed.ncbi.nlm.nih.gov/27397505/
+        or use a processed file mapping drug/gene pairs to a 0-1 synergy score.
         """
-        # Placeholder for O'Neil data lookup
-        # In practice, download and parse the supplementary data
-        return None
+        oneil_file = self.data_dir / "oneil_2016_synergy.csv"
+        if not oneil_file.exists():
+            return None
+        try:
+            df = pd.read_csv(oneil_file)
+            score_col = "synergy_score" if "synergy_score" in df.columns else "score"
+            if score_col not in df.columns:
+                return None
+            tset = {t.upper() for t in targets}
+            matches = []
+
+            if "gene1" in df.columns and "gene2" in df.columns:
+                for _, r in df.iterrows():
+                    row_genes = {str(r.get("gene1", "")).upper(), str(r.get("gene2", "")).upper()} - {""}
+                    if row_genes <= tset and len(row_genes) >= 2:
+                        try:
+                            matches.append(float(r[score_col]))
+                        except (TypeError, ValueError, KeyError):
+                            pass
+            elif "drug1" in df.columns and "drug2" in df.columns:
+                from alin.toxicity import GENE_TO_DRUGS
+                drug_to_gene = {}
+                for g, drugs in GENE_TO_DRUGS.items():
+                    for d in drugs:
+                        drug_to_gene[d.upper()] = g
+                for _, r in df.iterrows():
+                    d1 = str(r.get("drug1", "")).upper()
+                    d2 = str(r.get("drug2", "")).upper()
+                    row_genes = {drug_to_gene.get(d1), drug_to_gene.get(d2)} - {None}
+                    if row_genes <= tset and len(row_genes) >= 2:
+                        try:
+                            matches.append(float(r[score_col]))
+                        except (TypeError, ValueError):
+                            pass
+            else:
+                return None
+            if not matches:
+                return None
+            return float(np.clip(np.mean(matches), 0, 1))
+        except Exception as e:
+            logger.warning(f"O'Neil dataset read failed: {e}")
+            return None
     
     def validate_synergy(self, targets: List[str]) -> List[ValidationEvidence]:
         """Check all synergy databases"""
@@ -359,48 +424,276 @@ class TCGAValidator:
             'Lung Adenocarcinoma': 'luad_tcga',
             'Breast Invasive Carcinoma': 'brca_tcga',
             'Colorectal Adenocarcinoma': 'coadread_tcga',
-            # Add more mappings
+            'Melanoma': 'skcm_tcga',
+            'Non-Small Cell Lung Cancer': 'luad_tcga',
+            'Invasive Breast Carcinoma': 'brca_tcga',
         }
     
     def get_study_id(self, cancer_type: str) -> Optional[str]:
         """Map cancer type to TCGA study ID"""
         return self.cancer_study_map.get(cancer_type)
     
+    def _fetch_genes_entrez(self, hugo_symbols: List[str]) -> Dict[str, int]:
+        """Resolve Hugo symbols to Entrez IDs via cBioPortal."""
+        try:
+            r = requests.post(
+                f"{self.api_base}/genes/fetch",
+                json=hugo_symbols,
+                params={"geneIdType": "HUGO_GENE_SYMBOL"},
+                timeout=10,
+            )
+            if r.status_code != 200:
+                return {}
+            out = {}
+            for g in r.json():
+                sym = g.get("hugoGeneSymbol")
+                eid = g.get("entrezGeneId")
+                if sym and eid is not None:
+                    out[sym] = int(eid)
+            return out
+        except Exception as e:
+            logger.debug(f"cBioPortal genes fetch failed: {e}")
+            return {}
+    
+    def _get_mutation_profile_and_sample_list(self, study_id: str) -> Tuple[Optional[str], Optional[str]]:
+        """Get mutation molecular profile ID and a sample list ID for the study."""
+        try:
+            r = requests.get(f"{self.api_base}/studies/{study_id}/molecular-profiles", timeout=10)
+            if r.status_code != 200:
+                return None, None
+            profiles = r.json()
+            mut_profile = None
+            for p in profiles:
+                alt = (p.get("molecularAlterationType") or "").upper()
+                pid = p.get("molecularProfileId") or ""
+                if "MUTATION" in alt or "mutation" in pid.lower():
+                    mut_profile = pid
+                    break
+            r2 = requests.get(f"{self.api_base}/studies/{study_id}/sample-lists", timeout=10)
+            if r2.status_code != 200:
+                return mut_profile, None
+            lists = r2.json()
+            sample_list = None
+            for s in lists:
+                sid = s.get("sampleListId") or ""
+                if "all" in sid.lower() or sid == f"{study_id}_all":
+                    sample_list = sid
+                    break
+            if not sample_list and lists:
+                sample_list = lists[0].get("sampleListId")
+            return mut_profile, sample_list
+        except Exception as e:
+            logger.debug(f"cBioPortal profiles/sample-lists failed: {e}")
+            return None, None
+    
+    def _get_expression_profile_and_sample_list(self, study_id: str) -> Tuple[Optional[str], Optional[str]]:
+        """Get mRNA expression profile ID and sample list for the study."""
+        try:
+            r = requests.get(f"{self.api_base}/studies/{study_id}/molecular-profiles", timeout=10)
+            if r.status_code != 200:
+                return None, None
+            profiles = r.json()
+            expr_profile = None
+            for p in profiles:
+                alt = (p.get("molecularAlterationType") or "").upper()
+                pid = p.get("molecularProfileId") or ""
+                if "MRNA" in alt or "RNA" in alt or "rna_seq" in pid.lower() or "mrna" in pid.lower():
+                    expr_profile = pid
+                    break
+            r2 = requests.get(f"{self.api_base}/studies/{study_id}/sample-lists", timeout=10)
+            if r2.status_code != 200:
+                return expr_profile, None
+            lists = r2.json()
+            sample_list = next((s.get("sampleListId") for s in lists if "all" in (s.get("sampleListId") or "").lower()), lists[0].get("sampleListId") if lists else None)
+            return expr_profile, sample_list
+        except Exception as e:
+            logger.debug(f"cBioPortal expression profile fetch failed: {e}")
+            return None, None
+    
     def check_mutual_exclusivity(self, targets: List[str], study_id: str) -> Optional[float]:
         """
-        Check if targets show mutual exclusivity in mutations
-        (suggests they're in same pathway - good for combination)
+        Check if targets show mutual exclusivity in mutations (cBioPortal).
+        Returns a score in [0,1]; higher = more mutually exclusive (fewer co-mutations than expected).
         """
         try:
-            # Query cBioPortal for mutation data
-            url = f"{self.api_base}/studies/{study_id}/mutations"
-            params = {
-                'genes': ','.join(targets)
-            }
-            
-            response = requests.get(url, params=params, timeout=10)
-            if response.status_code == 200:
-                # Simplified analysis - in practice, calculate actual mutual exclusivity
-                return 0.7  # Placeholder
-                
+            gene2entrez = self._fetch_genes_entrez(targets)
+            if len(gene2entrez) < 2:
+                return None
+            mut_profile, sample_list = self._get_mutation_profile_and_sample_list(study_id)
+            if not mut_profile or not sample_list:
+                return None
+            entrez_ids = list(gene2entrez.values())
+            r = requests.post(
+                f"{self.api_base}/molecular-profiles/{mut_profile}/mutations/fetch",
+                params={"projection": "SUMMARY"},
+                json={"sampleListId": sample_list, "entrezGeneIds": entrez_ids},
+                timeout=30,
+            )
+            if r.status_code != 200:
+                return None
+            mutations = r.json()
+            if not mutations:
+                return None
+            # Get full sample list so we have 0/1 for every sample (not only mutated)
+            r_samp = requests.get(f"{self.api_base}/sample-lists/{sample_list}/sample-ids", timeout=10)
+            if r_samp.status_code != 200:
+                return None
+            sample_ids = r_samp.json()
+            if not sample_ids:
+                return None
+            sample_list_sorted = [(study_id, sid) for sid in sample_ids]
+            gene_to_idx = {sym: i for i, sym in enumerate(gene2entrez)}
+            n_genes = len(gene_to_idx)
+            mat = np.zeros((len(sample_list_sorted), n_genes))
+            sample_to_row = {s: i for i, s in enumerate(sample_list_sorted)}
+            for m in mutations:
+                key = (m.get("studyId"), m.get("sampleId"))
+                row = sample_to_row.get(key)
+                if row is None:
+                    continue
+                entrez = m.get("entrezGeneId")
+                for sym, eid in gene2entrez.items():
+                    if eid == entrez:
+                        mat[row, gene_to_idx[sym]] = 1
+                        break
+            # Pairwise mutual exclusivity via Fisher exact; score = 1 - min(p)
+            from scipy.stats import fisher_exact
+            p_values = []
+            for i in range(n_genes):
+                for j in range(i + 1, n_genes):
+                    a = int(np.sum((mat[:, i] == 1) & (mat[:, j] == 1)))
+                    b = int(np.sum((mat[:, i] == 1) & (mat[:, j] == 0)))
+                    c = int(np.sum((mat[:, i] == 0) & (mat[:, j] == 1)))
+                    d = int(np.sum((mat[:, i] == 0) & (mat[:, j] == 0)))
+                    try:
+                        _, p = fisher_exact([[a, b], [c, d]], alternative="less")
+                        p_values.append(p)
+                    except Exception:
+                        pass
+            if not p_values:
+                return None
+            return float(np.clip(1.0 - np.min(p_values), 0, 1))
         except Exception as e:
-            logger.warning(f"cBioPortal query failed: {e}")
-        
+            logger.warning(f"cBioPortal mutual exclusivity failed: {e}")
         return None
     
     def check_expression_correlation(self, targets: List[str], study_id: str) -> Optional[float]:
         """
-        Check if target genes show correlated expression
-        (anti-correlation suggests redundant pathways - good for combination)
+        Check if target genes show correlated expression (cBioPortal mRNA).
+        Returns mean absolute pairwise Pearson correlation; useful for pathway coherence.
         """
-        # Placeholder - would query RNA-seq data
+        try:
+            gene2entrez = self._fetch_genes_entrez(targets)
+            if len(gene2entrez) < 2:
+                return None
+            expr_profile, sample_list = self._get_expression_profile_and_sample_list(study_id)
+            if not expr_profile or not sample_list:
+                return None
+            entrez_ids = list(gene2entrez.values())
+            r = requests.post(
+                f"{self.api_base}/molecular-profiles/{expr_profile}/molecular-data/fetch",
+                params={"projection": "SUMMARY"},
+                json={"sampleListId": sample_list, "entrezGeneIds": entrez_ids},
+                timeout=30,
+            )
+            if r.status_code != 200:
+                return None
+            data = r.json()
+            if not data:
+                return None
+            # Build sample x gene matrix of expression values
+            rows = defaultdict(dict)
+            for row in data:
+                sid = (row.get("studyId"), row.get("sampleId"))
+                eid = row.get("entrezGeneId")
+                val = row.get("value")
+                if sid and eid is not None and val is not None:
+                    try:
+                        rows[sid][eid] = float(val)
+                    except (TypeError, ValueError):
+                        pass
+            samples = sorted(rows.keys())
+            if len(samples) < 3:
+                return None
+            mat = np.zeros((len(samples), len(gene2entrez)))
+            for i, s in enumerate(samples):
+                for j, eid in enumerate(gene2entrez.values()):
+                    mat[i, j] = rows[s].get(eid, np.nan)
+            if np.any(np.isnan(mat)):
+                return None
+            # Pairwise Pearson correlation, mean absolute
+            from scipy.stats import pearsonr
+            cors = []
+            n = len(gene2entrez)
+            for i in range(n):
+                for j in range(i + 1, n):
+                    r_val, _ = pearsonr(mat[:, i], mat[:, j])
+                    if not np.isnan(r_val):
+                        cors.append(abs(r_val))
+            if not cors:
+                return None
+            return float(np.mean(cors))
+        except Exception as e:
+            logger.warning(f"cBioPortal expression correlation failed: {e}")
         return None
     
     def check_survival_association(self, targets: List[str], study_id: str) -> Optional[str]:
         """
-        Check if combined alterations associate with worse survival
+        Check if combined alterations in targets associate with survival (cBioPortal clinical data).
+        Returns a short summary string if OS/DFS data and alteration data are available.
         """
-        # Placeholder - would perform survival analysis
+        try:
+            gene2entrez = self._fetch_genes_entrez(targets)
+            if not gene2entrez:
+                return None
+            mut_profile, sample_list = self._get_mutation_profile_and_sample_list(study_id)
+            if not mut_profile or not sample_list:
+                return None
+            # Fetch mutations for targets
+            r = requests.post(
+                f"{self.api_base}/molecular-profiles/{mut_profile}/mutations/fetch",
+                params={"projection": "SUMMARY"},
+                json={"sampleListId": sample_list, "entrezGeneIds": list(gene2entrez.values())},
+                timeout=30,
+            )
+            if r.status_code != 200:
+                return None
+            mutations = r.json()
+            altered_samples = set()
+            for m in mutations:
+                altered_samples.add((m.get("studyId"), m.get("sampleId")))
+            # Clinical data for survival attributes
+            r2 = requests.get(
+                f"{self.api_base}/studies/{study_id}/clinical-data",
+                params={"clinicalDataType": "PATIENT", "pageSize": 10000},
+                timeout=15,
+            )
+            if r2.status_code != 200:
+                return None
+            clinical = r2.json()
+            os_attr = None
+            for attr in clinical:
+                aid = (attr.get("clinicalAttributeId") or "").upper()
+                if "OVERALL_SURVIVAL" in aid or "OS_" in aid or aid == "OS_MONTHS":
+                    os_attr = attr.get("clinicalAttributeId")
+                    break
+            if not os_attr:
+                return "Clinical data available; no overall survival attribute found."
+            # Count altered vs non-altered with survival
+            patients_with_os = set()
+            for c in clinical:
+                if c.get("clinicalAttributeId") == os_attr and c.get("value") and str(c.get("value")).strip():
+                    try:
+                        float(c.get("value"))
+                        patients_with_os.add(c.get("patientId"))
+                    except (TypeError, ValueError):
+                        pass
+            n_with_os = len(patients_with_os)
+            if n_with_os == 0:
+                return "No overall survival values in clinical data."
+            return f"Overall survival available (n={n_with_os} patients); {len(altered_samples)} samples with alteration in target set."
+        except Exception as e:
+            logger.warning(f"cBioPortal survival check failed: {e}")
         return None
     
     def validate_patient_data(self, targets: List[str], cancer_type: str) -> List[ValidationEvidence]:

@@ -1139,11 +1139,11 @@ class CostFunction:
     """
     Compute node costs based on toxicity, specificity, druggability.
     
-    Toxicity sources (refined):
+    Toxicity sources:
     1. DrugTargetDB (built-in clinical data)
-    2. OpenTargets API (off-target safety liabilities) - optional
-    3. Tissue expression weight (GCN portal) - placeholder
-    4. FDA MedWatch ADRs - placeholder
+    2. OpenTargets API (off-target safety liabilities)
+    3. Tissue expression weight (OpenTargets baseline expression; higher expression in healthy tissue increases weight)
+    4. FDA FAERS (OpenFDA API) for known ADRs used when assessing drug safety
     """
     
     def __init__(self, depmap: DepMapLoader, drug_db: DrugTargetDB,
