@@ -88,5 +88,7 @@ PancraticCancerCure.pdf
 *.synctex.gz
 *.fls
 *.fdb_latexmk
+paper.tex
+alin_refs.bib
 # Optional: uncomment to track compiled paper in repo
 # paper.pdf
