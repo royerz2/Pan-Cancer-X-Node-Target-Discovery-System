@@ -1,0 +1,40 @@
+# ALIN Framework - Locked Dependencies
+# Generated for reproducibility
+# Python version: 3.12.x
+
+# Core data science
+numpy==1.26.4
+pandas==2.3.0
+scipy==1.13.1
+scikit-learn==1.7.0
+
+# Network analysis
+networkx==3.5
+
+# Visualization
+matplotlib==3.10.8
+seaborn==0.13.2
+
+# Statistics
+statsmodels==0.14.4
+
+# Excel support
+openpyxl==3.1.5
+
+# Progress bars
+tqdm==4.67.1
+
+# HTTP requests (for API calls)
+requests==2.32.4
+
+# Testing
+pytest==8.4.1
+pytest-mock==3.14.1
+
+# Optional: Machine learning
+# torch==2.5.1
+# sentence-transformers==5.0.0
+
+# Web scraping (for clinical trials)
+# beautifulsoup4==4.13.4
+# lxml==6.0.0
