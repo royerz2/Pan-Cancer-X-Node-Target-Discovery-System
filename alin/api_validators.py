@@ -22,7 +22,6 @@ from collections import defaultdict
 import logging
 import xml.etree.ElementTree as ET
 
-logging.basicConfig(level=logging.INFO, format='%(levelname)s:%(name)s:%(message)s')
 logger = logging.getLogger(__name__)
 
 # ============================================================================

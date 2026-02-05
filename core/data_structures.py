@@ -5,7 +5,7 @@ Dataclasses representing targets, costs, paths, and combinations.
 """
 
 from dataclasses import dataclass, field
-from typing import Dict, List, Set, Tuple, Optional, FrozenSet
+from typing import Any, Dict, List, Set, Tuple, Optional, FrozenSet
 
 
 @dataclass(frozen=True)
@@ -207,7 +207,7 @@ class CancerTypeAnalysis:
     recommended_combination: Optional[List[str]]
     triple_combinations: List[TripleCombination] = field(default_factory=list)
     best_triple: Optional[TripleCombination] = None
-    statistics: Dict[str, any] = field(default_factory=dict)
+    statistics: Dict[str, Any] = field(default_factory=dict)
     
     @property
     def has_predictions(self) -> bool:

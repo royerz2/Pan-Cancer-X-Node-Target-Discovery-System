@@ -24,40 +24,12 @@ from itertools import combinations
 import requests
 from typing import Dict, List, Optional, Set, Tuple, FrozenSet
 
+from alin.constants import GENE_TO_ENSEMBL, GENE_TO_DRUGS
+
 logger = logging.getLogger(__name__)
 
 # OpenTargets GraphQL endpoint
 OPENTARGETS_GRAPHQL = "https://api.platform.opentargets.org/api/v4/graphql"
-
-# Gene symbol -> Ensembl ID mapping (common cancer targets; expand as needed)
-GENE_TO_ENSEMBL: Dict[str, str] = {
-    'EGFR': 'ENSG00000146648', 'KRAS': 'ENSG00000133703', 'BRAF': 'ENSG00000157764',
-    'PIK3CA': 'ENSG00000121879', 'TP53': 'ENSG00000141510', 'ERBB2': 'ENSG00000141736',
-    'CDK4': 'ENSG00000135446', 'CDK6': 'ENSG00000105810', 'STAT3': 'ENSG00000115415',
-    'SRC': 'ENSG00000197122', 'FYN': 'ENSG00000010810', 'MET': 'ENSG00000005968',
-    'BCL2': 'ENSG00000171791', 'MCL1': 'ENSG00000143384', 'MTOR': 'ENSG00000198793',
-    'JAK1': 'ENSG00000162434', 'JAK2': 'ENSG00000096968', 'ALK': 'ENSG00000171094',
-    'MAP2K1': 'ENSG00000169032', 'MAP2K2': 'ENSG00000126934', 'FGFR1': 'ENSG00000077782',
-}
-
-# Gene symbol -> drug names (for OpenFDA FAERS queries; representative inhibitors)
-GENE_TO_DRUGS: Dict[str, List[str]] = {
-    'EGFR': ['erlotinib', 'gefitinib', 'osimertinib', 'cetuximab'],
-    'KRAS': ['sotorasib', 'adagrasib'],
-    'BRAF': ['vemurafenib', 'dabrafenib', 'encorafenib'],
-    'PIK3CA': ['alpelisib', 'copanlisib'],
-    'ERBB2': ['trastuzumab', 'lapatinib', 'pertuzumab'],
-    'CDK4': ['palbociclib', 'ribociclib', 'abemaciclib'],
-    'CDK6': ['palbociclib', 'ribociclib', 'abemaciclib'],
-    'STAT3': ['napabucasin', 'stattic'],
-    'MET': ['crizotinib', 'capmatinib', 'cabozantinib'],
-    'BCL2': ['venetoclax'],
-    'MTOR': ['everolimus', 'temsirolimus'],
-    'JAK1': ['ruxolitinib'], 'JAK2': ['ruxolitinib', 'fedratinib'],
-    'ALK': ['crizotinib', 'alectinib', 'ceritinib'],
-    'MAP2K1': ['trametinib', 'cobimetinib'], 'MAP2K2': ['trametinib', 'cobimetinib'],
-    'FGFR1': ['erdafitinib', 'pemigatinib'],
-}
 
 
 def _fetch_opentargets_safety(ensembl_id: str) -> Optional[Dict]:

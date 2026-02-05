@@ -14,6 +14,7 @@ and network topology miss.
 """
 
 import logging
+import copy
 from typing import Dict, List, Set, Optional, Tuple
 from dataclasses import dataclass, field
 
@@ -430,12 +431,12 @@ PERTURBATION_SIGNATURES: Dict[str, PerturbationSignature] = {
     ),
 }
 
-# Set aliases
-PERTURBATION_SIGNATURES['MAP2K1'] = PERTURBATION_SIGNATURES['MEK1']
-PERTURBATION_SIGNATURES['MAP2K2'] = PERTURBATION_SIGNATURES['MEK1']
-PERTURBATION_SIGNATURES['CDK6'] = PERTURBATION_SIGNATURES['CDK4']
-PERTURBATION_SIGNATURES['JAK2'] = PERTURBATION_SIGNATURES['JAK1']
-PERTURBATION_SIGNATURES['FYN'] = PERTURBATION_SIGNATURES['SRC']
+# Set aliases (deep copy to avoid shared mutable references)
+PERTURBATION_SIGNATURES['MAP2K1'] = copy.deepcopy(PERTURBATION_SIGNATURES['MEK1'])
+PERTURBATION_SIGNATURES['MAP2K2'] = copy.deepcopy(PERTURBATION_SIGNATURES['MEK1'])
+PERTURBATION_SIGNATURES['CDK6'] = copy.deepcopy(PERTURBATION_SIGNATURES['CDK4'])
+PERTURBATION_SIGNATURES['JAK2'] = copy.deepcopy(PERTURBATION_SIGNATURES['JAK1'])
+PERTURBATION_SIGNATURES['FYN'] = copy.deepcopy(PERTURBATION_SIGNATURES['SRC'])
 
 
 def get_perturbation_signature(target: str) -> Optional[PerturbationSignature]:

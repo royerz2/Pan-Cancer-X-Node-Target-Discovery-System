@@ -41,12 +41,7 @@ from scipy import stats
 import warnings
 import re
 
-try:
-    from tqdm import tqdm
-except ImportError:
-    # Fallback if tqdm not installed
-    def tqdm(iterable, *args, **kwargs):
-        return iterable
+from alin.constants import tqdm, CANCER_TYPE_ALIASES, normalize_cancer_type
 
 from alin.utils import sanitize_cancer_name
 
@@ -78,7 +73,7 @@ except ImportError:
         return []
     logging.warning("Validation module not available. Install dependencies or check import.")
 
-warnings.filterwarnings('ignore')
+warnings.filterwarnings('ignore', category=FutureWarning)
 
 logging.basicConfig(level=logging.INFO, format='%(levelname)s:%(name)s:%(message)s')
 logger = logging.getLogger(__name__)
@@ -169,7 +164,7 @@ class CancerTypeAnalysis:
     recommended_combination: Optional[List[str]]
     triple_combinations: List['TripleCombination'] = field(default_factory=list)  # Systems biology triples
     best_triple: Optional['TripleCombination'] = None
-    statistics: Dict[str, any] = field(default_factory=dict)
+    statistics: Dict[str, Any] = field(default_factory=dict)
     
 @dataclass
 class DrugTarget:
@@ -179,48 +174,7 @@ class DrugTarget:
     clinical_stage: str  # "approved", "phase3", "phase2", "phase1", "preclinical"
     known_toxicities: List[str]
 
-# ============================================================================
-# CANCER TYPE MAPPING
-# ============================================================================
-
-# Map common abbreviations to full OncoTree disease names
-CANCER_TYPE_ALIASES = {
-    'PAAD': 'Pancreatic Adenocarcinoma',
-    'PDAC': 'Pancreatic Adenocarcinoma',
-    'LUAD': 'Lung Adenocarcinoma',
-    'LUSC': 'Lung Squamous Cell Carcinoma',
-    'NSCLC': 'Non-Small Cell Lung Cancer',
-    'BRCA': 'Invasive Breast Carcinoma',
-    'COAD': 'Colon Adenocarcinoma',
-    'READ': 'Rectal Adenocarcinoma',
-    'CRC': 'Colorectal Adenocarcinoma',
-    'SKCM': 'Melanoma',
-    'MEL': 'Melanoma',
-    'GBM': 'Glioblastoma',
-    'OV': 'Ovarian Epithelial Tumor',
-    'HGSOC': 'High-Grade Serous Ovarian Cancer',
-    'PRAD': 'Prostate Adenocarcinoma',
-    'STAD': 'Stomach Adenocarcinoma',
-    'ESCA': 'Esophageal Adenocarcinoma',
-    'LIHC': 'Hepatocellular Carcinoma',
-    'HCC': 'Hepatocellular Carcinoma',
-    'BLCA': 'Bladder Urothelial Carcinoma',
-    'KIRC': 'Renal Clear Cell Carcinoma',
-    'CCRCC': 'Renal Clear Cell Carcinoma',
-    'AML': 'Acute Myeloid Leukemia',
-    'ALL': 'Acute Lymphoblastic Leukemia',
-    'MM': 'Plasma Cell Myeloma',
-    'PCM': 'Plasma Cell Myeloma',
-}
-
-def normalize_cancer_type(cancer_type: str) -> str:
-    """Normalize cancer type to full OncoTree name"""
-    # Check if it's an alias
-    upper_type = cancer_type.upper().strip()
-    if upper_type in CANCER_TYPE_ALIASES:
-        return CANCER_TYPE_ALIASES[upper_type]
-    # Return as-is (assume it's already the full name)
-    return cancer_type.strip()
+# CANCER_TYPE_ALIASES and normalize_cancer_type imported from alin.constants
 
 # ============================================================================
 # REAL DEPMAP DATA LOADER

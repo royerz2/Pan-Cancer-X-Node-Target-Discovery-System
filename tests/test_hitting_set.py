@@ -8,11 +8,6 @@ import pytest
 import numpy as np
 from typing import List, Set, FrozenSet
 
-# Import from core module
-import sys
-from pathlib import Path
-sys.path.insert(0, str(Path(__file__).parent.parent))
-
 from core.data_structures import ViabilityPath, HittingSet, NodeCost
 
 

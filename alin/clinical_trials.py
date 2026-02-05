@@ -12,6 +12,7 @@ Features:
 """
 
 import pandas as pd
+import datetime
 import requests
 import time
 from typing import List, Dict, Optional, Tuple
@@ -21,12 +22,8 @@ import json
 import logging
 from collections import defaultdict
 
-try:
-    from tqdm import tqdm
-except ImportError:
-    def tqdm(x, **kwargs): return x
+from alin.constants import tqdm, CANCER_SEARCH_TERMS
 
-logging.basicConfig(level=logging.INFO, format='%(levelname)s:%(name)s:%(message)s')
 logger = logging.getLogger(__name__)
 
 # ============================================================================
@@ -61,19 +58,6 @@ TARGET_TO_DRUGS = {
     'ERBB2': ['trastuzumab', 'pertuzumab', 'lapatinib', 'HER2', 'ERBB2'],
 }
 
-# Cancer type to search terms
-CANCER_SEARCH_TERMS = {
-    'Pancreatic Adenocarcinoma': ['pancreatic cancer', 'pancreatic adenocarcinoma', 'PDAC'],
-    'Non-Small Cell Lung Cancer': ['NSCLC', 'non-small cell lung cancer', 'lung adenocarcinoma'],
-    'Melanoma': ['melanoma', 'metastatic melanoma'],
-    'Colorectal Adenocarcinoma': ['colorectal cancer', 'colon cancer', 'CRC'],
-    'Ovarian Epithelial Tumor': ['ovarian cancer', 'ovarian carcinoma'],
-    'Breast Invasive Carcinoma': ['breast cancer', 'invasive breast carcinoma'],
-    'Acute Myeloid Leukemia': ['AML', 'acute myeloid leukemia'],
-    'Anaplastic Thyroid Cancer': ['anaplastic thyroid', 'thyroid cancer'],
-    'Pleural Mesothelioma': ['mesothelioma', 'pleural mesothelioma'],
-    'Hepatocellular Carcinoma': ['hepatocellular carcinoma', 'HCC', 'liver cancer'],
-}
 
 @dataclass
 class ClinicalTrial:
@@ -320,7 +304,7 @@ def generate_trial_report(all_matches: Dict[str, List[TrialMatch]]) -> str:
 CLINICAL TRIAL MATCHING REPORT
 ================================================================================
 ALIN Framework (Adaptive Lethal Intersection Network)
-Generated: 2026-02-01
+Generated: {datetime.date.today().isoformat()}
 
 This report matches our discovered triple combinations against existing
 clinical trials on ClinicalTrials.gov to identify:

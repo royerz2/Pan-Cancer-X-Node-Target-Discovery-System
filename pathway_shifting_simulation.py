@@ -36,7 +36,11 @@ from scipy.integrate import solve_ivp
 from dataclasses import dataclass, field
 from typing import Dict, List, Tuple, Set, Optional
 import warnings
-warnings.filterwarnings('ignore')
+warnings.filterwarnings('ignore', category=RuntimeWarning)  # scipy ODE only
+
+# Reproducibility
+RNG_SEED = 42
+np.random.seed(RNG_SEED)
 
 # ---------------------------------------------------------------------------
 # 1. SIGNALING NETWORK MODEL

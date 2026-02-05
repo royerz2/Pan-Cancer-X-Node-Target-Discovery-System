@@ -19,34 +19,16 @@ from dataclasses import dataclass, field
 from collections import defaultdict
 import json
 
+from alin.constants import (
+    CANCER_BENCHMARK_ALIASES as CANCER_ALIASES,
+    GENE_EQUIVALENTS,
+)
+
 # ============================================================================
 # GOLD STANDARD: Known validated combinations
 # ============================================================================
 # Sources: FDA labels, NCCN guidelines, pivotal trials, key publications
 # Format: cancer_type -> list of (target_set, evidence_level, description)
-
-# Cancer type aliases for matching (our names may differ)
-CANCER_ALIASES = {
-    'Melanoma': ['Melanoma', 'Cutaneous Melanoma', 'Mucosal Melanoma', 'Ocular Melanoma'],
-    'Non-Small Cell Lung Cancer': ['Non-Small Cell Lung Cancer', 'NSCLC', 'Lung Adenocarcinoma', 'Lung'],
-    'Pancreatic Adenocarcinoma': ['Pancreatic Adenocarcinoma', 'PDAC', 'Pancreas', 'Ampullary'],
-    'Colorectal Adenocarcinoma': ['Colorectal Adenocarcinoma', 'Colon', 'CRC', 'Bowel'],
-    'Breast Invasive Carcinoma': ['Invasive Breast Carcinoma', 'Breast Invasive Carcinoma', 'Breast'],
-    'Acute Myeloid Leukemia': ['Acute Myeloid Leukemia', 'AML', 'Myeloid'],
-    'Renal Cell Carcinoma': ['Renal Cell Carcinoma', 'Kidney'],
-    'Head and Neck Squamous Cell Carcinoma': ['Head and Neck Squamous Cell Carcinoma', 'HNSCC', 'Head and Neck'],
-    'Diffuse Glioma': ['Diffuse Glioma', 'Glioma', 'CNS'],
-    'Liposarcoma': ['Liposarcoma', 'Sarcoma'],
-    'Hepatocellular Carcinoma': ['Hepatocellular Carcinoma', 'HCC', 'Liver'],
-}
-
-# Gene equivalents (e.g. MAP2K1 and MAP2K2 both MEK - trametinib inhibits both)
-GENE_EQUIVALENTS = {
-    'MAP2K2': {'MAP2K1'},  # MEK2 = MEK1 for BRAF combo
-    'MAP2K1': {'MAP2K2'},
-    'CDK4': {'CDK6'},      # CDK4/6 inhibitors target both
-    'CDK6': {'CDK4'},
-}
 
 # Gold standard: cancer -> [(targets, evidence, description)]
 # Targets can be pairs or triples; we check if our prediction CONTAINS them (superset)
@@ -450,11 +432,13 @@ INTERPRETATION
     return report
 
 
-def run_random_baseline(triples_csv: str, n_trials: int = 100) -> Dict:
+def run_random_baseline(triples_csv: str, n_trials: int = 100, seed: int = 42) -> Dict:
     """
     Random baseline: sample random triples from our gene pool, measure recall.
+    Uses fixed seed for reproducibility.
     """
     import random
+    rng = random.Random(seed)
     triples = pd.read_csv(triples_csv)
     all_genes = set()
     for _, row in triples.iterrows():
@@ -472,7 +456,7 @@ def run_random_baseline(triples_csv: str, n_trials: int = 100) -> Dict:
         random_predictions = defaultdict(list)
         for cancer in cancer_to_predictions:
             for _ in range(min(5, len(cancer_to_predictions[cancer]))):
-                triple = frozenset(random.sample(all_genes, 3))
+                triple = frozenset(rng.sample(all_genes, 3))
                 random_predictions[cancer].append(triple)
         
         tp = 0

@@ -27,8 +27,7 @@ import logging
 import requests
 import warnings
 
-warnings.filterwarnings('ignore')
-logging.basicConfig(level=logging.INFO, format='%(levelname)s:%(name)s:%(message)s')
+warnings.filterwarnings('ignore', category=FutureWarning)
 logger = logging.getLogger(__name__)
 
 # ============================================================================
