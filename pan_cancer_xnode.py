@@ -1117,6 +1117,65 @@ class ViabilityPathInference:
         
         return []
     
+    def infer_perturbation_response_paths(self, cancer_type: str,
+                                          dependency_threshold: float = -0.5,
+                                          min_overlap: int = 2) -> List[ViabilityPath]:
+        """
+        Infer viability paths from perturbation-induced signaling changes.
+        
+        Uses curated phosphoproteomics and transcriptional response signatures
+        to find essential genes that respond to target inhibition.
+        
+        This captures dynamic pathway relationships that static co-essentiality
+        and network topology miss.
+        """
+        logger.info(f"Inferring perturbation response paths for {cancer_type}")
+        
+        try:
+            from alin.perturbation import (
+                build_perturbation_response_paths,
+                get_perturbation_signature,
+            )
+        except ImportError:
+            logger.warning("Perturbation module not available; skipping perturbation paths")
+            return []
+        
+        crispr = self.depmap.load_crispr_dependencies()
+        cell_lines = self.depmap.get_cell_lines_for_cancer(cancer_type)
+        pan_essential = self._get_pan_essential()
+        
+        available_lines = [cl for cl in cell_lines if cl in crispr.index]
+        if len(available_lines) == 0:
+            return []
+        
+        crispr_subset = crispr.loc[available_lines]
+        mean_dep = crispr_subset.mean(axis=0)
+        
+        # Get essential genes (excluding pan-essential)
+        essential_genes = set(mean_dep[mean_dep < dependency_threshold].index)
+        essential_genes -= pan_essential
+        
+        # Build paths from perturbation signatures
+        pert_paths = build_perturbation_response_paths(
+            essential_genes=essential_genes,
+            min_overlap=min_overlap,
+        )
+        
+        paths = []
+        for target, path_genes, confidence in pert_paths:
+            if len(path_genes) >= 2:
+                path = ViabilityPath(
+                    path_id=f"{cancer_type}_perturbation_{target}",
+                    nodes=frozenset(path_genes),
+                    context=cancer_type,
+                    confidence=confidence,
+                    path_type="perturbation_response"
+                )
+                paths.append(path)
+        
+        logger.info(f"Inferred {len(paths)} perturbation response paths")
+        return paths
+    
     def infer_all_paths(self, cancer_type: str, min_confidence: float = 0.5) -> List[ViabilityPath]:
         """Combine all path inference methods; prune paths with confidence < min_confidence."""
         paths = []
@@ -1127,6 +1186,8 @@ class ViabilityPathInference:
         paths.extend(self.infer_signaling_paths(cancer_type, min_confidence=min_confidence))
         _progress("Cancer-specific dependencies", step="")
         paths.extend(self.infer_cancer_specific_dependencies(cancer_type))
+        _progress("Perturbation response paths", step="")
+        paths.extend(self.infer_perturbation_response_paths(cancer_type))
         
         # Prune low-confidence paths
         paths = [p for p in paths if p.confidence >= min_confidence]
@@ -1695,6 +1756,8 @@ class TripleCombination:
     druggable_count: int  # How many have approved drugs
     combined_score: float  # Overall score (lower is better for therapeutic potential)
     drug_info: Dict[str, Optional[DrugTarget]] = field(default_factory=dict)
+    combo_tox_score: float = 0.0  # Combination-level toxicity (DDI, overlapping toxicities)
+    combo_tox_details: Dict = field(default_factory=dict)  # Breakdown of combo toxicity
     
     def __lt__(self, other):
         return self.combined_score < other.combined_score
@@ -1823,26 +1886,54 @@ class TripleCombinationFinder:
             # Get drug info
             drug_info = {g: self.drug_db.get_drug_info(g) for g in triple}
             
+            # Compute combination-level toxicity (DDI, overlapping toxicities, FAERS signals)
+            combo_tox_score = 0.0
+            combo_tox_details = {}
+            try:
+                from alin.toxicity import compute_combo_toxicity_score
+                combo_tox_result = compute_combo_toxicity_score(list(triple), use_faers=False)
+                combo_tox_score = combo_tox_result['combo_tox_score']
+                combo_tox_details = combo_tox_result
+            except ImportError:
+                pass
+            
+            # Compute perturbation response score (bonus for targeting feedback/resistance genes)
+            perturbation_bonus = 0.0
+            try:
+                from alin.perturbation import score_combination_by_perturbation
+                essential_genes = set()
+                for p in paths:
+                    essential_genes.update(p.nodes)
+                pert_result = score_combination_by_perturbation(list(triple), essential_genes)
+                # Bonus if combination targets feedback genes (resistance prevention)
+                perturbation_bonus = pert_result.get('feedback_coverage', 0) * 0.1
+            except ImportError:
+                pass
+            
             # Combined score (lower is better)
-            # Weights: cost (0.3), synergy (-0.25), resistance (0.25), coverage (-0.2)
+            # Weights: cost (0.22), synergy (-0.18), resistance (0.18), coverage (-0.14), combo_tox (0.18)
             combined_score = (
-                total_cost * 0.3 +
-                (1 - synergy) * 0.25 +  # Invert synergy (higher synergy = better)
-                resistance * 0.25 +
-                (1 - coverage) * 0.2 -
-                druggable_count * 0.15  # Bonus for druggability
+                total_cost * 0.22 +
+                (1 - synergy) * 0.18 +  # Invert synergy (higher synergy = better)
+                resistance * 0.18 +
+                (1 - coverage) * 0.14 +
+                combo_tox_score * 0.18 -  # Penalty for combination toxicity
+                druggable_count * 0.1 -   # Bonus for druggability
+                perturbation_bonus        # Bonus for targeting feedback genes
             )
             
             triple_combinations.append(TripleCombination(
                 targets=tuple(sorted(triple)),
-                        total_cost=total_cost,
+                total_cost=total_cost,
                 synergy_score=synergy,
                 resistance_score=resistance,
                 pathway_coverage=pathway_cov,
                 coverage=coverage,
                 druggable_count=druggable_count,
                 combined_score=combined_score,
-                drug_info=drug_info
+                drug_info=drug_info,
+                combo_tox_score=combo_tox_score,
+                combo_tox_details=combo_tox_details,
             ))
         
         # Sort by combined score
@@ -1879,6 +1970,7 @@ class TripleCombinationFinder:
             f"  Combined Score: {triple.combined_score:.3f} (lower is better)",
             f"  Synergy Score: {triple.synergy_score:.2f} (higher is better)",
             f"  Resistance Score: {triple.resistance_score:.2f} (lower is better)",
+            f"  Combo Toxicity: {triple.combo_tox_score:.2f} (lower is better)",
             f"  Path Coverage: {triple.coverage*100:.1f}%",
             f"  Total Cost: {triple.total_cost:.2f}",
             f"  Druggable Targets: {triple.druggable_count}/3",
@@ -1897,6 +1989,29 @@ class TripleCombinationFinder:
                     lines.append(f"    Toxicities: {', '.join(drug_info.known_toxicities[:3])}")
             else:
                 lines.append(f"  {target}: No approved drugs (research target)")
+        
+        # Add combo toxicity details
+        lines.extend([f"", f"COMBINATION TOXICITY ASSESSMENT:"])
+        if triple.combo_tox_details:
+            details = triple.combo_tox_details
+            if details.get('ddi_penalties'):
+                lines.append(f"  Known Drug-Drug Interactions:")
+                for ddi in details['ddi_penalties']:
+                    lines.append(f"    - {ddi['drugs'][0]} + {ddi['drugs'][1]}: {ddi['severity']} ({ddi['mechanism']})")
+            else:
+                lines.append(f"  No known major drug-drug interactions")
+            
+            if details.get('overlapping_toxicities'):
+                lines.append(f"  Overlapping Toxicity Classes:")
+                for tox_class, count in details['overlapping_toxicities'].items():
+                    lines.append(f"    - {tox_class}: {count} drugs share this toxicity")
+            else:
+                lines.append(f"  No major overlapping toxicity classes")
+            
+            comp = details.get('component_scores', {})
+            lines.append(f"  Component Scores: DDI={comp.get('ddi', 0):.2f}, Overlap={comp.get('overlap', 0):.2f}")
+        else:
+            lines.append(f"  Combo toxicity data unavailable")
         
         lines.extend([
             f"",
@@ -2724,6 +2839,8 @@ def generate_summary_table(results: Dict[str, CancerTypeAnalysis]) -> pd.DataFra
         })
     
     df = pd.DataFrame(rows)
+    if df.empty:
+        return df
     df = df.sort_values('Cell Lines', ascending=False)
     return df
 
