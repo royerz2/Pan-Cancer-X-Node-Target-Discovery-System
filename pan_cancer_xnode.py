@@ -31,7 +31,7 @@ import json
 import pandas as pd
 import numpy as np
 from dataclasses import dataclass, asdict, field
-from typing import Dict, List, Set, Tuple, Optional, FrozenSet, Union
+from typing import Dict, List, Set, Tuple, Optional, FrozenSet, Union, Any
 from enum import Enum
 from collections import defaultdict
 import logging
@@ -69,6 +69,13 @@ try:
     VALIDATION_AVAILABLE = True
 except ImportError:
     VALIDATION_AVAILABLE = False
+    # Provide lightweight stubs so type-hint evaluation or late imports won't fail
+    ValidationEngine = None
+    CombinationValidation = Any
+    def generate_validation_report(*args, **kwargs):
+        return ""
+    def export_validation_results(*args, **kwargs):
+        return []
     logging.warning("Validation module not available. Install dependencies or check import.")
 
 warnings.filterwarnings('ignore')
@@ -2059,7 +2066,7 @@ class XNodeValidationIntegrator:
             logger.warning("Validation module not available")
     
     def validate_analysis(self, analysis: 'CancerTypeAnalysis', 
-                          enable_api_calls: bool = True) -> Optional[CombinationValidation]:
+                          enable_api_calls: bool = True) -> Optional['CombinationValidation']:
         """
         Validate the recommended combination from an analysis
         
@@ -2089,7 +2096,7 @@ class XNodeValidationIntegrator:
         return validation
     
     def validate_triple(self, triple: 'TripleCombination', cancer_type: str,
-                        enable_api_calls: bool = True) -> Optional[CombinationValidation]:
+                        enable_api_calls: bool = True) -> Optional['CombinationValidation']:
         """
         Validate a triple combination
         
@@ -2117,7 +2124,7 @@ class XNodeValidationIntegrator:
     
     def validate_all_results(self, results: Dict[str, 'CancerTypeAnalysis'],
                              enable_api_calls: bool = True,
-                             validate_triples: bool = True) -> Dict[str, CombinationValidation]:
+                             validate_triples: bool = True) -> Dict[str, 'CombinationValidation']:
         """
         Validate all combinations from pan-cancer analysis
         
@@ -2158,7 +2165,7 @@ class XNodeValidationIntegrator:
         return validations
     
     def generate_combined_report(self, analysis: 'CancerTypeAnalysis', 
-                                 validation: CombinationValidation) -> str:
+                                 validation: 'CombinationValidation') -> str:
         """Generate combined X-Node + Validation report"""
         
         report = f"""

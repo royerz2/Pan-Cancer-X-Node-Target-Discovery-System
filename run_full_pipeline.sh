@@ -27,10 +27,17 @@ python run_priority_pipeline.py || python finish_pipeline.py
 echo "[3/4] Priority pipeline done."
 echo ""
 
+# 3.5. Pathway shifting simulation (X-node vs three-axis comparison)
+echo "[3.5/4] Pathway shifting simulation (ODE-based X-node vs three-axis triple)..."
+python pathway_shifting_simulation.py
+echo "[3.5/4] Simulation done."
+echo ""
+
 # 4. Summary
 echo "[4/4] Done."
 echo ""
 echo "Outputs:"
 echo "  - results_triples/     (discovery)"
-echo "  - benchmark_results/  (benchmark)"
+echo "  - benchmark_results/   (benchmark)"
 echo "  - priority_pipeline_results/ (validation)"
+echo "  - simulation_results/  (ODE simulation figures + metrics)"
