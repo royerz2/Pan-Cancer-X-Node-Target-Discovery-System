@@ -1,0 +1,46 @@
+Cancer_Type,Lineage,Cell_Lines,Combination_Size,Target_Position,Target_Gene,Clinical_Stage,Available_Drugs,Known_Toxicities,Full_Combination,Path_Coverage,Cost_Score
+Non-Small Cell Lung Cancer,Lung,165,3,1,MCL1,phase1,AMG-176; S64315,cardiotoxicity,CCND1 + CDK2 + MCL1,100.0%,4.15
+Non-Small Cell Lung Cancer,Lung,165,3,2,CDK2,phase2,dinaciclib,myelosuppression,CCND1 + CDK2 + MCL1,100.0%,4.15
+Non-Small Cell Lung Cancer,Lung,165,3,3,CCND1,unknown,,,CCND1 + CDK2 + MCL1,100.0%,4.15
+Non-Cancerous,Lymphoid,151,3,1,CD2BP2,unknown,,,CD2BP2 + CDK4 + STAT3,100.0%,3.41
+Non-Cancerous,Lymphoid,151,3,2,CDK4,approved,palbociclib; ribociclib; abemaciclib,neutropenia,CD2BP2 + CDK4 + STAT3,100.0%,3.41
+Non-Cancerous,Lymphoid,151,3,3,STAT3,phase2,napabucasin; TTI-101,GI toxicity,CD2BP2 + CDK4 + STAT3,100.0%,3.41
+Melanoma,Skin,135,3,1,BRAF,approved,vemurafenib; dabrafenib; encorafenib,rash; photosensitivity,BRAF + CCND1 + STAT3,100.0%,2.96
+Melanoma,Skin,135,3,2,STAT3,phase2,napabucasin; TTI-101,GI toxicity,BRAF + CCND1 + STAT3,100.0%,2.96
+Melanoma,Skin,135,3,3,CCND1,unknown,,,BRAF + CCND1 + STAT3,100.0%,2.96
+Mature B-Cell Neoplasms,Lymphoid,130,2,1,NMNAT1,unknown,,,MCL1 + NMNAT1,100.0%,2.31
+Mature B-Cell Neoplasms,Lymphoid,130,2,2,MCL1,phase1,AMG-176; S64315,cardiotoxicity,MCL1 + NMNAT1,100.0%,2.31
+Diffuse Glioma,CNS/Brain,96,3,1,CHMP4B,unknown,,,CDK6 + CHMP4B + STAT3,100.0%,3.34
+Diffuse Glioma,CNS/Brain,96,3,2,STAT3,phase2,napabucasin; TTI-101,GI toxicity,CDK6 + CHMP4B + STAT3,100.0%,3.34
+Diffuse Glioma,CNS/Brain,96,3,3,CDK6,approved,palbociclib; ribociclib; abemaciclib,neutropenia,CDK6 + CHMP4B + STAT3,100.0%,3.34
+Colorectal Adenocarcinoma,Bowel,96,4,1,CTNNB1,unknown,,,CDK4 + CTNNB1 + KRAS + STAT3,100.0%,3.96
+Colorectal Adenocarcinoma,Bowel,96,4,2,KRAS,approved,sotorasib; adagrasib,diarrhea; hepatotoxicity,CDK4 + CTNNB1 + KRAS + STAT3,100.0%,3.96
+Colorectal Adenocarcinoma,Bowel,96,4,3,CDK4,approved,palbociclib; ribociclib; abemaciclib,neutropenia,CDK4 + CTNNB1 + KRAS + STAT3,100.0%,3.96
+Colorectal Adenocarcinoma,Bowel,96,4,4,STAT3,phase2,napabucasin; TTI-101,GI toxicity,CDK4 + CTNNB1 + KRAS + STAT3,100.0%,3.96
+Head and Neck Squamous Cell Carcinoma,Head and Neck,89,3,1,GRB2,unknown,,,CDK6 + GRB2 + STAT3,100.0%,3.23
+Head and Neck Squamous Cell Carcinoma,Head and Neck,89,3,2,CDK6,approved,palbociclib; ribociclib; abemaciclib,neutropenia,CDK6 + GRB2 + STAT3,100.0%,3.23
+Head and Neck Squamous Cell Carcinoma,Head and Neck,89,3,3,STAT3,phase2,napabucasin; TTI-101,GI toxicity,CDK6 + GRB2 + STAT3,100.0%,3.23
+Lung Neuroendocrine Tumor,Lung,85,3,1,SKP2,unknown,,,PRKRA + SKP2 + STAT3,100.0%,3.27
+Lung Neuroendocrine Tumor,Lung,85,3,2,PRKRA,unknown,,,PRKRA + SKP2 + STAT3,100.0%,3.27
+Lung Neuroendocrine Tumor,Lung,85,3,3,STAT3,phase2,napabucasin; TTI-101,GI toxicity,PRKRA + SKP2 + STAT3,100.0%,3.27
+Invasive Breast Carcinoma,Breast,82,3,1,CDK4,approved,palbociclib; ribociclib; abemaciclib,neutropenia,CDK4 + PPP1R15B + STAT3,100.0%,3.17
+Invasive Breast Carcinoma,Breast,82,3,2,PPP1R15B,unknown,,,CDK4 + PPP1R15B + STAT3,100.0%,3.17
+Invasive Breast Carcinoma,Breast,82,3,3,STAT3,phase2,napabucasin; TTI-101,GI toxicity,CDK4 + PPP1R15B + STAT3,100.0%,3.17
+Esophagogastric Adenocarcinoma,Esophagus/Stomach,74,2,1,YRDC,unknown,,,STAT3 + YRDC,100.0%,2.33
+Esophagogastric Adenocarcinoma,Esophagus/Stomach,74,2,2,STAT3,phase2,napabucasin; TTI-101,GI toxicity,STAT3 + YRDC,100.0%,2.33
+Ovarian Epithelial Tumor,Ovary/Fallopian Tube,71,3,1,DDX3X,unknown,,,CDK4 + DDX3X + STAT3,100.0%,3.46
+Ovarian Epithelial Tumor,Ovary/Fallopian Tube,71,3,2,CDK4,approved,palbociclib; ribociclib; abemaciclib,neutropenia,CDK4 + DDX3X + STAT3,100.0%,3.46
+Ovarian Epithelial Tumor,Ovary/Fallopian Tube,71,3,3,STAT3,phase2,napabucasin; TTI-101,GI toxicity,CDK4 + DDX3X + STAT3,100.0%,3.46
+Acute Myeloid Leukemia,Myeloid,64,3,1,DNM2,unknown,,,CDK6 + DNM2 + STAT3,100.0%,2.89
+Acute Myeloid Leukemia,Myeloid,64,3,2,CDK6,approved,palbociclib; ribociclib; abemaciclib,neutropenia,CDK6 + DNM2 + STAT3,100.0%,2.89
+Acute Myeloid Leukemia,Myeloid,64,3,3,STAT3,phase2,napabucasin; TTI-101,GI toxicity,CDK6 + DNM2 + STAT3,100.0%,2.89
+Pancreatic Adenocarcinoma,Pancreas,64,2,1,KRAS,approved,sotorasib; adagrasib,diarrhea; hepatotoxicity,CCND1 + KRAS,100.0%,1.94
+Pancreatic Adenocarcinoma,Pancreas,64,2,2,CCND1,unknown,,,CCND1 + KRAS,100.0%,1.94
+Renal Cell Carcinoma,Kidney,56,2,1,CFLAR,unknown,,,CCND1 + CFLAR,100.0%,2.32
+Renal Cell Carcinoma,Kidney,56,2,2,CCND1,unknown,,,CCND1 + CFLAR,100.0%,2.32
+Neuroblastoma,Peripheral Nervous System,51,2,1,STAT3,phase2,napabucasin; TTI-101,GI toxicity,CCND1 + STAT3,100.0%,2.15
+Neuroblastoma,Peripheral Nervous System,51,2,2,CCND1,unknown,,,CCND1 + STAT3,100.0%,2.15
+Ewing Sarcoma,Bone,51,3,1,FLI1,unknown,,,CDK4 + FLI1 + STAT3,100.0%,2.71
+Ewing Sarcoma,Bone,51,3,2,CDK4,approved,palbociclib; ribociclib; abemaciclib,neutropenia,CDK4 + FLI1 + STAT3,100.0%,2.71
+Ewing Sarcoma,Bone,51,3,3,STAT3,phase2,napabucasin; TTI-101,GI toxicity,CDK4 + FLI1 + STAT3,100.0%,2.71
+... (truncated for brevity)

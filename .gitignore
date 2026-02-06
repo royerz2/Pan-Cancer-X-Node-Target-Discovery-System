@@ -92,3 +92,12 @@ paper.tex
 alin_refs.bib
 # Optional: uncomment to track compiled paper in repo
 # paper.pdf
+
+# Ignore local journal/class files that should not be committed (vendor styling)
+zHenriquesLab-StyleBioRxiv.cls
+ALIN Citation Analysis.pdf
+.gitignore
+.gitignore
+paper_backup.tex
+paper_with_citations.tex
+.env
