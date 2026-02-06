@@ -5,7 +5,7 @@ This document records the exact versions of data sources used in the ALIN Framew
 ## DepMap Data
 
 - **Release**: DepMap Public 24Q4 (October 2024)
-- **Access Date**: 2025-01-15
+- **Access Date**: 2026-01-15
 - **Download URL**: https://depmap.org/portal/download/
 - **Files Used**:
   - `CRISPRGeneEffect.csv` (Chronos dependency scores)
@@ -17,7 +17,7 @@ This document records the exact versions of data sources used in the ALIN Framew
 ## OmniPath Network
 
 - **Version**: OmniPath database accessed via API
-- **Access Date**: 2025-01-15
+- **Access Date**: 2026-01-15
 - **API Endpoint**: https://omnipathdb.org/interactions
 - **Parameters**:
   - `datasets`: omnipath, pathwayextra, kinaseextra
@@ -29,7 +29,7 @@ This document records the exact versions of data sources used in the ALIN Framew
 
 ### PRISM Drug Sensitivity
 - **Release**: PRISM Repurposing 19Q4
-- **Access Date**: 2025-01-15
+- **Access Date**: 2026-01-15
 - **URL**: https://depmap.org/repurposing/
 - **Files**:
   - `primary-screen-replicate-collapsed-logfold-change.csv`
