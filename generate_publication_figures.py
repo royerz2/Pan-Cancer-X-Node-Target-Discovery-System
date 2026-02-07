@@ -196,7 +196,7 @@ def figure1():
                 bbox=dict(boxstyle='round,pad=0.2', fc=color, alpha=0.85, ec=color, lw=1.5))
 
     # MHS vs tri-axial label with improved clarity
-    ax2.text(1.5, 4.3, 'Intra-axial MHS:  blocks 1–2 axes → resistance',
+    ax2.text(1.5, 4.3, 'Intra-axial MHS:  blocks 1-2 axes → resistance',
             fontsize=9, color=C['xnode'], fontweight='bold')
     ax2.text(1.5, 3.95, 'Tri-axial combination: blocks all 3 axes → durable response',
             fontsize=9, color=C['triple'], fontweight='bold')
@@ -642,7 +642,7 @@ def figure4():
     fig2.suptitle('Intra-Axial MHS vs. Tri-Axial Combination: Systems Biology Comparison',
                   fontsize=12, fontweight='bold', y=1.02)
     
-    # Save to simulation_results/figures if it exists, otherwise save to figures/
+    # Save to simulation_results/figures directory
     sim_fig_dir = BASE / 'simulation_results' / 'figures'
     sim_fig_dir.mkdir(parents=True, exist_ok=True)
     for ext in ('png', 'pdf'):
