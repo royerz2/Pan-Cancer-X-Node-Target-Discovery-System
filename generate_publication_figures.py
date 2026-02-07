@@ -107,8 +107,8 @@ def figure1():
     Panel A: Horizontal pipeline flowchart
     Panel B: Tri-axial biological principle (Liaki)
     """
-    fig = plt.figure(figsize=(7.2, 7.5))
-    gs = gridspec.GridSpec(2, 1, height_ratios=[1, 1.3], hspace=0.35)
+    fig = plt.figure(figsize=(7.2, 8.0))
+    gs = gridspec.GridSpec(2, 1, height_ratios=[1, 1.4], hspace=0.4)
 
     # ---- Panel A: Pipeline ----
     ax = fig.add_subplot(gs[0])
@@ -129,42 +129,42 @@ def figure1():
     box_w, box_h = 1.5, 1.2
     for i, (x, y, txt, bg, border) in enumerate(steps):
         box = FancyBboxPatch((x, y), box_w, box_h,
-                             boxstyle='round,pad=0.06,rounding_size=0.12',
-                             facecolor=bg, edgecolor=border, linewidth=1.8)
+                             boxstyle='round,pad=0.08,rounding_size=0.15',
+                             facecolor=bg, edgecolor=border, linewidth=2.0)
         ax.add_patch(box)
         ax.text(x + box_w/2, y + box_h/2, txt, ha='center', va='center',
-                fontsize=8, fontweight='semibold', color=border, linespacing=1.3)
+                fontsize=8.5, fontweight='bold', color=border, linespacing=1.4)
         if i < len(steps) - 1:
             ax.annotate('', xy=(steps[i+1][0] - 0.08, y + box_h/2),
                         xytext=(x + box_w + 0.08, y + box_h/2),
-                        arrowprops=dict(arrowstyle='->', color='#777',
-                                       lw=1.8, mutation_scale=14))
+                        arrowprops=dict(arrowstyle='->', color='#555',
+                                       lw=2.2, mutation_scale=16))
 
     # Sub-labels
     sub_labels = [
-        (0.0, 0.75, '96 cancer types\n1,900+ cell lines', 7),
-        (1.9, 0.75, 'Co-essentiality\nSignaling\nPerturbation', 6.5),
-        (3.8, 0.75, 'Weighted min\ncovering set', 7),
-        (5.7, 0.75, 'Synergy · Resistance\nToxicity · Coverage', 6.5),
-        (7.6, 0.75, 'Pathway shifting\ncompensation', 6.5),
-        (9.5, 0.75, 'PubMed · STRING\nPRISM · Trials', 6.5),
+        (0.0, 0.70, '96 cancer types\n1,900+ cell lines', 7.5),
+        (1.9, 0.70, 'Co-essentiality\nSignaling\nPerturbation', 7),
+        (3.8, 0.70, 'Weighted min\ncovering set', 7.5),
+        (5.7, 0.70, 'Synergy · Resistance\nToxicity · Coverage', 7),
+        (7.6, 0.70, 'Pathway shifting\ncompensation', 7),
+        (9.5, 0.70, 'PubMed · STRING\nPRISM · Trials', 7),
     ]
     for x, y, txt, fs in sub_labels:
         ax.text(x + box_w/2, y, txt, ha='center', va='top',
-                fontsize=fs, color='#666', linespacing=1.2)
+                fontsize=fs, color='#555', linespacing=1.3)
 
-    ax.text(5.0, 2.55, 'ALIN Framework Pipeline', fontsize=12,
+    ax.text(5.0, 2.60, 'ALIN Framework Pipeline', fontsize=13,
             fontweight='bold', ha='center', color=C['text'])
 
     # ---- Panel B: Tri-axial principle ----
     ax2 = fig.add_subplot(gs[1])
     ax2.set_xlim(-0.5, 10.5)
-    ax2.set_ylim(-0.5, 4.5)
+    ax2.set_ylim(-0.5, 4.8)
     ax2.set_aspect('equal')
     ax2.axis('off')
     _panel_label(ax2, 'B', x=-0.02, y=1.0)
 
-    # Three circles representing axes
+    # Three circles representing axes with improved styling
     circle_params = [
         (2.0, 2.0, 'Upstream\ndriver', C['upstream'], ['KRAS', 'BRAF', 'EGFR']),
         (5.0, 2.0, 'Downstream\neffector', C['downstream'], ['CDK4', 'CCND1', 'CDK6']),
@@ -172,37 +172,37 @@ def figure1():
     ]
 
     for cx, cy, label, color, genes in circle_params:
-        circle = Circle((cx, cy), 1.15, facecolor=color, alpha=0.12,
-                        edgecolor=color, linewidth=2.5)
+        circle = Circle((cx, cy), 1.20, facecolor=color, alpha=0.15,
+                        edgecolor=color, linewidth=3.0)
         ax2.add_patch(circle)
-        ax2.text(cx, cy + 0.35, label, ha='center', va='center',
-                fontsize=9, fontweight='bold', color=color)
+        ax2.text(cx, cy + 0.40, label, ha='center', va='center',
+                fontsize=9.5, fontweight='bold', color=color, linespacing=1.2)
         gene_str = ' · '.join(genes)
-        ax2.text(cx, cy - 0.25, gene_str, ha='center', va='center',
-                fontsize=7.5, color=color, style='italic')
+        ax2.text(cx, cy - 0.30, gene_str, ha='center', va='center',
+                fontsize=8, color=color, style='italic', fontweight='medium')
 
-    # Arrows showing pathway shifting
-    arrow_style = dict(arrowstyle='->', color='#CC0000', lw=1.5,
-                       connectionstyle='arc3,rad=0.3')
+    # Enhanced arrows showing pathway shifting
+    arrow_style = dict(arrowstyle='->', color='#CC0000', lw=2.0,
+                       connectionstyle='arc3,rad=0.3', alpha=0.8)
     # Intra-axial MHS failure: upstream blocked, orthogonal compensates
-    ax2.annotate('', xy=(7.0, 2.6), xytext=(3.0, 2.6), arrowprops=arrow_style)
-    ax2.text(5.0, 3.3, 'Compensatory\npathway shifting', ha='center',
-            fontsize=7.5, color='#CC0000', fontweight='semibold', linespacing=1.2)
+    ax2.annotate('', xy=(7.0, 2.7), xytext=(3.0, 2.7), arrowprops=arrow_style)
+    ax2.text(5.0, 3.5, 'Compensatory\npathway shifting', ha='center',
+            fontsize=8, color='#CC0000', fontweight='bold', linespacing=1.3)
 
-    # "Block all three" indicators
-    for cx, cy, color in [(2.0, 0.5, C['orthogonal']), (5.0, 0.5, C['orthogonal']), (8.0, 0.5, C['orthogonal'])]:
-        ax2.text(cx, cy, 'BLOCK', ha='center', fontsize=8,
-                fontweight='bold', color=color,
-                bbox=dict(boxstyle='round,pad=0.15', fc=color, alpha=0.15, ec=color, lw=1))
+    # "Block all three" indicators with improved styling
+    for cx, cy, color in [(2.0, 0.4, C['orthogonal']), (5.0, 0.4, C['orthogonal']), (8.0, 0.4, C['orthogonal'])]:
+        ax2.text(cx, cy, 'BLOCK', ha='center', fontsize=8.5,
+                fontweight='bold', color='white',
+                bbox=dict(boxstyle='round,pad=0.2', fc=color, alpha=0.85, ec=color, lw=1.5))
 
-    # MHS vs tri-axial label
-    ax2.text(1.5, 4.0, 'Intra-axial MHS:  blocks 1--2 axes -- resistance',
-            fontsize=8.5, color=C['xnode'], fontweight='bold')
-    ax2.text(1.5, 3.65, 'Tri-axial combination: blocks all 3 axes -- durable response',
-            fontsize=8.5, color=C['triple'], fontweight='bold')
+    # MHS vs tri-axial label with improved clarity
+    ax2.text(1.5, 4.3, 'Intra-axial MHS:  blocks 1–2 axes → resistance',
+            fontsize=9, color=C['xnode'], fontweight='bold')
+    ax2.text(1.5, 3.95, 'Tri-axial combination: blocks all 3 axes → durable response',
+            fontsize=9, color=C['triple'], fontweight='bold')
 
-    ax2.text(5.0, -0.3, 'Liaki et al., PNAS 2025: Tri-axial inhibition principle',
-            fontsize=7.5, ha='center', style='italic', color='#888')
+    ax2.text(5.0, -0.35, 'Liaki et al., bioRxiv 2025: Tri-axial inhibition principle',
+            fontsize=8, ha='center', style='italic', color='#777')
 
     _save(fig, 'fig1_pipeline_schematic')
 
@@ -222,19 +222,19 @@ def figure2():
         return
     df = pd.read_csv(freq_file)
 
-    fig = plt.figure(figsize=(7.2, 6.5))
-    gs = gridspec.GridSpec(1, 2, width_ratios=[1.2, 1], wspace=0.45)
+    fig = plt.figure(figsize=(7.2, 7.0))
+    gs = gridspec.GridSpec(1, 2, width_ratios=[1.3, 1], wspace=0.5)
 
     # ---- Panel A: Target frequency ----
     ax = fig.add_subplot(gs[0])
     _panel_label(ax, 'A')
     _clean_axes(ax)
 
-    top = df.head(12).iloc[::-1]  # reverse for horizontal
+    top = df.head(15).iloc[::-1]  # reverse for horizontal, show more targets
     genes = top['Target_Gene'].values
     counts = top['Cancer_Types_Count'].values
 
-    # Color by axis role
+    # Color by axis role with enhanced palette
     axis_map = {
         'STAT3': C['orthogonal'], 'FYN': C['orthogonal'], 'MCL1': C['orthogonal'],
         'CDK6': C['downstream'], 'CDK4': C['downstream'], 'CDK2': C['downstream'],
@@ -246,17 +246,17 @@ def figure2():
     colors = [axis_map.get(g, '#999') for g in genes]
 
     bars = ax.barh(range(len(genes)), counts, color=colors,
-                   edgecolor='white', linewidth=0.8, height=0.72)
+                   edgecolor='white', linewidth=1.0, height=0.75)
     ax.set_yticks(range(len(genes)))
-    ax.set_yticklabels(genes, fontsize=9, fontweight='medium')
-    ax.set_xlabel('Cancer types with target', fontsize=10)
-    ax.set_title('Target frequency across cancers', fontsize=11, pad=8)
-    ax.grid(axis='x', alpha=0.3, color=C['grid'])
+    ax.set_yticklabels(genes, fontsize=9.5, fontweight='bold')
+    ax.set_xlabel('Cancer types with target', fontsize=10.5, fontweight='medium')
+    ax.set_title('Target frequency across cancers', fontsize=12, pad=10, fontweight='bold')
+    ax.grid(axis='x', alpha=0.25, color=C['grid'], linestyle='--')
 
-    # Value labels
+    # Enhanced value labels
     for bar, val in zip(bars, counts):
-        ax.text(bar.get_width() + 0.8, bar.get_y() + bar.get_height()/2,
-                str(int(val)), va='center', fontsize=7.5, color='#555')
+        ax.text(bar.get_width() + 1.0, bar.get_y() + bar.get_height()/2,
+                str(int(val)), va='center', fontsize=8, color='#444', fontweight='medium')
 
     # STAT3 highlight annotation — compute from data
     stat3_idx = list(genes).index('STAT3') if 'STAT3' in genes else None
@@ -264,18 +264,19 @@ def figure2():
         # Compute actual percentage from the full dataset
         total_cancers = len(df['Cancer_Type'].unique()) if 'Cancer_Type' in df.columns else 90
         stat3_pct = int(round(counts[stat3_idx] / total_cancers * 100))
-        ax.text(counts[stat3_idx] + 3, stat3_idx,
+        ax.text(counts[stat3_idx] + 4, stat3_idx,
                 f'{stat3_pct}% of cancers',
-                va='center', fontsize=7.5, color=C['orthogonal'],
-                fontweight='bold', style='italic')
+                va='center', fontsize=8, color=C['orthogonal'],
+                fontweight='bold', style='italic',
+                bbox=dict(boxstyle='round,pad=0.3', fc='white', alpha=0.8, ec=C['orthogonal'], lw=1))
 
     # ---- Panel B: Tri-axial mapping ----
     ax2 = fig.add_subplot(gs[1])
     _panel_label(ax2, 'B')
     ax2.set_xlim(-0.5, 3.5)
-    ax2.set_ylim(-0.5, 6.5)
+    ax2.set_ylim(-0.5, 6.8)
     ax2.axis('off')
-    ax2.set_title('Tri-axial classification', fontsize=11, pad=8)
+    ax2.set_title('Tri-axial classification', fontsize=12, pad=10, fontweight='bold')
 
     # Axis categories with their genes and cancer counts
     axes_data = [
@@ -288,33 +289,33 @@ def figure2():
     ]
 
     for col, (axis_label, color, gene_list) in enumerate(axes_data):
-        # Axis header
-        box = FancyBboxPatch((col - 0.3, 5.6), 1.0, 0.7,
-                            boxstyle='round,pad=0.05,rounding_size=0.1',
-                            facecolor=color, alpha=0.15, edgecolor=color, lw=1.5)
+        # Enhanced axis header
+        box = FancyBboxPatch((col - 0.35, 5.7), 1.1, 0.8,
+                            boxstyle='round,pad=0.08,rounding_size=0.12',
+                            facecolor=color, alpha=0.20, edgecolor=color, lw=2.0)
         ax2.add_patch(box)
-        ax2.text(col + 0.2, 5.95, axis_label, ha='center', va='center',
-                fontsize=8, fontweight='bold', color=color, linespacing=1.2)
+        ax2.text(col + 0.2, 6.05, axis_label, ha='center', va='center',
+                fontsize=8.5, fontweight='bold', color=color, linespacing=1.3)
 
-        # Gene entries
+        # Enhanced gene entries
         for row, (gene, cnt) in enumerate(gene_list):
-            y = 4.8 - row * 1.1
-            # Mini bar
-            bar_w = cnt / 70 * 0.8  # normalize
-            ax2.barh(y, bar_w, left=col - 0.25, height=0.35,
-                    color=color, alpha=0.5, edgecolor='none')
+            y = 5.0 - row * 1.15
+            # Enhanced mini bar with gradient effect
+            bar_w = cnt / 70 * 0.85  # normalize
+            ax2.barh(y, bar_w, left=col - 0.28, height=0.40,
+                    color=color, alpha=0.6, edgecolor=color, linewidth=0.5)
             ax2.text(col + 0.2, y, f'{gene} ({cnt})', ha='center', va='center',
-                    fontsize=7.5, fontweight='medium', color=C['text'])
+                    fontsize=8, fontweight='bold', color=C['text'])
 
-    # Legend
+    # Enhanced legend
     legend_elements = [
-        Line2D([0], [0], color=C['orthogonal'], lw=6, alpha=0.6, label='Orthogonal'),
-        Line2D([0], [0], color=C['downstream'], lw=6, alpha=0.6, label='Downstream'),
-        Line2D([0], [0], color=C['upstream'], lw=6, alpha=0.6, label='Upstream'),
+        Line2D([0], [0], color=C['orthogonal'], lw=8, alpha=0.7, label='Orthogonal'),
+        Line2D([0], [0], color=C['downstream'], lw=8, alpha=0.7, label='Downstream'),
+        Line2D([0], [0], color=C['upstream'], lw=8, alpha=0.7, label='Upstream'),
     ]
     ax.legend(handles=legend_elements, loc='lower right', frameon=True,
-             fancybox=True, framealpha=0.9, fontsize=8, title='Axis role',
-             title_fontsize=8)
+             fancybox=True, framealpha=0.95, fontsize=9, title='Axis role',
+             title_fontsize=9, edgecolor='#CCC')
 
     _save(fig, 'fig2_xnode_concept')  # reuse old name for paper compatibility
 
@@ -334,8 +335,8 @@ def figure3():
     with open(metrics_file) as f:
         metrics = json.load(f)
 
-    fig = plt.figure(figsize=(7.2, 4.0))
-    gs = gridspec.GridSpec(1, 2, width_ratios=[1, 1.5], wspace=0.4)
+    fig = plt.figure(figsize=(7.2, 4.5))
+    gs = gridspec.GridSpec(1, 2, width_ratios=[1, 1.6], wspace=0.45)
 
     # ---- Panel A: Recall comparison ----
     ax = fig.add_subplot(gs[0])
@@ -351,34 +352,37 @@ def figure3():
     errors = [0, 0, metrics['random_baseline_std'] * 100]
     bar_colors = [C['alin'], C['topgenes'], C['random']]
 
-    bars = ax.bar(methods, recalls, color=bar_colors, width=0.6,
-                  edgecolor='white', linewidth=1.5, zorder=3)
+    bars = ax.bar(methods, recalls, color=bar_colors, width=0.65,
+                  edgecolor='white', linewidth=2.0, zorder=3)
     ax.errorbar(methods, recalls, yerr=errors, fmt='none',
-               color='#333', capsize=5, capthick=1.5, zorder=4)
+               color='#222', capsize=6, capthick=2.0, zorder=4)
 
-    # Value labels
+    # Enhanced value labels with background
     for bar, val in zip(bars, recalls):
-        ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 2,
-                f'{val:.1f}%', ha='center', fontsize=9, fontweight='bold',
-                color=C['text'])
+        ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 3,
+                f'{val:.1f}%', ha='center', fontsize=10, fontweight='bold',
+                color=C['text'],
+                bbox=dict(boxstyle='round,pad=0.3', fc='white', alpha=0.9, ec='none'))
 
-    ax.set_ylabel('Recall (%)', fontsize=10)
-    ax.set_title('Gold-standard recovery', fontsize=11, pad=8)
-    ax.set_ylim(0, 80)
-    ax.axhline(y=50, color='#CCC', linestyle='--', lw=0.8, zorder=1)
-    ax.grid(axis='y', alpha=0.2, color=C['grid'], zorder=0)
-    ax.text(0, 52, '50%', fontsize=7, color='#AAA')
+    ax.set_ylabel('Recall (%)', fontsize=11, fontweight='medium')
+    ax.set_title('Gold-standard recovery', fontsize=12, pad=10, fontweight='bold')
+    ax.set_ylim(0, 85)
+    ax.axhline(y=50, color='#BBB', linestyle='--', lw=1.0, zorder=1)
+    ax.grid(axis='y', alpha=0.25, color=C['grid'], linestyle=':', zorder=0)
+    ax.text(-0.15, 52, '50%', fontsize=7.5, color='#999', fontweight='medium')
 
-    # P-value annotation
-    ax.annotate('', xy=(0, 72), xytext=(2, 72),
-               arrowprops=dict(arrowstyle='-', color='#333', lw=0.8))
-    ax.text(1, 73.5, 'p < 0.001', ha='center', fontsize=7.5, color='#333')
+    # Enhanced P-value annotation
+    ax.annotate('', xy=(0, 75), xytext=(2, 75),
+               arrowprops=dict(arrowstyle='-', color='#222', lw=1.2))
+    ax.text(1, 77, 'p < 0.001', ha='center', fontsize=8, color='#222', fontweight='bold',
+            bbox=dict(boxstyle='round,pad=0.2', fc='#FFF9E6', alpha=0.9, ec='#222', lw=0.8))
 
     # ---- Panel B: Match breakdown ----
     ax2 = fig.add_subplot(gs[1])
     _panel_label(ax2, 'B')
     ax2.axis('off')
-    ax2.set_title(f'Benchmark detail ({metrics["total_gold_standard"]} gold standards)', fontsize=11, pad=8)
+    ax2.set_title(f'Benchmark detail ({metrics["total_gold_standard"]} gold standards)', 
+                  fontsize=12, pad=10, fontweight='bold')
 
     # Summary stats — computed from benchmark data, not hardcoded
     n_superset = metrics.get('superset_matches', 0)
@@ -390,24 +394,25 @@ def figure3():
         ('Not matched', n_nomatch, '#DDD'),
     ]
 
-    # Pie chart for match breakdown
+    # Enhanced pie chart for match breakdown
     sizes = [d[1] for d in match_data]
     colors_pie = [d[2] for d in match_data]
     labels = [f'{d[0]}\n({d[1]})' for d in match_data]
 
     wedges, texts = ax2.pie(sizes, colors=colors_pie, startangle=90,
-                            wedgeprops=dict(width=0.45, edgecolor='white', linewidth=2),
-                            center=(0.4, 0.5), radius=0.35)
+                            wedgeprops=dict(width=0.5, edgecolor='white', linewidth=3),
+                            center=(0.35, 0.5), radius=0.38)
 
-    # Legend for pie
+    # Enhanced legend for pie
     legend_elements = [
-        Line2D([0], [0], marker='s', color='w', markerfacecolor=c, markersize=10, label=l)
+        Line2D([0], [0], marker='s', color='w', markerfacecolor=c, markersize=12, 
+               label=l, markeredgecolor='white', markeredgewidth=1.5)
         for l, _, c in match_data
     ]
-    ax2.legend(handles=legend_elements, loc='center left', bbox_to_anchor=(0.05, 0.5),
-              frameon=True, fancybox=True, fontsize=8, framealpha=0.9)
+    ax2.legend(handles=legend_elements, loc='center left', bbox_to_anchor=(0.0, 0.5),
+              frameon=True, fancybox=True, fontsize=9, framealpha=0.95, edgecolor='#CCC')
 
-    # Key matches text
+    # Enhanced key matches text
     key_matches = [
         'BRAF+MEK → BRAF+MAP2K1+STAT3  (Melanoma)',
         'CDK4+CDK6 → CDK4+KRAS+STAT3  (Breast)',
@@ -415,15 +420,16 @@ def figure3():
         'KRAS → BRAF+KRAS+STAT3  (CRC)',
         'EGFR+MET → CDK6+EGFR+MET  (HNSCC)',
     ]
-    ax2.text(0.52, 0.92, 'Key recoveries:', fontsize=8, fontweight='bold',
+    ax2.text(0.48, 0.95, 'Key recoveries:', fontsize=9, fontweight='bold',
             transform=ax2.transAxes, color=C['text'])
     for i, txt in enumerate(key_matches):
-        ax2.text(0.54, 0.82 - i * 0.1, txt, fontsize=6.5,
-                transform=ax2.transAxes, color='#555',
-                fontfamily='monospace')
+        ax2.text(0.50, 0.85 - i * 0.11, txt, fontsize=7,
+                transform=ax2.transAxes, color='#444',
+                fontfamily='monospace', fontweight='medium')
 
-    ax2.text(0.52, 0.28, f'Mean rank when matched: {metrics.get("mean_rank_when_matched", "N/A")}',
-            fontsize=8, fontweight='bold', transform=ax2.transAxes, color=C['alin'])
+    ax2.text(0.48, 0.25, f'Mean rank when matched: {metrics.get("mean_rank_when_matched", "N/A")}',
+            fontsize=9, fontweight='bold', transform=ax2.transAxes, color=C['alin'],
+            bbox=dict(boxstyle='round,pad=0.4', fc='#E6F3FF', alpha=0.8, ec=C['alin'], lw=1.5))
 
     _save(fig, 'fig3_benchmark_comparison')
 
@@ -447,8 +453,8 @@ def figure4():
 
     # We also need the actual time-series data from simulation
     # Load from the npz files if available, otherwise use metrics
-    fig = plt.figure(figsize=(7.2, 8.0))
-    gs = gridspec.GridSpec(2, 2, height_ratios=[1, 1], hspace=0.38, wspace=0.35)
+    fig = plt.figure(figsize=(7.2, 8.5))
+    gs = gridspec.GridSpec(2, 2, height_ratios=[1.2, 1], hspace=0.42, wspace=0.38)
 
     cancers = ['PDAC', 'Melanoma', 'NSCLC', 'CRC', 'Breast']
     strategies_of_interest = ['Single', 'X-node', 'Three-axis']  # keys match simulation_metrics.json
@@ -466,7 +472,7 @@ def figure4():
     _clean_axes(ax)
 
     x = np.arange(len(cancers))
-    bar_w = 0.22
+    bar_w = 0.24
     offsets = {'Single': -bar_w, 'X-node': 0, 'Three-axis': bar_w}
 
     for stype, offset in offsets.items():
@@ -486,25 +492,27 @@ def figure4():
 
         bars = ax.bar(x + offset, vals, bar_w,
                      color=strat_colors[stype],
-                     edgecolor='white', linewidth=0.8,
-                     label=strat_display[stype], zorder=3)
-        # Value labels
+                     edgecolor='white', linewidth=1.2,
+                     label=strat_display[stype], zorder=3, alpha=0.9)
+        # Enhanced value labels
         for bar, val in zip(bars, vals):
             if val > 0:
-                ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.015,
-                        f'{val:.2f}', ha='center', fontsize=6.5,
-                        color='#555', rotation=90 if val > 0.5 else 0)
+                ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.02,
+                        f'{val:.2f}', ha='center', fontsize=7,
+                        color='#444', rotation=90 if val > 0.5 else 0, fontweight='medium')
 
     ax.set_xticks(x)
-    ax.set_xticklabels(cancers, fontsize=9, fontweight='medium')
-    ax.set_ylabel('Final tumor viability\n(200-day simulation)', fontsize=10)
-    ax.set_title('Intra-axial MHS vs. tri-axial: final viability across cancers', fontsize=11, pad=10)
-    ax.set_ylim(0, 1.15)
-    ax.axhline(y=0.5, color='#CCC', linestyle='--', lw=0.8, zorder=1)
-    ax.text(-0.4, 0.52, 'Resistance\nthreshold', fontsize=6.5, color='#AAA', va='bottom')
-    ax.legend(frameon=True, fancybox=True, fontsize=8, loc='upper right',
-             framealpha=0.9, ncol=3)
-    ax.grid(axis='y', alpha=0.2, zorder=0)
+    ax.set_xticklabels(cancers, fontsize=10, fontweight='bold')
+    ax.set_ylabel('Final tumor viability\n(200-day simulation)', fontsize=11, fontweight='medium')
+    ax.set_title('Intra-axial MHS vs. tri-axial: final viability across cancers', 
+                 fontsize=12, pad=12, fontweight='bold')
+    ax.set_ylim(0, 1.20)
+    ax.axhline(y=0.5, color='#BBB', linestyle='--', lw=1.2, zorder=1)
+    ax.text(-0.5, 0.53, 'Resistance\nthreshold', fontsize=7.5, color='#888', 
+            va='bottom', fontweight='medium')
+    ax.legend(frameon=True, fancybox=True, fontsize=9, loc='upper right',
+             framealpha=0.95, ncol=3, edgecolor='#CCC')
+    ax.grid(axis='y', alpha=0.25, zorder=0, linestyle=':')
 
     # ---- Panel B: Advantage summary (% reduction) ----
     ax2 = fig.add_subplot(gs[1, 0])
@@ -528,23 +536,24 @@ def figure4():
             advantages.append(0)
 
     bars = ax2.bar(cancers, advantages, color=[C['triple']] * len(cancers),
-                   edgecolor='white', linewidth=0.8, width=0.55, zorder=3)
+                   edgecolor='white', linewidth=1.2, width=0.60, zorder=3, alpha=0.9)
     for bar, val in zip(bars, advantages):
-        ax2.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.8,
-                f'{val:.0f}%', ha='center', fontsize=8.5, fontweight='bold',
+        ax2.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 1.2,
+                f'{val:.0f}%', ha='center', fontsize=9, fontweight='bold',
                 color=C['triple'])
 
-    # Mean line
+    # Enhanced mean line
     mean_adv = np.mean(advantages)
-    ax2.axhline(y=mean_adv, color=C['highlight'], linestyle='--', lw=1.2, zorder=2)
-    ax2.text(len(cancers) - 0.5, mean_adv + 1, f'Mean: {mean_adv:.1f}%',
-            fontsize=8, color=C['highlight'], fontweight='bold', ha='right')
+    ax2.axhline(y=mean_adv, color=C['highlight'], linestyle='--', lw=1.5, zorder=2, alpha=0.8)
+    ax2.text(len(cancers) - 0.6, mean_adv + 1.5, f'Mean: {mean_adv:.1f}%',
+            fontsize=9, color=C['highlight'], fontweight='bold', ha='right',
+            bbox=dict(boxstyle='round,pad=0.3', fc='white', alpha=0.9, ec=C['highlight'], lw=1))
 
-    ax2.set_ylabel('Viability reduction (%)\nvs. intra-axial MHS', fontsize=10)
-    ax2.set_title('Tri-axial advantage', fontsize=11, pad=8)
-    ax2.set_ylim(0, max(advantages) * 1.25)
-    ax2.grid(axis='y', alpha=0.2, zorder=0)
-    ax2.tick_params(axis='x', rotation=20)
+    ax2.set_ylabel('Viability reduction (%)\nvs. intra-axial MHS', fontsize=11, fontweight='medium')
+    ax2.set_title('Tri-axial advantage', fontsize=12, pad=10, fontweight='bold')
+    ax2.set_ylim(0, max(advantages) * 1.30)
+    ax2.grid(axis='y', alpha=0.25, zorder=0, linestyle=':')
+    ax2.tick_params(axis='x', rotation=25)
 
     # ---- Panel C: Pathway shift magnitude ----
     ax3 = fig.add_subplot(gs[1, 1])
@@ -563,20 +572,21 @@ def figure4():
                 triple_shifts.append(r['pathway_shift_magnitude'])
 
     x_pos = np.arange(len(cancers))
-    ax3.bar(x_pos - 0.15, xnode_shifts, 0.28,
-           color=C['xnode'], edgecolor='white', linewidth=0.8,
-           label='Intra-axial MHS', zorder=3)
-    ax3.bar(x_pos + 0.15, triple_shifts, 0.28,
-           color=C['triple'], edgecolor='white', linewidth=0.8,
-           label='Tri-axial', zorder=3)
+    ax3.bar(x_pos - 0.17, xnode_shifts, 0.32,
+           color=C['xnode'], edgecolor='white', linewidth=1.2,
+           label='Intra-axial MHS', zorder=3, alpha=0.9)
+    ax3.bar(x_pos + 0.17, triple_shifts, 0.32,
+           color=C['triple'], edgecolor='white', linewidth=1.2,
+           label='Tri-axial', zorder=3, alpha=0.9)
 
     ax3.set_xticks(x_pos)
-    ax3.set_xticklabels(cancers, fontsize=8)
-    ax3.set_ylabel('Pathway shift\nmagnitude', fontsize=10)
-    ax3.set_title('Compensatory activation', fontsize=11, pad=8)
-    ax3.legend(frameon=True, fancybox=True, fontsize=8, loc='upper right')
-    ax3.grid(axis='y', alpha=0.2, zorder=0)
-    ax3.tick_params(axis='x', rotation=20)
+    ax3.set_xticklabels(cancers, fontsize=9)
+    ax3.set_ylabel('Pathway shift\nmagnitude', fontsize=11, fontweight='medium')
+    ax3.set_title('Compensatory activation', fontsize=12, pad=10, fontweight='bold')
+    ax3.legend(frameon=True, fancybox=True, fontsize=9, loc='upper right',
+               framealpha=0.95, edgecolor='#CCC')
+    ax3.grid(axis='y', alpha=0.25, zorder=0, linestyle=':')
+    ax3.tick_params(axis='x', rotation=25)
 
     _save(fig, 'fig4_triple_patterns')  # reuse old name for paper compatibility
 
