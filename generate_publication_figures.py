@@ -641,7 +641,15 @@ def figure4():
 
     fig2.suptitle('Intra-Axial MHS vs. Tri-Axial Combination: Systems Biology Comparison',
                   fontsize=12, fontweight='bold', y=1.02)
-    _save(fig2, '../simulation_results/figures/xnode_vs_triple_comparison')
+    
+    # Save to simulation_results/figures if it exists, otherwise save to figures/
+    sim_fig_dir = BASE / 'simulation_results' / 'figures'
+    sim_fig_dir.mkdir(parents=True, exist_ok=True)
+    for ext in ('png', 'pdf'):
+        fig2.savefig(sim_fig_dir / f'xnode_vs_triple_comparison.{ext}',
+                    dpi=300, bbox_inches='tight', facecolor='white')
+    plt.close(fig2)
+    print(f"  Saved: simulation_results/figures/xnode_vs_triple_comparison.png/pdf")
 
 
 # ================================================================
