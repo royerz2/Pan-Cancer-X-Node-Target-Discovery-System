@@ -47,7 +47,8 @@ htmlcov/
 .ipynb_checkpoints/
 
 # ─── Generated outputs (reproducible via pipeline) ───
-results_triples_expanded/
+results/
+benchmark_results/
 tuning_results/
 simulation_results/
 stratification_results/

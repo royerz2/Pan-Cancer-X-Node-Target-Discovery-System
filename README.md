@@ -165,28 +165,25 @@ Place DepMap files in `depmap_data/`. PRISM in `drug_sensitivity_data/`. See [DA
 
 ```bash
 # Single cancer (e.g., pancreatic)
-python pan_cancer_xnode.py --cancer-type "Pancreatic Adenocarcinoma" --output results_test/
+python pan_cancer_xnode.py --cancer-type "Pancreatic Adenocarcinoma" --output results/
 
 # Full pan-cancer with triple combinations
-python pan_cancer_xnode.py --all-cancers --triples --output results_triples/
+python pan_cancer_xnode.py --all-cancers --triples --output results/
 
 # With validation
-python pan_cancer_xnode.py --all-cancers --triples --validate --output results_validated/
+python pan_cancer_xnode.py --all-cancers --triples --validate --output results/
 
 # Validate existing results (skip re-discovery)
-python pan_cancer_xnode.py --validate-only results_triples/
+python pan_cancer_xnode.py --validate-only results/
 
 # Benchmark
-python benchmarking_module.py --triples results_triples/triple_combinations.csv --output benchmark_results/
+python benchmarking_module.py --triples results/triple_combinations.csv --output benchmark_results/
 
 # Benchmark with baselines (random, top-genes)
-python benchmarking_module.py --triples results_triples/triple_combinations.csv --baselines --n-trials 30 --output benchmark_results/
+python benchmarking_module.py --triples results/triple_combinations.csv --baselines --n-trials 30 --output benchmark_results/
 
-# Priority pipeline (validation + trials + stratification + drug sensitivity)
-python run_priority_pipeline.py
-
-# Resume drug sensitivity if pipeline timed out
-python finish_pipeline.py
+# Gold standard pipeline (benchmark cancer types only)
+python run_pipeline.py
 
 # Full reproducibility pipeline
 bash run_full_pipeline.sh
@@ -217,7 +214,7 @@ Patient stratification + Lab protocols
 ## Output Structure
 
 ```
-results_triples/
+results/
 ├── triple_combinations.csv      # All discovered triples
 ├── triple_target_frequency.csv # Target frequency across cancers
 ├── pan_cancer_summary.csv       # Per-cancer summary
@@ -263,8 +260,8 @@ priority_pipeline_results/
 | `alin/toxicity.py` | OpenTargets toxicity, tissue expression (cost function) |
 | `alin/utils.py` | Shared utilities (sanitize_cancer_name, load_depmap_crispr_subset) |
 | `benchmarking_module.py` | Gold standard comparison, random/top-genes baselines |
-| `run_priority_pipeline.py` | Orchestrates validation, trials, stratification, drug sensitivity |
-| `finish_pipeline.py` | Resume drug sensitivity step if pipeline times out |
+| `run_pipeline.py` | Run pipeline for gold standard cancer types |
+| `gold_standard.py` | Clinical gold standard entries + benchmark functions |
 
 ---
 

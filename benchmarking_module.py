@@ -1199,9 +1199,9 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Benchmark ALIN predictions")
     parser.add_argument('--triples', type=str,
-                        default='results_triples/triple_combinations.csv')
+                        default='results/triple_combinations.csv')
     parser.add_argument('--summary', type=str,
-                        default='results_triples/pan_cancer_summary.csv')
+                        default='results/pan_cancer_summary.csv')
     parser.add_argument('--output', type=str, default='benchmark_results')
     parser.add_argument('--baselines', action='store_true',
                         help='Run random, top-genes, frequency, pool-matched baselines')

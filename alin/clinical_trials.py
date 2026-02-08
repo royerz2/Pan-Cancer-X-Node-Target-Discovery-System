@@ -441,7 +441,7 @@ if __name__ == "__main__":
     import argparse
     
     parser = argparse.ArgumentParser(description="Match X-Node combinations to clinical trials")
-    parser.add_argument('--combinations', type=str, default='results_triples/triple_combinations.csv',
+    parser.add_argument('--combinations', type=str, default='results/triple_combinations.csv',
                         help='Path to triple combinations CSV')
     parser.add_argument('--output', type=str, default='clinical_trials',
                         help='Output directory')

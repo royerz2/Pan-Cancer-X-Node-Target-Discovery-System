@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Expanded Gold Standard for ALIN Benchmarking
-=============================================
+Gold Standard for ALIN Benchmarking
+===================================
 
 Tier 1: Curated clinical gold standard (40+ unique cancer+target entries)
          from FDA-approved and Phase 2/3-validated multi-target targeted
@@ -128,7 +128,7 @@ MULTI_TARGET_DRUGS: Dict[str, Set[str]] = {
 #   EGFR+RET (1), PARP combos (2), RAF/MEK+FAK (1), PI3K combos (2),
 #   Tri-axial (1 Liaki), ALK+MET (1), AML combos (2), miscellaneous (5+)
 
-EXPANDED_GOLD_STANDARD = [
+GOLD_STANDARD = [
     # ===== BRAF + MEK pathway (7 cancer types) =====
     {
         'cancer': 'Melanoma',
@@ -572,12 +572,12 @@ EXPANDED_GOLD_STANDARD = [
 
 
 # ============================================================================
-# EXPANDED CANCER BENCHMARK ALIASES
+# CANCER BENCHMARK ALIASES
 # ============================================================================
 # Map gold standard cancer names → pipeline cancer type names.
-# Must cover all cancer types in EXPANDED_GOLD_STANDARD.
+# Must cover all cancer types in GOLD_STANDARD.
 
-EXPANDED_CANCER_ALIASES: Dict[str, List[str]] = {
+CANCER_ALIASES: Dict[str, List[str]] = {
     # Gold standard cancer type → EXACT pipeline cancer type names from CSV
     # NO substring matching — each entry must be an exact Cancer_Type value
     'Melanoma': ['Melanoma'],
@@ -607,8 +607,7 @@ EXPANDED_CANCER_ALIASES: Dict[str, List[str]] = {
     'Cholangiocarcinoma': [],  # no exact match in pipeline
 }
 
-# Gene equivalents: use canonical source from alin.constants
-EXPANDED_GENE_EQUIVALENTS = GENE_EQUIVALENTS
+# Gene equivalents imported from alin.constants above
 
 
 # ============================================================================
@@ -619,7 +618,7 @@ EXPANDED_GENE_EQUIVALENTS = GENE_EQUIVALENTS
 # pipeline for one of two reasons:
 #
 #   1. **No DepMap cell lines**: the cancer type maps to an empty alias list
-#      in EXPANDED_CANCER_ALIASES, so the pipeline never produces predictions
+#      in CANCER_ALIASES, so the pipeline never produces predictions
 #      for that cancer (7 cancer types: Biliary Tract Cancer, CLL,
 #      Low-Grade Serous Ovarian, Medullary Thyroid, Myeloma, GIST,
 #      Cholangiocarcinoma).
@@ -653,8 +652,8 @@ def is_testable(entry: Dict) -> bool:
     """
     # Criterion 1: cancer type must map to at least one pipeline cancer
     cancer = entry['cancer']
-    if cancer in EXPANDED_CANCER_ALIASES:
-        if not EXPANDED_CANCER_ALIASES[cancer]:  # empty list
+    if cancer in CANCER_ALIASES:
+        if not CANCER_ALIASES[cancer]:  # empty list
             return False
     # Criterion 2: all targets must be plausible CRISPR essentiality targets
     if entry['targets'] & NON_CRISPR_TARGETS:
@@ -663,9 +662,9 @@ def is_testable(entry: Dict) -> bool:
 
 
 # Pre-compute counts for convenience
-TESTABLE_ENTRIES = [e for e in EXPANDED_GOLD_STANDARD if is_testable(e)]
+TESTABLE_ENTRIES = [e for e in GOLD_STANDARD if is_testable(e)]
 N_TESTABLE = len(TESTABLE_ENTRIES)
-N_UNTESTABLE = len(EXPANDED_GOLD_STANDARD) - N_TESTABLE
+N_UNTESTABLE = len(GOLD_STANDARD) - N_TESTABLE
 
 
 # ============================================================================
@@ -673,9 +672,9 @@ N_UNTESTABLE = len(EXPANDED_GOLD_STANDARD) - N_TESTABLE
 # ============================================================================
 
 def validate_gold_standard(entries=None):
-    """Validate expanded gold standard for integrity and report statistics."""
+    """Validate gold standard for integrity and report statistics."""
     if entries is None:
-        entries = EXPANDED_GOLD_STANDARD
+        entries = GOLD_STANDARD
 
     cancers = set()
     unique_pairs = set()
@@ -697,7 +696,7 @@ def validate_gold_standard(entries=None):
         unique_pairs.add(key)
 
     if duplicates:
-        warnings.warn(f"Expanded gold standard has {len(duplicates)} duplicate(s): {duplicates}")
+        warnings.warn(f"Gold standard has {len(duplicates)} duplicate(s): {duplicates}")
 
     return {
         'total_entries': len(entries),
@@ -865,7 +864,7 @@ def check_match(predicted: frozenset, gold: frozenset, gene_equivalents=None) ->
       'none'         — no overlap
     """
     if gene_equivalents is None:
-        gene_equivalents = EXPANDED_GENE_EQUIVALENTS
+        gene_equivalents = GENE_EQUIVALENTS
 
     # Expand predicted with equivalents
     expanded = set(predicted)
@@ -899,12 +898,12 @@ def _resolve_pipeline_cancers(gold_cancer: str) -> Set[str]:
     """Resolve a gold standard cancer type to exact pipeline Cancer_Type names.
 
     Returns the set of pipeline Cancer_Type values that should be matched.
-    Uses EXPANDED_CANCER_ALIASES with exact matching only — no substring.
+    Uses CANCER_ALIASES with exact matching only — no substring.
     """
     result = set()
     # Check if gold_cancer itself is a key in aliases
-    if gold_cancer in EXPANDED_CANCER_ALIASES:
-        result.update(EXPANDED_CANCER_ALIASES[gold_cancer])
+    if gold_cancer in CANCER_ALIASES:
+        result.update(CANCER_ALIASES[gold_cancer])
     # Always include the literal gold cancer name (exact match)
     result.add(gold_cancer)
     # Remove empty strings
@@ -916,8 +915,8 @@ def _expand_with_equivalents(targets: set) -> set:
     """Expand a set of gene symbols with known equivalents."""
     expanded = set(targets)
     for g in targets:
-        if g in EXPANDED_GENE_EQUIVALENTS:
-            expanded.update(EXPANDED_GENE_EQUIVALENTS[g])
+        if g in GENE_EQUIVALENTS:
+            expanded.update(GENE_EQUIVALENTS[g])
     return expanded
 
 
@@ -1000,14 +999,14 @@ def _compute_cancer_precision(
     }
 
 
-def run_expanded_benchmark(
-    predictions_csv: str = 'results_triples/triple_combinations.csv',
+def run_benchmark(
+    predictions_csv: str = 'results/triple_combinations.csv',
     tier1: bool = True,
     tier2: bool = False,
     verbose: bool = True,
 ) -> Dict:
     """
-    Run ALIN predictions against expanded gold standard.
+    Run ALIN predictions against gold standard.
 
     Returns dict with recall metrics and per-entry results.
     """
@@ -1019,7 +1018,7 @@ def run_expanded_benchmark(
     # Build gold standard
     gold_entries = []
     if tier1:
-        gold_entries.extend(EXPANDED_GOLD_STANDARD)
+        gold_entries.extend(GOLD_STANDARD)
     if tier2:
         synergy_df = download_drugcomb_summary()
         if synergy_df is not None:
@@ -1032,14 +1031,14 @@ def run_expanded_benchmark(
     # Validate
     stats = validate_gold_standard(gold_entries)
     if verbose:
-        print(f"\nExpanded Gold Standard: {stats['total_entries']} entries, "
+        print(f"\nGold Standard: {stats['total_entries']} entries, "
               f"{stats['cancer_types']} cancer types")
         print(f"Evidence: {stats['evidence_breakdown']}")
         print(f"All target genes: {stats['all_targets']}")
         print()
 
     # Build cancer → aliases lookup
-    aliases = EXPANDED_CANCER_ALIASES
+    aliases = CANCER_ALIASES
 
     # Evaluate each gold standard entry
     results = []
@@ -1137,7 +1136,7 @@ def run_expanded_benchmark(
 
     if verbose:
         print("=" * 70)
-        print(f"EXPANDED BENCHMARK RESULTS ({n} gold standard entries)")
+        print(f"BENCHMARK RESULTS ({n} gold standard entries)")
         print("=" * 70)
         print(f"  All {n} entries:")
         print(f"    Exact recall:        {recall['exact']:.1%} ({n_exact}/{n})")
@@ -1182,11 +1181,11 @@ def run_expanded_benchmark(
 
 
 # ============================================================================
-# FREQUENCY BASELINE ON EXPANDED GOLD STANDARD
+# FREQUENCY BASELINE
 # ============================================================================
 
-def run_frequency_baseline_expanded(
-    predictions_csv: str = 'results_triples/triple_combinations.csv',
+def run_frequency_baseline(
+    predictions_csv: str = 'results/triple_combinations.csv',
     gold_entries: Optional[List] = None,
     verbose: bool = True,
 ) -> Dict:
@@ -1199,7 +1198,7 @@ def run_frequency_baseline_expanded(
     prediction row (the top-3 per cancer IS the ALIN prediction).
     """
     if gold_entries is None:
-        gold_entries = EXPANDED_GOLD_STANDARD
+        gold_entries = GOLD_STANDARD
 
     df = pd.read_csv(predictions_csv)
     df.columns = [c.replace(' ', '_') for c in df.columns]
@@ -1263,7 +1262,7 @@ def run_frequency_baseline_expanded(
     }
 
     if verbose:
-        print(f"\nGLOBAL FREQUENCY BASELINE (expanded, {n} entries):")
+        print(f"\nGLOBAL FREQUENCY BASELINE ({n} entries):")
         print(f"  Exact:        {recall['exact']:.1%} ({n_exact}/{n})")
         print(f"  Superset:     {recall['superset']:.1%} ({n_superset}/{n})")
         print(f"  Pair-overlap: {recall['pair_overlap']:.1%} ({n_pair_overlap}/{n})")
@@ -1286,23 +1285,23 @@ def run_frequency_baseline_expanded(
 
 
 # ============================================================================
-# DRIVER BASELINE ON EXPANDED GOLD STANDARD
+# DRIVER BASELINE
 # ============================================================================
 
-def run_driver_baseline_expanded(
+def run_driver_baseline(
     gold_entries: Optional[List] = None,
     verbose: bool = True,
 ) -> Dict:
     """
-    Run driver-gene baseline (TCGA/COSMIC top-3 per cancer) against expanded
+    Run driver-gene baseline (TCGA/COSMIC top-3 per cancer) against
     gold standard.
     """
     from benchmarking_module import CANCER_DRIVER_GENES
 
     if gold_entries is None:
-        gold_entries = EXPANDED_GOLD_STANDARD
+        gold_entries = GOLD_STANDARD
 
-    aliases = EXPANDED_CANCER_ALIASES
+    aliases = CANCER_ALIASES
 
     results = []
     for entry in gold_entries:
@@ -1349,7 +1348,7 @@ def run_driver_baseline_expanded(
     }
 
     if verbose:
-        print(f"\nDRIVER BASELINE (expanded, {n} entries):")
+        print(f"\nDRIVER BASELINE ({n} entries):")
         print(f"  Exact:        {recall['exact']:.1%} ({n_exact}/{n})")
         print(f"  Superset:     {recall['superset']:.1%} ({n_superset}/{n})")
         print(f"  Pair-overlap: {recall['pair_overlap']:.1%} ({n_pair_overlap}/{n})")
@@ -1377,25 +1376,25 @@ def run_driver_baseline_expanded(
 
 
 # ============================================================================
-# RANDOM BASELINE ON EXPANDED GOLD STANDARD
+# RANDOM BASELINE
 # ============================================================================
 
-def run_random_baseline_expanded(
-    predictions_csv: str = 'results_triples/triple_combinations.csv',
+def run_random_baseline(
+    predictions_csv: str = 'results/triple_combinations.csv',
     gold_entries: Optional[List] = None,
     n_trials: int = 1000,
     verbose: bool = True,
 ) -> Dict:
     """Random baseline: draw 3 genes from global gene pool for each cancer."""
     if gold_entries is None:
-        gold_entries = EXPANDED_GOLD_STANDARD
+        gold_entries = GOLD_STANDARD
 
     df = pd.read_csv(predictions_csv)
     df.columns = [c.replace(' ', '_') for c in df.columns]
     all_genes = sorted({g for _, r in df.iterrows()
                         for g in [r['Target_1'], r['Target_2'], r['Target_3']]})
 
-    aliases = EXPANDED_CANCER_ALIASES
+    aliases = CANCER_ALIASES
     rng = np.random.RandomState(42)
 
     n = len(gold_entries)
@@ -1509,7 +1508,7 @@ def run_random_baseline_expanded(
     }
 
     if verbose:
-        print(f"\nRANDOM BASELINE (expanded, {n} entries, {n_trials} trials):")
+        print(f"\nRANDOM BASELINE ({n} entries, {n_trials} trials):")
         print(f"  Exact:        {recall['exact']:.1%}")
         print(f"  Superset:     {recall['superset']:.1%}")
         print(f"  Pair-overlap: {recall['pair_overlap']:.1%}")
@@ -1580,8 +1579,8 @@ def _build_candidate_pools(
     return pools
 
 
-def run_candidate_pool_random_baseline_expanded(
-    predictions_csv: str = 'results_triples/triple_combinations.csv',
+def run_candidate_pool_random_baseline(
+    predictions_csv: str = 'results/triple_combinations.csv',
     gold_entries: Optional[List] = None,
     n_trials: int = 1000,
     depmap_dir: str = './depmap_data',
@@ -1596,7 +1595,7 @@ def run_candidate_pool_random_baseline_expanded(
     beyond the pre-filtering step.
     """
     if gold_entries is None:
-        gold_entries = EXPANDED_GOLD_STANDARD
+        gold_entries = GOLD_STANDARD
 
     df = pd.read_csv(predictions_csv)
     df.columns = [c.replace(' ', '_') for c in df.columns]
@@ -1607,7 +1606,7 @@ def run_candidate_pool_random_baseline_expanded(
         print(f"\nBuilt candidate pools for {len(pools)} cancer types "
               f"(median {np.median([len(v) for v in pools.values()]):.0f} genes)")
 
-    aliases = EXPANDED_CANCER_ALIASES
+    aliases = CANCER_ALIASES
     rng = np.random.RandomState(42)
 
     n = len(gold_entries)
@@ -1760,8 +1759,8 @@ def run_candidate_pool_random_baseline_expanded(
 
 if __name__ == '__main__':
     import argparse
-    parser = argparse.ArgumentParser(description='Expanded Gold Standard Benchmark')
-    parser.add_argument('--predictions', default='results_triples/triple_combinations.csv')
+    parser = argparse.ArgumentParser(description='Gold Standard Benchmark')
+    parser.add_argument('--predictions', default='results/triple_combinations.csv')
     parser.add_argument('--predictions-no-ks', default=None,
                         help='Predictions CSV generated WITHOUT KNOWN_SYNERGIES '
                              '(for circularity test)')
@@ -1771,7 +1770,7 @@ if __name__ == '__main__':
 
     # Validate gold standard
     print("=" * 70)
-    print("EXPANDED GOLD STANDARD VALIDATION")
+    print("GOLD STANDARD VALIDATION")
     print("=" * 70)
     stats = validate_gold_standard()
     print(f"Total entries: {stats['total_entries']}")
@@ -1787,18 +1786,18 @@ if __name__ == '__main__':
     print()
 
     # Run ALIN benchmark
-    alin_results = run_expanded_benchmark(args.predictions, tier1=True, tier2=args.tier2)
+    alin_results = run_benchmark(args.predictions, tier1=True, tier2=args.tier2)
 
     # Run baselines
-    freq_results = run_frequency_baseline_expanded(args.predictions)
-    driver_results = run_driver_baseline_expanded()
-    random_results = run_random_baseline_expanded(args.predictions)
-    cpool_results = run_candidate_pool_random_baseline_expanded(args.predictions)
+    freq_results = run_frequency_baseline(args.predictions)
+    driver_results = run_driver_baseline()
+    random_results = run_random_baseline(args.predictions)
+    cpool_results = run_candidate_pool_random_baseline(args.predictions)
 
     # Summary comparison
     print()
     print("=" * 70)
-    print("COMPARISON: ALIN vs BASELINES (Expanded Gold Standard)")
+    print("COMPARISON: ALIN vs BASELINES")
     print("=" * 70)
     print(f"{'Method':<30} {'Exact':>8} {'Superset':>10} {'PairOvlp':>10} {'AnyOvlp':>10} {'Precision':>10}")
     print("-" * 80)
@@ -1817,7 +1816,7 @@ if __name__ == '__main__':
     # Testable-only comparison
     nt = alin_results['recall'].get('n_testable', N_TESTABLE)
     print()
-    print(f"TESTABLE-ONLY ({nt}/{len(EXPANDED_GOLD_STANDARD)} entries):")
+    print(f"TESTABLE-ONLY ({nt}/{len(GOLD_STANDARD)} entries):")
     print(f"{'Method':<30} {'PairOvlp':>10} {'AnyOvlp':>10} {'Precision':>10}")
     print("-" * 62)
     for name, res in [
@@ -1862,7 +1861,7 @@ if __name__ == '__main__':
         print("=" * 70)
         print("CIRCULARITY TEST: KNOWN_SYNERGIES ablation")
         print("=" * 70)
-        noks_results = run_expanded_benchmark(
+        noks_results = run_benchmark(
             args.predictions_no_ks, tier1=True, tier2=args.tier2
         )
         noks = noks_results['recall']
