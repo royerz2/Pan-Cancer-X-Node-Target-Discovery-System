@@ -2,15 +2,36 @@
 """
 Perturbation Response Module
 ============================
-Enriches viability paths with perturbation-induced signaling changes.
+Enriches viability paths with manually curated perturbation-response knowledge.
 
-Data sources:
-1. Phosphoproteomics signatures (proteins whose phosphorylation changes after target inhibition)
-2. Transcriptional response modules (genes that change expression after perturbation)
-3. LINCS L1000 signatures (drug-induced gene expression changes)
+IMPORTANT LIMITATIONS
+---------------------
+This module encodes expert-curated summaries of ~15 published inhibitor
+studies (phosphoproteomics and transcriptomics) as Python dictionaries.
+It does NOT integrate systematic high-throughput perturbation databases
+such as LINCS L1000 (~1.3 million gene-expression profiles across
+thousands of perturbagens; Subramanian et al. 2017, Cell) or the
+Connectivity Map (Lamb et al. 2006, Science).
 
-This captures dynamic/functional pathway relationships that static co-essentiality
-and network topology miss.
+Key caveats:
+- Confidence scores (0.85--0.95) are author-assigned heuristics reflecting
+  perceived study quality and replication, NOT formal statistical measures.
+- Several aliases share identical perturbation profiles (FYN→SRC, CDK6→CDK4,
+  JAK2→JAK1, MAP2K1/MAP2K2→MEK1), which is a biologically dubious
+  simplification given distinct substrate specificities of these kinases.
+- Coverage is biased toward well-studied oncogenic kinases with clinically
+  approved inhibitors; rare cancers and under-studied targets have no or
+  minimal representation.
+- The perturbation bonus β_pert rewards combinations that match this curated
+  prior knowledge, not independently measured experimental signatures.
+
+Data sources (curated, not systematic):
+1. Curated phosphoproteomics summaries from ~15 published kinase-inhibitor
+   studies (see individual signature entries for PMIDs/sources).
+2. Curated transcriptional response summaries from the same studies.
+
+Future work should integrate L1000/CMap signatures at scale, replacing
+hand-curated dictionaries with data-driven perturbation profiles.
 """
 
 import logging
@@ -36,6 +57,9 @@ class PerturbationSignature:
     expression_increased: Set[str] = field(default_factory=set)  # Upregulated
     
     # Confidence and source
+    # NOTE: confidence values are author-assigned heuristics (0.0--1.0)
+    # reflecting perceived study quality and replication level.
+    # They are NOT formal statistical measures (e.g., p-values or FDR).
     confidence: float = 0.8
     source: str = "curated"
     pmid: Optional[str] = None
@@ -431,12 +455,27 @@ PERTURBATION_SIGNATURES: Dict[str, PerturbationSignature] = {
     ),
 }
 
-# Set aliases (deep copy to avoid shared mutable references)
-PERTURBATION_SIGNATURES['MAP2K1'] = copy.deepcopy(PERTURBATION_SIGNATURES['MEK1'])
-PERTURBATION_SIGNATURES['MAP2K2'] = copy.deepcopy(PERTURBATION_SIGNATURES['MEK1'])
-PERTURBATION_SIGNATURES['CDK6'] = copy.deepcopy(PERTURBATION_SIGNATURES['CDK4'])
-PERTURBATION_SIGNATURES['JAK2'] = copy.deepcopy(PERTURBATION_SIGNATURES['JAK1'])
-PERTURBATION_SIGNATURES['FYN'] = copy.deepcopy(PERTURBATION_SIGNATURES['SRC'])
+# --------------------------------------------------------------------------
+# Aliases: kinases that share the copied perturbation profile of a related
+# kinase.  This is a known simplification — these kinases have distinct
+# substrate specificities (e.g., FYN and SRC phosphorylate overlapping but
+# non-identical substrates).  Where target-specific perturbation data becomes
+# available, these aliases should be replaced with independent signatures.
+# --------------------------------------------------------------------------
+_ALIAS_MAP: Dict[str, str] = {
+    'MAP2K1': 'MEK1',
+    'MAP2K2': 'MEK1',
+    'CDK6':   'CDK4',
+    'JAK2':   'JAK1',
+    'FYN':    'SRC',
+}
+
+for _alias, _source in _ALIAS_MAP.items():
+    _sig = copy.deepcopy(PERTURBATION_SIGNATURES[_source])
+    _sig.target = _alias  # update target name
+    _sig.source = f'alias of {_source} (shared profile — distinct substrate specificity not modeled)'
+    PERTURBATION_SIGNATURES[_alias] = _sig
+del _alias, _source, _sig  # clean up module namespace
 
 
 def get_perturbation_signature(target: str) -> Optional[PerturbationSignature]:

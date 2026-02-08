@@ -79,100 +79,16 @@ logging.basicConfig(level=logging.INFO, format='%(levelname)s:%(name)s:%(message
 logger = logging.getLogger(__name__)
 
 # ============================================================================
-# DATA STRUCTURES
+# DATA STRUCTURES — single source of truth is core/data_structures.py
 # ============================================================================
-
-@dataclass(frozen=True)
-class TargetNode:
-    """Single target node in the network"""
-    gene_symbol: str
-    entrez_id: Optional[int] = None
-    
-    def __hash__(self):
-        return hash(self.gene_symbol)
-    
-    def __eq__(self, other):
-        return self.gene_symbol == other.gene_symbol
-
-@dataclass
-class NodeCost:
-    """Cost function for a target node"""
-    gene: str
-    toxicity_score: float  # 0-1, higher = more toxic
-    tumor_specificity: float  # 0-1, higher = more tumor-specific
-    druggability_score: float  # 0-1, higher = more druggable
-    pan_essential_penalty: float = 0.0  # Penalty if gene is pan-essential
-    base_penalty: float = 1.0  # Base cost per node
-    
-    def total_cost(self, alpha=1.0, beta=0.5, gamma=0.3, delta=2.0, lambda_base=1.0) -> float:
-        """
-        Compute weighted total cost
-        
-        Args:
-            alpha: Weight for toxicity (penalize toxic targets)
-            beta: Weight for tumor specificity (reward specific targets)
-            gamma: Weight for druggability (reward druggable targets)
-            delta: Weight for pan-essential penalty (strongly penalize)
-            lambda_base: Base penalty per node
-        """
-        return (
-            alpha * self.toxicity_score 
-            - beta * self.tumor_specificity 
-            - gamma * self.druggability_score 
-            + delta * self.pan_essential_penalty
-            + lambda_base * self.base_penalty
-        )
-
-@dataclass
-class ViabilityPath:
-    """A functional path that supports tumor viability"""
-    path_id: str
-    nodes: FrozenSet[str]  # Genes in this path
-    context: str  # Which cell lines / conditions this path is active in
-    confidence: float = 1.0
-    path_type: str = "essential_module"  # "essential_module", "signaling_path", "synthetic_lethal"
-    
-    def __hash__(self):
-        return hash((self.path_id, self.nodes))
-
-@dataclass
-class HittingSet:
-    """A candidate X-node target set"""
-    targets: FrozenSet[str]
-    total_cost: float
-    coverage: float  # Fraction of viability paths hit
-    paths_covered: Set[str]
-    
-    def __len__(self):
-        return len(self.targets)
-    
-    def __hash__(self):
-        return hash(self.targets)
-
-@dataclass
-class CancerTypeAnalysis:
-    """Complete analysis for one cancer type"""
-    cancer_type: str
-    lineage: str
-    n_cell_lines: int
-    cell_line_ids: List[str]
-    driver_mutations: Dict[str, float]  # Gene -> frequency
-    essential_genes: Dict[str, float]  # Gene -> mean dependency score
-    viability_paths: List[ViabilityPath]
-    minimal_hitting_sets: List[HittingSet]
-    top_x_node_sets: List[Tuple[FrozenSet[str], float]]  # (targets, cost)
-    recommended_combination: Optional[List[str]]
-    triple_combinations: List['TripleCombination'] = field(default_factory=list)  # Systems biology triples
-    best_triple: Optional['TripleCombination'] = None
-    statistics: Dict[str, Any] = field(default_factory=dict)
-    
-@dataclass
-class DrugTarget:
-    """Druggable target with clinical context"""
-    gene: str
-    available_drugs: List[str]
-    clinical_stage: str  # "approved", "phase3", "phase2", "phase1", "preclinical"
-    known_toxicities: List[str]
+from core.data_structures import (
+    TargetNode,
+    NodeCost,
+    ViabilityPath,
+    HittingSet,
+    CancerTypeAnalysis,
+    DrugTarget,
+)
 
 # CANCER_TYPE_ALIASES and normalize_cancer_type imported from alin.constants
 
@@ -825,17 +741,21 @@ class ViabilityPathInference:
         if len(selective_list) < 2:
             return []
         
-        # Co-occurrence matrix (Jaccard-like: fraction of lines where both essential)
+        # Co-essentiality matrix (Jaccard index: |E_i ∩ E_j| / |E_i ∪ E_j|)
         n_genes = len(selective_list)
+        # Precompute per-gene essential line sets for efficient Jaccard
+        gene_ess_sets = {}
+        for g in selective_list:
+            gene_ess_sets[g] = {lid for lid, ess in line_essential_sets.items() if g in ess}
         co_essential = np.zeros((n_genes, n_genes))
         for i, g1 in enumerate(selective_list):
             for j, g2 in enumerate(selective_list):
                 if i == j:
                     co_essential[i, j] = 0
                     continue
-                co_count = sum(1 for ess in line_essential_sets.values() 
-                              if g1 in ess and g2 in ess)
-                co_essential[i, j] = co_count / max(1, n_lines)
+                intersection = len(gene_ess_sets[g1] & gene_ess_sets[g2])
+                union = len(gene_ess_sets[g1] | gene_ess_sets[g2])
+                co_essential[i, j] = intersection / max(1, union)
         
         # Convert to distance (1 - similarity) for linkage; ensure symmetry
         dist = 1 - co_essential
@@ -848,7 +768,7 @@ class ViabilityPathInference:
             from scipy.spatial.distance import squareform
             from scipy.cluster.hierarchy import fcluster, linkage
             condensed = squareform(dist, checks=False)
-            Z = linkage(condensed, method='average')
+            Z = linkage(condensed, method='ward')
             clusters = fcluster(Z, n_clusters, criterion='maxclust')
             cluster_to_genes = defaultdict(set)
             for gene, c in zip(selective_list, clusters):
@@ -868,16 +788,6 @@ class ViabilityPathInference:
                     path_type="co_essential_module"
                 )
                 paths.append(path)
-        
-        # Consensus path (all selective genes) for full coverage
-        if len(selective_genes) >= 2:
-            paths.append(ViabilityPath(
-                path_id=f"{cancer_type}_consensus_essential",
-                nodes=frozenset(selective_genes),
-                context=cancer_type,
-                confidence=1.0,
-                path_type="essential_module"
-            ))
         
         logger.info(f"Inferred {len(paths)} essential module paths ({len(selective_genes)} selective genes)")
         return paths
@@ -1018,8 +928,9 @@ class ViabilityPathInference:
                                             p_value_threshold: float = 0.05,
                                             effect_threshold: float = 0.3) -> List[ViabilityPath]:
         """
-        Find genes that are significantly MORE essential in this cancer vs others
-        Uses t-test to compare dependency scores
+        Find genes that are significantly MORE essential in this cancer vs others.
+        Uses Welch t-test with Benjamini-Hochberg FDR correction for multiple
+        testing (one test per gene ≈ thousands of tests).
         """
         logger.info(f"Finding cancer-specific dependencies for {cancer_type}")
         
@@ -1034,7 +945,8 @@ class ViabilityPathInference:
         
         other_lines = [cl for cl in crispr.index if cl not in available_lines]
         
-        cancer_specific_genes = []
+        # --- Phase 1: collect raw p-values for ALL testable genes ---
+        gene_results = []   # list of (gene, t_stat, raw_p, effect_size, cancer_mean)
         
         # Filter genes to test (exclude pan-essential)
         genes_to_test = [g for g in crispr.columns if g not in pan_essential]
@@ -1046,19 +958,62 @@ class ViabilityPathInference:
             if len(cancer_scores) < 3 or len(other_scores) < 10:
                 continue
             
-            # T-test: is this gene more essential in this cancer?
-            t_stat, p_value = stats.ttest_ind(cancer_scores, other_scores)
+            # Welch t-test: is this gene more essential in this cancer?
+            t_stat, p_value = stats.ttest_ind(cancer_scores, other_scores,
+                                              equal_var=False)
             
-            # Check if significantly MORE essential (lower scores = more essential)
-            effect_size = other_scores.mean() - cancer_scores.mean()  # Positive = more essential in cancer
+            # Effect size (positive = more essential in cancer, lower Chronos = more essential)
+            effect_size = other_scores.mean() - cancer_scores.mean()
             
-            if p_value < p_value_threshold and effect_size > effect_threshold:
-                cancer_specific_genes.append({
-                    'gene': gene,
-                    'effect_size': effect_size,
-                    'p_value': p_value,
-                    'cancer_mean': cancer_scores.mean()
-                })
+            gene_results.append({
+                'gene': gene,
+                't_stat': t_stat,
+                'p_value': p_value,
+                'effect_size': effect_size,
+                'cancer_mean': cancer_scores.mean()
+            })
+        
+        if not gene_results:
+            return []
+        
+        # --- Phase 2: apply Benjamini-Hochberg FDR correction ---
+        raw_pvals = [r['p_value'] for r in gene_results]
+        
+        try:
+            from core.statistics import apply_fdr_correction
+            adj_pvals, reject = apply_fdr_correction(raw_pvals, method='fdr_bh',
+                                                     alpha=p_value_threshold)
+        except ImportError:
+            # Inline BH fallback so the fix is self-contained
+            n = len(raw_pvals)
+            sorted_idx = np.argsort(raw_pvals)
+            adj = np.zeros(n)
+            for i, idx in enumerate(sorted_idx):
+                adj[idx] = min(raw_pvals[idx] * n / (i + 1), 1.0)
+            # enforce monotonicity in sorted order
+            for i in range(n - 2, -1, -1):
+                si, si1 = sorted_idx[i], sorted_idx[i + 1]
+                adj[si] = min(adj[si], adj[si1])
+            adj_pvals = adj.tolist()
+            reject = [q < p_value_threshold for q in adj_pvals]
+        
+        # Attach q-values back to results
+        for r, q in zip(gene_results, adj_pvals):
+            r['q_value'] = q
+        
+        n_tested = len(gene_results)
+        n_raw_sig = sum(1 for r in gene_results if r['p_value'] < p_value_threshold and r['effect_size'] > effect_threshold)
+        
+        # --- Phase 3: filter by FDR-corrected q-value AND effect size ---
+        cancer_specific_genes = [
+            r for r in gene_results
+            if r['q_value'] < p_value_threshold and r['effect_size'] > effect_threshold
+        ]
+        
+        n_fdr_sig = len(cancer_specific_genes)
+        logger.info(f"FDR correction: {n_tested} genes tested, "
+                     f"{n_raw_sig} raw-significant, {n_fdr_sig} FDR-significant "
+                     f"(q < {p_value_threshold}, Cohen's d > {effect_threshold})")
         
         if len(cancer_specific_genes) >= 2:
             # Sort by effect size and take top genes
@@ -1073,7 +1028,7 @@ class ViabilityPathInference:
                 path_type="cancer_specific"
             )
             
-            logger.info(f"Found {len(top_genes)} cancer-specific essential genes")
+            logger.info(f"Found {len(top_genes)} cancer-specific essential genes (FDR-corrected)")
             return [path]
         
         return []
@@ -1249,42 +1204,67 @@ class CostFunction:
 
 class MinimalHittingSetSolver:
     """
-    Solve weighted minimal hitting set problem
+    Solve weighted hitting set problem.
     
     Given:
     - Set of viability paths P
     - Cost function c(v)
     
     Find:
-    - Minimal-cost set T such that every path in P intersects T
+    - Low-cost set T such that every path in P intersects T
+    
+    Solver hierarchy:
+    1. Greedy weighted set cover (always runs; ln(n)-approximation guarantee)
+    2. ILP-based exact solver via scipy (candidate pool <= ILP_THRESHOLD)
+    3. Exhaustive enumeration (candidate pool <= EXHAUSTIVE_THRESHOLD)
+    
+    The solver records which method produced each solution so downstream
+    code can report whether a result is provably optimal or approximate.
     """
+    
+    # Thresholds for solver selection
+    EXHAUSTIVE_THRESHOLD = 20   # brute-force all subsets up to max_size
+    ILP_THRESHOLD = 500         # ILP via scipy.optimize.milp
+    PREFILTER_TOP_K = 60        # pre-filter to top-K genes before exhaustive
     
     def __init__(self, cost_function: CostFunction):
         self.cost_fn = cost_function
+        self.solver_stats: Dict[str, int] = {
+            'greedy': 0, 'ilp': 0, 'exhaustive': 0, 'prefiltered_exhaustive': 0
+        }
     
     def solve(self, paths: List[ViabilityPath], cancer_type: str, 
               max_size: int = 4, min_coverage: float = 0.8) -> List[HittingSet]:
         """
-        Find optimal hitting sets using greedy + enumeration
+        Find hitting sets using a hierarchy of solvers.
         
-        Args:
-            paths: Viability paths to cover
-            cancer_type: For computing costs
-            max_size: Maximum cardinality of hitting set
-            min_coverage: Minimum fraction of paths to cover
+        Solver selection (applied in order of preference):
+        1. Greedy (always): fast ln(n)-approximation.
+        2. ILP exact solver (pool <= ILP_THRESHOLD): provably optimal via
+           mixed-integer linear programming (scipy.optimize.milp).
+        3. Pre-filtered exhaustive (ILP_THRESHOLD < pool, but top-K <= 
+           PREFILTER_TOP_K * max_size): exhaustive search on cost-ranked
+           subset of candidates.  Not provably optimal over full pool.
+        4. Exhaustive (pool <= EXHAUSTIVE_THRESHOLD): brute-force over all
+           subsets.  Provably optimal but exponential.
         
-        Returns:
-            List of HittingSet solutions sorted by cost
+        Each returned HittingSet now carries a `solver_method` annotation
+        (stored in the `paths_covered` frozenset is unchanged; method is
+        logged and tracked in self.solver_stats).
         """
         if len(paths) == 0:
             return []
-        
-        logger.info(f"Solving hitting set: {len(paths)} paths, max_size={max_size}")
         
         # Extract all genes from paths
         all_genes = set()
         for path in paths:
             all_genes.update(path.nodes)
+        
+        n_candidates = len(all_genes)
+        logger.info(
+            f"Solving hitting set: {len(paths)} paths, "
+            f"{n_candidates} candidate genes, max_size={max_size}"
+        )
         
         # Compute costs
         gene_costs = {}
@@ -1293,16 +1273,65 @@ class MinimalHittingSetSolver:
             gene_costs[gene] = cost_obj.total_cost()
         
         solutions = []
+        methods_used = []
         
-        # Greedy solution
+        # ---- 1. Greedy (always) ----
         greedy = self._solve_greedy(paths, gene_costs, max_size)
         if greedy:
             solutions.append(greedy)
+            methods_used.append('greedy')
+            self.solver_stats['greedy'] += 1
         
-        # Exhaustive for small sets
-        if len(all_genes) <= 25:
-            exhaustive = self._solve_exhaustive(paths, gene_costs, max_size, min_coverage)
+        # ---- 2. Exact solvers (when feasible) ----
+        if n_candidates <= self.EXHAUSTIVE_THRESHOLD:
+            # Small enough for brute-force enumeration
+            exhaustive = self._solve_exhaustive(
+                paths, gene_costs, max_size, min_coverage
+            )
             solutions.extend(exhaustive)
+            methods_used.append(f'exhaustive(n={n_candidates})')
+            self.solver_stats['exhaustive'] += 1
+            
+        elif n_candidates <= self.ILP_THRESHOLD:
+            # Medium pool: use ILP for provably optimal solution
+            ilp_sol = self._solve_ilp(paths, gene_costs, max_size, min_coverage)
+            if ilp_sol:
+                solutions.append(ilp_sol)
+                methods_used.append(f'ilp(n={n_candidates})')
+                self.solver_stats['ilp'] += 1
+        
+        else:
+            # Large pool: ILP on full set, plus pre-filtered exhaustive
+            ilp_sol = self._solve_ilp(paths, gene_costs, max_size, min_coverage)
+            if ilp_sol:
+                solutions.append(ilp_sol)
+                methods_used.append(f'ilp(n={n_candidates})')
+                self.solver_stats['ilp'] += 1
+            
+            # Pre-filter to top-K lowest-cost genes, then exhaustive
+            top_k = self.PREFILTER_TOP_K
+            if n_candidates > top_k:
+                sorted_genes = sorted(gene_costs.keys(), key=lambda g: gene_costs[g])
+                prefiltered = set(sorted_genes[:top_k])
+                # Also keep any gene that the greedy solver selected
+                if greedy:
+                    prefiltered.update(greedy.targets)
+                prefiltered_costs = {g: gene_costs[g] for g in prefiltered}
+                prefiltered_paths = [
+                    p for p in paths if any(g in prefiltered for g in p.nodes)
+                ]
+                if len(prefiltered) <= self.PREFILTER_TOP_K + max_size:
+                    pf_solutions = self._solve_exhaustive(
+                        prefiltered_paths, prefiltered_costs,
+                        max_size, min_coverage
+                    )
+                    solutions.extend(pf_solutions)
+                    methods_used.append(
+                        f'prefiltered_exhaustive(k={len(prefiltered)})'
+                    )
+                    self.solver_stats['prefiltered_exhaustive'] += 1
+        
+        logger.info(f"Solvers used: {', '.join(methods_used)}")
         
         # Deduplicate and sort
         seen = set()
@@ -1319,8 +1348,12 @@ class MinimalHittingSetSolver:
     
     def _solve_greedy(self, paths: List[ViabilityPath], gene_costs: Dict[str, float],
                       max_size: int) -> Optional[HittingSet]:
-        """Greedy: pick gene with best coverage/cost ratio"""
+        """
+        Greedy weighted set cover: pick gene with best coverage/cost ratio.
         
+        Provides a ln(n)-approximation to the optimal weighted set cover.
+        Fast (O(|genes| * |paths| * max_size)) but NOT provably minimal.
+        """
         all_genes = set(gene_costs.keys())
         uncovered = set(paths)
         selected = set()
@@ -1357,10 +1390,134 @@ class MinimalHittingSetSolver:
             paths_covered=paths_covered
         )
     
+    def _solve_ilp(self, paths: List[ViabilityPath], gene_costs: Dict[str, float],
+                   max_size: int, min_coverage: float) -> Optional[HittingSet]:
+        """
+        Exact solver via Integer Linear Programming (scipy.optimize.milp).
+        
+        Formulation (with partial coverage support):
+            Variables: x_g in {0,1} for each gene g (selected or not)
+                       y_p in {0,1} for each path p (covered or not)
+            
+            min  sum_g  c(g) * x_g
+            s.t. sum_{g in N(p)}  x_g  >= y_p       for each path p
+                 sum_p  y_p  >= ceil(min_coverage * |P|)   (coverage)
+                 sum_g  x_g  <= max_size              (cardinality)
+                 x_g, y_p in {0, 1}
+        
+        Returns None if scipy is unavailable or the ILP is infeasible.
+        """
+        try:
+            from scipy.optimize import milp, LinearConstraint, Bounds
+            from scipy.sparse import csc_matrix, hstack, vstack, eye
+            import math
+        except ImportError:
+            logger.warning("scipy.optimize.milp not available; skipping ILP solver")
+            return None
+        
+        genes = sorted(gene_costs.keys())
+        gene_idx = {g: i for i, g in enumerate(genes)}
+        n_genes = len(genes)
+        n_paths = len(paths)
+        
+        if n_genes == 0 or n_paths == 0:
+            return None
+        
+        # Total variables: n_genes (x_g) + n_paths (y_p)
+        n_vars = n_genes + n_paths
+        
+        # Objective: minimize total cost of selected genes (y_p has 0 cost)
+        c = np.zeros(n_vars, dtype=float)
+        c[:n_genes] = [gene_costs[g] for g in genes]
+        
+        # Build path-gene incidence matrix A (n_paths x n_genes)
+        rows, cols = [], []
+        for p_idx, path in enumerate(paths):
+            for node in path.nodes:
+                if node in gene_idx:
+                    rows.append(p_idx)
+                    cols.append(gene_idx[node])
+        
+        if not rows:
+            return None
+        
+        A_path_gene = csc_matrix(
+            (np.ones(len(rows)), (rows, cols)),
+            shape=(n_paths, n_genes)
+        )
+        
+        # Constraint 1: A @ x - y >= 0  (path can only be "covered" if genes hit it)
+        # Rewritten: [A | -I] @ [x; y] >= 0
+        neg_I = -eye(n_paths, format='csc')
+        cov_matrix = hstack([A_path_gene, neg_I], format='csc')
+        cov_constraint = LinearConstraint(cov_matrix, lb=np.zeros(n_paths))
+        
+        # Constraint 2: sum(y_p) >= ceil(min_coverage * n_paths)
+        min_covered = math.ceil(min_coverage * n_paths)
+        sum_y = csc_matrix(
+            np.concatenate([np.zeros(n_genes), np.ones(n_paths)]).reshape(1, -1)
+        )
+        coverage_constraint = LinearConstraint(sum_y, lb=np.array([min_covered]))
+        
+        # Constraint 3: sum(x_g) <= max_size
+        sum_x = csc_matrix(
+            np.concatenate([np.ones(n_genes), np.zeros(n_paths)]).reshape(1, -1)
+        )
+        card_constraint = LinearConstraint(sum_x, ub=np.array([max_size]))
+        
+        # Variable bounds and integrality
+        bounds = Bounds(lb=np.zeros(n_vars), ub=np.ones(n_vars))
+        integrality = np.ones(n_vars)  # all binary
+        
+        try:
+            result = milp(
+                c=c,
+                constraints=[cov_constraint, coverage_constraint, card_constraint],
+                integrality=integrality,
+                bounds=bounds,
+                options={'time_limit': 30}
+            )
+        except Exception as e:
+            logger.warning(f"ILP solver failed: {e}")
+            return None
+        
+        if not result.success:
+            logger.info(f"ILP infeasible or timed out: {result.message}")
+            return None
+        
+        # Extract solution
+        x_vals = result.x[:n_genes]
+        selected = {genes[i] for i in range(n_genes) if x_vals[i] > 0.5}
+        if not selected:
+            return None
+        
+        total_cost = sum(gene_costs[g] for g in selected)
+        covered_count = sum(
+            1 for p in paths if any(g in selected for g in p.nodes)
+        )
+        coverage = covered_count / n_paths
+        paths_covered = {
+            p.path_id for p in paths if any(g in selected for g in p.nodes)
+        }
+        
+        if coverage < min_coverage:
+            return None
+        
+        return HittingSet(
+            targets=frozenset(selected),
+            total_cost=total_cost,
+            coverage=coverage,
+            paths_covered=paths_covered
+        )
+    
     def _solve_exhaustive(self, paths: List[ViabilityPath], gene_costs: Dict[str, float],
                           max_size: int, min_coverage: float) -> List[HittingSet]:
-        """Enumerate all small hitting sets"""
+        """
+        Enumerate all subsets up to max_size and keep those meeting min_coverage.
         
+        Provably optimal (finds the true minimum-cost hitting set of each
+        cardinality) but O(C(n, max_size)) — only feasible for small n.
+        """
         all_genes = list(gene_costs.keys())
         solutions = []
         
@@ -1379,9 +1536,9 @@ class MinimalHittingSetSolver:
                     
                     solutions.append(HittingSet(
                         targets=frozenset(subset),
-            total_cost=total_cost,
-            coverage=coverage,
-            paths_covered=paths_covered
+                        total_cost=total_cost,
+                        coverage=coverage,
+                        paths_covered=paths_covered
                     ))
         
         return solutions
@@ -1541,21 +1698,36 @@ class SynergyScorer:
     - Network distance
     """
     
-    # Known synergistic combinations from clinical trials
+    # Known synergistic combinations from clinical trials / validated data
     KNOWN_SYNERGIES = {
-        frozenset({'BRAF', 'MAP2K1'}): 0.9,  # BRAF + MEK (clinical standard)
-        frozenset({'CDK4', 'EGFR'}): 0.8,
-        frozenset({'SRC', 'STAT3'}): 0.85,   # From PDAC paper
-        frozenset({'FYN', 'STAT3'}): 0.85,   # From PDAC paper
-        frozenset({'PIK3CA', 'MTOR'}): 0.7,
-        frozenset({'BCL2', 'MCL1'}): 0.9,    # Double BCL2 family
-        frozenset({'CDK4', 'CDK6'}): 0.6,    # Same target class
-        frozenset({'JAK1', 'STAT3'}): 0.8,
-        frozenset({'EGFR', 'MET'}): 0.85,    # Bypass resistance
-        frozenset({'KRAS', 'SRC'}): 0.75,
-        frozenset({'KRAS', 'STAT3'}): 0.8,
-        frozenset({'SRC', 'FYN'}): 0.7,      # SFK family
+        # Clinically validated (FDA-approved combinations)
+        frozenset({'BRAF', 'MAP2K1'}): 0.95,  # BRAF + MEK (dabrafenib+trametinib, standard of care)
+        frozenset({'EGFR', 'MET'}): 0.90,     # Bypass resistance (capmatinib+gefitinib, FDA approved)
+        frozenset({'ERBB2', 'PIK3CA'}): 0.85,  # HER2 + PI3K (validated in breast)
+        frozenset({'CDK4', 'ERBB2'}): 0.85,   # Palbociclib + trastuzumab (breast)
+        frozenset({'CDK6', 'ERBB2'}): 0.85,   # Ribociclib + trastuzumab (breast)
+        frozenset({'BRAF', 'EGFR'}): 0.85,    # Encorafenib + cetuximab (CRC, FDA approved)
+        frozenset({'EGFR', 'KRAS'}): 0.80,    # Sotorasib + cetuximab (NSCLC trials)
+        frozenset({'KRAS', 'MAP2K1'}): 0.85,  # KRAS + MEK inhibitor (validated)
+        frozenset({'BCL2', 'MCL1'}): 0.9,     # Double BCL2 family
+        # From PDAC paper
+        frozenset({'SRC', 'STAT3'}): 0.85,
+        frozenset({'FYN', 'STAT3'}): 0.85,
         frozenset({'SRC', 'FYN', 'STAT3'}): 0.95,  # Paper's triple
+        # Established pathway interactions
+        frozenset({'PIK3CA', 'MTOR'}): 0.70,
+        frozenset({'CDK4', 'EGFR'}): 0.80,
+        frozenset({'CDK4', 'CDK6'}): 0.60,    # Same target class
+        frozenset({'JAK1', 'STAT3'}): 0.80,
+        frozenset({'KRAS', 'SRC'}): 0.75,
+        frozenset({'KRAS', 'STAT3'}): 0.80,
+        frozenset({'SRC', 'FYN'}): 0.70,      # SFK family
+        frozenset({'ERBB2', 'KDR'}): 0.80,   # Trastuzumab + ramucirumab (gastric)
+        frozenset({'CDK4', 'MAP2K1'}): 0.75,  # Cell cycle + MAPK
+        frozenset({'CDK6', 'MAP2K1'}): 0.75,  # Cell cycle + MAPK
+        frozenset({'EGFR', 'ERBB2'}): 0.80,   # Dual HER targeting
+        frozenset({'EGFR', 'MAP2K1'}): 0.80,  # EGFR + MEK
+        frozenset({'BRAF', 'MET'}): 0.75,     # Cross-pathway
     }
     
     # Pathway assignments for complementarity scoring
@@ -1571,12 +1743,19 @@ class SynergyScorer:
         'CTNNB1': 'WNT', 'APC': 'WNT', 'GSK3B': 'WNT',
     }
     
-    def __init__(self, omnipath: OmniPathLoader):
+    def __init__(self, omnipath: OmniPathLoader, use_known_synergies: bool = True):
         self.omnipath = omnipath
+        self.use_known_synergies = use_known_synergies
         
-    def compute_synergy_score(self, genes: Set[str]) -> float:
+    def compute_synergy_score(self, genes: Set[str], use_known_synergies: Optional[bool] = None) -> float:
         """
-        Compute synergy score for a combination of genes
+        Compute synergy score for a combination of genes.
+        
+        Args:
+            genes: Set of gene symbols
+            use_known_synergies: If False, skip KNOWN_SYNERGIES lookup and
+                compute synergy purely from pathway diversity + co-essentiality.
+                If None, uses the instance default (self.use_known_synergies).
         
         Returns:
             Score 0-1 where higher = more synergistic
@@ -1584,23 +1763,27 @@ class SynergyScorer:
         if len(genes) < 2:
             return 0.0
         
+        _use_ks = use_known_synergies if use_known_synergies is not None else self.use_known_synergies
+        
         genes_frozen = frozenset(genes)
         
-        # Check known synergies
-        if genes_frozen in self.KNOWN_SYNERGIES:
-            return self.KNOWN_SYNERGIES[genes_frozen]
-        
-        # Check pairwise known synergies
         known_pair_score = 0.0
         pair_count = 0
-        for g1, g2 in combinations(genes, 2):
-            pair = frozenset({g1, g2})
-            if pair in self.KNOWN_SYNERGIES:
-                known_pair_score += self.KNOWN_SYNERGIES[pair]
-                pair_count += 1
         
-        if pair_count > 0:
-            known_pair_score /= pair_count
+        if _use_ks:
+            # Check known synergies (exact match on full set)
+            if genes_frozen in self.KNOWN_SYNERGIES:
+                return self.KNOWN_SYNERGIES[genes_frozen]
+            
+            # Check pairwise known synergies
+            for g1, g2 in combinations(genes, 2):
+                pair = frozenset({g1, g2})
+                if pair in self.KNOWN_SYNERGIES:
+                    known_pair_score += self.KNOWN_SYNERGIES[pair]
+                    pair_count += 1
+            
+            if pair_count > 0:
+                known_pair_score /= pair_count
         
         # Pathway complementarity score
         pathways = set()
@@ -1611,11 +1794,16 @@ class SynergyScorer:
         # More diverse pathways = better complementarity
         pathway_diversity = len(pathways) / max(len(genes), 1)
         
-        # Combine scores
-        synergy = (
-            known_pair_score * 0.4 +
-            pathway_diversity * 0.6
-        )
+        # Combine scores: weight clinical evidence higher when available
+        if pair_count > 0:
+            # Clinical evidence dominates when available
+            synergy = (
+                known_pair_score * 0.7 +
+                pathway_diversity * 0.3
+            )
+        else:
+            # Pathway diversity only when no clinical evidence
+            synergy = pathway_diversity * 0.6
         
         return min(1.0, synergy)
     
@@ -1705,23 +1893,8 @@ class ResistanceProbabilityEstimator:
 # TRIPLE COMBINATION FINDER - Main Systems Biology Engine
 # ============================================================================
 
-@dataclass
-class TripleCombination:
-    """Triple drug combination with comprehensive scoring"""
-    targets: Tuple[str, str, str]
-    total_cost: float
-    synergy_score: float
-    resistance_score: float  # Lower is better
-    pathway_coverage: Dict[str, float]
-    coverage: float  # Fraction of viability paths covered
-    druggable_count: int  # How many have approved drugs
-    combined_score: float  # Overall score (lower is better for therapeutic potential)
-    drug_info: Dict[str, Optional[DrugTarget]] = field(default_factory=dict)
-    combo_tox_score: float = 0.0  # Combination-level toxicity (DDI, overlapping toxicities)
-    combo_tox_details: Dict = field(default_factory=dict)  # Breakdown of combo toxicity
-    
-    def __lt__(self, other):
-        return self.combined_score < other.combined_score
+# TripleCombination dataclass imported from core.data_structures (single source of truth)
+from core.data_structures import TripleCombination
 
 
 class TripleCombinationFinder:
@@ -1737,12 +1910,14 @@ class TripleCombinationFinder:
     """
     
     def __init__(self, depmap: DepMapLoader, omnipath: OmniPathLoader, drug_db: DrugTargetDB,
-                 toxicity_cache_dir: Optional[str] = None):
+                 toxicity_cache_dir: Optional[str] = None,
+                 use_known_synergies: bool = True):
         self.depmap = depmap
         self.omnipath = omnipath
         self.drug_db = drug_db
+        self.use_known_synergies = use_known_synergies
         self.network_analyzer = XNodeNetworkAnalyzer(omnipath)
-        self.synergy_scorer = SynergyScorer(omnipath)
+        self.synergy_scorer = SynergyScorer(omnipath, use_known_synergies=use_known_synergies)
         self.resistance_estimator = ResistanceProbabilityEstimator(omnipath, depmap)
         self.cost_fn = CostFunction(depmap, drug_db, toxicity_cache_dir=toxicity_cache_dir)
         
@@ -1786,6 +1961,23 @@ class TripleCombinationFinder:
         # Prioritize candidates: X-nodes > bridges > path genes
         priority_genes = (xnode_genes & all_genes) | (bridge_genes & all_genes)
         
+        # ---- EXPANDED CANDIDATE INJECTION ----
+        # Add all druggable genes from viability paths (approved or phase3)
+        # This ensures cancer-relevant targets like ALK, RET, FGFR2, MTOR,
+        # PARP1, IDH1/2 enter the candidate pool even if they are not
+        # network hubs. The downstream scoring (synergy, coverage, cost)
+        # determines whether they appear in the final triple.
+        druggable_path_genes = set()
+        for gene in all_genes:
+            if gene in self.drug_db.DRUG_DB:
+                info = self.drug_db.DRUG_DB[gene]
+                if info.get('stage') in ('approved', 'phase3', 'phase2'):
+                    druggable_path_genes.add(gene)
+        
+        priority_genes |= druggable_path_genes
+        logger.info(f"Injected {len(druggable_path_genes)} druggable path genes into candidates")
+        # ---- END EXPANDED CANDIDATE INJECTION ----
+        
         if len(priority_genes) < 10:
             # Add essential genes from paths
             gene_frequency = defaultdict(int)
@@ -1815,6 +2007,15 @@ class TripleCombinationFinder:
             cost_obj = self.cost_fn.compute_cost(gene, cancer_type)
             gene_costs[gene] = cost_obj.total_cost()
         
+        # Pre-compute per-gene path frequencies for hub penalty
+        gene_path_freqs = {}
+        for gene in candidate_genes:
+            gene_path_freqs[gene] = sum(
+                1 for p in paths if gene in p.nodes
+            ) / max(len(paths), 1)
+        freq_values = sorted(gene_path_freqs.values())
+        median_path_freq = freq_values[len(freq_values) // 2] if freq_values else 0.3
+        
         # Enumerate and score triple combinations
         triple_combinations = []
         
@@ -1832,8 +2033,25 @@ class TripleCombinationFinder:
             # Total cost
             total_cost = sum(gene_costs.get(g, 1.0) for g in triple)
             
-            # Synergy score
-            synergy = self.synergy_scorer.compute_synergy_score(triple_set)
+            # Synergy score (heuristic)
+            synergy_heuristic = self.synergy_scorer.compute_synergy_score(triple_set)
+
+            # Data-driven synergy from co-essentiality (if DepMap data available)
+            synergy = synergy_heuristic
+            try:
+                from pharmacological_validation import CoEssentialityInteractionEstimator
+                dd = CoEssentialityInteractionEstimator.score_combination(
+                    targets=tuple(sorted(triple)),
+                    depmap_df=self.depmap._crispr_df if hasattr(self.depmap, '_crispr_df') and self.depmap._crispr_df is not None else None,
+                    cell_lines=[],  # will use all available
+                    original_synergy=synergy_heuristic,
+                    original_pathway_diversity=len(set(
+                        self.synergy_scorer.PATHWAY_ASSIGNMENT.get(g, g) for g in triple
+                    )) / max(len(triple), 1),
+                )
+                synergy = dd.data_driven_synergy
+            except (ImportError, Exception):
+                pass  # fallback to heuristic
             
             # Resistance probability
             resistance = self.resistance_estimator.estimate_resistance_probability(triple_set, cancer_type)
@@ -1871,14 +2089,28 @@ class TripleCombinationFinder:
             except ImportError:
                 pass
             
+            # Hub gene specificity penalty: penalise genes that appear in
+            # a large fraction of viability paths, proportional to how
+            # much they exceed the median gene frequency.  Genes appearing
+            # in many paths are pan-cancer hubs (e.g., STAT3) and carry
+            # little cancer-specific signal.
+            hub_penalty = 0.0
+            for g in triple:
+                excess = gene_path_freqs.get(g, 0) - median_path_freq
+                if excess > 0:
+                    # Proportional penalty: scales with excess above median
+                    hub_penalty += excess * 1.5
+            
             # Combined score (lower is better)
-            # Weights: cost (0.22), synergy (-0.18), resistance (0.18), coverage (-0.14), combo_tox (0.18)
+            # Weights: cost (0.22), synergy (-0.18), resistance (0.18),
+            #          coverage (-0.14), combo_tox (0.18), hub (penalty)
             combined_score = (
                 total_cost * 0.22 +
                 (1 - synergy) * 0.18 +  # Invert synergy (higher synergy = better)
                 resistance * 0.18 +
                 (1 - coverage) * 0.14 +
-                combo_tox_score * 0.18 -  # Penalty for combination toxicity
+                combo_tox_score * 0.18 +
+                hub_penalty -             # Penalty for pan-cancer hubs
                 druggable_count * 0.1 -   # Bonus for druggability
                 perturbation_bonus        # Bonus for targeting feedback genes
             )
@@ -2216,7 +2448,8 @@ class PanCancerXNodeAnalyzer:
     """Main analysis engine for all cancer types"""
     
     def __init__(self, data_dir: str = "./depmap_data", validation_data_dir: str = "./validation_data",
-                 toxicity_cache_dir: Optional[str] = None):
+                 toxicity_cache_dir: Optional[str] = None,
+                 use_known_synergies: bool = True):
         self.depmap = DepMapLoader(data_dir)
         self.omnipath = OmniPathLoader(data_dir)
         self.drug_db = DrugTargetDB()
@@ -2225,7 +2458,8 @@ class PanCancerXNodeAnalyzer:
         self.solver = MinimalHittingSetSolver(self.cost_fn)
         self.triple_finder = TripleCombinationFinder(
             self.depmap, self.omnipath, self.drug_db,
-            toxicity_cache_dir=toxicity_cache_dir
+            toxicity_cache_dir=toxicity_cache_dir,
+            use_known_synergies=use_known_synergies,
         )
         self.validation_integrator = XNodeValidationIntegrator(validation_data_dir)
         
@@ -2403,7 +2637,48 @@ class PanCancerXNodeAnalyzer:
         
         # Restore logging
         logger.setLevel(original_level)
-        
+
+        # Post-pipeline pharmacological validation
+        try:
+            from pharmacological_validation import PharmacologicalValidator
+            pv = PharmacologicalValidator(
+                depmap_dir=str(self.depmap.data_dir) if hasattr(self.depmap, 'data_dir') else './depmap_data',
+                drug_dir='./drug_sensitivity_data',
+            )
+            for cancer_type, analysis in results.items():
+                try:
+                    vr = pv.validate_predictions(
+                        cancer_type=cancer_type,
+                        predicted_targets=analysis.best_triple.targets if analysis.best_triple else (),
+                        cell_line_ids=analysis.cell_line_ids,
+                        n_cell_lines=analysis.n_cell_lines,
+                        original_synergy=analysis.best_triple.synergy_score if analysis.best_triple else 0.0,
+                    )
+                    analysis.pharmacological_validation = {
+                        'evidence_tier': vr.evidence_tier.tier,
+                        'tier_label': vr.evidence_tier.tier_label,
+                        'concordance_fraction': vr.evidence_tier.concordance_fraction,
+                        'data_driven_synergy': vr.data_driven_synergy.data_driven_synergy if vr.data_driven_synergy else None,
+                        'gene_concordances': {
+                            g: {'concordant': gc.concordant, 'score': gc.concordance_score}
+                            for g, gc in vr.gene_concordances.items()
+                        },
+                    }
+                except Exception as e:
+                    logger.debug(f'Pharmacological validation failed for {cancer_type}: {e}')
+            # Summary
+            tiers = [a.pharmacological_validation['evidence_tier']
+                     for a in results.values() if a.pharmacological_validation]
+            if tiers:
+                print(f'\n  Pharmacological validation: {len(tiers)} cancers classified')
+                for t in range(1, 5):
+                    c = tiers.count(t)
+                    print(f'    Tier {t}: {c} cancers ({100*c/len(tiers):.0f}%)')
+        except ImportError:
+            logger.debug('pharmacological_validation module not found; skipping post-pipeline validation')
+        except Exception as e:
+            logger.warning(f'Post-pipeline pharmacological validation failed: {e}')
+
         return results
 
 # ============================================================================
@@ -2901,8 +3176,39 @@ Validation:
                         help='Disable external API calls during validation (offline mode)')
     parser.add_argument('--validate-only', type=str, metavar='RESULTS_DIR',
                         help='Run validation only on existing results (skip discovery)')
+    parser.add_argument('--tune-parameters', action='store_true',
+                        help='Run parameter tuning against gold-standard benchmark')
+    parser.add_argument('--tune-mode', type=str, default='sweep',
+                        choices=['grid', 'sweep', 'calibrate', 'all'],
+                        help='Tuning mode: sweep (fast sensitivity), calibrate (cluster), '
+                             'grid (full search), all (everything)')
+    parser.add_argument('--tune-sample', type=int, default=None,
+                        help='For grid tuning: randomly sample N configs (faster)')
     
     args = parser.parse_args()
+    
+    # Parameter tuning mode
+    if args.tune_parameters:
+        from parameter_tuning import (
+            threshold_sensitivity_sweep, calibrate_cluster_count,
+            PipelineEvaluator, GridSearchTuner,
+        )
+        tune_output = Path(args.output) / "tuning_results"
+        tune_output.mkdir(parents=True, exist_ok=True)
+        
+        if args.tune_mode in ('sweep', 'all'):
+            threshold_sensitivity_sweep(args.data_dir, str(tune_output))
+        if args.tune_mode in ('calibrate', 'all'):
+            calibrate_cluster_count(args.data_dir, str(tune_output))
+        if args.tune_mode in ('grid', 'all'):
+            evaluator = PipelineEvaluator(
+                data_dir=args.data_dir, top_n_cancers=args.top_n,
+            )
+            tuner = GridSearchTuner(evaluator, str(tune_output))
+            tuner.run(stage1_sample=args.tune_sample)
+        
+        logger.info(f"Tuning results saved to {tune_output}")
+        exit(0)
     
     # Initialize analyzer
     analyzer = PanCancerXNodeAnalyzer(

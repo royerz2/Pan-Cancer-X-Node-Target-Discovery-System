@@ -171,6 +171,8 @@ class TripleCombination:
     druggable_count: int
     combined_score: float
     drug_info: Dict[str, Optional[DrugTarget]] = field(default_factory=dict)
+    combo_tox_score: float = 0.0  # Combination-level toxicity (DDI, overlapping toxicities)
+    combo_tox_details: Dict = field(default_factory=dict)  # Breakdown of combo toxicity
     confidence_interval: Optional[Tuple[float, float]] = None
     
     def __lt__(self, other):
@@ -208,6 +210,7 @@ class CancerTypeAnalysis:
     triple_combinations: List[TripleCombination] = field(default_factory=list)
     best_triple: Optional[TripleCombination] = None
     statistics: Dict[str, Any] = field(default_factory=dict)
+    pharmacological_validation: Optional[Dict[str, Any]] = None  # From PharmacologicalValidator
     
     @property
     def has_predictions(self) -> bool:

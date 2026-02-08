@@ -1,0 +1,37 @@
+{
+  "n_configs": 500,
+  "n_cancers": 5,
+  "cancers": [
+    "Non-Small Cell Lung Cancer",
+    "Non-Cancerous",
+    "Melanoma",
+    "Mature B-Cell Neoplasms",
+    "Colorectal Adenocarcinoma"
+  ],
+  "pool_size_range": {
+    "min": 191,
+    "max": 4429,
+    "mean": 1431.672,
+    "std": 809.1350341091688
+  },
+  "by_dep_threshold": {
+    "-0.3": 2613.56,
+    "-0.4": 1717.24,
+    "-0.5": 1237.64,
+    "-0.6": 916.64,
+    "-0.7": 673.28
+  },
+  "by_sel_fraction": {
+    "0.15": 1968.52,
+    "0.2": 1612.04,
+    "0.25": 1376.11,
+    "0.3": 1247.07,
+    "0.4": 954.62
+  },
+  "by_pan_threshold": {
+    "0.8": 1270.12,
+    "0.85": 1363.632,
+    "0.9": 1478.48,
+    "0.95": 1614.456
+  }
+}
