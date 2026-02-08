@@ -41,6 +41,13 @@ from alin.constants import (
     GENE_EQUIVALENTS,
 )
 
+
+def _read_triples(path) -> pd.DataFrame:
+    """Read a triples CSV, normalizing 'Target 1' → 'Target_1' etc."""
+    df = pd.read_csv(path)
+    df.columns = [c.replace(' ', '_') for c in df.columns]
+    return df
+
 # ============================================================================
 # COMBINATION GOLD STANDARD  (>= 2 distinct targets, independently curated)
 # ============================================================================
@@ -252,9 +259,6 @@ SINGLE_TARGET_GOLD_STANDARD = [
     },
 ]
 
-# Legacy alias so old code that references GOLD_STANDARD still works
-GOLD_STANDARD = COMBINATION_GOLD_STANDARD
-
 
 # ============================================================================
 # BENCHMARK LOGIC
@@ -335,7 +339,7 @@ def check_match(our_targets: Set[str], gold_targets: Set[str]) -> Tuple[bool, st
 
 def _build_cancer_predictions(triples_csv, summary_csv=None):
     """Parse triples CSV into {cancer: [ranked target sets]}."""
-    triples = pd.read_csv(triples_csv)
+    triples = _read_triples(triples_csv)
     cancer_to_predictions = defaultdict(list)
     for _, row in triples.iterrows():
         cancer = row['Cancer_Type']
@@ -622,7 +626,7 @@ def run_random_baseline(triples_csv, n_trials=1000, seed=42):
     """Random baseline: sample random triples from the global gene pool."""
     import random
     rng = random.Random(seed)
-    triples = pd.read_csv(triples_csv)
+    triples = _read_triples(triples_csv)
     all_genes = set()
     for _, row in triples.iterrows():
         all_genes.update([row['Target_1'], row['Target_2'], row['Target_3']])
@@ -701,7 +705,7 @@ def run_random_baseline(triples_csv, n_trials=1000, seed=42):
 def run_topgenes_baseline(triples_csv):
     """Top-genes baseline: always predict most frequent genes for every cancer."""
     top_triple = frozenset({'KRAS', 'CDK6', 'STAT3'})
-    triples = pd.read_csv(triples_csv)
+    triples = _read_triples(triples_csv)
     cancers = triples['Cancer_Type'].unique()
 
     tp_exact = tp_superset = tp_pair_overlap = tp_any_overlap = 0
@@ -732,7 +736,7 @@ def run_topgenes_baseline(triples_csv):
 
 def run_frequency_baseline(triples_csv):
     """Frequency-based baseline: per-cancer top-3 most frequent genes."""
-    triples = pd.read_csv(triples_csv)
+    triples = _read_triples(triples_csv)
     cancer_freq = defaultdict(lambda: defaultdict(int))
     for _, row in triples.iterrows():
         cancer = row['Cancer_Type']
@@ -777,7 +781,7 @@ def run_poolmatched_baseline(triples_csv, n_trials=1000, seed=42, reports_dir=No
     import re
     import os
     rng = random.Random(seed)
-    triples = pd.read_csv(triples_csv)
+    triples = _read_triples(triples_csv)
 
     if reports_dir is None:
         reports_dir = str(Path(triples_csv).parent)
@@ -941,7 +945,7 @@ def run_driver_baseline(triples_csv):
     this uses genuine biological knowledge (mutation frequency, actionability)
     but no DepMap essentiality data or network analysis.
     """
-    triples = pd.read_csv(triples_csv)
+    triples = _read_triples(triples_csv)
     csv_cancers = triples['Cancer_Type'].unique()
 
     # Map each CSV cancer to its driver list
@@ -1042,7 +1046,7 @@ def run_essentiality_baseline(triples_csv, depmap_dir='./depmap_data',
         }
 
     # Build per-cancer essentiality predictions
-    triples = pd.read_csv(triples_csv)
+    triples = _read_triples(triples_csv)
     csv_cancers = triples['Cancer_Type'].unique()
 
     cancer_predictions = {}

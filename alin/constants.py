@@ -212,7 +212,35 @@ GENE_EQUIVALENTS: Dict[str, Set[str]] = {
     'AKT2': {'AKT1'},
     'JAK1': {'JAK2'},
     'JAK2': {'JAK1'},
+    'KDR': {'VEGFR2'},
+    'VEGFR2': {'KDR'},
 }
+
+
+# ---------------------------------------------------------------------------
+# DEFAULT SCORING WEIGHTS (used in pipeline combined_score)
+# ---------------------------------------------------------------------------
+
+DEFAULT_SCORING_WEIGHTS: Dict[str, float] = {
+    'cost': 0.22,
+    'synergy': 0.18,
+    'resistance': 0.18,
+    'combo_tox': 0.18,
+    'coverage': 0.14,
+}
+
+
+# ---------------------------------------------------------------------------
+# GENE → PATHWAY flat mapping (derived from PATHWAYS)
+# ---------------------------------------------------------------------------
+
+def _build_gene_to_pathway() -> Dict[str, str]:
+    """Build flat gene→pathway lookup from PATHWAYS dict."""
+    mapping: Dict[str, str] = {}
+    for pathway, genes in PATHWAYS.items():
+        for gene in genes:
+            mapping[gene] = pathway
+    return mapping
 
 
 # ---------------------------------------------------------------------------
@@ -286,3 +314,38 @@ def get_pathway(gene: str) -> str:
         if gene in members:
             return pathway
     return 'Other'
+
+
+def expand_with_equivalents(genes: Set[str]) -> Set[str]:
+    """Expand a set of gene symbols with known equivalents."""
+    expanded = set(genes)
+    for g in list(expanded):
+        if g in GENE_EQUIVALENTS:
+            expanded.update(GENE_EQUIVALENTS[g])
+    return expanded
+
+
+def check_match(predicted: Set[str], gold: Set[str]) -> str:
+    """
+    Check match type between predicted and gold standard target sets.
+
+    Match levels (highest to lowest):
+      'exact'        — expanded predicted == expanded gold
+      'superset'     — gold ⊆ predicted (predicted covers all gold targets)
+      'pair_overlap' — |expanded ∩ gold_expanded| ≥ 2
+      'any_overlap'  — |expanded ∩ gold_expanded| ≥ 1
+      'none'         — no overlap
+    """
+    pred_expanded = expand_with_equivalents(set(predicted))
+    gold_expanded = expand_with_equivalents(set(gold))
+    overlap = pred_expanded & gold_expanded
+
+    if gold_expanded <= pred_expanded and pred_expanded <= gold_expanded:
+        return 'exact'
+    if gold_expanded <= pred_expanded:
+        return 'superset'
+    if len(overlap) >= 2:
+        return 'pair_overlap'
+    if len(overlap) >= 1:
+        return 'any_overlap'
+    return 'none'

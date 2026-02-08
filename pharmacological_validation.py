@@ -44,6 +44,8 @@ from itertools import combinations
 
 import numpy as np
 
+from alin.constants import GENE_TO_DRUGS as _CANONICAL_GENE_TO_DRUGS
+
 logger = logging.getLogger(__name__)
 
 
@@ -125,40 +127,26 @@ class ValidationResult:
 
 
 # ============================================================================
-# DRUG-GENE MAPPING
+# DRUG-GENE MAPPING — extends canonical alin.constants.GENE_TO_DRUGS
+# with pharmacological-validation-specific entries (title-cased drug names)
 # ============================================================================
 
-# Consolidated mapping from GDSC + additional clinical agents
-GENE_TO_DRUGS: Dict[str, List[str]] = {
-    'EGFR': ['Erlotinib', 'Gefitinib', 'Osimertinib', 'Afatinib', 'Lapatinib'],
-    'ERBB2': ['Lapatinib', 'Afatinib'],
-    'BRAF': ['Vemurafenib', 'Dabrafenib', 'Encorafenib', 'Sorafenib'],
-    'MAP2K1': ['Trametinib', 'Cobimetinib', 'Binimetinib'],
-    'MAP2K2': ['Trametinib'],
-    'CDK4': ['Palbociclib', 'Ribociclib', 'Abemaciclib'],
-    'CDK6': ['Palbociclib', 'Ribociclib', 'Abemaciclib'],
-    'KRAS': ['Sotorasib', 'Adagrasib'],
-    'PIK3CA': ['Alpelisib'],
-    'MTOR': ['Everolimus', 'Temsirolimus'],
-    'ALK': ['Crizotinib', 'Alectinib', 'Lorlatinib'],
-    'MET': ['Crizotinib', 'Capmatinib', 'Tepotinib'],
-    'JAK1': ['Ruxolitinib', 'Tofacitinib'],
-    'JAK2': ['Ruxolitinib'],
-    'BCL2': ['Venetoclax', 'Navitoclax'],
-    'BCL2L1': ['Navitoclax'],
-    'SRC': ['Dasatinib', 'Bosutinib'],
+# Additional targets not in the canonical mapping (for concordance validation)
+_EXTRA_TARGETS: Dict[str, List[str]] = {
     'ABL1': ['Imatinib', 'Dasatinib', 'Bosutinib'],
-    'FYN': ['Dasatinib'],
-    'PARP1': ['Olaparib', 'Niraparib', 'Talazoparib'],
-    'PARP2': ['Olaparib', 'Niraparib', 'Talazoparib'],
-    'MCL1': ['AMG-176', 'S64315'],
-    'STAT3': ['Napabucasin'],
     'RAF1': ['Sorafenib', 'Regorafenib'],
     'KIT': ['Imatinib', 'Sunitinib', 'Regorafenib'],
     'PDGFRA': ['Imatinib', 'Sunitinib'],
-    'CDK2': ['Dinaciclib'],
-    'CCND1': ['Palbociclib', 'Ribociclib', 'Abemaciclib'],  # indirect via CDK4/6
+    'PARP2': ['Olaparib', 'Niraparib', 'Talazoparib'],
+    'CCND1': ['Palbociclib', 'Ribociclib', 'Abemaciclib'],
 }
+
+# Build GENE_TO_DRUGS by title-casing canonical + adding extras
+GENE_TO_DRUGS: Dict[str, List[str]] = {
+    gene: [d.title() for d in drugs]
+    for gene, drugs in _CANONICAL_GENE_TO_DRUGS.items()
+}
+GENE_TO_DRUGS.update(_EXTRA_TARGETS)
 
 
 # ============================================================================

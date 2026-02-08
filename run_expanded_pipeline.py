@@ -18,26 +18,15 @@ from pathlib import Path
 
 logging.basicConfig(level=logging.WARNING)
 
-# Target cancer types with gold standard entries that ALSO exist in pipeline
-GOLD_STANDARD_CANCERS = [
-    'Melanoma',
-    'Non-Small Cell Lung Cancer',
-    'Anaplastic Thyroid Cancer',
-    'Colorectal Adenocarcinoma',
-    'Invasive Breast Carcinoma',
-    'Renal Cell Carcinoma',
-    'Acute Myeloid Leukemia',
-    'Head and Neck Squamous Cell Carcinoma',
-    'Ovarian Epithelial Tumor',
-    'Prostate Adenocarcinoma',
-    'Pancreatic Adenocarcinoma',
-    'Bladder Urothelial Carcinoma',
-    'Endometrial Carcinoma',
-    'Hepatocellular Carcinoma',
-    'Esophagogastric Adenocarcinoma',  # maps to Stomach Adenocarcinoma
-    'Liposarcoma',
-    'Diffuse Glioma',  # maps to Low-Grade/High-Grade Glioma
-]
+from expanded_gold_standard import EXPANDED_CANCER_ALIASES
+
+# Derive gold standard cancers: pipeline cancer types that map to gold standard entries
+GOLD_STANDARD_CANCERS = sorted({
+    pipeline_name
+    for aliases in EXPANDED_CANCER_ALIASES.values()
+    for pipeline_name in aliases
+    if pipeline_name  # skip empty strings
+})
 
 def main():
     parser = argparse.ArgumentParser(description='Re-run ALIN pipeline for gold standard cancers')
@@ -67,10 +56,15 @@ def main():
             results[ct] = analysis
             if analysis.best_triple:
                 targets = sorted(analysis.best_triple.targets)
-                print(f"  -> {' + '.join(targets)} (score={analysis.best_triple.combined_score:.3f})",
+                print(f"  -> Best triple: {' + '.join(targets)} (score={analysis.best_triple.combined_score:.3f})",
                       flush=True)
             else:
                 print("  -> No triple found", flush=True)
+            if analysis.best_combination and analysis.best_combination != analysis.best_triple:
+                bc = analysis.best_combination
+                bc_targets = sorted(bc.targets)
+                print(f"  -> Best combo ({len(bc_targets)}): {' + '.join(bc_targets)} (score={bc.combined_score:.3f})",
+                      flush=True)
         except Exception as e:
             print(f"  -> ERROR: {e}", flush=True)
         t2 = time.time()

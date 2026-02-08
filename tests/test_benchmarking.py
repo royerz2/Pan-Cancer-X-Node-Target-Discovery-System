@@ -15,7 +15,7 @@ import pytest
 import numpy as np
 from pathlib import Path
 
-TRIPLES_CSV = 'results_triples/triple_combinations.csv'
+TRIPLES_CSV = 'results_triples_expanded/triple_combinations.csv'
 
 
 # ============================================================================

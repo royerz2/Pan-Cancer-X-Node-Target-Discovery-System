@@ -403,20 +403,12 @@ class PatientStratifier:
         return subgroups
     
     def _get_pathway_groups(self, targets: List[str]) -> Dict[str, List[str]]:
-        """Group targets by pathway"""
-        pathways = {
-            'RAS-MAPK': ['KRAS', 'NRAS', 'BRAF', 'MAP2K1', 'MAP2K2', 'MAPK1'],
-            'PI3K-AKT-mTOR': ['PIK3CA', 'AKT1', 'MTOR', 'PTEN'],
-            'RTK': ['EGFR', 'ERBB2', 'MET', 'FGFR1', 'FGFR2', 'ALK', 'RET'],
-            'Cell Cycle': ['CDK4', 'CDK6', 'CDK2', 'CCND1', 'RB1'],
-            'JAK-STAT': ['JAK1', 'JAK2', 'STAT3', 'STAT5A'],
-            'SFK': ['SRC', 'FYN', 'LCK', 'YES1'],
-            'Apoptosis': ['BCL2', 'MCL1', 'BCL2L1'],
-        }
+        """Group targets by pathway (using canonical PATHWAYS from alin.constants)"""
+        from alin.constants import PATHWAYS
         
         result = defaultdict(list)
         for target in targets:
-            for pathway, genes in pathways.items():
+            for pathway, genes in PATHWAYS.items():
                 if target in genes:
                     result[pathway].append(target)
         

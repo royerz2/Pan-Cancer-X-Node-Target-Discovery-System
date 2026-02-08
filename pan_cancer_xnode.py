@@ -41,7 +41,11 @@ from scipy import stats
 import warnings
 import re
 
-from alin.constants import tqdm, CANCER_TYPE_ALIASES, normalize_cancer_type
+from alin.constants import (
+    tqdm, CANCER_TYPE_ALIASES, normalize_cancer_type,
+    GENE_TO_DRUGS, GENE_CLINICAL_STAGE, GENE_TOXICITY_SCORES, GENE_TOXICITIES,
+    PATHWAYS,
+)
 
 from alin.utils import sanitize_cancer_name
 
@@ -516,89 +520,19 @@ class OmniPathLoader:
 
 class DrugTargetDB:
     """
-    Drug target and toxicity database
-    Based on DGIdb, ChEMBL, and clinical data
+    Drug target and toxicity database.
+    Built from canonical constants in alin.constants — single source of truth.
     """
     
-    # Known druggable targets with clinical information
+    # Build DRUG_DB at class level from canonical constants
     DRUG_DB = {
-        # EGFR family
-        'EGFR': {'drugs': ['erlotinib', 'gefitinib', 'osimertinib', 'afatinib'], 
-                 'stage': 'approved', 'toxicity': 0.6, 'toxicities': ['rash', 'diarrhea', 'ILD']},
-        'ERBB2': {'drugs': ['trastuzumab', 'pertuzumab', 'lapatinib', 'tucatinib'], 
-                  'stage': 'approved', 'toxicity': 0.5, 'toxicities': ['cardiotoxicity']},
-        
-        # KRAS
-        'KRAS': {'drugs': ['sotorasib', 'adagrasib'], 
-                 'stage': 'approved', 'toxicity': 0.5, 'toxicities': ['diarrhea', 'hepatotoxicity']},
-        
-        # BRAF/MEK
-        'BRAF': {'drugs': ['vemurafenib', 'dabrafenib', 'encorafenib'], 
-                 'stage': 'approved', 'toxicity': 0.5, 'toxicities': ['rash', 'photosensitivity']},
-        'MAP2K1': {'drugs': ['trametinib', 'cobimetinib', 'binimetinib'], 
-                   'stage': 'approved', 'toxicity': 0.5, 'toxicities': ['rash', 'retinopathy']},
-        'MAP2K2': {'drugs': ['trametinib', 'cobimetinib'], 'stage': 'approved', 'toxicity': 0.5, 'toxicities': ['rash']},
-        
-        # PI3K/AKT/mTOR
-        'PIK3CA': {'drugs': ['alpelisib', 'idelalisib', 'copanlisib'], 
-                   'stage': 'approved', 'toxicity': 0.6, 'toxicities': ['hyperglycemia', 'rash', 'diarrhea']},
-        'AKT1': {'drugs': ['capivasertib', 'ipatasertib'], 
-                 'stage': 'phase3', 'toxicity': 0.5, 'toxicities': ['hyperglycemia', 'rash']},
-        'MTOR': {'drugs': ['everolimus', 'temsirolimus'], 
-                 'stage': 'approved', 'toxicity': 0.6, 'toxicities': ['mucositis', 'pneumonitis']},
-        
-        # CDK
-        'CDK4': {'drugs': ['palbociclib', 'ribociclib', 'abemaciclib'], 
-                 'stage': 'approved', 'toxicity': 0.4, 'toxicities': ['neutropenia']},
-        'CDK6': {'drugs': ['palbociclib', 'ribociclib', 'abemaciclib'], 
-                 'stage': 'approved', 'toxicity': 0.4, 'toxicities': ['neutropenia']},
-        'CDK2': {'drugs': ['dinaciclib'], 'stage': 'phase2', 'toxicity': 0.5, 'toxicities': ['myelosuppression']},
-        
-        # JAK/STAT
-        'JAK1': {'drugs': ['ruxolitinib', 'tofacitinib', 'baricitinib'], 
-                 'stage': 'approved', 'toxicity': 0.5, 'toxicities': ['infections', 'thrombosis']},
-        'JAK2': {'drugs': ['ruxolitinib', 'fedratinib'], 
-                 'stage': 'approved', 'toxicity': 0.6, 'toxicities': ['anemia', 'thrombocytopenia']},
-        'STAT3': {'drugs': ['napabucasin', 'TTI-101'], 
-                  'stage': 'phase2', 'toxicity': 0.3, 'toxicities': ['GI toxicity']},
-        
-        # SRC family - key for PDAC X-node therapy
-        'SRC': {'drugs': ['dasatinib', 'bosutinib', 'saracatinib'], 
-                'stage': 'approved', 'toxicity': 0.7, 'toxicities': ['pleural effusion', 'myelosuppression']},
-        'FYN': {'drugs': ['dasatinib', 'saracatinib'], 
-                'stage': 'approved', 'toxicity': 0.5, 'toxicities': ['myelosuppression']},
-        'YES1': {'drugs': ['dasatinib'], 'stage': 'approved', 'toxicity': 0.6, 'toxicities': ['pleural effusion']},
-        'LYN': {'drugs': ['dasatinib', 'bafetinib'], 'stage': 'approved', 'toxicity': 0.5, 'toxicities': ['myelosuppression']},
-        
-        # Other RTKs
-        'MET': {'drugs': ['capmatinib', 'tepotinib', 'crizotinib'], 
-                'stage': 'approved', 'toxicity': 0.5, 'toxicities': ['edema', 'nausea']},
-        'ALK': {'drugs': ['crizotinib', 'alectinib', 'brigatinib', 'lorlatinib'], 
-                'stage': 'approved', 'toxicity': 0.4, 'toxicities': ['visual disturbances']},
-        'ROS1': {'drugs': ['crizotinib', 'entrectinib'], 'stage': 'approved', 'toxicity': 0.4, 'toxicities': ['edema']},
-        'RET': {'drugs': ['selpercatinib', 'pralsetinib'], 'stage': 'approved', 'toxicity': 0.4, 'toxicities': ['hypertension']},
-        'FGFR1': {'drugs': ['erdafitinib', 'pemigatinib'], 'stage': 'approved', 'toxicity': 0.5, 'toxicities': ['hyperphosphatemia']},
-        'FGFR2': {'drugs': ['erdafitinib', 'pemigatinib'], 'stage': 'approved', 'toxicity': 0.5, 'toxicities': ['hyperphosphatemia']},
-        'AXL': {'drugs': ['bemcentinib', 'gilteritinib'], 'stage': 'phase2', 'toxicity': 0.4, 'toxicities': ['fatigue']},
-        
-        # BCL2 family
-        'BCL2': {'drugs': ['venetoclax', 'navitoclax'], 
-                 'stage': 'approved', 'toxicity': 0.6, 'toxicities': ['tumor lysis syndrome', 'neutropenia']},
-        'BCL2L1': {'drugs': ['navitoclax'], 'stage': 'phase2', 'toxicity': 0.7, 'toxicities': ['thrombocytopenia']},
-        'MCL1': {'drugs': ['AMG-176', 'S64315'], 'stage': 'phase1', 'toxicity': 0.6, 'toxicities': ['cardiotoxicity']},
-        
-        # PARP
-        'PARP1': {'drugs': ['olaparib', 'rucaparib', 'niraparib', 'talazoparib'], 
-                  'stage': 'approved', 'toxicity': 0.5, 'toxicities': ['anemia', 'nausea']},
-        
-        # IDH
-        'IDH1': {'drugs': ['ivosidenib'], 'stage': 'approved', 'toxicity': 0.4, 'toxicities': ['differentiation syndrome']},
-        'IDH2': {'drugs': ['enasidenib'], 'stage': 'approved', 'toxicity': 0.4, 'toxicities': ['differentiation syndrome']},
-        
-        # Undruggable / difficult targets
-        'TP53': {'drugs': [], 'stage': 'preclinical', 'toxicity': 0.9, 'toxicities': ['unknown']},
-        'MYC': {'drugs': ['OMO-103'], 'stage': 'phase1', 'toxicity': 0.8, 'toxicities': ['unknown']},
-        'RB1': {'drugs': [], 'stage': 'preclinical', 'toxicity': 0.9, 'toxicities': ['unknown']},
+        gene: {
+            'drugs': drugs,
+            'stage': GENE_CLINICAL_STAGE.get(gene, 'preclinical'),
+            'toxicity': GENE_TOXICITY_SCORES.get(gene, 0.5),
+            'toxicities': GENE_TOXICITIES.get(gene, []),
+        }
+        for gene, drugs in GENE_TO_DRUGS.items()
     }
     
     def get_druggability_score(self, gene: str) -> float:
@@ -1618,22 +1552,6 @@ class XNodeNetworkAnalyzer:
     
     def get_pathway_coverage(self, genes: Set[str]) -> Dict[str, float]:
         """Calculate which pathways are covered by a set of genes"""
-        # Define major cancer pathways
-        PATHWAYS = {
-            'RAS_MAPK': {'KRAS', 'NRAS', 'HRAS', 'BRAF', 'RAF1', 'MAP2K1', 'MAP2K2', 'MAPK1', 'MAPK3'},
-            'PI3K_AKT_MTOR': {'PIK3CA', 'PIK3CB', 'AKT1', 'AKT2', 'MTOR', 'PTEN', 'TSC1', 'TSC2'},
-            'JAK_STAT': {'JAK1', 'JAK2', 'TYK2', 'STAT3', 'STAT5A', 'STAT5B', 'SOCS1', 'SOCS3'},
-            'SRC_FAMILY': {'SRC', 'FYN', 'YES1', 'LYN', 'LCK', 'HCK', 'FGR'},
-            'CELL_CYCLE': {'CDK1', 'CDK2', 'CDK4', 'CDK6', 'CCND1', 'CCNE1', 'RB1', 'E2F1'},
-            'APOPTOSIS': {'BCL2', 'BCL2L1', 'MCL1', 'BAX', 'BAK1', 'BID', 'CASP3', 'CASP8'},
-            'P53': {'TP53', 'MDM2', 'CDKN1A', 'CDKN2A', 'BBC3', 'PMAIP1'},
-            'WNT': {'WNT1', 'WNT3A', 'FZD1', 'CTNNB1', 'APC', 'GSK3B', 'AXIN1'},
-            'NOTCH': {'NOTCH1', 'NOTCH2', 'JAG1', 'DLL1', 'HES1', 'HEY1'},
-            'NF_KB': {'NFKB1', 'RELA', 'IKBKB', 'IKBKG', 'NFKBIA'},
-            'HIPPO': {'YAP1', 'WWTR1', 'LATS1', 'LATS2', 'MST1', 'MST2'},
-            'DNA_REPAIR': {'BRCA1', 'BRCA2', 'ATM', 'ATR', 'PARP1', 'RAD51'},
-            'RECEPTOR_TYROSINE_KINASES': {'EGFR', 'ERBB2', 'MET', 'FGFR1', 'FGFR2', 'ALK', 'RET'},
-        }
         
         coverage = {}
         for pathway, pathway_genes in PATHWAYS.items():
@@ -1645,15 +1563,6 @@ class XNodeNetworkAnalyzer:
     
     def find_pathway_bridges(self) -> List[str]:
         """Find genes that bridge multiple pathways (key convergence points)"""
-        PATHWAYS = {
-            'RAS_MAPK': {'KRAS', 'NRAS', 'BRAF', 'MAP2K1', 'MAPK1', 'MAPK3'},
-            'PI3K_AKT': {'PIK3CA', 'AKT1', 'MTOR'},
-            'JAK_STAT': {'JAK1', 'JAK2', 'STAT3', 'STAT5A'},
-            'SRC_FAMILY': {'SRC', 'FYN', 'YES1'},
-            'CELL_CYCLE': {'CDK4', 'CDK6', 'CDK2', 'CCND1'},
-            'APOPTOSIS': {'BCL2', 'MCL1', 'BAX'},
-        }
-        
         network = self.omnipath.load_signaling_network()
         gene_pathways = defaultdict(set)
         
@@ -1730,18 +1639,8 @@ class SynergyScorer:
         frozenset({'BRAF', 'MET'}): 0.75,     # Cross-pathway
     }
     
-    # Pathway assignments for complementarity scoring
-    PATHWAY_ASSIGNMENT = {
-        'KRAS': 'RAS', 'NRAS': 'RAS', 'HRAS': 'RAS', 'BRAF': 'MAPK', 'MAP2K1': 'MAPK',
-        'PIK3CA': 'PI3K', 'AKT1': 'PI3K', 'MTOR': 'PI3K', 'PTEN': 'PI3K',
-        'JAK1': 'JAK_STAT', 'JAK2': 'JAK_STAT', 'STAT3': 'JAK_STAT', 'STAT5A': 'JAK_STAT',
-        'SRC': 'SRC', 'FYN': 'SRC', 'YES1': 'SRC', 'LYN': 'SRC',
-        'CDK4': 'CELL_CYCLE', 'CDK6': 'CELL_CYCLE', 'CDK2': 'CELL_CYCLE', 'CCND1': 'CELL_CYCLE',
-        'BCL2': 'APOPTOSIS', 'MCL1': 'APOPTOSIS', 'BCL2L1': 'APOPTOSIS',
-        'EGFR': 'RTK', 'ERBB2': 'RTK', 'MET': 'RTK', 'ALK': 'RTK',
-        'TP53': 'P53', 'MDM2': 'P53', 'CDKN2A': 'P53',
-        'CTNNB1': 'WNT', 'APC': 'WNT', 'GSK3B': 'WNT',
-    }
+    # Pathway assignments derived from canonical PATHWAYS (alin.constants)
+    PATHWAY_ASSIGNMENT = {gene: pw for pw, genes in PATHWAYS.items() for gene in genes}
     
     def __init__(self, omnipath: OmniPathLoader, use_known_synergies: bool = True):
         self.omnipath = omnipath
@@ -1920,6 +1819,20 @@ class TripleCombinationFinder:
         self.synergy_scorer = SynergyScorer(omnipath, use_known_synergies=use_known_synergies)
         self.resistance_estimator = ResistanceProbabilityEstimator(omnipath, depmap)
         self.cost_fn = CostFunction(depmap, drug_db, toxicity_cache_dir=toxicity_cache_dir)
+
+        # Evidence-backed hub-penalty exemptions: genes with Tier 1 experimental
+        # evidence in a specific cancer type are exempt from the hub penalty
+        # when they appear alongside a known synergy partner in the combination.
+        # Currently only STAT3 in PDAC (Liaki et al. 2025: KRAS+EGFR+STAT3).
+        self.EVIDENCE_EXEMPTIONS = {
+            'Pancreatic Adenocarcinoma': {
+                'STAT3': frozenset({'KRAS', 'EGFR'}),  # exempt if paired with KRAS or EGFR
+            },
+        }
+        
+        # Last-run results for doublets and best-of-any-size
+        self._last_doublet_combinations = []
+        self._last_best_combination = None
         
     def find_triple_combinations(self, 
                                   paths: List[ViabilityPath], 
@@ -2016,61 +1929,61 @@ class TripleCombinationFinder:
         freq_values = sorted(gene_path_freqs.values())
         median_path_freq = freq_values[len(freq_values) // 2] if freq_values else 0.3
         
-        # Enumerate and score triple combinations
-        triple_combinations = []
+        # Evidence-backed hub penalty exemptions for this cancer type
+        cancer_exemptions = self.EVIDENCE_EXEMPTIONS.get(cancer_type, {})
         
-        combos = list(combinations(candidate_genes, 3))
-        for triple in tqdm(combos, desc="Scoring triples", leave=False, mininterval=0.5, miniters=10):
-            triple_set = set(triple)
+        def _score_combo(combo):
+            """Score a combination of any size (2 or 3 genes)."""
+            combo_set = set(combo)
             
             # Calculate coverage
-            covered = sum(1 for p in paths if any(g in triple_set for g in p.nodes))
+            covered = sum(1 for p in paths if any(g in combo_set for g in p.nodes))
             coverage = covered / len(paths)
             
             if coverage < min_coverage:
-                continue
+                return None
             
             # Total cost
-            total_cost = sum(gene_costs.get(g, 1.0) for g in triple)
+            total_cost = sum(gene_costs.get(g, 1.0) for g in combo)
             
             # Synergy score (heuristic)
-            synergy_heuristic = self.synergy_scorer.compute_synergy_score(triple_set)
+            synergy_heuristic = self.synergy_scorer.compute_synergy_score(combo_set)
 
             # Data-driven synergy from co-essentiality (if DepMap data available)
             synergy = synergy_heuristic
             try:
                 from pharmacological_validation import CoEssentialityInteractionEstimator
                 dd = CoEssentialityInteractionEstimator.score_combination(
-                    targets=tuple(sorted(triple)),
+                    targets=tuple(sorted(combo)),
                     depmap_df=self.depmap._crispr_df if hasattr(self.depmap, '_crispr_df') and self.depmap._crispr_df is not None else None,
                     cell_lines=[],  # will use all available
                     original_synergy=synergy_heuristic,
                     original_pathway_diversity=len(set(
-                        self.synergy_scorer.PATHWAY_ASSIGNMENT.get(g, g) for g in triple
-                    )) / max(len(triple), 1),
+                        self.synergy_scorer.PATHWAY_ASSIGNMENT.get(g, g) for g in combo
+                    )) / max(len(combo), 1),
                 )
                 synergy = dd.data_driven_synergy
             except (ImportError, Exception):
                 pass  # fallback to heuristic
             
             # Resistance probability
-            resistance = self.resistance_estimator.estimate_resistance_probability(triple_set, cancer_type)
+            resistance = self.resistance_estimator.estimate_resistance_probability(combo_set, cancer_type)
             
             # Pathway coverage
-            pathway_cov = self.network_analyzer.get_pathway_coverage(triple_set)
+            pathway_cov = self.network_analyzer.get_pathway_coverage(combo_set)
             
             # Count druggable targets
-            druggable_count = sum(1 for g in triple if self.drug_db.get_druggability_score(g) >= 0.6)
+            druggable_count = sum(1 for g in combo if self.drug_db.get_druggability_score(g) >= 0.6)
             
             # Get drug info
-            drug_info = {g: self.drug_db.get_drug_info(g) for g in triple}
+            drug_info = {g: self.drug_db.get_drug_info(g) for g in combo}
             
             # Compute combination-level toxicity (DDI, overlapping toxicities, FAERS signals)
             combo_tox_score = 0.0
             combo_tox_details = {}
             try:
                 from alin.toxicity import compute_combo_toxicity_score
-                combo_tox_result = compute_combo_toxicity_score(list(triple), use_faers=False)
+                combo_tox_result = compute_combo_toxicity_score(list(combo), use_faers=False)
                 combo_tox_score = combo_tox_result['combo_tox_score']
                 combo_tox_details = combo_tox_result
             except ImportError:
@@ -2083,7 +1996,7 @@ class TripleCombinationFinder:
                 essential_genes = set()
                 for p in paths:
                     essential_genes.update(p.nodes)
-                pert_result = score_combination_by_perturbation(list(triple), essential_genes)
+                pert_result = score_combination_by_perturbation(list(combo), essential_genes)
                 # Bonus if combination targets feedback genes (resistance prevention)
                 perturbation_bonus = pert_result.get('feedback_coverage', 0) * 0.1
             except ImportError:
@@ -2094,8 +2007,15 @@ class TripleCombinationFinder:
             # much they exceed the median gene frequency.  Genes appearing
             # in many paths are pan-cancer hubs (e.g., STAT3) and carry
             # little cancer-specific signal.
+            # Evidence-aware: exempt genes with Tier 1 experimental evidence
+            # when paired with a known synergy partner in this combination.
             hub_penalty = 0.0
-            for g in triple:
+            for g in combo:
+                # Check if gene is evidence-exempt in this cancer + combination
+                if g in cancer_exemptions:
+                    required_partners = cancer_exemptions[g]
+                    if required_partners & combo_set:
+                        continue  # Skip hub penalty for evidence-backed gene
                 excess = gene_path_freqs.get(g, 0) - median_path_freq
                 if excess > 0:
                     # Proportional penalty: scales with excess above median
@@ -2115,8 +2035,8 @@ class TripleCombinationFinder:
                 perturbation_bonus        # Bonus for targeting feedback genes
             )
             
-            triple_combinations.append(TripleCombination(
-                targets=tuple(sorted(triple)),
+            return TripleCombination(
+                targets=tuple(sorted(combo)),
                 total_cost=total_cost,
                 synergy_score=synergy,
                 resistance_score=resistance,
@@ -2127,12 +2047,42 @@ class TripleCombinationFinder:
                 drug_info=drug_info,
                 combo_tox_score=combo_tox_score,
                 combo_tox_details=combo_tox_details,
-            ))
+            )
+        
+        # Enumerate and score triple combinations
+        triple_combinations = []
+        
+        combos = list(combinations(candidate_genes, 3))
+        for triple in tqdm(combos, desc="Scoring triples", leave=False, mininterval=0.5, miniters=10):
+            result = _score_combo(triple)
+            if result is not None:
+                triple_combinations.append(result)
+        
+        # Also enumerate and score doublet (2-gene) combinations
+        # Many gold-standard entries are doublets; outputting the best
+        # doublet enables exact-match recovery for 2-gene regimens.
+        doublet_combinations = []
+        
+        doublet_combos = list(combinations(candidate_genes, 2))
+        for doublet in tqdm(doublet_combos, desc="Scoring doublets", leave=False, mininterval=0.5, miniters=10):
+            result = _score_combo(doublet)
+            if result is not None:
+                doublet_combinations.append(result)
         
         # Sort by combined score
         triple_combinations.sort(key=lambda x: x.combined_score)
+        doublet_combinations.sort(key=lambda x: x.combined_score)
         
-        logger.info(f"Found {len(triple_combinations)} valid triple combinations")
+        # Find best combination of ANY size (2 or 3)
+        all_scored = triple_combinations + doublet_combinations
+        all_scored.sort(key=lambda x: x.combined_score)
+        
+        logger.info(f"Found {len(triple_combinations)} valid triples, "
+                     f"{len(doublet_combinations)} valid doublets")
+        
+        # Attach best-of-any-size to self for downstream access
+        self._last_doublet_combinations = doublet_combinations[:top_n]
+        self._last_best_combination = all_scored[0] if all_scored else None
         
         return triple_combinations[:top_n]
     
@@ -2568,8 +2518,11 @@ class PanCancerXNodeAnalyzer:
             all_paths, cancer_type_normalized, top_n=10, min_coverage=0.5
         )
         best_triple = triple_combinations[0] if triple_combinations else None
+        best_combination = self.triple_finder._last_best_combination
         if triple_combinations:
             _progress(f"Best triple: {' + '.join(sorted(best_triple.targets))}", step="done")
+        if best_combination and len(best_combination.targets) != 3:
+            _progress(f"Best combo ({len(best_combination.targets)} genes): {' + '.join(sorted(best_combination.targets))}", step="done")
         
         # Best recommendation (prefer triple from systems biology analysis)
         if best_triple:
@@ -2598,6 +2551,7 @@ class PanCancerXNodeAnalyzer:
             recommended_combination=recommended,
             triple_combinations=triple_combinations,
             best_triple=best_triple,
+            best_combination=best_combination,
             statistics={
                 'n_paths': len(all_paths),
                 'n_unique_genes': len(set(g for p in all_paths for g in p.nodes)),
@@ -3101,7 +3055,7 @@ def generate_triple_summary_table(results: Dict[str, CancerTypeAnalysis]) -> pd.
             else:
                 drugs.append('[research]')
         
-        rows.append({
+        row = {
             'Cancer Type': cancer_type,
             'Cell Lines': analysis.n_cell_lines,
             'Target 1': bt.targets[0],
@@ -3114,7 +3068,25 @@ def generate_triple_summary_table(results: Dict[str, CancerTypeAnalysis]) -> pd.
             'Resistance': f"{bt.resistance_score:.2f}",
             'Coverage': f"{bt.coverage:.1%}",
             'Druggable': f"{bt.druggable_count}/3"
-        })
+        }
+        
+        # Add best-combination-of-any-size columns
+        bc = analysis.best_combination
+        if bc is not None:
+            bc_targets = sorted(bc.targets)
+            row['Best_Combo_Size'] = len(bc_targets)
+            row['Best_Combo_1'] = bc_targets[0] if len(bc_targets) >= 1 else ''
+            row['Best_Combo_2'] = bc_targets[1] if len(bc_targets) >= 2 else ''
+            row['Best_Combo_3'] = bc_targets[2] if len(bc_targets) >= 3 else ''
+            row['Best_Combo_Score'] = f"{bc.combined_score:.3f}"
+        else:
+            row['Best_Combo_Size'] = 0
+            row['Best_Combo_1'] = ''
+            row['Best_Combo_2'] = ''
+            row['Best_Combo_3'] = ''
+            row['Best_Combo_Score'] = ''
+        
+        rows.append(row)
     
     df = pd.DataFrame(rows)
     if not df.empty:

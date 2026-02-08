@@ -162,7 +162,7 @@ class TripleCombination:
         drug_info: Dict of gene to DrugTarget info
         confidence_interval: Optional 95% CI for combined score
     """
-    targets: Tuple[str, str, str]
+    targets: Tuple[str, ...]  # 2 or 3 gene targets
     total_cost: float
     synergy_score: float
     resistance_score: float
@@ -209,6 +209,7 @@ class CancerTypeAnalysis:
     recommended_combination: Optional[List[str]]
     triple_combinations: List[TripleCombination] = field(default_factory=list)
     best_triple: Optional[TripleCombination] = None
+    best_combination: Optional[TripleCombination] = None  # Best of any size (2 or 3)
     statistics: Dict[str, Any] = field(default_factory=dict)
     pharmacological_validation: Optional[Dict[str, Any]] = None  # From PharmacologicalValidator
     

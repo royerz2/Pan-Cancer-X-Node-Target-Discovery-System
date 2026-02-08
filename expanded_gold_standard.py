@@ -31,6 +31,8 @@ from collections import defaultdict
 import pandas as pd
 import numpy as np
 
+from alin.constants import GENE_EQUIVALENTS
+
 # ============================================================================
 # DRUG → GENE TARGET MAPPING (inverted from gene→drug, plus additional drugs)
 # ============================================================================
@@ -605,21 +607,8 @@ EXPANDED_CANCER_ALIASES: Dict[str, List[str]] = {
     'Cholangiocarcinoma': [],  # no exact match in pipeline
 }
 
-# Gene equivalents for matching (extends alin.constants.GENE_EQUIVALENTS)
-EXPANDED_GENE_EQUIVALENTS: Dict[str, Set[str]] = {
-    'MAP2K2': {'MAP2K1'},
-    'MAP2K1': {'MAP2K2'},
-    'CDK4': {'CDK6'},
-    'CDK6': {'CDK4'},
-    'FGFR1': {'FGFR2'},
-    'FGFR2': {'FGFR1'},
-    'AKT1': {'AKT2'},
-    'AKT2': {'AKT1'},
-    'JAK1': {'JAK2'},
-    'JAK2': {'JAK1'},
-    'KDR': {'VEGFR2'},
-    'VEGFR2': {'KDR'},
-}
+# Gene equivalents: use canonical source from alin.constants
+EXPANDED_GENE_EQUIVALENTS = GENE_EQUIVALENTS
 
 
 # ============================================================================
@@ -1063,6 +1052,7 @@ def run_expanded_benchmark(
         matched_predictions = []
         for _, row in df.iterrows():
             if row['Cancer_Type'] in pipeline_cancers:
+                # Check the traditional triple prediction
                 pred_targets = frozenset({row['Target_1'], row['Target_2'], row['Target_3']})
                 match_type = check_match(pred_targets, gold_targets)
                 matched_predictions.append({
@@ -1070,6 +1060,23 @@ def run_expanded_benchmark(
                     'predicted': pred_targets,
                     'match_type': match_type,
                 })
+                
+                # Also check best-combination columns (may be a doublet)
+                bc1 = row.get('Best_Combo_1', '')
+                bc2 = row.get('Best_Combo_2', '')
+                bc3 = row.get('Best_Combo_3', '')
+                if bc1 and str(bc1) != 'nan' and bc2 and str(bc2) != 'nan':
+                    combo_set = {str(bc1), str(bc2)}
+                    if bc3 and str(bc3) != 'nan' and str(bc3) != '':
+                        combo_set.add(str(bc3))
+                    combo_targets = frozenset(combo_set)
+                    if combo_targets != pred_targets:  # avoid double-counting
+                        combo_match = check_match(combo_targets, gold_targets)
+                        matched_predictions.append({
+                            'cancer_type': row['Cancer_Type'],
+                            'predicted': combo_targets,
+                            'match_type': combo_match,
+                        })
 
         # Best match
         match_priority = {'exact': 4, 'superset': 3, 'pair_overlap': 2, 'any_overlap': 1, 'none': 0}

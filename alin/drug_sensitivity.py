@@ -27,6 +27,8 @@ import logging
 import requests
 import warnings
 
+from alin.constants import PATHWAYS as _CANONICAL_PATHWAYS
+
 warnings.filterwarnings('ignore', category=FutureWarning)
 logger = logging.getLogger(__name__)
 
@@ -677,18 +679,10 @@ class DrugSensitivityValidator:
     
     def _estimate_pathway_overlap(self, targets: List[str]) -> float:
         """Estimate if targets are in related pathways"""
-        # Simplified pathway assignment
-        pathways = {
-            'KRAS': 'RAS-MAPK', 'BRAF': 'RAS-MAPK', 'MAP2K1': 'RAS-MAPK', 'MAP2K2': 'RAS-MAPK',
-            'PIK3CA': 'PI3K-AKT', 'AKT1': 'PI3K-AKT', 'MTOR': 'PI3K-AKT', 'PTEN': 'PI3K-AKT',
-            'EGFR': 'RTK', 'ERBB2': 'RTK', 'MET': 'RTK', 'FGFR1': 'RTK',
-            'CDK4': 'Cell Cycle', 'CDK6': 'Cell Cycle', 'CDK2': 'Cell Cycle', 'CCND1': 'Cell Cycle',
-            'STAT3': 'JAK-STAT', 'JAK1': 'JAK-STAT', 'JAK2': 'JAK-STAT',
-            'SRC': 'SFK', 'FYN': 'SFK', 'LCK': 'SFK', 'YES1': 'SFK',
-            'BCL2': 'Apoptosis', 'MCL1': 'Apoptosis', 'BCL2L1': 'Apoptosis',
-        }
+        # Derive gene→pathway from canonical PATHWAYS
+        gene_to_pw = {g: pw for pw, genes in _CANONICAL_PATHWAYS.items() for g in genes}
         
-        target_pathways = [pathways.get(t, 'Unknown') for t in targets]
+        target_pathways = [gene_to_pw.get(t, 'Unknown') for t in targets]
         
         # Calculate pairwise overlap
         n_same = sum(1 for i, p1 in enumerate(target_pathways) 

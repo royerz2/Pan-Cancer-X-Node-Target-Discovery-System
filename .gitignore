@@ -1,84 +1,31 @@
-# Python
+# ─── Python ───
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
 *.egg-info/
-.installed.cfg
 *.egg
+build/
+dist/
 
-# Virtual environments
-venv/
+# ─── Virtual environments ───
 .venv/
+venv/
 env/
 .env
 
-# IDE
+# ─── IDE / Editor ───
 .idea/
 .vscode/
 *.swp
 *.swo
 *~
 
-# OS
+# ─── OS ───
 .DS_Store
 Thumbs.db
 
-# Project-specific: generated outputs
-results/
-results_*/
-benchmark_results/
-priority_pipeline_results/
-stratification_results/
-clinical_trials/
-figures/
-
-# Project-specific: caches (regenerated on demand)
-api_cache/
-trial_cache/
-toxicity_cache/
-
-# Project-specific: large data (download separately per DATA_AVAILABILITY.md)
-depmap_data/
-drug_sensitivity_data/
-
-# Jupyter
-.ipynb_checkpoints/
-*.ipynb_checkpoints
-
-# Testing
-.pytest_cache/
-.coverage
-htmlcov/
-.tox/
-
-# --- Not relevant for researchers who clone and run (author / manuscript workflow) ---
-ALIN_manuscript_project_tracker.xlsx
-create_project_tracker.py
-METHODOLOGY_JUSTIFICATION.md
-CITATIONS_NEEDED.md
-PUBLICATION_CHECKLIST.md
-MANUSCRIPT_OUTLINE.md
-MANUSCRIPT_FIGURES.md
-generate_figures.py
-generate_manuscript_pdf.py
-ALIN_Manuscript.pdf
-# Reference PDF (copyright; obtain from doi)
-PancraticCancerCure.pdf
-# LaTeX build artifacts (researchers run pdflatex/bibtex themselves)
+# ─── LaTeX build artifacts ───
 *.aux
 *.bbl
 *.blg
@@ -88,21 +35,34 @@ PancraticCancerCure.pdf
 *.synctex.gz
 *.fls
 *.fdb_latexmk
-paper.tex
-alin_refs.bib
-# Optional: uncomment to track compiled paper in repo
-# paper.pdf
-
-# Ignore local journal/class files that should not be committed (vendor styling)
-zHenriquesLab-StyleBioRxiv.cls
-ALIN Citation Analysis.pdf
-.gitignore
-.gitignore
-paper_backup.tex
-paper_with_citations.tex
-.env
-paper_with_citations.pdf
 paper.pdf
 Supplementary_Methods.pdf
-Supplementary_Methods.tex
-generate_publication_figures.py
+
+# ─── Testing ───
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ─── Jupyter ───
+.ipynb_checkpoints/
+
+# ─── Generated outputs (reproducible via pipeline) ───
+results_triples_expanded/
+tuning_results/
+simulation_results/
+stratification_results/
+supplementary_tables/
+lab_protocols/
+
+# ─── Caches (regenerated on demand) ───
+api_cache/
+trial_cache/
+toxicity_cache/
+stratification_cache/
+clinical_trials/
+
+# ─── Large data (download per DATA_AVAILABILITY.md) ───
+depmap_data/
+drug_sensitivity_data/
+synergy_data/
+validation_data/
