@@ -39,8 +39,8 @@ We extend the PDAC-specific approach from the paper to:
 
 - **Integrated pipeline** — End-to-end from DepMap + OmniPath to ranked triple combinations.
 - **Reproducible** — Pinned dependencies, data availability documentation, full pipeline script.
-- **Validated** — 61% recall vs. gold standard (vs. 21% random, 39% top-genes baseline).
-- **Novel discovery** — 5 combinations with no existing clinical trials.
+- **Validated** — 44.2% any-overlap recall vs. 43-entry clinical gold standard (64.0% on 25 testable entries; p < 0.001 vs. random).
+- **Novel discovery** — Multiple combinations with no existing clinical trials.
 
 ---
 
@@ -120,7 +120,7 @@ For each combination, we identify **patient subgroups** most likely to benefit:
 
 ### 8. Benchmarking
 
-We compare predictions against a **gold standard** of 23 FDA-approved and clinically validated combinations (e.g., BRAF+MEK in melanoma, EGFR+MET in NSCLC, CDK4/6 in breast cancer).
+We compare predictions against a **gold standard** of 43 FDA-approved and clinically validated multi-target combinations spanning 25 cancer types (e.g., BRAF+MEK in melanoma, EGFR+MET in NSCLC, CDK4/6+HER2 in breast cancer).
 
 - **Recall** — Do our triples contain the known target set (exact or superset)?
 - **Gene equivalence** — MAP2K1/MAP2K2 (MEK), CDK4/CDK6 treated as equivalent.
@@ -134,7 +134,7 @@ We compare predictions against a **gold standard** of 23 FDA-approved and clinic
 - **Triple combinations** — Network topology (X-nodes), synergy scoring, resistance prediction
 - **Multi-source validation** — PubMed, STRING, ClinicalTrials.gov, PRISM drug sensitivity
 - **Patient stratification** — Mutation-based subgroups, companion diagnostics
-- **Benchmarking** — 61% recall vs. FDA-approved/clinical gold standard
+- **Benchmarking** — 44.2% any-overlap recall vs. 43-entry clinical gold standard
 - **Novel discovery** — 5 combinations with no existing clinical trials
 
 ---
@@ -225,25 +225,26 @@ benchmark_results/
 ├── benchmark_results.csv
 ├── benchmark_metrics.json
 └── benchmark_report.txt
-
-priority_pipeline_results/
-├── api_validation.csv
-├── clinical_trials/
-├── stratification/
-├── drug_sensitivity/
-└── priority_combined_summary.csv
 ```
 
 ---
 
 ## Benchmark Results
 
-- **Recall:** 61% (14/23 gold standard combinations recovered)
-- **vs Random baseline:** 21% ± 7%
-- **vs Top-genes baseline:** 39%
-- **Match type:** Superset (our triples contain known pairs)
+Against 43 independently curated FDA-approved and Phase 2/3-validated multi-target combinations:
+
+| Metric | Full (43 entries) | Testable (25 entries) |
+|--------|-------------------|----------------------|
+| Exact recall | 7.0% (3/43) | 12.0% (3/25) |
+| Superset recall | 9.3% (4/43) | 16.0% (4/25) |
+| Pair-overlap recall | 30.2% (13/43) | 44.0% (11/25) |
+| Any-overlap recall | 44.2% (19/43) | 64.0% (16/25) |
+| Cancer-level precision | 47.1% (8/17) | 58.3% (7/12) |
+
+- **vs. Random baseline:** 8.8% any-overlap (p < 0.001)
+- **vs. Driver-gene baseline:** 16.3% pair-overlap
+- **vs. Candidate-pool random:** 0.2% any-overlap (confirms scoring drives performance)
 - **Mean rank when matched:** 1.0 (top prediction)
-- **Gold standard:** FDA-approved + clinical trial combinations
 
 ---
 

@@ -69,13 +69,13 @@ This document records the exact versions of data sources used in the ALIN Framew
 ## Software Environment
 
 ```
-Python: 3.12.x
-numpy: 1.26.4
-pandas: 2.3.0
-scipy: 1.13.1
-networkx: 3.5
-scikit-learn: 1.7.0
-statsmodels: 0.14.4
+Python: 3.12.3
+numpy: 2.4.2
+pandas: 3.0.0
+scipy: 1.17.0
+networkx: 3.6.1
+scikit-learn: 1.8.0
+statsmodels: 0.14.4 (lazy import in core/statistics.py)
 ```
 
 See `requirements-lock.txt` for complete dependency list.
