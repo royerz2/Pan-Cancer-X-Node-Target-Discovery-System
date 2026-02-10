@@ -332,9 +332,9 @@ class TestPaperConsistency:
                'not re-run' in text.lower()
 
     def test_paper_has_limitation_11(self):
-        """Paper should have Limitation #11 about MHS solver."""
+        """Paper should mention MHS solver limitation (greedy fallback)."""
         text = self._read_paper()
-        assert '\\textbf{11.' in text
+        # May be in any numbered limitation (currently #6)
         assert 'greedy' in text.lower()
 
     def test_paper_no_old_25_threshold(self):

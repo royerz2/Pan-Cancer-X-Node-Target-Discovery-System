@@ -583,9 +583,17 @@ class ViabilityPathInference:
     3. Cancer-specific dependencies (vs all other cancers)
     """
     
-    def __init__(self, depmap: DepMapLoader, omnipath: OmniPathLoader):
+    def __init__(self, depmap: DepMapLoader, omnipath: OmniPathLoader,
+                 disable_omnipath: bool = False,
+                 disable_perturbation: bool = False,
+                 disable_coessentiality: bool = False,
+                 disable_statistical: bool = False):
         self.depmap = depmap
         self.omnipath = omnipath
+        self.disable_omnipath = disable_omnipath
+        self.disable_perturbation = disable_perturbation
+        self.disable_coessentiality = disable_coessentiality
+        self.disable_statistical = disable_statistical
         self._pan_essential = None
         
     def _get_pan_essential(self) -> Set[str]:
@@ -1030,14 +1038,18 @@ class ViabilityPathInference:
         """Combine all path inference methods; prune paths with confidence < min_confidence."""
         paths = []
         
-        _progress("Essential modules (co-essentiality)", step="")
-        paths.extend(self.infer_essential_modules(cancer_type))
-        _progress("Signaling paths (OmniPath)", step="")
-        paths.extend(self.infer_signaling_paths(cancer_type, min_confidence=min_confidence))
-        _progress("Cancer-specific dependencies", step="")
-        paths.extend(self.infer_cancer_specific_dependencies(cancer_type))
-        _progress("Perturbation response paths", step="")
-        paths.extend(self.infer_perturbation_response_paths(cancer_type))
+        if not self.disable_coessentiality:
+            _progress("Essential modules (co-essentiality)", step="")
+            paths.extend(self.infer_essential_modules(cancer_type))
+        if not self.disable_omnipath:
+            _progress("Signaling paths (OmniPath)", step="")
+            paths.extend(self.infer_signaling_paths(cancer_type, min_confidence=min_confidence))
+        if not self.disable_statistical:
+            _progress("Cancer-specific dependencies", step="")
+            paths.extend(self.infer_cancer_specific_dependencies(cancer_type))
+        if not self.disable_perturbation:
+            _progress("Perturbation response paths", step="")
+            paths.extend(self.infer_perturbation_response_paths(cancer_type))
         
         # Prune low-confidence paths
         paths = [p for p in paths if p.confidence >= min_confidence]
@@ -1810,11 +1822,13 @@ class TripleCombinationFinder:
     
     def __init__(self, depmap: DepMapLoader, omnipath: OmniPathLoader, drug_db: DrugTargetDB,
                  toxicity_cache_dir: Optional[str] = None,
-                 use_known_synergies: bool = True):
+                 use_known_synergies: bool = True,
+                 disable_hub_penalty: bool = False):
         self.depmap = depmap
         self.omnipath = omnipath
         self.drug_db = drug_db
         self.use_known_synergies = use_known_synergies
+        self.disable_hub_penalty = disable_hub_penalty
         self.network_analyzer = XNodeNetworkAnalyzer(omnipath)
         self.synergy_scorer = SynergyScorer(omnipath, use_known_synergies=use_known_synergies)
         self.resistance_estimator = ResistanceProbabilityEstimator(omnipath, depmap)
@@ -2010,16 +2024,17 @@ class TripleCombinationFinder:
             # Evidence-aware: exempt genes with Tier 1 experimental evidence
             # when paired with a known synergy partner in this combination.
             hub_penalty = 0.0
-            for g in combo:
-                # Check if gene is evidence-exempt in this cancer + combination
-                if g in cancer_exemptions:
-                    required_partners = cancer_exemptions[g]
-                    if required_partners & combo_set:
-                        continue  # Skip hub penalty for evidence-backed gene
-                excess = gene_path_freqs.get(g, 0) - median_path_freq
-                if excess > 0:
-                    # Proportional penalty: scales with excess above median
-                    hub_penalty += excess * 1.5
+            if not self.disable_hub_penalty:
+                for g in combo:
+                    # Check if gene is evidence-exempt in this cancer + combination
+                    if g in cancer_exemptions:
+                        required_partners = cancer_exemptions[g]
+                        if required_partners & combo_set:
+                            continue  # Skip hub penalty for evidence-backed gene
+                    excess = gene_path_freqs.get(g, 0) - median_path_freq
+                    if excess > 0:
+                        # Proportional penalty: scales with excess above median
+                        hub_penalty += excess * 1.5
             
             # Combined score (lower is better)
             # Weights: cost (0.22), synergy (-0.18), resistance (0.18),
@@ -2399,17 +2414,29 @@ class PanCancerXNodeAnalyzer:
     
     def __init__(self, data_dir: str = "./depmap_data", validation_data_dir: str = "./validation_data",
                  toxicity_cache_dir: Optional[str] = None,
-                 use_known_synergies: bool = True):
+                 use_known_synergies: bool = True,
+                 disable_omnipath: bool = False,
+                 disable_perturbation: bool = False,
+                 disable_coessentiality: bool = False,
+                 disable_statistical: bool = False,
+                 disable_hub_penalty: bool = False):
         self.depmap = DepMapLoader(data_dir)
         self.omnipath = OmniPathLoader(data_dir)
         self.drug_db = DrugTargetDB()
-        self.path_inference = ViabilityPathInference(self.depmap, self.omnipath)
+        self.path_inference = ViabilityPathInference(
+            self.depmap, self.omnipath,
+            disable_omnipath=disable_omnipath,
+            disable_perturbation=disable_perturbation,
+            disable_coessentiality=disable_coessentiality,
+            disable_statistical=disable_statistical,
+        )
         self.cost_fn = CostFunction(self.depmap, self.drug_db, toxicity_cache_dir=toxicity_cache_dir)
         self.solver = MinimalHittingSetSolver(self.cost_fn)
         self.triple_finder = TripleCombinationFinder(
             self.depmap, self.omnipath, self.drug_db,
             toxicity_cache_dir=toxicity_cache_dir,
             use_known_synergies=use_known_synergies,
+            disable_hub_penalty=disable_hub_penalty,
         )
         self.validation_integrator = XNodeValidationIntegrator(validation_data_dir)
         

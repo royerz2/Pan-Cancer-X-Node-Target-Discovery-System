@@ -1,0 +1,18 @@
+Cancer Type,Cell Lines,Target 1,Target 2,Target 3,Drug 1,Drug 2,Drug 3,Synergy,Resistance,Coverage,Druggable,Best_Combo_Size,Best_Combo_1,Best_Combo_2,Best_Combo_3,Best_Combo_Score
+Acute Myeloid Leukemia,64,CDK6,MCL1,MET,palbociclib,AMG-176,capmatinib,0.94,0.00,51.9%,2/3,2,CDK6,MCL1,,0.886
+Invasive Breast Carcinoma,82,CDK4,ERBB2,MAP2K1,palbociclib,trastuzumab,trametinib,0.94,0.39,50.0%,3/3,3,CDK4,ERBB2,MAP2K1,0.893
+Renal Cell Carcinoma,56,CDK6,EGFR,MAP2K1,palbociclib,erlotinib,trametinib,0.94,0.42,55.6%,3/3,2,EGFR,MET,,0.948
+Pancreatic Adenocarcinoma,64,ERBB2,KRAS,STAT3,trastuzumab,sotorasib,napabucasin,0.94,0.44,60.0%,3/3,2,KRAS,STAT3,,0.375
+Colorectal Adenocarcinoma,96,BRAF,CDK4,ERBB2,vemurafenib,palbociclib,trastuzumab,0.94,0.45,50.0%,3/3,3,BRAF,CDK4,ERBB2,0.905
+Prostate Adenocarcinoma,6,CDK4,MET,SRC,palbociclib,capmatinib,dasatinib,0.94,0.45,51.2%,3/3,3,CDK4,MET,SRC,0.920
+Anaplastic Thyroid Cancer,13,CDK4,CDK6,ERBB2,palbociclib,palbociclib,trastuzumab,0.81,0.26,51.0%,3/3,3,CDK4,CDK6,ERBB2,0.779
+Diffuse Glioma,96,CDK4,CDK6,MCL1,palbociclib,palbociclib,AMG-176,0.81,0.26,50.0%,2/3,2,EGFR,MET,,0.915
+Esophagogastric Adenocarcinoma,74,CDK4,CDK6,ERBB2,palbociclib,palbociclib,trastuzumab,0.81,0.26,50.0%,3/3,3,CDK4,CDK6,ERBB2,0.825
+Head and Neck Squamous Cell Carcinoma,89,CDK4,CDK6,ERBB2,palbociclib,palbociclib,trastuzumab,0.81,0.26,54.0%,3/3,3,CDK4,CDK6,ERBB2,0.748
+Melanoma,135,CDK4,CDK6,ERBB2,palbociclib,palbociclib,trastuzumab,0.81,0.26,50.0%,3/3,3,CDK4,CDK6,ERBB2,0.754
+Non-Small Cell Lung Cancer,165,CDK4,CDK6,ERBB2,palbociclib,palbociclib,trastuzumab,0.81,0.26,51.0%,3/3,3,CDK4,CDK6,ERBB2,0.834
+Bladder Urothelial Carcinoma,35,CDK6,EGFR,MET,palbociclib,erlotinib,capmatinib,0.81,0.32,58.1%,3/3,2,EGFR,MAP2K1,,0.926
+Endometrial Carcinoma,37,CDK2,EGFR,MET,dinaciclib,erlotinib,capmatinib,0.81,0.32,56.8%,3/3,2,EGFR,MAP2K1,,0.927
+Ovarian Epithelial Tumor,71,CDK4,ERBB2,MET,palbociclib,trastuzumab,capmatinib,0.81,0.39,50.0%,3/3,2,EGFR,MAP2K1,,0.928
+Hepatocellular Carcinoma,24,EGFR,FGFR1,MET,erlotinib,erdafitinib,capmatinib,0.67,0.32,58.1%,3/3,2,EGFR,MAP2K1,,0.926
+Liposarcoma,13,EGFR,FGFR1,MET,erlotinib,erdafitinib,capmatinib,0.67,0.32,58.1%,3/3,2,EGFR,MAP2K1,,0.937

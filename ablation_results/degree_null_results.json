@@ -1,0 +1,62 @@
+{
+  "n_permutations": 20,
+  "test_cancers": [
+    "Non-Small Cell Lung Cancer",
+    "Melanoma",
+    "Colorectal Adenocarcinoma",
+    "Pancreatic Adenocarcinoma",
+    "Invasive Breast Carcinoma"
+  ],
+  "observed_stat3_freq": 5,
+  "null_mean": 0.6,
+  "null_std": 1.0677078252031311,
+  "null_min": 0,
+  "null_max": 4,
+  "p_value": 0.0,
+  "observed_all_targets": {
+    "CCND1": 5,
+    "STAT3": 5,
+    "KRAS": 1
+  },
+  "null_stat3_distribution": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    2,
+    0,
+    0,
+    0,
+    2,
+    1,
+    0,
+    1,
+    2,
+    4
+  ],
+  "top_null_genes": {
+    "CCND1": 96,
+    "CDK4": 58,
+    "CDK6": 16,
+    "PIK3CA": 13,
+    "KRAS": 12,
+    "STAT3": 12,
+    "CTNNB1": 7,
+    "SOX10": 3,
+    "BRAF": 3,
+    "MILR1": 2,
+    "ERBB2": 2,
+    "BCL2L1": 2,
+    "MCL1": 2,
+    "AKT1": 1,
+    "SREBF1": 1,
+    "EGFR": 1
+  },
+  "elapsed_minutes": 47.7
+}

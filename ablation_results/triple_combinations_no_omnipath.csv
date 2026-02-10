@@ -1,0 +1,3 @@
+Cancer Type,Cell Lines,Target 1,Target 2,Target 3,Drug 1,Drug 2,Drug 3,Synergy,Resistance,Coverage,Druggable,Best_Combo_Size,Best_Combo_1,Best_Combo_2,Best_Combo_3,Best_Combo_Score
+Invasive Breast Carcinoma,82,BCL2L1,ERBB2,MAP2K1,navitoclax,trastuzumab,trametinib,0.94,0.00,50.0%,3/3,2,BCL2L1,ERBB2,,1.121
+Head and Neck Squamous Cell Carcinoma,89,CDK4,EGFR,STAT3,palbociclib,erlotinib,napabucasin,0.94,0.47,50.0%,3/3,3,CDK4,EGFR,STAT3,1.198

@@ -1,0 +1,74 @@
+[
+  {
+    "condition": "full_pipeline",
+    "any_overlap": 0.46511627906976744,
+    "pair_overlap": 0.32558139534883723,
+    "exact": 0.06976744186046512,
+    "superset": 0.09302325581395349,
+    "precision": 0.47058823529411764,
+    "any_overlap_testable": 0.72,
+    "pair_overlap_testable": 0.48,
+    "n_predictions": 17,
+    "elapsed_s": 846.9
+  },
+  {
+    "condition": "no_omnipath",
+    "any_overlap": 0.06976744186046512,
+    "pair_overlap": 0.0,
+    "exact": 0.0,
+    "superset": 0.0,
+    "precision": 1.0,
+    "any_overlap_testable": 0.12,
+    "pair_overlap_testable": 0.0,
+    "n_predictions": 2,
+    "elapsed_s": 756.4
+  },
+  {
+    "condition": "no_perturbation",
+    "any_overlap": 0.23255813953488372,
+    "pair_overlap": 0.11627906976744186,
+    "exact": 0.0,
+    "superset": 0.023255813953488372,
+    "precision": 0.29411764705882354,
+    "any_overlap_testable": 0.24,
+    "pair_overlap_testable": 0.12,
+    "n_predictions": 17,
+    "elapsed_s": 899.1
+  },
+  {
+    "condition": "no_coessentiality",
+    "any_overlap": 0.3023255813953488,
+    "pair_overlap": 0.09302325581395349,
+    "exact": 0.0,
+    "superset": 0.0,
+    "precision": 0.4117647058823529,
+    "any_overlap_testable": 0.48,
+    "pair_overlap_testable": 0.16,
+    "n_predictions": 17,
+    "elapsed_s": 444.0
+  },
+  {
+    "condition": "no_statistical",
+    "any_overlap": 0.4883720930232558,
+    "pair_overlap": 0.32558139534883723,
+    "exact": 0.06976744186046512,
+    "superset": 0.09302325581395349,
+    "precision": 0.47058823529411764,
+    "any_overlap_testable": 0.72,
+    "pair_overlap_testable": 0.48,
+    "n_predictions": 17,
+    "elapsed_s": 779.6
+  },
+  {
+    "condition": "no_hub_penalty",
+    "any_overlap": 0.3023255813953488,
+    "pair_overlap": 0.20930232558139536,
+    "exact": 0.023255813953488372,
+    "superset": 0.046511627906976744,
+    "precision": 0.47058823529411764,
+    "any_overlap_testable": 0.44,
+    "pair_overlap_testable": 0.28,
+    "n_predictions": 17,
+    "elapsed_s": 1040.9
+  }
+]

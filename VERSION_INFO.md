@@ -69,16 +69,57 @@ This document records the exact versions of data sources used in the ALIN Framew
 ## Software Environment
 
 ```
-Python: 3.12.3
+Python: 3.13.5
 numpy: 2.4.2
 pandas: 3.0.0
 scipy: 1.17.0
 networkx: 3.6.1
 scikit-learn: 1.8.0
-statsmodels: 0.14.4 (lazy import in core/statistics.py)
+statsmodels: 0.14.4
 ```
 
 See `requirements-lock.txt` for complete dependency list.
+
+## Pipeline Parameters
+
+| Parameter | Value | Description |
+|-----------|-------|-------------|
+| `θ_dep` | −0.5 | Chronos essentiality threshold |
+| `θ_sel` | 0.30 | Selectivity fraction |
+| Pan-essential cutoff | 0.90 | Fraction of lines for pan-essential exclusion |
+| Co-essentiality distance | Jaccard (1 − J) | Binarized co-essentiality |
+| Clustering | Ward's, k = 3–15 | Dynamic tree cut by silhouette |
+| OmniPath hop limit | ≤ 4 | Maximum directed path length |
+| Path pruning threshold | 0.3 | Minimum mean Chronos for path retention |
+| Statistical deps | Welch t, BH q < 0.05, d > 0.3 | Cancer-specific gene selection |
+| MHS solver | Greedy + ILP (≤500 genes) | Solver hierarchy |
+| Hub penalty coefficient | 1.5 | Proportional penalty for hub genes |
+| Perturbation bonus (β_pert) | 0.05/gene, max 0.15 | Bonus for feedback coverage |
+| Coverage threshold | 0.70 | Minimum path coverage for ranked triples |
+| Random seed | 42 | All stochastic components |
+
+## Ablation and Significance Experiments
+
+### Component Ablation (run_ablation.py)
+- **Date**: 2026-02-09
+- **Conditions**: 6 (full, no_omnipath, no_perturbation, no_coessentiality, no_statistical, no_hub_penalty)
+- **Total runtime**: ~75 minutes (Apple M2, 16 GB)
+- **Results**: `ablation_results/ablation_summary.json`
+
+### Permutation Test (run_permutation_test.py)
+- **Date**: 2026-02-09
+- **N permutations**: 1,000
+- **Null model**: Random 3-gene sampling from per-cancer candidate pool
+- **Median pool size**: 1,717 genes
+- **Runtime**: 12.1 seconds
+- **Results**: `ablation_results/permutation_test_results.json`
+
+### Degree-Preserving Network Null (run_degree_null_fast.py)
+- **Date**: 2026-02-10
+- **N permutations**: 20
+- **Edge swaps per permutation**: 10 × |E|
+- **Test cancers**: NSCLC, Melanoma, CRC, PDAC, Breast
+- **Results**: `ablation_results/degree_null_results.json`
 
 ## Reproducibility Notes
 
