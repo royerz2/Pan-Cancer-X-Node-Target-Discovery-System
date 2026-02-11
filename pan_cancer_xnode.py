@@ -587,13 +587,15 @@ class ViabilityPathInference:
                  disable_omnipath: bool = False,
                  disable_perturbation: bool = False,
                  disable_coessentiality: bool = False,
-                 disable_statistical: bool = False):
+                 disable_statistical: bool = False,
+                 use_lineage_aware_statistical: bool = False):
         self.depmap = depmap
         self.omnipath = omnipath
         self.disable_omnipath = disable_omnipath
         self.disable_perturbation = disable_perturbation
         self.disable_coessentiality = disable_coessentiality
         self.disable_statistical = disable_statistical
+        self.use_lineage_aware_statistical = use_lineage_aware_statistical
         self._pan_essential = None
         
     def _get_pan_essential(self) -> Set[str]:
@@ -974,7 +976,155 @@ class ViabilityPathInference:
             return [path]
         
         return []
-    
+
+    def infer_cancer_specific_lineage_aware(self, cancer_type: str,
+                                             p_value_threshold: float = 0.05,
+                                             effect_threshold: float = 0.3) -> List[ViabilityPath]:
+        """
+        Find cancer-specific dependencies after controlling for lineage effects.
+
+        Model per gene:  Chronos_g ~ lineage + is_target_cancer
+        The coefficient on is_target_cancer captures cancer-type-specific
+        essentiality after removing shared lineage dependencies.
+        Uses OLS with lineage dummy variables, then BH-FDR correction.
+        """
+        logger.info(f"Finding lineage-aware cancer-specific dependencies for {cancer_type}")
+
+        crispr = self.depmap.load_crispr_dependencies()
+        cell_lines = self.depmap.get_cell_lines_for_cancer(cancer_type)
+        pan_essential = self._get_pan_essential()
+
+        available_lines = [cl for cl in cell_lines if cl in crispr.index]
+        if len(available_lines) < 3:
+            logger.warning(f"Too few cell lines ({len(available_lines)}) for lineage-aware test")
+            return []
+
+        # Build lineage annotation vector for all CRISPR lines
+        lineage_df = self.depmap.load_lineage_annotations()
+        common_lines = [cl for cl in crispr.index if cl in lineage_df.index]
+        if len(common_lines) < 50:
+            logger.warning("Too few lines with lineage annotation; falling back to Welch t-test")
+            return self.infer_cancer_specific_dependencies(cancer_type, p_value_threshold, effect_threshold)
+
+        lineage_series = lineage_df.loc[common_lines, 'OncotreeLineage'].fillna('Unknown')
+        is_cancer = pd.Series(0, index=common_lines, dtype=float)
+        avail_set = set(available_lines)
+        for cl in common_lines:
+            if cl in avail_set:
+                is_cancer[cl] = 1.0
+
+        # Build design matrix: lineage dummies + is_cancer indicator
+        lineage_dummies = pd.get_dummies(lineage_series, prefix='lin', drop_first=True, dtype=float)
+        # Ensure cancer type lineage is not collinear with is_cancer
+        # (lineage dummies are already orthogonal enough with drop_first)
+        design = pd.concat([lineage_dummies, is_cancer.rename('is_target_cancer')], axis=1)
+        design.insert(0, 'intercept', 1.0)
+
+        # Pre-compute pseudoinverse for OLS: beta = (X'X)^{-1} X' y
+        X = design.values
+        try:
+            XtX_inv = np.linalg.pinv(X.T @ X)
+        except np.linalg.LinAlgError:
+            logger.warning("Singular design matrix; falling back to Welch t-test")
+            return self.infer_cancer_specific_dependencies(cancer_type, p_value_threshold, effect_threshold)
+
+        XtX_inv_Xt = XtX_inv @ X.T
+        n_params = X.shape[1]
+        n_obs = X.shape[0]
+        cancer_coef_idx = design.columns.get_loc('is_target_cancer')
+
+        genes_to_test = [g for g in crispr.columns if g not in pan_essential]
+        crispr_sub = crispr.loc[common_lines]
+
+        gene_results = []
+        for gene in genes_to_test:
+            y = crispr_sub[gene].values
+            valid = ~np.isnan(y)
+            if valid.sum() < n_params + 5:
+                continue
+
+            if valid.all():
+                beta = XtX_inv_Xt @ y
+                residuals = y - X @ beta
+                dof = n_obs - n_params
+            else:
+                X_v = X[valid]
+                y_v = y[valid]
+                try:
+                    XtX_inv_v = np.linalg.pinv(X_v.T @ X_v)
+                except np.linalg.LinAlgError:
+                    continue
+                beta = XtX_inv_v @ X_v.T @ y_v
+                residuals = y_v - X_v @ beta
+                dof = valid.sum() - n_params
+
+            if dof <= 0:
+                continue
+
+            mse = (residuals ** 2).sum() / dof
+            se = np.sqrt(np.maximum(mse * XtX_inv[cancer_coef_idx, cancer_coef_idx]
+                                    if valid.all()
+                                    else mse * XtX_inv_v[cancer_coef_idx, cancer_coef_idx], 1e-30))
+            t_stat = beta[cancer_coef_idx] / se
+            p_value = 2 * (1 - stats.t.cdf(abs(t_stat), dof))
+            # Negative coefficient = more essential (lower Chronos) in target cancer
+            effect_size = -beta[cancer_coef_idx]
+
+            gene_results.append({
+                'gene': gene,
+                't_stat': t_stat,
+                'p_value': p_value,
+                'effect_size': effect_size,
+                'cancer_coef': beta[cancer_coef_idx],
+            })
+
+        if not gene_results:
+            return []
+
+        # BH FDR correction
+        raw_pvals = [r['p_value'] for r in gene_results]
+        try:
+            from core.statistics import apply_fdr_correction
+            adj_pvals, reject = apply_fdr_correction(raw_pvals, method='fdr_bh',
+                                                     alpha=p_value_threshold)
+        except ImportError:
+            n = len(raw_pvals)
+            sorted_idx = np.argsort(raw_pvals)
+            adj = np.zeros(n)
+            for i, idx in enumerate(sorted_idx):
+                adj[idx] = min(raw_pvals[idx] * n / (i + 1), 1.0)
+            for i in range(n - 2, -1, -1):
+                si, si1 = sorted_idx[i], sorted_idx[i + 1]
+                adj[si] = min(adj[si], adj[si1])
+            adj_pvals = adj.tolist()
+
+        for r, q in zip(gene_results, adj_pvals):
+            r['q_value'] = q
+
+        n_tested = len(gene_results)
+        cancer_specific_genes = [
+            r for r in gene_results
+            if r['q_value'] < p_value_threshold and r['effect_size'] > effect_threshold
+        ]
+        n_fdr_sig = len(cancer_specific_genes)
+        logger.info(f"Lineage-aware FDR: {n_tested} tested, {n_fdr_sig} significant "
+                     f"(q < {p_value_threshold}, effect > {effect_threshold})")
+
+        if len(cancer_specific_genes) >= 2:
+            cancer_specific_genes.sort(key=lambda x: x['effect_size'], reverse=True)
+            top_genes = [g['gene'] for g in cancer_specific_genes[:20]]
+            path = ViabilityPath(
+                path_id=f"{cancer_type}_lineage_aware_specific",
+                nodes=frozenset(top_genes),
+                context=cancer_type,
+                confidence=0.95,
+                path_type="cancer_specific"
+            )
+            logger.info(f"Found {len(top_genes)} lineage-aware cancer-specific genes")
+            return [path]
+
+        return []
+
     def infer_perturbation_response_paths(self, cancer_type: str,
                                           dependency_threshold: float = -0.5,
                                           min_overlap: int = 2) -> List[ViabilityPath]:
@@ -1045,8 +1195,12 @@ class ViabilityPathInference:
             _progress("Signaling paths (OmniPath)", step="")
             paths.extend(self.infer_signaling_paths(cancer_type, min_confidence=min_confidence))
         if not self.disable_statistical:
-            _progress("Cancer-specific dependencies", step="")
-            paths.extend(self.infer_cancer_specific_dependencies(cancer_type))
+            if self.use_lineage_aware_statistical:
+                _progress("Cancer-specific dependencies (lineage-aware)", step="")
+                paths.extend(self.infer_cancer_specific_lineage_aware(cancer_type))
+            else:
+                _progress("Cancer-specific dependencies", step="")
+                paths.extend(self.infer_cancer_specific_dependencies(cancer_type))
         if not self.disable_perturbation:
             _progress("Perturbation response paths", step="")
             paths.extend(self.infer_perturbation_response_paths(cancer_type))
@@ -2419,7 +2573,8 @@ class PanCancerXNodeAnalyzer:
                  disable_perturbation: bool = False,
                  disable_coessentiality: bool = False,
                  disable_statistical: bool = False,
-                 disable_hub_penalty: bool = False):
+                 disable_hub_penalty: bool = False,
+                 use_lineage_aware_statistical: bool = False):
         self.depmap = DepMapLoader(data_dir)
         self.omnipath = OmniPathLoader(data_dir)
         self.drug_db = DrugTargetDB()
@@ -2429,6 +2584,7 @@ class PanCancerXNodeAnalyzer:
             disable_perturbation=disable_perturbation,
             disable_coessentiality=disable_coessentiality,
             disable_statistical=disable_statistical,
+            use_lineage_aware_statistical=use_lineage_aware_statistical,
         )
         self.cost_fn = CostFunction(self.depmap, self.drug_db, toxicity_cache_dir=toxicity_cache_dir)
         self.solver = MinimalHittingSetSolver(self.cost_fn)

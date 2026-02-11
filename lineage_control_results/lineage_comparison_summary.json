@@ -1,0 +1,39 @@
+{
+  "conditions": [
+    {
+      "condition": "welch_default",
+      "any_overlap": 0.46511627906976744,
+      "pair_overlap": 0.3488372093023256,
+      "exact": 0.06976744186046512,
+      "superset": 0.09302325581395349,
+      "precision": 0.47058823529411764,
+      "any_overlap_testable": 0.72,
+      "pair_overlap_testable": 0.52,
+      "n_predictions": 17,
+      "elapsed_s": 841.4,
+      "csv_path": "lineage_control_results/triple_combinations_welch_default.csv"
+    },
+    {
+      "condition": "lineage_aware",
+      "any_overlap": 0.4883720930232558,
+      "pair_overlap": 0.3488372093023256,
+      "exact": 0.06976744186046512,
+      "superset": 0.09302325581395349,
+      "precision": 0.47058823529411764,
+      "any_overlap_testable": 0.72,
+      "pair_overlap_testable": 0.52,
+      "n_predictions": 17,
+      "elapsed_s": 651.9,
+      "csv_path": "lineage_control_results/triple_combinations_lineage_aware.csv"
+    }
+  ],
+  "gene_comparison": {
+    "median_jaccard": 0.051,
+    "mean_jaccard": 0.118
+  },
+  "triple_comparison": {
+    "n_changed": 2,
+    "n_total": 17,
+    "fraction_changed": 0.118
+  }
+}

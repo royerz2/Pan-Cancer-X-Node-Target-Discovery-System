@@ -1,0 +1,170 @@
+{
+  "lineage_metrics": {
+    "CNS": {
+      "n_total": 2,
+      "n_testable": 2,
+      "exact": 0,
+      "pair_overlap": 0,
+      "any_overlap": 0,
+      "exact_pct": 0.0,
+      "pair_pct": 0.0,
+      "any_pct": 0.0,
+      "testable_exact": 0,
+      "testable_pair": 0,
+      "testable_any": 0,
+      "testable_exact_pct": 0.0,
+      "testable_pair_pct": 0.0,
+      "testable_any_pct": 0.0
+    },
+    "Carcinoma": {
+      "n_total": 32,
+      "n_testable": 18,
+      "exact": 3,
+      "pair_overlap": 13,
+      "any_overlap": 19,
+      "exact_pct": 9.375,
+      "pair_pct": 40.625,
+      "any_pct": 59.375,
+      "testable_exact": 3,
+      "testable_pair": 11,
+      "testable_any": 16,
+      "testable_exact_pct": 16.666666666666664,
+      "testable_pair_pct": 61.111111111111114,
+      "testable_any_pct": 88.88888888888889
+    },
+    "Hematologic": {
+      "n_total": 7,
+      "n_testable": 4,
+      "exact": 0,
+      "pair_overlap": 0,
+      "any_overlap": 0,
+      "exact_pct": 0.0,
+      "pair_pct": 0.0,
+      "any_pct": 0.0,
+      "testable_exact": 0,
+      "testable_pair": 0,
+      "testable_any": 0,
+      "testable_exact_pct": 0.0,
+      "testable_pair_pct": 0.0,
+      "testable_any_pct": 0.0
+    },
+    "Sarcoma": {
+      "n_total": 2,
+      "n_testable": 1,
+      "exact": 0,
+      "pair_overlap": 0,
+      "any_overlap": 0,
+      "exact_pct": 0.0,
+      "pair_pct": 0.0,
+      "any_pct": 0.0,
+      "testable_exact": 0,
+      "testable_pair": 0,
+      "testable_any": 0,
+      "testable_exact_pct": 0.0,
+      "testable_pair_pct": 0.0,
+      "testable_any_pct": 0.0
+    }
+  },
+  "statistical_tests": {
+    "any_overlap": {
+      "CNS": {
+        "hits": 0,
+        "total": 2,
+        "pct": 0.0,
+        "rest_pct": 46.3,
+        "odds_ratio": 0.0,
+        "p_value": 0.495,
+        "significant": "False"
+      },
+      "Carcinoma": {
+        "hits": 19,
+        "total": 32,
+        "pct": 59.4,
+        "rest_pct": 0.0,
+        "odds_ratio": "inf",
+        "p_value": 0.0008,
+        "significant": "True"
+      },
+      "Hematologic": {
+        "hits": 0,
+        "total": 7,
+        "pct": 0.0,
+        "rest_pct": 52.8,
+        "odds_ratio": 0.0,
+        "p_value": 0.0123,
+        "significant": "True"
+      },
+      "Sarcoma": {
+        "hits": 0,
+        "total": 2,
+        "pct": 0.0,
+        "rest_pct": 46.3,
+        "odds_ratio": 0.0,
+        "p_value": 0.495,
+        "significant": "False"
+      }
+    },
+    "pair_overlap": {
+      "CNS": {
+        "hits": 0,
+        "total": 2,
+        "pct": 0.0,
+        "rest_pct": 31.7,
+        "odds_ratio": 0.0,
+        "p_value": 1.0,
+        "significant": false
+      },
+      "Carcinoma": {
+        "hits": 13,
+        "total": 32,
+        "pct": 40.6,
+        "rest_pct": 0.0,
+        "odds_ratio": "inf",
+        "p_value": 0.0186,
+        "significant": "True"
+      },
+      "Hematologic": {
+        "hits": 0,
+        "total": 7,
+        "pct": 0.0,
+        "rest_pct": 36.1,
+        "odds_ratio": 0.0,
+        "p_value": 0.0822,
+        "significant": "False"
+      },
+      "Sarcoma": {
+        "hits": 0,
+        "total": 2,
+        "pct": 0.0,
+        "rest_pct": 31.7,
+        "odds_ratio": 0.0,
+        "p_value": 1.0,
+        "significant": false
+      }
+    },
+    "any_overlap_heterogeneity": {
+      "chi2": 11.702,
+      "df": 3,
+      "p_value": 0.0085,
+      "lineages": [
+        "CNS",
+        "Carcinoma",
+        "Hematologic",
+        "Sarcoma"
+      ]
+    },
+    "pair_overlap_heterogeneity": {
+      "chi2": 6.405,
+      "df": 3,
+      "p_value": 0.0935,
+      "lineages": [
+        "CNS",
+        "Carcinoma",
+        "Hematologic",
+        "Sarcoma"
+      ]
+    }
+  },
+  "pooled_any_overlap": 44.18604651162791,
+  "pooled_pair_overlap": 30.23255813953488
+}

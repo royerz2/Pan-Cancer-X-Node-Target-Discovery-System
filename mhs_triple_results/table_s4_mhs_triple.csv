@@ -1,0 +1,18 @@
+Cancer Type,MHS Targets,MHS Cost,Top Ranked Triple,Triple Score,Targets Added,Targets Removed,Overlap Category,STAT3 Status
+Acute Myeloid Leukemia,CDK6+SOS1+SPI1+STAT3,4.163,CDK4+CDK6+MCL1,1.1398,CDK4+MCL1,SOS1+SPI1+STAT3,partial_overlap,mhs_only
+Anaplastic Thyroid Cancer,BRAF+STAT3,2.055,CDK6+EGFR+MAP2K1,1.0275,CDK6+EGFR+MAP2K1,BRAF+STAT3,disjoint,mhs_only
+Bladder Urothelial Carcinoma,CCND1+STAT3,2.515,CDK2+EGFR+MAP2K1,1.0794,CDK2+EGFR+MAP2K1,CCND1+STAT3,disjoint,mhs_only
+Colorectal Adenocarcinoma,CCND1+STAT3,2.515,EGFR+KRAS+MET,0.9943,EGFR+KRAS+MET,CCND1+STAT3,disjoint,mhs_only
+Diffuse Glioma,CCND1+STAT3,2.515,CDK2+EGFR+MAP2K1,1.0784,CDK2+EGFR+MAP2K1,CCND1+STAT3,disjoint,mhs_only
+Endometrial Carcinoma,CCND1+STAT3,2.515,CDK2+EGFR+MET,1.0714,CDK2+EGFR+MET,CCND1+STAT3,disjoint,mhs_only
+Esophagogastric Adenocarcinoma,CCND1+STAT3,2.342,CDK6+EGFR+PIK3CA,1.0579,CDK6+EGFR+PIK3CA,CCND1+STAT3,disjoint,mhs_only
+Head and Neck Squamous Cell Carcinoma,EGFR+STAT3,2.141,CDK4+CDK6+ERBB2,1.1314,CDK4+CDK6+ERBB2,EGFR+STAT3,disjoint,mhs_only
+Hepatocellular Carcinoma,CCND1+CDK4,2.28,BCL2L1+EGFR+MAP2K1,1.1493,BCL2L1+EGFR+MAP2K1,CCND1+CDK4,disjoint,neither
+Invasive Breast Carcinoma,CCND1+STAT3,2.299,BCL2L1+EGFR+MAP2K1,1.0927,BCL2L1+EGFR+MAP2K1,CCND1+STAT3,disjoint,mhs_only
+Liposarcoma,CCND1+CDK4,1.835,EGFR+FGFR1+MET,1.0615,EGFR+FGFR1+MET,CCND1+CDK4,disjoint,neither
+Melanoma,CCND1+CDK4,2.13,CDK6+EGFR+MAP2K1,1.0128,CDK6+EGFR+MAP2K1,CCND1+CDK4,disjoint,neither
+Non-Small Cell Lung Cancer,CCND1+STAT3,2.463,CDK6+EGFR+MAP2K1,1.0714,CDK6+EGFR+MAP2K1,CCND1+STAT3,disjoint,mhs_only
+Ovarian Epithelial Tumor,CCND1+CDK4+STAT3,3.588,CDK6+EGFR+MET,1.1274,CDK6+EGFR+MET,CCND1+CDK4+STAT3,disjoint,mhs_only
+Pancreatic Adenocarcinoma,CCND1+CDK6,2.241,FYN+KRAS+STAT3,0.5227,FYN+KRAS+STAT3,CCND1+CDK6,disjoint,triple_only
+Prostate Adenocarcinoma,CCND1+CDK4,1.54,CDK2+EGFR+MAP2K1,1.0881,CDK2+EGFR+MAP2K1,CCND1+CDK4,disjoint,neither
+Renal Cell Carcinoma,CCND1+ZNF316,2.319,CDK6+EGFR+MAP2K1,1.0316,CDK6+EGFR+MAP2K1,CCND1+ZNF316,disjoint,neither

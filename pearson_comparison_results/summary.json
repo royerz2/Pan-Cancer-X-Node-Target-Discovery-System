@@ -1,0 +1,113 @@
+{
+  "overall_nmi_mean": 0.1962,
+  "overall_nmi_std": 0.0706,
+  "best_agreement_k": 15,
+  "best_agreement_nmi": 0.2159,
+  "n_cancers_tested": 10,
+  "n_total_comparisons": 130,
+  "per_cancer_mean_nmi": {
+    "Colorectal Adenocarcinoma": 0.1756,
+    "Diffuse Glioma": 0.2953,
+    "Esophagogastric Adenocarcinoma": 0.1914,
+    "Head and Neck Squamous Cell Carcinoma": 0.2812,
+    "Invasive Breast Carcinoma": 0.2027,
+    "Lung Neuroendocrine Tumor": 0.0758,
+    "Mature B-Cell Neoplasms": 0.1352,
+    "Melanoma": 0.2174,
+    "Non-Cancerous": 0.141,
+    "Non-Small Cell Lung Cancer": 0.2466
+  },
+  "per_k_stats": [
+    {
+      "k": 3,
+      "nmi_mean": 0.1644,
+      "nmi_std": 0.1016,
+      "sil_jaccard": 0.13,
+      "sil_pearson": 0.0366
+    },
+    {
+      "k": 4,
+      "nmi_mean": 0.1977,
+      "nmi_std": 0.1009,
+      "sil_jaccard": 0.1226,
+      "sil_pearson": 0.0328
+    },
+    {
+      "k": 5,
+      "nmi_mean": 0.1901,
+      "nmi_std": 0.0731,
+      "sil_jaccard": 0.0658,
+      "sil_pearson": 0.0302
+    },
+    {
+      "k": 6,
+      "nmi_mean": 0.1847,
+      "nmi_std": 0.0628,
+      "sil_jaccard": 0.0573,
+      "sil_pearson": 0.0244
+    },
+    {
+      "k": 7,
+      "nmi_mean": 0.1878,
+      "nmi_std": 0.0641,
+      "sil_jaccard": 0.0591,
+      "sil_pearson": 0.0245
+    },
+    {
+      "k": 8,
+      "nmi_mean": 0.1945,
+      "nmi_std": 0.0752,
+      "sil_jaccard": 0.0454,
+      "sil_pearson": 0.0234
+    },
+    {
+      "k": 9,
+      "nmi_mean": 0.1943,
+      "nmi_std": 0.0693,
+      "sil_jaccard": 0.0466,
+      "sil_pearson": 0.0228
+    },
+    {
+      "k": 10,
+      "nmi_mean": 0.1981,
+      "nmi_std": 0.0732,
+      "sil_jaccard": 0.0405,
+      "sil_pearson": 0.0199
+    },
+    {
+      "k": 11,
+      "nmi_mean": 0.2001,
+      "nmi_std": 0.0667,
+      "sil_jaccard": 0.0374,
+      "sil_pearson": 0.0204
+    },
+    {
+      "k": 12,
+      "nmi_mean": 0.2043,
+      "nmi_std": 0.0659,
+      "sil_jaccard": 0.0392,
+      "sil_pearson": 0.0211
+    },
+    {
+      "k": 13,
+      "nmi_mean": 0.2088,
+      "nmi_std": 0.0645,
+      "sil_jaccard": 0.0294,
+      "sil_pearson": 0.021
+    },
+    {
+      "k": 14,
+      "nmi_mean": 0.21,
+      "nmi_std": 0.0578,
+      "sil_jaccard": 0.0298,
+      "sil_pearson": 0.0222
+    },
+    {
+      "k": 15,
+      "nmi_mean": 0.2159,
+      "nmi_std": 0.0561,
+      "sil_jaccard": 0.0205,
+      "sil_pearson": 0.0221
+    }
+  ]
+}

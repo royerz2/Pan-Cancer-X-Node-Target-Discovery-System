@@ -118,7 +118,8 @@ def fig5_cancer_target_heatmap():
     # Custom colormap: white → teal
     cmap = LinearSegmentedColormap.from_list('presence', ['#f7f7f7', '#1a9876'], N=2)
 
-    fig, ax = plt.subplots(figsize=(7, 5.5))
+    fig, ax = plt.subplots(figsize=(9, 5.5))
+    fig.subplots_adjust(right=0.78)  # leave space on the right for legend
     im = ax.imshow(matrix, cmap=cmap, aspect='auto', vmin=0, vmax=1)
 
     ax.set_xticks(range(len(top_targets)))
@@ -152,19 +153,20 @@ def fig5_cancer_target_heatmap():
     ax.grid(True, which='minor', color='#e0e0e0', linewidth=0.5)
     ax.tick_params(which='minor', length=0)
 
-    # Legend for tri-axial roles
+    # Legend for tri-axial roles — placed in dedicated right margin
     patches = [
         mpatches.Patch(color=ROLE_COLORS['upstream'], label='Upstream driver'),
         mpatches.Patch(color=ROLE_COLORS['downstream'], label='Downstream effector'),
         mpatches.Patch(color=ROLE_COLORS['orthogonal'], label='Orthogonal survival'),
     ]
-    ax.legend(handles=patches, loc='lower right', frameon=True, framealpha=0.9,
-              edgecolor='#cccccc', fontsize=7)
+    fig.legend(handles=patches, loc='center right',
+               frameon=True, framealpha=0.9,
+               edgecolor='#cccccc', fontsize=7)
 
-    ax.set_title('Ranked Triple Targets Across 20 Most Well-Powered Cancers', pad=22)
+    ax.set_title('Ranked Triple Targets Across 20 Cancers With Most Cell Lines', pad=22)
 
-    fig.savefig(os.path.join(OUT, 'fig5_cancer_target_heatmap.png'))
-    fig.savefig(os.path.join(OUT, 'fig5_cancer_target_heatmap.pdf'))
+    fig.savefig(os.path.join(OUT, 'fig5_cancer_target_heatmap.png'), bbox_inches='tight')
+    fig.savefig(os.path.join(OUT, 'fig5_cancer_target_heatmap.pdf'), bbox_inches='tight')
     plt.close(fig)
     print('✓ fig5_cancer_target_heatmap')
 

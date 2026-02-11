@@ -1,0 +1,26 @@
+{
+  "overlap_categories": {
+    "disjoint": 16,
+    "partial_overlap": 1
+  },
+  "triple_subset_of_mhs_frac": 0.0,
+  "triple_superset_of_mhs_frac": 0.0,
+  "partial_overlap_frac": 0.058823529411764705,
+  "disjoint_frac": 0.9411764705882353,
+  "stat3_tracking": {
+    "mhs_only": 11,
+    "neither": 5,
+    "triple_only": 1
+  },
+  "stat3_in_mhs_frac": 0.6470588235294118,
+  "stat3_in_triple_frac": 0.058823529411764705,
+  "stat3_removed_by_ranking": 11,
+  "stat3_kept": 0,
+  "mean_shared": 0.058823529411764705,
+  "mean_added": 2.9411764705882355,
+  "mean_removed": 2.1176470588235294,
+  "cost_score_pearson_r": 0.207,
+  "cost_score_pearson_p": 0.4254,
+  "cost_score_spearman_rho": 0.239,
+  "cost_score_spearman_p": 0.3561
+}

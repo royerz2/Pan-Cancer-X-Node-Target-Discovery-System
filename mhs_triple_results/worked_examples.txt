@@ -1,0 +1,14 @@
+\textbf{Pancreatic Adenocarcinoma:} MHS selects \{CCND1, CDK6\} (cost-optimal mechanism coverage). The ranked triple is \{FYN, KRAS, STAT3\}. 
+Targets removed: CCND1, CDK6 (hub penalties: CCND1 (0.92); STAT3 (0.69); CDK6 (0.17)). 
+Targets added: FYN, KRAS, STAT3 (selected for synergy, druggability, or cancer-specific scoring). 
+STAT3 status: triple_only. Overlap category: disjoint.
+
+\textbf{Melanoma:} MHS selects \{CCND1, CDK4\} (cost-optimal mechanism coverage). The ranked triple is \{CDK6, EGFR, MAP2K1\}. 
+Targets removed: CCND1, CDK4 (hub penalties: CCND1 (0.88); EGFR (0.52); CDK4 (0.29); CDK6 (0.14); MAP2K1 (0.12)). 
+Targets added: CDK6, EGFR, MAP2K1 (selected for synergy, druggability, or cancer-specific scoring). 
+STAT3 status: neither. Overlap category: disjoint.
+
+\textbf{Invasive Breast Carcinoma:} MHS selects \{CCND1, STAT3\} (cost-optimal mechanism coverage). The ranked triple is \{BCL2L1, EGFR, MAP2K1\}. 
+Targets removed: CCND1, STAT3 (hub penalties: CCND1 (0.78); STAT3 (0.64); EGFR (0.48); MAP2K1 (0.11); BCL2L1 (0.11)). 
+Targets added: BCL2L1, EGFR, MAP2K1 (selected for synergy, druggability, or cancer-specific scoring). 
+STAT3 status: mhs_only. Overlap category: disjoint.

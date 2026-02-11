@@ -1,0 +1,5 @@
+Lineage,N_entries,N_testable,Any_overlap,Any_overlap_pct,Pair_overlap,Pair_overlap_pct,Exact,Exact_pct,Testable_any_pct,Testable_pair_pct,Testable_exact_pct
+CNS,2,2,0/2,0.0,0/2,0.0,0/2,0.0,0.0,0.0,0.0
+Carcinoma,32,18,19/32,59.4,13/32,40.6,3/32,9.4,88.9,61.1,16.7
+Hematologic,7,4,0/7,0.0,0/7,0.0,0/7,0.0,0.0,0.0,0.0
+Sarcoma,2,1,0/2,0.0,0/2,0.0,0/2,0.0,0.0,0.0,0.0

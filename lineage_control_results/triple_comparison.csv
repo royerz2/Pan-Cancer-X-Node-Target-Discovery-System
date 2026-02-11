@@ -1,0 +1,18 @@
+cancer_type,welch_triple,lineage_triple,changed,targets_shared,targets_total
+Acute Myeloid Leukemia,CDK6+ERBB2+MCL1,CDK6+ERBB2+MCL1,False,3,3
+Anaplastic Thyroid Cancer,CDK6+EGFR+MAP2K1,CDK6+EGFR+MAP2K1,False,3,3
+Bladder Urothelial Carcinoma,CDK2+EGFR+MAP2K1,CDK2+EGFR+MAP2K1,False,3,3
+Colorectal Adenocarcinoma,EGFR+KRAS+MET,BRAF+EGFR+KRAS,True,2,4
+Diffuse Glioma,CDK2+EGFR+MAP2K1,CDK2+EGFR+MAP2K1,False,3,3
+Endometrial Carcinoma,CDK2+EGFR+MET,CDK2+EGFR+MET,False,3,3
+Esophagogastric Adenocarcinoma,CDK6+EGFR+MAP2K1,CDK6+EGFR+MAP2K1,False,3,3
+Head and Neck Squamous Cell Carcinoma,CDK4+CDK6+ERBB2,CDK4+CDK6+ERBB2,False,3,3
+Hepatocellular Carcinoma,BCL2L1+EGFR+MAP2K1,BCL2L1+EGFR+MAP2K1,False,3,3
+Invasive Breast Carcinoma,BCL2L1+EGFR+MAP2K1,CDK4+ERBB2+PIK3CA,True,0,6
+Liposarcoma,EGFR+FGFR1+MET,EGFR+FGFR1+MET,False,3,3
+Melanoma,CDK6+EGFR+MAP2K1,CDK6+EGFR+MAP2K1,False,3,3
+Non-Small Cell Lung Cancer,CDK6+EGFR+MAP2K1,CDK6+EGFR+MAP2K1,False,3,3
+Ovarian Epithelial Tumor,CDK6+EGFR+MET,CDK6+EGFR+MET,False,3,3
+Pancreatic Adenocarcinoma,FYN+KRAS+STAT3,FYN+KRAS+STAT3,False,3,3
+Prostate Adenocarcinoma,CDK2+EGFR+MAP2K1,CDK2+EGFR+MAP2K1,False,3,3
+Renal Cell Carcinoma,CDK6+EGFR+MAP2K1,CDK6+EGFR+MAP2K1,False,3,3

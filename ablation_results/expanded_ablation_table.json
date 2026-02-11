@@ -1,0 +1,854 @@
+[
+  {
+    "condition": "Full pipeline",
+    "any_overlap": 0.46511627906976744,
+    "pair_overlap": 0.32558139534883723,
+    "exact": 0.06976744186046512,
+    "n_predictions": 17,
+    "top1_changed": 0,
+    "top1_same": 17,
+    "top1_lost": 0,
+    "changes": []
+  },
+  {
+    "condition": "No OmniPath paths",
+    "any_overlap": 0.06976744186046512,
+    "pair_overlap": 0.0,
+    "exact": 0.0,
+    "n_predictions": 2,
+    "top1_changed": 2,
+    "top1_same": 0,
+    "top1_lost": 15,
+    "changes": [
+      {
+        "cancer": "Acute Myeloid Leukemia",
+        "baseline": [
+          "CDK6",
+          "MCL1",
+          "MET"
+        ],
+        "ablation": "NO PREDICTION",
+        "type": "lost"
+      },
+      {
+        "cancer": "Anaplastic Thyroid Cancer",
+        "baseline": [
+          "CDK6",
+          "EGFR",
+          "MAP2K1"
+        ],
+        "ablation": "NO PREDICTION",
+        "type": "lost"
+      },
+      {
+        "cancer": "Bladder Urothelial Carcinoma",
+        "baseline": [
+          "CDK2",
+          "EGFR",
+          "MAP2K1"
+        ],
+        "ablation": "NO PREDICTION",
+        "type": "lost"
+      },
+      {
+        "cancer": "Colorectal Adenocarcinoma",
+        "baseline": [
+          "EGFR",
+          "KRAS",
+          "MET"
+        ],
+        "ablation": "NO PREDICTION",
+        "type": "lost"
+      },
+      {
+        "cancer": "Diffuse Glioma",
+        "baseline": [
+          "CDK2",
+          "EGFR",
+          "MAP2K1"
+        ],
+        "ablation": "NO PREDICTION",
+        "type": "lost"
+      },
+      {
+        "cancer": "Endometrial Carcinoma",
+        "baseline": [
+          "CDK2",
+          "EGFR",
+          "MET"
+        ],
+        "ablation": "NO PREDICTION",
+        "type": "lost"
+      },
+      {
+        "cancer": "Esophagogastric Adenocarcinoma",
+        "baseline": [
+          "CDK6",
+          "EGFR",
+          "PIK3CA"
+        ],
+        "ablation": "NO PREDICTION",
+        "type": "lost"
+      },
+      {
+        "cancer": "Head and Neck Squamous Cell Carcinoma",
+        "baseline": [
+          "CDK4",
+          "CDK6",
+          "ERBB2"
+        ],
+        "ablation": [
+          "CDK4",
+          "EGFR",
+          "STAT3"
+        ],
+        "shared": [
+          "CDK4"
+        ],
+        "n_shared": 1,
+        "type": "changed"
+      },
+      {
+        "cancer": "Hepatocellular Carcinoma",
+        "baseline": [
+          "BCL2L1",
+          "EGFR",
+          "MAP2K1"
+        ],
+        "ablation": "NO PREDICTION",
+        "type": "lost"
+      },
+      {
+        "cancer": "Invasive Breast Carcinoma",
+        "baseline": [
+          "BCL2L1",
+          "EGFR",
+          "MAP2K1"
+        ],
+        "ablation": [
+          "BCL2L1",
+          "ERBB2",
+          "MAP2K1"
+        ],
+        "shared": [
+          "BCL2L1",
+          "MAP2K1"
+        ],
+        "n_shared": 2,
+        "type": "changed"
+      },
+      {
+        "cancer": "Liposarcoma",
+        "baseline": [
+          "EGFR",
+          "FGFR1",
+          "MET"
+        ],
+        "ablation": "NO PREDICTION",
+        "type": "lost"
+      },
+      {
+        "cancer": "Melanoma",
+        "baseline": [
+          "BRAF",
+          "CDK6",
+          "EGFR"
+        ],
+        "ablation": "NO PREDICTION",
+        "type": "lost"
+      },
+      {
+        "cancer": "Non-Small Cell Lung Cancer",
+        "baseline": [
+          "CDK6",
+          "EGFR",
+          "MAP2K1"
+        ],
+        "ablation": "NO PREDICTION",
+        "type": "lost"
+      },
+      {
+        "cancer": "Ovarian Epithelial Tumor",
+        "baseline": [
+          "CDK6",
+          "EGFR",
+          "MET"
+        ],
+        "ablation": "NO PREDICTION",
+        "type": "lost"
+      },
+      {
+        "cancer": "Pancreatic Adenocarcinoma",
+        "baseline": [
+          "FYN",
+          "KRAS",
+          "STAT3"
+        ],
+        "ablation": "NO PREDICTION",
+        "type": "lost"
+      },
+      {
+        "cancer": "Prostate Adenocarcinoma",
+        "baseline": [
+          "CDK2",
+          "EGFR",
+          "MAP2K1"
+        ],
+        "ablation": "NO PREDICTION",
+        "type": "lost"
+      },
+      {
+        "cancer": "Renal Cell Carcinoma",
+        "baseline": [
+          "CDK6",
+          "EGFR",
+          "MAP2K1"
+        ],
+        "ablation": "NO PREDICTION",
+        "type": "lost"
+      }
+    ]
+  },
+  {
+    "condition": "No perturbation priors",
+    "any_overlap": 0.23255813953488372,
+    "pair_overlap": 0.11627906976744186,
+    "exact": 0.0,
+    "n_predictions": 17,
+    "top1_changed": 12,
+    "top1_same": 5,
+    "top1_lost": 0,
+    "changes": [
+      {
+        "cancer": "Anaplastic Thyroid Cancer",
+        "baseline": [
+          "CDK6",
+          "EGFR",
+          "MAP2K1"
+        ],
+        "ablation": [
+          "CDK4",
+          "CDK6",
+          "ERBB2"
+        ],
+        "shared": [
+          "CDK6"
+        ],
+        "n_shared": 1,
+        "type": "changed"
+      },
+      {
+        "cancer": "Bladder Urothelial Carcinoma",
+        "baseline": [
+          "CDK2",
+          "EGFR",
+          "MAP2K1"
+        ],
+        "ablation": [
+          "CDK6",
+          "EGFR",
+          "MET"
+        ],
+        "shared": [
+          "EGFR"
+        ],
+        "n_shared": 1,
+        "type": "changed"
+      },
+      {
+        "cancer": "Colorectal Adenocarcinoma",
+        "baseline": [
+          "EGFR",
+          "KRAS",
+          "MET"
+        ],
+        "ablation": [
+          "BRAF",
+          "CDK4",
+          "ERBB2"
+        ],
+        "shared": [],
+        "n_shared": 0,
+        "type": "changed"
+      },
+      {
+        "cancer": "Diffuse Glioma",
+        "baseline": [
+          "CDK2",
+          "EGFR",
+          "MAP2K1"
+        ],
+        "ablation": [
+          "CDK4",
+          "CDK6",
+          "MCL1"
+        ],
+        "shared": [],
+        "n_shared": 0,
+        "type": "changed"
+      },
+      {
+        "cancer": "Esophagogastric Adenocarcinoma",
+        "baseline": [
+          "CDK6",
+          "EGFR",
+          "PIK3CA"
+        ],
+        "ablation": [
+          "CDK4",
+          "CDK6",
+          "ERBB2"
+        ],
+        "shared": [
+          "CDK6"
+        ],
+        "n_shared": 1,
+        "type": "changed"
+      },
+      {
+        "cancer": "Hepatocellular Carcinoma",
+        "baseline": [
+          "BCL2L1",
+          "EGFR",
+          "MAP2K1"
+        ],
+        "ablation": [
+          "EGFR",
+          "FGFR1",
+          "MET"
+        ],
+        "shared": [
+          "EGFR"
+        ],
+        "n_shared": 1,
+        "type": "changed"
+      },
+      {
+        "cancer": "Invasive Breast Carcinoma",
+        "baseline": [
+          "BCL2L1",
+          "EGFR",
+          "MAP2K1"
+        ],
+        "ablation": [
+          "CDK4",
+          "ERBB2",
+          "MAP2K1"
+        ],
+        "shared": [
+          "MAP2K1"
+        ],
+        "n_shared": 1,
+        "type": "changed"
+      },
+      {
+        "cancer": "Melanoma",
+        "baseline": [
+          "BRAF",
+          "CDK6",
+          "EGFR"
+        ],
+        "ablation": [
+          "CDK4",
+          "CDK6",
+          "ERBB2"
+        ],
+        "shared": [
+          "CDK6"
+        ],
+        "n_shared": 1,
+        "type": "changed"
+      },
+      {
+        "cancer": "Non-Small Cell Lung Cancer",
+        "baseline": [
+          "CDK6",
+          "EGFR",
+          "MAP2K1"
+        ],
+        "ablation": [
+          "CDK4",
+          "CDK6",
+          "ERBB2"
+        ],
+        "shared": [
+          "CDK6"
+        ],
+        "n_shared": 1,
+        "type": "changed"
+      },
+      {
+        "cancer": "Ovarian Epithelial Tumor",
+        "baseline": [
+          "CDK6",
+          "EGFR",
+          "MET"
+        ],
+        "ablation": [
+          "CDK4",
+          "ERBB2",
+          "MET"
+        ],
+        "shared": [
+          "MET"
+        ],
+        "n_shared": 1,
+        "type": "changed"
+      },
+      {
+        "cancer": "Pancreatic Adenocarcinoma",
+        "baseline": [
+          "FYN",
+          "KRAS",
+          "STAT3"
+        ],
+        "ablation": [
+          "ERBB2",
+          "KRAS",
+          "STAT3"
+        ],
+        "shared": [
+          "KRAS",
+          "STAT3"
+        ],
+        "n_shared": 2,
+        "type": "changed"
+      },
+      {
+        "cancer": "Prostate Adenocarcinoma",
+        "baseline": [
+          "CDK2",
+          "EGFR",
+          "MAP2K1"
+        ],
+        "ablation": [
+          "CDK4",
+          "MET",
+          "SRC"
+        ],
+        "shared": [],
+        "n_shared": 0,
+        "type": "changed"
+      }
+    ]
+  },
+  {
+    "condition": "No hub penalty",
+    "any_overlap": 0.3023255813953488,
+    "pair_overlap": 0.20930232558139536,
+    "exact": 0.023255813953488372,
+    "n_predictions": 17,
+    "top1_changed": 17,
+    "top1_same": 0,
+    "top1_lost": 0,
+    "changes": [
+      {
+        "cancer": "Acute Myeloid Leukemia",
+        "baseline": [
+          "CDK6",
+          "MCL1",
+          "MET"
+        ],
+        "ablation": [
+          "CDK4",
+          "CDK6",
+          "STAT3"
+        ],
+        "shared": [
+          "CDK6"
+        ],
+        "n_shared": 1,
+        "type": "changed"
+      },
+      {
+        "cancer": "Anaplastic Thyroid Cancer",
+        "baseline": [
+          "CDK6",
+          "EGFR",
+          "MAP2K1"
+        ],
+        "ablation": [
+          "BRAF",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "shared": [
+          "MAP2K1"
+        ],
+        "n_shared": 1,
+        "type": "changed"
+      },
+      {
+        "cancer": "Bladder Urothelial Carcinoma",
+        "baseline": [
+          "CDK2",
+          "EGFR",
+          "MAP2K1"
+        ],
+        "ablation": [
+          "CDK6",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "shared": [
+          "MAP2K1"
+        ],
+        "n_shared": 1,
+        "type": "changed"
+      },
+      {
+        "cancer": "Colorectal Adenocarcinoma",
+        "baseline": [
+          "EGFR",
+          "KRAS",
+          "MET"
+        ],
+        "ablation": [
+          "CDK4",
+          "KRAS",
+          "STAT3"
+        ],
+        "shared": [
+          "KRAS"
+        ],
+        "n_shared": 1,
+        "type": "changed"
+      },
+      {
+        "cancer": "Diffuse Glioma",
+        "baseline": [
+          "CDK2",
+          "EGFR",
+          "MAP2K1"
+        ],
+        "ablation": [
+          "CDK6",
+          "FGFR1",
+          "STAT3"
+        ],
+        "shared": [],
+        "n_shared": 0,
+        "type": "changed"
+      },
+      {
+        "cancer": "Endometrial Carcinoma",
+        "baseline": [
+          "CDK2",
+          "EGFR",
+          "MET"
+        ],
+        "ablation": [
+          "CDK2",
+          "FYN",
+          "STAT3"
+        ],
+        "shared": [
+          "CDK2"
+        ],
+        "n_shared": 1,
+        "type": "changed"
+      },
+      {
+        "cancer": "Esophagogastric Adenocarcinoma",
+        "baseline": [
+          "CDK6",
+          "EGFR",
+          "PIK3CA"
+        ],
+        "ablation": [
+          "CDK6",
+          "PIK3CA",
+          "STAT3"
+        ],
+        "shared": [
+          "CDK6",
+          "PIK3CA"
+        ],
+        "n_shared": 2,
+        "type": "changed"
+      },
+      {
+        "cancer": "Head and Neck Squamous Cell Carcinoma",
+        "baseline": [
+          "CDK4",
+          "CDK6",
+          "ERBB2"
+        ],
+        "ablation": [
+          "CDK6",
+          "ERBB2",
+          "STAT3"
+        ],
+        "shared": [
+          "CDK6",
+          "ERBB2"
+        ],
+        "n_shared": 2,
+        "type": "changed"
+      },
+      {
+        "cancer": "Hepatocellular Carcinoma",
+        "baseline": [
+          "BCL2L1",
+          "EGFR",
+          "MAP2K1"
+        ],
+        "ablation": [
+          "CDK4",
+          "FGFR1",
+          "STAT3"
+        ],
+        "shared": [],
+        "n_shared": 0,
+        "type": "changed"
+      },
+      {
+        "cancer": "Invasive Breast Carcinoma",
+        "baseline": [
+          "BCL2L1",
+          "EGFR",
+          "MAP2K1"
+        ],
+        "ablation": [
+          "CDK4",
+          "ERBB2",
+          "STAT3"
+        ],
+        "shared": [],
+        "n_shared": 0,
+        "type": "changed"
+      },
+      {
+        "cancer": "Liposarcoma",
+        "baseline": [
+          "EGFR",
+          "FGFR1",
+          "MET"
+        ],
+        "ablation": [
+          "CDK4",
+          "FGFR1",
+          "STAT3"
+        ],
+        "shared": [
+          "FGFR1"
+        ],
+        "n_shared": 1,
+        "type": "changed"
+      },
+      {
+        "cancer": "Melanoma",
+        "baseline": [
+          "BRAF",
+          "CDK6",
+          "EGFR"
+        ],
+        "ablation": [
+          "BRAF",
+          "CDK4",
+          "STAT3"
+        ],
+        "shared": [
+          "BRAF"
+        ],
+        "n_shared": 1,
+        "type": "changed"
+      },
+      {
+        "cancer": "Non-Small Cell Lung Cancer",
+        "baseline": [
+          "CDK6",
+          "EGFR",
+          "MAP2K1"
+        ],
+        "ablation": [
+          "CDK6",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "shared": [
+          "CDK6",
+          "MAP2K1"
+        ],
+        "n_shared": 2,
+        "type": "changed"
+      },
+      {
+        "cancer": "Ovarian Epithelial Tumor",
+        "baseline": [
+          "CDK6",
+          "EGFR",
+          "MET"
+        ],
+        "ablation": [
+          "ERBB2",
+          "FYN",
+          "STAT3"
+        ],
+        "shared": [],
+        "n_shared": 0,
+        "type": "changed"
+      },
+      {
+        "cancer": "Pancreatic Adenocarcinoma",
+        "baseline": [
+          "FYN",
+          "KRAS",
+          "STAT3"
+        ],
+        "ablation": [
+          "CDK6",
+          "KRAS",
+          "STAT3"
+        ],
+        "shared": [
+          "KRAS",
+          "STAT3"
+        ],
+        "n_shared": 2,
+        "type": "changed"
+      },
+      {
+        "cancer": "Prostate Adenocarcinoma",
+        "baseline": [
+          "CDK2",
+          "EGFR",
+          "MAP2K1"
+        ],
+        "ablation": [
+          "CDK4",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "shared": [
+          "MAP2K1"
+        ],
+        "n_shared": 1,
+        "type": "changed"
+      },
+      {
+        "cancer": "Renal Cell Carcinoma",
+        "baseline": [
+          "CDK6",
+          "EGFR",
+          "MAP2K1"
+        ],
+        "ablation": [
+          "CDK6",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "shared": [
+          "CDK6",
+          "MAP2K1"
+        ],
+        "n_shared": 2,
+        "type": "changed"
+      }
+    ]
+  },
+  {
+    "condition": "Lineage-aware statistical",
+    "any_overlap": 0.4883720930232558,
+    "pair_overlap": 0.3488372093023256,
+    "exact": 0.06976744186046512,
+    "n_predictions": 17,
+    "top1_changed": 5,
+    "top1_same": 12,
+    "top1_lost": 0,
+    "changes": [
+      {
+        "cancer": "Acute Myeloid Leukemia",
+        "baseline": [
+          "CDK6",
+          "MCL1",
+          "MET"
+        ],
+        "ablation": [
+          "CDK6",
+          "ERBB2",
+          "MCL1"
+        ],
+        "shared": [
+          "CDK6",
+          "MCL1"
+        ],
+        "n_shared": 2,
+        "type": "changed"
+      },
+      {
+        "cancer": "Colorectal Adenocarcinoma",
+        "baseline": [
+          "EGFR",
+          "KRAS",
+          "MET"
+        ],
+        "ablation": [
+          "BRAF",
+          "EGFR",
+          "KRAS"
+        ],
+        "shared": [
+          "EGFR",
+          "KRAS"
+        ],
+        "n_shared": 2,
+        "type": "changed"
+      },
+      {
+        "cancer": "Esophagogastric Adenocarcinoma",
+        "baseline": [
+          "CDK6",
+          "EGFR",
+          "PIK3CA"
+        ],
+        "ablation": [
+          "CDK6",
+          "EGFR",
+          "MAP2K1"
+        ],
+        "shared": [
+          "CDK6",
+          "EGFR"
+        ],
+        "n_shared": 2,
+        "type": "changed"
+      },
+      {
+        "cancer": "Invasive Breast Carcinoma",
+        "baseline": [
+          "BCL2L1",
+          "EGFR",
+          "MAP2K1"
+        ],
+        "ablation": [
+          "CDK4",
+          "ERBB2",
+          "PIK3CA"
+        ],
+        "shared": [],
+        "n_shared": 0,
+        "type": "changed"
+      },
+      {
+        "cancer": "Melanoma",
+        "baseline": [
+          "BRAF",
+          "CDK6",
+          "EGFR"
+        ],
+        "ablation": [
+          "CDK6",
+          "EGFR",
+          "MAP2K1"
+        ],
+        "shared": [
+          "CDK6",
+          "EGFR"
+        ],
+        "n_shared": 2,
+        "type": "changed"
+      }
+    ]
+  }
+]
