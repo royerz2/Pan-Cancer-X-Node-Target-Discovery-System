@@ -1,0 +1,195 @@
+{
+  "no_literature": {
+    "original": {
+      "total_gold_standard": 13,
+      "exact_matches": 0,
+      "superset_matches": 1,
+      "pair_overlap_matches": 4,
+      "any_overlap_matches": 3,
+      "no_match": 5,
+      "recall_exact": 0.0,
+      "recall_superset_or_better": 0.07692307692307693,
+      "recall_pair_overlap_or_better": 0.38461538461538464,
+      "recall_any_overlap_or_better": 0.6153846153846154,
+      "pairwise_matches": 4,
+      "recall_pairwise_or_better": 0.38461538461538464,
+      "mean_rank_when_matched": 1.0
+    },
+    "no_literature": {
+      "total_gold_standard": 13,
+      "exact_matches": 0,
+      "superset_matches": 1,
+      "pair_overlap_matches": 4,
+      "any_overlap_matches": 3,
+      "no_match": 5,
+      "recall_exact": 0.0,
+      "recall_superset_or_better": 0.07692307692307693,
+      "recall_pair_overlap_or_better": 0.38461538461538464,
+      "recall_any_overlap_or_better": 0.6153846153846154,
+      "pairwise_matches": 4,
+      "recall_pairwise_or_better": 0.38461538461538464,
+      "mean_rank_when_matched": 1.0
+    },
+    "delta_any_overlap": 0.0
+  },
+  "degree_matched": {
+    "observed": {
+      "any_overlap": 0.6153846153846154,
+      "pair_overlap": 0.38461538461538464
+    },
+    "null_mean": {
+      "any_overlap": 0.2912307692307693,
+      "pair_overlap": 0.09092307692307694,
+      "exact": 0.0003076923076923077
+    },
+    "null_std": {
+      "any_overlap": 0.14341985370885657,
+      "pair_overlap": 0.09628839816562416,
+      "exact": 0.006873325508827285
+    },
+    "p_any_overlap": 0.029970029970029972,
+    "p_pair_overlap": 0.012987012987012988,
+    "n_iterations": 1000
+  },
+  "network_scramble": {
+    "observed": {
+      "any_overlap": 0.6153846153846154,
+      "pair_overlap": 0.38461538461538464
+    },
+    "null_mean": {
+      "any_overlap": 0.0,
+      "pair_overlap": 0.0,
+      "exact": 0.0
+    },
+    "null_std": {
+      "any_overlap": 0.0,
+      "pair_overlap": 0.0,
+      "exact": 0.0
+    },
+    "p_any_overlap": 0.047619047619047616,
+    "p_pair_overlap": 0.047619047619047616,
+    "n_permutations": 20,
+    "permutation_results": [
+      {
+        "any_overlap": 0,
+        "pair_overlap": 0,
+        "exact": 0,
+        "n_cancers": 0
+      },
+      {
+        "any_overlap": 0,
+        "pair_overlap": 0,
+        "exact": 0,
+        "n_cancers": 0
+      },
+      {
+        "any_overlap": 0,
+        "pair_overlap": 0,
+        "exact": 0,
+        "n_cancers": 0
+      },
+      {
+        "any_overlap": 0,
+        "pair_overlap": 0,
+        "exact": 0,
+        "n_cancers": 0
+      },
+      {
+        "any_overlap": 0,
+        "pair_overlap": 0,
+        "exact": 0,
+        "n_cancers": 0
+      },
+      {
+        "any_overlap": 0,
+        "pair_overlap": 0,
+        "exact": 0,
+        "n_cancers": 0
+      },
+      {
+        "any_overlap": 0,
+        "pair_overlap": 0,
+        "exact": 0,
+        "n_cancers": 0
+      },
+      {
+        "any_overlap": 0,
+        "pair_overlap": 0,
+        "exact": 0,
+        "n_cancers": 0
+      },
+      {
+        "any_overlap": 0,
+        "pair_overlap": 0,
+        "exact": 0,
+        "n_cancers": 0
+      },
+      {
+        "any_overlap": 0,
+        "pair_overlap": 0,
+        "exact": 0,
+        "n_cancers": 0
+      },
+      {
+        "any_overlap": 0,
+        "pair_overlap": 0,
+        "exact": 0,
+        "n_cancers": 0
+      },
+      {
+        "any_overlap": 0,
+        "pair_overlap": 0,
+        "exact": 0,
+        "n_cancers": 0
+      },
+      {
+        "any_overlap": 0,
+        "pair_overlap": 0,
+        "exact": 0,
+        "n_cancers": 0
+      },
+      {
+        "any_overlap": 0,
+        "pair_overlap": 0,
+        "exact": 0,
+        "n_cancers": 0
+      },
+      {
+        "any_overlap": 0,
+        "pair_overlap": 0,
+        "exact": 0,
+        "n_cancers": 0
+      },
+      {
+        "any_overlap": 0,
+        "pair_overlap": 0,
+        "exact": 0,
+        "n_cancers": 0
+      },
+      {
+        "any_overlap": 0,
+        "pair_overlap": 0,
+        "exact": 0,
+        "n_cancers": 0
+      },
+      {
+        "any_overlap": 0,
+        "pair_overlap": 0,
+        "exact": 0,
+        "n_cancers": 0
+      },
+      {
+        "any_overlap": 0,
+        "pair_overlap": 0,
+        "exact": 0,
+        "n_cancers": 0
+      },
+      {
+        "any_overlap": 0,
+        "pair_overlap": 0,
+        "exact": 0,
+        "n_cancers": 0
+      }
+    ]
+  }
+}

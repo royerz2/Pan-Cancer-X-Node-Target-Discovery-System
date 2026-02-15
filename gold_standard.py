@@ -611,51 +611,132 @@ CANCER_ALIASES: Dict[str, List[str]] = {
 
 
 # ============================================================================
-# TESTABILITY FILTER
+# TESTABILITY FILTER  (output-independent pharmacological criterion)
 # ============================================================================
 #
-# Some gold-standard entries are structurally unmatchable by a CRISPR/DepMap
-# pipeline for one of two reasons:
+# "Testable" is defined by two criteria that can be verified BEFORE running
+# the pipeline, using only public external references:
 #
-#   1. **No DepMap cell lines**: the cancer type maps to an empty alias list
-#      in CANCER_ALIASES, so the pipeline never produces predictions
-#      for that cancer (7 cancer types: Biliary Tract Cancer, CLL,
-#      Low-Grade Serous Ovarian, Medullary Thyroid, Myeloma, GIST,
-#      Cholangiocarcinoma).
+#   1. **DepMap representability**: the cancer type has ≥5 cell lines in the
+#      DepMap CRISPR screen, i.e. a non-empty CANCER_ALIASES mapping
+#      (verified: all non-empty mappings yield ≥5 lines; Prostate = 6 is
+#      the minimum).  Seven cancer types have zero lines.
 #
-#   2. **Non-CRISPR target modality**: one or more targets in the combination
-#      act through a mechanism that CRISPR knockout screens cannot capture —
-#      endocrine receptors (ESR1), metabolic enzymes (CYP19A1, CYP17A1),
-#      secreted growth factors (VEGFA), anti-angiogenic targets (KDR),
-#      proteasome subunits (PSMB5), and epigenetic erasers (HDAC6).
+#   2. **Pharmacological testability**: every gold-standard target in the
+#      entry has ≥1 inhibitor at Phase 2 or above per DGIdb 5.0, ChEMBL 34,
+#      and FDA labels.  This ensures the combination is, in principle,
+#      clinically actionable.
 #
-# We report recall on BOTH the full 43-entry gold standard (for honesty) and
-# the testable subset (for a fair assessment of CRISPR-based pipeline power).
+# We report concordance on the full 43-entry gold standard (primary) and
+# the testable subset (secondary, for pharmacologically actionable entries).
+#
+# NOTE: The old filter additionally excluded "non-CRISPR target modalities"
+# (ESR1, CYP19A1, CYP17A1, VEGFA, KDR, PSMB5, HDAC6).  That criterion
+# was output-coupled (defined by what the pipeline *can* detect).  The new
+# pharmacological criterion is strictly external.
 
+# ---------------------------------------------------------------------------
+# Phase 2+ inhibitor availability per gold-standard target
+# Source: DGIdb 5.0, ChEMBL 34, FDA labels.  Independent of pipeline.
+# ---------------------------------------------------------------------------
+
+GOLD_STANDARD_TARGET_DRUGGABILITY: Dict[str, Dict] = {
+    # RTK / EGFR family
+    'EGFR':    {'stage': 'approved', 'exemplar': 'osimertinib'},
+    'ERBB2':   {'stage': 'approved', 'exemplar': 'trastuzumab'},
+    'ERBB3':   {'stage': 'phase3',   'exemplar': 'patritumab deruxtecan'},
+    'MET':     {'stage': 'approved', 'exemplar': 'capmatinib'},
+    'ALK':     {'stage': 'approved', 'exemplar': 'alectinib'},
+    'RET':     {'stage': 'approved', 'exemplar': 'selpercatinib'},
+    'KIT':     {'stage': 'approved', 'exemplar': 'imatinib'},
+    'FGFR1':   {'stage': 'approved', 'exemplar': 'erdafitinib'},
+    'FGFR2':   {'stage': 'approved', 'exemplar': 'futibatinib'},
+    'KDR':     {'stage': 'approved', 'exemplar': 'lenvatinib'},
+    # RAS-MAPK
+    'KRAS':    {'stage': 'approved', 'exemplar': 'sotorasib'},
+    'BRAF':    {'stage': 'approved', 'exemplar': 'dabrafenib'},
+    'MAP2K1':  {'stage': 'approved', 'exemplar': 'trametinib'},
+    # PI3K-AKT-mTOR
+    'PIK3CA':  {'stage': 'approved', 'exemplar': 'alpelisib'},
+    'PIK3CD':  {'stage': 'approved', 'exemplar': 'idelalisib'},
+    'AKT1':    {'stage': 'phase3',   'exemplar': 'capivasertib'},
+    'MTOR':    {'stage': 'approved', 'exemplar': 'everolimus'},
+    # Cell cycle
+    'CDK4':    {'stage': 'approved', 'exemplar': 'palbociclib'},
+    'CDK6':    {'stage': 'approved', 'exemplar': 'ribociclib'},
+    # JAK-STAT
+    'STAT3':   {'stage': 'phase2',   'exemplar': 'napabucasin'},
+    # Apoptosis
+    'BCL2':    {'stage': 'approved', 'exemplar': 'venetoclax'},
+    # PARP
+    'PARP1':   {'stage': 'approved', 'exemplar': 'olaparib'},
+    # IDH
+    'IDH1':    {'stage': 'approved', 'exemplar': 'ivosidenib'},
+    'IDH2':    {'stage': 'approved', 'exemplar': 'enasidenib'},
+    # FLT3
+    'FLT3':    {'stage': 'approved', 'exemplar': 'gilteritinib'},
+    # BTK
+    'BTK':     {'stage': 'approved', 'exemplar': 'ibrutinib'},
+    # Endocrine / hormone
+    'ESR1':    {'stage': 'approved', 'exemplar': 'fulvestrant'},
+    'CYP19A1': {'stage': 'approved', 'exemplar': 'letrozole'},
+    'CYP17A1': {'stage': 'approved', 'exemplar': 'abiraterone'},
+    # Proteasome / epigenetic
+    'PSMB5':   {'stage': 'approved', 'exemplar': 'bortezomib'},
+    'HDAC6':   {'stage': 'approved', 'exemplar': 'panobinostat'},
+    # FAK
+    'PTK2':    {'stage': 'approved', 'exemplar': 'defactinib'},
+    # Menin
+    'MEN1':    {'stage': 'approved', 'exemplar': 'revumenib'},
+    # MDM2
+    'MDM2':    {'stage': 'phase3',   'exemplar': 'milademetan'},
+}
+
+# Stage hierarchy for Phase 2+ threshold
+_STAGE_RANK = {'approved': 4, 'phase3': 3, 'phase2': 2, 'phase1': 1, 'preclinical': 0}
+
+# Legacy set kept for backward-compatible reference in comments/docs
 NON_CRISPR_TARGETS: Set[str] = {
-    'ESR1',     # estrogen receptor — endocrine therapy (fulvestrant, tamoxifen)
-    'CYP19A1',  # aromatase — endocrine (letrozole, anastrozole, exemestane)
-    'CYP17A1',  # steroid 17α-hydroxylase — endocrine (abiraterone)
-    'VEGFA',    # secreted VEGF ligand — anti-angiogenic antibody (bevacizumab)
-    'KDR',      # VEGFR2 — anti-angiogenic (lenvatinib, sunitinib, cediranib)
-    'PSMB5',    # proteasome β5 subunit (bortezomib)
-    'HDAC6',    # histone deacetylase (panobinostat)
+    'ESR1', 'CYP19A1', 'CYP17A1', 'VEGFA', 'KDR', 'PSMB5', 'HDAC6',
 }
 
 
 def is_testable(entry: Dict) -> bool:
-    """Check if a gold standard entry is testable by a CRISPR/DepMap pipeline.
+    """Check if a gold-standard entry is pharmacologically testable.
 
-    Returns True if:
-      (1) the cancer type has a non-empty alias mapping (DepMap cell lines), AND
-      (2) none of the gold-standard targets are in NON_CRISPR_TARGETS.
+    Output-independent criterion applied BEFORE looking at concordance:
+      (1) cancer type has ≥5 DepMap cell lines (non-empty CANCER_ALIASES), AND
+      (2) every target has ≥1 inhibitor at Phase 2+ per external pharmacological
+          reference (GOLD_STANDARD_TARGET_DRUGGABILITY).
     """
-    # Criterion 1: cancer type must map to at least one pipeline cancer
+    # Criterion 1: DepMap representability (≥5 cell lines ↔ non-empty alias)
     cancer = entry['cancer']
     if cancer in CANCER_ALIASES:
-        if not CANCER_ALIASES[cancer]:  # empty list
+        if not CANCER_ALIASES[cancer]:
             return False
-    # Criterion 2: all targets must be plausible CRISPR essentiality targets
+    # Criterion 2: pharmacological coverage — all targets Phase 2+
+    for target in entry['targets']:
+        info = GOLD_STANDARD_TARGET_DRUGGABILITY.get(target)
+        if info is None:
+            return False  # unknown target → not testable
+        if _STAGE_RANK.get(info['stage'], 0) < _STAGE_RANK['phase2']:
+            return False  # below Phase 2
+    return True
+
+
+def is_testable_legacy(entry: Dict) -> bool:
+    """Legacy testability filter (pre-pharmacological criterion).
+
+    Returns True if:
+      (1) cancer has non-empty alias mapping, AND
+      (2) no target is in NON_CRISPR_TARGETS.
+
+    Kept for comparison / backward compatibility only.
+    """
+    cancer = entry['cancer']
+    if cancer in CANCER_ALIASES:
+        if not CANCER_ALIASES[cancer]:
+            return False
     if entry['targets'] & NON_CRISPR_TARGETS:
         return False
     return True
@@ -1102,7 +1183,7 @@ def run_benchmark(
     n_any_overlap = sum(1 for r in results if r['best_match'] in ('exact', 'superset', 'pair_overlap', 'any_overlap'))
     n_no_prediction = sum(1 for r in results if r['pipeline_cancer'] == 'NO_PREDICTION')
 
-    # Testable-only recall (entries where cancer has DepMap lines AND targets are CRISPR-plausible)
+    # Testable-only recall (pharmacological criterion: DepMap ≥5 lines + all targets Phase 2+)
     testable_results = [r for r, e in zip(results, gold_entries) if is_testable(e)]
     nt = len(testable_results)
     nt_exact = sum(1 for r in testable_results if r['best_match'] == 'exact')

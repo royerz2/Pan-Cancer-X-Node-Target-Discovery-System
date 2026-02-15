@@ -1,0 +1,18 @@
+Cancer Type,Cell Lines,Target 1,Target 2,Target 3,Drug 1,Drug 2,Drug 3,Synergy,Resistance,Coverage,Druggable,Best_Combo_Size,Best_Combo_1,Best_Combo_2,Best_Combo_3,Best_Combo_Score
+Acute Myeloid Leukemia,64,CDK6,ERBB2,MET,palbociclib,trastuzumab,capmatinib,0.81,0.0,37.9%,3/3,3,CDK6,ERBB2,MET,0.507
+Anaplastic Thyroid Cancer,13,BRAF,MAP2K1,STAT3,vemurafenib,trametinib,napabucasin,0.81,0.35,66.1%,3/3,3,BRAF,MAP2K1,STAT3,0.535
+Bladder Urothelial Carcinoma,35,CDK6,MAP2K1,STAT3,palbociclib,trametinib,napabucasin,0.94,0.35,59.6%,3/3,3,CDK6,MAP2K1,STAT3,0.587
+Colorectal Adenocarcinoma,96,CDK4,KRAS,STAT3,palbociclib,sotorasib,napabucasin,0.94,0.47,58.0%,3/3,3,CDK4,KRAS,STAT3,0.539
+Diffuse Glioma,96,CDK6,MAP2K1,MET,palbociclib,trametinib,capmatinib,0.94,0.0,32.2%,3/3,3,CDK6,MAP2K1,MET,0.561
+Endometrial Carcinoma,37,CDK2,FYN,STAT3,dinaciclib,dasatinib,napabucasin,0.94,0.35,50.0%,3/3,3,CDK2,FYN,STAT3,0.589
+Esophagogastric Adenocarcinoma,74,CDK6,ERBB2,MET,palbociclib,trastuzumab,capmatinib,0.81,0.0,36.2%,3/3,3,CDK6,ERBB2,MET,0.573
+Head and Neck Squamous Cell Carcinoma,89,CDK6,ERBB2,MAP2K1,palbociclib,trastuzumab,trametinib,0.94,0.0,45.3%,3/3,3,CDK6,ERBB2,MAP2K1,0.514
+Hepatocellular Carcinoma,24,CDK4,FGFR1,STAT3,palbociclib,erdafitinib,napabucasin,0.94,0.44,58.8%,3/3,3,CDK4,FGFR1,STAT3,0.555
+Invasive Breast Carcinoma,82,CDK4,ERBB2,STAT3,palbociclib,trastuzumab,napabucasin,0.94,0.44,69.6%,3/3,3,CDK4,ERBB2,STAT3,0.508
+Liposarcoma,13,CDK4,FGFR1,STAT3,palbociclib,erdafitinib,napabucasin,0.94,0.44,53.7%,3/3,3,CDK4,FGFR1,STAT3,0.493
+Melanoma,135,BRAF,CDK4,STAT3,vemurafenib,palbociclib,napabucasin,0.94,0.47,68.3%,3/3,3,BRAF,CDK4,STAT3,0.474
+Non-Small Cell Lung Cancer,165,CDK6,MAP2K1,STAT3,palbociclib,trametinib,napabucasin,0.94,0.35,63.2%,3/3,3,CDK6,MAP2K1,STAT3,0.575
+Ovarian Epithelial Tumor,71,CDK2,ERBB2,MET,dinaciclib,trastuzumab,capmatinib,0.81,0.0,31.4%,3/3,3,CDK2,ERBB2,MET,0.58
+Pancreatic Adenocarcinoma,64,CDK6,KRAS,STAT3,palbociclib,sotorasib,napabucasin,0.94,0.44,51.9%,3/3,3,CDK6,KRAS,STAT3,0.502
+Prostate Adenocarcinoma,6,CDK4,MAP2K1,STAT3,palbociclib,trametinib,napabucasin,0.94,0.44,59.3%,3/3,3,CDK4,MAP2K1,STAT3,0.49
+Renal Cell Carcinoma,56,CDK6,MAP2K1,MET,palbociclib,trametinib,capmatinib,0.94,0.0,32.7%,3/3,3,CDK6,MAP2K1,MET,0.56

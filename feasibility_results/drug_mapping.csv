@@ -1,0 +1,52 @@
+Cancer_Type,Gene,Available_Drugs,Clinical_Stage,Availability_Score,Selectivity_Caveats,Narrow_TW,Toxicities
+Esophagogastric Adenocarcinoma,CDK6,"palbociclib, ribociclib, abemaciclib",approved,1.00,-,-,neutropenia
+Esophagogastric Adenocarcinoma,EGFR,"erlotinib, gefitinib, osimertinib, afatinib, cetuximab",approved,1.00,-,-,"rash, diarrhea, ILD"
+Esophagogastric Adenocarcinoma,PIK3CA,"alpelisib, idelalisib, copanlisib",approved,1.00,-,-,"hyperglycemia, rash, diarrhea"
+Colorectal Adenocarcinoma,BRAF,"vemurafenib, dabrafenib, encorafenib",approved,1.00,-,-,"rash, photosensitivity"
+Colorectal Adenocarcinoma,EGFR,"erlotinib, gefitinib, osimertinib, afatinib, cetuximab",approved,1.00,-,-,"rash, diarrhea, ILD"
+Colorectal Adenocarcinoma,KRAS,"sotorasib, adagrasib",approved,0.90,-,-,"diarrhea, hepatotoxicity"
+Pancreatic Adenocarcinoma,BRAF,"vemurafenib, dabrafenib, encorafenib",approved,1.00,-,-,"rash, photosensitivity"
+Pancreatic Adenocarcinoma,KRAS,"sotorasib, adagrasib",approved,0.90,-,-,"diarrhea, hepatotoxicity"
+Pancreatic Adenocarcinoma,STAT3,"napabucasin, TTI-101, stattic",phase2,0.65,-,-,GI toxicity
+Melanoma,CDK6,"palbociclib, ribociclib, abemaciclib",approved,1.00,-,-,neutropenia
+Melanoma,EGFR,"erlotinib, gefitinib, osimertinib, afatinib, cetuximab",approved,1.00,-,-,"rash, diarrhea, ILD"
+Melanoma,MAP2K1,"trametinib, cobimetinib, binimetinib",approved,1.00,-,-,"rash, retinopathy"
+Non-Small Cell Lung Cancer,CDK6,"palbociclib, ribociclib, abemaciclib",approved,1.00,-,-,neutropenia
+Non-Small Cell Lung Cancer,EGFR,"erlotinib, gefitinib, osimertinib, afatinib, cetuximab",approved,1.00,-,-,"rash, diarrhea, ILD"
+Non-Small Cell Lung Cancer,MAP2K1,"trametinib, cobimetinib, binimetinib",approved,1.00,-,-,"rash, retinopathy"
+Anaplastic Thyroid Cancer,CDK6,"palbociclib, ribociclib, abemaciclib",approved,1.00,-,-,neutropenia
+Anaplastic Thyroid Cancer,EGFR,"erlotinib, gefitinib, osimertinib, afatinib, cetuximab",approved,1.00,-,-,"rash, diarrhea, ILD"
+Anaplastic Thyroid Cancer,MAP2K1,"trametinib, cobimetinib, binimetinib",approved,1.00,-,-,"rash, retinopathy"
+Invasive Breast Carcinoma,BCL2L1,navitoclax,phase2,0.55,navitoclax: BCL2/BCL-XL/BCL-W (on-target thrombocytopenia from BCL-XL),On-target thrombocytopenia (navitoclax); limits dosing,thrombocytopenia
+Invasive Breast Carcinoma,EGFR,"erlotinib, gefitinib, osimertinib, afatinib, cetuximab",approved,1.00,-,-,"rash, diarrhea, ILD"
+Invasive Breast Carcinoma,MAP2K1,"trametinib, cobimetinib, binimetinib",approved,1.00,-,-,"rash, retinopathy"
+Renal Cell Carcinoma,CDK6,"palbociclib, ribociclib, abemaciclib",approved,1.00,-,-,neutropenia
+Renal Cell Carcinoma,EGFR,"erlotinib, gefitinib, osimertinib, afatinib, cetuximab",approved,1.00,-,-,"rash, diarrhea, ILD"
+Renal Cell Carcinoma,MAP2K1,"trametinib, cobimetinib, binimetinib",approved,1.00,-,-,"rash, retinopathy"
+Prostate Adenocarcinoma,CDK2,dinaciclib,phase2,0.55,dinaciclib: CDK1/2/5/9 (pan-CDK; narrow therapeutic window),"Pan-CDK inhibitor dinaciclib: severe myelosuppression, narrow TW",myelosuppression
+Prostate Adenocarcinoma,EGFR,"erlotinib, gefitinib, osimertinib, afatinib, cetuximab",approved,1.00,-,-,"rash, diarrhea, ILD"
+Prostate Adenocarcinoma,MAP2K1,"trametinib, cobimetinib, binimetinib",approved,1.00,-,-,"rash, retinopathy"
+Bladder Urothelial Carcinoma,CDK2,dinaciclib,phase2,0.55,dinaciclib: CDK1/2/5/9 (pan-CDK; narrow therapeutic window),"Pan-CDK inhibitor dinaciclib: severe myelosuppression, narrow TW",myelosuppression
+Bladder Urothelial Carcinoma,EGFR,"erlotinib, gefitinib, osimertinib, afatinib, cetuximab",approved,1.00,-,-,"rash, diarrhea, ILD"
+Bladder Urothelial Carcinoma,MAP2K1,"trametinib, cobimetinib, binimetinib",approved,1.00,-,-,"rash, retinopathy"
+Acute Myeloid Leukemia,CDK4,"palbociclib, ribociclib, abemaciclib",approved,1.00,-,-,neutropenia
+Acute Myeloid Leukemia,CDK6,"palbociclib, ribociclib, abemaciclib",approved,1.00,-,-,neutropenia
+Acute Myeloid Leukemia,MCL1,"AMG-176, S64315",phase1,0.35,-,"Dose-limiting cardiotoxicity in Phase 1 (AMG-176, S64315)",cardiotoxicity
+Head and Neck Squamous Cell Carcinoma,CDK4,"palbociclib, ribociclib, abemaciclib",approved,1.00,-,-,neutropenia
+Head and Neck Squamous Cell Carcinoma,CDK6,"palbociclib, ribociclib, abemaciclib",approved,1.00,-,-,neutropenia
+Head and Neck Squamous Cell Carcinoma,ERBB2,"trastuzumab, pertuzumab, lapatinib, tucatinib",approved,1.00,-,-,cardiotoxicity
+Ovarian Epithelial Tumor,CDK6,"palbociclib, ribociclib, abemaciclib",approved,1.00,-,-,neutropenia
+Ovarian Epithelial Tumor,EGFR,"erlotinib, gefitinib, osimertinib, afatinib, cetuximab",approved,1.00,-,-,"rash, diarrhea, ILD"
+Ovarian Epithelial Tumor,MET,"capmatinib, tepotinib, crizotinib, cabozantinib",approved,1.00,crizotinib: ALK/MET/ROS1/RON (multi-target); cabozantinib: MET/KDR/AXL/RET/KIT/FLT3 (multi-target),-,"edema, nausea"
+Endometrial Carcinoma,CDK2,dinaciclib,phase2,0.55,dinaciclib: CDK1/2/5/9 (pan-CDK; narrow therapeutic window),"Pan-CDK inhibitor dinaciclib: severe myelosuppression, narrow TW",myelosuppression
+Endometrial Carcinoma,EGFR,"erlotinib, gefitinib, osimertinib, afatinib, cetuximab",approved,1.00,-,-,"rash, diarrhea, ILD"
+Endometrial Carcinoma,MET,"capmatinib, tepotinib, crizotinib, cabozantinib",approved,1.00,crizotinib: ALK/MET/ROS1/RON (multi-target); cabozantinib: MET/KDR/AXL/RET/KIT/FLT3 (multi-target),-,"edema, nausea"
+Hepatocellular Carcinoma,EGFR,"erlotinib, gefitinib, osimertinib, afatinib, cetuximab",approved,1.00,-,-,"rash, diarrhea, ILD"
+Hepatocellular Carcinoma,FGFR1,"erdafitinib, pemigatinib",approved,0.90,-,-,-
+Hepatocellular Carcinoma,MET,"capmatinib, tepotinib, crizotinib, cabozantinib",approved,1.00,crizotinib: ALK/MET/ROS1/RON (multi-target); cabozantinib: MET/KDR/AXL/RET/KIT/FLT3 (multi-target),-,"edema, nausea"
+Liposarcoma,EGFR,"erlotinib, gefitinib, osimertinib, afatinib, cetuximab",approved,1.00,-,-,"rash, diarrhea, ILD"
+Liposarcoma,FGFR1,"erdafitinib, pemigatinib",approved,0.90,-,-,-
+Liposarcoma,MET,"capmatinib, tepotinib, crizotinib, cabozantinib",approved,1.00,crizotinib: ALK/MET/ROS1/RON (multi-target); cabozantinib: MET/KDR/AXL/RET/KIT/FLT3 (multi-target),-,"edema, nausea"
+Diffuse Glioma,EGFR,"erlotinib, gefitinib, osimertinib, afatinib, cetuximab",approved,1.00,-,-,"rash, diarrhea, ILD"
+Diffuse Glioma,FGFR1,"erdafitinib, pemigatinib",approved,0.90,-,-,-
+Diffuse Glioma,MET,"capmatinib, tepotinib, crizotinib, cabozantinib",approved,1.00,crizotinib: ALK/MET/ROS1/RON (multi-target); cabozantinib: MET/KDR/AXL/RET/KIT/FLT3 (multi-target),-,"edema, nausea"

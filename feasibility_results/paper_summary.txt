@@ -1,0 +1,35 @@
+PAPER-READY NUMBERS
+==================================================
+N predictions: 17
+Mean feasibility: 0.783
+Range: 0.580–0.988
+High tier (≥0.60): 16/17
+Medium tier (0.35–0.59): 1/17
+Low tier (<0.35): 0/17
+All targets approved drugs: 11/17
+Total red flags: 21
+Critical/high red flags: 3
+With clinical precedent: 8/17
+Mean |rank change|: 2.5
+Predictions moving ≥3: 5
+
+TOP 5 most feasible:
+  Non-Small Cell Lung Cancer: CDK6+EGFR+MAP2K1 feas=0.988
+  Colorectal Adenocarcinoma: BRAF+EGFR+KRAS feas=0.952
+  Hepatocellular Carcinoma: EGFR+FGFR1+MET feas=0.945
+  Melanoma: CDK6+EGFR+MAP2K1 feas=0.887
+  Anaplastic Thyroid Cancer: CDK6+EGFR+MAP2K1 feas=0.887
+
+BOTTOM 5 least feasible:
+  Acute Myeloid Leukemia: CDK4+CDK6+MCL1 feas=0.580 flags=1
+  Endometrial Carcinoma: CDK2+EGFR+MET feas=0.650 flags=1
+  Head and Neck Squamous Cell Carcinoma: CDK4+CDK6+ERBB2 feas=0.675 flags=1
+  Prostate Adenocarcinoma: CDK2+EGFR+MAP2K1 feas=0.693 flags=1
+  Esophagogastric Adenocarcinoma: CDK6+EGFR+PIK3CA feas=0.732 flags=3
+
+BIGGEST RANK CHANGES:
+  Non-Small Cell Lung Cancer: #12→#3 (change=+9) feas=0.988
+  Hepatocellular Carcinoma: #15→#6 (change=+9) feas=0.945
+  Esophagogastric Adenocarcinoma: #9→#13 (change=-4) feas=0.732
+  Endometrial Carcinoma: #11→#15 (change=-4) feas=0.650
+  Liposarcoma: #5→#9 (change=-4) feas=0.745

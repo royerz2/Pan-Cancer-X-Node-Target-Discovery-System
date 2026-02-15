@@ -1,0 +1,77 @@
+{
+  "actual_matches": 5,
+  "actual_total": 9,
+  "actual_rate": 0.5555555555555556,
+  "uniform_baseline": {
+    "mean_matches": 0.26345,
+    "std_matches": 0.4975782325423812,
+    "mean_rate": 0.029272222222222224,
+    "empirical_p": 0.0,
+    "n_simulations": 100000,
+    "gene_pool_size": 52
+  },
+  "degree_matched_baseline": {
+    "mean_matches": 1.33401,
+    "std_matches": 0.8522835912417885,
+    "mean_rate": 0.14822333333333332,
+    "empirical_p": 0.0,
+    "n_simulations": 100000,
+    "gene_pool_size": 14
+  },
+  "per_entry": [
+    {
+      "cancer": "Melanoma",
+      "doublet": "BRAF+MAP2K1",
+      "known_third": "CDK4",
+      "match": true
+    },
+    {
+      "cancer": "Melanoma",
+      "doublet": "BRAF+MAP2K1",
+      "known_third": "EGFR",
+      "match": true
+    },
+    {
+      "cancer": "Colorectal Adenocarcinoma",
+      "doublet": "BRAF+EGFR",
+      "known_third": "MAP2K1",
+      "match": false
+    },
+    {
+      "cancer": "Colorectal Adenocarcinoma",
+      "doublet": "BRAF+EGFR",
+      "known_third": "PIK3CA",
+      "match": false
+    },
+    {
+      "cancer": "Non-Small Cell Lung Cancer",
+      "doublet": "EGFR+MET",
+      "known_third": "MAP2K1",
+      "match": true
+    },
+    {
+      "cancer": "Non-Small Cell Lung Cancer",
+      "doublet": "EGFR+MET",
+      "known_third": "CDK4",
+      "match": true
+    },
+    {
+      "cancer": "Invasive Breast Carcinoma",
+      "doublet": "CDK4+ERBB2",
+      "known_third": "PIK3CA",
+      "match": false
+    },
+    {
+      "cancer": "Invasive Breast Carcinoma",
+      "doublet": "CDK4+ERBB2",
+      "known_third": "MTOR",
+      "match": false
+    },
+    {
+      "cancer": "Pancreatic Adenocarcinoma",
+      "doublet": "EGFR+KRAS",
+      "known_third": "STAT3",
+      "match": true
+    }
+  ]
+}

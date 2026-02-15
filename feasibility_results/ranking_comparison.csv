@@ -1,0 +1,18 @@
+Cancer_Type,Targets,Combined_Score,Original_Rank,Feasibility,Adjusted_Score,Feasibility_Rank,Rank_Change
+Pancreatic Adenocarcinoma,BRAF+KRAS+STAT3,0.390,1,0.738,0.529,1,0
+Colorectal Adenocarcinoma,BRAF+EGFR+KRAS,0.919,4,0.952,0.965,2,+2
+Non-Small Cell Lung Cancer,CDK6+EGFR+MAP2K1,0.989,12,0.988,1.002,3,+9
+Anaplastic Thyroid Cancer,CDK6+EGFR+MAP2K1,0.896,2,0.887,1.010,4,-2
+Melanoma,CDK6+EGFR+MAP2K1,0.898,3,0.887,1.012,5,-2
+Hepatocellular Carcinoma,EGFR+FGFR1+MET,1.044,15,0.945,1.105,6,+9
+Renal Cell Carcinoma,CDK6+EGFR+MAP2K1,0.952,6,0.787,1.209,7,-1
+Invasive Breast Carcinoma,BCL2L1+EGFR+MAP2K1,0.959,7,0.792,1.210,8,-1
+Liposarcoma,EGFR+FGFR1+MET,0.951,5,0.745,1.277,9,-4
+Diffuse Glioma,EGFR+FGFR1+MET,0.961,8,0.745,1.290,10,-2
+Bladder Urothelial Carcinoma,CDK2+EGFR+MAP2K1,0.979,10,0.752,1.301,11,-1
+Ovarian Epithelial Tumor,CDK6+EGFR+MET,0.997,13,0.755,1.321,12,+1
+Esophagogastric Adenocarcinoma,CDK6+EGFR+PIK3CA,0.968,9,0.732,1.322,13,-4
+Prostate Adenocarcinoma,CDK2+EGFR+MAP2K1,1.008,14,0.693,1.456,14,0
+Endometrial Carcinoma,CDK2+EGFR+MET,0.979,11,0.650,1.506,15,-4
+Head and Neck Squamous Cell Carcinoma,CDK4+CDK6+ERBB2,1.060,16,0.675,1.570,16,0
+Acute Myeloid Leukemia,CDK4+CDK6+MCL1,1.140,17,0.580,1.966,17,0

@@ -1,0 +1,16 @@
+========================================================================
+TRANSLATIONAL FEASIBILITY — PAN-CANCER (77 TYPES)
+========================================================================
+
+Feasibility range: 0.568 – 0.988
+Mean: 0.706, Median: 0.710
+Tiers: High=72, Medium=5, Low=0
+
+Most common red flags:
+   44× moderate:overlapping_organ_tox
+   24× high:overlapping_organ_tox
+   18× moderate:known_ddi
+   16× critical:known_ddi
+
+Rank changes: mean=9.3, max=48
+Predictions moving ≥10 ranks: 26

@@ -1,0 +1,472 @@
+========================================================================
+TRANSLATIONAL FEASIBILITY ANALYSIS — BENCHMARK (17 CANCERS)
+========================================================================
+
+Feasibility score range: 0.580 – 0.988
+Mean feasibility: 0.783
+
+Feasibility tiers:
+  High (≥0.60): 16 predictions
+  Medium (0.35–0.59): 1 predictions
+  Low (<0.35): 0 predictions
+
+Drug availability: mean 0.935
+  Fully druggable (all 3 targets approved): 11/17
+
+Red flags: 21 total across 17 predictions
+  Critical: 0
+  High: 3
+
+Clinical precedent: 8/17 have ≥1 target pair in clinical trials
+
+Ranking impact:
+  Mean absolute rank change: 2.5
+  Max rank change: 9
+  Predictions moving ≥3 ranks: 5
+
+————————————————————————————————————————————————————————————————————————
+TOP 5 BY FEASIBILITY-ADJUSTED RANKING:
+   1. Pancreatic Adenocarcinoma                BRAF+KRAS+STAT3           feas=0.738 adj=0.529 (orig #1)
+   2. Colorectal Adenocarcinoma                BRAF+EGFR+KRAS            feas=0.952 adj=0.965 (orig #4)
+   3. Non-Small Cell Lung Cancer               CDK6+EGFR+MAP2K1          feas=0.988 adj=1.002 (orig #12)
+   4. Anaplastic Thyroid Cancer                CDK6+EGFR+MAP2K1          feas=0.887 adj=1.010 (orig #2)
+   5. Melanoma                                 CDK6+EGFR+MAP2K1          feas=0.887 adj=1.012 (orig #3)
+
+BOTTOM 5 BY FEASIBILITY-ADJUSTED RANKING:
+  13. Esophagogastric Adenocarcinoma           CDK6+EGFR+PIK3CA          feas=0.732 adj=1.322 (orig #9)
+  14. Prostate Adenocarcinoma                  CDK2+EGFR+MAP2K1          feas=0.693 adj=1.456 (orig #14)
+  15. Endometrial Carcinoma                    CDK2+EGFR+MET             feas=0.650 adj=1.506 (orig #11)
+  16. Head and Neck Squamous Cell Carcinoma    CDK4+CDK6+ERBB2           feas=0.675 adj=1.570 (orig #16)
+  17. Acute Myeloid Leukemia                   CDK4+CDK6+MCL1            feas=0.580 adj=1.966 (orig #17)
+
+========================================================================
+DETAILED PER-CANCER BREAKDOWN
+========================================================================
+
+————————————————————————————————————————————————————————————————————————
+Cancer: Pancreatic Adenocarcinoma
+Targets: BRAF + KRAS + STAT3
+Combined score: 0.390 (rank #1)
+Feasibility: 0.738
+Adjusted score: 0.529 (rank #1, change: 0)
+
+  Components:
+    Drug availability: 0.850
+    Selectivity:       1.000
+    Tox feasibility:   0.850
+    Clinical precedent:0.100
+
+  Drug mapping:
+    BRAF       → vemurafenib, dabrafenib, encorafenib [approved] (avail=1.00)
+    KRAS       → sotorasib, adagrasib [approved] (avail=0.90)
+    STAT3      → napabucasin, TTI-101, stattic [phase2] (avail=0.65)
+
+  Red flags (2):
+    [MODERATE] Overlapping gastrointestinal: STAT3+KRAS (2 targets share gastrointestinal risk)
+    [MODERATE] DDI (minor): sotorasib+napabucasin — Additive GI toxicity
+
+  Clinical precedent:
+    ✓ Partial: KRAS+STAT3 of EGFR+KRAS+STAT3 (Preclinical)
+
+————————————————————————————————————————————————————————————————————————
+Cancer: Colorectal Adenocarcinoma
+Targets: BRAF + EGFR + KRAS
+Combined score: 0.919 (rank #4)
+Feasibility: 0.952
+Adjusted score: 0.965 (rank #2, change: +2)
+
+  Components:
+    Drug availability: 0.967
+    Selectivity:       1.000
+    Tox feasibility:   0.850
+    Clinical precedent:1.000
+
+  Drug mapping:
+    BRAF       → vemurafenib, dabrafenib, encorafenib [approved] (avail=1.00)
+    EGFR       → erlotinib, gefitinib, osimertinib, afatinib, cetuximab [approved] (avail=1.00)
+    KRAS       → sotorasib, adagrasib [approved] (avail=0.90)
+
+  Red flags (2):
+    [MODERATE] Overlapping dermatologic: EGFR+BRAF (2 targets share dermatologic risk)
+    [MODERATE] Overlapping gastrointestinal: EGFR+KRAS (2 targets share gastrointestinal risk)
+
+  Clinical precedent:
+    ✓ Full match: BRAF+EGFR (FDA_approved)
+    ✓ Partial: BRAF+EGFR of BRAF+EGFR+MAP2K1 (Phase_3)
+    ✓ Full match: EGFR+KRAS (Phase_2)
+
+————————————————————————————————————————————————————————————————————————
+Cancer: Non-Small Cell Lung Cancer
+Targets: CDK6 + EGFR + MAP2K1
+Combined score: 0.989 (rank #12)
+Feasibility: 0.988
+Adjusted score: 1.002 (rank #3, change: +9)
+
+  Components:
+    Drug availability: 1.000
+    Selectivity:       1.000
+    Tox feasibility:   0.950
+    Clinical precedent:1.000
+
+  Drug mapping:
+    CDK6       → palbociclib, ribociclib, abemaciclib [approved] (avail=1.00)
+    EGFR       → erlotinib, gefitinib, osimertinib, afatinib, cetuximab [approved] (avail=1.00)
+    MAP2K1     → trametinib, cobimetinib, binimetinib [approved] (avail=1.00)
+
+  Red flags (1):
+    [MODERATE] Overlapping dermatologic: EGFR+MAP2K1 (2 targets share dermatologic risk)
+
+  Clinical precedent:
+    ✓ Partial: MAP2K1 of BRAF+MAP2K1 (FDA_approved)
+    ✓ Partial: EGFR of EGFR+MET (FDA_approved)
+    ✓ Partial: EGFR of EGFR+KRAS (Phase_2)
+    ✓ Full match: EGFR (FDA_approved)
+    ✓ Partial: MAP2K1 of KRAS+MAP2K1 (Phase_2)
+
+————————————————————————————————————————————————————————————————————————
+Cancer: Anaplastic Thyroid Cancer
+Targets: CDK6 + EGFR + MAP2K1
+Combined score: 0.896 (rank #2)
+Feasibility: 0.887
+Adjusted score: 1.010 (rank #4, change: -2)
+
+  Components:
+    Drug availability: 1.000
+    Selectivity:       1.000
+    Tox feasibility:   0.950
+    Clinical precedent:0.500
+
+  Drug mapping:
+    CDK6       → palbociclib, ribociclib, abemaciclib [approved] (avail=1.00)
+    EGFR       → erlotinib, gefitinib, osimertinib, afatinib, cetuximab [approved] (avail=1.00)
+    MAP2K1     → trametinib, cobimetinib, binimetinib [approved] (avail=1.00)
+
+  Red flags (1):
+    [MODERATE] Overlapping dermatologic: EGFR+MAP2K1 (2 targets share dermatologic risk)
+
+  Clinical precedent:
+    ✓ Partial: MAP2K1 of BRAF+MAP2K1 (FDA_approved)
+
+————————————————————————————————————————————————————————————————————————
+Cancer: Melanoma
+Targets: CDK6 + EGFR + MAP2K1
+Combined score: 0.898 (rank #3)
+Feasibility: 0.887
+Adjusted score: 1.012 (rank #5, change: -2)
+
+  Components:
+    Drug availability: 1.000
+    Selectivity:       1.000
+    Tox feasibility:   0.950
+    Clinical precedent:0.500
+
+  Drug mapping:
+    CDK6       → palbociclib, ribociclib, abemaciclib [approved] (avail=1.00)
+    EGFR       → erlotinib, gefitinib, osimertinib, afatinib, cetuximab [approved] (avail=1.00)
+    MAP2K1     → trametinib, cobimetinib, binimetinib [approved] (avail=1.00)
+
+  Red flags (1):
+    [MODERATE] Overlapping dermatologic: EGFR+MAP2K1 (2 targets share dermatologic risk)
+
+  Clinical precedent:
+    ✓ Partial: MAP2K1 of BRAF+MAP2K1 (FDA_approved)
+
+————————————————————————————————————————————————————————————————————————
+Cancer: Hepatocellular Carcinoma
+Targets: EGFR + FGFR1 + MET
+Combined score: 1.044 (rank #15)
+Feasibility: 0.945
+Adjusted score: 1.105 (rank #6, change: +9)
+
+  Components:
+    Drug availability: 0.967
+    Selectivity:       0.920
+    Tox feasibility:   0.900
+    Clinical precedent:1.000
+
+  Drug mapping:
+    EGFR       → erlotinib, gefitinib, osimertinib, afatinib, cetuximab [approved] (avail=1.00)
+    FGFR1      → erdafitinib, pemigatinib [approved] (avail=0.90)
+    MET        → capmatinib, tepotinib, crizotinib, cabozantinib [approved] (avail=1.00)
+      ⚠ Selectivity: crizotinib: ALK/MET/ROS1/RON (multi-target)
+      ⚠ Selectivity: cabozantinib: MET/KDR/AXL/RET/KIT/FLT3 (multi-target)
+
+  Red flags (1):
+    [MODERATE] Overlapping gastrointestinal: EGFR+MET (2 targets share gastrointestinal risk)
+
+  Clinical precedent:
+    ✓ Full match: MET (FDA_approved)
+
+————————————————————————————————————————————————————————————————————————
+Cancer: Renal Cell Carcinoma
+Targets: CDK6 + EGFR + MAP2K1
+Combined score: 0.952 (rank #6)
+Feasibility: 0.787
+Adjusted score: 1.209 (rank #7, change: -1)
+
+  Components:
+    Drug availability: 1.000
+    Selectivity:       1.000
+    Tox feasibility:   0.950
+    Clinical precedent:0.000
+
+  Drug mapping:
+    CDK6       → palbociclib, ribociclib, abemaciclib [approved] (avail=1.00)
+    EGFR       → erlotinib, gefitinib, osimertinib, afatinib, cetuximab [approved] (avail=1.00)
+    MAP2K1     → trametinib, cobimetinib, binimetinib [approved] (avail=1.00)
+
+  Red flags (1):
+    [MODERATE] Overlapping dermatologic: EGFR+MAP2K1 (2 targets share dermatologic risk)
+
+  Clinical precedent: None found
+
+————————————————————————————————————————————————————————————————————————
+Cancer: Invasive Breast Carcinoma
+Targets: BCL2L1 + EGFR + MAP2K1
+Combined score: 0.959 (rank #7)
+Feasibility: 0.792
+Adjusted score: 1.210 (rank #8, change: -1)
+
+  Components:
+    Drug availability: 0.850
+    Selectivity:       0.800
+    Tox feasibility:   0.950
+    Clinical precedent:0.500
+
+  Drug mapping:
+    BCL2L1     → navitoclax [phase2] (avail=0.55)
+      ⚠ Selectivity: navitoclax: BCL2/BCL-XL/BCL-W (on-target thrombocytopenia from BCL-XL)
+      ⚠ Narrow TW: On-target thrombocytopenia (navitoclax); limits dosing
+    EGFR       → erlotinib, gefitinib, osimertinib, afatinib, cetuximab [approved] (avail=1.00)
+    MAP2K1     → trametinib, cobimetinib, binimetinib [approved] (avail=1.00)
+
+  Red flags (1):
+    [MODERATE] Overlapping dermatologic: EGFR+MAP2K1 (2 targets share dermatologic risk)
+
+  Clinical precedent:
+    ✓ Partial: EGFR of EGFR+ERBB2 (FDA_approved)
+
+————————————————————————————————————————————————————————————————————————
+Cancer: Liposarcoma
+Targets: EGFR + FGFR1 + MET
+Combined score: 0.951 (rank #5)
+Feasibility: 0.745
+Adjusted score: 1.277 (rank #9, change: -4)
+
+  Components:
+    Drug availability: 0.967
+    Selectivity:       0.920
+    Tox feasibility:   0.900
+    Clinical precedent:0.000
+
+  Drug mapping:
+    EGFR       → erlotinib, gefitinib, osimertinib, afatinib, cetuximab [approved] (avail=1.00)
+    FGFR1      → erdafitinib, pemigatinib [approved] (avail=0.90)
+    MET        → capmatinib, tepotinib, crizotinib, cabozantinib [approved] (avail=1.00)
+      ⚠ Selectivity: crizotinib: ALK/MET/ROS1/RON (multi-target)
+      ⚠ Selectivity: cabozantinib: MET/KDR/AXL/RET/KIT/FLT3 (multi-target)
+
+  Red flags (1):
+    [MODERATE] Overlapping gastrointestinal: EGFR+MET (2 targets share gastrointestinal risk)
+
+  Clinical precedent: None found
+
+————————————————————————————————————————————————————————————————————————
+Cancer: Diffuse Glioma
+Targets: EGFR + FGFR1 + MET
+Combined score: 0.961 (rank #8)
+Feasibility: 0.745
+Adjusted score: 1.290 (rank #10, change: -2)
+
+  Components:
+    Drug availability: 0.967
+    Selectivity:       0.920
+    Tox feasibility:   0.900
+    Clinical precedent:0.000
+
+  Drug mapping:
+    EGFR       → erlotinib, gefitinib, osimertinib, afatinib, cetuximab [approved] (avail=1.00)
+    FGFR1      → erdafitinib, pemigatinib [approved] (avail=0.90)
+    MET        → capmatinib, tepotinib, crizotinib, cabozantinib [approved] (avail=1.00)
+      ⚠ Selectivity: crizotinib: ALK/MET/ROS1/RON (multi-target)
+      ⚠ Selectivity: cabozantinib: MET/KDR/AXL/RET/KIT/FLT3 (multi-target)
+
+  Red flags (1):
+    [MODERATE] Overlapping gastrointestinal: EGFR+MET (2 targets share gastrointestinal risk)
+
+  Clinical precedent: None found
+
+————————————————————————————————————————————————————————————————————————
+Cancer: Bladder Urothelial Carcinoma
+Targets: CDK2 + EGFR + MAP2K1
+Combined score: 0.979 (rank #10)
+Feasibility: 0.752
+Adjusted score: 1.301 (rank #11, change: -1)
+
+  Components:
+    Drug availability: 0.850
+    Selectivity:       0.800
+    Tox feasibility:   0.950
+    Clinical precedent:0.300
+
+  Drug mapping:
+    CDK2       → dinaciclib [phase2] (avail=0.55)
+      ⚠ Selectivity: dinaciclib: CDK1/2/5/9 (pan-CDK; narrow therapeutic window)
+      ⚠ Narrow TW: Pan-CDK inhibitor dinaciclib: severe myelosuppression, narrow TW
+    EGFR       → erlotinib, gefitinib, osimertinib, afatinib, cetuximab [approved] (avail=1.00)
+    MAP2K1     → trametinib, cobimetinib, binimetinib [approved] (avail=1.00)
+
+  Red flags (1):
+    [MODERATE] Overlapping dermatologic: EGFR+MAP2K1 (2 targets share dermatologic risk)
+
+  Clinical precedent:
+    ✓ Partial: MAP2K1 of FGFR1+MAP2K1 (Phase_2)
+
+————————————————————————————————————————————————————————————————————————
+Cancer: Ovarian Epithelial Tumor
+Targets: CDK6 + EGFR + MET
+Combined score: 0.997 (rank #13)
+Feasibility: 0.755
+Adjusted score: 1.321 (rank #12, change: +1)
+
+  Components:
+    Drug availability: 1.000
+    Selectivity:       0.920
+    Tox feasibility:   0.900
+    Clinical precedent:0.000
+
+  Drug mapping:
+    CDK6       → palbociclib, ribociclib, abemaciclib [approved] (avail=1.00)
+    EGFR       → erlotinib, gefitinib, osimertinib, afatinib, cetuximab [approved] (avail=1.00)
+    MET        → capmatinib, tepotinib, crizotinib, cabozantinib [approved] (avail=1.00)
+      ⚠ Selectivity: crizotinib: ALK/MET/ROS1/RON (multi-target)
+      ⚠ Selectivity: cabozantinib: MET/KDR/AXL/RET/KIT/FLT3 (multi-target)
+
+  Red flags (1):
+    [MODERATE] Overlapping gastrointestinal: EGFR+MET (2 targets share gastrointestinal risk)
+
+  Clinical precedent: None found
+
+————————————————————————————————————————————————————————————————————————
+Cancer: Esophagogastric Adenocarcinoma
+Targets: CDK6 + EGFR + PIK3CA
+Combined score: 0.968 (rank #9)
+Feasibility: 0.732
+Adjusted score: 1.322 (rank #13, change: -4)
+
+  Components:
+    Drug availability: 1.000
+    Selectivity:       1.000
+    Tox feasibility:   0.730
+    Clinical precedent:0.000
+
+  Drug mapping:
+    CDK6       → palbociclib, ribociclib, abemaciclib [approved] (avail=1.00)
+    EGFR       → erlotinib, gefitinib, osimertinib, afatinib, cetuximab [approved] (avail=1.00)
+    PIK3CA     → alpelisib, idelalisib, copanlisib [approved] (avail=1.00)
+
+  Red flags (3):
+    [MODERATE] Overlapping dermatologic: EGFR+PIK3CA (2 targets share dermatologic risk)
+    [MODERATE] Overlapping gastrointestinal: EGFR+PIK3CA (2 targets share gastrointestinal risk)
+    [HIGH    ] DDI (moderate): erlotinib+alpelisib — Additive GI toxicity
+
+  Clinical precedent: None found
+
+————————————————————————————————————————————————————————————————————————
+Cancer: Prostate Adenocarcinoma
+Targets: CDK2 + EGFR + MAP2K1
+Combined score: 1.008 (rank #14)
+Feasibility: 0.693
+Adjusted score: 1.456 (rank #14, change: 0)
+
+  Components:
+    Drug availability: 0.850
+    Selectivity:       0.800
+    Tox feasibility:   0.950
+    Clinical precedent:0.000
+
+  Drug mapping:
+    CDK2       → dinaciclib [phase2] (avail=0.55)
+      ⚠ Selectivity: dinaciclib: CDK1/2/5/9 (pan-CDK; narrow therapeutic window)
+      ⚠ Narrow TW: Pan-CDK inhibitor dinaciclib: severe myelosuppression, narrow TW
+    EGFR       → erlotinib, gefitinib, osimertinib, afatinib, cetuximab [approved] (avail=1.00)
+    MAP2K1     → trametinib, cobimetinib, binimetinib [approved] (avail=1.00)
+
+  Red flags (1):
+    [MODERATE] Overlapping dermatologic: EGFR+MAP2K1 (2 targets share dermatologic risk)
+
+  Clinical precedent: None found
+
+————————————————————————————————————————————————————————————————————————
+Cancer: Endometrial Carcinoma
+Targets: CDK2 + EGFR + MET
+Combined score: 0.979 (rank #11)
+Feasibility: 0.650
+Adjusted score: 1.506 (rank #15, change: -4)
+
+  Components:
+    Drug availability: 0.850
+    Selectivity:       0.680
+    Tox feasibility:   0.900
+    Clinical precedent:0.000
+
+  Drug mapping:
+    CDK2       → dinaciclib [phase2] (avail=0.55)
+      ⚠ Selectivity: dinaciclib: CDK1/2/5/9 (pan-CDK; narrow therapeutic window)
+      ⚠ Narrow TW: Pan-CDK inhibitor dinaciclib: severe myelosuppression, narrow TW
+    EGFR       → erlotinib, gefitinib, osimertinib, afatinib, cetuximab [approved] (avail=1.00)
+    MET        → capmatinib, tepotinib, crizotinib, cabozantinib [approved] (avail=1.00)
+      ⚠ Selectivity: crizotinib: ALK/MET/ROS1/RON (multi-target)
+      ⚠ Selectivity: cabozantinib: MET/KDR/AXL/RET/KIT/FLT3 (multi-target)
+
+  Red flags (1):
+    [MODERATE] Overlapping gastrointestinal: EGFR+MET (2 targets share gastrointestinal risk)
+
+  Clinical precedent: None found
+
+————————————————————————————————————————————————————————————————————————
+Cancer: Head and Neck Squamous Cell Carcinoma
+Targets: CDK4 + CDK6 + ERBB2
+Combined score: 1.060 (rank #16)
+Feasibility: 0.675
+Adjusted score: 1.570 (rank #16, change: 0)
+
+  Components:
+    Drug availability: 1.000
+    Selectivity:       0.750
+    Tox feasibility:   0.750
+    Clinical precedent:0.000
+
+  Drug mapping:
+    CDK4       → palbociclib, ribociclib, abemaciclib [approved] (avail=1.00)
+    CDK6       → palbociclib, ribociclib, abemaciclib [approved] (avail=1.00)
+    ERBB2      → trastuzumab, pertuzumab, lapatinib, tucatinib [approved] (avail=1.00)
+
+  Red flags (1):
+    [HIGH    ] Overlapping myelosuppression: CDK6+CDK4 (2 targets share myelosuppression risk)
+
+  Clinical precedent: None found
+
+————————————————————————————————————————————————————————————————————————
+Cancer: Acute Myeloid Leukemia
+Targets: CDK4 + CDK6 + MCL1
+Combined score: 1.140 (rank #17)
+Feasibility: 0.580
+Adjusted score: 1.966 (rank #17, change: 0)
+
+  Components:
+    Drug availability: 0.783
+    Selectivity:       0.630
+    Tox feasibility:   0.750
+    Clinical precedent:0.000
+
+  Drug mapping:
+    CDK4       → palbociclib, ribociclib, abemaciclib [approved] (avail=1.00)
+    CDK6       → palbociclib, ribociclib, abemaciclib [approved] (avail=1.00)
+    MCL1       → AMG-176, S64315 [phase1] (avail=0.35)
+      ⚠ Narrow TW: Dose-limiting cardiotoxicity in Phase 1 (AMG-176, S64315)
+
+  Red flags (1):
+    [HIGH    ] Overlapping myelosuppression: CDK6+CDK4 (2 targets share myelosuppression risk)
+
+  Clinical precedent: None found

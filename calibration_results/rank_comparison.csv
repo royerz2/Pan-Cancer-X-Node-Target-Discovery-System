@@ -1,0 +1,51 @@
+cancer_type,n_combos,heuristic_top1,calibrated_top1,top1_changed,kendall_tau,kendall_pval
+Acute Myeloid Leukemia,192,CDK6+ERBB2,BCL2L1+CDK6,True,0.188,0.0002
+Ampullary Carcinoma,692,ERBB2+MAP2K1,BRAF+EGFR,True,0.345,0.0
+Anaplastic Thyroid Cancer,601,CDK6+ERBB2+MAP2K1,CDK2+CDK6+STAT3,True,0.433,0.0
+B-Cell Acute Lymphoblastic Leukemia,333,CDK6+FLT3,CDK4+CDK6,True,0.097,0.0126
+Bladder Urothelial Carcinoma,531,CDK6+ERBB2+MET,CDK2+PIK3CA+STAT3,True,0.394,0.0
+Breast Ductal Carcinoma In Situ,704,ERBB2+PIK3CA,BCL2L1+MAP2K1+MCL1,True,0.38,0.0
+Cervical Adenocarcinoma,695,ERBB2+MET,CDK2+EGFR+MAP2K1,True,0.352,0.0
+Cervical Squamous Cell Carcinoma,125,CDK4+STAT3,ERBB2+KRAS+MCL1,True,0.369,0.0
+Chondrosarcoma,201,CDK2+MET,CDK4+FYN+MET,True,-0.028,0.5575
+Colorectal Adenocarcinoma,549,BCL2L1+MAP2K1+MET,BRAF+CDK4,True,0.43,0.0
+Cutaneous Squamous Cell Carcinoma,552,ERBB2+FYN,BRAF+CDK6+STAT3,True,0.236,0.0
+Diffuse Glioma,466,CDK6+ERBB2+MAP2K1,JAK2+MET+SRC,True,0.348,0.0
+Embryonal Tumor,439,ERBB2+MET,BCL2L1+BRAF+MET,True,0.361,0.0
+Endometrial Carcinoma,466,ERBB2+MAP2K1+MET,BRAF+ERBB2+MET,True,0.398,0.0
+Esophageal Squamous Cell Carcinoma,646,ERBB2+MAP2K1,BCL2L1+MYC,True,0.3,0.0
+Esophagogastric Adenocarcinoma,519,CDK6+ERBB2+MAP2K1,BRAF+CDK6+MCL1,True,0.381,0.0
+Ewing Sarcoma,423,ERBB2+MAP2K1+MET,CDK4+MAP2K1+MET,True,0.393,0.0
+Head and Neck Squamous Cell Carcinoma,646,ERBB2+MAP2K1,CDK6+ERBB2+PIK3CA,True,0.382,0.0
+Hepatocellular Carcinoma,561,BCL2L1+ERBB2+MAP2K1,MAP2K1+MCL1+MET,True,0.403,0.0
+Hodgkin Lymphoma,432,CDK6+ERBB2,BCL2L1+BRAF+CDK6,True,0.26,0.0
+Intracholecystic Papillary Neoplasm,697,ERBB2+MAP2K1,EGFR+FYN+MET,True,0.339,0.0
+Intraductal Papillary Neoplasm of the Bile Duct,599,CDK6+ERBB2+MAP2K1,CDK2+CDK4+CDK6,True,0.334,0.0
+Invasive Breast Carcinoma,569,CDK4+MAP2K1,CDK2+EGFR+MET,True,0.326,0.0
+Leiomyosarcoma,550,ERBB2+MET,ERBB2+JAK2+MET,True,0.34,0.0
+Liposarcoma,467,BCL2L1+ERBB2+MAP2K1,CDK4+ERBB2+JAK1,True,0.413,0.0
+Lung Neuroendocrine Tumor,327,BCL2L1+ERBB2+MAP2K1,BRAF+JAK2+STAT3,True,0.284,0.0
+Mature B-Cell Neoplasms,413,CDK6+ERBB2+MAP2K1,CDK6+ERBB2+SRC,True,0.287,0.0
+Mature T and NK Neoplasms,446,CDK6+ERBB2+MAP2K1,CDK6+ERBB2+SRC,True,0.203,0.0
+Melanoma,610,BRAF+ERBB2,BRAF+MAP2K1+MCL1,True,0.46,0.0
+Merkel Cell Carcinoma,321,CDK2+ERBB2+PIK3CA,CDK2+ERBB2+SRC,True,0.364,0.0
+Myeloproliferative Neoplasms,462,CDK2+ERBB2+MET,MAP2K1+MCL1+SRC,True,0.239,0.0
+Nerve Sheath Tumor,550,ERBB2+MET,CDK2+MET+SRC,True,0.335,0.0
+Neuroblastoma,511,CDK6+ERBB2+MAP2K1,CDK4+CDK6+ERBB2,True,0.342,0.0
+Non-Cancerous,560,CDK6+ERBB2+MAP2K1,CDK6+KRAS+STAT3,True,0.354,0.0
+Non-Hodgkin Lymphoma,569,CDK6+ERBB2+PARP1,KRAS+MET+SRC,True,0.288,0.0
+Non-Seminomatous Germ Cell Tumor,541,ERBB2+MET+PARP1,KRAS+MET+SRC,True,0.426,0.0
+Non-Small Cell Lung Cancer,511,CDK6+ERBB2+MAP2K1,CDK4+ERBB2+JAK2,True,0.437,0.0
+Ocular Melanoma,554,BCL2L1+MAP2K1+MET,BRAF+CDK4,True,0.404,0.0
+Osteosarcoma,593,CDK2+ERBB2+MET,MAP2K1+MCL1+MET,True,0.434,0.0
+Ovarian Epithelial Tumor,500,BCL2L1+MAP2K1+MET,JAK1+PIK3CA+STAT3,True,0.367,0.0
+Pancreatic Adenocarcinoma,548,KRAS+STAT3,EGFR+MAP2K1+SRC,True,0.437,0.0
+Pleural Mesothelioma,567,CDK6+ERBB2+MAP2K1,CDK4+FGFR1+MET,True,0.355,0.0
+Prostate Adenocarcinoma,594,CDK4+MAP2K1,PIK3CA+STAT3,True,0.398,0.0
+Renal Cell Carcinoma,407,CDK6+ERBB2+MAP2K1,BRAF+ERBB2+SRC,True,0.413,0.0
+Rhabdoid Cancer,626,ERBB2+MET+PARP1,BCL2L1+BRAF+ERBB2,True,0.44,0.0
+Rhabdomyosarcoma,363,CDK6+ERBB2+MAP2K1,CDK6+ERBB2+SRC,True,0.287,0.0
+Synovial Sarcoma,512,BCL2L1+ERBB2+MAP2K1,MAP2K1+MCL1+MET,True,0.392,0.0
+T-Lymphoblastic Leukemia/Lymphoma,591,CDK6+ERBB2+MAP2K1,ERBB2+MET+PIK3CA,True,0.396,0.0
+Undifferentiated Pleomorphic Sarcoma/Malignant Fibrous Histiocytoma/High-Grade Spindle Cell Sarcoma,681,ERBB2+MET+PARP1,ERBB2+MAP2K1+MCL1,True,0.415,0.0
+Well-Differentiated Thyroid Cancer,655,CDK6+MAP2K1+MET,BRAF+MET+SRC,True,0.364,0.0

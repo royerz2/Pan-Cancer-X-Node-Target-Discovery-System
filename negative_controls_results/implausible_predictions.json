@@ -1,0 +1,140 @@
+[
+  {
+    "cancer": "Renal Cell Carcinoma",
+    "alin_triple": [
+      "CDK6",
+      "EGFR",
+      "MAP2K1"
+    ],
+    "alin_best_combo": [
+      "EGFR",
+      "MET"
+    ],
+    "combined_score": 0.952,
+    "implausibility": "EGFR is not a validated therapeutic target in RCC. Unlike lung or colorectal cancers, RCC lacks activating EGFR pathway mutations or amplifications. Phase 2 trials of erlotinib monotherapy in RCC showed <5% ORR (Gordon et al., JCO 2009). The gold-standard combination for RCC is lenvatinib (KDR) + everolimus (MTOR), which ALIN fails to predict because MTOR does not emerge as CRISPR-essential in RCC cell lines.",
+    "mechanism": "EGFR non-driver in RCC; CRISPR-essentiality does not reflect clinical targetability",
+    "proposed_filter": "Lineage-restricted target whitelist (exclude EGFR for RCC)",
+    "severity": "high"
+  },
+  {
+    "cancer": "Prostate Adenocarcinoma",
+    "alin_triple": [
+      "CDK2",
+      "EGFR",
+      "MAP2K1"
+    ],
+    "alin_best_combo": [
+      "MAP2K1",
+      "STAT3"
+    ],
+    "combined_score": 1.008,
+    "implausibility": "Prostate cancer is driven by androgen receptor (AR) signalling, not EGFR/MAPK. EGFR inhibitors have failed in prostate cancer trials (Gravis et al., Eur Urol 2008; Nabhan et al., Cancer 2009). ALIN misses the dominant AR axis (CYP17A1, AR) because these are not CRISPR-essential in the DepMap screen \u2014 hormonal targets are invisible to a CRISPR-based pipeline.",
+    "mechanism": "Hormonal pathway blind spot; CRISPR insensitive to ligand-dependent targets",
+    "proposed_filter": "AR-pathway prior for prostate; flag predictions lacking known driver pathway",
+    "severity": "high"
+  },
+  {
+    "cancer": "Acute Myeloid Leukemia",
+    "alin_triple": [
+      "CDK4",
+      "CDK6",
+      "MCL1"
+    ],
+    "alin_best_combo": [
+      "CDK4",
+      "CDK6",
+      "MCL1"
+    ],
+    "combined_score": 1.14,
+    "implausibility": "While CDK4/6 and MCL1 are individually essential in AML cell lines, the CDK4/6 + MCL1 combination has no clinical precedent and faces severe toxicity concerns. MCL1 inhibitors (AMG-176, S64315) cause dose-limiting cardiotoxicity in Phase 1 (Caenepeel et al., Cancer Discov 2018). CDK4/6 inhibitors add myelosuppression. The validated AML combinations target FLT3 + BCL2 or IDH1/2 + BCL2, which ALIN cannot access because FLT3/IDH are lineage-specific and BCL2 (venetoclax) acts via apoptotic priming, not CRISPR essentiality.",
+    "mechanism": "MCL1 inhibitor cardiotoxicity; FLT3/IDH blind spot in CRISPR data",
+    "proposed_filter": "Toxicity ceiling: flag combos where all targets have dose-limiting single-agent toxicity",
+    "severity": "moderate"
+  },
+  {
+    "cancer": "Head and Neck Squamous Cell Carcinoma",
+    "alin_triple": [
+      "CDK4",
+      "CDK6",
+      "ERBB2"
+    ],
+    "alin_best_combo": [
+      "FYN",
+      "STAT3"
+    ],
+    "combined_score": 1.06,
+    "implausibility": "ERBB2 overexpression is rare (<5%) in HNSCC. The relevant target is EGFR (cetuximab, approved). ALIN's best-combo prediction of FYN + STAT3 is also problematic: FYN is a pan-cancer hub gene with no single-agent clinical activity in any cancer, and STAT3 inhibitors (napabucasin) have failed Phase 3 trials in GI cancers (Jonker et al., Lancet Gastro Hepatol 2018). Both are network-degree artefacts.",
+    "mechanism": "Hub gene artefact (FYN, STAT3); ERBB2 rare in HNSCC",
+    "proposed_filter": "Hub-gene frequency cap; require target mutation/amplification frequency >5%",
+    "severity": "moderate"
+  },
+  {
+    "cancer": "Endometrial Carcinoma",
+    "alin_triple": [
+      "CDK2",
+      "EGFR",
+      "MET"
+    ],
+    "alin_best_combo": [
+      "MAP2K1",
+      "STAT3"
+    ],
+    "combined_score": 0.979,
+    "implausibility": "Endometrial carcinoma is primarily driven by PI3K/MTOR and MMR deficiency pathways. EGFR/MET targeting has no clinical precedent here. The validated combination is lenvatinib (KDR) + everolimus (MTOR), which ALIN misses. The best-combo fallback to MAP2K1 + STAT3 reflects generic MAPK hub selection rather than endometrial-specific biology.",
+    "mechanism": "PI3K/MTOR pathway missed; MAPK/STAT3 hub artefact",
+    "proposed_filter": "Pathway-prior enrichment for known driver pathways per cancer",
+    "severity": "moderate"
+  },
+  {
+    "cancer": "Hepatocellular Carcinoma",
+    "alin_triple": [
+      "EGFR",
+      "FGFR1",
+      "MET"
+    ],
+    "alin_best_combo": [
+      "FGFR1",
+      "STAT3"
+    ],
+    "combined_score": 1.044,
+    "implausibility": "While MET is a valid HCC target (cabozantinib approved), FGFR1 is not established in HCC (FGFR1 amplification is rare; FGFR2 fusions drive cholangiocarcinoma instead). The validated HCC combination is cabozantinib (MET + KDR) or atezolizumab + bevacizumab (VEGF). ALIN partially recovers MET but couples it with FGFR1 (network neighbor) and misses KDR, which is invisible to CRISPR because KDR acts via tumour vasculature, not cell-autonomous essentiality.",
+    "mechanism": "FGFR1 wrong isoform; KDR invisible to cell-autonomous CRISPR screen",
+    "proposed_filter": "Isoform-aware target matching (FGFR1 vs FGFR2); microenvironment target flag",
+    "severity": "moderate"
+  },
+  {
+    "cancer": "Liposarcoma",
+    "alin_triple": [
+      "EGFR",
+      "FGFR1",
+      "MET"
+    ],
+    "alin_best_combo": [
+      "FGFR1",
+      "STAT3"
+    ],
+    "combined_score": 0.951,
+    "implausibility": "Liposarcoma is driven by MDM2 amplification (well-differentiated) or chromosomal translocations (myxoid). The validated combination is MDM2 + CDK4 (BI 907828 + abemaciclib, Phase 2). ALIN predicts generic RTK inhibition (EGFR/FGFR1/MET) which has no basis in liposarcoma biology. The gold standard entry CDK4 + MDM2 is completely missed.",
+    "mechanism": "MDM2 is computationally undruggable in GENE_TO_DRUGS; RTK over-representation",
+    "proposed_filter": "Ensure targets include known lineage-specific drivers before returning generic RTK triples",
+    "severity": "high"
+  },
+  {
+    "cancer": "Non-Cancerous (Lymphoid)",
+    "alin_triple": [
+      "CDK6",
+      "FYN",
+      "STAT3"
+    ],
+    "alin_best_combo": [
+      "CDK6",
+      "FYN",
+      "STAT3"
+    ],
+    "combined_score": 0.576,
+    "implausibility": "This is a non-malignant control tissue (normal lymphoid cells). Producing a therapeutic target prediction for a non-cancerous label is by definition meaningless. The CDK6 + FYN + STAT3 triple is the most common ALIN prediction (appears in 52/77 cancers as STAT3-containing), confirming it is a pan-cancer hub artefact.",
+    "mechanism": "Non-malignant tissue; hub artefact",
+    "proposed_filter": "Exclude non-cancerous lineages from prediction output",
+    "severity": "high"
+  }
+]

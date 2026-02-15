@@ -1,0 +1,2057 @@
+2026-02-12 09:09:09,490 INFO ============================================================
+2026-02-12 09:09:09,491 INFO Evidence Calibration & De-correlation Analysis
+2026-02-12 09:09:09,491 INFO ============================================================
+2026-02-12 09:09:09,491 INFO 
+[1/7] Collecting all scored combinations...
+2026-02-12 09:09:10,338 INFO DepMap loader initialized. Data dir: depmap_data
+2026-02-12 09:09:10,338 INFO OmniPath loader initialized
+2026-02-12 09:09:10,339 INFO Validation engine initialized successfully
+2026-02-12 09:09:10,339 INFO Loading cell line metadata from Model.csv
+2026-02-12 09:09:10,357 INFO Loaded metadata for 2132 cell lines
+2026-02-12 09:09:10,360 INFO Processing 51 cancer types
+2026-02-12 09:09:10,361 INFO   Acute Myeloid Leukemia...
+2026-02-12 09:09:10,361 INFO 
+================================================================================
+2026-02-12 09:09:10,361 INFO Analyzing Acute Myeloid Leukemia
+2026-02-12 09:09:10,361 INFO ================================================================================
+    -> Acute Myeloid Leukemia: 64 cell lines...
+2026-02-12 09:09:10,362 INFO Loading CRISPR dependency matrix from CRISPRGeneEffect.csv
+2026-02-12 09:09:15,676 INFO Loaded 1186 cell lines × 18435 genes
+2026-02-12 09:09:16,059 INFO Loading subtype features from SubtypeMatrix.csv
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:09:16,135 INFO Inferring essential modules for Acute Myeloid Leukemia (selectivity>30%)
+2026-02-12 09:09:16,505 INFO Identified 981 pan-essential genes (>90% of lines)
+2026-02-12 09:09:25,512 INFO Inferred 15 essential module paths (1851 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:09:25,535 INFO Inferring signaling paths for Acute Myeloid Leukemia (max_len=4)
+2026-02-12 09:09:25,644 INFO Using built-in cancer signaling network
+2026-02-12 09:09:25,644 INFO Loaded 94 edges in signaling network
+2026-02-12 09:09:25,942 INFO Inferred 11 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:09:25,947 INFO Finding cancer-specific dependencies for Acute Myeloid Leukemia
+2026-02-12 09:09:39,864 INFO FDR correction: 17439 genes tested, 96 raw-significant, 84 FDR-significant (q < 0.05, Cohen's d > 0.3)
+2026-02-12 09:09:39,866 INFO Found 20 cancer-specific essential genes (FDR-corrected)
+    -> Perturbation response paths...
+2026-02-12 09:09:39,868 INFO Inferring perturbation response paths for Acute Myeloid Leukemia
+2026-02-12 09:09:40,342 INFO Inferred 3 perturbation response paths
+2026-02-12 09:09:40,347 INFO Total: 29 unique viability paths for Acute Myeloid Leukemia (conf >= 0.5)
+    -> Inferred 29 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:09:40,347 INFO Solving hitting set: 29 paths, 1858 candidate genes, max_size=4
+2026-02-12 09:09:40,702 INFO Identified 981 pan-essential genes (>90% of lines)
+2026-02-12 09:09:44,037 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:10:11,814 INFO Solvers used: greedy, prefiltered_exhaustive(k=61)
+2026-02-12 09:10:11,818 INFO Found 6092 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:10:11,820 INFO Finding triple combinations for Acute Myeloid Leukemia (29 paths)
+2026-02-12 09:10:11,824 INFO Injected 10 druggable path genes into candidates
+2026-02-12 09:10:11,824 INFO Evaluating combinations from 12 candidate genes
+2026-02-12 09:10:12,465 INFO Identified 981 pan-essential genes (>90% of lines)
+Scoring triples:   0%|          | 0/220 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/66 [00:00<?, ?it/s]                                                        2026-02-12 09:10:14,415 INFO Found 18 valid triples, 1 valid doublets
+    -> Best triple: CDK6 + ERBB2 + MCL1 [done]
+    -> Best combo (2 genes): CDK6 + MCL1 [done]
+2026-02-12 09:10:14,427 INFO Finding triple combinations for Acute Myeloid Leukemia (29 paths)
+2026-02-12 09:10:14,430 INFO Injected 10 druggable path genes into candidates
+2026-02-12 09:10:14,430 INFO Evaluating combinations from 12 candidate genes
+Scoring triples:   0%|          | 0/220 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/66 [00:00<?, ?it/s]                                                        2026-02-12 09:10:16,507 INFO Found 162 valid triples, 30 valid doublets
+2026-02-12 09:10:16,507 INFO     192 combos, 0 positive
+2026-02-12 09:10:16,507 INFO   Ampullary Carcinoma...
+2026-02-12 09:10:16,507 INFO 
+================================================================================
+2026-02-12 09:10:16,508 INFO Analyzing Ampullary Carcinoma
+2026-02-12 09:10:16,508 INFO ================================================================================
+    -> Ampullary Carcinoma: 5 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:10:16,774 INFO Inferring essential modules for Ampullary Carcinoma (selectivity>30%)
+2026-02-12 09:10:19,723 INFO Inferred 15 essential module paths (2422 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:10:19,730 INFO Inferring signaling paths for Ampullary Carcinoma (max_len=4)
+2026-02-12 09:10:20,130 INFO Inferred 29 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:10:20,138 INFO Finding cancer-specific dependencies for Ampullary Carcinoma
+2026-02-12 09:10:33,667 INFO FDR correction: 16806 genes tested, 5 raw-significant, 0 FDR-significant (q < 0.05, Cohen's d > 0.3)
+    -> Perturbation response paths...
+2026-02-12 09:10:33,669 INFO Inferring perturbation response paths for Ampullary Carcinoma
+2026-02-12 09:10:34,073 INFO Inferred 14 perturbation response paths
+2026-02-12 09:10:34,079 INFO Total: 58 unique viability paths for Ampullary Carcinoma (conf >= 0.5)
+    -> Inferred 58 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:10:34,079 INFO Solving hitting set: 58 paths, 2435 candidate genes, max_size=4
+2026-02-12 09:10:57,319 INFO Solvers used: greedy, ilp(n=2435), prefiltered_exhaustive(k=63)
+2026-02-12 09:10:57,341 INFO Found 39833 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:10:57,374 INFO Finding triple combinations for Ampullary Carcinoma (58 paths)
+2026-02-12 09:10:57,378 INFO Injected 18 druggable path genes into candidates
+2026-02-12 09:10:57,378 INFO Evaluating combinations from 20 candidate genes
+Scoring triples:   0%|          | 0/1140 [00:00<?, ?it/s]                                                         Scoring doublets:   0%|          | 0/190 [00:00<?, ?it/s]                                                         2026-02-12 09:11:01,576 INFO Found 300 valid triples, 26 valid doublets
+    -> Best triple: ERBB2 + MET + SRC [done]
+    -> Best combo (2 genes): MAP2K1 + STAT3 [done]
+2026-02-12 09:11:01,596 INFO Finding triple combinations for Ampullary Carcinoma (58 paths)
+2026-02-12 09:11:01,598 INFO Injected 18 druggable path genes into candidates
+2026-02-12 09:11:01,598 INFO Evaluating combinations from 20 candidate genes
+Scoring triples:   0%|          | 0/1140 [00:00<?, ?it/s]                                                         Scoring doublets:   0%|          | 0/190 [00:00<?, ?it/s]                                                         2026-02-12 09:11:05,785 INFO Found 636 valid triples, 56 valid doublets
+2026-02-12 09:11:05,786 INFO     692 combos, 0 positive
+2026-02-12 09:11:05,786 INFO   Anaplastic Thyroid Cancer...
+2026-02-12 09:11:05,786 INFO 
+================================================================================
+2026-02-12 09:11:05,786 INFO Analyzing Anaplastic Thyroid Cancer
+2026-02-12 09:11:05,786 INFO ================================================================================
+    -> Anaplastic Thyroid Cancer: 13 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:11:06,264 INFO Inferring essential modules for Anaplastic Thyroid Cancer (selectivity>30%)
+2026-02-12 09:11:08,753 INFO Inferred 15 essential module paths (1760 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:11:08,761 INFO Inferring signaling paths for Anaplastic Thyroid Cancer (max_len=4)
+2026-02-12 09:11:09,026 INFO Inferred 34 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:11:09,032 INFO Finding cancer-specific dependencies for Anaplastic Thyroid Cancer
+2026-02-12 09:11:23,088 INFO FDR correction: 16806 genes tested, 13 raw-significant, 0 FDR-significant (q < 0.05, Cohen's d > 0.3)
+    -> Perturbation response paths...
+2026-02-12 09:11:23,090 INFO Inferring perturbation response paths for Anaplastic Thyroid Cancer
+2026-02-12 09:11:23,388 INFO Inferred 14 perturbation response paths
+2026-02-12 09:11:23,393 INFO Total: 62 unique viability paths for Anaplastic Thyroid Cancer (conf >= 0.5)
+    -> Inferred 62 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:11:23,394 INFO Solving hitting set: 62 paths, 1773 candidate genes, max_size=4
+2026-02-12 09:11:50,875 INFO Solvers used: greedy, ilp(n=1773), prefiltered_exhaustive(k=64)
+2026-02-12 09:11:50,884 INFO Found 5738 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:11:50,898 INFO Finding triple combinations for Anaplastic Thyroid Cancer (62 paths)
+2026-02-12 09:11:50,910 INFO Injected 17 druggable path genes into candidates
+2026-02-12 09:11:50,910 INFO Evaluating combinations from 19 candidate genes
+Scoring triples:   0%|          | 0/969 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/171 [00:00<?, ?it/s]                                                         2026-02-12 09:11:54,567 INFO Found 215 valid triples, 22 valid doublets
+    -> Best triple: CDK6 + EGFR + MAP2K1 [done]
+    -> Best combo (2 genes): EGFR + MAP2K1 [done]
+2026-02-12 09:11:54,581 INFO Finding triple combinations for Anaplastic Thyroid Cancer (62 paths)
+2026-02-12 09:11:54,583 INFO Injected 17 druggable path genes into candidates
+2026-02-12 09:11:54,584 INFO Evaluating combinations from 19 candidate genes
+Scoring triples:   0%|          | 0/969 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/171 [00:00<?, ?it/s]                                                         2026-02-12 09:11:58,331 INFO Found 548 valid triples, 53 valid doublets
+2026-02-12 09:11:58,333 INFO     601 combos, 227 positive
+2026-02-12 09:11:58,333 INFO   B-Cell Acute Lymphoblastic Leukemia...
+2026-02-12 09:11:58,333 INFO 
+================================================================================
+2026-02-12 09:11:58,333 INFO Analyzing B-Cell Acute Lymphoblastic Leukemia
+2026-02-12 09:11:58,333 INFO ================================================================================
+    -> B-Cell Acute Lymphoblastic Leukemia: 32 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:11:58,667 INFO Inferring essential modules for B-Cell Acute Lymphoblastic Leukemia (selectivity>30%)
+2026-02-12 09:12:03,274 INFO Inferred 15 essential module paths (2065 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:12:03,304 INFO Inferring signaling paths for B-Cell Acute Lymphoblastic Leukemia (max_len=4)
+2026-02-12 09:12:03,785 INFO Inferred 11 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:12:03,790 INFO Finding cancer-specific dependencies for B-Cell Acute Lymphoblastic Leukemia
+2026-02-12 09:12:17,527 INFO FDR correction: 16806 genes tested, 215 raw-significant, 141 FDR-significant (q < 0.05, Cohen's d > 0.3)
+2026-02-12 09:12:17,527 INFO Found 20 cancer-specific essential genes (FDR-corrected)
+    -> Perturbation response paths...
+2026-02-12 09:12:17,529 INFO Inferring perturbation response paths for B-Cell Acute Lymphoblastic Leukemia
+2026-02-12 09:12:18,010 INFO Inferred 3 perturbation response paths
+2026-02-12 09:12:18,016 INFO Total: 29 unique viability paths for B-Cell Acute Lymphoblastic Leukemia (conf >= 0.5)
+    -> Inferred 29 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:12:18,016 INFO Solving hitting set: 29 paths, 2072 candidate genes, max_size=4
+2026-02-12 09:12:21,684 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:12:34,150 INFO Solvers used: greedy, prefiltered_exhaustive(k=61)
+2026-02-12 09:12:34,150 INFO Found 134 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:12:34,151 INFO Finding triple combinations for B-Cell Acute Lymphoblastic Leukemia (29 paths)
+2026-02-12 09:12:34,155 INFO Injected 13 druggable path genes into candidates
+2026-02-12 09:12:34,155 INFO Evaluating combinations from 15 candidate genes
+Scoring triples:   0%|          | 0/455 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/105 [00:00<?, ?it/s]                                                         2026-02-12 09:12:36,657 INFO Found 24 valid triples, 0 valid doublets
+    -> Best triple: CDK6 + FLT3 + MCL1 [done]
+2026-02-12 09:12:36,679 INFO Finding triple combinations for B-Cell Acute Lymphoblastic Leukemia (29 paths)
+2026-02-12 09:12:36,682 INFO Injected 13 druggable path genes into candidates
+2026-02-12 09:12:36,682 INFO Evaluating combinations from 15 candidate genes
+Scoring triples:   0%|          | 0/455 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/105 [00:00<?, ?it/s]                                                         2026-02-12 09:12:39,320 INFO Found 292 valid triples, 41 valid doublets
+2026-02-12 09:12:39,322 INFO     333 combos, 0 positive
+2026-02-12 09:12:39,322 INFO   Bladder Urothelial Carcinoma...
+2026-02-12 09:12:39,322 INFO 
+================================================================================
+2026-02-12 09:12:39,322 INFO Analyzing Bladder Urothelial Carcinoma
+2026-02-12 09:12:39,322 INFO ================================================================================
+    -> Bladder Urothelial Carcinoma: 35 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:12:39,764 INFO Inferring essential modules for Bladder Urothelial Carcinoma (selectivity>30%)
+2026-02-12 09:12:47,903 INFO Inferred 15 essential module paths (1678 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:12:47,939 INFO Inferring signaling paths for Bladder Urothelial Carcinoma (max_len=4)
+2026-02-12 09:12:48,387 INFO Inferred 28 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:12:48,393 INFO Finding cancer-specific dependencies for Bladder Urothelial Carcinoma
+2026-02-12 09:13:02,509 INFO FDR correction: 16806 genes tested, 2 raw-significant, 0 FDR-significant (q < 0.05, Cohen's d > 0.3)
+    -> Perturbation response paths...
+2026-02-12 09:13:02,510 INFO Inferring perturbation response paths for Bladder Urothelial Carcinoma
+2026-02-12 09:13:02,964 INFO Inferred 10 perturbation response paths
+2026-02-12 09:13:02,970 INFO Total: 52 unique viability paths for Bladder Urothelial Carcinoma (conf >= 0.5)
+    -> Inferred 52 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:13:02,970 INFO Solving hitting set: 52 paths, 1691 candidate genes, max_size=4
+2026-02-12 09:13:07,284 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:13:17,845 INFO Solvers used: greedy, prefiltered_exhaustive(k=64)
+2026-02-12 09:13:17,853 INFO Found 3906 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:13:17,860 INFO Finding triple combinations for Bladder Urothelial Carcinoma (52 paths)
+2026-02-12 09:13:17,880 INFO Injected 16 druggable path genes into candidates
+2026-02-12 09:13:17,880 INFO Evaluating combinations from 18 candidate genes
+Scoring triples:   0%|          | 0/816 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/153 [00:00<?, ?it/s]                                                         2026-02-12 09:13:21,354 INFO Found 185 valid triples, 19 valid doublets
+    -> Best triple: CDK2 + EGFR + MAP2K1 [done]
+    -> Best combo (2 genes): EGFR + MET [done]
+2026-02-12 09:13:21,387 INFO Finding triple combinations for Bladder Urothelial Carcinoma (52 paths)
+2026-02-12 09:13:21,389 INFO Injected 16 druggable path genes into candidates
+2026-02-12 09:13:21,390 INFO Evaluating combinations from 18 candidate genes
+Scoring triples:   0%|          | 0/816 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/153 [00:00<?, ?it/s]                                                         2026-02-12 09:13:24,760 INFO Found 481 valid triples, 50 valid doublets
+2026-02-12 09:13:24,761 INFO     531 combos, 64 positive
+2026-02-12 09:13:24,761 INFO   Breast Ductal Carcinoma In Situ...
+2026-02-12 09:13:24,761 INFO 
+================================================================================
+2026-02-12 09:13:24,761 INFO Analyzing Breast Ductal Carcinoma In Situ
+2026-02-12 09:13:24,761 INFO ================================================================================
+    -> Breast Ductal Carcinoma In Situ: 6 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:13:25,221 INFO Inferring essential modules for Breast Ductal Carcinoma In Situ (selectivity>30%)
+2026-02-12 09:13:27,362 INFO Inferred 7 essential module paths (2109 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:13:27,370 INFO Inferring signaling paths for Breast Ductal Carcinoma In Situ (max_len=4)
+2026-02-12 09:13:27,817 INFO Inferred 28 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:13:27,822 INFO Finding cancer-specific dependencies for Breast Ductal Carcinoma In Situ
+2026-02-12 09:13:41,601 INFO FDR correction: 16806 genes tested, 14 raw-significant, 1 FDR-significant (q < 0.05, Cohen's d > 0.3)
+    -> Perturbation response paths...
+2026-02-12 09:13:41,603 INFO Inferring perturbation response paths for Breast Ductal Carcinoma In Situ
+2026-02-12 09:13:42,110 INFO Inferred 13 perturbation response paths
+2026-02-12 09:13:42,116 INFO Total: 47 unique viability paths for Breast Ductal Carcinoma In Situ (conf >= 0.5)
+    -> Inferred 47 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:13:42,116 INFO Solving hitting set: 47 paths, 2122 candidate genes, max_size=4
+2026-02-12 09:13:57,480 INFO Solvers used: greedy, ilp(n=2122), prefiltered_exhaustive(k=63)
+2026-02-12 09:13:57,484 INFO Found 7325 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:13:57,488 INFO Finding triple combinations for Breast Ductal Carcinoma In Situ (47 paths)
+2026-02-12 09:13:57,496 INFO Injected 17 druggable path genes into candidates
+2026-02-12 09:13:57,496 INFO Evaluating combinations from 19 candidate genes
+Scoring triples:   0%|          | 0/969 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/171 [00:00<?, ?it/s]                                                         2026-02-12 09:14:01,056 INFO Found 304 valid triples, 27 valid doublets
+    -> Best triple: AKT1 + ERBB2 + MET [done]
+2026-02-12 09:14:01,078 INFO Finding triple combinations for Breast Ductal Carcinoma In Situ (47 paths)
+2026-02-12 09:14:01,082 INFO Injected 17 druggable path genes into candidates
+2026-02-12 09:14:01,082 INFO Evaluating combinations from 19 candidate genes
+Scoring triples:   0%|          | 0/969 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/171 [00:00<?, ?it/s]                                                         2026-02-12 09:14:04,661 INFO Found 630 valid triples, 74 valid doublets
+2026-02-12 09:14:04,664 INFO     704 combos, 0 positive
+2026-02-12 09:14:04,664 INFO   Cervical Adenocarcinoma...
+2026-02-12 09:14:04,664 INFO 
+================================================================================
+2026-02-12 09:14:04,664 INFO Analyzing Cervical Adenocarcinoma
+2026-02-12 09:14:04,664 INFO ================================================================================
+    -> Cervical Adenocarcinoma: 7 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:14:04,992 INFO Inferring essential modules for Cervical Adenocarcinoma (selectivity>30%)
+2026-02-12 09:14:06,994 INFO Inferred 7 essential module paths (2070 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:14:07,001 INFO Inferring signaling paths for Cervical Adenocarcinoma (max_len=4)
+2026-02-12 09:14:07,411 INFO Inferred 28 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:14:07,417 INFO Finding cancer-specific dependencies for Cervical Adenocarcinoma
+2026-02-12 09:14:20,881 INFO FDR correction: 16806 genes tested, 12 raw-significant, 0 FDR-significant (q < 0.05, Cohen's d > 0.3)
+    -> Perturbation response paths...
+2026-02-12 09:14:20,883 INFO Inferring perturbation response paths for Cervical Adenocarcinoma
+2026-02-12 09:14:21,360 INFO Inferred 8 perturbation response paths
+2026-02-12 09:14:21,366 INFO Total: 42 unique viability paths for Cervical Adenocarcinoma (conf >= 0.5)
+    -> Inferred 42 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:14:21,366 INFO Solving hitting set: 42 paths, 2083 candidate genes, max_size=4
+2026-02-12 09:14:39,336 INFO Solvers used: greedy, ilp(n=2083), prefiltered_exhaustive(k=64)
+2026-02-12 09:14:39,338 INFO Found 3846 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:14:39,340 INFO Finding triple combinations for Cervical Adenocarcinoma (42 paths)
+2026-02-12 09:14:39,348 INFO Injected 17 druggable path genes into candidates
+2026-02-12 09:14:39,348 INFO Evaluating combinations from 19 candidate genes
+Scoring triples:   0%|          | 0/969 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/171 [00:00<?, ?it/s]                                                         2026-02-12 09:14:42,870 INFO Found 331 valid triples, 27 valid doublets
+    -> Best triple: CDK4 + ERBB2 + MET [done]
+    -> Best combo (2 genes): EGFR + MAP2K1 [done]
+2026-02-12 09:14:42,899 INFO Finding triple combinations for Cervical Adenocarcinoma (42 paths)
+2026-02-12 09:14:42,901 INFO Injected 17 druggable path genes into candidates
+2026-02-12 09:14:42,901 INFO Evaluating combinations from 19 candidate genes
+Scoring triples:   0%|          | 0/969 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/171 [00:00<?, ?it/s]                                                         2026-02-12 09:14:46,501 INFO Found 624 valid triples, 71 valid doublets
+2026-02-12 09:14:46,503 INFO     695 combos, 0 positive
+2026-02-12 09:14:46,503 INFO   Cervical Squamous Cell Carcinoma...
+2026-02-12 09:14:46,503 INFO 
+================================================================================
+2026-02-12 09:14:46,503 INFO Analyzing Cervical Squamous Cell Carcinoma
+2026-02-12 09:14:46,503 INFO ================================================================================
+    -> Cervical Squamous Cell Carcinoma: 15 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:14:47,009 INFO Inferring essential modules for Cervical Squamous Cell Carcinoma (selectivity>30%)
+2026-02-12 09:14:50,975 INFO Inferred 15 essential module paths (1848 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:14:50,987 INFO Inferring signaling paths for Cervical Squamous Cell Carcinoma (max_len=4)
+2026-02-12 09:14:51,399 INFO Inferred 5 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:14:51,405 INFO Finding cancer-specific dependencies for Cervical Squamous Cell Carcinoma
+2026-02-12 09:15:05,535 INFO FDR correction: 16806 genes tested, 12 raw-significant, 2 FDR-significant (q < 0.05, Cohen's d > 0.3)
+2026-02-12 09:15:05,536 INFO Found 2 cancer-specific essential genes (FDR-corrected)
+    -> Perturbation response paths...
+2026-02-12 09:15:05,537 INFO Inferring perturbation response paths for Cervical Squamous Cell Carcinoma
+2026-02-12 09:15:06,005 INFO Inferred 5 perturbation response paths
+2026-02-12 09:15:06,011 INFO Total: 25 unique viability paths for Cervical Squamous Cell Carcinoma (conf >= 0.5)
+    -> Inferred 25 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:15:06,011 INFO Solving hitting set: 25 paths, 1853 candidate genes, max_size=4
+2026-02-12 09:15:09,236 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:15:14,194 INFO Solvers used: greedy, prefiltered_exhaustive(k=63)
+2026-02-12 09:15:14,195 INFO Found 181 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:15:14,198 INFO Finding triple combinations for Cervical Squamous Cell Carcinoma (25 paths)
+2026-02-12 09:15:14,202 INFO Injected 11 druggable path genes into candidates
+2026-02-12 09:15:14,202 INFO Evaluating combinations from 12 candidate genes
+Scoring triples:   0%|          | 0/220 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/66 [00:00<?, ?it/s]                                                        2026-02-12 09:15:16,502 INFO Found 0 valid triples, 0 valid doublets
+2026-02-12 09:15:16,528 INFO Finding triple combinations for Cervical Squamous Cell Carcinoma (25 paths)
+2026-02-12 09:15:16,531 INFO Injected 11 druggable path genes into candidates
+2026-02-12 09:15:16,531 INFO Evaluating combinations from 12 candidate genes
+Scoring triples:   0%|          | 0/220 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/66 [00:00<?, ?it/s]                                                        2026-02-12 09:15:18,733 INFO Found 111 valid triples, 14 valid doublets
+2026-02-12 09:15:18,734 INFO     125 combos, 0 positive
+2026-02-12 09:15:18,734 INFO   Chondrosarcoma...
+2026-02-12 09:15:18,734 INFO 
+================================================================================
+2026-02-12 09:15:18,734 INFO Analyzing Chondrosarcoma
+2026-02-12 09:15:18,734 INFO ================================================================================
+    -> Chondrosarcoma: 9 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:15:19,038 INFO Inferring essential modules for Chondrosarcoma (selectivity>30%)
+2026-02-12 09:15:19,039 WARNING Too few cell lines (1) for Chondrosarcoma
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:15:19,039 INFO Inferring signaling paths for Chondrosarcoma (max_len=4)
+2026-02-12 09:15:19,447 INFO Inferred 5 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:15:19,452 INFO Finding cancer-specific dependencies for Chondrosarcoma
+2026-02-12 09:15:19,453 WARNING Too few cell lines (1) for statistical comparison
+    -> Perturbation response paths...
+2026-02-12 09:15:19,453 INFO Inferring perturbation response paths for Chondrosarcoma
+2026-02-12 09:15:19,826 INFO Inferred 8 perturbation response paths
+2026-02-12 09:15:19,831 INFO Total: 12 unique viability paths for Chondrosarcoma (conf >= 0.5)
+    -> Inferred 12 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:15:19,831 INFO Solving hitting set: 12 paths, 17 candidate genes, max_size=4
+2026-02-12 09:15:21,833 INFO Solvers used: greedy, exhaustive(n=17)
+2026-02-12 09:15:21,833 INFO Found 532 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:15:21,833 INFO Finding triple combinations for Chondrosarcoma (12 paths)
+2026-02-12 09:15:21,836 INFO Injected 10 druggable path genes into candidates
+2026-02-12 09:15:21,836 INFO Evaluating combinations from 11 candidate genes
+Scoring triples:   0%|          | 0/165 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/55 [00:00<?, ?it/s]                                                        2026-02-12 09:15:23,743 INFO Found 126 valid triples, 26 valid doublets
+    -> Best triple: CDK2 + ERBB2 + MET [done]
+2026-02-12 09:15:23,755 INFO Finding triple combinations for Chondrosarcoma (12 paths)
+2026-02-12 09:15:23,758 INFO Injected 10 druggable path genes into candidates
+2026-02-12 09:15:23,758 INFO Evaluating combinations from 11 candidate genes
+Scoring triples:   0%|          | 0/165 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/55 [00:00<?, ?it/s]                                                        2026-02-12 09:15:25,768 INFO Found 161 valid triples, 40 valid doublets
+2026-02-12 09:15:25,768 INFO     201 combos, 0 positive
+2026-02-12 09:15:25,768 INFO   Colorectal Adenocarcinoma...
+2026-02-12 09:15:25,768 INFO 
+================================================================================
+2026-02-12 09:15:25,768 INFO Analyzing Colorectal Adenocarcinoma
+2026-02-12 09:15:25,768 INFO ================================================================================
+    -> Colorectal Adenocarcinoma: 96 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:15:26,168 INFO Inferring essential modules for Colorectal Adenocarcinoma (selectivity>30%)
+2026-02-12 09:15:42,032 INFO Inferred 15 essential module paths (1768 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:15:42,101 INFO Inferring signaling paths for Colorectal Adenocarcinoma (max_len=4)
+2026-02-12 09:15:42,561 INFO Inferred 28 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:15:42,570 INFO Finding cancer-specific dependencies for Colorectal Adenocarcinoma
+2026-02-12 09:15:56,655 INFO FDR correction: 16950 genes tested, 23 raw-significant, 23 FDR-significant (q < 0.05, Cohen's d > 0.3)
+2026-02-12 09:15:56,655 INFO Found 20 cancer-specific essential genes (FDR-corrected)
+    -> Perturbation response paths...
+2026-02-12 09:15:56,657 INFO Inferring perturbation response paths for Colorectal Adenocarcinoma
+2026-02-12 09:15:56,967 INFO Inferred 7 perturbation response paths
+2026-02-12 09:15:56,974 INFO Total: 50 unique viability paths for Colorectal Adenocarcinoma (conf >= 0.5)
+    -> Inferred 50 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:15:56,974 INFO Solving hitting set: 50 paths, 1778 candidate genes, max_size=4
+2026-02-12 09:16:01,562 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:16:23,441 INFO Solvers used: greedy, prefiltered_exhaustive(k=61)
+2026-02-12 09:16:23,443 INFO Found 2366 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:16:23,445 INFO Finding triple combinations for Colorectal Adenocarcinoma (50 paths)
+2026-02-12 09:16:23,449 INFO Injected 16 druggable path genes into candidates
+2026-02-12 09:16:23,449 INFO Evaluating combinations from 18 candidate genes
+Scoring triples:   0%|          | 0/816 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/153 [00:00<?, ?it/s]                                                         2026-02-12 09:16:27,012 INFO Found 213 valid triples, 21 valid doublets
+    -> Best triple: EGFR + KRAS + MET [done]
+    -> Best combo (2 genes): EGFR + MET [done]
+2026-02-12 09:16:27,046 INFO Finding triple combinations for Colorectal Adenocarcinoma (50 paths)
+2026-02-12 09:16:27,048 INFO Injected 16 druggable path genes into candidates
+2026-02-12 09:16:27,048 INFO Evaluating combinations from 18 candidate genes
+Scoring triples:   0%|          | 0/816 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/153 [00:00<?, ?it/s]                                                         2026-02-12 09:16:30,591 INFO Found 494 valid triples, 55 valid doublets
+2026-02-12 09:16:30,593 INFO     549 combos, 300 positive
+2026-02-12 09:16:30,593 INFO   Cutaneous Squamous Cell Carcinoma...
+2026-02-12 09:16:30,593 INFO 
+================================================================================
+2026-02-12 09:16:30,593 INFO Analyzing Cutaneous Squamous Cell Carcinoma
+2026-02-12 09:16:30,593 INFO ================================================================================
+    -> Cutaneous Squamous Cell Carcinoma: 6 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:16:31,037 INFO Inferring essential modules for Cutaneous Squamous Cell Carcinoma (selectivity>30%)
+2026-02-12 09:16:33,978 INFO Inferred 15 essential module paths (2372 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:16:33,989 INFO Inferring signaling paths for Cutaneous Squamous Cell Carcinoma (max_len=4)
+2026-02-12 09:16:34,408 INFO Inferred 22 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:16:34,413 INFO Finding cancer-specific dependencies for Cutaneous Squamous Cell Carcinoma
+2026-02-12 09:16:47,986 INFO FDR correction: 16806 genes tested, 22 raw-significant, 0 FDR-significant (q < 0.05, Cohen's d > 0.3)
+    -> Perturbation response paths...
+2026-02-12 09:16:47,987 INFO Inferring perturbation response paths for Cutaneous Squamous Cell Carcinoma
+2026-02-12 09:16:48,526 INFO Inferred 15 perturbation response paths
+2026-02-12 09:16:48,532 INFO Total: 51 unique viability paths for Cutaneous Squamous Cell Carcinoma (conf >= 0.5)
+    -> Inferred 51 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:16:48,532 INFO Solving hitting set: 51 paths, 2385 candidate genes, max_size=4
+2026-02-12 09:16:53,885 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:17:06,745 INFO Solvers used: greedy, prefiltered_exhaustive(k=63)
+2026-02-12 09:17:06,768 INFO Found 41605 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:17:06,793 INFO Finding triple combinations for Cutaneous Squamous Cell Carcinoma (51 paths)
+2026-02-12 09:17:06,797 INFO Injected 18 druggable path genes into candidates
+2026-02-12 09:17:06,797 INFO Evaluating combinations from 20 candidate genes
+Scoring triples:   0%|          | 0/1140 [00:00<?, ?it/s]                                                         Scoring doublets:   0%|          | 0/190 [00:00<?, ?it/s]                                                         2026-02-12 09:17:10,653 INFO Found 214 valid triples, 20 valid doublets
+    -> Best triple: BCL2L1 + CDK6 + ERBB2 [done]
+2026-02-12 09:17:10,671 INFO Finding triple combinations for Cutaneous Squamous Cell Carcinoma (51 paths)
+2026-02-12 09:17:10,673 INFO Injected 18 druggable path genes into candidates
+2026-02-12 09:17:10,673 INFO Evaluating combinations from 20 candidate genes
+Scoring triples:   0%|          | 0/1140 [00:00<?, ?it/s]                                                         Scoring doublets:   0%|          | 0/190 [00:00<?, ?it/s]                                                         2026-02-12 09:17:14,493 INFO Found 498 valid triples, 54 valid doublets
+2026-02-12 09:17:14,494 INFO     552 combos, 0 positive
+2026-02-12 09:17:14,494 INFO   Diffuse Glioma...
+2026-02-12 09:17:14,494 INFO 
+================================================================================
+2026-02-12 09:17:14,494 INFO Analyzing Diffuse Glioma
+2026-02-12 09:17:14,494 INFO ================================================================================
+    -> Diffuse Glioma: 96 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:17:14,981 INFO Inferring essential modules for Diffuse Glioma (selectivity>30%)
+2026-02-12 09:17:31,361 INFO Inferred 15 essential module paths (1598 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:17:31,419 INFO Inferring signaling paths for Diffuse Glioma (max_len=4)
+2026-02-12 09:17:31,723 INFO Inferred 34 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:17:31,729 INFO Finding cancer-specific dependencies for Diffuse Glioma
+2026-02-12 09:17:45,672 INFO FDR correction: 16950 genes tested, 20 raw-significant, 20 FDR-significant (q < 0.05, Cohen's d > 0.3)
+2026-02-12 09:17:45,672 INFO Found 20 cancer-specific essential genes (FDR-corrected)
+    -> Perturbation response paths...
+2026-02-12 09:17:45,675 INFO Inferring perturbation response paths for Diffuse Glioma
+2026-02-12 09:17:46,005 INFO Inferred 10 perturbation response paths
+2026-02-12 09:17:46,011 INFO Total: 59 unique viability paths for Diffuse Glioma (conf >= 0.5)
+    -> Inferred 59 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:17:46,011 INFO Solving hitting set: 59 paths, 1611 candidate genes, max_size=4
+2026-02-12 09:17:50,094 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:18:11,568 INFO Solvers used: greedy, prefiltered_exhaustive(k=61)
+2026-02-12 09:18:11,575 INFO Found 4349 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:18:11,581 INFO Finding triple combinations for Diffuse Glioma (59 paths)
+2026-02-12 09:18:11,585 INFO Injected 15 druggable path genes into candidates
+2026-02-12 09:18:11,586 INFO Evaluating combinations from 17 candidate genes
+Scoring triples:   0%|          | 0/680 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/136 [00:00<?, ?it/s]                                                         2026-02-12 09:18:14,708 INFO Found 169 valid triples, 19 valid doublets
+    -> Best triple: CDK2 + EGFR + MAP2K1 [done]
+    -> Best combo (2 genes): EGFR + MET [done]
+2026-02-12 09:18:14,735 INFO Finding triple combinations for Diffuse Glioma (59 paths)
+2026-02-12 09:18:14,737 INFO Injected 15 druggable path genes into candidates
+2026-02-12 09:18:14,737 INFO Evaluating combinations from 17 candidate genes
+Scoring triples:   0%|          | 0/680 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/136 [00:00<?, ?it/s]                                                         2026-02-12 09:18:18,061 INFO Found 420 valid triples, 46 valid doublets
+2026-02-12 09:18:18,069 INFO     466 combos, 112 positive
+2026-02-12 09:18:18,069 INFO   Embryonal Tumor...
+2026-02-12 09:18:18,069 INFO 
+================================================================================
+2026-02-12 09:18:18,069 INFO Analyzing Embryonal Tumor
+2026-02-12 09:18:18,069 INFO ================================================================================
+    -> Embryonal Tumor: 21 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:18:18,666 INFO Inferring essential modules for Embryonal Tumor (selectivity>30%)
+2026-02-12 09:18:23,479 INFO Inferred 15 essential module paths (1890 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:18:23,513 INFO Inferring signaling paths for Embryonal Tumor (max_len=4)
+2026-02-12 09:18:23,904 INFO Inferred 34 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:18:23,909 INFO Finding cancer-specific dependencies for Embryonal Tumor
+2026-02-12 09:18:37,010 INFO FDR correction: 16806 genes tested, 6 raw-significant, 0 FDR-significant (q < 0.05, Cohen's d > 0.3)
+    -> Perturbation response paths...
+2026-02-12 09:18:37,011 INFO Inferring perturbation response paths for Embryonal Tumor
+2026-02-12 09:18:37,470 INFO Inferred 5 perturbation response paths
+2026-02-12 09:18:37,475 INFO Total: 53 unique viability paths for Embryonal Tumor (conf >= 0.5)
+    -> Inferred 53 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:18:37,475 INFO Solving hitting set: 53 paths, 1902 candidate genes, max_size=4
+2026-02-12 09:18:41,453 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:18:52,656 INFO Solvers used: greedy, prefiltered_exhaustive(k=63)
+2026-02-12 09:18:52,658 INFO Found 5554 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:18:52,661 INFO Finding triple combinations for Embryonal Tumor (53 paths)
+2026-02-12 09:18:52,666 INFO Injected 14 druggable path genes into candidates
+2026-02-12 09:18:52,666 INFO Evaluating combinations from 16 candidate genes
+Scoring triples:   0%|          | 0/560 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/120 [00:00<?, ?it/s]                                                         2026-02-12 09:18:55,583 INFO Found 183 valid triples, 21 valid doublets
+    -> Best triple: CDK4 + CDK6 + MCL1 [done]
+2026-02-12 09:18:55,608 INFO Finding triple combinations for Embryonal Tumor (53 paths)
+2026-02-12 09:18:55,610 INFO Injected 14 druggable path genes into candidates
+2026-02-12 09:18:55,610 INFO Evaluating combinations from 16 candidate genes
+Scoring triples:   0%|          | 0/560 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/120 [00:00<?, ?it/s]                                                         2026-02-12 09:18:58,665 INFO Found 389 valid triples, 50 valid doublets
+2026-02-12 09:18:58,667 INFO     439 combos, 0 positive
+2026-02-12 09:18:58,667 INFO   Endometrial Carcinoma...
+2026-02-12 09:18:58,667 INFO 
+================================================================================
+2026-02-12 09:18:58,667 INFO Analyzing Endometrial Carcinoma
+2026-02-12 09:18:58,667 INFO ================================================================================
+    -> Endometrial Carcinoma: 37 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:18:59,186 INFO Inferring essential modules for Endometrial Carcinoma (selectivity>30%)
+2026-02-12 09:19:06,713 INFO Inferred 15 essential module paths (1733 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:19:06,733 INFO Inferring signaling paths for Endometrial Carcinoma (max_len=4)
+2026-02-12 09:19:06,997 INFO Inferred 28 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:19:07,003 INFO Finding cancer-specific dependencies for Endometrial Carcinoma
+2026-02-12 09:19:20,850 INFO FDR correction: 16950 genes tested, 7 raw-significant, 2 FDR-significant (q < 0.05, Cohen's d > 0.3)
+2026-02-12 09:19:20,850 INFO Found 2 cancer-specific essential genes (FDR-corrected)
+    -> Perturbation response paths...
+2026-02-12 09:19:20,852 INFO Inferring perturbation response paths for Endometrial Carcinoma
+2026-02-12 09:19:21,341 INFO Inferred 15 perturbation response paths
+2026-02-12 09:19:21,346 INFO Total: 58 unique viability paths for Endometrial Carcinoma (conf >= 0.5)
+    -> Inferred 58 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:19:21,346 INFO Solving hitting set: 58 paths, 1749 candidate genes, max_size=4
+2026-02-12 09:19:25,943 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:19:38,618 INFO Solvers used: greedy, prefiltered_exhaustive(k=64)
+2026-02-12 09:19:38,626 INFO Found 3846 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:19:38,631 INFO Finding triple combinations for Endometrial Carcinoma (58 paths)
+2026-02-12 09:19:38,640 INFO Injected 16 druggable path genes into candidates
+2026-02-12 09:19:38,641 INFO Evaluating combinations from 18 candidate genes
+Scoring triples:   0%|          | 0/816 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/153 [00:00<?, ?it/s]                                                         2026-02-12 09:19:42,115 INFO Found 93 valid triples, 5 valid doublets
+    -> Best triple: CDK2 + EGFR + MET [done]
+    -> Best combo (2 genes): MAP2K1 + STAT3 [done]
+2026-02-12 09:19:42,240 INFO Finding triple combinations for Endometrial Carcinoma (58 paths)
+2026-02-12 09:19:42,270 INFO Injected 16 druggable path genes into candidates
+2026-02-12 09:19:42,270 INFO Evaluating combinations from 18 candidate genes
+Scoring triples:   0%|          | 0/816 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/153 [00:00<?, ?it/s]                                                         2026-02-12 09:19:45,572 INFO Found 422 valid triples, 44 valid doublets
+2026-02-12 09:19:45,575 INFO     466 combos, 0 positive
+2026-02-12 09:19:45,575 INFO   Esophageal Squamous Cell Carcinoma...
+2026-02-12 09:19:45,575 INFO 
+================================================================================
+2026-02-12 09:19:45,575 INFO Analyzing Esophageal Squamous Cell Carcinoma
+2026-02-12 09:19:45,575 INFO ================================================================================
+    -> Esophageal Squamous Cell Carcinoma: 30 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:19:46,092 INFO Inferring essential modules for Esophageal Squamous Cell Carcinoma (selectivity>30%)
+2026-02-12 09:19:52,523 INFO Inferred 15 essential module paths (1619 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:19:52,565 INFO Inferring signaling paths for Esophageal Squamous Cell Carcinoma (max_len=4)
+2026-02-12 09:19:53,089 INFO Inferred 34 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:19:53,095 INFO Finding cancer-specific dependencies for Esophageal Squamous Cell Carcinoma
+2026-02-12 09:20:06,902 INFO FDR correction: 16950 genes tested, 21 raw-significant, 12 FDR-significant (q < 0.05, Cohen's d > 0.3)
+2026-02-12 09:20:06,902 INFO Found 12 cancer-specific essential genes (FDR-corrected)
+    -> Perturbation response paths...
+2026-02-12 09:20:06,903 INFO Inferring perturbation response paths for Esophageal Squamous Cell Carcinoma
+2026-02-12 09:20:07,408 INFO Inferred 15 perturbation response paths
+2026-02-12 09:20:07,414 INFO Total: 64 unique viability paths for Esophageal Squamous Cell Carcinoma (conf >= 0.5)
+    -> Inferred 64 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:20:07,414 INFO Solving hitting set: 64 paths, 1633 candidate genes, max_size=4
+2026-02-12 09:20:24,787 INFO Solvers used: greedy, ilp(n=1633), prefiltered_exhaustive(k=64)
+2026-02-12 09:20:24,792 INFO Found 3846 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:20:24,799 INFO Finding triple combinations for Esophageal Squamous Cell Carcinoma (64 paths)
+2026-02-12 09:20:24,809 INFO Injected 18 druggable path genes into candidates
+2026-02-12 09:20:24,809 INFO Evaluating combinations from 20 candidate genes
+Scoring triples:   0%|          | 0/1140 [00:00<?, ?it/s]                                                         Scoring doublets:   0%|          | 0/190 [00:00<?, ?it/s]                                                         2026-02-12 09:20:28,783 INFO Found 346 valid triples, 38 valid doublets
+    -> Best triple: CDK4 + CDK6 + ERBB2 [done]
+    -> Best combo (2 genes): FYN + STAT3 [done]
+2026-02-12 09:20:28,821 INFO Finding triple combinations for Esophageal Squamous Cell Carcinoma (64 paths)
+2026-02-12 09:20:28,823 INFO Injected 18 druggable path genes into candidates
+2026-02-12 09:20:28,823 INFO Evaluating combinations from 20 candidate genes
+Scoring triples:   0%|          | 0/1140 [00:00<?, ?it/s]                                                         Scoring doublets:   0%|          | 0/190 [00:00<?, ?it/s]                                                         2026-02-12 09:20:32,792 INFO Found 591 valid triples, 55 valid doublets
+2026-02-12 09:20:32,794 INFO     646 combos, 0 positive
+2026-02-12 09:20:32,794 INFO   Esophagogastric Adenocarcinoma...
+2026-02-12 09:20:32,794 INFO 
+================================================================================
+2026-02-12 09:20:32,794 INFO Analyzing Esophagogastric Adenocarcinoma
+2026-02-12 09:20:32,794 INFO ================================================================================
+    -> Esophagogastric Adenocarcinoma: 74 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:20:33,117 INFO Inferring essential modules for Esophagogastric Adenocarcinoma (selectivity>30%)
+2026-02-12 09:20:45,080 INFO Inferred 15 essential module paths (1782 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:20:45,128 INFO Inferring signaling paths for Esophagogastric Adenocarcinoma (max_len=4)
+2026-02-12 09:20:45,431 INFO Inferred 34 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:20:45,437 INFO Finding cancer-specific dependencies for Esophagogastric Adenocarcinoma
+2026-02-12 09:20:59,415 INFO FDR correction: 16950 genes tested, 13 raw-significant, 11 FDR-significant (q < 0.05, Cohen's d > 0.3)
+2026-02-12 09:20:59,415 INFO Found 11 cancer-specific essential genes (FDR-corrected)
+    -> Perturbation response paths...
+2026-02-12 09:20:59,417 INFO Inferring perturbation response paths for Esophagogastric Adenocarcinoma
+2026-02-12 09:20:59,941 INFO Inferred 9 perturbation response paths
+2026-02-12 09:20:59,946 INFO Total: 58 unique viability paths for Esophagogastric Adenocarcinoma (conf >= 0.5)
+    -> Inferred 58 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:20:59,946 INFO Solving hitting set: 58 paths, 1795 candidate genes, max_size=4
+2026-02-12 09:21:16,662 INFO Solvers used: greedy, ilp(n=1795), prefiltered_exhaustive(k=64)
+2026-02-12 09:21:16,663 INFO Found 3908 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:21:16,665 INFO Finding triple combinations for Esophagogastric Adenocarcinoma (58 paths)
+2026-02-12 09:21:16,669 INFO Injected 16 druggable path genes into candidates
+2026-02-12 09:21:16,669 INFO Evaluating combinations from 18 candidate genes
+Scoring triples:   0%|          | 0/816 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/153 [00:00<?, ?it/s]                                                         2026-02-12 09:21:20,136 INFO Found 192 valid triples, 20 valid doublets
+    -> Best triple: CDK6 + EGFR + PIK3CA [done]
+    -> Best combo (2 genes): EGFR + MET [done]
+2026-02-12 09:21:20,177 INFO Finding triple combinations for Esophagogastric Adenocarcinoma (58 paths)
+2026-02-12 09:21:20,180 INFO Injected 16 druggable path genes into candidates
+2026-02-12 09:21:20,180 INFO Evaluating combinations from 18 candidate genes
+Scoring triples:   0%|          | 0/816 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/153 [00:00<?, ?it/s]                                                         2026-02-12 09:21:23,718 INFO Found 471 valid triples, 48 valid doublets
+2026-02-12 09:21:23,723 INFO     519 combos, 84 positive
+2026-02-12 09:21:23,723 INFO   Ewing Sarcoma...
+2026-02-12 09:21:23,723 INFO 
+================================================================================
+2026-02-12 09:21:23,723 INFO Analyzing Ewing Sarcoma
+2026-02-12 09:21:23,723 INFO ================================================================================
+    -> Ewing Sarcoma: 51 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:21:24,285 INFO Inferring essential modules for Ewing Sarcoma (selectivity>30%)
+2026-02-12 09:21:32,977 INFO Inferred 15 essential module paths (2252 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:21:33,011 INFO Inferring signaling paths for Ewing Sarcoma (max_len=4)
+2026-02-12 09:21:33,506 INFO Inferred 28 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:21:33,511 INFO Finding cancer-specific dependencies for Ewing Sarcoma
+2026-02-12 09:21:47,032 INFO FDR correction: 16950 genes tested, 54 raw-significant, 48 FDR-significant (q < 0.05, Cohen's d > 0.3)
+2026-02-12 09:21:47,032 INFO Found 20 cancer-specific essential genes (FDR-corrected)
+    -> Perturbation response paths...
+2026-02-12 09:21:47,034 INFO Inferring perturbation response paths for Ewing Sarcoma
+2026-02-12 09:21:47,585 INFO Inferred 6 perturbation response paths
+2026-02-12 09:21:47,590 INFO Total: 49 unique viability paths for Ewing Sarcoma (conf >= 0.5)
+    -> Inferred 49 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:21:47,590 INFO Solving hitting set: 49 paths, 2264 candidate genes, max_size=4
+2026-02-12 09:21:52,336 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:22:12,814 INFO Solvers used: greedy, prefiltered_exhaustive(k=60)
+2026-02-12 09:22:12,816 INFO Found 1303 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:22:12,818 INFO Finding triple combinations for Ewing Sarcoma (49 paths)
+2026-02-12 09:22:12,824 INFO Injected 14 druggable path genes into candidates
+2026-02-12 09:22:12,824 INFO Evaluating combinations from 16 candidate genes
+Scoring triples:   0%|          | 0/560 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/120 [00:00<?, ?it/s]                                                         2026-02-12 09:22:15,876 INFO Found 151 valid triples, 18 valid doublets
+    -> Best triple: EGFR + KRAS + MET [done]
+    -> Best combo (2 genes): EGFR + MET [done]
+2026-02-12 09:22:15,906 INFO Finding triple combinations for Ewing Sarcoma (49 paths)
+2026-02-12 09:22:15,908 INFO Injected 14 druggable path genes into candidates
+2026-02-12 09:22:15,908 INFO Evaluating combinations from 16 candidate genes
+Scoring triples:   0%|          | 0/560 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/120 [00:00<?, ?it/s]                                                         2026-02-12 09:22:19,082 INFO Found 371 valid triples, 52 valid doublets
+2026-02-12 09:22:19,083 INFO     423 combos, 0 positive
+2026-02-12 09:22:19,083 INFO   Head and Neck Squamous Cell Carcinoma...
+2026-02-12 09:22:19,083 INFO 
+================================================================================
+2026-02-12 09:22:19,083 INFO Analyzing Head and Neck Squamous Cell Carcinoma
+2026-02-12 09:22:19,083 INFO ================================================================================
+    -> Head and Neck Squamous Cell Carcinoma: 89 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:22:19,415 INFO Inferring essential modules for Head and Neck Squamous Cell Carcinoma (selectivity>30%)
+2026-02-12 09:22:37,525 INFO Inferred 15 essential module paths (1751 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:22:37,582 INFO Inferring signaling paths for Head and Neck Squamous Cell Carcinoma (max_len=4)
+2026-02-12 09:22:37,883 INFO Inferred 34 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:22:37,889 INFO Finding cancer-specific dependencies for Head and Neck Squamous Cell Carcinoma
+2026-02-12 09:22:51,404 INFO FDR correction: 16950 genes tested, 20 raw-significant, 20 FDR-significant (q < 0.05, Cohen's d > 0.3)
+2026-02-12 09:22:51,404 INFO Found 20 cancer-specific essential genes (FDR-corrected)
+    -> Perturbation response paths...
+2026-02-12 09:22:51,405 INFO Inferring perturbation response paths for Head and Neck Squamous Cell Carcinoma
+2026-02-12 09:22:51,678 INFO Inferred 15 perturbation response paths
+2026-02-12 09:22:51,684 INFO Total: 64 unique viability paths for Head and Neck Squamous Cell Carcinoma (conf >= 0.5)
+    -> Inferred 64 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:22:51,684 INFO Solving hitting set: 64 paths, 1766 candidate genes, max_size=4
+2026-02-12 09:23:14,736 INFO Solvers used: greedy, ilp(n=1766), prefiltered_exhaustive(k=61)
+2026-02-12 09:23:14,742 INFO Found 9805 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:23:14,753 INFO Finding triple combinations for Head and Neck Squamous Cell Carcinoma (64 paths)
+2026-02-12 09:23:14,756 INFO Injected 18 druggable path genes into candidates
+2026-02-12 09:23:14,756 INFO Evaluating combinations from 20 candidate genes
+Scoring triples:   0%|          | 0/1140 [00:00<?, ?it/s]                                                         Scoring doublets:   0%|          | 0/190 [00:00<?, ?it/s]                                                         2026-02-12 09:23:18,814 INFO Found 346 valid triples, 38 valid doublets
+    -> Best triple: CDK4 + CDK6 + ERBB2 [done]
+    -> Best combo (2 genes): FYN + STAT3 [done]
+2026-02-12 09:23:18,847 INFO Finding triple combinations for Head and Neck Squamous Cell Carcinoma (64 paths)
+2026-02-12 09:23:18,849 INFO Injected 18 druggable path genes into candidates
+2026-02-12 09:23:18,850 INFO Evaluating combinations from 20 candidate genes
+Scoring triples:   0%|          | 0/1140 [00:00<?, ?it/s]                                                         Scoring doublets:   0%|          | 0/190 [00:00<?, ?it/s]                                                         2026-02-12 09:23:22,767 INFO Found 592 valid triples, 54 valid doublets
+2026-02-12 09:23:22,769 INFO     646 combos, 268 positive
+2026-02-12 09:23:22,769 INFO   Hepatocellular Carcinoma...
+2026-02-12 09:23:22,769 INFO 
+================================================================================
+2026-02-12 09:23:22,769 INFO Analyzing Hepatocellular Carcinoma
+2026-02-12 09:23:22,769 INFO ================================================================================
+    -> Hepatocellular Carcinoma: 24 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:23:23,249 INFO Inferring essential modules for Hepatocellular Carcinoma (selectivity>30%)
+2026-02-12 09:23:29,273 INFO Inferred 15 essential module paths (1723 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:23:29,287 INFO Inferring signaling paths for Hepatocellular Carcinoma (max_len=4)
+2026-02-12 09:23:29,551 INFO Inferred 28 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:23:29,556 INFO Finding cancer-specific dependencies for Hepatocellular Carcinoma
+2026-02-12 09:23:43,084 INFO FDR correction: 16806 genes tested, 12 raw-significant, 0 FDR-significant (q < 0.05, Cohen's d > 0.3)
+    -> Perturbation response paths...
+2026-02-12 09:23:43,086 INFO Inferring perturbation response paths for Hepatocellular Carcinoma
+2026-02-12 09:23:43,595 INFO Inferred 9 perturbation response paths
+2026-02-12 09:23:43,601 INFO Total: 51 unique viability paths for Hepatocellular Carcinoma (conf >= 0.5)
+    -> Inferred 51 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:23:43,601 INFO Solving hitting set: 51 paths, 1737 candidate genes, max_size=4
+2026-02-12 09:23:48,158 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:23:56,819 INFO Solvers used: greedy, prefiltered_exhaustive(k=64)
+2026-02-12 09:23:56,820 INFO Found 3846 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:23:56,822 INFO Finding triple combinations for Hepatocellular Carcinoma (51 paths)
+2026-02-12 09:23:56,826 INFO Injected 17 druggable path genes into candidates
+2026-02-12 09:23:56,826 INFO Evaluating combinations from 19 candidate genes
+Scoring triples:   0%|          | 0/969 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/171 [00:00<?, ?it/s]                                                         2026-02-12 09:24:00,459 INFO Found 202 valid triples, 19 valid doublets
+    -> Best triple: BCL2L1 + EGFR + MAP2K1 [done]
+    -> Best combo (2 genes): FGFR1 + STAT3 [done]
+2026-02-12 09:24:00,484 INFO Finding triple combinations for Hepatocellular Carcinoma (51 paths)
+2026-02-12 09:24:00,486 INFO Injected 17 druggable path genes into candidates
+2026-02-12 09:24:00,486 INFO Evaluating combinations from 19 candidate genes
+Scoring triples:   0%|          | 0/969 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/171 [00:00<?, ?it/s]                                                         2026-02-12 09:24:04,096 INFO Found 514 valid triples, 47 valid doublets
+2026-02-12 09:24:04,099 INFO     561 combos, 89 positive
+2026-02-12 09:24:04,099 INFO   Hodgkin Lymphoma...
+2026-02-12 09:24:04,099 INFO 
+================================================================================
+2026-02-12 09:24:04,099 INFO Analyzing Hodgkin Lymphoma
+2026-02-12 09:24:04,099 INFO ================================================================================
+    -> Hodgkin Lymphoma: 9 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:24:04,401 INFO Inferring essential modules for Hodgkin Lymphoma (selectivity>30%)
+2026-02-12 09:24:06,345 INFO Inferred 7 essential module paths (1987 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:24:06,352 INFO Inferring signaling paths for Hodgkin Lymphoma (max_len=4)
+2026-02-12 09:24:06,609 INFO Inferred 23 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:24:06,614 INFO Finding cancer-specific dependencies for Hodgkin Lymphoma
+2026-02-12 09:24:19,889 INFO FDR correction: 16805 genes tested, 33 raw-significant, 2 FDR-significant (q < 0.05, Cohen's d > 0.3)
+2026-02-12 09:24:19,889 INFO Found 2 cancer-specific essential genes (FDR-corrected)
+    -> Perturbation response paths...
+2026-02-12 09:24:19,890 INFO Inferring perturbation response paths for Hodgkin Lymphoma
+2026-02-12 09:24:20,450 INFO Inferred 4 perturbation response paths
+2026-02-12 09:24:20,455 INFO Total: 34 unique viability paths for Hodgkin Lymphoma (conf >= 0.5)
+    -> Inferred 34 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:24:20,456 INFO Solving hitting set: 34 paths, 1999 candidate genes, max_size=4
+2026-02-12 09:24:39,246 INFO Solvers used: greedy, ilp(n=1999), prefiltered_exhaustive(k=63)
+2026-02-12 09:24:39,249 INFO Found 5495 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:24:39,252 INFO Finding triple combinations for Hodgkin Lymphoma (34 paths)
+2026-02-12 09:24:39,257 INFO Injected 13 druggable path genes into candidates
+2026-02-12 09:24:39,258 INFO Evaluating combinations from 15 candidate genes
+Scoring triples:   0%|          | 0/455 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/105 [00:00<?, ?it/s]                                                         2026-02-12 09:24:41,898 INFO Found 236 valid triples, 27 valid doublets
+    -> Best triple: CDK6 + JAK1 + MCL1 [done]
+2026-02-12 09:24:41,927 INFO Finding triple combinations for Hodgkin Lymphoma (34 paths)
+2026-02-12 09:24:41,929 INFO Injected 13 druggable path genes into candidates
+2026-02-12 09:24:41,929 INFO Evaluating combinations from 15 candidate genes
+Scoring triples:   0%|          | 0/455 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/105 [00:00<?, ?it/s]                                                         2026-02-12 09:24:44,720 INFO Found 377 valid triples, 55 valid doublets
+2026-02-12 09:24:44,721 INFO     432 combos, 0 positive
+2026-02-12 09:24:44,721 INFO   Intracholecystic Papillary Neoplasm...
+2026-02-12 09:24:44,721 INFO 
+================================================================================
+2026-02-12 09:24:44,721 INFO Analyzing Intracholecystic Papillary Neoplasm
+2026-02-12 09:24:44,721 INFO ================================================================================
+    -> Intracholecystic Papillary Neoplasm: 7 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:24:45,029 INFO Inferring essential modules for Intracholecystic Papillary Neoplasm (selectivity>30%)
+2026-02-12 09:24:49,028 INFO Inferred 15 essential module paths (2548 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:24:49,040 INFO Inferring signaling paths for Intracholecystic Papillary Neoplasm (max_len=4)
+2026-02-12 09:24:49,403 INFO Inferred 29 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:24:49,410 INFO Finding cancer-specific dependencies for Intracholecystic Papillary Neoplasm
+2026-02-12 09:25:04,575 INFO FDR correction: 16806 genes tested, 15 raw-significant, 0 FDR-significant (q < 0.05, Cohen's d > 0.3)
+    -> Perturbation response paths...
+2026-02-12 09:25:04,576 INFO Inferring perturbation response paths for Intracholecystic Papillary Neoplasm
+2026-02-12 09:25:04,892 INFO Inferred 14 perturbation response paths
+2026-02-12 09:25:04,898 INFO Total: 58 unique viability paths for Intracholecystic Papillary Neoplasm (conf >= 0.5)
+    -> Inferred 58 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:25:04,898 INFO Solving hitting set: 58 paths, 2559 candidate genes, max_size=4
+2026-02-12 09:25:10,093 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:25:52,106 INFO Solvers used: greedy, prefiltered_exhaustive(k=61)
+2026-02-12 09:25:52,111 INFO Found 7683 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:25:52,117 INFO Finding triple combinations for Intracholecystic Papillary Neoplasm (58 paths)
+2026-02-12 09:25:52,121 INFO Injected 18 druggable path genes into candidates
+2026-02-12 09:25:52,121 INFO Evaluating combinations from 20 candidate genes
+Scoring triples:   0%|          | 0/1140 [00:00<?, ?it/s]                                                         Scoring doublets:   0%|          | 0/190 [00:00<?, ?it/s]                                                         2026-02-12 09:25:56,199 INFO Found 311 valid triples, 26 valid doublets
+    -> Best triple: CDK4 + ERBB2 + MAP2K1 [done]
+    -> Best combo (2 genes): MAP2K1 + STAT3 [done]
+2026-02-12 09:25:56,226 INFO Finding triple combinations for Intracholecystic Papillary Neoplasm (58 paths)
+2026-02-12 09:25:56,228 INFO Injected 18 druggable path genes into candidates
+2026-02-12 09:25:56,228 INFO Evaluating combinations from 20 candidate genes
+Scoring triples:   0%|          | 0/1140 [00:00<?, ?it/s]                                                         Scoring doublets:   0%|          | 0/190 [00:00<?, ?it/s]                                                         2026-02-12 09:26:00,326 INFO Found 640 valid triples, 57 valid doublets
+2026-02-12 09:26:00,327 INFO     697 combos, 0 positive
+2026-02-12 09:26:00,327 INFO   Intraductal Papillary Neoplasm of the Bile Duct...
+2026-02-12 09:26:00,327 INFO 
+================================================================================
+2026-02-12 09:26:00,327 INFO Analyzing Intraductal Papillary Neoplasm of the Bile Duct
+2026-02-12 09:26:00,327 INFO ================================================================================
+    -> Intraductal Papillary Neoplasm of the Bile Duct: 37 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:26:00,956 INFO Inferring essential modules for Intraductal Papillary Neoplasm of the Bile Duct (selectivity>30%)
+2026-02-12 09:26:08,515 INFO Inferred 15 essential module paths (1704 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:26:08,545 INFO Inferring signaling paths for Intraductal Papillary Neoplasm of the Bile Duct (max_len=4)
+2026-02-12 09:26:09,097 INFO Inferred 34 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:26:09,104 INFO Finding cancer-specific dependencies for Intraductal Papillary Neoplasm of the Bile Duct
+2026-02-12 09:26:22,788 INFO FDR correction: 16806 genes tested, 7 raw-significant, 0 FDR-significant (q < 0.05, Cohen's d > 0.3)
+    -> Perturbation response paths...
+2026-02-12 09:26:22,794 INFO Inferring perturbation response paths for Intraductal Papillary Neoplasm of the Bile Duct
+2026-02-12 09:26:23,331 INFO Inferred 15 perturbation response paths
+2026-02-12 09:26:23,337 INFO Total: 63 unique viability paths for Intraductal Papillary Neoplasm of the Bile Duct (conf >= 0.5)
+    -> Inferred 63 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:26:23,337 INFO Solving hitting set: 63 paths, 1719 candidate genes, max_size=4
+2026-02-12 09:26:55,442 INFO Solvers used: greedy, ilp(n=1719), prefiltered_exhaustive(k=62)
+2026-02-12 09:26:55,449 INFO Found 5821 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:26:55,456 INFO Finding triple combinations for Intraductal Papillary Neoplasm of the Bile Duct (63 paths)
+2026-02-12 09:26:55,466 INFO Injected 18 druggable path genes into candidates
+2026-02-12 09:26:55,466 INFO Evaluating combinations from 20 candidate genes
+Scoring triples:   0%|          | 0/1140 [00:00<?, ?it/s]                                                         Scoring doublets:   0%|          | 0/190 [00:00<?, ?it/s]                                                         2026-02-12 09:26:59,413 INFO Found 324 valid triples, 36 valid doublets
+    -> Best triple: CDK6 + MAP2K1 + STAT3 [done]
+    -> Best combo (2 genes): MAP2K1 + STAT3 [done]
+2026-02-12 09:26:59,434 INFO Finding triple combinations for Intraductal Papillary Neoplasm of the Bile Duct (63 paths)
+2026-02-12 09:26:59,436 INFO Injected 18 druggable path genes into candidates
+2026-02-12 09:26:59,436 INFO Evaluating combinations from 20 candidate genes
+Scoring triples:   0%|          | 0/1140 [00:00<?, ?it/s]                                                         Scoring doublets:   0%|          | 0/190 [00:00<?, ?it/s]                                                         2026-02-12 09:27:03,317 INFO Found 550 valid triples, 49 valid doublets
+2026-02-12 09:27:03,319 INFO     599 combos, 0 positive
+2026-02-12 09:27:03,319 INFO   Invasive Breast Carcinoma...
+2026-02-12 09:27:03,319 INFO 
+================================================================================
+2026-02-12 09:27:03,319 INFO Analyzing Invasive Breast Carcinoma
+2026-02-12 09:27:03,319 INFO ================================================================================
+    -> Invasive Breast Carcinoma: 82 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:27:03,666 INFO Inferring essential modules for Invasive Breast Carcinoma (selectivity>30%)
+2026-02-12 09:27:16,121 INFO Inferred 15 essential module paths (1707 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:27:16,182 INFO Inferring signaling paths for Invasive Breast Carcinoma (max_len=4)
+2026-02-12 09:27:16,652 INFO Inferred 28 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:27:16,658 INFO Finding cancer-specific dependencies for Invasive Breast Carcinoma
+2026-02-12 09:27:29,985 INFO FDR correction: 16950 genes tested, 20 raw-significant, 15 FDR-significant (q < 0.05, Cohen's d > 0.3)
+2026-02-12 09:27:29,986 INFO Found 15 cancer-specific essential genes (FDR-corrected)
+    -> Perturbation response paths...
+2026-02-12 09:27:29,987 INFO Inferring perturbation response paths for Invasive Breast Carcinoma
+2026-02-12 09:27:30,283 INFO Inferred 13 perturbation response paths
+2026-02-12 09:27:30,288 INFO Total: 56 unique viability paths for Invasive Breast Carcinoma (conf >= 0.5)
+    -> Inferred 56 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:27:30,288 INFO Solving hitting set: 56 paths, 1722 candidate genes, max_size=4
+2026-02-12 09:27:34,821 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:27:56,015 INFO Solvers used: greedy, prefiltered_exhaustive(k=60)
+2026-02-12 09:27:56,017 INFO Found 2670 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:27:56,019 INFO Finding triple combinations for Invasive Breast Carcinoma (56 paths)
+2026-02-12 09:27:56,027 INFO Injected 16 druggable path genes into candidates
+2026-02-12 09:27:56,027 INFO Evaluating combinations from 18 candidate genes
+Scoring triples:   0%|          | 0/816 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/153 [00:00<?, ?it/s]                                                         2026-02-12 09:27:59,386 INFO Found 161 valid triples, 9 valid doublets
+    -> Best triple: BCL2L1 + EGFR + MAP2K1 [done]
+    -> Best combo (2 genes): CDK4 + ERBB2 [done]
+2026-02-12 09:27:59,411 INFO Finding triple combinations for Invasive Breast Carcinoma (56 paths)
+2026-02-12 09:27:59,413 INFO Injected 16 druggable path genes into candidates
+2026-02-12 09:27:59,413 INFO Evaluating combinations from 18 candidate genes
+Scoring triples:   0%|          | 0/816 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/153 [00:00<?, ?it/s]                                                         2026-02-12 09:28:02,813 INFO Found 510 valid triples, 59 valid doublets
+2026-02-12 09:28:02,820 INFO     569 combos, 416 positive
+2026-02-12 09:28:02,820 INFO   Leiomyosarcoma...
+2026-02-12 09:28:02,820 INFO 
+================================================================================
+2026-02-12 09:28:02,820 INFO Analyzing Leiomyosarcoma
+2026-02-12 09:28:02,820 INFO ================================================================================
+    -> Leiomyosarcoma: 11 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:28:03,365 INFO Inferring essential modules for Leiomyosarcoma (selectivity>30%)
+2026-02-12 09:28:05,261 INFO Inferred 15 essential module paths (2009 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:28:05,268 INFO Inferring signaling paths for Leiomyosarcoma (max_len=4)
+2026-02-12 09:28:05,747 INFO Inferred 34 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:28:05,752 INFO Finding cancer-specific dependencies for Leiomyosarcoma
+2026-02-12 09:28:19,172 INFO FDR correction: 16806 genes tested, 3 raw-significant, 0 FDR-significant (q < 0.05, Cohen's d > 0.3)
+    -> Perturbation response paths...
+2026-02-12 09:28:19,173 INFO Inferring perturbation response paths for Leiomyosarcoma
+2026-02-12 09:28:19,471 INFO Inferred 8 perturbation response paths
+2026-02-12 09:28:19,476 INFO Total: 56 unique viability paths for Leiomyosarcoma (conf >= 0.5)
+    -> Inferred 56 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:28:19,476 INFO Solving hitting set: 56 paths, 2021 candidate genes, max_size=4
+2026-02-12 09:28:49,395 INFO Solvers used: greedy, ilp(n=2021), prefiltered_exhaustive(k=61)
+2026-02-12 09:28:49,400 INFO Found 2647 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:28:49,408 INFO Finding triple combinations for Leiomyosarcoma (56 paths)
+2026-02-12 09:28:49,412 INFO Injected 16 druggable path genes into candidates
+2026-02-12 09:28:49,412 INFO Evaluating combinations from 18 candidate genes
+Scoring triples:   0%|          | 0/816 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/153 [00:00<?, ?it/s]                                                         2026-02-12 09:28:52,996 INFO Found 215 valid triples, 20 valid doublets
+    -> Best triple: BRAF + EGFR + KRAS [done]
+    -> Best combo (2 genes): EGFR + MET [done]
+2026-02-12 09:28:53,130 INFO Finding triple combinations for Leiomyosarcoma (56 paths)
+2026-02-12 09:28:53,133 INFO Injected 16 druggable path genes into candidates
+2026-02-12 09:28:53,133 INFO Evaluating combinations from 18 candidate genes
+Scoring triples:   0%|          | 0/816 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/153 [00:00<?, ?it/s]                                                         2026-02-12 09:28:56,627 INFO Found 496 valid triples, 54 valid doublets
+2026-02-12 09:28:56,629 INFO     550 combos, 0 positive
+2026-02-12 09:28:56,629 INFO   Liposarcoma...
+2026-02-12 09:28:56,629 INFO 
+================================================================================
+2026-02-12 09:28:56,629 INFO Analyzing Liposarcoma
+2026-02-12 09:28:56,629 INFO ================================================================================
+    -> Liposarcoma: 13 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:28:57,388 INFO Inferring essential modules for Liposarcoma (selectivity>30%)
+2026-02-12 09:29:00,517 INFO Inferred 15 essential module paths (1997 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:29:00,525 INFO Inferring signaling paths for Liposarcoma (max_len=4)
+2026-02-12 09:29:01,008 INFO Inferred 28 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:29:01,015 INFO Finding cancer-specific dependencies for Liposarcoma
+2026-02-12 09:29:14,705 INFO FDR correction: 16806 genes tested, 43 raw-significant, 0 FDR-significant (q < 0.05, Cohen's d > 0.3)
+    -> Perturbation response paths...
+2026-02-12 09:29:14,707 INFO Inferring perturbation response paths for Liposarcoma
+2026-02-12 09:29:15,019 INFO Inferred 12 perturbation response paths
+2026-02-12 09:29:15,025 INFO Total: 54 unique viability paths for Liposarcoma (conf >= 0.5)
+    -> Inferred 54 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:29:15,027 INFO Solving hitting set: 54 paths, 2012 candidate genes, max_size=4
+2026-02-12 09:29:19,694 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:29:28,901 INFO Solvers used: greedy, prefiltered_exhaustive(k=63)
+2026-02-12 09:29:28,903 INFO Found 3723 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:29:28,905 INFO Finding triple combinations for Liposarcoma (54 paths)
+2026-02-12 09:29:28,909 INFO Injected 16 druggable path genes into candidates
+2026-02-12 09:29:28,910 INFO Evaluating combinations from 18 candidate genes
+Scoring triples:   0%|          | 0/816 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/153 [00:00<?, ?it/s]                                                         2026-02-12 09:29:32,321 INFO Found 160 valid triples, 7 valid doublets
+    -> Best triple: EGFR + FGFR1 + MET [done]
+    -> Best combo (2 genes): FGFR1 + STAT3 [done]
+2026-02-12 09:29:32,355 INFO Finding triple combinations for Liposarcoma (54 paths)
+2026-02-12 09:29:32,359 INFO Injected 16 druggable path genes into candidates
+2026-02-12 09:29:32,359 INFO Evaluating combinations from 18 candidate genes
+Scoring triples:   0%|          | 0/816 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/153 [00:00<?, ?it/s]                                                         2026-02-12 09:29:35,915 INFO Found 423 valid triples, 44 valid doublets
+2026-02-12 09:29:35,917 INFO     467 combos, 115 positive
+2026-02-12 09:29:35,917 INFO   Lung Neuroendocrine Tumor...
+2026-02-12 09:29:35,917 INFO 
+================================================================================
+2026-02-12 09:29:35,917 INFO Analyzing Lung Neuroendocrine Tumor
+2026-02-12 09:29:35,917 INFO ================================================================================
+    -> Lung Neuroendocrine Tumor: 85 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:29:36,419 INFO Inferring essential modules for Lung Neuroendocrine Tumor (selectivity>30%)
+2026-02-12 09:29:43,741 INFO Inferred 15 essential module paths (1741 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:29:43,789 INFO Inferring signaling paths for Lung Neuroendocrine Tumor (max_len=4)
+2026-02-12 09:29:44,337 INFO Inferred 16 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:29:44,342 INFO Finding cancer-specific dependencies for Lung Neuroendocrine Tumor
+2026-02-12 09:29:58,340 INFO FDR correction: 16806 genes tested, 24 raw-significant, 15 FDR-significant (q < 0.05, Cohen's d > 0.3)
+2026-02-12 09:29:58,340 INFO Found 15 cancer-specific essential genes (FDR-corrected)
+    -> Perturbation response paths...
+2026-02-12 09:29:58,342 INFO Inferring perturbation response paths for Lung Neuroendocrine Tumor
+2026-02-12 09:29:58,665 INFO Inferred 8 perturbation response paths
+2026-02-12 09:29:58,670 INFO Total: 39 unique viability paths for Lung Neuroendocrine Tumor (conf >= 0.5)
+    -> Inferred 39 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:29:58,670 INFO Solving hitting set: 39 paths, 1755 candidate genes, max_size=4
+2026-02-12 09:30:02,957 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:30:25,205 INFO Solvers used: greedy, prefiltered_exhaustive(k=61)
+2026-02-12 09:30:25,206 INFO Found 99 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:30:25,208 INFO Finding triple combinations for Lung Neuroendocrine Tumor (39 paths)
+2026-02-12 09:30:25,219 INFO Injected 15 druggable path genes into candidates
+2026-02-12 09:30:25,219 INFO Evaluating combinations from 17 candidate genes
+Scoring triples:   0%|          | 0/680 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/136 [00:00<?, ?it/s]                                                         2026-02-12 09:30:28,373 INFO Found 13 valid triples, 0 valid doublets
+    -> Best triple: CDK2 + MAP2K1 + STAT3 [done]
+2026-02-12 09:30:28,405 INFO Finding triple combinations for Lung Neuroendocrine Tumor (39 paths)
+2026-02-12 09:30:28,408 INFO Injected 15 druggable path genes into candidates
+2026-02-12 09:30:28,408 INFO Evaluating combinations from 17 candidate genes
+Scoring triples:   0%|          | 0/680 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/136 [00:00<?, ?it/s]                                                         2026-02-12 09:30:31,632 INFO Found 295 valid triples, 32 valid doublets
+2026-02-12 09:30:31,634 INFO     327 combos, 0 positive
+2026-02-12 09:30:31,634 INFO   Mature B-Cell Neoplasms...
+2026-02-12 09:30:31,634 INFO 
+================================================================================
+2026-02-12 09:30:31,634 INFO Analyzing Mature B-Cell Neoplasms
+2026-02-12 09:30:31,634 INFO ================================================================================
+    -> Mature B-Cell Neoplasms: 130 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:30:32,184 INFO Inferring essential modules for Mature B-Cell Neoplasms (selectivity>30%)
+2026-02-12 09:30:47,215 INFO Inferred 15 essential module paths (1883 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:30:47,288 INFO Inferring signaling paths for Mature B-Cell Neoplasms (max_len=4)
+2026-02-12 09:30:47,906 INFO Inferred 23 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:30:47,911 INFO Finding cancer-specific dependencies for Mature B-Cell Neoplasms
+2026-02-12 09:31:01,880 INFO FDR correction: 16950 genes tested, 145 raw-significant, 140 FDR-significant (q < 0.05, Cohen's d > 0.3)
+2026-02-12 09:31:01,881 INFO Found 20 cancer-specific essential genes (FDR-corrected)
+    -> Perturbation response paths...
+2026-02-12 09:31:01,882 INFO Inferring perturbation response paths for Mature B-Cell Neoplasms
+2026-02-12 09:31:02,210 INFO Inferred 4 perturbation response paths
+2026-02-12 09:31:02,216 INFO Total: 42 unique viability paths for Mature B-Cell Neoplasms (conf >= 0.5)
+    -> Inferred 42 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:31:02,216 INFO Solving hitting set: 42 paths, 1895 candidate genes, max_size=4
+2026-02-12 09:31:06,452 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:31:24,536 INFO Solvers used: greedy, prefiltered_exhaustive(k=61)
+2026-02-12 09:31:24,538 INFO Found 2031 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:31:24,545 INFO Finding triple combinations for Mature B-Cell Neoplasms (42 paths)
+2026-02-12 09:31:24,554 INFO Injected 14 druggable path genes into candidates
+2026-02-12 09:31:24,554 INFO Evaluating combinations from 16 candidate genes
+Scoring triples:   0%|          | 0/560 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/120 [00:00<?, ?it/s]                                                         2026-02-12 09:31:27,553 INFO Found 155 valid triples, 17 valid doublets
+    -> Best triple: CDK4 + CDK6 + ERBB2 [done]
+    -> Best combo (2 genes): EGFR + MET [done]
+2026-02-12 09:31:27,608 INFO Finding triple combinations for Mature B-Cell Neoplasms (42 paths)
+2026-02-12 09:31:27,610 INFO Injected 14 druggable path genes into candidates
+2026-02-12 09:31:27,610 INFO Evaluating combinations from 16 candidate genes
+Scoring triples:   0%|          | 0/560 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/120 [00:00<?, ?it/s]                                                         2026-02-12 09:31:30,669 INFO Found 364 valid triples, 49 valid doublets
+2026-02-12 09:31:30,670 INFO     413 combos, 0 positive
+2026-02-12 09:31:30,670 INFO   Mature T and NK Neoplasms...
+2026-02-12 09:31:30,670 INFO 
+================================================================================
+2026-02-12 09:31:30,670 INFO Analyzing Mature T and NK Neoplasms
+2026-02-12 09:31:30,670 INFO ================================================================================
+    -> Mature T and NK Neoplasms: 17 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:31:31,234 INFO Inferring essential modules for Mature T and NK Neoplasms (selectivity>30%)
+2026-02-12 09:31:34,480 INFO Inferred 15 essential module paths (2101 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:31:34,497 INFO Inferring signaling paths for Mature T and NK Neoplasms (max_len=4)
+2026-02-12 09:31:35,074 INFO Inferred 28 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:31:35,080 INFO Finding cancer-specific dependencies for Mature T and NK Neoplasms
+2026-02-12 09:31:48,808 INFO FDR correction: 16806 genes tested, 91 raw-significant, 0 FDR-significant (q < 0.05, Cohen's d > 0.3)
+    -> Perturbation response paths...
+2026-02-12 09:31:48,810 INFO Inferring perturbation response paths for Mature T and NK Neoplasms
+2026-02-12 09:31:49,122 INFO Inferred 5 perturbation response paths
+2026-02-12 09:31:49,127 INFO Total: 47 unique viability paths for Mature T and NK Neoplasms (conf >= 0.5)
+    -> Inferred 47 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:31:49,128 INFO Solving hitting set: 47 paths, 2112 candidate genes, max_size=4
+2026-02-12 09:31:53,596 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:32:25,023 INFO Solvers used: greedy, prefiltered_exhaustive(k=60)
+2026-02-12 09:32:25,065 INFO Found 34238 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:32:25,107 INFO Finding triple combinations for Mature T and NK Neoplasms (47 paths)
+2026-02-12 09:32:25,111 INFO Injected 15 druggable path genes into candidates
+2026-02-12 09:32:25,111 INFO Evaluating combinations from 17 candidate genes
+Scoring triples:   0%|          | 0/680 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/136 [00:00<?, ?it/s]                                                         2026-02-12 09:32:28,389 INFO Found 190 valid triples, 20 valid doublets
+    -> Best triple: CDK4 + CDK6 + ERBB2 [done]
+2026-02-12 09:32:28,411 INFO Finding triple combinations for Mature T and NK Neoplasms (47 paths)
+2026-02-12 09:32:28,413 INFO Injected 15 druggable path genes into candidates
+2026-02-12 09:32:28,414 INFO Evaluating combinations from 17 candidate genes
+Scoring triples:   0%|          | 0/680 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/136 [00:00<?, ?it/s]                                                         2026-02-12 09:32:31,693 INFO Found 403 valid triples, 43 valid doublets
+2026-02-12 09:32:31,696 INFO     446 combos, 0 positive
+2026-02-12 09:32:31,696 INFO   Melanoma...
+2026-02-12 09:32:31,696 INFO 
+================================================================================
+2026-02-12 09:32:31,696 INFO Analyzing Melanoma
+2026-02-12 09:32:31,696 INFO ================================================================================
+    -> Melanoma: 135 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:32:32,230 INFO Inferring essential modules for Melanoma (selectivity>30%)
+2026-02-12 09:32:49,297 INFO Inferred 15 essential module paths (1707 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:32:49,391 INFO Inferring signaling paths for Melanoma (max_len=4)
+2026-02-12 09:32:49,870 INFO Inferred 34 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:32:49,875 INFO Finding cancer-specific dependencies for Melanoma
+2026-02-12 09:33:04,029 INFO FDR correction: 17454 genes tested, 29 raw-significant, 29 FDR-significant (q < 0.05, Cohen's d > 0.3)
+2026-02-12 09:33:04,029 INFO Found 20 cancer-specific essential genes (FDR-corrected)
+    -> Perturbation response paths...
+2026-02-12 09:33:04,031 INFO Inferring perturbation response paths for Melanoma
+2026-02-12 09:33:04,346 INFO Inferred 14 perturbation response paths
+2026-02-12 09:33:04,351 INFO Total: 63 unique viability paths for Melanoma (conf >= 0.5)
+    -> Inferred 63 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:33:04,351 INFO Solving hitting set: 63 paths, 1720 candidate genes, max_size=4
+2026-02-12 09:33:37,974 INFO Solvers used: greedy, ilp(n=1720), prefiltered_exhaustive(k=60)
+2026-02-12 09:33:37,981 INFO Found 5608 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:33:37,988 INFO Finding triple combinations for Melanoma (63 paths)
+2026-02-12 09:33:37,996 INFO Injected 17 druggable path genes into candidates
+2026-02-12 09:33:37,996 INFO Evaluating combinations from 19 candidate genes
+Scoring triples:   0%|          | 0/969 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/171 [00:00<?, ?it/s]                                                         2026-02-12 09:33:41,764 INFO Found 202 valid triples, 19 valid doublets
+    -> Best triple: BRAF + CDK6 + EGFR [done]
+    -> Best combo (2 genes): BRAF + EGFR [done]
+2026-02-12 09:33:41,792 INFO Finding triple combinations for Melanoma (63 paths)
+2026-02-12 09:33:41,795 INFO Injected 17 druggable path genes into candidates
+2026-02-12 09:33:41,795 INFO Evaluating combinations from 19 candidate genes
+Scoring triples:   0%|          | 0/969 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/171 [00:00<?, ?it/s]                                                         2026-02-12 09:33:45,355 INFO Found 558 valid triples, 52 valid doublets
+2026-02-12 09:33:45,357 INFO     610 combos, 233 positive
+2026-02-12 09:33:45,357 INFO   Merkel Cell Carcinoma...
+2026-02-12 09:33:45,357 INFO 
+================================================================================
+2026-02-12 09:33:45,357 INFO Analyzing Merkel Cell Carcinoma
+2026-02-12 09:33:45,357 INFO ================================================================================
+    -> Merkel Cell Carcinoma: 8 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:33:45,671 INFO Inferring essential modules for Merkel Cell Carcinoma (selectivity>30%)
+2026-02-12 09:33:48,045 INFO Inferred 7 essential module paths (2259 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:33:48,052 INFO Inferring signaling paths for Merkel Cell Carcinoma (max_len=4)
+2026-02-12 09:33:48,325 INFO Inferred 5 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:33:48,330 INFO Finding cancer-specific dependencies for Merkel Cell Carcinoma
+2026-02-12 09:34:02,133 INFO FDR correction: 16805 genes tested, 14 raw-significant, 1 FDR-significant (q < 0.05, Cohen's d > 0.3)
+    -> Perturbation response paths...
+2026-02-12 09:34:02,134 INFO Inferring perturbation response paths for Merkel Cell Carcinoma
+2026-02-12 09:34:02,710 INFO Inferred 9 perturbation response paths
+2026-02-12 09:34:02,716 INFO Total: 20 unique viability paths for Merkel Cell Carcinoma (conf >= 0.5)
+    -> Inferred 20 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:34:02,716 INFO Solving hitting set: 20 paths, 2269 candidate genes, max_size=4
+2026-02-12 09:34:19,274 INFO Solvers used: greedy, ilp(n=2269), prefiltered_exhaustive(k=64)
+2026-02-12 09:34:19,279 INFO Found 1955 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:34:19,282 INFO Finding triple combinations for Merkel Cell Carcinoma (20 paths)
+2026-02-12 09:34:19,290 INFO Injected 14 druggable path genes into candidates
+2026-02-12 09:34:19,290 INFO Evaluating combinations from 15 candidate genes
+Scoring triples:   0%|          | 0/455 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/105 [00:00<?, ?it/s]                                                         2026-02-12 09:34:22,274 INFO Found 30 valid triples, 1 valid doublets
+    -> Best triple: CDK2 + PIK3CA + STAT3 [done]
+2026-02-12 09:34:22,302 INFO Finding triple combinations for Merkel Cell Carcinoma (20 paths)
+2026-02-12 09:34:22,304 INFO Injected 14 druggable path genes into candidates
+2026-02-12 09:34:22,304 INFO Evaluating combinations from 15 candidate genes
+Scoring triples:   0%|          | 0/455 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/105 [00:00<?, ?it/s]                                                         2026-02-12 09:34:25,255 INFO Found 283 valid triples, 38 valid doublets
+2026-02-12 09:34:25,257 INFO     321 combos, 0 positive
+2026-02-12 09:34:25,257 INFO   Myeloproliferative Neoplasms...
+2026-02-12 09:34:25,257 INFO 
+================================================================================
+2026-02-12 09:34:25,257 INFO Analyzing Myeloproliferative Neoplasms
+2026-02-12 09:34:25,257 INFO ================================================================================
+    -> Myeloproliferative Neoplasms: 18 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:34:25,583 INFO Inferring essential modules for Myeloproliferative Neoplasms (selectivity>30%)
+2026-02-12 09:34:29,200 INFO Inferred 15 essential module paths (1917 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:34:29,219 INFO Inferring signaling paths for Myeloproliferative Neoplasms (max_len=4)
+2026-02-12 09:34:29,491 INFO Inferred 22 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:34:29,497 INFO Finding cancer-specific dependencies for Myeloproliferative Neoplasms
+2026-02-12 09:34:42,994 INFO FDR correction: 16806 genes tested, 99 raw-significant, 0 FDR-significant (q < 0.05, Cohen's d > 0.3)
+    -> Perturbation response paths...
+2026-02-12 09:34:42,996 INFO Inferring perturbation response paths for Myeloproliferative Neoplasms
+2026-02-12 09:34:43,578 INFO Inferred 10 perturbation response paths
+2026-02-12 09:34:43,584 INFO Total: 46 unique viability paths for Myeloproliferative Neoplasms (conf >= 0.5)
+    -> Inferred 46 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:34:43,584 INFO Solving hitting set: 46 paths, 1932 candidate genes, max_size=4
+2026-02-12 09:34:48,194 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:35:21,642 INFO Solvers used: greedy, prefiltered_exhaustive(k=62)
+2026-02-12 09:35:21,644 INFO Found 1875 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:35:21,646 INFO Finding triple combinations for Myeloproliferative Neoplasms (46 paths)
+2026-02-12 09:35:21,652 INFO Injected 17 druggable path genes into candidates
+2026-02-12 09:35:21,653 INFO Evaluating combinations from 19 candidate genes
+Scoring triples:   0%|          | 0/969 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/171 [00:00<?, ?it/s]                                                         2026-02-12 09:35:25,353 INFO Found 146 valid triples, 6 valid doublets
+    -> Best triple: EGFR + MAP2K1 + MET [done]
+    -> Best combo (2 genes): MAP2K1 + STAT3 [done]
+2026-02-12 09:35:25,379 INFO Finding triple combinations for Myeloproliferative Neoplasms (46 paths)
+2026-02-12 09:35:25,381 INFO Injected 17 druggable path genes into candidates
+2026-02-12 09:35:25,382 INFO Evaluating combinations from 19 candidate genes
+Scoring triples:   0%|          | 0/969 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/171 [00:00<?, ?it/s]                                                         2026-02-12 09:35:29,178 INFO Found 422 valid triples, 40 valid doublets
+2026-02-12 09:35:29,180 INFO     462 combos, 0 positive
+2026-02-12 09:35:29,180 INFO   Nerve Sheath Tumor...
+2026-02-12 09:35:29,180 INFO 
+================================================================================
+2026-02-12 09:35:29,180 INFO Analyzing Nerve Sheath Tumor
+2026-02-12 09:35:29,180 INFO ================================================================================
+    -> Nerve Sheath Tumor: 9 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:35:29,648 INFO Inferring essential modules for Nerve Sheath Tumor (selectivity>30%)
+2026-02-12 09:35:32,498 INFO Inferred 15 essential module paths (2279 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:35:32,506 INFO Inferring signaling paths for Nerve Sheath Tumor (max_len=4)
+2026-02-12 09:35:33,033 INFO Inferred 34 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:35:33,039 INFO Finding cancer-specific dependencies for Nerve Sheath Tumor
+2026-02-12 09:35:46,489 INFO FDR correction: 16806 genes tested, 14 raw-significant, 0 FDR-significant (q < 0.05, Cohen's d > 0.3)
+    -> Perturbation response paths...
+2026-02-12 09:35:46,491 INFO Inferring perturbation response paths for Nerve Sheath Tumor
+2026-02-12 09:35:46,804 INFO Inferred 8 perturbation response paths
+2026-02-12 09:35:46,809 INFO Total: 56 unique viability paths for Nerve Sheath Tumor (conf >= 0.5)
+    -> Inferred 56 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:35:46,809 INFO Solving hitting set: 56 paths, 2290 candidate genes, max_size=4
+2026-02-12 09:35:51,634 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:36:03,292 INFO Solvers used: greedy, prefiltered_exhaustive(k=63)
+2026-02-12 09:36:03,294 INFO Found 3783 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:36:03,296 INFO Finding triple combinations for Nerve Sheath Tumor (56 paths)
+2026-02-12 09:36:03,303 INFO Injected 16 druggable path genes into candidates
+2026-02-12 09:36:03,303 INFO Evaluating combinations from 18 candidate genes
+Scoring triples:   0%|          | 0/816 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/153 [00:00<?, ?it/s]                                                         2026-02-12 09:36:06,777 INFO Found 216 valid triples, 20 valid doublets
+    -> Best triple: EGFR + FGFR1 + MAP2K1 [done]
+    -> Best combo (2 genes): EGFR + MET [done]
+2026-02-12 09:36:06,811 INFO Finding triple combinations for Nerve Sheath Tumor (56 paths)
+2026-02-12 09:36:06,813 INFO Injected 16 druggable path genes into candidates
+2026-02-12 09:36:06,813 INFO Evaluating combinations from 18 candidate genes
+Scoring triples:   0%|          | 0/816 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/153 [00:00<?, ?it/s]                                                         2026-02-12 09:36:10,332 INFO Found 496 valid triples, 54 valid doublets
+2026-02-12 09:36:10,334 INFO     550 combos, 0 positive
+2026-02-12 09:36:10,334 INFO   Neuroblastoma...
+2026-02-12 09:36:10,334 INFO 
+================================================================================
+2026-02-12 09:36:10,334 INFO Analyzing Neuroblastoma
+2026-02-12 09:36:10,334 INFO ================================================================================
+    -> Neuroblastoma: 51 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:36:10,931 INFO Inferring essential modules for Neuroblastoma (selectivity>30%)
+2026-02-12 09:36:21,231 INFO Inferred 15 essential module paths (1853 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:36:21,300 INFO Inferring signaling paths for Neuroblastoma (max_len=4)
+2026-02-12 09:36:21,861 INFO Inferred 34 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:36:21,866 INFO Finding cancer-specific dependencies for Neuroblastoma
+2026-02-12 09:36:35,456 INFO FDR correction: 16950 genes tested, 40 raw-significant, 39 FDR-significant (q < 0.05, Cohen's d > 0.3)
+2026-02-12 09:36:35,456 INFO Found 20 cancer-specific essential genes (FDR-corrected)
+    -> Perturbation response paths...
+2026-02-12 09:36:35,458 INFO Inferring perturbation response paths for Neuroblastoma
+2026-02-12 09:36:35,788 INFO Inferred 9 perturbation response paths
+2026-02-12 09:36:35,794 INFO Total: 58 unique viability paths for Neuroblastoma (conf >= 0.5)
+    -> Inferred 58 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:36:35,794 INFO Solving hitting set: 58 paths, 1866 candidate genes, max_size=4
+2026-02-12 09:36:40,317 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:37:05,672 INFO Solvers used: greedy, prefiltered_exhaustive(k=60)
+2026-02-12 09:37:05,674 INFO Found 2701 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:37:05,677 INFO Finding triple combinations for Neuroblastoma (58 paths)
+2026-02-12 09:37:05,681 INFO Injected 16 druggable path genes into candidates
+2026-02-12 09:37:05,681 INFO Evaluating combinations from 18 candidate genes
+Scoring triples:   0%|          | 0/816 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/153 [00:00<?, ?it/s]                                                         2026-02-12 09:37:09,141 INFO Found 189 valid triples, 20 valid doublets
+    -> Best triple: CDK6 + EGFR + MAP2K1 [done]
+    -> Best combo (2 genes): EGFR + MET [done]
+2026-02-12 09:37:09,173 INFO Finding triple combinations for Neuroblastoma (58 paths)
+2026-02-12 09:37:09,175 INFO Injected 16 druggable path genes into candidates
+2026-02-12 09:37:09,175 INFO Evaluating combinations from 18 candidate genes
+Scoring triples:   0%|          | 0/816 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/153 [00:00<?, ?it/s]                                                         2026-02-12 09:37:12,573 INFO Found 463 valid triples, 48 valid doublets
+2026-02-12 09:37:12,574 INFO     511 combos, 0 positive
+2026-02-12 09:37:12,574 INFO   Non-Cancerous...
+2026-02-12 09:37:12,574 INFO 
+================================================================================
+2026-02-12 09:37:12,574 INFO Analyzing Non-Cancerous
+2026-02-12 09:37:12,574 INFO ================================================================================
+    -> Non-Cancerous: 151 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:37:13,169 INFO Inferring essential modules for Non-Cancerous (selectivity>30%)
+2026-02-12 09:37:18,577 INFO Inferred 15 essential module paths (2018 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:37:18,592 INFO Inferring signaling paths for Non-Cancerous (max_len=4)
+2026-02-12 09:37:18,895 INFO Inferred 34 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:37:18,900 INFO Finding cancer-specific dependencies for Non-Cancerous
+2026-02-12 09:37:32,451 INFO FDR correction: 16806 genes tested, 9 raw-significant, 1 FDR-significant (q < 0.05, Cohen's d > 0.3)
+    -> Perturbation response paths...
+2026-02-12 09:37:32,453 INFO Inferring perturbation response paths for Non-Cancerous
+2026-02-12 09:37:32,741 INFO Inferred 15 perturbation response paths
+2026-02-12 09:37:32,747 INFO Total: 63 unique viability paths for Non-Cancerous (conf >= 0.5)
+    -> Inferred 63 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:37:32,747 INFO Solving hitting set: 63 paths, 2032 candidate genes, max_size=4
+2026-02-12 09:37:55,209 INFO Solvers used: greedy, ilp(n=2032), prefiltered_exhaustive(k=64)
+2026-02-12 09:37:55,211 INFO Found 3846 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:37:55,213 INFO Finding triple combinations for Non-Cancerous (63 paths)
+2026-02-12 09:37:55,217 INFO Injected 17 druggable path genes into candidates
+2026-02-12 09:37:55,217 INFO Evaluating combinations from 19 candidate genes
+Scoring triples:   0%|          | 0/969 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/171 [00:00<?, ?it/s]                                                         2026-02-12 09:37:58,859 INFO Found 204 valid triples, 19 valid doublets
+    -> Best triple: CDK2 + EGFR + MAP2K1 [done]
+    -> Best combo (2 genes): EGFR + MET [done]
+2026-02-12 09:37:58,884 INFO Finding triple combinations for Non-Cancerous (63 paths)
+2026-02-12 09:37:58,886 INFO Injected 17 druggable path genes into candidates
+2026-02-12 09:37:58,886 INFO Evaluating combinations from 19 candidate genes
+Scoring triples:   0%|          | 0/969 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/171 [00:00<?, ?it/s]                                                         2026-02-12 09:38:02,630 INFO Found 511 valid triples, 49 valid doublets
+2026-02-12 09:38:02,632 INFO     560 combos, 0 positive
+2026-02-12 09:38:02,632 INFO   Non-Hodgkin Lymphoma...
+2026-02-12 09:38:02,632 INFO 
+================================================================================
+2026-02-12 09:38:02,632 INFO Analyzing Non-Hodgkin Lymphoma
+2026-02-12 09:38:02,632 INFO ================================================================================
+    -> Non-Hodgkin Lymphoma: 16 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:38:03,188 INFO Inferring essential modules for Non-Hodgkin Lymphoma (selectivity>30%)
+2026-02-12 09:38:07,521 INFO Inferred 15 essential module paths (3048 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:38:07,533 INFO Inferring signaling paths for Non-Hodgkin Lymphoma (max_len=4)
+2026-02-12 09:38:08,042 INFO Inferred 23 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:38:08,047 INFO Finding cancer-specific dependencies for Non-Hodgkin Lymphoma
+2026-02-12 09:38:21,383 INFO FDR correction: 16806 genes tested, 72 raw-significant, 0 FDR-significant (q < 0.05, Cohen's d > 0.3)
+    -> Perturbation response paths...
+2026-02-12 09:38:21,385 INFO Inferring perturbation response paths for Non-Hodgkin Lymphoma
+2026-02-12 09:38:21,689 INFO Inferred 2 perturbation response paths
+2026-02-12 09:38:21,695 INFO Total: 39 unique viability paths for Non-Hodgkin Lymphoma (conf >= 0.5)
+    -> Inferred 39 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:38:21,695 INFO Solving hitting set: 39 paths, 3057 candidate genes, max_size=4
+2026-02-12 09:38:26,545 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:39:10,005 INFO Solvers used: greedy, prefiltered_exhaustive(k=60)
+2026-02-12 09:39:10,008 INFO Found 3724 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:39:10,012 INFO Finding triple combinations for Non-Hodgkin Lymphoma (39 paths)
+2026-02-12 09:39:10,019 INFO Injected 16 druggable path genes into candidates
+2026-02-12 09:39:10,019 INFO Evaluating combinations from 18 candidate genes
+Scoring triples:   0%|          | 0/816 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/153 [00:00<?, ?it/s]                                                         2026-02-12 09:39:13,346 INFO Found 212 valid triples, 22 valid doublets
+    -> Best triple: CDK4 + CDK6 + MAP2K2 [done]
+    -> Best combo (2 genes): CDK4 + CDK6 [done]
+2026-02-12 09:39:13,383 INFO Finding triple combinations for Non-Hodgkin Lymphoma (39 paths)
+2026-02-12 09:39:13,385 INFO Injected 16 druggable path genes into candidates
+2026-02-12 09:39:13,385 INFO Evaluating combinations from 18 candidate genes
+Scoring triples:   0%|          | 0/816 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/153 [00:00<?, ?it/s]                                                         2026-02-12 09:39:16,816 INFO Found 513 valid triples, 56 valid doublets
+2026-02-12 09:39:16,818 INFO     569 combos, 0 positive
+2026-02-12 09:39:16,818 INFO   Non-Seminomatous Germ Cell Tumor...
+2026-02-12 09:39:16,818 INFO 
+================================================================================
+2026-02-12 09:39:16,818 INFO Analyzing Non-Seminomatous Germ Cell Tumor
+2026-02-12 09:39:16,818 INFO ================================================================================
+    -> Non-Seminomatous Germ Cell Tumor: 12 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:39:17,137 INFO Inferring essential modules for Non-Seminomatous Germ Cell Tumor (selectivity>30%)
+2026-02-12 09:39:21,066 INFO Inferred 15 essential module paths (2868 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:39:21,085 INFO Inferring signaling paths for Non-Seminomatous Germ Cell Tumor (max_len=4)
+2026-02-12 09:39:21,399 INFO Inferred 28 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:39:21,404 INFO Finding cancer-specific dependencies for Non-Seminomatous Germ Cell Tumor
+2026-02-12 09:39:34,859 INFO FDR correction: 16806 genes tested, 14 raw-significant, 0 FDR-significant (q < 0.05, Cohen's d > 0.3)
+    -> Perturbation response paths...
+2026-02-12 09:39:34,861 INFO Inferring perturbation response paths for Non-Seminomatous Germ Cell Tumor
+2026-02-12 09:39:35,536 INFO Inferred 8 perturbation response paths
+2026-02-12 09:39:35,542 INFO Total: 50 unique viability paths for Non-Seminomatous Germ Cell Tumor (conf >= 0.5)
+    -> Inferred 50 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:39:35,542 INFO Solving hitting set: 50 paths, 2880 candidate genes, max_size=4
+2026-02-12 09:39:40,429 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:40:22,658 INFO Solvers used: greedy, prefiltered_exhaustive(k=61)
+2026-02-12 09:40:22,659 INFO Found 832 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:40:22,661 INFO Finding triple combinations for Non-Seminomatous Germ Cell Tumor (50 paths)
+2026-02-12 09:40:22,669 INFO Injected 16 druggable path genes into candidates
+2026-02-12 09:40:22,669 INFO Evaluating combinations from 18 candidate genes
+Scoring triples:   0%|          | 0/816 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/153 [00:00<?, ?it/s]                                                         2026-02-12 09:40:25,990 INFO Found 185 valid triples, 20 valid doublets
+    -> Best triple: EGFR + MET + PARP1 [done]
+    -> Best combo (2 genes): EGFR + MET [done]
+2026-02-12 09:40:26,033 INFO Finding triple combinations for Non-Seminomatous Germ Cell Tumor (50 paths)
+2026-02-12 09:40:26,035 INFO Injected 16 druggable path genes into candidates
+2026-02-12 09:40:26,035 INFO Evaluating combinations from 18 candidate genes
+Scoring triples:   0%|          | 0/816 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/153 [00:00<?, ?it/s]                                                         2026-02-12 09:40:29,413 INFO Found 487 valid triples, 54 valid doublets
+2026-02-12 09:40:29,416 INFO     541 combos, 0 positive
+2026-02-12 09:40:29,416 INFO   Non-Small Cell Lung Cancer...
+2026-02-12 09:40:29,416 INFO 
+================================================================================
+2026-02-12 09:40:29,416 INFO Analyzing Non-Small Cell Lung Cancer
+2026-02-12 09:40:29,416 INFO ================================================================================
+    -> Non-Small Cell Lung Cancer: 165 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:40:29,989 INFO Inferring essential modules for Non-Small Cell Lung Cancer (selectivity>30%)
+2026-02-12 09:40:54,312 INFO Inferred 15 essential module paths (1642 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:40:54,419 INFO Inferring signaling paths for Non-Small Cell Lung Cancer (max_len=4)
+2026-02-12 09:40:54,805 INFO Inferred 34 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:40:54,812 INFO Finding cancer-specific dependencies for Non-Small Cell Lung Cancer
+2026-02-12 09:41:08,421 INFO FDR correction: 16950 genes tested, 1 raw-significant, 1 FDR-significant (q < 0.05, Cohen's d > 0.3)
+    -> Perturbation response paths...
+2026-02-12 09:41:08,423 INFO Inferring perturbation response paths for Non-Small Cell Lung Cancer
+2026-02-12 09:41:09,002 INFO Inferred 9 perturbation response paths
+2026-02-12 09:41:09,009 INFO Total: 57 unique viability paths for Non-Small Cell Lung Cancer (conf >= 0.5)
+    -> Inferred 57 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:41:09,009 INFO Solving hitting set: 57 paths, 1655 candidate genes, max_size=4
+2026-02-12 09:41:30,076 INFO Solvers used: greedy, ilp(n=1655), prefiltered_exhaustive(k=61)
+2026-02-12 09:41:30,082 INFO Found 9351 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:41:30,088 INFO Finding triple combinations for Non-Small Cell Lung Cancer (57 paths)
+2026-02-12 09:41:30,091 INFO Injected 16 druggable path genes into candidates
+2026-02-12 09:41:30,091 INFO Evaluating combinations from 18 candidate genes
+Scoring triples:   0%|          | 0/816 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/153 [00:00<?, ?it/s]                                                         2026-02-12 09:41:33,553 INFO Found 189 valid triples, 20 valid doublets
+    -> Best triple: CDK6 + EGFR + MAP2K1 [done]
+    -> Best combo (2 genes): EGFR + MET [done]
+2026-02-12 09:41:33,586 INFO Finding triple combinations for Non-Small Cell Lung Cancer (57 paths)
+2026-02-12 09:41:33,588 INFO Injected 16 druggable path genes into candidates
+2026-02-12 09:41:33,588 INFO Evaluating combinations from 18 candidate genes
+Scoring triples:   0%|          | 0/816 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/153 [00:00<?, ?it/s]                                                         2026-02-12 09:41:37,102 INFO Found 463 valid triples, 48 valid doublets
+2026-02-12 09:41:37,115 INFO     511 combos, 323 positive
+2026-02-12 09:41:37,115 INFO   Ocular Melanoma...
+2026-02-12 09:41:37,115 INFO 
+================================================================================
+2026-02-12 09:41:37,115 INFO Analyzing Ocular Melanoma
+2026-02-12 09:41:37,115 INFO ================================================================================
+    -> Ocular Melanoma: 15 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:41:37,422 INFO Inferring essential modules for Ocular Melanoma (selectivity>30%)
+2026-02-12 09:41:40,357 INFO Inferred 15 essential module paths (2017 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:41:40,366 INFO Inferring signaling paths for Ocular Melanoma (max_len=4)
+2026-02-12 09:41:40,954 INFO Inferred 28 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:41:40,959 INFO Finding cancer-specific dependencies for Ocular Melanoma
+2026-02-12 09:41:55,046 INFO FDR correction: 16806 genes tested, 46 raw-significant, 0 FDR-significant (q < 0.05, Cohen's d > 0.3)
+    -> Perturbation response paths...
+2026-02-12 09:41:55,049 INFO Inferring perturbation response paths for Ocular Melanoma
+2026-02-12 09:41:55,349 INFO Inferred 8 perturbation response paths
+2026-02-12 09:41:55,354 INFO Total: 50 unique viability paths for Ocular Melanoma (conf >= 0.5)
+    -> Inferred 50 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:41:55,354 INFO Solving hitting set: 50 paths, 2030 candidate genes, max_size=4
+2026-02-12 09:41:59,933 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:42:09,703 INFO Solvers used: greedy, prefiltered_exhaustive(k=63)
+2026-02-12 09:42:09,705 INFO Found 5554 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:42:09,708 INFO Finding triple combinations for Ocular Melanoma (50 paths)
+2026-02-12 09:42:09,711 INFO Injected 16 druggable path genes into candidates
+2026-02-12 09:42:09,711 INFO Evaluating combinations from 18 candidate genes
+Scoring triples:   0%|          | 0/816 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/153 [00:00<?, ?it/s]                                                         2026-02-12 09:42:13,241 INFO Found 197 valid triples, 20 valid doublets
+    -> Best triple: BRAF + CDK6 + EGFR [done]
+    -> Best combo (2 genes): EGFR + MET [done]
+2026-02-12 09:42:13,278 INFO Finding triple combinations for Ocular Melanoma (50 paths)
+2026-02-12 09:42:13,280 INFO Injected 16 druggable path genes into candidates
+2026-02-12 09:42:13,281 INFO Evaluating combinations from 18 candidate genes
+Scoring triples:   0%|          | 0/816 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/153 [00:00<?, ?it/s]                                                         2026-02-12 09:42:16,869 INFO Found 493 valid triples, 61 valid doublets
+2026-02-12 09:42:16,871 INFO     554 combos, 0 positive
+2026-02-12 09:42:16,871 INFO   Osteosarcoma...
+2026-02-12 09:42:16,871 INFO 
+================================================================================
+2026-02-12 09:42:16,871 INFO Analyzing Osteosarcoma
+2026-02-12 09:42:16,871 INFO ================================================================================
+    -> Osteosarcoma: 29 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:42:17,497 INFO Inferring essential modules for Osteosarcoma (selectivity>30%)
+2026-02-12 09:42:22,639 INFO Inferred 15 essential module paths (1716 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:42:22,666 INFO Inferring signaling paths for Osteosarcoma (max_len=4)
+2026-02-12 09:42:23,216 INFO Inferred 28 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:42:23,221 INFO Finding cancer-specific dependencies for Osteosarcoma
+2026-02-12 09:42:36,947 INFO FDR correction: 17439 genes tested, 23 raw-significant, 3 FDR-significant (q < 0.05, Cohen's d > 0.3)
+2026-02-12 09:42:36,948 INFO Found 3 cancer-specific essential genes (FDR-corrected)
+    -> Perturbation response paths...
+2026-02-12 09:42:36,951 INFO Inferring perturbation response paths for Osteosarcoma
+2026-02-12 09:42:37,326 INFO Inferred 10 perturbation response paths
+2026-02-12 09:42:37,331 INFO Total: 53 unique viability paths for Osteosarcoma (conf >= 0.5)
+    -> Inferred 53 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:42:37,332 INFO Solving hitting set: 53 paths, 1729 candidate genes, max_size=4
+2026-02-12 09:42:42,004 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:43:08,422 INFO Solvers used: greedy, prefiltered_exhaustive(k=61)
+2026-02-12 09:43:08,424 INFO Found 150 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:43:08,425 INFO Finding triple combinations for Osteosarcoma (53 paths)
+2026-02-12 09:43:08,436 INFO Injected 17 druggable path genes into candidates
+2026-02-12 09:43:08,436 INFO Evaluating combinations from 19 candidate genes
+Scoring triples:   0%|          | 0/969 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/171 [00:00<?, ?it/s]                                                         2026-02-12 09:43:12,176 INFO Found 186 valid triples, 7 valid doublets
+    -> Best triple: CDK2 + EGFR + MET [done]
+    -> Best combo (2 genes): CDK6 + STAT3 [done]
+2026-02-12 09:43:12,209 INFO Finding triple combinations for Osteosarcoma (53 paths)
+2026-02-12 09:43:12,212 INFO Injected 17 druggable path genes into candidates
+2026-02-12 09:43:12,212 INFO Evaluating combinations from 19 candidate genes
+Scoring triples:   0%|          | 0/969 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/171 [00:00<?, ?it/s]                                                         2026-02-12 09:43:15,997 INFO Found 542 valid triples, 51 valid doublets
+2026-02-12 09:43:15,998 INFO     593 combos, 0 positive
+2026-02-12 09:43:15,998 INFO   Ovarian Epithelial Tumor...
+2026-02-12 09:43:15,998 INFO 
+================================================================================
+2026-02-12 09:43:15,998 INFO Analyzing Ovarian Epithelial Tumor
+2026-02-12 09:43:15,998 INFO ================================================================================
+    -> Ovarian Epithelial Tumor: 71 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:43:16,319 INFO Inferring essential modules for Ovarian Epithelial Tumor (selectivity>30%)
+2026-02-12 09:43:31,339 INFO Inferred 15 essential module paths (1738 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:43:31,436 INFO Inferring signaling paths for Ovarian Epithelial Tumor (max_len=4)
+2026-02-12 09:43:32,369 INFO Inferred 28 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:43:32,375 INFO Finding cancer-specific dependencies for Ovarian Epithelial Tumor
+2026-02-12 09:43:46,063 INFO FDR correction: 16950 genes tested, 6 raw-significant, 6 FDR-significant (q < 0.05, Cohen's d > 0.3)
+2026-02-12 09:43:46,063 INFO Found 6 cancer-specific essential genes (FDR-corrected)
+    -> Perturbation response paths...
+2026-02-12 09:43:46,068 INFO Inferring perturbation response paths for Ovarian Epithelial Tumor
+2026-02-12 09:43:46,402 INFO Inferred 8 perturbation response paths
+2026-02-12 09:43:46,408 INFO Total: 51 unique viability paths for Ovarian Epithelial Tumor (conf >= 0.5)
+    -> Inferred 51 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:43:46,408 INFO Solving hitting set: 51 paths, 1750 candidate genes, max_size=4
+2026-02-12 09:43:50,972 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:44:16,802 INFO Solvers used: greedy, prefiltered_exhaustive(k=61)
+2026-02-12 09:44:16,803 INFO Found 1081 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:44:16,807 INFO Finding triple combinations for Ovarian Epithelial Tumor (51 paths)
+2026-02-12 09:44:16,812 INFO Injected 16 druggable path genes into candidates
+2026-02-12 09:44:16,812 INFO Evaluating combinations from 18 candidate genes
+Scoring triples:   0%|          | 0/816 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/153 [00:00<?, ?it/s]                                                         2026-02-12 09:44:20,349 INFO Found 183 valid triples, 19 valid doublets
+    -> Best triple: CDK6 + EGFR + MET [done]
+    -> Best combo (2 genes): EGFR + MET [done]
+2026-02-12 09:44:20,381 INFO Finding triple combinations for Ovarian Epithelial Tumor (51 paths)
+2026-02-12 09:44:20,383 INFO Injected 16 druggable path genes into candidates
+2026-02-12 09:44:20,383 INFO Evaluating combinations from 18 candidate genes
+Scoring triples:   0%|          | 0/816 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/153 [00:00<?, ?it/s]                                                         2026-02-12 09:44:23,883 INFO Found 456 valid triples, 44 valid doublets
+2026-02-12 09:44:23,885 INFO     500 combos, 53 positive
+2026-02-12 09:44:23,885 INFO   Pancreatic Adenocarcinoma...
+2026-02-12 09:44:23,885 INFO 
+================================================================================
+2026-02-12 09:44:23,885 INFO Analyzing Pancreatic Adenocarcinoma
+2026-02-12 09:44:23,885 INFO ================================================================================
+    -> Pancreatic Adenocarcinoma: 64 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:44:24,529 INFO Inferring essential modules for Pancreatic Adenocarcinoma (selectivity>30%)
+2026-02-12 09:44:36,232 INFO Inferred 15 essential module paths (1720 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:44:36,307 INFO Inferring signaling paths for Pancreatic Adenocarcinoma (max_len=4)
+2026-02-12 09:44:36,944 INFO Inferred 29 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:44:36,950 INFO Finding cancer-specific dependencies for Pancreatic Adenocarcinoma
+2026-02-12 09:44:51,308 INFO FDR correction: 16950 genes tested, 24 raw-significant, 22 FDR-significant (q < 0.05, Cohen's d > 0.3)
+2026-02-12 09:44:51,308 INFO Found 20 cancer-specific essential genes (FDR-corrected)
+    -> Perturbation response paths...
+2026-02-12 09:44:51,310 INFO Inferring perturbation response paths for Pancreatic Adenocarcinoma
+2026-02-12 09:44:51,628 INFO Inferred 9 perturbation response paths
+2026-02-12 09:44:51,634 INFO Total: 54 unique viability paths for Pancreatic Adenocarcinoma (conf >= 0.5)
+    -> Inferred 54 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:44:51,634 INFO Solving hitting set: 54 paths, 1734 candidate genes, max_size=4
+2026-02-12 09:44:56,587 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:45:17,757 INFO Solvers used: greedy, prefiltered_exhaustive(k=60)
+2026-02-12 09:45:17,783 INFO Found 14025 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:45:17,814 INFO Finding triple combinations for Pancreatic Adenocarcinoma (54 paths)
+2026-02-12 09:45:17,827 INFO Injected 17 druggable path genes into candidates
+2026-02-12 09:45:17,827 INFO Evaluating combinations from 19 candidate genes
+Scoring triples:   0%|          | 0/969 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/171 [00:00<?, ?it/s]                                                         2026-02-12 09:45:21,516 INFO Found 201 valid triples, 19 valid doublets
+    -> Best triple: FYN + KRAS + STAT3 [done]
+    -> Best combo (2 genes): KRAS + STAT3 [done]
+2026-02-12 09:45:21,534 INFO Finding triple combinations for Pancreatic Adenocarcinoma (54 paths)
+2026-02-12 09:45:21,536 INFO Injected 17 druggable path genes into candidates
+2026-02-12 09:45:21,536 INFO Evaluating combinations from 19 candidate genes
+Scoring triples:   0%|          | 0/969 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/171 [00:00<?, ?it/s]                                                         2026-02-12 09:45:25,132 INFO Found 494 valid triples, 54 valid doublets
+2026-02-12 09:45:25,134 INFO     548 combos, 349 positive
+2026-02-12 09:45:25,134 INFO   Pleural Mesothelioma...
+2026-02-12 09:45:25,134 INFO 
+================================================================================
+2026-02-12 09:45:25,134 INFO Analyzing Pleural Mesothelioma
+2026-02-12 09:45:25,134 INFO ================================================================================
+    -> Pleural Mesothelioma: 36 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:45:25,462 INFO Inferring essential modules for Pleural Mesothelioma (selectivity>30%)
+2026-02-12 09:45:31,555 INFO Inferred 15 essential module paths (1777 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:45:31,573 INFO Inferring signaling paths for Pleural Mesothelioma (max_len=4)
+2026-02-12 09:45:32,147 INFO Inferred 34 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:45:32,152 INFO Finding cancer-specific dependencies for Pleural Mesothelioma
+2026-02-12 09:45:45,552 INFO FDR correction: 16806 genes tested, 13 raw-significant, 4 FDR-significant (q < 0.05, Cohen's d > 0.3)
+2026-02-12 09:45:45,552 INFO Found 4 cancer-specific essential genes (FDR-corrected)
+    -> Perturbation response paths...
+2026-02-12 09:45:45,554 INFO Inferring perturbation response paths for Pleural Mesothelioma
+2026-02-12 09:45:45,852 INFO Inferred 9 perturbation response paths
+2026-02-12 09:45:45,857 INFO Total: 58 unique viability paths for Pleural Mesothelioma (conf >= 0.5)
+    -> Inferred 58 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:45:45,857 INFO Solving hitting set: 58 paths, 1791 candidate genes, max_size=4
+2026-02-12 09:45:50,454 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:46:01,061 INFO Solvers used: greedy, prefiltered_exhaustive(k=64)
+2026-02-12 09:46:01,063 INFO Found 3967 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:46:01,065 INFO Finding triple combinations for Pleural Mesothelioma (58 paths)
+2026-02-12 09:46:01,069 INFO Injected 17 druggable path genes into candidates
+2026-02-12 09:46:01,069 INFO Evaluating combinations from 19 candidate genes
+Scoring triples:   0%|          | 0/969 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/171 [00:00<?, ?it/s]                                                         2026-02-12 09:46:04,654 INFO Found 208 valid triples, 21 valid doublets
+    -> Best triple: EGFR + FGFR1 + MAP2K1 [done]
+    -> Best combo (2 genes): FGFR1 + STAT3 [done]
+2026-02-12 09:46:04,681 INFO Finding triple combinations for Pleural Mesothelioma (58 paths)
+2026-02-12 09:46:04,683 INFO Injected 17 druggable path genes into candidates
+2026-02-12 09:46:04,684 INFO Evaluating combinations from 19 candidate genes
+Scoring triples:   0%|          | 0/969 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/171 [00:00<?, ?it/s]                                                         2026-02-12 09:46:08,517 INFO Found 518 valid triples, 49 valid doublets
+2026-02-12 09:46:08,518 INFO     567 combos, 0 positive
+2026-02-12 09:46:08,518 INFO   Prostate Adenocarcinoma...
+2026-02-12 09:46:08,518 INFO 
+================================================================================
+2026-02-12 09:46:08,518 INFO Analyzing Prostate Adenocarcinoma
+2026-02-12 09:46:08,518 INFO ================================================================================
+    -> Prostate Adenocarcinoma: 6 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:46:08,833 INFO Inferring essential modules for Prostate Adenocarcinoma (selectivity>30%)
+2026-02-12 09:46:13,741 INFO Inferred 15 essential module paths (3382 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:46:13,758 INFO Inferring signaling paths for Prostate Adenocarcinoma (max_len=4)
+2026-02-12 09:46:14,043 INFO Inferred 28 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:46:14,049 INFO Finding cancer-specific dependencies for Prostate Adenocarcinoma
+2026-02-12 09:46:27,644 INFO FDR correction: 16950 genes tested, 7 raw-significant, 0 FDR-significant (q < 0.05, Cohen's d > 0.3)
+    -> Perturbation response paths...
+2026-02-12 09:46:27,646 INFO Inferring perturbation response paths for Prostate Adenocarcinoma
+2026-02-12 09:46:28,051 INFO Inferred 12 perturbation response paths
+2026-02-12 09:46:28,057 INFO Total: 54 unique viability paths for Prostate Adenocarcinoma (conf >= 0.5)
+    -> Inferred 54 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:46:28,057 INFO Solving hitting set: 54 paths, 3395 candidate genes, max_size=4
+2026-02-12 09:46:33,485 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:46:45,404 INFO Solvers used: greedy, prefiltered_exhaustive(k=63)
+2026-02-12 09:46:45,405 INFO Found 3723 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:46:45,407 INFO Finding triple combinations for Prostate Adenocarcinoma (54 paths)
+2026-02-12 09:46:45,411 INFO Injected 18 druggable path genes into candidates
+2026-02-12 09:46:45,411 INFO Evaluating combinations from 20 candidate genes
+Scoring triples:   0%|          | 0/1140 [00:00<?, ?it/s]                                                         Scoring doublets:   0%|          | 0/190 [00:00<?, ?it/s]                                                         2026-02-12 09:46:49,156 INFO Found 210 valid triples, 11 valid doublets
+    -> Best triple: CDK2 + EGFR + MAP2K1 [done]
+    -> Best combo (2 genes): MAP2K1 + STAT3 [done]
+2026-02-12 09:46:49,177 INFO Finding triple combinations for Prostate Adenocarcinoma (54 paths)
+2026-02-12 09:46:49,181 INFO Injected 18 druggable path genes into candidates
+2026-02-12 09:46:49,181 INFO Evaluating combinations from 20 candidate genes
+Scoring triples:   0%|          | 0/1140 [00:00<?, ?it/s]                                                         Scoring doublets:   0%|          | 0/190 [00:00<?, ?it/s]                                                         2026-02-12 09:46:52,905 INFO Found 544 valid triples, 50 valid doublets
+2026-02-12 09:46:52,907 INFO     594 combos, 54 positive
+2026-02-12 09:46:52,907 INFO   Renal Cell Carcinoma...
+2026-02-12 09:46:52,907 INFO 
+================================================================================
+2026-02-12 09:46:52,907 INFO Analyzing Renal Cell Carcinoma
+2026-02-12 09:46:52,907 INFO ================================================================================
+    -> Renal Cell Carcinoma: 56 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:46:53,773 INFO Inferring essential modules for Renal Cell Carcinoma (selectivity>30%)
+2026-02-12 09:47:01,363 INFO Inferred 15 essential module paths (1695 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:47:01,391 INFO Inferring signaling paths for Renal Cell Carcinoma (max_len=4)
+2026-02-12 09:47:01,677 INFO Inferred 29 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:47:01,682 INFO Finding cancer-specific dependencies for Renal Cell Carcinoma
+2026-02-12 09:47:15,329 INFO FDR correction: 16950 genes tested, 36 raw-significant, 31 FDR-significant (q < 0.05, Cohen's d > 0.3)
+2026-02-12 09:47:15,337 INFO Found 20 cancer-specific essential genes (FDR-corrected)
+    -> Perturbation response paths...
+2026-02-12 09:47:15,340 INFO Inferring perturbation response paths for Renal Cell Carcinoma
+2026-02-12 09:47:15,665 INFO Inferred 7 perturbation response paths
+2026-02-12 09:47:15,671 INFO Total: 52 unique viability paths for Renal Cell Carcinoma (conf >= 0.5)
+    -> Inferred 52 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:47:15,671 INFO Solving hitting set: 52 paths, 1708 candidate genes, max_size=4
+2026-02-12 09:47:19,525 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:47:30,332 INFO Solvers used: greedy, prefiltered_exhaustive(k=64)
+2026-02-12 09:47:30,334 INFO Found 5677 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:47:30,338 INFO Finding triple combinations for Renal Cell Carcinoma (52 paths)
+2026-02-12 09:47:30,342 INFO Injected 14 druggable path genes into candidates
+2026-02-12 09:47:30,342 INFO Evaluating combinations from 16 candidate genes
+Scoring triples:   0%|          | 0/560 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/120 [00:00<?, ?it/s]                                                         2026-02-12 09:47:33,514 INFO Found 145 valid triples, 17 valid doublets
+    -> Best triple: CDK6 + EGFR + MAP2K1 [done]
+    -> Best combo (2 genes): EGFR + MET [done]
+2026-02-12 09:47:33,551 INFO Finding triple combinations for Renal Cell Carcinoma (52 paths)
+2026-02-12 09:47:33,553 INFO Injected 14 druggable path genes into candidates
+2026-02-12 09:47:33,554 INFO Evaluating combinations from 16 candidate genes
+Scoring triples:   0%|          | 0/560 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/120 [00:00<?, ?it/s]                                                         2026-02-12 09:47:36,646 INFO Found 360 valid triples, 47 valid doublets
+2026-02-12 09:47:36,648 INFO     407 combos, 0 positive
+2026-02-12 09:47:36,648 INFO   Rhabdoid Cancer...
+2026-02-12 09:47:36,648 INFO 
+================================================================================
+2026-02-12 09:47:36,648 INFO Analyzing Rhabdoid Cancer
+2026-02-12 09:47:36,648 INFO ================================================================================
+    -> Rhabdoid Cancer: 16 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:47:37,277 INFO Inferring essential modules for Rhabdoid Cancer (selectivity>30%)
+2026-02-12 09:47:40,989 INFO Inferred 15 essential module paths (2013 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:47:41,003 INFO Inferring signaling paths for Rhabdoid Cancer (max_len=4)
+2026-02-12 09:47:41,310 INFO Inferred 28 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:47:41,315 INFO Finding cancer-specific dependencies for Rhabdoid Cancer
+2026-02-12 09:47:55,295 INFO FDR correction: 16806 genes tested, 77 raw-significant, 11 FDR-significant (q < 0.05, Cohen's d > 0.3)
+2026-02-12 09:47:55,295 INFO Found 11 cancer-specific essential genes (FDR-corrected)
+    -> Perturbation response paths...
+2026-02-12 09:47:55,297 INFO Inferring perturbation response paths for Rhabdoid Cancer
+2026-02-12 09:47:55,929 INFO Inferred 8 perturbation response paths
+2026-02-12 09:47:55,934 INFO Total: 51 unique viability paths for Rhabdoid Cancer (conf >= 0.5)
+    -> Inferred 51 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:47:55,934 INFO Solving hitting set: 51 paths, 2026 candidate genes, max_size=4
+2026-02-12 09:48:00,616 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:48:08,651 INFO Solvers used: greedy, prefiltered_exhaustive(k=63)
+2026-02-12 09:48:08,652 INFO Found 3723 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:48:08,657 INFO Finding triple combinations for Rhabdoid Cancer (51 paths)
+2026-02-12 09:48:08,667 INFO Injected 18 druggable path genes into candidates
+2026-02-12 09:48:08,667 INFO Evaluating combinations from 20 candidate genes
+Scoring triples:   0%|          | 0/1140 [00:00<?, ?it/s]                                                         Scoring doublets:   0%|          | 0/190 [00:00<?, ?it/s]                                                         2026-02-12 09:48:12,439 INFO Found 221 valid triples, 20 valid doublets
+    -> Best triple: FGFR1 + PARP1 + STAT3 [done]
+    -> Best combo (2 genes): FGFR1 + STAT3 [done]
+2026-02-12 09:48:12,457 INFO Finding triple combinations for Rhabdoid Cancer (51 paths)
+2026-02-12 09:48:12,460 INFO Injected 18 druggable path genes into candidates
+2026-02-12 09:48:12,460 INFO Evaluating combinations from 20 candidate genes
+Scoring triples:   0%|          | 0/1140 [00:00<?, ?it/s]                                                         Scoring doublets:   0%|          | 0/190 [00:00<?, ?it/s]                                                         2026-02-12 09:48:16,240 INFO Found 576 valid triples, 50 valid doublets
+2026-02-12 09:48:16,243 INFO     626 combos, 0 positive
+2026-02-12 09:48:16,243 INFO   Rhabdomyosarcoma...
+2026-02-12 09:48:16,243 INFO 
+================================================================================
+2026-02-12 09:48:16,243 INFO Analyzing Rhabdomyosarcoma
+2026-02-12 09:48:16,243 INFO ================================================================================
+    -> Rhabdomyosarcoma: 25 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:48:16,570 INFO Inferring essential modules for Rhabdomyosarcoma (selectivity>30%)
+2026-02-12 09:48:20,903 INFO Inferred 15 essential module paths (1979 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:48:20,916 INFO Inferring signaling paths for Rhabdomyosarcoma (max_len=4)
+2026-02-12 09:48:21,229 INFO Inferred 23 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:48:21,235 INFO Finding cancer-specific dependencies for Rhabdomyosarcoma
+2026-02-12 09:48:34,812 INFO FDR correction: 16806 genes tested, 68 raw-significant, 3 FDR-significant (q < 0.05, Cohen's d > 0.3)
+2026-02-12 09:48:34,812 INFO Found 3 cancer-specific essential genes (FDR-corrected)
+    -> Perturbation response paths...
+2026-02-12 09:48:34,813 INFO Inferring perturbation response paths for Rhabdomyosarcoma
+2026-02-12 09:48:35,127 INFO Inferred 3 perturbation response paths
+2026-02-12 09:48:35,132 INFO Total: 41 unique viability paths for Rhabdomyosarcoma (conf >= 0.5)
+    -> Inferred 41 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:48:35,133 INFO Solving hitting set: 41 paths, 1989 candidate genes, max_size=4
+2026-02-12 09:48:39,045 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:48:47,794 INFO Solvers used: greedy, prefiltered_exhaustive(k=64)
+2026-02-12 09:48:47,797 INFO Found 5677 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:48:47,800 INFO Finding triple combinations for Rhabdomyosarcoma (41 paths)
+2026-02-12 09:48:47,804 INFO Injected 13 druggable path genes into candidates
+2026-02-12 09:48:47,804 INFO Evaluating combinations from 15 candidate genes
+Scoring triples:   0%|          | 0/455 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/105 [00:00<?, ?it/s]                                                         2026-02-12 09:48:50,546 INFO Found 144 valid triples, 17 valid doublets
+    -> Best triple: CDK4 + CDK6 + ERBB2 [done]
+2026-02-12 09:48:50,576 INFO Finding triple combinations for Rhabdomyosarcoma (41 paths)
+2026-02-12 09:48:50,578 INFO Injected 13 druggable path genes into candidates
+2026-02-12 09:48:50,578 INFO Evaluating combinations from 15 candidate genes
+Scoring triples:   0%|          | 0/455 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/105 [00:00<?, ?it/s]                                                         2026-02-12 09:48:53,334 INFO Found 317 valid triples, 46 valid doublets
+2026-02-12 09:48:53,335 INFO     363 combos, 0 positive
+2026-02-12 09:48:53,335 INFO   Synovial Sarcoma...
+2026-02-12 09:48:53,335 INFO 
+================================================================================
+2026-02-12 09:48:53,335 INFO Analyzing Synovial Sarcoma
+2026-02-12 09:48:53,335 INFO ================================================================================
+    -> Synovial Sarcoma: 10 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:48:54,186 INFO Inferring essential modules for Synovial Sarcoma (selectivity>30%)
+2026-02-12 09:48:57,837 INFO Inferred 15 essential module paths (2929 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:48:57,851 INFO Inferring signaling paths for Synovial Sarcoma (max_len=4)
+2026-02-12 09:48:58,165 INFO Inferred 28 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:48:58,170 INFO Finding cancer-specific dependencies for Synovial Sarcoma
+2026-02-12 09:49:11,860 INFO FDR correction: 16806 genes tested, 5 raw-significant, 0 FDR-significant (q < 0.05, Cohen's d > 0.3)
+    -> Perturbation response paths...
+2026-02-12 09:49:11,862 INFO Inferring perturbation response paths for Synovial Sarcoma
+2026-02-12 09:49:12,150 INFO Inferred 9 perturbation response paths
+2026-02-12 09:49:12,156 INFO Total: 51 unique viability paths for Synovial Sarcoma (conf >= 0.5)
+    -> Inferred 51 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:49:12,156 INFO Solving hitting set: 51 paths, 2941 candidate genes, max_size=4
+2026-02-12 09:49:17,295 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:49:34,609 INFO Solvers used: greedy, prefiltered_exhaustive(k=63)
+2026-02-12 09:49:34,611 INFO Found 3723 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:49:34,613 INFO Finding triple combinations for Synovial Sarcoma (51 paths)
+2026-02-12 09:49:34,617 INFO Injected 16 druggable path genes into candidates
+2026-02-12 09:49:34,618 INFO Evaluating combinations from 18 candidate genes
+Scoring triples:   0%|          | 0/816 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/153 [00:00<?, ?it/s]                                                         2026-02-12 09:49:38,246 INFO Found 183 valid triples, 18 valid doublets
+    -> Best triple: BRAF + EGFR + PIK3CA [done]
+    -> Best combo (2 genes): EGFR + MET [done]
+2026-02-12 09:49:38,271 INFO Finding triple combinations for Synovial Sarcoma (51 paths)
+2026-02-12 09:49:38,274 INFO Injected 16 druggable path genes into candidates
+2026-02-12 09:49:38,274 INFO Evaluating combinations from 18 candidate genes
+Scoring triples:   0%|          | 0/816 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/153 [00:00<?, ?it/s]                                                         2026-02-12 09:49:41,820 INFO Found 466 valid triples, 46 valid doublets
+2026-02-12 09:49:41,821 INFO     512 combos, 0 positive
+2026-02-12 09:49:41,821 INFO   T-Lymphoblastic Leukemia/Lymphoma...
+2026-02-12 09:49:41,821 INFO 
+================================================================================
+2026-02-12 09:49:41,821 INFO Analyzing T-Lymphoblastic Leukemia/Lymphoma
+2026-02-12 09:49:41,821 INFO ================================================================================
+    -> T-Lymphoblastic Leukemia/Lymphoma: 27 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:49:42,455 INFO Inferring essential modules for T-Lymphoblastic Leukemia/Lymphoma (selectivity>30%)
+2026-02-12 09:49:46,721 INFO Inferred 15 essential module paths (2950 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:49:46,753 INFO Inferring signaling paths for T-Lymphoblastic Leukemia/Lymphoma (max_len=4)
+2026-02-12 09:49:47,064 INFO Inferred 34 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:49:47,069 INFO Finding cancer-specific dependencies for T-Lymphoblastic Leukemia/Lymphoma
+2026-02-12 09:50:01,497 INFO FDR correction: 16806 genes tested, 75 raw-significant, 0 FDR-significant (q < 0.05, Cohen's d > 0.3)
+    -> Perturbation response paths...
+2026-02-12 09:50:01,499 INFO Inferring perturbation response paths for T-Lymphoblastic Leukemia/Lymphoma
+2026-02-12 09:50:01,825 INFO Inferred 6 perturbation response paths
+2026-02-12 09:50:01,831 INFO Total: 54 unique viability paths for T-Lymphoblastic Leukemia/Lymphoma (conf >= 0.5)
+    -> Inferred 54 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:50:01,831 INFO Solving hitting set: 54 paths, 2962 candidate genes, max_size=4
+2026-02-12 09:50:06,950 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:50:18,228 INFO Solvers used: greedy, prefiltered_exhaustive(k=63)
+2026-02-12 09:50:18,231 INFO Found 5554 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:50:18,234 INFO Finding triple combinations for T-Lymphoblastic Leukemia/Lymphoma (54 paths)
+2026-02-12 09:50:18,238 INFO Injected 17 druggable path genes into candidates
+2026-02-12 09:50:18,238 INFO Evaluating combinations from 19 candidate genes
+Scoring triples:   0%|          | 0/969 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/171 [00:00<?, ?it/s]                                                         2026-02-12 09:50:21,871 INFO Found 253 valid triples, 24 valid doublets
+    -> Best triple: CDK6 + EGFR + MAP2K1 [done]
+    -> Best combo (2 genes): EGFR + MAP2K1 [done]
+2026-02-12 09:50:21,894 INFO Finding triple combinations for T-Lymphoblastic Leukemia/Lymphoma (54 paths)
+2026-02-12 09:50:21,897 INFO Injected 17 druggable path genes into candidates
+2026-02-12 09:50:21,897 INFO Evaluating combinations from 19 candidate genes
+Scoring triples:   0%|          | 0/969 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/171 [00:00<?, ?it/s]                                                         2026-02-12 09:50:25,518 INFO Found 536 valid triples, 55 valid doublets
+2026-02-12 09:50:25,519 INFO     591 combos, 0 positive
+2026-02-12 09:50:25,519 INFO   Undifferentiated Pleomorphic Sarcoma/Malignant Fibrous Histiocytoma/High-Grade Spindle Cell Sarcoma...
+2026-02-12 09:50:25,519 INFO 
+================================================================================
+2026-02-12 09:50:25,519 INFO Analyzing Undifferentiated Pleomorphic Sarcoma/Malignant Fibrous Histiocytoma/High-Grade Spindle Cell Sarcoma
+2026-02-12 09:50:25,519 INFO ================================================================================
+    -> Undifferentiated Pleomorphic Sarcoma/Malignant Fibrous Histiocytoma/High-Grade Spindle Cell Sarcoma: 9 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:50:25,833 INFO Inferring essential modules for Undifferentiated Pleomorphic Sarcoma/Malignant Fibrous Histiocytoma/High-Grade Spindle Cell Sarcoma (selectivity>30%)
+2026-02-12 09:50:29,340 INFO Inferred 15 essential module paths (2755 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:50:29,353 INFO Inferring signaling paths for Undifferentiated Pleomorphic Sarcoma/Malignant Fibrous Histiocytoma/High-Grade Spindle Cell Sarcoma (max_len=4)
+2026-02-12 09:50:30,289 INFO Inferred 28 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:50:30,295 INFO Finding cancer-specific dependencies for Undifferentiated Pleomorphic Sarcoma/Malignant Fibrous Histiocytoma/High-Grade Spindle Cell Sarcoma
+2026-02-12 09:50:43,610 INFO FDR correction: 16806 genes tested, 19 raw-significant, 0 FDR-significant (q < 0.05, Cohen's d > 0.3)
+    -> Perturbation response paths...
+2026-02-12 09:50:43,611 INFO Inferring perturbation response paths for Undifferentiated Pleomorphic Sarcoma/Malignant Fibrous Histiocytoma/High-Grade Spindle Cell Sarcoma
+2026-02-12 09:50:43,896 INFO Inferred 8 perturbation response paths
+2026-02-12 09:50:43,901 INFO Total: 50 unique viability paths for Undifferentiated Pleomorphic Sarcoma/Malignant Fibrous Histiocytoma/High-Grade Spindle Cell Sarcoma (conf >= 0.5)
+    -> Inferred 50 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:50:43,901 INFO Solving hitting set: 50 paths, 2767 candidate genes, max_size=4
+2026-02-12 09:50:49,140 INFO ILP infeasible or timed out: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+2026-02-12 09:51:24,230 INFO Solvers used: greedy, prefiltered_exhaustive(k=60)
+2026-02-12 09:51:24,232 INFO Found 1841 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:51:24,235 INFO Finding triple combinations for Undifferentiated Pleomorphic Sarcoma/Malignant Fibrous Histiocytoma/High-Grade Spindle Cell Sarcoma (50 paths)
+2026-02-12 09:51:24,241 INFO Injected 18 druggable path genes into candidates
+2026-02-12 09:51:24,241 INFO Evaluating combinations from 20 candidate genes
+Scoring triples:   0%|          | 0/1140 [00:00<?, ?it/s]                                                         Scoring doublets:   0%|          | 0/190 [00:00<?, ?it/s]                                                         2026-02-12 09:51:28,021 INFO Found 238 valid triples, 22 valid doublets
+    -> Best triple: BRAF + EGFR + PARP1 [done]
+    -> Best combo (2 genes): EGFR + MET [done]
+2026-02-12 09:51:28,054 INFO Finding triple combinations for Undifferentiated Pleomorphic Sarcoma/Malignant Fibrous Histiocytoma/High-Grade Spindle Cell Sarcoma (50 paths)
+2026-02-12 09:51:28,057 INFO Injected 18 druggable path genes into candidates
+2026-02-12 09:51:28,057 INFO Evaluating combinations from 20 candidate genes
+Scoring triples:   0%|          | 0/1140 [00:00<?, ?it/s]                                                         Scoring doublets:   0%|          | 0/190 [00:00<?, ?it/s]                                                         2026-02-12 09:51:32,515 INFO Found 620 valid triples, 61 valid doublets
+2026-02-12 09:51:32,517 INFO     681 combos, 0 positive
+2026-02-12 09:51:32,517 INFO   Well-Differentiated Thyroid Cancer...
+2026-02-12 09:51:32,517 INFO 
+================================================================================
+2026-02-12 09:51:32,517 INFO Analyzing Well-Differentiated Thyroid Cancer
+2026-02-12 09:51:32,517 INFO ================================================================================
+    -> Well-Differentiated Thyroid Cancer: 9 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:51:32,830 INFO Inferring essential modules for Well-Differentiated Thyroid Cancer (selectivity>30%)
+2026-02-12 09:51:35,410 INFO Inferred 7 essential module paths (2126 selective genes)
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:51:35,443 INFO Inferring signaling paths for Well-Differentiated Thyroid Cancer (max_len=4)
+2026-02-12 09:51:35,789 INFO Inferred 28 signaling paths (confidence >= 0.5)
+    -> Cancer-specific dependencies...
+2026-02-12 09:51:35,795 INFO Finding cancer-specific dependencies for Well-Differentiated Thyroid Cancer
+2026-02-12 09:51:49,586 INFO FDR correction: 16806 genes tested, 38 raw-significant, 1 FDR-significant (q < 0.05, Cohen's d > 0.3)
+    -> Perturbation response paths...
+2026-02-12 09:51:49,588 INFO Inferring perturbation response paths for Well-Differentiated Thyroid Cancer
+2026-02-12 09:51:49,932 INFO Inferred 15 perturbation response paths
+2026-02-12 09:51:49,940 INFO Total: 49 unique viability paths for Well-Differentiated Thyroid Cancer (conf >= 0.5)
+    -> Inferred 49 viability paths [done]
+    -> Solving minimal hitting set...
+2026-02-12 09:51:49,940 INFO Solving hitting set: 49 paths, 2140 candidate genes, max_size=4
+2026-02-12 09:52:19,050 INFO Solvers used: greedy, ilp(n=2140), prefiltered_exhaustive(k=64)
+2026-02-12 09:52:19,051 INFO Found 2014 hitting set solutions
+    -> Found 20 hitting set solutions [done]
+    -> Scoring triple combinations...
+2026-02-12 09:52:19,053 INFO Finding triple combinations for Well-Differentiated Thyroid Cancer (49 paths)
+2026-02-12 09:52:19,057 INFO Injected 17 druggable path genes into candidates
+2026-02-12 09:52:19,057 INFO Evaluating combinations from 19 candidate genes
+Scoring triples:   0%|          | 0/969 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/171 [00:00<?, ?it/s]                                                         2026-02-12 09:52:22,833 INFO Found 236 valid triples, 22 valid doublets
+    -> Best triple: BRAF + CDK6 + EGFR [done]
+    -> Best combo (2 genes): EGFR + MAP2K1 [done]
+2026-02-12 09:52:22,875 INFO Finding triple combinations for Well-Differentiated Thyroid Cancer (49 paths)
+2026-02-12 09:52:22,878 INFO Injected 17 druggable path genes into candidates
+2026-02-12 09:52:22,878 INFO Evaluating combinations from 19 candidate genes
+Scoring triples:   0%|          | 0/969 [00:00<?, ?it/s]                                                        Scoring doublets:   0%|          | 0/171 [00:00<?, ?it/s]                                                         2026-02-12 09:52:26,393 INFO Found 588 valid triples, 67 valid doublets
+2026-02-12 09:52:26,396 INFO     655 combos, 0 positive
+2026-02-12 09:52:26,396 INFO   Wilms' Tumor...
+2026-02-12 09:52:26,396 INFO 
+================================================================================
+2026-02-12 09:52:26,396 INFO Analyzing Wilms' Tumor
+2026-02-12 09:52:26,396 INFO ================================================================================
+    -> Wilms' Tumor: 5 cell lines...
+    -> Inferring viability paths (essential + signaling + cancer-specific)...
+    -> Essential modules (co-essentiality)...
+2026-02-12 09:52:26,398 INFO Inferring essential modules for Wilms' Tumor (selectivity>30%)
+2026-02-12 09:52:26,398 WARNING Too few cell lines (0) for Wilms' Tumor
+    -> Signaling paths (OmniPath)...
+2026-02-12 09:52:26,398 INFO Inferring signaling paths for Wilms' Tumor (max_len=4)
+    -> Cancer-specific dependencies...
+2026-02-12 09:52:26,399 INFO Finding cancer-specific dependencies for Wilms' Tumor
+2026-02-12 09:52:26,399 WARNING Too few cell lines (0) for statistical comparison
+    -> Perturbation response paths...
+2026-02-12 09:52:26,399 INFO Inferring perturbation response paths for Wilms' Tumor
+2026-02-12 09:52:26,400 INFO Total: 0 unique viability paths for Wilms' Tumor (conf >= 0.5)
+    -> Inferred 0 viability paths [done]
+2026-02-12 09:52:26,400 WARNING No viability paths found for Wilms' Tumor
+2026-02-12 09:52:26,475 INFO Total: 25667 combos, 2687 positives across 50 cancers
+2026-02-12 09:52:26,873 INFO Saved 25667 combos to calibration_results/all_combos_features.csv
+2026-02-12 09:52:26,874 INFO 
+[2/7] Analyzing feature correlations...
+2026-02-12 09:52:26,890 INFO Feature correlations: 1 pairs with |r|>0.7
+2026-02-12 09:52:26,890 INFO 
+[3/7] Selecting de-correlated feature set...
+2026-02-12 09:52:26,890 INFO   Dropping 'hub_penalty' (corr with 'coverage' = 0.835)
+2026-02-12 09:52:26,890 INFO De-correlated feature set: ['total_cost', 'synergy_score', 'resistance_score', 'coverage', 'combo_tox_score', 'druggable_count', 'perturbation_bonus'] (dropped {'hub_penalty'})
+2026-02-12 09:52:26,890 INFO 
+[4/7] Fitting calibrated logistic regression (all features)...
+2026-02-12 09:52:31,687 INFO Calibrated LR — LOCO AUROC: 0.353  vs heuristic: 0.553
+2026-02-12 09:52:31,690 INFO 
+[4b/7] Fitting with de-correlated features...
+2026-02-12 09:52:33,476 INFO Calibrated LR — LOCO AUROC: 0.416  vs heuristic: 0.553
+2026-02-12 09:52:33,477 INFO 
+[5/7] Computing SHAP values...
+2026-02-12 09:52:40,511 INFO SHAP importance:
+           feature  mean_abs_shap
+   druggable_count       0.274385
+       hub_penalty       0.188374
+  resistance_score       0.122027
+          coverage       0.108568
+   combo_tox_score       0.091110
+     synergy_score       0.070928
+        total_cost       0.012410
+perturbation_bonus       0.005749
+2026-02-12 09:52:40,511 INFO 
+[6/7] Leave-one-feature-out ablation...
+2026-02-12 09:52:41,640 INFO   Ablate total_cost: AUROC 0.5531 (Δ=-0.0011)
+2026-02-12 09:52:42,134 INFO   Ablate synergy_score: AUROC 0.5491 (Δ=+0.0028)
+2026-02-12 09:52:42,679 INFO   Ablate resistance_score: AUROC 0.5469 (Δ=+0.0051)
+2026-02-12 09:52:43,155 INFO   Ablate coverage: AUROC 0.5638 (Δ=-0.0119)
+2026-02-12 09:52:43,641 INFO   Ablate combo_tox_score: AUROC 0.5457 (Δ=+0.0062)
+2026-02-12 09:52:44,124 INFO   Ablate hub_penalty: AUROC 0.5597 (Δ=-0.0077)
+2026-02-12 09:52:44,591 INFO   Ablate druggable_count: AUROC 0.5216 (Δ=+0.0304)
+2026-02-12 09:52:45,060 INFO   Ablate perturbation_bonus: AUROC 0.5508 (Δ=+0.0012)
+2026-02-12 09:52:45,062 INFO 
+[6b/7] Comparing heuristic vs calibrated rankings...
+2026-02-12 09:52:45,152 INFO Top-1 changed in 50/50 cancers (100.0%)
+2026-02-12 09:52:45,152 INFO Mean Kendall τ: 0.346
+2026-02-12 09:52:45,152 INFO 
+[7/7] Generating figure...
+2026-02-12 09:52:46,351 INFO Figure saved to calibration_results/evidence_calibration.{pdf,png}
+2026-02-12 09:52:46,351 INFO 
+============================================================
+2026-02-12 09:52:46,351 INFO SUMMARY
+2026-02-12 09:52:46,351 INFO ============================================================
+2026-02-12 09:52:46,353 INFO Total combos: 25667  |  Positives: 2687
+2026-02-12 09:52:46,353 INFO Calibrated LR AUROC (LOCO): 0.353
+2026-02-12 09:52:46,353 INFO Heuristic AUROC:            0.553
+2026-02-12 09:52:46,353 INFO Calibrated AUPRC:           0.080
+2026-02-12 09:52:46,353 INFO Heuristic AUPRC:            0.132
+2026-02-12 09:52:46,353 INFO Brier score:                0.095
+2026-02-12 09:52:46,353 INFO 
+Feature importance (SHAP):
+2026-02-12 09:52:46,354 INFO   Druggable #          SHAP=0.2744
+2026-02-12 09:52:46,354 INFO   Hub Penalty          SHAP=0.1884
+2026-02-12 09:52:46,355 INFO   Resistance           SHAP=0.1220
+2026-02-12 09:52:46,355 INFO   Coverage             SHAP=0.1086
+2026-02-12 09:52:46,355 INFO   Combo Tox            SHAP=0.0911
+2026-02-12 09:52:46,355 INFO   Synergy              SHAP=0.0709
+2026-02-12 09:52:46,355 INFO   Cost                 SHAP=0.0124
+2026-02-12 09:52:46,355 INFO   Perturbation         SHAP=0.0057
+2026-02-12 09:52:46,365 INFO 
+Correlated pairs (|r|>0.7): 1
+2026-02-12 09:52:46,366 INFO De-correlated features: ['total_cost', 'synergy_score', 'resistance_score', 'coverage', 'combo_tox_score', 'druggable_count', 'perturbation_bonus']
+2026-02-12 09:52:46,366 INFO 
+De-correlated model AUROC: 0.416
+2026-02-12 09:52:46,366 INFO Top-1 changed (calibrated vs heuristic): 50/50 cancers
+2026-02-12 09:52:46,382 INFO 
+All results saved to calibration_results/
+2026-02-12 09:52:46,382 INFO Done.

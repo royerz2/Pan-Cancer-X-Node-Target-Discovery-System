@@ -1,0 +1,78 @@
+Cancer_Type,Targets,Combined_Score,Original_Rank,Feasibility,Adjusted_Score,Feasibility_Rank,Rank_Change
+Acute Myeloid Leukemia,CDK6+ERBB2+MCL1,0.000,1,0.642,0.000,1,0
+Colorectal Adenocarcinoma,BRAF+EGFR+KRAS,0.000,2,0.952,0.000,2,0
+Melanoma,CDK6+EGFR+MAP2K1,0.000,3,0.887,0.000,3,0
+Non-Small Cell Lung Cancer,CDK6+EGFR+MAP2K1,0.000,4,0.988,0.000,4,0
+Anaplastic Thyroid Cancer,CDK6+EGFR+MAP2K1,0.000,5,0.887,0.000,5,0
+Invasive Breast Carcinoma,BCL2L1+EGFR+MAP2K1,0.000,6,0.792,0.000,6,0
+Renal Cell Carcinoma,CDK6+EGFR+MAP2K1,0.000,7,0.787,0.000,7,0
+Prostate Adenocarcinoma,CDK2+EGFR+MAP2K1,0.000,8,0.693,0.000,8,0
+Bladder Urothelial Carcinoma,CDK2+EGFR+MAP2K1,0.000,9,0.752,0.000,9,0
+Esophagogastric Adenocarcinoma,CDK6+EGFR+MAP2K1,0.000,10,0.787,0.000,10,0
+Head and Neck Squamous Cell Carcinoma,CDK4+CDK6+ERBB2,0.000,11,0.675,0.000,11,0
+Pancreatic Adenocarcinoma,EGFR+KRAS+MET,0.000,12,0.740,0.000,12,0
+Ovarian Epithelial Tumor,CDK6+EGFR+MET,0.000,13,0.755,0.000,13,0
+Endometrial Carcinoma,CDK2+EGFR+MET,0.000,14,0.650,0.000,14,0
+Hepatocellular Carcinoma,EGFR+FGFR1+MET,0.000,15,0.945,0.000,15,0
+Liposarcoma,EGFR+FGFR1+MET,0.000,16,0.745,0.000,16,0
+Diffuse Glioma,EGFR+FGFR1+MET,0.000,17,0.745,0.000,17,0
+Poorly Differentiated Thyroid Cancer,BRAF+MAP2K1+STAT3,0.420,19,0.952,0.441,18,+1
+Clear Cell Sarcoma,CDK4+EGFR+FGFR1,0.404,18,0.790,0.511,19,-1
+Mucosal Melanoma of the Vulva/Vagina,BRAF+FYN+STAT3,0.455,21,0.835,0.545,20,+1
+Salivary Carcinoma,CDK6+EGFR+MET,0.440,20,0.755,0.583,21,-1
+"Head and Neck Carcinoma, Other",CDK6+EGFR+MET,0.581,70,0.875,0.664,22,+48
+Glassy Cell Carcinoma of the Cervix,CDK4+EGFR+STAT3,0.497,26,0.740,0.672,23,+3
+Mature T and NK Neoplasms,CDK6+KRAS+STAT3,0.483,23,0.718,0.673,24,-1
+Hepatocellular Carcinoma plus Intrahepatic Cholangiocarcinoma,EGFR+FYN+STAT3,0.480,22,0.710,0.676,25,-3
+Hepatoblastoma,BRAF+FYN+STAT3,0.507,27,0.735,0.690,26,+1
+Adrenocortical Carcinoma,CDK6+KRAS+STAT3,0.496,25,0.718,0.691,27,-2
+Cutaneous Squamous Cell Carcinoma,CDK6+EGFR+MET,0.527,35,0.755,0.698,28,+7
+Breast Ductal Carcinoma In Situ,CDK4+EGFR+STAT3,0.603,73,0.840,0.718,29,+44
+Pleural Mesothelioma,FGFR1+FYN+STAT3,0.526,34,0.725,0.726,30,+4
+Well-Differentiated Thyroid Cancer,FYN+MAP2K1+STAT3,0.564,59,0.772,0.730,31,+28
+Ewing Sarcoma,CDK4+KRAS+STAT3,0.526,33,0.718,0.733,32,+1
+Ampullary Carcinoma,EGFR+KRAS+STAT3,0.512,28,0.693,0.739,33,-5
+B-Cell Acute Lymphoblastic Leukemia,CDK6+KRAS+STAT3,0.541,41,0.718,0.754,34,+7
+Giant Cell Tumor of Bone,EGFR+KRAS+STAT3,0.523,31,0.693,0.755,35,-4
+Nerve Sheath Tumor,FGFR1+FYN+STAT3,0.548,48,0.725,0.756,36,+12
+Mature B-Cell Neoplasms,CDK6+KRAS+STAT3,0.547,46,0.718,0.762,37,+9
+"Breast Neoplasm, NOS",BCL2+FYN+STAT3,0.484,24,0.633,0.765,38,-14
+Mixed Cervical Carcinoma,ERBB2+MAP2K1+MAP2K2,0.555,53,0.725,0.766,39,+14
+Non-Hodgkin Lymphoma,CDK6+KRAS+STAT3,0.556,54,0.718,0.775,40,+14
+T-Lymphoblastic Leukemia/Lymphoma,CDK6+KRAS+STAT3,0.564,60,0.718,0.786,41,+19
+Ovarian Germ Cell Tumor,KRAS+MET+STAT3,0.532,36,0.672,0.791,42,-6
+Intracholecystic Papillary Neoplasm,EGFR+KRAS+STAT3,0.549,50,0.693,0.793,43,+7
+Rhabdomyosarcoma,CDK6+KRAS+STAT3,0.569,64,0.718,0.793,44,+20
+Leiomyosarcoma,KRAS+MET+STAT3,0.534,37,0.672,0.794,45,-8
+Epithelioid Sarcoma,FYN+MET+STAT3,0.543,42,0.680,0.799,46,-4
+Extra Gonadal Germ Cell Tumor,CDK2+MAP2K1+STAT3,0.550,51,0.670,0.821,47,+4
+Ocular Melanoma,CDK4+KRAS+STAT3,0.590,71,0.718,0.822,48,+23
+Cervical Squamous Cell Carcinoma,CDK4+EGFR+STAT3,0.615,75,0.740,0.831,49,+26
+Urethral Cancer,FYN+MAP2K1+STAT3,0.559,55,0.672,0.831,50,+5
+Undifferentiated Pleomorphic Sarcoma/Malignant Fibrous Histiocytoma/High-Grade Spindle Cell Sarcoma,FYN+MAP2K1+STAT3,0.562,56,0.672,0.836,51,+5
+Embryonal Tumor,CDK6+KRAS+STAT3,0.603,72,0.718,0.840,52,+20
+Gestational Trophoblastic Disease,CDK4+KRAS+STAT3,0.604,74,0.718,0.842,53,+21
+Neuroblastoma,CDK6+FYN+STAT3,0.520,29,0.610,0.852,54,-25
+Acute Leukemias of Ambiguous Lineage,CDK6+FYN+STAT3,0.521,30,0.610,0.854,55,-25
+Cervical Adenocarcinoma,FYN+STAT3+YES1,0.546,45,0.633,0.863,56,-11
+"Sarcoma, NOS",CDK4+CDK6+STAT3,0.563,57,0.640,0.880,57,0
+Meningothelial Tumor,CDK6+FYN+STAT3,0.537,38,0.610,0.880,58,-20
+Bladder Squamous Cell Carcinoma,CDK6+FYN+STAT3,0.537,39,0.610,0.880,59,-20
+Rhabdoid Cancer,CDK4+FYN+STAT3,0.540,40,0.610,0.885,60,-20
+Hodgkin Lymphoma,CDK4+CDK6+STAT3,0.568,62,0.640,0.888,61,+1
+SMARCA4-deficient undifferentiated tumor,CDK6+FYN+STAT3,0.546,44,0.610,0.895,62,-18
+Intraductal Papillary Neoplasm of the Bile Duct,CDK6+FYN+STAT3,0.548,47,0.610,0.898,63,-16
+Adenosquamous Carcinoma of the Pancreas,CDK6+FYN+STAT3,0.549,49,0.610,0.900,64,-15
+Squamous Cell Carcinoma of the Vulva/Vagina,FYN+SRC+STAT3,0.525,32,0.580,0.905,65,-33
+Merkel Cell Carcinoma,CDK2+KRAS+STAT3,0.568,61,0.623,0.912,66,-5
+Lung Neuroendocrine Tumor,KRAS+MET+STAT3,0.624,76,0.672,0.928,67,+9
+Fibrosarcoma,CDK6+FYN+STAT3,0.569,63,0.610,0.933,68,-5
+Esophageal Squamous Cell Carcinoma,CDK6+FYN+STAT3,0.570,65,0.610,0.934,69,-4
+Synovial Sarcoma,CDK6+FYN+STAT3,0.574,66,0.610,0.941,70,-4
+Myeloproliferative Neoplasms,CDK6+FYN+STAT3,0.575,67,0.610,0.943,71,-4
+Non-Cancerous,CDK6+FYN+STAT3,0.576,68,0.610,0.944,72,-4
+Uterine Sarcoma/Mesenchymal,CDK2+FYN+STAT3,0.544,43,0.568,0.959,73,-30
+Retinoblastoma,BCL2L1+CDK6+ERBB2,0.624,77,0.643,0.971,74,+3
+Chondrosarcoma,CDK2+FYN+STAT3,0.554,52,0.568,0.976,75,-23
+Osteosarcoma,CDK2+FYN+STAT3,0.564,58,0.568,0.994,76,-18
+Non-Seminomatous Germ Cell Tumor,FYN+SRC+STAT3,0.581,69,0.580,1.002,77,-8

@@ -1,0 +1,18 @@
+Cancer Type,Cell Lines,Target 1,Target 2,Target 3,Drug 1,Drug 2,Drug 3,Synergy,Resistance,Coverage,Druggable,Best_Combo_Size,Best_Combo_1,Best_Combo_2,Best_Combo_3,Best_Combo_Score
+Acute Myeloid Leukemia,64,CDK4,CDK6,KRAS,palbociclib,palbociclib,sotorasib,0.81,0.0,31.0%,3/3,3,CDK4,CDK6,KRAS,1.188
+Anaplastic Thyroid Cancer,13,BRAF,ERBB2,JAK1,vemurafenib,trastuzumab,ruxolitinib,0.94,0.0,30.6%,3/3,3,BRAF,ERBB2,JAK1,1.296
+Bladder Urothelial Carcinoma,35,CDK4,FYN,JAK1,palbociclib,dasatinib,ruxolitinib,0.94,0.0,30.8%,3/3,3,CDK4,FYN,JAK1,1.313
+Colorectal Adenocarcinoma,96,CDK4,JAK1,KRAS,palbociclib,ruxolitinib,sotorasib,0.94,0.0,30.0%,3/3,3,CDK4,JAK1,KRAS,1.206
+Diffuse Glioma,96,ERBB2,FGFR1,MET,trastuzumab,erdafitinib,capmatinib,0.67,0.0,30.5%,3/3,3,ERBB2,FGFR1,MET,1.353
+Endometrial Carcinoma,37,CDK2,CDK4,KRAS,dinaciclib,palbociclib,sotorasib,0.81,0.0,31.0%,3/3,3,CDK2,CDK4,KRAS,1.371
+Esophagogastric Adenocarcinoma,74,BRAF,CDK6,ERBB2,vemurafenib,palbociclib,trastuzumab,0.94,0.0,31.0%,3/3,3,BRAF,CDK6,ERBB2,1.339
+Head and Neck Squamous Cell Carcinoma,89,ERBB2,FYN,JAK1,trastuzumab,dasatinib,ruxolitinib,0.94,0.0,31.2%,3/3,3,ERBB2,FYN,JAK1,1.333
+Hepatocellular Carcinoma,24,CDK4,FGFR1,JAK1,palbociclib,erdafitinib,ruxolitinib,0.94,0.0,31.4%,3/3,3,CDK4,FGFR1,JAK1,1.245
+Invasive Breast Carcinoma,82,CDK4,JAK1,KRAS,palbociclib,ruxolitinib,sotorasib,0.94,0.0,30.4%,3/3,3,CDK4,JAK1,KRAS,1.246
+Liposarcoma,13,CDK4,FGFR1,MAP2K1,palbociclib,erdafitinib,trametinib,0.94,0.0,31.5%,3/3,3,CDK4,FGFR1,MAP2K1,1.243
+Melanoma,135,ALK,BRAF,CDK6,crizotinib,vemurafenib,palbociclib,0.94,0.0,30.2%,3/3,3,ALK,BRAF,CDK6,1.148
+Non-Small Cell Lung Cancer,165,BRAF,CDK6,ERBB2,vemurafenib,palbociclib,trastuzumab,0.94,0.0,31.6%,3/3,3,BRAF,CDK6,ERBB2,1.357
+Ovarian Epithelial Tumor,71,CDK6,ERBB2,MET,palbociclib,trastuzumab,capmatinib,0.81,0.0,31.4%,3/3,3,CDK6,ERBB2,MET,1.338
+Pancreatic Adenocarcinoma,64,CDK4,KRAS,PIK3CA,palbociclib,sotorasib,alpelisib,0.94,0.0,31.5%,3/3,3,CDK4,KRAS,PIK3CA,1.194
+Prostate Adenocarcinoma,6,CDK4,JAK1,KRAS,palbociclib,ruxolitinib,sotorasib,0.94,0.0,31.5%,3/3,3,CDK4,JAK1,KRAS,1.163
+Renal Cell Carcinoma,56,BRAF,CDK6,ERBB2,vemurafenib,palbociclib,trastuzumab,0.94,0.0,30.8%,3/3,3,BRAF,CDK6,ERBB2,1.309

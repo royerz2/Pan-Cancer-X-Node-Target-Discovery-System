@@ -1,0 +1,173 @@
+{
+  "total_combos": 25667,
+  "positive_combos": 2687,
+  "n_cancers": 50,
+  "calibrated_auroc": 0.353,
+  "heuristic_auroc": 0.5526,
+  "calibrated_auprc": 0.0802,
+  "heuristic_auprc": 0.1324,
+  "brier_score": 0.0952,
+  "decorrelated_auroc": 0.4162,
+  "decorrelated_features": [
+    "total_cost",
+    "synergy_score",
+    "resistance_score",
+    "coverage",
+    "combo_tox_score",
+    "druggable_count",
+    "perturbation_bonus"
+  ],
+  "n_correlated_pairs": 1,
+  "top1_changed": 50,
+  "top1_total": 50,
+  "shap_ranking": [
+    {
+      "feature": "druggable_count",
+      "mean_abs_shap": 0.27438535152600285
+    },
+    {
+      "feature": "hub_penalty",
+      "mean_abs_shap": 0.18837368782579628
+    },
+    {
+      "feature": "resistance_score",
+      "mean_abs_shap": 0.12202701030991817
+    },
+    {
+      "feature": "coverage",
+      "mean_abs_shap": 0.10856840662877151
+    },
+    {
+      "feature": "combo_tox_score",
+      "mean_abs_shap": 0.09110987445549608
+    },
+    {
+      "feature": "synergy_score",
+      "mean_abs_shap": 0.07092821282362456
+    },
+    {
+      "feature": "total_cost",
+      "mean_abs_shap": 0.012410390426257703
+    },
+    {
+      "feature": "perturbation_bonus",
+      "mean_abs_shap": 0.005749157763443639
+    }
+  ],
+  "ablation_ranking": [
+    {
+      "feature": "druggable_count",
+      "full_auroc": 0.552,
+      "ablated_auroc": 0.5216,
+      "delta_auroc": 0.0304
+    },
+    {
+      "feature": "combo_tox_score",
+      "full_auroc": 0.552,
+      "ablated_auroc": 0.5457,
+      "delta_auroc": 0.0062
+    },
+    {
+      "feature": "resistance_score",
+      "full_auroc": 0.552,
+      "ablated_auroc": 0.5469,
+      "delta_auroc": 0.0051
+    },
+    {
+      "feature": "synergy_score",
+      "full_auroc": 0.552,
+      "ablated_auroc": 0.5491,
+      "delta_auroc": 0.0028
+    },
+    {
+      "feature": "perturbation_bonus",
+      "full_auroc": 0.552,
+      "ablated_auroc": 0.5508,
+      "delta_auroc": 0.0012
+    },
+    {
+      "feature": "total_cost",
+      "full_auroc": 0.552,
+      "ablated_auroc": 0.5531,
+      "delta_auroc": -0.0011
+    },
+    {
+      "feature": "hub_penalty",
+      "full_auroc": 0.552,
+      "ablated_auroc": 0.5597,
+      "delta_auroc": -0.0077
+    },
+    {
+      "feature": "coverage",
+      "full_auroc": 0.552,
+      "ablated_auroc": 0.5638,
+      "delta_auroc": -0.0119
+    }
+  ],
+  "lr_coefficients": [
+    {
+      "feature": "druggable_count",
+      "coefficient": 0.29952686927429245,
+      "abs_coefficient": 0.29952686927429245,
+      "odds_ratio": 1.3492202989597055,
+      "mean_loco_coef": -0.014857113430708759,
+      "std_loco_coef": 0.00753019593517259
+    },
+    {
+      "feature": "hub_penalty",
+      "coefficient": -0.22737612218504108,
+      "abs_coefficient": 0.22737612218504108,
+      "odds_ratio": 0.7966210990664875,
+      "mean_loco_coef": 0.08317318497179985,
+      "std_loco_coef": 0.006164588049945169
+    },
+    {
+      "feature": "resistance_score",
+      "coefficient": 0.17816970926689393,
+      "abs_coefficient": 0.17816970926689393,
+      "odds_ratio": 1.19502811137133,
+      "mean_loco_coef": 0.17823930036650157,
+      "std_loco_coef": 0.01577978633653806
+    },
+    {
+      "feature": "perturbation_bonus",
+      "coefficient": -0.15175445912218752,
+      "abs_coefficient": 0.15175445912218752,
+      "odds_ratio": 0.8591992233740671,
+      "mean_loco_coef": 0.12656149135282713,
+      "std_loco_coef": 0.03559723764932444
+    },
+    {
+      "feature": "combo_tox_score",
+      "coefficient": -0.13296602467085578,
+      "abs_coefficient": 0.13296602467085578,
+      "odds_ratio": 0.8754948368287203,
+      "mean_loco_coef": -0.13292058821689673,
+      "std_loco_coef": 0.007213701722243181
+    },
+    {
+      "feature": "coverage",
+      "coefficient": 0.12620865572565126,
+      "abs_coefficient": 0.12620865572565126,
+      "odds_ratio": 1.1345188674454003,
+      "mean_loco_coef": -0.22820976914042512,
+      "std_loco_coef": 0.0442203679611367
+    },
+    {
+      "feature": "synergy_score",
+      "coefficient": 0.08303792788664724,
+      "abs_coefficient": 0.08303792788664724,
+      "odds_ratio": 1.0865830195643087,
+      "mean_loco_coef": 0.299606695910682,
+      "std_loco_coef": 0.0058950259532367395
+    },
+    {
+      "feature": "total_cost",
+      "coefficient": -0.014858646691628879,
+      "abs_coefficient": 0.014858646691628879,
+      "odds_ratio": 0.9852511982769467,
+      "mean_loco_coef": -0.15534213408382055,
+      "std_loco_coef": 0.03433651565469847
+    }
+  ]
+}

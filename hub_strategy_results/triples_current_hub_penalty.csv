@@ -1,0 +1,18 @@
+Cancer Type,Cell Lines,Target 1,Target 2,Target 3,Drug 1,Drug 2,Drug 3,Synergy,Resistance,Coverage,Druggable,Best_Combo_Size,Best_Combo_1,Best_Combo_2,Best_Combo_3,Best_Combo_Score
+Acute Myeloid Leukemia,64,BCL2L1,ERBB2,MET,navitoclax,trastuzumab,capmatinib,0.81,0.0,31.0%,3/3,3,BCL2L1,ERBB2,MET,0.665
+Anaplastic Thyroid Cancer,13,CDK6,ERBB2,MAP2K1,palbociclib,trastuzumab,trametinib,0.94,0.0,35.5%,3/3,3,CDK6,ERBB2,MAP2K1,0.596
+Bladder Urothelial Carcinoma,35,CDK6,ERBB2,MET,palbociclib,trastuzumab,capmatinib,0.81,0.0,30.8%,3/3,3,CDK6,ERBB2,MET,0.715
+Colorectal Adenocarcinoma,96,BCL2L1,MAP2K1,MET,navitoclax,trametinib,capmatinib,0.94,0.0,32.0%,3/3,3,BCL2L1,MAP2K1,MET,0.598
+Diffuse Glioma,96,CDK6,ERBB2,MAP2K1,palbociclib,trastuzumab,trametinib,0.94,0.0,32.2%,3/3,3,CDK6,ERBB2,MAP2K1,0.634
+Endometrial Carcinoma,37,ERBB2,MAP2K1,MET,trastuzumab,trametinib,capmatinib,0.81,0.0,32.8%,3/3,3,ERBB2,MAP2K1,MET,0.724
+Esophagogastric Adenocarcinoma,74,CDK6,ERBB2,MAP2K1,palbociclib,trastuzumab,trametinib,0.94,0.0,31.0%,3/3,3,CDK6,ERBB2,MAP2K1,0.606
+Head and Neck Squamous Cell Carcinoma,89,CDK6,MAP2K1,MET,palbociclib,trametinib,capmatinib,0.94,0.0,31.2%,3/3,3,CDK6,MAP2K1,MET,0.719
+Hepatocellular Carcinoma,24,BCL2L1,ERBB2,MAP2K1,navitoclax,trastuzumab,trametinib,0.94,0.0,31.4%,3/3,3,BCL2L1,ERBB2,MAP2K1,0.739
+Invasive Breast Carcinoma,82,BCL2L1,MAP2K1,MET,navitoclax,trametinib,capmatinib,0.94,0.0,30.4%,3/3,3,BCL2L1,MAP2K1,MET,0.702
+Liposarcoma,13,BCL2L1,ERBB2,MAP2K1,navitoclax,trastuzumab,trametinib,0.94,0.0,31.5%,3/3,3,BCL2L1,ERBB2,MAP2K1,0.72
+Melanoma,135,CDK6,ERBB2,MAP2K1,palbociclib,trastuzumab,trametinib,0.94,0.0,31.7%,3/3,3,CDK6,ERBB2,MAP2K1,0.587
+Non-Small Cell Lung Cancer,165,CDK6,ERBB2,MAP2K1,palbociclib,trastuzumab,trametinib,0.94,0.0,31.6%,3/3,3,CDK6,ERBB2,MAP2K1,0.615
+Ovarian Epithelial Tumor,71,BCL2L1,MAP2K1,MET,navitoclax,trametinib,capmatinib,0.94,0.0,31.4%,3/3,3,BCL2L1,MAP2K1,MET,0.719
+Pancreatic Adenocarcinoma,64,FYN,KRAS,STAT3,dasatinib,sotorasib,napabucasin,0.94,0.44,53.7%,3/3,3,FYN,KRAS,STAT3,0.523
+Prostate Adenocarcinoma,6,ERBB2,MAP2K1,MET,trastuzumab,trametinib,capmatinib,0.81,0.0,33.3%,3/3,3,ERBB2,MAP2K1,MET,0.7
+Renal Cell Carcinoma,56,CDK6,ERBB2,MAP2K1,palbociclib,trastuzumab,trametinib,0.94,0.0,30.8%,3/3,3,CDK6,ERBB2,MAP2K1,0.594

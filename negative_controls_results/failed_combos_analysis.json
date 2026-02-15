@@ -1,0 +1,367 @@
+[
+  {
+    "combination": "BRAF + MEK + CDK4/6",
+    "failed_targets": [
+      "BRAF",
+      "CDK4",
+      "CDK6",
+      "MAP2K1"
+    ],
+    "match_targets": [
+      "BRAF",
+      "CDK4",
+      "MAP2K1"
+    ],
+    "cancer": "Melanoma",
+    "drugs": "encorafenib + binimetinib + ribociclib",
+    "trial": "Phase 1/2 (COLUMBUS-related)",
+    "outcome": "ORR 52% (< 64-68% doublet); 24% discontinuation; excess hematotoxicity",
+    "failure_reason": "toxicity_plus_inferior_efficacy",
+    "reference": "Dummer et al., Lancet Oncol 2018",
+    "pmid": "30219628",
+    "alin_triple": [
+      "CDK6",
+      "EGFR",
+      "MAP2K1"
+    ],
+    "alin_combo": [
+      "BRAF",
+      "EGFR"
+    ],
+    "has_prediction": true,
+    "triple_overlap": {
+      "overlap": [
+        "MAP2K1"
+      ],
+      "n_overlap": 1,
+      "fraction": 0.3333333333333333,
+      "prediction_contains_failed": false,
+      "any_overlap": true
+    },
+    "combo_overlap": {
+      "overlap": [
+        "BRAF"
+      ],
+      "n_overlap": 1,
+      "fraction": 0.3333333333333333,
+      "prediction_contains_failed": false,
+      "any_overlap": true
+    },
+    "verdict": "PARTIAL_OVERLAP",
+    "interpretation": "ALIN prediction overlaps on ['BRAF', 'MAP2K1'] with the failed combo. Partial overlap with a failed combination is informative but not necessarily problematic \u2014 the additional targets may rescue efficacy."
+  },
+  {
+    "combination": "PI3K + MEK",
+    "failed_targets": [
+      "MAP2K1",
+      "PIK3CA"
+    ],
+    "match_targets": [
+      "MAP2K1",
+      "PIK3CA"
+    ],
+    "cancer": "Ovarian Epithelial Tumor",
+    "drugs": "BKM120 (buparlisib) + trametinib",
+    "trial": "Phase 1/2 (multiple)",
+    "outcome": "ORR 4.7%; DCR 19.2%; dose-limiting toxicity prevented adequate target inhibition",
+    "failure_reason": "inadequate_efficacy_plus_toxicity",
+    "reference": "Shimizu et al., Clin Cancer Res 2012",
+    "pmid": "22496272",
+    "alin_triple": [
+      "CDK6",
+      "EGFR",
+      "MET"
+    ],
+    "alin_combo": [
+      "EGFR",
+      "MET"
+    ],
+    "has_prediction": true,
+    "triple_overlap": {
+      "overlap": [],
+      "n_overlap": 0,
+      "fraction": 0.0,
+      "prediction_contains_failed": false,
+      "any_overlap": false
+    },
+    "combo_overlap": {
+      "overlap": [],
+      "n_overlap": 0,
+      "fraction": 0.0,
+      "prediction_contains_failed": false,
+      "any_overlap": false
+    },
+    "verdict": "CORRECTLY_AVOIDS",
+    "interpretation": "ALIN does not predict the failed targets ['MAP2K1', 'PIK3CA'] for Ovarian Epithelial Tumor. This is a correct negative."
+  },
+  {
+    "combination": "EGFR mono in RCC",
+    "failed_targets": [
+      "EGFR"
+    ],
+    "match_targets": [
+      "EGFR"
+    ],
+    "cancer": "Renal Cell Carcinoma",
+    "drugs": "erlotinib",
+    "trial": "Phase 2",
+    "outcome": "ORR <5% in unselected RCC; EGFR not a RCC driver",
+    "failure_reason": "wrong_target_for_indication",
+    "reference": "Gordon et al., JCO 2009",
+    "pmid": "19720913",
+    "alin_triple": [
+      "CDK6",
+      "EGFR",
+      "MAP2K1"
+    ],
+    "alin_combo": [
+      "EGFR",
+      "MET"
+    ],
+    "has_prediction": true,
+    "triple_overlap": {
+      "overlap": [
+        "EGFR"
+      ],
+      "n_overlap": 1,
+      "fraction": 1.0,
+      "prediction_contains_failed": true,
+      "any_overlap": true
+    },
+    "combo_overlap": {
+      "overlap": [
+        "EGFR"
+      ],
+      "n_overlap": 1,
+      "fraction": 1.0,
+      "prediction_contains_failed": true,
+      "any_overlap": true
+    },
+    "verdict": "PREDICTS_FAILED_COMBO",
+    "interpretation": "ALIN predicts a combination containing ['EGFR'], which failed clinically (ORR <5% in unselected RCC; EGFR not a RCC driver). This is a false positive that a post-hoc clinical filter should catch."
+  },
+  {
+    "combination": "CDK4/6 + BRAF (no MEK)",
+    "failed_targets": [
+      "BRAF",
+      "CDK4",
+      "CDK6"
+    ],
+    "match_targets": [
+      "BRAF",
+      "CDK4"
+    ],
+    "cancer": "Melanoma",
+    "drugs": "palbociclib + vemurafenib",
+    "trial": "Phase 1/2",
+    "outcome": "Excess haematotoxicity; inferior to BRAF+MEK doublet; rapid resistance",
+    "failure_reason": "toxicity_plus_suboptimal_target_pairing",
+    "reference": "Carvajal et al., Cancer Discov 2018",
+    "pmid": "29898992",
+    "alin_triple": [
+      "CDK6",
+      "EGFR",
+      "MAP2K1"
+    ],
+    "alin_combo": [
+      "BRAF",
+      "EGFR"
+    ],
+    "has_prediction": true,
+    "triple_overlap": {
+      "overlap": [],
+      "n_overlap": 0,
+      "fraction": 0.0,
+      "prediction_contains_failed": false,
+      "any_overlap": false
+    },
+    "combo_overlap": {
+      "overlap": [
+        "BRAF"
+      ],
+      "n_overlap": 1,
+      "fraction": 0.5,
+      "prediction_contains_failed": false,
+      "any_overlap": true
+    },
+    "verdict": "PARTIAL_OVERLAP",
+    "interpretation": "ALIN prediction overlaps on ['BRAF'] with the failed combo. Partial overlap with a failed combination is informative but not necessarily problematic \u2014 the additional targets may rescue efficacy."
+  },
+  {
+    "combination": "STAT3 (napabucasin) in CRC",
+    "failed_targets": [
+      "STAT3"
+    ],
+    "match_targets": [
+      "STAT3"
+    ],
+    "cancer": "Colorectal Adenocarcinoma",
+    "drugs": "napabucasin + FOLFIRI",
+    "trial": "Phase 3 (CanStem111P)",
+    "outcome": "Failed primary OS endpoint; no improvement over chemotherapy alone",
+    "failure_reason": "no_single_agent_or_combo_efficacy",
+    "reference": "Jonker et al., Lancet Gastro Hepatol 2018",
+    "pmid": "29937312",
+    "alin_triple": [
+      "BRAF",
+      "EGFR",
+      "KRAS"
+    ],
+    "alin_combo": [
+      "BRAF",
+      "EGFR"
+    ],
+    "has_prediction": true,
+    "triple_overlap": {
+      "overlap": [],
+      "n_overlap": 0,
+      "fraction": 0.0,
+      "prediction_contains_failed": false,
+      "any_overlap": false
+    },
+    "combo_overlap": {
+      "overlap": [],
+      "n_overlap": 0,
+      "fraction": 0.0,
+      "prediction_contains_failed": false,
+      "any_overlap": false
+    },
+    "verdict": "CORRECTLY_AVOIDS",
+    "interpretation": "ALIN does not predict the failed targets ['STAT3'] for Colorectal Adenocarcinoma. This is a correct negative."
+  },
+  {
+    "combination": "EGFR mono in Prostate",
+    "failed_targets": [
+      "EGFR"
+    ],
+    "match_targets": [
+      "EGFR"
+    ],
+    "cancer": "Prostate Adenocarcinoma",
+    "drugs": "erlotinib, gefitinib",
+    "trial": "Phase 2 (multiple)",
+    "outcome": "No objective responses in CRPC; EGFR not a prostate driver",
+    "failure_reason": "wrong_target_for_indication",
+    "reference": "Nabhan et al., Cancer 2009; Gravis et al., Eur Urol 2008",
+    "pmid": "19606525",
+    "alin_triple": [
+      "CDK2",
+      "EGFR",
+      "MAP2K1"
+    ],
+    "alin_combo": [
+      "MAP2K1",
+      "STAT3"
+    ],
+    "has_prediction": true,
+    "triple_overlap": {
+      "overlap": [
+        "EGFR"
+      ],
+      "n_overlap": 1,
+      "fraction": 1.0,
+      "prediction_contains_failed": true,
+      "any_overlap": true
+    },
+    "combo_overlap": {
+      "overlap": [],
+      "n_overlap": 0,
+      "fraction": 0.0,
+      "prediction_contains_failed": false,
+      "any_overlap": false
+    },
+    "verdict": "PREDICTS_FAILED_COMBO",
+    "interpretation": "ALIN predicts a combination containing ['EGFR'], which failed clinically (No objective responses in CRPC; EGFR not a prostate driver). This is a false positive that a post-hoc clinical filter should catch."
+  },
+  {
+    "combination": "MCL1 inhibitor (any)",
+    "failed_targets": [
+      "MCL1"
+    ],
+    "match_targets": [
+      "MCL1"
+    ],
+    "cancer": "Acute Myeloid Leukemia",
+    "drugs": "AMG-176, S64315",
+    "trial": "Phase 1",
+    "outcome": "Dose-limiting cardiotoxicity; narrow therapeutic window; clinical development paused",
+    "failure_reason": "dose_limiting_toxicity",
+    "reference": "Caenepeel et al., Cancer Discov 2018; Tron et al., Nat Commun 2018",
+    "pmid": "30224409",
+    "alin_triple": [
+      "CDK4",
+      "CDK6",
+      "MCL1"
+    ],
+    "alin_combo": [
+      "CDK4",
+      "CDK6",
+      "MCL1"
+    ],
+    "has_prediction": true,
+    "triple_overlap": {
+      "overlap": [
+        "MCL1"
+      ],
+      "n_overlap": 1,
+      "fraction": 1.0,
+      "prediction_contains_failed": true,
+      "any_overlap": true
+    },
+    "combo_overlap": {
+      "overlap": [
+        "MCL1"
+      ],
+      "n_overlap": 1,
+      "fraction": 1.0,
+      "prediction_contains_failed": true,
+      "any_overlap": true
+    },
+    "verdict": "PREDICTS_FAILED_COMBO",
+    "interpretation": "ALIN predicts a combination containing ['MCL1'], which failed clinically (Dose-limiting cardiotoxicity; narrow therapeutic window; clinical development paused). This is a false positive that a post-hoc clinical filter should catch."
+  },
+  {
+    "combination": "BRAF mono (no MEK) in melanoma",
+    "failed_targets": [
+      "BRAF"
+    ],
+    "match_targets": [
+      "BRAF"
+    ],
+    "cancer": "Melanoma",
+    "drugs": "vemurafenib, dabrafenib",
+    "trial": "Phase 3 (historical)",
+    "outcome": "Initial high response (ORR ~50%) but rapid resistance (PFS 5-8 mo); paradoxical MAPK reactivation",
+    "failure_reason": "rapid_resistance_without_pathway_coverage",
+    "reference": "Chapman et al., NEJM 2011; Flaherty et al., NEJM 2012",
+    "pmid": "21639808",
+    "alin_triple": [
+      "CDK6",
+      "EGFR",
+      "MAP2K1"
+    ],
+    "alin_combo": [
+      "BRAF",
+      "EGFR"
+    ],
+    "has_prediction": true,
+    "triple_overlap": {
+      "overlap": [],
+      "n_overlap": 0,
+      "fraction": 0.0,
+      "prediction_contains_failed": false,
+      "any_overlap": false
+    },
+    "combo_overlap": {
+      "overlap": [
+        "BRAF"
+      ],
+      "n_overlap": 1,
+      "fraction": 1.0,
+      "prediction_contains_failed": true,
+      "any_overlap": true
+    },
+    "verdict": "PREDICTS_FAILED_COMBO",
+    "interpretation": "ALIN predicts a combination containing ['BRAF'], which failed clinically (Initial high response (ORR ~50%) but rapid resistance (PFS 5-8 mo); paradoxical MAPK reactivation). This is a false positive that a post-hoc clinical filter should catch."
+  }
+]

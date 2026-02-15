@@ -1,0 +1,53 @@
+{
+  "metric_aucs": {
+    "co_essentiality": {
+      "auc": 0.6858974358974359,
+      "ci_lo": 0.4613782051282053,
+      "ci_hi": 0.8782051282051282,
+      "boot_std": 0.10770323201612504
+    },
+    "pathway_coherence": {
+      "auc": 0.66,
+      "ci_lo": 0.4911111111111111,
+      "ci_hi": 0.8266666666666667,
+      "boot_std": 0.08283544194022326
+    },
+    "frac_essential": {
+      "auc": 0.4533333333333333,
+      "ci_lo": 0.24444444444444444,
+      "ci_hi": 0.6666666666666666,
+      "boot_std": 0.10746811736085461
+    },
+    "mean_essentiality": {
+      "auc": 0.5155555555555555,
+      "ci_lo": 0.3022222222222222,
+      "ci_hi": 0.7244444444444444,
+      "boot_std": 0.10756078869179046
+    },
+    "alin_composite": {
+      "auc": 0.6844444444444444,
+      "ci_lo": 0.47555555555555556,
+      "ci_hi": 0.8755555555555555,
+      "boot_std": 0.10304245082201513
+    },
+    "inv_escape_ratio": {
+      "auc": 0.31555555555555553,
+      "ci_lo": 0.12666666666666668,
+      "ci_hi": 0.5177777777777778,
+      "boot_std": 0.10034046574870313
+    }
+  },
+  "best_individual": {
+    "metric": "co_essentiality",
+    "auc": 0.6858974358974359
+  },
+  "composite_auc": 0.6844444444444444,
+  "delta_auc": -0.0014529914529914922,
+  "delta_ci": [
+    -0.2435897435897436,
+    0.25
+  ],
+  "p_difference": 0.981,
+  "zero_in_ci": true,
+  "conclusion": "Composite score is statistically indistinguishable from the best individual feature (co-essentiality). The heuristic weighting does not inflate performance; it is retained for interpretability and multi-dimensional reporting, not for discriminative advantage."
+}

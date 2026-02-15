@@ -18,7 +18,7 @@
     },
     "Carcinoma": {
       "n_total": 32,
-      "n_testable": 18,
+      "n_testable": 28,
       "exact": 3,
       "pair_overlap": 13,
       "any_overlap": 19,
@@ -26,11 +26,11 @@
       "pair_pct": 40.625,
       "any_pct": 59.375,
       "testable_exact": 3,
-      "testable_pair": 11,
-      "testable_any": 16,
-      "testable_exact_pct": 16.666666666666664,
-      "testable_pair_pct": 61.111111111111114,
-      "testable_any_pct": 88.88888888888889
+      "testable_pair": 13,
+      "testable_any": 19,
+      "testable_exact_pct": 10.714285714285714,
+      "testable_pair_pct": 46.42857142857143,
+      "testable_any_pct": 67.85714285714286
     },
     "Hematologic": {
       "n_total": 7,

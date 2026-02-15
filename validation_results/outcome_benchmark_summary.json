@@ -1,0 +1,86 @@
+{
+  "benchmark_a": {
+    "n_successes": 15,
+    "n_failures": 15,
+    "metrics": {
+      "co_essentiality": {
+        "success_median": 0.028887144052958606,
+        "failure_median": -0.05278763751492389,
+        "auc": 0.6858974358974359,
+        "auc_ci_lo": 0.46794871794871795,
+        "auc_ci_hi": 0.8783653846153837,
+        "pvalue": 0.12095148830451351,
+        "direction": "S>F"
+      },
+      "mean_essentiality": {
+        "success_median": -0.34963992869820937,
+        "failure_median": -0.3933443818813878,
+        "auc": 0.5155555555555555,
+        "auc_ci_lo": 0.31555555555555553,
+        "auc_ci_hi": 0.7244444444444444,
+        "pvalue": 0.9009495687969676,
+        "direction": "S>F"
+      },
+      "frac_essential": {
+        "success_median": 0.25925925925925924,
+        "failure_median": 0.3333333333333333,
+        "auc": 0.5466666666666666,
+        "auc_ci_lo": 0.3288888888888889,
+        "auc_ci_hi": 0.7511111111111111,
+        "pvalue": 0.6782348873601296,
+        "direction": "S<F"
+      },
+      "escape_routes": {
+        "success_median": 59.0,
+        "failure_median": 47.0,
+        "auc": 0.66,
+        "auc_ci_lo": 0.43777777777777777,
+        "auc_ci_hi": 0.8444444444444444,
+        "pvalue": 0.14053989830487948,
+        "direction": "S>F"
+      },
+      "escape_route_ratio": {
+        "success_median": 0.8387096774193549,
+        "failure_median": 0.7228915662650602,
+        "auc": 0.6844444444444444,
+        "auc_ci_lo": 0.47555555555555556,
+        "auc_ci_hi": 0.8689444444444442,
+        "pvalue": 0.08880469764104573,
+        "direction": "S>F"
+      },
+      "pathway_coherence": {
+        "success_median": 0.3333333333333333,
+        "failure_median": 0.0,
+        "auc": 0.66,
+        "auc_ci_lo": 0.5,
+        "auc_ci_hi": 0.8244999999999997,
+        "pvalue": 0.08048148827849984,
+        "direction": "S>F"
+      },
+      "pathway_diversity": {
+        "success_median": 2.0,
+        "failure_median": 2.0,
+        "auc": 0.6066666666666667,
+        "auc_ci_lo": 0.44216666666666665,
+        "auc_ci_hi": 0.768888888888889,
+        "pvalue": 0.24724784137132505,
+        "direction": "S<F"
+      },
+      "alin_composite": {
+        "success_median": 0.2556767239881844,
+        "failure_median": 0.1266337368698846,
+        "auc": 0.6844444444444444,
+        "auc_ci_lo": 0.47555555555555556,
+        "auc_ci_hi": 0.8755555555555555,
+        "pvalue": 0.0889468860438143,
+        "direction": "S>F"
+      }
+    }
+  },
+  "benchmark_b": {
+    "n_doublets": 5,
+    "n_known_thirds": 9,
+    "n_third_match": 5,
+    "n_doublet_recovered": 7
+  }
+}

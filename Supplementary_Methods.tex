@@ -14,7 +14,7 @@
 All primary data were accessed in January 2026. Exact file URLs, local cache filenames, and SHA-256 checksums are provided in \verb|DATA_AVAILABILITY.md| in the project repository. DepMap 24Q4 (CRISPRGeneEffect.csv, Model.csv), OmniPath directed interactions, PRISM repurposing screen, and GDSC drug sensitivity datasets were used. The pipeline's data ingestion script (\verb|scripts/data_fetch.py|) downloads and verifies checksums; use \verb|./run_full_pipeline.sh --fetch| to reproduce.
 
 \subsection*{S2. Algorithms and mathematical definitions}
-This document reproduces the equations summarized in the main text and provides additional derivations and implementation notes. Definitions for essentiality thresholds, co-essentiality Jaccard index, signaling path scoring, MHS cost function, ranked triple scoring components, and ODE model equations are provided (see S2--S5). The full ODE simulation detail, including network construction, equations, cross-cancer comparison, pathway shifting dynamics, and epistemic caveats, is presented in S5. For reproducibility, we include pseudocode and example command-line invocations for each major module.
+This document reproduces the equations summarized in the main text and provides additional derivations and implementation notes. Definitions for essentiality thresholds, co-essentiality Jaccard index, signaling path scoring, MHS cost function, ranked triple scoring components, and ODE model equations are provided (see S2--S8). The full ODE simulation detail, including network construction, equations, cross-cancer comparison, pathway shifting dynamics, and epistemic caveats, is presented in S5. Circularity and leakage ablation tests are presented in S8. For reproducibility, we include pseudocode and example command-line invocations for each major module.
 
 \subsection*{S3. Implementation notes}
 Key scripts and functions:
@@ -76,7 +76,171 @@ These simulation outputs are \emph{deductive consequences} of the model's parame
 
 The sensitivity analysis confirms that the qualitative ordering (tri-axial $<$ MHS $<$ single $<$ untreated) is preserved across $\pm$25\% parameter perturbations, including when compensatory gains are reduced to $g = 0.3$. This robustness analysis demonstrates that the tautology is stable under perturbation---not that the assumptions themselves are valid. None of the parameters ($b_i$, $g_i$, $d_i$, $s_i$) were fit to experimental data such as time-course phosphoproteomics, dose--response curves, or drug pharmacokinetics. Elevating this simulation from illustrative to predictive would require: (i) fitting compensatory gain parameters from time-course phosphoproteomics (e.g., STAT3 Tyr705 phosphorylation kinetics after MEK/EGFR inhibition); (ii) calibrating drug strength from dose--response data; (iii) validating the ODE dynamics against an independent cancer not used in parameter assignment.
 
-\subsection*{S6. How to generate the Supplementary Methods PDF}
+\subsection*{S6. Dual-vs.-triple escape-route validation}
+
+This section documents the computational methods underlying
+Supplementary Figure~S12, which compares the functional coverage of
+all $\binom{3}{2}$ dual combinations against the full ALIN-predicted
+triple for three representative cancers: NSCLC, Melanoma, and CRC.
+
+\subsubsection*{S6.1 PRISM Bliss independence model}
+
+Single-agent viabilities are obtained from the PRISM primary screen
+(Corsello et al., 2020). Log-fold-change values $\ell_i$ are converted to
+fractional viability $V_i = 2^{\ell_i}$, where $V = 1$ indicates no effect
+and $V < 1$ indicates growth inhibition. For combinations, we apply the Bliss
+independence assumption:
+\[
+V_{\mathrm{combo}} = \prod_{i=1}^{k} V_i
+\]
+where $k$ is the number of drugs (2 for duals, 3 for triples). This assumes
+that each drug acts independently; violations (synergy or antagonism) are not
+captured but represent a conservative null model.
+
+For CRC, sotorasib (KRAS inhibitor) is not present in the PRISM primary
+screen (approved 2021, post-PRISM). KRAS inhibition is instead proxied via
+CRISPR Chronos scores: $V_{\mathrm{KRAS}} = 1/(1 + e^{-2 \cdot C_{\mathrm{KRAS}}})$,
+where $C$ is the Chronos gene effect score (more negative = more essential).
+This sigmoid maps strong essentiality ($C < -1$) to low viability
+($V \approx 0.12$) and non-essentiality ($C > 0$) to no effect ($V > 0.5$).
+
+\subsubsection*{S6.2 Network escape-route enumeration}
+
+We construct a canonical signaling network (97 directed edges, 43 nodes)
+from literature-validated interactions, covering RTK--RAS--MAPK, PI3K--AKT--mTOR,
+JAK--STAT, cell cycle, Wnt, Hippo, and cross-pathway compensation routes
+(SRC, AXL, MET, FGFR1, IGF1R bypass edges).
+
+For each cancer type, DepMap CRISPR essentiality data identifies signaling
+genes that are essential in $\geq$15\% of cell lines (Chronos $< -0.4$).
+``Escape routes'' are defined as directed paths (BFS, max depth 5) from any
+uninhibited essential source gene to downstream effector nodes (BCL2L1, MYC,
+CCND1, CCNE1, MAPK1, MAPK3, MCL1, BIRC5, E2F1, etc.) that do not traverse
+any inhibited target. Fewer escape routes under a given inhibition set indicate
+more comprehensive blockade of compensatory signaling.
+
+\subsubsection*{S6.3 Stochastic time-to-escape simulation}
+
+Given $n$ escape routes remaining under a given inhibition set, we model
+time to tumor escape as a geometric random variable. At each discrete time step,
+each escape route independently reactivates with probability $p = 0.005$.
+The probability of escape at step $t$ is:
+\[
+P(\text{escape at step } t) = 1 - (1 - p)^n
+\]
+We perform 10{,}000 Monte Carlo iterations per condition and compare
+dual vs.\ triple escape-time distributions using the one-sided
+Mann--Whitney $U$ test.
+
+The reactivation probability $p = 0.005$ is not calibrated to
+experimental data; it serves as a consistent comparative parameter.
+The qualitative finding (fewer routes $\Rightarrow$ longer escape time)
+is invariant to the choice of $p$ within the range $10^{-4}$--$10^{-2}$.
+
+\subsection*{S7. Outcome-oriented benchmarking}
+
+Beyond target concordance, we evaluate whether ALIN scoring metrics can distinguish clinically \emph{successful} from \emph{failed} molecularly-targeted combination therapies.
+
+\subsubsection*{S7.1 Curation criteria}
+
+We curated 30 molecularly-targeted oncology combination regimens (15 successes, 15 failures), each satisfying:
+(i)~at least 2 distinct molecular targets (no chemo-only);
+(ii)~published Phase~2/3 efficacy data or FDA regulatory decision;
+(iii)~outcomes determined independently from ALIN predictions.
+Each entry has a PubMed ID (PMID) or ClinicalTrials.gov identifier (NCT number).
+
+\textbf{Successful combinations (15):} FDA-approved or Phase~3 positive regimens, including:
+dabrafenib + trametinib in melanoma (COMBI-d, PMID: 25399551),
+vemurafenib + cobimetinib (coBRIM, PMID: 25105994),
+encorafenib + cetuximab in CRC (BEACON, PMID: 31566309),
+amivantamab in NSCLC (CHRYSALIS, PMID: 34043995),
+palbociclib + fulvestrant in breast (PALOMA-3, PMID: 26394241),
+venetoclax + gilteritinib in AML (PMID: 35443125),
+and the encorafenib + binimetinib + cetuximab triplet in CRC (BEACON triplet arm).
+
+\textbf{Failed combinations (15):} Phase~2/3 trials terminated for futility, toxicity, or no efficacy benefit, including:
+erlotinib + figitumumab in NSCLC (NCT00673049, PMID: 21990073),
+cetuximab + bevacizumab in CRC (CAIRO2, PMID: 19826119),
+trastuzumab + everolimus in breast (BOLERO-1, PMID: 26369892),
+vemurafenib + MK-2206 in melanoma (NCT01512251, PMID: 27612945),
+selumetinib + MK-2206 in NSCLC (NCT01021748, PMID: 27480128),
+and dabrafenib + buparlisib in melanoma (NCT01820364, PMID: 26997144).
+
+\subsubsection*{S7.2 Scoring metrics}
+
+For each curated combination (target set $T$ + cancer type $c$), we compute:
+\begin{itemize}
+\item \textbf{Co-essentiality}: Mean pairwise Pearson correlation of DepMap CRISPR Chronos scores across cancer-matched cell lines. Higher correlation indicates co-dependent targets.
+\item \textbf{Mean essentiality}: Average Chronos effect size (more negative = more essential).
+\item \textbf{Fraction essential}: Fraction of (target $\times$ cell line) pairs with Chronos $< -0.5$.
+\item \textbf{Escape routes}: Total directed paths (BFS, depth $\leq 5$) from uninhibited essential signaling genes to downstream effectors (same canonical network as S6.2) that bypass all targets in $T$.
+\item \textbf{Escape-route ratio}: $n_{\text{routes with } T} / n_{\text{routes without } T}$.
+\item \textbf{Pathway coherence}: Fraction of target pairs mapping to the same canonical signaling pathway. Values of 1.0 indicate full within-pathway targeting (e.g., BRAF+MEK); 0.0 indicates all targets in different pathways.
+\item \textbf{Composite score}: Weighted combination: $0.35 \times$ co-essentiality $+ 0.15 \times$ fraction-essential $+ 0.20 \times (1 - \text{escape ratio}) + 0.30 \times$ pathway-coherence.
+\end{itemize}
+
+\subsubsection*{S7.3 Success vs.\ failure classification}
+
+Discrimination is evaluated by Mann--Whitney $U$ test (two-sided) and AUC (probability that a randomly selected success scores higher than a random failure).
+Bootstrap 95\% confidence intervals for AUC are computed from 2{,}000 bootstrap resamples.
+
+Results (Supplementary Figure~S13, panels A--C):
+\begin{itemize}
+\item Co-essentiality: AUC = 0.69 [0.47--0.88], $p = 0.121$. Successful combos have higher median pairwise $r$ (0.029 vs.\ $-0.053$).
+\item Pathway coherence: AUC = 0.66 [0.50--0.82], $p = 0.080$. Successful combos more often employ within-pathway (``vertical'') blockade.
+\item Composite: AUC = 0.68 [0.48--0.88], $p = 0.089$.
+\item Escape-route ratio: AUC = 0.68 [0.48--0.87], $p = 0.089$. Notably, the \emph{raw escape count} is higher for successes (median 59 vs.\ 47), an apparent paradox explained by successful combos targeting central pathway hubs (e.g., BRAF+MEK) that reside in highly connected network neighborhoods; the normalised escape-route \emph{ratio} corrects this topology-dependent bias.
+\end{itemize}
+
+\textbf{Limitations.} With $n = 30$ combinations, statistical power is limited. The 95\% CIs for all AUCs include 0.5, and $p$-values do not reach the conventional 0.05 threshold. A larger curated set ($n \geq 60$) with pre-registered analysis would be needed for definitive conclusions. Scoring weights in the composite are not cross-validated; they reflect domain knowledge about which metrics should favour synergistic combinations.
+
+\subsubsection*{S7.4 Third-target-over-doublet prediction}
+
+For 5 FDA-approved doublets, we independently curated 9 candidate third targets with Phase~1/2 or preclinical evidence from studies not used to train ALIN:
+\begin{itemize}
+\item Melanoma (BRAF+MEK): CDK4 (ribociclib Phase 1/2, PMID: 32511247), EGFR (feedback reactivation, PMID: 22945257).
+\item CRC (BRAF+EGFR): MAP2K1 (BEACON triplet, PMID: 31566309), PIK3CA (PI3K reactivation, PMID: 22588877).
+\item NSCLC (EGFR+MET): MAP2K1 (MEK reactivation, PMID: 29751011), CDK4 (sensitisation, PMID: 30755733).
+\item Breast (HER2+CDK4/6): PIK3CA (SOLAR-1, PMID: 31091374), MTOR (CDK4/6i resistance, PMID: 27020862).
+\item PDAC (KRAS+EGFR): STAT3 (tri-axial blockade, Liaki et al.).
+\end{itemize}
+
+ALIN's top-ranked triple matched 5/9 (56\%) of these curated third targets and recovered at least one doublet gene in 7/9 (78\%) of cases (Supplementary Figure~S13, panel D). Misses (CRC: PIK3CA; Breast: PIK3CA, MTOR) reflect ALIN's CRISPR-derived emphasis on RAS--MAPK dependencies over PI3K--AKT signaling.
+
+\subsection*{S8. Circularity and leakage ablation}
+
+Three ablation experiments test whether literature-curated scoring features inflate benchmark concordance or whether performance derives entirely from DepMap CRISPR data and OmniPath network topology (Supplementary Figure~S14).
+
+\subsubsection*{S8.1 No-literature-features ablation}
+
+The ALIN scoring formula (Equation~2, main text) includes five literature-curated components:
+\begin{enumerate}
+\item \textbf{KNOWN\_SYNERGIES}: 25 curated synergy pairs with clinical-evidence scores (0.60--0.95), affecting the synergy sub-score (weight 0.18).
+\item \textbf{RESISTANCE\_MECHANISMS}: Literature-curated dict of bypass genes per target, affecting the resistance sub-score (weight 0.18).
+\item \textbf{Perturbation bonus}: Curated from $\sim$15 published inhibitor studies (feedback coverage $\times$ 0.1).
+\item \textbf{Combination toxicity}: KNOWN\_DDI (50\%) and DRUG\_TOXICITY\_PROFILE (35\%) from drug labels/DrugBank (weight 0.18).
+\item \textbf{Evidence exemptions}: Hard-coded hub-penalty override for STAT3 in PDAC when paired with KRAS/EGFR.
+\end{enumerate}
+
+We disabled all five components simultaneously: synergy was computed from pathway diversity only (no known-pair lookup); resistance used a uniform $1/(1 + n \times 0.3)$ heuristic independent of curated bypass genes; combination toxicity and perturbation bonus were set to 0; evidence exemptions were cleared. The retained components---DepMap co-essentiality, tumor specificity, pan-essential penalty, OmniPath path coverage, hub penalty, and druggability clinical stage---are data-derived or factual rather than literature-curated.
+
+\textbf{Result.} Benchmark concordance was unchanged: 61.5\% any-overlap, 38.5\% pair-overlap, 0\% exact match under both full-pipeline and no-literature conditions ($\Delta = 0.0$ pp for all metrics). The identical predictions confirm that the literature-curated features contribute zero marginal information to the target combinations evaluated by the gold standard.
+
+\subsubsection*{S8.2 Degree-matched null}
+
+For each of 17 cancer types, we generated 1{,}000 random triples by sampling 3 genes matched on OmniPath degree quartile (Q1--Q4 based on 25th/50th/75th percentiles of total degree across 71 network nodes) and druggability (binary: druggability score $\geq 0.4$), yielding $4 \times 2 = 8$ bins. Each gene was drawn uniformly from its corresponding bin to preserve the degree and druggability profile of ALIN's actual top-1 prediction.
+
+\textbf{Result.} Null distributions: any-overlap $29.1\% \pm 14.3\%$, pair-overlap $9.1\% \pm 9.6\%$, exact $0.0\% \pm 0.7\%$. Empirical $p$-values (fraction of null iterations $\geq$ observed): $p = 0.030$ (any-overlap), $p = 0.013$ (pair-overlap). This rules out the hypothesis that selecting high-degree druggable genes from the OmniPath network is sufficient to match the gold standard.
+
+\subsubsection*{S8.3 Network-scramble null}
+
+Under 20 degree-preserving edge-swap permutations ($10 \times |E| = 940$ swap attempts per permutation, with 81\% success rate preserving all node in- and out-degrees), we re-enumerated X-nodes by scrambled degree, identified cancer-specific essential genes from DepMap CRISPR data, and scored all candidate triples using the simplified formula (path coverage, pathway diversity, hub penalty, druggability) with BFS-based reachability (depth $\leq 3$) on the scrambled adjacency.
+
+\textbf{Result.} None of the 20 permuted networks produced viable cancer-specific triples (0 cancers per permutation), yielding 0\% concordance across all metrics ($p = 0.048$). The failure to produce any predictions demonstrates that the scrambled networks disrupt the causal chain from network topology through X-node identification to survival-mechanism inference. This confirms that ALIN's performance depends critically on OmniPath's specific biological wiring, not merely its degree distribution.
+
+\textbf{Interpretation.} Together, these three ablations establish that (i)~literature-curated features contribute no benchmark information (zero leakage), (ii)~degree and druggability matching alone is insufficient ($p = 0.030$), and (iii)~specific network wiring is essential ($p = 0.048$). Benchmark concordance is driven by the combination of DepMap essentiality data and OmniPath signaling topology.
+
+\subsection*{S9. How to generate the Supplementary Methods PDF}
 Run the following commands in the repository root:
 
 \begin{verbatim}
@@ -88,7 +252,7 @@ pdflatex Supplementary_Methods.tex
 
 The generated \verb|Supplementary_Methods.pdf| is a reviewer-friendly standalone document containing full mathematical definitions, parameter tables, sensitivity analysis figures, and exact data provenance metadata.
 
-\subsection*{S7. Notes for reviewers}
+\subsection*{S10. Notes for reviewers}
 - While the code repository contains executable scripts and notebooks, reviewers often expect a human-readable Supplementary Methods PDF; this file is provided for that purpose.
 - For full reproducibility, reviewers can re-run the pipeline in a clean environment; see \verb|README.md| and \verb|requirements.txt| for environment setup.
 

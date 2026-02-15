@@ -1,0 +1,22 @@
+Cancer_Type,Targets,Flag_Category,Severity,Description,Targets_Involved
+Esophagogastric Adenocarcinoma,CDK6+EGFR+PIK3CA,overlapping_organ_tox,moderate,Overlapping dermatologic: EGFR+PIK3CA (2 targets share dermatologic risk),EGFR+PIK3CA
+Esophagogastric Adenocarcinoma,CDK6+EGFR+PIK3CA,overlapping_organ_tox,moderate,Overlapping gastrointestinal: EGFR+PIK3CA (2 targets share gastrointestinal risk),EGFR+PIK3CA
+Esophagogastric Adenocarcinoma,CDK6+EGFR+PIK3CA,known_ddi,high,DDI (moderate): erlotinib+alpelisib — Additive GI toxicity,erlotinib+alpelisib
+Colorectal Adenocarcinoma,BRAF+EGFR+KRAS,overlapping_organ_tox,moderate,Overlapping dermatologic: EGFR+BRAF (2 targets share dermatologic risk),EGFR+BRAF
+Colorectal Adenocarcinoma,BRAF+EGFR+KRAS,overlapping_organ_tox,moderate,Overlapping gastrointestinal: EGFR+KRAS (2 targets share gastrointestinal risk),EGFR+KRAS
+Pancreatic Adenocarcinoma,BRAF+KRAS+STAT3,overlapping_organ_tox,moderate,Overlapping gastrointestinal: STAT3+KRAS (2 targets share gastrointestinal risk),STAT3+KRAS
+Pancreatic Adenocarcinoma,BRAF+KRAS+STAT3,known_ddi,moderate,DDI (minor): sotorasib+napabucasin — Additive GI toxicity,sotorasib+napabucasin
+Melanoma,CDK6+EGFR+MAP2K1,overlapping_organ_tox,moderate,Overlapping dermatologic: EGFR+MAP2K1 (2 targets share dermatologic risk),EGFR+MAP2K1
+Non-Small Cell Lung Cancer,CDK6+EGFR+MAP2K1,overlapping_organ_tox,moderate,Overlapping dermatologic: EGFR+MAP2K1 (2 targets share dermatologic risk),EGFR+MAP2K1
+Anaplastic Thyroid Cancer,CDK6+EGFR+MAP2K1,overlapping_organ_tox,moderate,Overlapping dermatologic: EGFR+MAP2K1 (2 targets share dermatologic risk),EGFR+MAP2K1
+Invasive Breast Carcinoma,BCL2L1+EGFR+MAP2K1,overlapping_organ_tox,moderate,Overlapping dermatologic: EGFR+MAP2K1 (2 targets share dermatologic risk),EGFR+MAP2K1
+Renal Cell Carcinoma,CDK6+EGFR+MAP2K1,overlapping_organ_tox,moderate,Overlapping dermatologic: EGFR+MAP2K1 (2 targets share dermatologic risk),EGFR+MAP2K1
+Prostate Adenocarcinoma,CDK2+EGFR+MAP2K1,overlapping_organ_tox,moderate,Overlapping dermatologic: EGFR+MAP2K1 (2 targets share dermatologic risk),EGFR+MAP2K1
+Bladder Urothelial Carcinoma,CDK2+EGFR+MAP2K1,overlapping_organ_tox,moderate,Overlapping dermatologic: EGFR+MAP2K1 (2 targets share dermatologic risk),EGFR+MAP2K1
+Acute Myeloid Leukemia,CDK4+CDK6+MCL1,overlapping_organ_tox,high,Overlapping myelosuppression: CDK6+CDK4 (2 targets share myelosuppression risk),CDK6+CDK4
+Head and Neck Squamous Cell Carcinoma,CDK4+CDK6+ERBB2,overlapping_organ_tox,high,Overlapping myelosuppression: CDK6+CDK4 (2 targets share myelosuppression risk),CDK6+CDK4
+Ovarian Epithelial Tumor,CDK6+EGFR+MET,overlapping_organ_tox,moderate,Overlapping gastrointestinal: EGFR+MET (2 targets share gastrointestinal risk),EGFR+MET
+Endometrial Carcinoma,CDK2+EGFR+MET,overlapping_organ_tox,moderate,Overlapping gastrointestinal: EGFR+MET (2 targets share gastrointestinal risk),EGFR+MET
+Hepatocellular Carcinoma,EGFR+FGFR1+MET,overlapping_organ_tox,moderate,Overlapping gastrointestinal: EGFR+MET (2 targets share gastrointestinal risk),EGFR+MET
+Liposarcoma,EGFR+FGFR1+MET,overlapping_organ_tox,moderate,Overlapping gastrointestinal: EGFR+MET (2 targets share gastrointestinal risk),EGFR+MET
+Diffuse Glioma,EGFR+FGFR1+MET,overlapping_organ_tox,moderate,Overlapping gastrointestinal: EGFR+MET (2 targets share gastrointestinal risk),EGFR+MET

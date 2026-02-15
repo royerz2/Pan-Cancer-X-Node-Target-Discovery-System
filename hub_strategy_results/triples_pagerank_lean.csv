@@ -1,0 +1,18 @@
+Cancer Type,Cell Lines,Target 1,Target 2,Target 3,Drug 1,Drug 2,Drug 3,Synergy,Resistance,Coverage,Druggable,Best_Combo_Size,Best_Combo_1,Best_Combo_2,Best_Combo_3,Best_Combo_Score
+Acute Myeloid Leukemia,64,CDK6,KRAS,STAT3,palbociclib,sotorasib,napabucasin,0.94,0.0,51.7%,3/3,3,CDK6,KRAS,STAT3,0.863
+Anaplastic Thyroid Cancer,13,BRAF,CDK4,STAT3,vemurafenib,palbociclib,napabucasin,0.94,0.0,67.7%,3/3,3,BRAF,CDK4,STAT3,0.913
+Bladder Urothelial Carcinoma,35,BRAF,CDK6,STAT3,vemurafenib,palbociclib,napabucasin,0.94,0.0,59.6%,3/3,3,BRAF,CDK6,STAT3,0.982
+Colorectal Adenocarcinoma,96,CDK4,KRAS,STAT3,palbociclib,sotorasib,napabucasin,0.94,0.0,58.0%,3/3,3,CDK4,KRAS,STAT3,0.86
+Diffuse Glioma,96,CDK6,FGFR1,STAT3,palbociclib,erdafitinib,napabucasin,0.94,0.0,57.6%,3/3,3,CDK6,FGFR1,STAT3,0.944
+Endometrial Carcinoma,37,BRAF,CDK4,STAT3,vemurafenib,palbociclib,napabucasin,0.94,0.0,55.2%,3/3,3,BRAF,CDK4,STAT3,0.986
+Esophagogastric Adenocarcinoma,74,CDK4,PIK3CA,STAT3,palbociclib,alpelisib,napabucasin,0.94,0.0,63.8%,3/3,3,CDK4,PIK3CA,STAT3,0.958
+Head and Neck Squamous Cell Carcinoma,89,CDK6,EGFR,STAT3,palbociclib,erlotinib,napabucasin,0.94,0.0,70.3%,3/3,3,CDK6,EGFR,STAT3,0.899
+Hepatocellular Carcinoma,24,CDK4,FGFR1,STAT3,palbociclib,erdafitinib,napabucasin,0.94,0.0,58.8%,3/3,3,CDK4,FGFR1,STAT3,0.91
+Invasive Breast Carcinoma,82,CDK4,ERBB2,STAT3,palbociclib,trastuzumab,napabucasin,0.94,0.0,69.6%,3/3,3,CDK4,ERBB2,STAT3,0.868
+Liposarcoma,13,CDK4,FGFR1,STAT3,palbociclib,erdafitinib,napabucasin,0.94,0.0,53.7%,3/3,3,CDK4,FGFR1,STAT3,0.819
+Melanoma,135,BRAF,CDK4,STAT3,vemurafenib,palbociclib,napabucasin,0.94,0.0,68.3%,3/3,3,BRAF,CDK4,STAT3,0.806
+Non-Small Cell Lung Cancer,165,CDK4,KRAS,STAT3,palbociclib,sotorasib,napabucasin,0.94,0.0,59.6%,3/3,3,CDK4,KRAS,STAT3,0.932
+Ovarian Epithelial Tumor,71,CDK4,ERBB2,STAT3,palbociclib,trastuzumab,napabucasin,0.94,0.0,56.9%,3/3,3,CDK4,ERBB2,STAT3,0.962
+Pancreatic Adenocarcinoma,64,CDK6,KRAS,STAT3,palbociclib,sotorasib,napabucasin,0.94,0.0,51.9%,3/3,3,CDK6,KRAS,STAT3,0.81
+Prostate Adenocarcinoma,6,CDK4,MAP2K1,STAT3,palbociclib,trametinib,napabucasin,0.94,0.0,59.3%,3/3,3,CDK4,MAP2K1,STAT3,0.828
+Renal Cell Carcinoma,56,BRAF,CDK6,STAT3,vemurafenib,palbociclib,napabucasin,0.94,0.0,59.6%,3/3,3,BRAF,CDK6,STAT3,0.949

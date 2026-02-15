@@ -1,0 +1,9 @@
+feature,full_auroc,ablated_auroc,delta_auroc
+druggable_count,0.552,0.5216,0.0304
+combo_tox_score,0.552,0.5457,0.0062
+resistance_score,0.552,0.5469,0.0051
+synergy_score,0.552,0.5491,0.0028
+perturbation_bonus,0.552,0.5508,0.0012
+total_cost,0.552,0.5531,-0.0011
+hub_penalty,0.552,0.5597,-0.0077
+coverage,0.552,0.5638,-0.0119

@@ -1,0 +1,29 @@
+{
+  "n_implausible_predictions": 8,
+  "implausible_severity": {
+    "high": 4,
+    "moderate": 4
+  },
+  "n_failed_combos_tested": 8,
+  "failed_combo_verdicts": {
+    "predicts_failed_combo": 4,
+    "partial_overlap": 2,
+    "correctly_avoids": 2
+  },
+  "proposed_filter_categories": {
+    "Lineage-restricted target list": 3,
+    "Driver-pathway prior": 3,
+    "Toxicity ceiling check": 1,
+    "Hub-gene frequency cap": 1,
+    "Isoform-aware matching": 1,
+    "Malignancy requirement": 1
+  },
+  "key_findings": [
+    "8 implausible predictions identified (4 high-severity, 4 moderate)",
+    "ALIN fully predicts 4/8 known failed combinations",
+    "ALIN partially overlaps with 2/8 failed combinations",
+    "ALIN correctly avoids 2/8 failed combinations",
+    "Common failure modes: hub-gene artefacts (STAT3/FYN), CRISPR-invisible targets (hormonal, microenvironment), and generic RTK over-representation",
+    "Proposed mitigation: 5-tier post-hoc filter (malignancy check \u2192 hub cap \u2192 driver prior \u2192 lineage whitelist \u2192 toxicity ceiling)"
+  ]
+}

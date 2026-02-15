@@ -1,0 +1,10 @@
+cancer,doublet,known_third,known_outcome,known_evidence,alin_triple,alin_third_targets,doublet_recovered,third_match
+Melanoma,BRAF+MAP2K1,CDK4,promising,BRAF+MEK + ribociclib: Phase 1/2 ORR 39% (after BRAF+MEK progression),CDK6+EGFR+MAP2K1,CDK4+CDK6+EGFR,True,True
+Melanoma,BRAF+MAP2K1,EGFR,supported,BRAF+MEK resistance: EGFR feedback reactivation common mechanism; triple blockade proposed (Prahallad et al. Nature 2012),CDK6+EGFR+MAP2K1,CDK4+CDK6+EGFR,True,True
+Colorectal Adenocarcinoma,BRAF+EGFR,MAP2K1,approved,BEACON triplet arm (+ binimetinib): ORR 26% vs 20% doublet,BRAF+EGFR+KRAS,KRAS,True,False
+Colorectal Adenocarcinoma,BRAF+EGFR,PIK3CA,supported,BRAF+EGFR resistance: PI3K pathway reactivation; triple proposed (Corcoran et al. Cancer Discov 2012),BRAF+EGFR+KRAS,KRAS,True,False
+Non-Small Cell Lung Cancer,EGFR+MET,MAP2K1,supported,EGFR+MET resistance: MEK pathway activation (Oxnard et al. JCO 2018),CDK6+EGFR+MAP2K1,CDK4+CDK6+MAP2K1+MAP2K2,True,True
+Non-Small Cell Lung Cancer,EGFR+MET,CDK4,supported,CDK4/6 inhibition sensitizes EGFR-TKI resistant NSCLC (Tong et al. Oncogene 2019),CDK6+EGFR+MAP2K1,CDK4+CDK6+MAP2K1+MAP2K2,True,True
+Invasive Breast Carcinoma,CDK4+ERBB2,PIK3CA,approved,HER2+HR+ breast: PI3K pathway drives resistance to CDK4/6i + HER2; alpelisib added (André et al. NEJM 2019),BCL2L1+EGFR+MAP2K1,BCL2L1+EGFR+MAP2K1+MAP2K2,False,False
+Invasive Breast Carcinoma,CDK4+ERBB2,MTOR,supported,mTOR activation in CDK4/6i-resistant HER2+ breast (Herrera-Abreu et al. Cancer Res 2016),BCL2L1+EGFR+MAP2K1,BCL2L1+EGFR+MAP2K1+MAP2K2,False,False
+Pancreatic Adenocarcinoma,EGFR+KRAS,STAT3,validated,"Liaki et al. PNAS 2025: tri-axial blockade KRAS+EGFR+STAT3, complete regression >200d",BRAF+KRAS+STAT3,BRAF+STAT3,True,True

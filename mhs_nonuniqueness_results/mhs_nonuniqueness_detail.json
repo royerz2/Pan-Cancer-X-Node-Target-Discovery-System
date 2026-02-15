@@ -1,0 +1,2603 @@
+[
+  {
+    "cancer_type": "Acute Myeloid Leukemia",
+    "unconstrained_solutions": [
+      {
+        "targets": [
+          "CDK4",
+          "CDK6",
+          "SOS1",
+          "STAT3"
+        ],
+        "cost": 4.172456120738792,
+        "coverage": 0.5862068965517242,
+        "size": 4
+      }
+    ],
+    "constrained_solutions": [
+      {
+        "targets": [
+          "CDK4",
+          "CDK6",
+          "SOS1",
+          "STAT3"
+        ],
+        "cost": 4.172456120738792,
+        "coverage": 0.5862068965517242,
+        "size": 4
+      }
+    ],
+    "constraint_stats": {
+      "before": 1,
+      "removed_no_druggable": 0,
+      "removed_pan_essential": 0,
+      "removed_high_toxicity": 0,
+      "removed_pathway_redundant": 0,
+      "after": 1
+    },
+    "diversity_unconstrained": {
+      "n_solutions": 1,
+      "mean_jaccard": 0.0,
+      "min_jaccard": 0.0,
+      "max_jaccard": 0.0,
+      "n_unique_genes": 4,
+      "gene_entropy": 0.0
+    },
+    "diversity_constrained": {
+      "n_solutions": 1,
+      "mean_jaccard": 0.0,
+      "min_jaccard": 0.0,
+      "max_jaccard": 0.0,
+      "n_unique_genes": 4,
+      "gene_entropy": 0.0
+    },
+    "top1_changed": false,
+    "top1_jaccard_dist": 0.0
+  },
+  {
+    "cancer_type": "Anaplastic Thyroid Cancer",
+    "unconstrained_solutions": [
+      {
+        "targets": [
+          "BRAF",
+          "CCND1",
+          "KRAS",
+          "STAT3"
+        ],
+        "cost": 4.547576164492314,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "KRAS",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "cost": 4.585260253982704,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "BRAF",
+          "CCND1",
+          "PTPA",
+          "STAT3"
+        ],
+        "cost": 4.603095453379911,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "BRAF",
+          "CCND1",
+          "INTS6",
+          "STAT3"
+        ],
+        "cost": 4.609763945103706,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "BRAF",
+          "CCND1",
+          "CDH2",
+          "STAT3"
+        ],
+        "cost": 4.61773139216814,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "BRAF",
+          "CCND1",
+          "RHOA",
+          "STAT3"
+        ],
+        "cost": 4.636915824748748,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "BRAF",
+          "CCND1",
+          "GPI",
+          "STAT3"
+        ],
+        "cost": 4.639787997847634,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "MAP2K1",
+          "PTPA",
+          "STAT3"
+        ],
+        "cost": 4.6407795428703,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "BRAF",
+          "CCND1",
+          "SEPHS2",
+          "STAT3"
+        ],
+        "cost": 4.643148551787526,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "INTS6",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "cost": 4.647448034594095,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "BRAF",
+          "CCND1",
+          "STAT3",
+          "USP9X"
+        ],
+        "cost": 4.648498724416913,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "BRAF",
+          "CCND1",
+          "PXN",
+          "STAT3"
+        ],
+        "cost": 4.652080185126969,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDH2",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "cost": 4.65541548165853,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "BRAF",
+          "CCND1",
+          "STAT3",
+          "UBE4B"
+        ],
+        "cost": 4.656336204927388,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "BRAF",
+          "CCND1",
+          "ITGB5",
+          "STAT3"
+        ],
+        "cost": 4.66076983827984,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "BRAF",
+          "CCND1",
+          "METAP2",
+          "STAT3"
+        ],
+        "cost": 4.660998714647015,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "BRAF",
+          "CCND1",
+          "PPP2CA",
+          "STAT3"
+        ],
+        "cost": 4.668869910679243,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "BRAF",
+          "CCND1",
+          "RELA",
+          "STAT3"
+        ],
+        "cost": 4.669709687839022,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "MAP2K1",
+          "RHOA",
+          "STAT3"
+        ],
+        "cost": 4.6745999142391375,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "BCAR1",
+          "BRAF",
+          "CCND1",
+          "STAT3"
+        ],
+        "cost": 4.67495225292314,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      }
+    ],
+    "constrained_solutions": [
+      {
+        "targets": [
+          "BRAF",
+          "CCND1",
+          "KRAS",
+          "STAT3"
+        ],
+        "cost": 4.547576164492314,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "KRAS",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "cost": 4.585260253982704,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "BRAF",
+          "CCND1",
+          "PTPA",
+          "STAT3"
+        ],
+        "cost": 4.603095453379911,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "BRAF",
+          "CCND1",
+          "INTS6",
+          "STAT3"
+        ],
+        "cost": 4.609763945103706,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "BRAF",
+          "CCND1",
+          "CDH2",
+          "STAT3"
+        ],
+        "cost": 4.61773139216814,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "BRAF",
+          "CCND1",
+          "RHOA",
+          "STAT3"
+        ],
+        "cost": 4.636915824748748,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "BRAF",
+          "CCND1",
+          "GPI",
+          "STAT3"
+        ],
+        "cost": 4.639787997847634,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "MAP2K1",
+          "PTPA",
+          "STAT3"
+        ],
+        "cost": 4.6407795428703,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "BRAF",
+          "CCND1",
+          "SEPHS2",
+          "STAT3"
+        ],
+        "cost": 4.643148551787526,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "INTS6",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "cost": 4.647448034594095,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "BRAF",
+          "CCND1",
+          "STAT3",
+          "USP9X"
+        ],
+        "cost": 4.648498724416913,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "BRAF",
+          "CCND1",
+          "PXN",
+          "STAT3"
+        ],
+        "cost": 4.652080185126969,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDH2",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "cost": 4.65541548165853,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "BRAF",
+          "CCND1",
+          "STAT3",
+          "UBE4B"
+        ],
+        "cost": 4.656336204927388,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "BRAF",
+          "CCND1",
+          "ITGB5",
+          "STAT3"
+        ],
+        "cost": 4.66076983827984,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "BRAF",
+          "CCND1",
+          "METAP2",
+          "STAT3"
+        ],
+        "cost": 4.660998714647015,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "BRAF",
+          "CCND1",
+          "PPP2CA",
+          "STAT3"
+        ],
+        "cost": 4.668869910679243,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "BRAF",
+          "CCND1",
+          "RELA",
+          "STAT3"
+        ],
+        "cost": 4.669709687839022,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "MAP2K1",
+          "RHOA",
+          "STAT3"
+        ],
+        "cost": 4.6745999142391375,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      },
+      {
+        "targets": [
+          "BCAR1",
+          "BRAF",
+          "CCND1",
+          "STAT3"
+        ],
+        "cost": 4.67495225292314,
+        "coverage": 0.8064516129032258,
+        "size": 4
+      }
+    ],
+    "constraint_stats": {
+      "before": 20,
+      "removed_no_druggable": 0,
+      "removed_pan_essential": 0,
+      "removed_high_toxicity": 0,
+      "removed_pathway_redundant": 0,
+      "after": 20
+    },
+    "diversity_unconstrained": {
+      "n_solutions": 20,
+      "mean_jaccard": 0.49824561403508777,
+      "min_jaccard": 0.4,
+      "max_jaccard": 0.6666666666666667,
+      "n_unique_genes": 19,
+      "gene_entropy": 3.158301554809213
+    },
+    "diversity_constrained": {
+      "n_solutions": 20,
+      "mean_jaccard": 0.49824561403508777,
+      "min_jaccard": 0.4,
+      "max_jaccard": 0.6666666666666667,
+      "n_unique_genes": 19,
+      "gene_entropy": 3.158301554809213
+    },
+    "top1_changed": false,
+    "top1_jaccard_dist": 0.0
+  },
+  {
+    "cancer_type": "Bladder Urothelial Carcinoma",
+    "unconstrained_solutions": [
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "CDK6",
+          "STAT3"
+        ],
+        "cost": 4.715,
+        "coverage": 0.7692307692307692,
+        "size": 4
+      }
+    ],
+    "constrained_solutions": [
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "CDK6",
+          "STAT3"
+        ],
+        "cost": 4.715,
+        "coverage": 0.7692307692307692,
+        "size": 4
+      }
+    ],
+    "constraint_stats": {
+      "before": 1,
+      "removed_no_druggable": 0,
+      "removed_pan_essential": 0,
+      "removed_high_toxicity": 0,
+      "removed_pathway_redundant": 0,
+      "after": 1
+    },
+    "diversity_unconstrained": {
+      "n_solutions": 1,
+      "mean_jaccard": 0.0,
+      "min_jaccard": 0.0,
+      "max_jaccard": 0.0,
+      "n_unique_genes": 4,
+      "gene_entropy": 0.0
+    },
+    "diversity_constrained": {
+      "n_solutions": 1,
+      "mean_jaccard": 0.0,
+      "min_jaccard": 0.0,
+      "max_jaccard": 0.0,
+      "n_unique_genes": 4,
+      "gene_entropy": 0.0
+    },
+    "top1_changed": false,
+    "top1_jaccard_dist": 0.0
+  },
+  {
+    "cancer_type": "Colorectal Adenocarcinoma",
+    "unconstrained_solutions": [
+      {
+        "targets": [
+          "BRAF",
+          "CCND1",
+          "CTNNB1",
+          "STAT3"
+        ],
+        "cost": 4.604221030339615,
+        "coverage": 0.76,
+        "size": 4
+      }
+    ],
+    "constrained_solutions": [
+      {
+        "targets": [
+          "BRAF",
+          "CCND1",
+          "CTNNB1",
+          "STAT3"
+        ],
+        "cost": 4.604221030339615,
+        "coverage": 0.76,
+        "size": 4
+      }
+    ],
+    "constraint_stats": {
+      "before": 1,
+      "removed_no_druggable": 0,
+      "removed_pan_essential": 0,
+      "removed_high_toxicity": 0,
+      "removed_pathway_redundant": 0,
+      "after": 1
+    },
+    "diversity_unconstrained": {
+      "n_solutions": 1,
+      "mean_jaccard": 0.0,
+      "min_jaccard": 0.0,
+      "max_jaccard": 0.0,
+      "n_unique_genes": 4,
+      "gene_entropy": 0.0
+    },
+    "diversity_constrained": {
+      "n_solutions": 1,
+      "mean_jaccard": 0.0,
+      "min_jaccard": 0.0,
+      "max_jaccard": 0.0,
+      "n_unique_genes": 4,
+      "gene_entropy": 0.0
+    },
+    "top1_changed": false,
+    "top1_jaccard_dist": 0.0
+  },
+  {
+    "cancer_type": "Diffuse Glioma",
+    "unconstrained_solutions": [
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "RPP25L",
+          "STAT3"
+        ],
+        "cost": 4.772011769758589,
+        "coverage": 0.7627118644067796,
+        "size": 4
+      }
+    ],
+    "constrained_solutions": [],
+    "constraint_stats": {
+      "before": 1,
+      "removed_no_druggable": 0,
+      "removed_pan_essential": 0,
+      "removed_high_toxicity": 0,
+      "removed_pathway_redundant": 1,
+      "after": 0
+    },
+    "diversity_unconstrained": {
+      "n_solutions": 1,
+      "mean_jaccard": 0.0,
+      "min_jaccard": 0.0,
+      "max_jaccard": 0.0,
+      "n_unique_genes": 4,
+      "gene_entropy": 0.0
+    },
+    "diversity_constrained": {
+      "n_solutions": 0,
+      "mean_jaccard": 0,
+      "n_unique_genes": 0,
+      "gene_entropy": 0
+    },
+    "top1_changed": true,
+    "top1_jaccard_dist": 1.0
+  },
+  {
+    "cancer_type": "Endometrial Carcinoma",
+    "unconstrained_solutions": [
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "PAX8",
+          "STAT3"
+        ],
+        "cost": 4.7658658933584634,
+        "coverage": 0.7586206896551724,
+        "size": 4
+      }
+    ],
+    "constrained_solutions": [
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "PAX8",
+          "STAT3"
+        ],
+        "cost": 4.7658658933584634,
+        "coverage": 0.7586206896551724,
+        "size": 4
+      }
+    ],
+    "constraint_stats": {
+      "before": 1,
+      "removed_no_druggable": 0,
+      "removed_pan_essential": 0,
+      "removed_high_toxicity": 0,
+      "removed_pathway_redundant": 0,
+      "after": 1
+    },
+    "diversity_unconstrained": {
+      "n_solutions": 1,
+      "mean_jaccard": 0.0,
+      "min_jaccard": 0.0,
+      "max_jaccard": 0.0,
+      "n_unique_genes": 4,
+      "gene_entropy": 0.0
+    },
+    "diversity_constrained": {
+      "n_solutions": 1,
+      "mean_jaccard": 0.0,
+      "min_jaccard": 0.0,
+      "max_jaccard": 0.0,
+      "n_unique_genes": 4,
+      "gene_entropy": 0.0
+    },
+    "top1_changed": false,
+    "top1_jaccard_dist": 0.0
+  },
+  {
+    "cancer_type": "Esophagogastric Adenocarcinoma",
+    "unconstrained_solutions": [
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "PIK3CA",
+          "STAT3"
+        ],
+        "cost": 4.573840933954059,
+        "coverage": 0.7931034482758621,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MCL1",
+          "PIK3CA"
+        ],
+        "cost": 4.9624929470829535,
+        "coverage": 0.8103448275862069,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "CTNNB1",
+          "MCL1"
+        ],
+        "cost": 5.090665731686332,
+        "coverage": 0.8103448275862069,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MCL1",
+          "TCF7L2"
+        ],
+        "cost": 5.095857088270818,
+        "coverage": 0.8103448275862069,
+        "size": 4
+      }
+    ],
+    "constrained_solutions": [
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MCL1",
+          "PIK3CA"
+        ],
+        "cost": 4.9624929470829535,
+        "coverage": 0.8103448275862069,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "CTNNB1",
+          "MCL1"
+        ],
+        "cost": 5.090665731686332,
+        "coverage": 0.8103448275862069,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MCL1",
+          "TCF7L2"
+        ],
+        "cost": 5.095857088270818,
+        "coverage": 0.8103448275862069,
+        "size": 4
+      }
+    ],
+    "constraint_stats": {
+      "before": 4,
+      "removed_no_druggable": 0,
+      "removed_pan_essential": 0,
+      "removed_high_toxicity": 0,
+      "removed_pathway_redundant": 1,
+      "after": 3
+    },
+    "diversity_unconstrained": {
+      "n_solutions": 4,
+      "mean_jaccard": 0.48888888888888893,
+      "min_jaccard": 0.4,
+      "max_jaccard": 0.6666666666666667,
+      "n_unique_genes": 7,
+      "gene_entropy": 2.577819531104684
+    },
+    "diversity_constrained": {
+      "n_solutions": 3,
+      "mean_jaccard": 0.4000000000000001,
+      "min_jaccard": 0.4,
+      "max_jaccard": 0.4,
+      "n_unique_genes": 6,
+      "gene_entropy": 2.396240625171633
+    },
+    "top1_changed": true,
+    "top1_jaccard_dist": 0.4
+  },
+  {
+    "cancer_type": "Head and Neck Squamous Cell Carcinoma",
+    "unconstrained_solutions": [
+      {
+        "targets": [
+          "BRAF",
+          "CCND1",
+          "EGFR",
+          "STAT3"
+        ],
+        "cost": 4.712804610157824,
+        "coverage": 0.78125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "STAT3",
+          "TP63"
+        ],
+        "cost": 4.7184652792956205,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "ATP6V0E1",
+          "CCND1",
+          "CDK4",
+          "STAT3"
+        ],
+        "cost": 4.816694703575726,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "EDF1",
+          "STAT3"
+        ],
+        "cost": 4.8355064198039575,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCDC51",
+          "CCND1",
+          "CDK4",
+          "STAT3"
+        ],
+        "cost": 4.840170820223372,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "STAT3",
+          "TUBB4B"
+        ],
+        "cost": 4.841777619666029,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CAPRIN1",
+          "CCND1",
+          "CDK4",
+          "STAT3"
+        ],
+        "cost": 4.842695263211002,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "CDK6",
+          "MCL1"
+        ],
+        "cost": 4.861603828948447,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "EGFR",
+          "MCL1"
+        ],
+        "cost": 4.970716995024005,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "ERBB2",
+          "MCL1"
+        ],
+        "cost": 4.9974339669628245,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MCL1",
+          "TP63"
+        ],
+        "cost": 5.076377664161802,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "GRB2",
+          "MCL1"
+        ],
+        "cost": 5.090466869668557,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "KRAS",
+          "MCL1"
+        ],
+        "cost": 5.104898456295057,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "ITGB1",
+          "MCL1"
+        ],
+        "cost": 5.128816691267277,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MCL1",
+          "PPP1R12A"
+        ],
+        "cost": 5.14177105889357,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MCL1",
+          "PFDN1"
+        ],
+        "cost": 5.164235215652278,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "ATP6V0E1",
+          "CCND1",
+          "CDK4",
+          "MCL1"
+        ],
+        "cost": 5.174607088441906,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "ADAR",
+          "CCND1",
+          "CDK4",
+          "MCL1"
+        ],
+        "cost": 5.178595574245494,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MCL1",
+          "SNRPB2"
+        ],
+        "cost": 5.1809875296786165,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "HNRNPM",
+          "MCL1"
+        ],
+        "cost": 5.186368586892527,
+        "coverage": 0.8125,
+        "size": 4
+      }
+    ],
+    "constrained_solutions": [
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "STAT3",
+          "TP63"
+        ],
+        "cost": 4.7184652792956205,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "ATP6V0E1",
+          "CCND1",
+          "CDK4",
+          "STAT3"
+        ],
+        "cost": 4.816694703575726,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "EDF1",
+          "STAT3"
+        ],
+        "cost": 4.8355064198039575,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCDC51",
+          "CCND1",
+          "CDK4",
+          "STAT3"
+        ],
+        "cost": 4.840170820223372,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "STAT3",
+          "TUBB4B"
+        ],
+        "cost": 4.841777619666029,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CAPRIN1",
+          "CCND1",
+          "CDK4",
+          "STAT3"
+        ],
+        "cost": 4.842695263211002,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "CDK6",
+          "MCL1"
+        ],
+        "cost": 4.861603828948447,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "ERBB2",
+          "MCL1"
+        ],
+        "cost": 4.9974339669628245,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MCL1",
+          "TP63"
+        ],
+        "cost": 5.076377664161802,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "GRB2",
+          "MCL1"
+        ],
+        "cost": 5.090466869668557,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "KRAS",
+          "MCL1"
+        ],
+        "cost": 5.104898456295057,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "ITGB1",
+          "MCL1"
+        ],
+        "cost": 5.128816691267277,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MCL1",
+          "PPP1R12A"
+        ],
+        "cost": 5.14177105889357,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MCL1",
+          "PFDN1"
+        ],
+        "cost": 5.164235215652278,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "ATP6V0E1",
+          "CCND1",
+          "CDK4",
+          "MCL1"
+        ],
+        "cost": 5.174607088441906,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "ADAR",
+          "CCND1",
+          "CDK4",
+          "MCL1"
+        ],
+        "cost": 5.178595574245494,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MCL1",
+          "SNRPB2"
+        ],
+        "cost": 5.1809875296786165,
+        "coverage": 0.8125,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "HNRNPM",
+          "MCL1"
+        ],
+        "cost": 5.186368586892527,
+        "coverage": 0.8125,
+        "size": 4
+      }
+    ],
+    "constraint_stats": {
+      "before": 20,
+      "removed_no_druggable": 0,
+      "removed_pan_essential": 0,
+      "removed_high_toxicity": 0,
+      "removed_pathway_redundant": 2,
+      "after": 18
+    },
+    "diversity_unconstrained": {
+      "n_solutions": 20,
+      "mean_jaccard": 0.5453634085213033,
+      "min_jaccard": 0.4,
+      "max_jaccard": 0.8571428571428572,
+      "n_unique_genes": 22,
+      "gene_entropy": 3.3105982768129643
+    },
+    "diversity_constrained": {
+      "n_solutions": 18,
+      "mean_jaccard": 0.5220043572984749,
+      "min_jaccard": 0.4,
+      "max_jaccard": 0.6666666666666667,
+      "n_unique_genes": 20,
+      "gene_entropy": 3.216499653289792
+    },
+    "top1_changed": true,
+    "top1_jaccard_dist": 0.6666666666666667
+  },
+  {
+    "cancer_type": "Hepatocellular Carcinoma",
+    "unconstrained_solutions": [
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "FGFR1",
+          "STAT3"
+        ],
+        "cost": 4.377752556747167,
+        "coverage": 0.7647058823529411,
+        "size": 4
+      }
+    ],
+    "constrained_solutions": [
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "FGFR1",
+          "STAT3"
+        ],
+        "cost": 4.377752556747167,
+        "coverage": 0.7647058823529411,
+        "size": 4
+      }
+    ],
+    "constraint_stats": {
+      "before": 1,
+      "removed_no_druggable": 0,
+      "removed_pan_essential": 0,
+      "removed_high_toxicity": 0,
+      "removed_pathway_redundant": 0,
+      "after": 1
+    },
+    "diversity_unconstrained": {
+      "n_solutions": 1,
+      "mean_jaccard": 0.0,
+      "min_jaccard": 0.0,
+      "max_jaccard": 0.0,
+      "n_unique_genes": 4,
+      "gene_entropy": 0.0
+    },
+    "diversity_constrained": {
+      "n_solutions": 1,
+      "mean_jaccard": 0.0,
+      "min_jaccard": 0.0,
+      "max_jaccard": 0.0,
+      "n_unique_genes": 4,
+      "gene_entropy": 0.0
+    },
+    "top1_changed": false,
+    "top1_jaccard_dist": 0.0
+  },
+  {
+    "cancer_type": "Invasive Breast Carcinoma",
+    "unconstrained_solutions": [
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MILR1",
+          "STAT3"
+        ],
+        "cost": 4.210506374493887,
+        "coverage": 0.7678571428571428,
+        "size": 4
+      }
+    ],
+    "constrained_solutions": [
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MILR1",
+          "STAT3"
+        ],
+        "cost": 4.210506374493887,
+        "coverage": 0.7678571428571428,
+        "size": 4
+      }
+    ],
+    "constraint_stats": {
+      "before": 1,
+      "removed_no_druggable": 0,
+      "removed_pan_essential": 0,
+      "removed_high_toxicity": 0,
+      "removed_pathway_redundant": 0,
+      "after": 1
+    },
+    "diversity_unconstrained": {
+      "n_solutions": 1,
+      "mean_jaccard": 0.0,
+      "min_jaccard": 0.0,
+      "max_jaccard": 0.0,
+      "n_unique_genes": 4,
+      "gene_entropy": 0.0
+    },
+    "diversity_constrained": {
+      "n_solutions": 1,
+      "mean_jaccard": 0.0,
+      "min_jaccard": 0.0,
+      "max_jaccard": 0.0,
+      "n_unique_genes": 4,
+      "gene_entropy": 0.0
+    },
+    "top1_changed": false,
+    "top1_jaccard_dist": 0.0
+  },
+  {
+    "cancer_type": "Liposarcoma",
+    "unconstrained_solutions": [
+      {
+        "targets": [
+          "ARHGEF25",
+          "CCND1",
+          "CDK4",
+          "STAT3"
+        ],
+        "cost": 4.08944327892641,
+        "coverage": 0.7592592592592593,
+        "size": 4
+      }
+    ],
+    "constrained_solutions": [
+      {
+        "targets": [
+          "ARHGEF25",
+          "CCND1",
+          "CDK4",
+          "STAT3"
+        ],
+        "cost": 4.08944327892641,
+        "coverage": 0.7592592592592593,
+        "size": 4
+      }
+    ],
+    "constraint_stats": {
+      "before": 1,
+      "removed_no_druggable": 0,
+      "removed_pan_essential": 0,
+      "removed_high_toxicity": 0,
+      "removed_pathway_redundant": 0,
+      "after": 1
+    },
+    "diversity_unconstrained": {
+      "n_solutions": 1,
+      "mean_jaccard": 0.0,
+      "min_jaccard": 0.0,
+      "max_jaccard": 0.0,
+      "n_unique_genes": 4,
+      "gene_entropy": 0.0
+    },
+    "diversity_constrained": {
+      "n_solutions": 1,
+      "mean_jaccard": 0.0,
+      "min_jaccard": 0.0,
+      "max_jaccard": 0.0,
+      "n_unique_genes": 4,
+      "gene_entropy": 0.0
+    },
+    "top1_changed": false,
+    "top1_jaccard_dist": 0.0
+  },
+  {
+    "cancer_type": "Melanoma",
+    "unconstrained_solutions": [
+      {
+        "targets": [
+          "CCND1",
+          "DUSP4",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "cost": 4.3958398205626725,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "FERMT2",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "cost": 4.4290862366254515,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "MAP2K1",
+          "MDM2",
+          "STAT3"
+        ],
+        "cost": 4.447837152604499,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "KRAS",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "cost": 4.501621350847771,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "MAP2K1",
+          "STAT3",
+          "TFAP2A"
+        ],
+        "cost": 4.526739345303795,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "MAP2K1",
+          "MITF",
+          "STAT3"
+        ],
+        "cost": 4.551487070519554,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "MAP2K1",
+          "RNF145",
+          "STAT3"
+        ],
+        "cost": 4.552707884949265,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CRTC3",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "cost": 4.555632348893266,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CRKL",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "cost": 4.565976080950977,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "DEXI",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "cost": 4.566335703473023,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "MAP2K1",
+          "PTK2",
+          "STAT3"
+        ],
+        "cost": 4.569582835509356,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "MAP2K1",
+          "MMP24OS",
+          "STAT3"
+        ],
+        "cost": 4.581306308244502,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "ITGAV",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "cost": 4.587408026110515,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "ELOA",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "cost": 4.590262368489464,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "MAP2K1",
+          "PPP4R3C",
+          "STAT3"
+        ],
+        "cost": 4.598040039587606,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "EGLN1",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "cost": 4.600711972289835,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "MAP2K1",
+          "SOX9",
+          "STAT3"
+        ],
+        "cost": 4.608553683140626,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "DCLRE1B",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "cost": 4.611464404314077,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "GOLGA6L2",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "cost": 4.617981000523847,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "COP1",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "cost": 4.622531757003928,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      }
+    ],
+    "constrained_solutions": [
+      {
+        "targets": [
+          "CCND1",
+          "DUSP4",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "cost": 4.3958398205626725,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "FERMT2",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "cost": 4.4290862366254515,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "MAP2K1",
+          "MDM2",
+          "STAT3"
+        ],
+        "cost": 4.447837152604499,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "KRAS",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "cost": 4.501621350847771,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "MAP2K1",
+          "STAT3",
+          "TFAP2A"
+        ],
+        "cost": 4.526739345303795,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "MAP2K1",
+          "MITF",
+          "STAT3"
+        ],
+        "cost": 4.551487070519554,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "MAP2K1",
+          "RNF145",
+          "STAT3"
+        ],
+        "cost": 4.552707884949265,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CRTC3",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "cost": 4.555632348893266,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CRKL",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "cost": 4.565976080950977,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "DEXI",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "cost": 4.566335703473023,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "MAP2K1",
+          "PTK2",
+          "STAT3"
+        ],
+        "cost": 4.569582835509356,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "MAP2K1",
+          "MMP24OS",
+          "STAT3"
+        ],
+        "cost": 4.581306308244502,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "ITGAV",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "cost": 4.587408026110515,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "ELOA",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "cost": 4.590262368489464,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "MAP2K1",
+          "PPP4R3C",
+          "STAT3"
+        ],
+        "cost": 4.598040039587606,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "EGLN1",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "cost": 4.600711972289835,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "MAP2K1",
+          "SOX9",
+          "STAT3"
+        ],
+        "cost": 4.608553683140626,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "DCLRE1B",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "cost": 4.611464404314077,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "GOLGA6L2",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "cost": 4.617981000523847,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "COP1",
+          "MAP2K1",
+          "STAT3"
+        ],
+        "cost": 4.622531757003928,
+        "coverage": 0.8095238095238095,
+        "size": 4
+      }
+    ],
+    "constraint_stats": {
+      "before": 20,
+      "removed_no_druggable": 0,
+      "removed_pan_essential": 0,
+      "removed_high_toxicity": 0,
+      "removed_pathway_redundant": 0,
+      "after": 20
+    },
+    "diversity_unconstrained": {
+      "n_solutions": 20,
+      "mean_jaccard": 0.3999999999999999,
+      "min_jaccard": 0.4,
+      "max_jaccard": 0.4,
+      "n_unique_genes": 23,
+      "gene_entropy": 3.08048202368866
+    },
+    "diversity_constrained": {
+      "n_solutions": 20,
+      "mean_jaccard": 0.3999999999999999,
+      "min_jaccard": 0.4,
+      "max_jaccard": 0.4,
+      "n_unique_genes": 23,
+      "gene_entropy": 3.08048202368866
+    },
+    "top1_changed": false,
+    "top1_jaccard_dist": 0.0
+  },
+  {
+    "cancer_type": "Non-Small Cell Lung Cancer",
+    "unconstrained_solutions": [
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "CDK6",
+          "STAT3"
+        ],
+        "cost": 4.628494341093858,
+        "coverage": 0.7894736842105263,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "CDK6",
+          "MCL1"
+        ],
+        "cost": 5.038658543891197,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MCL1",
+          "PIK3CA"
+        ],
+        "cost": 5.238658543891197,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MCL1",
+          "NFE2L2"
+        ],
+        "cost": 5.2596058109777655,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MCL1",
+          "UBIAD1"
+        ],
+        "cost": 5.276110103848276,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MCL1",
+          "TYMS"
+        ],
+        "cost": 5.287743777477276,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "ITGAV",
+          "MCL1"
+        ],
+        "cost": 5.310986305500916,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "CFLAR",
+          "MCL1"
+        ],
+        "cost": 5.31171021357741,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "GMNN",
+          "MCL1"
+        ],
+        "cost": 5.314479152152713,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "IMPDH2",
+          "MCL1"
+        ],
+        "cost": 5.315488135960109,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MCL1",
+          "UBE2H"
+        ],
+        "cost": 5.322523736501227,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "C10orf95 (79946)",
+          "CCND1",
+          "CDK4",
+          "MCL1"
+        ],
+        "cost": 5.3230819371160845,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "EIF1AY",
+          "MCL1"
+        ],
+        "cost": 5.32335721188566,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "ITGB5",
+          "MCL1"
+        ],
+        "cost": 5.323701989303107,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MCL1",
+          "PTDSS1"
+        ],
+        "cost": 5.3260481766264505,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MCL1",
+          "TIPARP"
+        ],
+        "cost": 5.3271195859388705,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MCL1",
+          "UAP1"
+        ],
+        "cost": 5.328363398960338,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "BIRC6",
+          "CCND1",
+          "CDK4",
+          "MCL1"
+        ],
+        "cost": 5.328408463375832,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MCL1",
+          "SREBF1"
+        ],
+        "cost": 5.329253869896656,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "GRB2",
+          "MCL1"
+        ],
+        "cost": 5.331285916826656,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      }
+    ],
+    "constrained_solutions": [
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "CDK6",
+          "MCL1"
+        ],
+        "cost": 5.038658543891197,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MCL1",
+          "PIK3CA"
+        ],
+        "cost": 5.238658543891197,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MCL1",
+          "NFE2L2"
+        ],
+        "cost": 5.2596058109777655,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MCL1",
+          "UBIAD1"
+        ],
+        "cost": 5.276110103848276,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MCL1",
+          "TYMS"
+        ],
+        "cost": 5.287743777477276,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "ITGAV",
+          "MCL1"
+        ],
+        "cost": 5.310986305500916,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "CFLAR",
+          "MCL1"
+        ],
+        "cost": 5.31171021357741,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "GMNN",
+          "MCL1"
+        ],
+        "cost": 5.314479152152713,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "IMPDH2",
+          "MCL1"
+        ],
+        "cost": 5.315488135960109,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MCL1",
+          "UBE2H"
+        ],
+        "cost": 5.322523736501227,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "C10orf95 (79946)",
+          "CCND1",
+          "CDK4",
+          "MCL1"
+        ],
+        "cost": 5.3230819371160845,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "EIF1AY",
+          "MCL1"
+        ],
+        "cost": 5.32335721188566,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "ITGB5",
+          "MCL1"
+        ],
+        "cost": 5.323701989303107,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MCL1",
+          "PTDSS1"
+        ],
+        "cost": 5.3260481766264505,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MCL1",
+          "TIPARP"
+        ],
+        "cost": 5.3271195859388705,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MCL1",
+          "UAP1"
+        ],
+        "cost": 5.328363398960338,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "BIRC6",
+          "CCND1",
+          "CDK4",
+          "MCL1"
+        ],
+        "cost": 5.328408463375832,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "MCL1",
+          "SREBF1"
+        ],
+        "cost": 5.329253869896656,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      },
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "GRB2",
+          "MCL1"
+        ],
+        "cost": 5.331285916826656,
+        "coverage": 0.8070175438596491,
+        "size": 4
+      }
+    ],
+    "constraint_stats": {
+      "before": 20,
+      "removed_no_druggable": 0,
+      "removed_pan_essential": 0,
+      "removed_high_toxicity": 0,
+      "removed_pathway_redundant": 1,
+      "after": 19
+    },
+    "diversity_unconstrained": {
+      "n_solutions": 20,
+      "mean_jaccard": 0.42526315789473673,
+      "min_jaccard": 0.4,
+      "max_jaccard": 0.6666666666666667,
+      "n_unique_genes": 23,
+      "gene_entropy": 3.127081262967649
+    },
+    "diversity_constrained": {
+      "n_solutions": 19,
+      "mean_jaccard": 0.39999999999999997,
+      "min_jaccard": 0.4,
+      "max_jaccard": 0.4,
+      "n_unique_genes": 22,
+      "gene_entropy": 3.0619818783291572
+    },
+    "top1_changed": true,
+    "top1_jaccard_dist": 0.4
+  },
+  {
+    "cancer_type": "Ovarian Epithelial Tumor",
+    "unconstrained_solutions": [
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "PAX8",
+          "STAT3"
+        ],
+        "cost": 4.716451801046339,
+        "coverage": 0.7647058823529411,
+        "size": 4
+      }
+    ],
+    "constrained_solutions": [
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "PAX8",
+          "STAT3"
+        ],
+        "cost": 4.716451801046339,
+        "coverage": 0.7647058823529411,
+        "size": 4
+      }
+    ],
+    "constraint_stats": {
+      "before": 1,
+      "removed_no_druggable": 0,
+      "removed_pan_essential": 0,
+      "removed_high_toxicity": 0,
+      "removed_pathway_redundant": 0,
+      "after": 1
+    },
+    "diversity_unconstrained": {
+      "n_solutions": 1,
+      "mean_jaccard": 0.0,
+      "min_jaccard": 0.0,
+      "max_jaccard": 0.0,
+      "n_unique_genes": 4,
+      "gene_entropy": 0.0
+    },
+    "diversity_constrained": {
+      "n_solutions": 1,
+      "mean_jaccard": 0.0,
+      "min_jaccard": 0.0,
+      "max_jaccard": 0.0,
+      "n_unique_genes": 4,
+      "gene_entropy": 0.0
+    },
+    "top1_changed": false,
+    "top1_jaccard_dist": 0.0
+  },
+  {
+    "cancer_type": "Pancreatic Adenocarcinoma",
+    "unconstrained_solutions": [
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "CDK6",
+          "RAB10"
+        ],
+        "cost": 4.563525938996882,
+        "coverage": 0.7962962962962963,
+        "size": 4
+      }
+    ],
+    "constrained_solutions": [
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "CDK6",
+          "RAB10"
+        ],
+        "cost": 4.563525938996882,
+        "coverage": 0.7962962962962963,
+        "size": 4
+      }
+    ],
+    "constraint_stats": {
+      "before": 1,
+      "removed_no_druggable": 0,
+      "removed_pan_essential": 0,
+      "removed_high_toxicity": 0,
+      "removed_pathway_redundant": 0,
+      "after": 1
+    },
+    "diversity_unconstrained": {
+      "n_solutions": 1,
+      "mean_jaccard": 0.0,
+      "min_jaccard": 0.0,
+      "max_jaccard": 0.0,
+      "n_unique_genes": 4,
+      "gene_entropy": 0.0
+    },
+    "diversity_constrained": {
+      "n_solutions": 1,
+      "mean_jaccard": 0.0,
+      "min_jaccard": 0.0,
+      "max_jaccard": 0.0,
+      "n_unique_genes": 4,
+      "gene_entropy": 0.0
+    },
+    "top1_changed": false,
+    "top1_jaccard_dist": 0.0
+  },
+  {
+    "cancer_type": "Prostate Adenocarcinoma",
+    "unconstrained_solutions": [
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "E2F3",
+          "STAT3"
+        ],
+        "cost": 3.9671557264415065,
+        "coverage": 0.7592592592592593,
+        "size": 4
+      }
+    ],
+    "constrained_solutions": [
+      {
+        "targets": [
+          "CCND1",
+          "CDK4",
+          "E2F3",
+          "STAT3"
+        ],
+        "cost": 3.9671557264415065,
+        "coverage": 0.7592592592592593,
+        "size": 4
+      }
+    ],
+    "constraint_stats": {
+      "before": 1,
+      "removed_no_druggable": 0,
+      "removed_pan_essential": 0,
+      "removed_high_toxicity": 0,
+      "removed_pathway_redundant": 0,
+      "after": 1
+    },
+    "diversity_unconstrained": {
+      "n_solutions": 1,
+      "mean_jaccard": 0.0,
+      "min_jaccard": 0.0,
+      "max_jaccard": 0.0,
+      "n_unique_genes": 4,
+      "gene_entropy": 0.0
+    },
+    "diversity_constrained": {
+      "n_solutions": 1,
+      "mean_jaccard": 0.0,
+      "min_jaccard": 0.0,
+      "max_jaccard": 0.0,
+      "n_unique_genes": 4,
+      "gene_entropy": 0.0
+    },
+    "top1_changed": false,
+    "top1_jaccard_dist": 0.0
+  },
+  {
+    "cancer_type": "Renal Cell Carcinoma",
+    "unconstrained_solutions": [
+      {
+        "targets": [
+          "CCND1",
+          "CDH2",
+          "CDK4",
+          "STAT3"
+        ],
+        "cost": 4.784925787122237,
+        "coverage": 0.75,
+        "size": 4
+      }
+    ],
+    "constrained_solutions": [],
+    "constraint_stats": {
+      "before": 1,
+      "removed_no_druggable": 0,
+      "removed_pan_essential": 0,
+      "removed_high_toxicity": 0,
+      "removed_pathway_redundant": 1,
+      "after": 0
+    },
+    "diversity_unconstrained": {
+      "n_solutions": 1,
+      "mean_jaccard": 0.0,
+      "min_jaccard": 0.0,
+      "max_jaccard": 0.0,
+      "n_unique_genes": 4,
+      "gene_entropy": 0.0
+    },
+    "diversity_constrained": {
+      "n_solutions": 0,
+      "mean_jaccard": 0,
+      "n_unique_genes": 0,
+      "gene_entropy": 0
+    },
+    "top1_changed": true,
+    "top1_jaccard_dist": 1.0
+  }
+]
