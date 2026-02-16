@@ -108,19 +108,19 @@ def draw_panel_a(ax):
          C["data"]),
 
         ("Survival Mechanism Inference",
-         "Essentiality + Co-essentiality + Signaling paths + Statistical dep.",
+         "Essentiality + Co-essentiality + Signaling paths + Statistical dep. + Perturbation",
          C["inference"]),
 
         ("Minimal Hitting Set (MHS)",
-         "Greedy set-cover · hub-gene penalty · covers all mechanisms",
+         "Greedy set-cover · ILP solver · covers all inferred mechanisms",
          C["mhs"]),
 
         ("Triple Combination Ranking",
-         "Synergy · resistance risk · combo-toxicity · pathway coverage",
+         "Synergy · resistance · combo-toxicity · coverage · hub-gene penalty",
          C["ranking"]),
 
         ("Multi-Source Validation",
-         "PubMed · STRING · ClinicalTrials.gov · PRISM · GDSC",
+         "PubMed · STRING · ClinicalTrials.gov · PRISM · DrugComb synergy",
          C["validation"]),
     ]
 
@@ -161,7 +161,7 @@ def draw_panel_a(ax):
     # Left annotation: "4 complementary\napproaches" next to inference box
     cx_inf, yb_inf, yt_inf = positions[2]
     ax.text(x0 - 0.03, yb_inf + (yt_inf - yb_inf) / 2,
-            "4 modules",
+            "5 modules",
             ha="right", va="center", fontsize=7, color=C["inference"],
             fontstyle="italic", fontweight="bold")
 
