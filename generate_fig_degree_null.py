@@ -300,7 +300,7 @@ def draw_panel_c(ax):
     # Key insight annotation
     ax.annotate("STAT3: 100% observed\nvs. 12% in null",
                 xy=(x[0] + width / 2, obs_vals[0]),
-                xytext=(x[2] + 0.3, 105),
+                xytext=(x[1] + 0.5, 90),
                 fontsize=8, fontweight="bold", color=C["stat3"],
                 arrowprops=dict(arrowstyle="-|>", color=C["stat3"],
                                 lw=1.3, connectionstyle="arc3,rad=-0.2"),
@@ -313,14 +313,14 @@ def draw_panel_c(ax):
 # Main
 # ═════════════════════════════════════════════════════════════════════════════
 def main():
-    fig = plt.figure(figsize=(15, 5.5))
+    fig = plt.figure(figsize=(16, 5.8))
     fig.patch.set_facecolor("white")
 
     # Layout: Panel A (left, schematic), Panel B (center, histogram),
     #         Panel C (right, bar chart)
     gs = fig.add_gridspec(1, 3, width_ratios=[1.1, 0.9, 1.0],
-                          left=0.04, right=0.97, top=0.92, bottom=0.12,
-                          wspace=0.30)
+                          left=0.04, right=0.96, top=0.88, bottom=0.13,
+                          wspace=0.32)
 
     ax_a = fig.add_subplot(gs[0, 0])
     ax_b = fig.add_subplot(gs[0, 1])
@@ -332,7 +332,7 @@ def main():
 
     # Suptitle
     fig.suptitle("Degree-Preserving Network Null Model",
-                 fontsize=13, fontweight="bold", y=0.99, color="#333333")
+                 fontsize=13, fontweight="bold", y=0.97, color="#333333")
 
     out = Path("figures")
     out.mkdir(exist_ok=True)
