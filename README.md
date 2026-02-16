@@ -39,7 +39,7 @@ The pipeline extends the PDAC-specific approach to:
 
 - **Integrated pipeline** — End-to-end from DepMap + OmniPath to ranked triple combinations.
 - **Reproducible** — Pinned dependencies, data availability documentation, full pipeline script.
-- **Validated** — 44.2% any-overlap recall vs. 43-entry clinical gold standard (64.0% on 25 testable entries; p < 0.001 vs. random).
+- **Validated** — 44.2% any-overlap recall vs. 43-entry clinical gold standard (54.3% on 35 testable entries; p < 0.001 vs. random); DrugComb synergy validation (ZIP: Δ = +2.59, p = 0.0001).
 - **Novel discovery** — Multiple combinations with no existing clinical trials.
 
 ---
@@ -53,6 +53,7 @@ The pipeline extends the PDAC-specific approach to:
 | **DepMap** | [depmap.org](https://depmap.org) | CRISPR gene dependency (Chronos), cell line metadata (Model.csv), cancer type (OncotreePrimaryDisease) |
 | **OmniPath** | Built-in / API | Cancer signaling network (MAPK, PI3K/AKT, JAK/STAT, SRC, cell cycle, apoptosis, etc.) |
 | **PRISM** | DepMap Repurposing | Drug sensitivity for validation (primary + secondary screens) |
+| **DrugComb** | [drugcomb.fimm.fi](https://drugcomb.fimm.fi) | Pairwise drug combination synergy (739,964 measurements, 288 cell lines, 17 tissues) |
 | **GDSC** | Sanger Institute | Alternative drug sensitivity (optional) |
 
 ### 2. Cancer Type Mapping
@@ -109,6 +110,7 @@ Predicted combinations are validated against:
 2. **STRING** — Protein–protein interaction and functional enrichment.
 3. **ClinicalTrials.gov** — Matching trials by drug names and cancer type.
 4. **Drug sensitivity (PRISM/GDSC)** — Gene–drug correlation, Bliss independence for combination effect.
+5. **DrugComb synergy** — Pairwise drug combination synergy scores (ZIP, Bliss, Loewe, HSA) compared between ALIN-predicted and non-predicted target pairs in tissue-matched cell lines.
 
 ### 7. Patient Stratification
 
@@ -132,7 +134,7 @@ Predictions are compared against a **gold standard** of 43 FDA-approved and clin
 
 - **Pan-cancer analysis** — DepMap CRISPR + OncoTree cancer type mapping
 - **Triple combinations** — Network topology (X-nodes), synergy scoring, resistance prediction
-- **Multi-source validation** — PubMed, STRING, ClinicalTrials.gov, PRISM drug sensitivity
+- **Multi-source validation** — PubMed, STRING, ClinicalTrials.gov, PRISM drug sensitivity, DrugComb synergy
 - **Patient stratification** — Mutation-based subgroups, companion diagnostics
 - **Benchmarking** — 44.2% any-overlap recall vs. 43-entry clinical gold standard
 - **Novel discovery** — 5 combinations with no existing clinical trials
@@ -233,17 +235,18 @@ benchmark_results/
 
 Against 43 independently curated FDA-approved and Phase 2/3-validated multi-target combinations:
 
-| Metric | Full (43 entries) | Testable (25 entries) |
+| Metric | Full (43 entries) | Testable (35 entries) |
 |--------|-------------------|----------------------|
-| Exact recall | 7.0% (3/43) | 12.0% (3/25) |
-| Superset recall | 9.3% (4/43) | 16.0% (4/25) |
-| Pair-overlap recall | 30.2% (13/43) | 44.0% (11/25) |
-| Any-overlap recall | 44.2% (19/43) | 64.0% (16/25) |
-| Cancer-level precision | 47.1% (8/17) | 58.3% (7/12) |
+| Exact recall | 7.0% (3/43) | 8.6% (3/35) |
+| Superset recall | 9.3% (4/43) | 11.4% (4/35) |
+| Pair-overlap recall | 30.2% (13/43) | 37.1% (13/35) |
+| Any-overlap recall | 44.2% (19/43) | 54.3% (19/35) |
+| Cancer-level precision | 47.1% (8/17) | — |
 
 - **vs. Random baseline:** 8.8% any-overlap (p < 0.001)
 - **vs. Driver-gene baseline:** 16.3% pair-overlap
 - **vs. Candidate-pool random:** 0.2% any-overlap (confirms scoring drives performance)
+- **DrugComb synergy validation:** ALIN-predicted target pairs show significantly higher synergy (ZIP: Δ = +2.59, Cohen's d = 0.24, p = 0.0001; Bliss: p = 0.011) across 6 evaluable cancer types
 - **Mean rank when matched:** 1.0 (top prediction)
 
 ---

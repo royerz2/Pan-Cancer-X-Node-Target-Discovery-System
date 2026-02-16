@@ -27,6 +27,14 @@
   - Secondary (dose-response): https://ndownloader.figshare.com/files/20237739 (`secondary-screen-dose-response-curve-parameters.csv`)
 - Save into **`drug_sensitivity_data/`**
 
+### DrugComb v1.5 (optional – synergy validation)
+- **Portal:** https://drugcomb.fimm.fi
+- **Download:** https://drugcomb.fimm.fi/jing/summary_v_1_5.csv (or via API)
+- **References:** Zagidullin et al., Nucleic Acids Res 2019; Zheng et al., Nucleic Acids Res 2022
+- **Contains:** 739,964 pairwise drug combination measurements, 288 cell lines, 17 tissues
+- **Synergy models:** ZIP, Bliss, Loewe, HSA
+- Save into **`synergy_data/`**
+
 ---
 
 ## What to download NOW (summary)
@@ -37,6 +45,7 @@
 | Optional | Project Score (for Sanger validation) | `validation_data/` | [score.depmap.sanger.ac.uk/downloads](https://score.depmap.sanger.ac.uk/downloads) — or direct: [binaryDepScores.tsv.zip](https://cog.sanger.ac.uk/cmp/download/binaryDepScores.tsv.zip) |
 | Optional | O'Neil 2016 synergy (for synergy validation) | `validation_data/oneil_2016_synergy.csv` | [AACR article (supplementary)](https://aacrjournals.org/mct/article/15/6/1155/92159/An-Unbiased-Oncology-Compound-Screen-to-Identify) |
 | Optional | PRISM (drug sensitivity) | `drug_sensitivity_data/` | [depmap.org/repurposing](https://depmap.org/repurposing/) — or direct Figshare links above |
+| Optional | DrugComb v1.5 (synergy validation) | `synergy_data/` | [drugcomb.fimm.fi](https://drugcomb.fimm.fi) |
 
 **No download needed for:** tissue expression weight (OpenTargets API), FDA ADRs (OpenFDA API), cBioPortal validations — all use public APIs.
 
@@ -56,6 +65,7 @@
 | **PRISM Primary** | DepMap Repurposing | https://depmap.org/repurposing/ | primary-screen-replicate-collapsed-logfold-change.csv, primary-screen-replicate-collapsed-treatment-info.csv |
 | **PRISM Secondary** | DepMap Repurposing | https://depmap.org/repurposing/ | secondary-screen-dose-response-curve-parameters.csv |
 | **GDSC** | Sanger Institute | https://www.cancerrxgene.org/downloads | GDSC2_fitted_dose_response.xlsx |
+| **DrugComb** | FIMM (Univ. Helsinki) | https://drugcomb.fimm.fi | summary_v_1_5.csv (739,964 measurements, 288 cell lines, 17 tissues) |
 | **CCLE Expression** | DepMap | https://depmap.org/portal/download/ | CCLE_expression.csv or OmicsExpressionProteinCodingGenesTPMLogp1.csv (for expression-filtered essentiality) |
 
 ## API Access (optional)

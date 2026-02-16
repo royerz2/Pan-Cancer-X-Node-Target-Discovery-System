@@ -45,6 +45,16 @@ This document records the exact versions of data sources used in the ALIN Framew
 - **PubMed ID**: 27397505
 - **DOI**: 10.1158/1535-7163.MCT-15-0843
 
+### DrugComb v1.5
+- **Publication**: Zagidullin et al., Nucleic Acids Res 2019; Zheng et al., Nucleic Acids Res 2022
+- **URL**: https://drugcomb.fimm.fi
+- **Version**: v1.5
+- **Total measurements**: 739,964 pairwise drug combination measurements
+- **Cell lines**: 288
+- **Tissues**: 17
+- **Synergy models used**: ZIP, Bliss, Loewe, HSA
+- **Used for**: Independent pharmacological validation of ALIN-predicted target pairs
+
 ## API Services
 
 ### PubMed/NCBI
