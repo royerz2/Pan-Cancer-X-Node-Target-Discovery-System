@@ -77,7 +77,7 @@ def draw_panel_a(ax):
         for name, (x, y) in nodes.items():
             circle = plt.Circle((x, y), nr, facecolor=C["node"],
                                 edgecolor=C["node_edge"], linewidth=1.5,
-                                zorder=5, alpha=0.9)
+                                zorder=5, alpha=0.9, clip_on=False)
             ax.add_patch(circle)
             if node_labels:
                 ax.text(x, y, name, ha="center", va="center", fontsize=8,
@@ -122,13 +122,13 @@ def draw_panel_a(ax):
             fontsize=7.5, color=C["swap_arrow"], fontstyle="italic")
 
     # --- Right: Rewired graph ---
-    ax.text(0.83, 0.97, "Rewired Network", ha="center", va="top",
+    ax.text(0.78, 0.97, "Rewired Network", ha="center", va="top",
             fontsize=9, fontweight="bold", color=C["text"])
 
     nodes_right = {
-        "A": (0.71, 0.78), "B": (0.95, 0.78),
-        "C": (0.71, 0.55), "D": (0.95, 0.55),
-        "E": (0.71, 0.32), "F": (0.95, 0.32),
+        "A": (0.66, 0.78), "B": (0.90, 0.78),
+        "C": (0.66, 0.55), "D": (0.90, 0.55),
+        "E": (0.66, 0.32), "F": (0.90, 0.32),
     }
 
     # After swap: A→D becomes A→E, C→E becomes C→D
@@ -144,9 +144,9 @@ def draw_panel_a(ax):
     draw_graph(ax, nodes_right, edges_rewired,
                highlight_edges=new_edges, highlight_color=C["edge_new"])
 
-    ax.text(0.65, 0.56, "A→E", ha="center", va="center", fontsize=7,
+    ax.text(0.60, 0.56, "A→E", ha="center", va="center", fontsize=7,
             color=C["edge_new"], fontweight="bold", rotation=-35)
-    ax.text(0.88, 0.57, "C→D", ha="center", va="center", fontsize=7,
+    ax.text(0.83, 0.57, "C→D", ha="center", va="center", fontsize=7,
             color=C["edge_new"], fontweight="bold", rotation=0)
 
     # Degree table
