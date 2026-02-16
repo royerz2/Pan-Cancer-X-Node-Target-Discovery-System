@@ -14,10 +14,12 @@ import sys
 import time
 import json
 import logging
+import os
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 
 logging.basicConfig(level=logging.WARNING)
 

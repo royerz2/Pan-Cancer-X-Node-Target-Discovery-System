@@ -266,22 +266,22 @@ class TestPaperConsistency:
     """Verify paper reports baseline metrics accurately."""
 
     def test_paper_mentions_driver_baseline(self):
-        paper = Path('paper.tex').read_text()
+        paper = Path('manuscript/paper.tex').read_text()
         assert 'driver' in paper.lower(), \
             "Paper must mention the driver-gene baseline"
 
     def test_paper_mentions_essentiality_baseline(self):
-        paper = Path('paper.tex').read_text()
+        paper = Path('manuscript/paper.tex').read_text()
         assert 'essentiality' in paper.lower(), \
             "Paper must mention the essentiality baseline"
 
     def test_paper_reports_pairwise_for_baselines(self):
         """Paper should report pairwise recall for baselines, not just superset."""
-        paper = Path('paper.tex').read_text()
+        paper = Path('manuscript/paper.tex').read_text()
         # The paper should mention "pairwise" near baseline results
         assert 'pairwise' in paper.lower()
 
     def test_paper_mentions_frequency_baseline_tie(self):
         """Paper should honestly acknowledge the frequency baseline tie."""
-        paper = Path('paper.tex').read_text()
+        paper = Path('manuscript/paper.tex').read_text()
         assert 'frequency' in paper.lower()

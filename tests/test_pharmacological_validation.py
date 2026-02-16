@@ -315,7 +315,7 @@ class TestPaperConsistency:
     @pytest.fixture(autouse=True)
     def load_paper(self):
         from pathlib import Path
-        paper_path = Path(__file__).parent.parent / "paper.tex"
+        paper_path = Path(__file__).parent.parent / "manuscript" / "paper.tex"
         if paper_path.exists():
             self.paper_text = paper_path.read_text()
         else:

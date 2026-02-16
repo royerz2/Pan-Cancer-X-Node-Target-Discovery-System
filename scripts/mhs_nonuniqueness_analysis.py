@@ -27,7 +27,7 @@ logging.basicConfig(level=logging.WARNING)
 logger = logging.getLogger(__name__)
 
 # ── Imports from pipeline ───────────────────────────────────────────────
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from pan_cancer_xnode import (
     DepMapLoader, OmniPathLoader, DrugTargetDB,

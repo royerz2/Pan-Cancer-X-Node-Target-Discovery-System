@@ -77,7 +77,7 @@ def collect_all_scored_combos() -> pd.DataFrame:
     then re-call triple_finder.find_triple_combinations() with a huge
     top_n to capture the full ranking (not just top-10).
     """
-    sys.path.insert(0, '.')
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
     from pan_cancer_xnode import PanCancerXNodeAnalyzer
 
     analyzer = PanCancerXNodeAnalyzer()

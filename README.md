@@ -159,7 +159,7 @@ pip install -r requirements.txt
 | PRISM | [depmap.org/repurposing](https://depmap.org/repurposing) | Optional — primary-screen-replicate-collapsed-*.csv, secondary-screen-dose-response-curve-parameters.csv |
 | OmniPath | Built-in / API | Built-in cancer signaling network |
 
-Place DepMap files in `depmap_data/`. PRISM in `drug_sensitivity_data/`. See [DATA_AVAILABILITY.md](DATA_AVAILABILITY.md) for URLs and licenses.
+Place DepMap files in `depmap_data/`. PRISM in `drug_sensitivity_data/`. See [docs/DATA_AVAILABILITY.md](docs/DATA_AVAILABILITY.md) for URLs and licenses.
 
 ---
 
@@ -185,7 +185,7 @@ python benchmarking_module.py --triples results/triple_combinations.csv --output
 python benchmarking_module.py --triples results/triple_combinations.csv --baselines --n-trials 30 --output benchmark_results/
 
 # Gold standard pipeline (benchmark cancer types only)
-python run_pipeline.py
+python scripts/run_pipeline.py
 
 # Full reproducibility pipeline
 bash run_full_pipeline.sh
@@ -251,6 +251,29 @@ Against 43 independently curated FDA-approved and Phase 2/3-validated multi-targ
 
 ---
 
+## Repository Structure
+
+```
+├── pan_cancer_xnode.py          # Main discovery engine
+├── gold_standard.py             # Clinical gold standard + benchmark functions
+├── benchmarking_module.py       # Gold standard comparison, baselines
+├── pharmacological_validation.py # Drug-target validation
+├── parameter_tuning.py          # Scoring weight tuning
+├── outcome_benchmark.py         # Outcome-based benchmarking
+├── conftest.py                  # Pytest configuration
+├── run_full_pipeline.sh         # Full reproducibility entrypoint
+├── alin/                        # Core library package
+├── core/                        # Data structures, statistics
+├── tests/                       # Unit/integration tests (171 tests)
+├── scripts/                     # Analysis & figure generation scripts
+├── manuscript/                  # LaTeX source (paper.tex, supplementary.tex)
+├── docs/                        # Documentation (DATA_AVAILABILITY, VERSION_INFO)
+├── figures/                     # Generated figures (PNG/PDF)
+└── results/                     # Pipeline output
+```
+
+---
+
 ## Module Overview
 
 | Module | Role |
@@ -264,7 +287,7 @@ Against 43 independently curated FDA-approved and Phase 2/3-validated multi-targ
 | `alin/toxicity.py` | OpenTargets toxicity, tissue expression (cost function) |
 | `alin/utils.py` | Shared utilities (sanitize_cancer_name, load_depmap_crispr_subset) |
 | `benchmarking_module.py` | Gold standard comparison, random/top-genes baselines |
-| `run_pipeline.py` | Run pipeline for gold standard cancer types |
+| `scripts/run_pipeline.py` | Run pipeline for gold standard cancer types |
 | `gold_standard.py` | Clinical gold standard entries + benchmark functions |
 
 ---

@@ -15,6 +15,7 @@ Outputs:
 
 import sys
 import json
+import os
 import warnings
 from pathlib import Path
 from collections import defaultdict
@@ -24,6 +25,7 @@ import pandas as pd
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 
 warnings.filterwarnings('ignore', category=FutureWarning)
 

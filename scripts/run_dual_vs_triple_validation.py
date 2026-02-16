@@ -41,7 +41,7 @@ from scipy import stats
 
 np.random.seed(42)
 
-BASE = Path(__file__).parent
+BASE = Path(__file__).parent.parent
 FIG_DIR = BASE / "figures"
 RESULTS_DIR = BASE / "validation_results"
 RESULTS_DIR.mkdir(exist_ok=True)

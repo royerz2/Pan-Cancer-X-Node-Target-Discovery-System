@@ -16,10 +16,12 @@ import time
 import random
 import logging
 import json
+import os
 import numpy as np
 import pandas as pd
 from pathlib import Path
 from collections import Counter
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 
 logging.basicConfig(level=logging.WARNING)
 

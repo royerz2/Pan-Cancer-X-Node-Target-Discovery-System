@@ -34,6 +34,7 @@ import pandas as pd
 
 warnings.filterwarnings('ignore')
 logging.basicConfig(level=logging.WARNING)
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 
 # ---------------------------------------------------------------------------
 # Gold standard benchmark (43-entry)

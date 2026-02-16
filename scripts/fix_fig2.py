@@ -43,7 +43,7 @@ C = {
     'grid': '#DDDDDD',
 }
 
-BASE = Path(__file__).parent
+BASE = Path(__file__).parent.parent
 FIGURES_DIR = BASE / 'figures'
 
 # Build target frequency from MHS data

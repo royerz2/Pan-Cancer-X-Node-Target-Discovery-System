@@ -302,7 +302,7 @@ class TestPaperConsistency:
         import os
         paper_path = os.path.join(
             os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-            'paper.tex'
+            'manuscript', 'paper.tex'
         )
         with open(paper_path, 'r') as f:
             return f.read()

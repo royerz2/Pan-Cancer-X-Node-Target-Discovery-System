@@ -15,9 +15,11 @@ Outputs: feasibility_results/ directory with CSV tables and summary stats.
 import csv
 import json
 import os
+import sys
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Tuple
 from pathlib import Path
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 
 # ---------------------------------------------------------------------------
 # Import ALIN infrastructure
@@ -601,7 +603,7 @@ def parse_merged_csv(path: str) -> List[dict]:
 
 def run_analysis():
     """Run the full feasibility analysis."""
-    base = Path(__file__).parent
+    base = Path(__file__).parent.parent
     outdir = base / 'feasibility_results'
     outdir.mkdir(exist_ok=True)
     

@@ -28,7 +28,7 @@ from scipy import stats
 # CONFIGURATION
 # ============================================================================
 
-BASE_DIR = Path(__file__).parent
+BASE_DIR = Path(__file__).parent.parent
 DRUGCOMB_PATH = BASE_DIR / "synergy_data" / "drugcomb_summary_v1.5.csv"
 RESULTS_DIR = BASE_DIR / "synergy_validation_results"
 RESULTS_DIR.mkdir(exist_ok=True)

@@ -537,7 +537,7 @@ def update_benchmark_metrics(base: Path):
 
 
 def main():
-    base = Path(__file__).parent
+    base = Path(__file__).parent.parent
     fig_dir = base / "figures"
     fig_dir.mkdir(exist_ok=True)
 

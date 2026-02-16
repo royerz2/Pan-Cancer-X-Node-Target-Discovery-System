@@ -51,7 +51,7 @@ from dataclasses import replace as dc_replace
 warnings.filterwarnings('ignore')
 np.random.seed(42)
 
-BASE = Path(__file__).parent
+BASE = Path(__file__).parent.parent
 RESULTS_DIR = BASE / "validation_results"
 RESULTS_DIR.mkdir(exist_ok=True)
 

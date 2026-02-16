@@ -23,7 +23,7 @@ echo ""
 
 # 3. Pathway shifting simulation (X-node vs three-axis comparison)
 echo "[3/4] Pathway shifting simulation (ODE-based X-node vs three-axis triple)..."
-python pathway_shifting_simulation.py
+python scripts/pathway_shifting_simulation.py
 echo "[3/4] Simulation done."
 echo ""
 

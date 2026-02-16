@@ -400,7 +400,7 @@ The 43 multi-target ($\geq$2 gene) gold-standard combinations were independently
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{figures/figS1_detailed_pipeline}
+\includegraphics[width=\textwidth]{../figures/figS1_detailed_pipeline}
 \caption{\textbf{Fig.\ S1: ALIN pipeline detailed flowchart.}
 End-to-end computational workflow from DepMap 24Q4 data ingestion through five survival mechanism inference methods, MHS optimization, ranked triple scoring, and multi-source validation. Full pipeline executes in $\sim$45 minutes on a single CPU (Apple M2, 16~GB RAM).}
 \label{fig:S1}
@@ -408,7 +408,7 @@ End-to-end computational workflow from DepMap 24Q4 data ingestion through five s
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{figures/figS2_coessentiality}
+\includegraphics[width=\textwidth]{../figures/figS2_coessentiality}
 \caption{\textbf{Fig.\ S2: Co-essentiality clustering methodology.}
 \textbf{(A)}~Binary essentiality matrix. \textbf{(B)}~Pairwise Jaccard co-essentiality. \textbf{(C)}~Ward's hierarchical clustering. \textbf{(D)}~Example melanoma modules.}
 \label{fig:S2}
@@ -416,7 +416,7 @@ End-to-end computational workflow from DepMap 24Q4 data ingestion through five s
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{figures/figS3_network_paths}
+\includegraphics[width=\textwidth]{../figures/figS3_network_paths}
 \caption{\textbf{Fig.\ S3: Network path inference from OmniPath.}
 \textbf{(A)}~OmniPath directed subgraph for melanoma. \textbf{(B)}~Dependency-weighted path scoring. \textbf{(C)}~Top melanoma paths.}
 \label{fig:S3}
@@ -424,7 +424,7 @@ End-to-end computational workflow from DepMap 24Q4 data ingestion through five s
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{figures/figS4_pathway_shifting}
+\includegraphics[width=\textwidth]{../figures/figS4_pathway_shifting}
 \caption{\textbf{Fig.\ S4: Pathway shifting simulation.}
 ODE-based systems biology model illustrating the deductive consequences of the tri-axial hypothesis under assumed compensatory signaling parameters. Tri-axial combinations yield $\sim$30\% lower modeled tumor viability than intra-axial combinations. See Supplementary Methods~S5 for full parameter justification and epistemic caveats.}
 \label{fig:S4}
@@ -432,7 +432,7 @@ ODE-based systems biology model illustrating the deductive consequences of the t
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{figures/figS5_novel_combinations}
+\includegraphics[width=\textwidth]{../figures/figS5_novel_combinations}
 \caption{\textbf{Fig.\ S5: Novel combination predictions for rare cancers.}
 MHS-derived combination predictions for cancer types with limited treatment options. Notable predictions include Chondrosarcoma (MCL1 alone), Retinoblastoma (OTX2+STAT3), Nerve Sheath Tumor (HNRNPH1+STAT3), and Pleural Mesothelioma (CCND1+FGFR1+MDM2+STAT3, 4-target). Five of 10 priority combinations had no partial clinical trial matches, indicating complete novelty.}
 \label{fig:S5}
@@ -440,7 +440,7 @@ MHS-derived combination predictions for cancer types with limited treatment opti
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{figures/figS4_benchmark_rank}
+\includegraphics[width=\textwidth]{../figures/figS4_benchmark_rank}
 \caption{\textbf{Fig.\ S6: Benchmark rank distribution.}
 \textbf{(A)}~Distribution of match types across 43 gold-standard entries. \textbf{(B)}~Baseline comparison against random and driver-gene baselines. \textbf{(C)}~Unmatched entries analysis.}
 \label{fig:S6}
@@ -448,7 +448,7 @@ MHS-derived combination predictions for cancer types with limited treatment opti
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{figures/figS_pearson_nmi_comparison}
+\includegraphics[width=\textwidth]{../figures/figS_pearson_nmi_comparison}
 \caption{\textbf{Fig.\ S7: Jaccard vs.\ Pearson co-essentiality comparison.}
 \textbf{(A)}~NMI between Jaccard-binarized and Pearson-correlation Ward clusterings as a function of cluster count $k$ (3--15). \textbf{(B)}~Per-cancer mean NMI. \textbf{(C)}~Silhouette score comparison. Mean NMI = $0.20 \pm 0.07$; Jaccard yields consistently higher silhouette scores (mean 0.054 vs.\ 0.025).}
 \label{fig:S7}
@@ -456,7 +456,7 @@ MHS-derived combination predictions for cancer types with limited treatment opti
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{figures/figS_lineage_benchmark}
+\includegraphics[width=\textwidth]{../figures/figS_lineage_benchmark}
 \caption{\textbf{Fig.\ S8: Lineage-stratified benchmark concordance.}
 \textbf{(A)}~ALIN recall stratified by lineage. \textbf{(B)}~Testable entries only. \textbf{(C)}~Per-cancer match level. All concordance derives from carcinomas (Fisher's exact $p = 0.0008$).}
 \label{fig:S8}
@@ -464,7 +464,7 @@ MHS-derived combination predictions for cancer types with limited treatment opti
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{figures/fig_s10_lineage_aware_comparison}
+\includegraphics[width=\textwidth]{../figures/fig_s10_lineage_aware_comparison}
 \caption{\textbf{Fig.\ S9: Lineage-aware vs.\ Welch cancer-specific dependency comparison.}
 \textbf{(A)}~Per-cancer Jaccard similarity between gene sets (median = 0.051). \textbf{(B)}~Number of cancer-specific genes per method. \textbf{(C)}~Benchmark concordance comparison (46.5\% vs.\ 48.8\% any-overlap).}
 \label{fig:S9}
@@ -472,7 +472,7 @@ MHS-derived combination predictions for cancer types with limited treatment opti
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{figures/fig_s11_mhs_triple_comparison}
+\includegraphics[width=\textwidth]{../figures/fig_s11_mhs_triple_comparison}
 \caption{\textbf{Fig.\ S10: MHS-to-triple target redistribution.}
 \textbf{(A)}~Overlap category distribution: 94.1\% (16/17) of cancer types show fully disjoint MHS and triple targets. \textbf{(B)}~STAT3 tracking across pipeline stages. \textbf{(C)}~Hub penalty comparison. \textbf{(D)}~MHS cost vs.\ triple combined score scatter. \textbf{(E)}~Per-cancer target changes. \textbf{(F)}~Gene frequency comparison.}
 \label{fig:S10}
@@ -480,7 +480,7 @@ MHS-derived combination predictions for cancer types with limited treatment opti
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{figures/figS12_dual_vs_triple}
+\includegraphics[width=\textwidth]{../figures/figS12_dual_vs_triple}
 \caption{\textbf{Fig.\ S11: Dual-vs.-triple escape-route validation.}
 Three complementary analyses across NSCLC, Melanoma, and CRC testing whether a third target provides functional value beyond the best dual: \textbf{(i)}~PRISM Bliss independence model, \textbf{(ii)}~network escape-route enumeration, and \textbf{(iii)}~stochastic time-to-escape simulation. The triple achieves escape-route counts $\leq$ the best dual across all three cancers.}
 \label{fig:S11}
@@ -488,7 +488,7 @@ Three complementary analyses across NSCLC, Melanoma, and CRC testing whether a t
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{figures/figS13_outcome_benchmarks}
+\includegraphics[width=\textwidth]{../figures/figS13_outcome_benchmarks}
 \caption{\textbf{Fig.\ S12: Exploratory success vs.\ failure discrimination.}
 Pre-specified co-essentiality AUC as primary metric ($n = 15$ vs.\ 15 curated oncology combinations). Co-essentiality AUC~$= 0.69$ (permutation $p = 0.058$). Successful combinations had higher pairwise co-essentiality (median $r = 0.029$ vs.\ $-0.053$). Analysis is underpowered ($n = 30$; 95\% CIs cross 0.5) and should be treated as hypothesis-generating.}
 \label{fig:S12}
@@ -496,7 +496,7 @@ Pre-specified co-essentiality AUC as primary metric ($n = 15$ vs.\ 15 curated on
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{figures/figS14_circularity_ablation}
+\includegraphics[width=\textwidth]{../figures/figS14_circularity_ablation}
 \caption{\textbf{Fig.\ S13: Circularity and leakage ablation.}
 Systematic removal of all literature-curated scoring features (KNOWN\_SYNERGIES, RESISTANCE\_MECHANISMS, perturbation bonus, combination toxicity, evidence exemptions) produces identical predictions ($\Delta = 0.0$~pp across all metrics). Degree-matched ($p = 0.030$) and network-scramble ($p = 0.048$) null models confirm that ALIN's concordance is not attributable to degree or druggability selection bias.}
 \label{fig:S13}
@@ -504,7 +504,7 @@ Systematic removal of all literature-curated scoring features (KNOWN\_SYNERGIES,
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{figures/fig_hub_strategy_comparison}
+\includegraphics[width=\textwidth]{../figures/fig_hub_strategy_comparison}
 \caption{\textbf{Fig.\ S14: Hub-handling strategy comparison.}
 Comparison of five hub-handling strategies across 17 evaluable cancer types against the 43-entry gold standard. PageRank-normalized coverage matches the no-penalty baseline at any-overlap (34.9\%) while achieving the lowest Gini coefficient (0.318), providing the best trade-off between benchmark concordance and target diversity.}
 \label{fig:S14}
@@ -512,7 +512,7 @@ Comparison of five hub-handling strategies across 17 evaluable cancer types agai
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{figures/fig_evidence_calibration}
+\includegraphics[width=\textwidth]{../figures/fig_evidence_calibration}
 \caption{\textbf{Fig.\ S15: Evidence calibration and de-correlation.}
 \textbf{(A)}~Feature correlation matrix showing coverage--hub penalty collinearity ($r = 0.84$). \textbf{(B)}~Calibrated logistic regression vs.\ heuristic scoring (AUROC 0.552 vs.\ 0.553). \textbf{(C)}~SHAP feature importance ranking. Druggable count is the dominant feature (mean $|$SHAP$| = 0.274$); perturbation bonus and total cost are negligible.}
 \label{fig:S15}
@@ -520,7 +520,7 @@ Comparison of five hub-handling strategies across 17 evaluable cancer types agai
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{figures/fig_mhs_nonuniqueness}
+\includegraphics[width=\textwidth]{../figures/fig_mhs_nonuniqueness}
 \caption{\textbf{Fig.\ S16: MHS non-uniqueness analysis.}
 Enumeration of up to 20 near-optimal MHS solutions per cancer type using iterative ILP with solution-exclusion constraints (cost tolerance $\leq 1.5\times$ optimal). 4/17 cancer types yield the maximum 20 near-optimal solutions (mean pairwise Jaccard distance 0.40--0.55); 11/17 yield only 1 solution. Biological plausibility constraints change the top-1 MHS in 29.4\% of cancer types.}
 \label{fig:S16}

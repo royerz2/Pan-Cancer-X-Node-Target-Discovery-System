@@ -15,6 +15,7 @@ Outputs:
 
 import json
 import sys
+import os
 from pathlib import Path
 from collections import defaultdict
 
@@ -24,6 +25,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from scipy.stats import fisher_exact
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 
 # Import benchmark components
 from gold_standard import (

@@ -32,7 +32,9 @@ from scipy import stats
 from collections import defaultdict
 
 np.random.seed(42)
-BASE = Path(__file__).parent
+import sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+BASE = Path(__file__).parent.parent
 RESULTS_DIR = BASE / "benchmark_hardening_results"
 RESULTS_DIR.mkdir(exist_ok=True)
 FIG_DIR = BASE / "figures"
