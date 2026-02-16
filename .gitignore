@@ -36,7 +36,11 @@ Thumbs.db
 *.fls
 *.fdb_latexmk
 paper.pdf
+supplementary.pdf
 Supplementary_Methods.pdf
+Supplementary_Methods.log
+Supplementary_Methods.out
+*.synctex(busy)
 
 # ─── Testing ───
 .pytest_cache/
@@ -53,6 +57,7 @@ tuning_results/
 simulation_results/
 stratification_results/
 supplementary_tables/
+synergy_validation_results/
 lab_protocols/
 
 # ─── Caches (regenerated on demand) ───
@@ -61,6 +66,10 @@ trial_cache/
 toxicity_cache/
 stratification_cache/
 clinical_trials/
+
+# ─── Cheatsheets (personal, not for distribution) ───
+*CHEATSHEET*
+*cheatsheet*
 
 # ─── Large data (download per DATA_AVAILABILITY.md) ───
 depmap_data/

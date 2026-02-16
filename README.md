@@ -28,7 +28,7 @@ The approach is extrapolated from Liaki et al. (bioRxiv doi: 10.1101/2025.08.04.
 
 ### Pan-Cancer Generalization
 
-We extend the PDAC-specific approach from the paper to:
+The pipeline extends the PDAC-specific approach to:
 
 1. **All DepMap cancer types** — Cancer type mapping via OncoTree (OncotreePrimaryDisease).
 2. **Triple combinations** — Systems biology scoring for synergy, resistance, and pathway coverage.
@@ -61,7 +61,7 @@ Cancer types are normalized via **OncoTree** (OncotreePrimaryDisease, OncotreeCo
 
 ### 3. Viability Path Inference
 
-We infer **viability paths** — sets of genes that collectively support tumor survival — using three methods:
+The pipeline infers **viability paths** — sets of genes that collectively support tumor survival — using three methods:
 
 1. **Co-essentiality clustering (refined):** Genes essential together across cell lines are clustered into pathway-like modules. Uses hierarchical clustering on co-occurrence (Jaccard-like) matrix. Only genes essential in &gt;30% of cancer cell lines (selectivity filter). Optional expression filter: if CCLE expression data is available, only count essential if expressed in tumor (TPM &gt; threshold).
 2. **Consensus essential modules:** Genes consistently essential across cell lines of a cancer type.
@@ -120,7 +120,7 @@ For each combination, we identify **patient subgroups** most likely to benefit:
 
 ### 8. Benchmarking
 
-We compare predictions against a **gold standard** of 43 FDA-approved and clinically validated multi-target combinations spanning 25 cancer types (e.g., BRAF+MEK in melanoma, EGFR+MET in NSCLC, CDK4/6+HER2 in breast cancer).
+Predictions are compared against a **gold standard** of 43 FDA-approved and clinically validated multi-target combinations spanning 25 cancer types (e.g., BRAF+MEK in melanoma, EGFR+MET in NSCLC, CDK4/6+HER2 in breast cancer).
 
 - **Recall** — Do our triples contain the known target set (exact or superset)?
 - **Gene equivalence** — MAP2K1/MAP2K2 (MEK), CDK4/CDK6 treated as equivalent.
@@ -142,8 +142,8 @@ We compare predictions against a **gold standard** of 43 FDA-approved and clinic
 ## Installation
 
 ```bash
-git clone <repository>
-cd "ALIN Framework"
+git clone https://github.com/royerz2/Pan-Cancer-X-Node-Target-Discovery-System.git
+cd "Pan-Cancer X-Node Target Discovery System"
 pip install -r requirements.txt
 ```
 
@@ -270,7 +270,7 @@ Against 43 independently curated FDA-approved and Phase 2/3-validated multi-targ
 
 If you use this pipeline, please cite:
 
-- **ALIN Framework (bioRxiv preprint):** Author AN, Author BT. 2025. ALIN Framework (Adaptive Lethal Intersection Network): A Systems Biology Pipeline for Triple Drug Combination Prediction. bioRxiv doi: 10.1101/YYYY.MM.DD.XXXXXXX. *(Replace with actual authors and DOI after submission.)*
+- **ALIN Framework:** Erzurumluoğlu R. 2025. ALIN Framework (Adaptive Lethal Intersection Network): A Systems Biology Pipeline for Pan-Cancer Minimal Hitting Set Target Discovery. Zenodo. doi: [10.5281/zenodo.18517646](https://doi.org/10.5281/zenodo.18517646)
 - PDAC combination therapy (source of extrapolated approach): Liaki V, Barrambana S, et al. 2025. A targeted combination therapy achieves effective pancreatic cancer regression and prevents tumor resistance. bioRxiv doi: [10.1101/2025.08.04.668325](https://doi.org/10.1101/2025.08.04.668325)
 - DepMap: [depmap.org](https://depmap.org)
 - OmniPath: [omnipathdb.org](https://omnipathdb.org)

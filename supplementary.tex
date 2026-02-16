@@ -40,9 +40,9 @@
 
 \subsection{MHS non-uniqueness and biological plausibility}
 \label{sec:mhs_nonunique}
-For a combinatorial optimization problem, the uniqueness of the optimal solution is not guaranteed. We therefore enumerated up to 20 near-optimal MHS solutions per cancer type using iterative ILP with solution-exclusion constraints (k-best approach, cost tolerance $\leq 1.5\times$ optimal; Supplementary Figure~S16). Across 17 evaluable cancer types, 4~cancers (Anaplastic Thyroid, HNSCC, Melanoma, NSCLC) yielded the maximum 20 near-optimal solutions (mean pairwise Jaccard distance 0.40--0.55), indicating substantial solution degeneracy. The remaining 11~cancers yielded only 1 near-optimal solution, reflecting a tight cost landscape where the optimal MHS is effectively unique. Mean diversity across all cancers was Jaccard~$= 0.14$ (range 0.00--0.55).
+For a combinatorial optimization problem, the uniqueness of the optimal solution is not guaranteed. I therefore enumerated up to 20 near-optimal MHS solutions per cancer type using iterative ILP with solution-exclusion constraints (k-best approach, cost tolerance $\leq 1.5\times$ optimal; Supplementary Figure~S16). Across 17 evaluable cancer types, 4~cancers (Anaplastic Thyroid, HNSCC, Melanoma, NSCLC) yielded the maximum 20 near-optimal solutions (mean pairwise Jaccard distance 0.40--0.55), indicating substantial solution degeneracy. The remaining 11~cancers yielded only 1 near-optimal solution, reflecting a tight cost landscape where the optimal MHS is effectively unique. Mean diversity across all cancers was Jaccard~$= 0.14$ (range 0.00--0.55).
 
-To assess biological plausibility, we applied four hard constraints: (i)~$\geq$1 druggable target (druggability~$\geq 0.6$), (ii)~exclusion of pan-essential genes (essential in $>$90\% of DepMap lines), (iii)~mean combination toxicity~$< 0.8$, and (iv)~same-pathway redundancy penalty (max pairwise Jaccard of pathway memberships~$\leq 0.5$). No solutions were removed by the pan-essential or toxicity filters; pathway redundancy was the dominant constraint (mean 0.4 solutions removed per cancer type, removing both solutions for Diffuse Glioma and Renal Cell Carcinoma). Under these constraints, the top-1 MHS changed in \textbf{5/17 (29.4\%)} cancer types (HNSCC, NSCLC, Esophagogastric, Diffuse Glioma, Renal Cell Carcinoma), with mean Jaccard distance of 0.49 between unconstrained and constrained top-1. The non-uniqueness finding underscores that MHS predictions should be interpreted as representative solutions from a constrained landscape, not as uniquely determined optima.
+To assess biological plausibility, I applied four hard constraints: (i)~$\geq$1 druggable target (druggability~$\geq 0.6$), (ii)~exclusion of pan-essential genes (essential in $>$90\% of DepMap lines), (iii)~mean combination toxicity~$< 0.8$, and (iv)~same-pathway redundancy penalty (max pairwise Jaccard of pathway memberships~$\leq 0.5$). No solutions were removed by the pan-essential or toxicity filters; pathway redundancy was the dominant constraint (mean 0.4 solutions removed per cancer type, removing both solutions for Diffuse Glioma and Renal Cell Carcinoma). Under these constraints, the top-1 MHS changed in \textbf{5/17 (29.4\%)} cancer types (HNSCC, NSCLC, Esophagogastric, Diffuse Glioma, Renal Cell Carcinoma), with mean Jaccard distance of 0.49 between unconstrained and constrained top-1. The non-uniqueness finding underscores that MHS predictions should be interpreted as representative solutions from a constrained landscape, not as uniquely determined optima.
 
 \subsection{Novel combinations for rare cancers}
 Notable predictions for cancers with limited treatment options: Chondrosarcoma (MCL1 alone), Retinoblastoma (OTX2+STAT3), Nerve Sheath Tumor (HNRNPH1+STAT3), and Pleural Mesothelioma (CCND1+FGFR1+MDM2+STAT3, 4-target). Five of 10 priority combinations had no partial clinical trial matches, indicating complete novelty.
@@ -53,7 +53,7 @@ Multi-source validation (PubMed, STRING, PRISM, ClinicalTrials.gov) was run on 1
 \subsection{Dual-vs.-triple escape-route validation}
 \label{sec:dual_triple}
 To test whether a third target provides functional value beyond the best dual,
-we performed three complementary analyses across NSCLC ($n=98$),
+I performed three complementary analyses across NSCLC ($n=98$),
 Melanoma ($n=67$), and CRC ($n=63$) using PRISM primary-screen
 viability data and a canonical signaling network (97~edges, 43~nodes;
 see Supplementary Methods~S6).
@@ -70,7 +70,7 @@ drug column was available.
 \emph{(ii)~Network escape-route enumeration.} Using DepMap-calibrated
 essential signaling genes (Chronos $< -0.4$ in $\geq$15\% of lines per
 cancer type) and BFS path enumeration through the canonical network,
-we counted signaling routes from uninhibited essential genes to
+I counted signaling routes from uninhibited essential genes to
 downstream effectors (BCL2L1, MYC, CCND1, MAPK1, etc.)\ that bypass
 all inhibited targets. Across all three cancers, the triple achieves
 escape-route counts $\leq$ the best dual: NSCLC 73 vs.\ worst-dual 84
@@ -91,15 +91,15 @@ substantially faster escape.
 
 \subsection{Exploratory: success vs.\ failure discrimination}
 \label{sec:exploratory_auc}
-As an exploratory analysis, we tested whether ALIN-compatible metrics can discriminate clinically \emph{successful} from \emph{failed} molecularly-targeted combinations.
-We curated 30 oncology combination regimens (15 successes: FDA-approved or Phase~3 positive; 15 failures: Phase~2/3 terminated for futility or toxicity) independently of ALIN predictions, each with PMID or NCT identifiers (Supplementary Methods~S7, Table~S6). We pre-specified \textbf{co-essentiality AUC} as the primary metric before examining results.
+As an exploratory analysis, I tested whether ALIN-compatible metrics can discriminate clinically \emph{successful} from \emph{failed} molecularly-targeted combinations.
+I curated 30 oncology combination regimens (15 successes: FDA-approved or Phase~3 positive; 15 failures: Phase~2/3 terminated for futility or toxicity) independently of ALIN predictions, each with PMID or NCT identifiers (Supplementary Methods~S7, Table~S6). I pre-specified \textbf{co-essentiality AUC} as the primary metric before examining results.
 Co-essentiality showed a suggestive but non-significant discriminative signal (AUC~$= 0.69$, 10{,}000-iteration stratified bootstrap 95\% CI~$[0.46$--$0.88]$, permutation $p = 0.058$, $n = 15$ vs.\ 15); 94.4\% of bootstrap resamples exceed AUC~$= 0.5$, and leave-one-out CV AUC was stable ($0.686 \pm 0.023$, range 0.657--0.734). Successful combinations had higher pairwise co-essentiality (median $r = 0.029$ vs.\ $-0.053$).
 Pathway coherence provided complementary signal (AUC~$= 0.66$, perm.~$p = 0.063$). The composite score (AUC~$= 0.68$, perm.~$p = 0.042$) is statistically indistinguishable from co-essentiality alone ($\Delta$AUC~$= -0.001$, paired bootstrap $p = 0.98$), confirming no performance inflation from heuristic weighting.
 This analysis is underpowered ($n = 30$; 95\% CIs cross 0.5) and should be treated as hypothesis-generating for future validation in larger outcome-labelled datasets, not as evidence of clinical-grade discriminative ability.
 
 \subsection{Hub-handling strategy comparison}
 \label{sec:hub_strategies}
-The ad hoc proportional hub penalty ($1.5\times$ excess over median frequency) was introduced to correct STAT3 over-representation but was never systematically validated against alternatives. We compared five strategies on 17 evaluable cancer types against the 43-entry gold standard:
+The ad hoc proportional hub penalty ($1.5\times$ excess over median frequency) was introduced to correct STAT3 over-representation but was never systematically validated against alternatives. I compared five strategies on 17 evaluable cancer types against the 43-entry gold standard:
 \begin{enumerate}
 \item \textbf{No hub penalty}: baseline without any frequency correction.
 \item \textbf{Proportional penalty} (current): $1.5 \times (f_g - \tilde{f})$ for genes above median.
@@ -128,15 +128,15 @@ PageRank+lean & 27.9 & 11.6 & 100.0 & 100.0 & 0.488 \\
 \end{tabular}
 \end{table}
 
-\noindent The proportional hub penalty is \emph{counterproductive}: it reduces benchmark concordance ($-$11.6~pp any-overlap, $-$7.0~pp pair-overlap vs.\ no penalty) while merely substituting STAT3 dominance (64.7\%) with MAP2K1 dominance (82.4\%, Gini 0.414 = least equitable). PageRank-normalized coverage matches the no-penalty baseline at any-overlap (34.9\%) and nearly matches pair-overlap (23.3\% vs.\ 25.6\%), while achieving the lowest Gini coefficient (0.318) and reducing STAT3 from 64.7\% to 47.1\%---a principled balance of biological relevance and target diversity.
+\noindent The proportional hub penalty is \emph{counterproductive}: it reduces benchmark concordance ($-$11.6~pp any-overlap, $-$7.0~pp pair-overlap vs.\ no penalty) while merely substituting STAT3 dominance (64.7\%) with MAP2K1 dominance (82.4\%, Gini 0.414 = least equitable). PageRank-normalized coverage matches the no-penalty baseline at any-overlap (34.9\%) and nearly matches pair-overlap (23.3\% vs.\ 25.6\%), while achieving the lowest Gini coefficient (0.318) and reducing STAT3 from 64.7\% to 47.1\%--a principled balance of biological relevance and target diversity.
 
-\textbf{Literature-feature decorativeness.} Lean scoring (literature features removed, proportional penalty retained) achieves identical concordance to the proportional-penalty baseline (23.3\% any-overlap), confirming the circularity ablation finding: literature-curated features---\texttt{KNOWN\_SYNERGIES}, \texttt{RESISTANCE\_MECHANISMS}, combo-toxicity, and perturbation bonus---contribute $\Delta = 0.0$~pp across all hub-handling strategies. ALIN's empirically active scoring components are: DepMap essentiality/specificity (via cost function), OmniPath path coverage, co-essentiality synergy, druggability, and the choice of hub-handling strategy. The remaining literature features are retained for reporting transparency (evidence tiers, toxicity alerts) but should not be interpreted as contributing to predictive concordance.
+\textbf{Literature-feature decorativeness.} Lean scoring (literature features removed, proportional penalty retained) achieves identical concordance to the proportional-penalty baseline (23.3\% any-overlap), confirming the circularity ablation finding: literature-curated features--\texttt{KNOWN\_SYNERGIES}, \texttt{RESISTANCE\_MECHANISMS}, combo-toxicity, and perturbation bonus--contribute $\Delta = 0.0$~pp across all hub-handling strategies. ALIN's empirically active scoring components are: DepMap essentiality/specificity (via cost function), OmniPath path coverage, co-essentiality synergy, druggability, and the choice of hub-handling strategy. The remaining literature features are retained for reporting transparency (evidence tiers, toxicity alerts) but should not be interpreted as contributing to predictive concordance.
 
-Based on these results, we recommend PageRank-normalized coverage as the principled replacement for the proportional hub penalty. This approach has a clear statistical foundation (degree normalization via random walk), does not require arbitrary multiplier tuning, and achieves the best trade-off between benchmark concordance and target diversity.
+Based on these results, I recommend PageRank-normalized coverage as the principled replacement for the proportional hub penalty. This approach has a clear statistical foundation (degree normalization via random walk), does not require arbitrary multiplier tuning, and achieves the best trade-off between benchmark concordance and target diversity.
 
 \subsection{Evidence calibration and de-correlation}
 \label{sec:evidence_calibration}
-The combined score (Equation~3 in main text) sums eight weighted components with hand-tuned weights. To assess whether these features are redundant, miscalibrated, or decorative, we collected all 25{,}667 scored triple and doublet combinations across 50 cancer types and labelled each by overlap with the 43-entry gold standard (2{,}687 positives, 10.5\%).
+The combined score (Equation~3 in main text) sums eight weighted components with hand-tuned weights. To assess whether these features are redundant, miscalibrated, or decorative, I collected all 25{,}667 scored triple and doublet combinations across 50 cancer types and labelled each by overlap with the 43-entry gold standard (2{,}687 positives, 10.5\%).
 
 \textbf{Feature correlations.} Pairwise Pearson correlation reveals one highly collinear pair: \emph{coverage} and \emph{hub\_penalty} ($r = 0.84$, Spearman $\rho = 0.87$). This is expected: both are determined by gene--path frequency. The remaining $\binom{8}{2} - 1 = 27$ pairs have $|r| < 0.48$. Removing \emph{hub\_penalty} from the de-correlated set eliminates the redundancy without discarding information, since coverage already captures path-frequency content.
 
@@ -144,13 +144,13 @@ The combined score (Equation~3 in main text) sums eight weighted components with
 
 \textbf{Per-feature importance (SHAP and ablation).} SHAP analysis (linear explainer on the full LR model) ranks features: druggable count (mean $|$SHAP$|$ = 0.274), hub penalty (0.188), resistance (0.122), coverage (0.109), combo toxicity (0.091), synergy (0.071), cost (0.012), and perturbation bonus (0.006). Leave-one-feature-out ablation (LOCO AUROC drop when feature removed) confirms this hierarchy: only druggable count produces a meaningful $\Delta$AUROC ($+$0.030); perturbation bonus ($\Delta = +0.001$) and total cost ($\Delta = -0.001$) are negligible, consistent with the earlier $\Delta = 0.0$ circularity finding. Hub penalty and coverage ablation each \emph{improve} AUROC slightly ($-$0.008 and $-$0.012 respectively), consistent with their collinearity: removing either reduces noise from the redundant pair.
 
-\textbf{Recommendation.} The analysis supports retaining four empirically active features---druggable count, coverage, resistance risk, and synergy---while demoting hub penalty (subsumed by coverage), combo toxicity (modest contribution), total cost (negligible), and perturbation bonus (negligible) to reporting-only status. This de-correlated feature set should guide any future weight re-optimization or model-based scoring replacement.
+\textbf{Recommendation.} The analysis supports retaining four empirically active features--druggable count, coverage, resistance risk, and synergy--while demoting hub penalty (subsumed by coverage), combo toxicity (modest contribution), total cost (negligible), and perturbation bonus (negligible) to reporting-only status. This de-correlated feature set should guide any future weight re-optimization or model-based scoring replacement.
 
 \subsection{Negative controls and failure analysis}
 \label{sec:negative_controls}
-To assess whether ALIN's predictions are biologically plausible beyond the gold-standard benchmark---which measures recall but cannot detect false positives---we performed two complementary analyses: (i)~identification of implausible high-confidence predictions (negative controls), and (ii)~evaluation against known-failed clinical combinations.
+To assess whether ALIN's predictions are biologically plausible beyond the gold-standard benchmark--which measures recall but cannot detect false positives--I performed two complementary analyses: (i)~identification of implausible high-confidence predictions (negative controls), and (ii)~evaluation against known-failed clinical combinations.
 
-\textbf{Implausible predictions.} We manually reviewed all 17 benchmark cancer predictions and the 77-cancer pan-cancer output, flagging top-1 predictions that conflict with known biology (Table~\ref{tab:neg_controls_supp}). Eight predictions are identified as biologically suspect, four at high severity:
+\textbf{Implausible predictions.} I manually reviewed all 17 benchmark cancer predictions and the 77-cancer pan-cancer output, flagging top-1 predictions that conflict with known biology (Table~\ref{tab:neg_controls_supp}). Eight predictions are identified as biologically suspect, four at high severity:
 
 \begin{table}[htbp]
 \centering
@@ -174,9 +174,9 @@ HCC & FGFR1+STAT3 & FGFR1 wrong isoform (FGFR2 in cholangio); KDR invisible to C
 }
 \end{table}
 
-\noindent Common failure modes fall into four categories: (1)~\textbf{CRISPR-invisible targets}---hormonal (AR/CYP17A1 in prostate), anti-angiogenic (KDR), and immune-checkpoint targets are not cell-autonomous essentialities and cannot be recovered by a CRISPR-based pipeline; (2)~\textbf{hub-gene artefacts}---STAT3 and FYN appear in 52/77 and 28/77 predictions respectively due to high OmniPath degree, inflating their selection beyond cancer-specific evidence; (3)~\textbf{wrong isoform/lineage}---FGFR1 substitutes for the clinically relevant FGFR2 in liver cancers, and EGFR is selected in RCC/prostate where it lacks activating alterations; (4)~\textbf{missing lineage drivers}---MDM2 (liposarcoma) and FLT3/IDH (AML) are absent from \texttt{GENE\_TO\_DRUGS} or not CRISPR-essential.
+\noindent Common failure modes fall into four categories: (1)~\textbf{CRISPR-invisible targets}--hormonal (AR/CYP17A1 in prostate), anti-angiogenic (KDR), and immune-checkpoint targets are not cell-autonomous essentialities and cannot be recovered by a CRISPR-based pipeline; (2)~\textbf{hub-gene artefacts}--STAT3 and FYN appear in 52/77 and 28/77 predictions respectively due to high OmniPath degree, inflating their selection beyond cancer-specific evidence; (3)~\textbf{wrong isoform/lineage}--FGFR1 substitutes for the clinically relevant FGFR2 in liver cancers, and EGFR is selected in RCC/prostate where it lacks activating alterations; (4)~\textbf{missing lineage drivers}--MDM2 (liposarcoma) and FLT3/IDH (AML) are absent from \texttt{GENE\_TO\_DRUGS} or not CRISPR-essential.
 
-\textbf{Known failed combinations.} We curated 8 clinically documented combination failures where targets overlap with ALIN's prediction space. For each, we checked whether ALIN's top-1 prediction for the same cancer fully contains, partially overlaps, or correctly avoids the failed target set:
+\textbf{Known failed combinations.} I curated 8 clinically documented combination failures where targets overlap with ALIN's prediction space. For each, I checked whether ALIN's top-1 prediction for the same cancer fully contains, partially overlaps, or correctly avoids the failed target set:
 
 \begin{itemize}\setlength{\itemsep}{0pt}
 \item \textbf{4/8 predicted} (false positives): ALIN predicts EGFR in RCC (erlotinib ORR $<$5\%), EGFR in prostate (failed Phase~2), MCL1 in AML (cardiotoxicity DLT), and BRAF without MEK in melanoma (rapid resistance, PFS 5--8~mo).
@@ -184,11 +184,11 @@ HCC & FGFR1+STAT3 & FGFR1 wrong isoform (FGFR2 in cholangio); KDR invisible to C
 \item \textbf{2/8 correctly avoided}: ALIN does not predict STAT3 (napabucasin) for CRC, which failed Phase~3 (CanStem111P), nor the PI3K+MEK combination for ovarian cancer (ORR 4.7\%).
 \end{itemize}
 
-\noindent The 4/8 false-positive rate against known failures---and the 8/77 implausible prediction rate---quantify the precision cost of a CRISPR-only target discovery pipeline. Proposed post-hoc filters include: (i)~excluding non-malignant lineages, (ii)~a hub-gene frequency cap (reject targets appearing in $>$60\% of predictions without cancer-specific mutation/amplification evidence), (iii)~lineage-specific driver-pathway priors (require $\geq$1 target from the cancer's known driver pathway), (iv)~clinical toxicity cross-check (flag combinations where single-agent DLTs overlap), and (v)~negative-evidence integration (down-weight targets from failed indication-specific trials). These filters are not implemented in the current pipeline to preserve its purely algorithmic nature, but they are recommended for any translational application.
+\noindent The 4/8 false-positive rate against known failures--and the 8/77 implausible prediction rate--quantify the precision cost of a CRISPR-only target discovery pipeline. Proposed post-hoc filters include: (i)~excluding non-malignant lineages, (ii)~a hub-gene frequency cap (reject targets appearing in $>$60\% of predictions without cancer-specific mutation/amplification evidence), (iii)~lineage-specific driver-pathway priors (require $\geq$1 target from the cancer's known driver pathway), (iv)~clinical toxicity cross-check (flag combinations where single-agent DLTs overlap), and (v)~negative-evidence integration (down-weight targets from failed indication-specific trials). These filters are not implemented in the current pipeline to preserve its purely algorithmic nature, but they are recommended for any translational application.
 
 \subsection{Translational feasibility scoring}
 \label{sec:feasibility}
-To bridge algorithmic predictions to clinical actionability, we developed a post-hoc translational feasibility score that integrates four components: (i)~\textbf{drug availability}---clinical stage and number of approved/investigational agents per target (approved $= 1.0$, Phase~3 $= 0.80$, Phase~2 $= 0.55$, Phase~1 $= 0.30$, preclinical $= 0.10$, no drug $= 0$; averaged across targets); (ii)~\textbf{selectivity}---penalties for shared drugs between targets (e.g.\ CDK4+CDK6 share palbociclib; $-0.25$), pan-kinase inhibitors ($-0.08$ per target), and narrow therapeutic windows ($-0.12$ per target); (iii)~\textbf{combination toxicity feasibility}---penalties for overlapping organ toxicities (myelosuppression/cardiotoxicity overlap: $-0.25$ per additional target; GI/dermatologic overlap: $-0.05$--$0.10$) and known drug--drug interactions from a curated 11-pair DDI database; (iv)~\textbf{clinical precedent}---whether any target subset has been tested in the same cancer type (from the 43-entry gold standard; FDA-approved $= 1.0$, Phase~2 $= 0.6$, partial overlap $= 0.5\times$). The composite score $F = 0.30 \times \text{availability} + 0.25 \times \text{tox\_feasibility} + 0.25 \times \text{selectivity} + 0.20 \times \text{precedent}$ ranges from 0 (infeasible) to 1 (highly feasible).
+To bridge algorithmic predictions to clinical actionability, I developed a post-hoc translational feasibility score that integrates four components: (i)~\textbf{drug availability}--clinical stage and number of approved/investigational agents per target (approved $= 1.0$, Phase~3 $= 0.80$, Phase~2 $= 0.55$, Phase~1 $= 0.30$, preclinical $= 0.10$, no drug $= 0$; averaged across targets); (ii)~\textbf{selectivity}--penalties for shared drugs between targets (e.g.\ CDK4+CDK6 share palbociclib; $-0.25$), pan-kinase inhibitors ($-0.08$ per target), and narrow therapeutic windows ($-0.12$ per target); (iii)~\textbf{combination toxicity feasibility}--penalties for overlapping organ toxicities (myelosuppression/cardiotoxicity overlap: $-0.25$ per additional target; GI/dermatologic overlap: $-0.05$--$0.10$) and known drug--drug interactions from a curated 11-pair DDI database; (iv)~\textbf{clinical precedent}--whether any target subset has been tested in the same cancer type (from the 43-entry gold standard; FDA-approved $= 1.0$, Phase~2 $= 0.6$, partial overlap $= 0.5\times$). The composite score $F = 0.30 \times \text{availability} + 0.25 \times \text{tox\_feasibility} + 0.25 \times \text{selectivity} + 0.20 \times \text{precedent}$ ranges from 0 (infeasible) to 1 (highly feasible).
 
 Across the 17 benchmark cancer predictions, the mean feasibility score is 0.783 (range 0.580--0.988). 16/17 predictions achieve high feasibility ($F \geq 0.60$), reflecting that most triples comprise approved-drug targets. All 17 predictions map every target to at least one drug; 11/17 have all three targets with FDA-approved agents. 21 red flags are identified across 17 predictions, predominantly moderate-severity overlapping organ toxicities (dermatologic: EGFR+MAP2K1 rash in 7 cancers; gastrointestinal: EGFR+MET/KRAS nausea/diarrhea in 5 cancers). Three high-severity flags involve overlapping myelosuppression (CDK4+CDK6 in AML and HNSCC) and a known moderate DDI (erlotinib+alpelisib in esophagogastric cancer). No critical-severity flags (e.g.\ additive cardiotoxicity or QT prolongation) are present in the benchmark set.
 
@@ -222,9 +222,9 @@ AML & CDK4+CDK6+MCL1 & pal+pal+AMG & 1.140 & 0.580 & 1.966 & 17$\to$17 & 0 \\
 
 \subsection{End-to-end case studies}
 \label{sec:case_studies}
-To illustrate how the full pipeline progresses from raw DepMap/OmniPath inputs to a ranked, drug-annotated, feasibility-scored prediction, we trace three cancer types end to end: colorectal adenocarcinoma (strong clinical concordance), NSCLC (highest feasibility), and AML (instructive failure). Each case reports inferred survival mechanisms, top MHS solutions, ranked triples, external validation signals, and at least one negative control.
+To illustrate how the full pipeline progresses from raw DepMap/OmniPath inputs to a ranked, drug-annotated, feasibility-scored prediction, I trace three cancer types end to end: colorectal adenocarcinoma (strong clinical concordance), NSCLC (highest feasibility), and AML (instructive failure). Each case reports inferred survival mechanisms, top MHS solutions, ranked triples, external validation signals, and at least one negative control.
 
-\subsubsection{Case 1: Colorectal adenocarcinoma --- validated convergence}
+\subsubsection{Case 1: Colorectal adenocarcinoma -- validated convergence}
 
 \textbf{Inferred mechanisms.} From 96 CRC cell lines in DepMap 24Q4, the pipeline infers $\sim$50 viability paths across four modules: (i)~co-essentiality modules (Jaccard-based Ward clustering of 96 Chronos profiles; conf.~0.9) identify coordinately essential gene sets including a MAPK-pathway cluster (BRAF, KRAS, EGFR, SOS1) and a cell-cycle cluster (CCND1, CDK4, CDK6); (ii)~OmniPath signaling paths (directed 2--4-hop traversals from 14 driver genes to 10 effector genes, scored by mean Chronos dependency) recover KRAS$\to$BRAF$\to$MAP2K1$\to$CCND1, EGFR$\to$KRAS$\to$BRAF, and PIK3CA$\to$AKT1$\to$MTOR among others; (iii)~a lineage-aware cancer-specific module (Welch $t$-test, FDR $q < 0.05$, Cohen's $d > 0.3$ vs.\ non-CRC lineages) identifies CRC-selective dependencies including $\beta$-catenin (CTNNB1) and APC-pathway genes; (iv)~curated perturbation-response paths capture EGFR inhibition$\to$MAPK reactivation signatures.
 
@@ -236,7 +236,7 @@ To illustrate how the full pipeline progresses from raw DepMap/OmniPath inputs t
 
 \textbf{External validation and negatives.} All three pairwise subsets have clinical evidence: BRAF+EGFR is FDA-approved (encorafenib+cetuximab; BEACON Phase~3, OS HR 0.60); the BRAF+EGFR+MAP2K1 triplet arm achieved ORR 26\% in Phase~3; KRAS+EGFR is in Phase~2 (sotorasib+panitumumab; CodeBreaK~101, ORR 30\%). Feasibility score: $F = 0.952$ (\#2 of 17). \textbf{Negative:} ALIN correctly avoids the failed STAT3/napabucasin monotherapy in CRC (CanStem111P Phase~3).
 
-\subsubsection{Case 2: Non-small cell lung cancer --- highest feasibility}
+\subsubsection{Case 2: Non-small cell lung cancer -- highest feasibility}
 
 \textbf{Inferred mechanisms.} From 165 NSCLC cell lines (the largest lineage in DepMap), the pipeline infers $\sim$57 viability paths. NSCLC's rich mutational landscape generates dense signaling path coverage.
 
@@ -248,9 +248,9 @@ To illustrate how the full pipeline progresses from raw DepMap/OmniPath inputs t
 
 \textbf{External validation and negatives.} Individual target pairs have extensive clinical precedent: BRAF+MAP2K1 is FDA-approved in NSCLC (dabrafenib+trametinib); EGFR+MET is FDA-approved (amivantamab). Feasibility score: $F = 0.988$ (highest of all 17 predictions). \textbf{Negative:} In melanoma, the BRAF+MEK+CDK4/6 triplet failed Phase~1/2 (ORR 52\% $<$ 64\% doublet).
 
-\subsubsection{Case 3: Acute myeloid leukemia --- instructive failure}
+\subsubsection{Case 3: Acute myeloid leukemia -- instructive failure}
 
-\textbf{Inferred mechanisms.} From 64 AML cell lines, the pipeline infers $\sim$29 viability paths---fewer than CRC or NSCLC. Critically, AML's canonical oncogenic drivers (FLT3, IDH1/2, NPM1, KMT2A) are \emph{not} in the curated 14-gene driver set.
+\textbf{Inferred mechanisms.} From 64 AML cell lines, the pipeline infers $\sim$29 viability paths--fewer than CRC or NSCLC. Critically, AML's canonical oncogenic drivers (FLT3, IDH1/2, NPM1, KMT2A) are \emph{not} in the curated 14-gene driver set.
 
 \textbf{MHS solutions.} The ILP solver returns a single optimal MHS: \{CDK4, CDK6, SOS1, STAT3\} (cost 4.17, coverage 58.6\%). Coverage is the lowest among the three case studies.
 
@@ -258,7 +258,7 @@ To illustrate how the full pipeline progresses from raw DepMap/OmniPath inputs t
 
 \textbf{Ablation stability.} The prediction is unstable across ablation conditions, further confirming low confidence.
 
-\textbf{External validation and negatives.} The validated AML combinations target fundamentally different biology: FLT3+BCL2 (venetoclax+gilteritinib; composite CR in Phase~2), IDH1+BCL2 (ivosidenib+venetoclax; CR 71\%). These operate through lineage-specific oncogene addiction and apoptotic priming---mechanisms invisible to a CRISPR-essentiality pipeline. Feasibility score: $F = 0.580$ (lowest of 17). \textbf{Negative:} ALIN predicts the failed MCL1 inhibitor class (Phase~1 DLT: cardiotoxicity), making this a documented false positive.
+\textbf{External validation and negatives.} The validated AML combinations target fundamentally different biology: FLT3+BCL2 (venetoclax+gilteritinib; composite CR in Phase~2), IDH1+BCL2 (ivosidenib+venetoclax; CR 71\%). These operate through lineage-specific oncogene addiction and apoptotic priming--mechanisms invisible to a CRISPR-essentiality pipeline. Feasibility score: $F = 0.580$ (lowest of 17). \textbf{Negative:} ALIN predicts the failed MCL1 inhibitor class (Phase~1 DLT: cardiotoxicity), making this a documented false positive.
 
 \subsection{Pathway shifting simulation}
 \label{sec:pathway_sim}
@@ -306,7 +306,7 @@ where $L_c$ is the set of cell lines annotated to cancer type $c$. Pan-essential
 \]
 This Jaccard index ranges from 0 (no shared essentiality) to 1 (identical essentiality profiles). The resulting pairwise distance matrix ($1 - \text{CoEss}$) is clustered using Ward's agglomerative method with a dynamic tree cut producing 3--15 modules per cancer type. Each module constitutes a survival mechanism.
 
-\paragraph{Pearson co-essentiality comparison.} As an alternative to Jaccard binarization, we computed pairwise Pearson correlation on continuous Chronos dependency scores for each cancer type, converting to a distance matrix $d_{ij} = 1 - |r_{ij}|$. Both Jaccard and Pearson distance matrices were clustered with Ward's method for $k \in \{3, 4, \ldots, 15\}$, and agreement was measured by normalized mutual information (NMI) between the two partitions. Silhouette scores were computed for each clustering to assess internal cohesion. Across 10 cancer types with $\geq$74 cell lines (range 74--165; 949--1,340 selective genes), mean NMI was $0.20 \pm 0.07$, increasing modestly with $k$ (0.16 at $k{=}3$ to 0.22 at $k{=}15$). Per-cancer NMI ranged from 0.08 (Lung Neuroendocrine Tumor) to 0.30 (Diffuse Glioma). Jaccard clusterings yielded higher silhouette scores than Pearson at all $k$ values (mean 0.054 vs.\ 0.025), indicating tighter module boundaries under discretized profiles.
+\paragraph{Pearson co-essentiality comparison.} As an alternative to Jaccard binarization, I computed pairwise Pearson correlation on continuous Chronos dependency scores for each cancer type, converting to a distance matrix $d_{ij} = 1 - |r_{ij}|$. Both Jaccard and Pearson distance matrices were clustered with Ward's method for $k \in \{3, 4, \ldots, 15\}$, and agreement was measured by normalized mutual information (NMI) between the two partitions. Silhouette scores were computed for each clustering to assess internal cohesion. Across 10 cancer types with $\geq$74 cell lines (range 74--165; 949--1,340 selective genes), mean NMI was $0.20 \pm 0.07$, increasing modestly with $k$ (0.16 at $k{=}3$ to 0.22 at $k{=}15$). Per-cancer NMI ranged from 0.08 (Lung Neuroendocrine Tumor) to 0.30 (Diffuse Glioma). Jaccard clusterings yielded higher silhouette scores than Pearson at all $k$ values (mean 0.054 vs.\ 0.025), indicating tighter module boundaries under discretized profiles.
 
 \paragraph{Signaling path scoring.} For a directed path $p = (g_1 \to g_2 \to \cdots \to g_k)$ in the OmniPath network (maximum $k = 4$ hops), the dependency score is:
 \[
@@ -320,13 +320,13 @@ where $\bar{D}_{g_i,c}$ is the mean Chronos score of gene $g_i$ across cell line
 \item Effect size: Cohen's $d_{g,c} > 0.3$ (small-to-medium effect size threshold).
 \end{enumerate}
 
-\paragraph{Lineage-aware regression alternative.} To control for shared lineage dependencies, we implemented an OLS regression model for each gene $g$:
+\paragraph{Lineage-aware regression alternative.} To control for shared lineage dependencies, I implemented an OLS regression model for each gene $g$:
 \[
 D_{g,\ell} = \beta_0 + \sum_{j=1}^{33} \beta_j \, \text{lin}_{j,\ell} + \beta_{\text{cancer}} \, \mathbb{1}_{\ell \in L_c} + \varepsilon_{g,\ell}
 \]
 where $\text{lin}_{j,\ell}$ are OncotreeLineage dummy variables (34 lineages, one dropped) and $\mathbb{1}_{\ell \in L_c} = 1$ if cell line $\ell$ belongs to the target cancer type. Across 17 gold-standard cancer types, the lineage-aware model identifies substantially different gene sets from the Welch $t$-test (median Jaccard similarity = 0.051, mean = 0.118). Final triple predictions change for only 2/17 cancer types (11.8\%): Colorectal (EGFR+KRAS+MET $\to$ BRAF+EGFR+KRAS) and Breast (BCL2L1+EGFR+MAP2K1 $\to$ CDK4+ERBB2+PIK3CA). Benchmark concordance increases modestly from 46.5\% to 48.8\% any-overlap.
 
-\paragraph{Perturbation-response signatures (literature-curated).} We manually curate published perturbation data from $\sim$15 kinase-inhibitor studies to identify feedback and bypass genes. Combinations that target perturbation-identified feedback genes receive a perturbation bonus $\beta_{\text{pert}} = 0.05$ per feedback gene covered, up to a maximum of 0.15. This module does not integrate systematic high-throughput perturbation databases (e.g., LINCS L1000).
+\paragraph{Perturbation-response signatures (literature-curated).} I manually curate published perturbation data from $\sim$15 kinase-inhibitor studies to identify feedback and bypass genes. Combinations that target perturbation-identified feedback genes receive a perturbation bonus $\beta_{\text{pert}} = 0.05$ per feedback gene covered, up to a maximum of 0.15. This module does not integrate systematic high-throughput perturbation databases (e.g., LINCS L1000).
 
 \subsection{S3. MHS cost function components}
 
@@ -384,7 +384,7 @@ Integration method & & RK45 & Adaptive step-size (scipy) \\
 \end{tabular}
 \end{table}
 
-\textbf{Parameter sensitivity.} Because the ODE parameters are assigned by biological role rather than fit to data, the sensitivity analysis characterizes the \emph{robustness of the tautology}, not the validity of the underlying assumptions. We performed univariate sensitivity analysis, varying each parameter $\pm$25\% from its nominal value. The qualitative ordering (tri-axial $<$ MHS $<$ single $<$ untreated) was preserved across all parameter perturbations.
+\textbf{Parameter sensitivity.} Because the ODE parameters are assigned by biological role rather than fit to data, the sensitivity analysis characterizes the \emph{robustness of the tautology}, not the validity of the underlying assumptions. I performed univariate sensitivity analysis, varying each parameter $\pm$25\% from its nominal value. The qualitative ordering (tri-axial $<$ MHS $<$ single $<$ untreated) was preserved across all parameter perturbations.
 
 \subsection{S6. Benchmark methodology}
 
