@@ -44,20 +44,20 @@ C = {
 # Panel A: Edge-swap schematic
 # ═════════════════════════════════════════════════════════════════════════════
 def draw_panel_a(ax):
-    ax.set_xlim(0, 1)
-    ax.set_ylim(0, 1)
+    ax.set_xlim(-0.02, 1.02)
+    ax.set_ylim(-0.02, 1.02)
     ax.axis("off")
     ax.set_title("A", fontsize=14, fontweight="bold", loc="left", pad=8)
 
     # --- Left: Original graph ---
-    ax.text(0.22, 0.97, "Original Network", ha="center", va="top",
-            fontsize=10, fontweight="bold", color=C["text"])
+    ax.text(0.17, 0.97, "Original Network", ha="center", va="top",
+            fontsize=9, fontweight="bold", color=C["text"])
 
-    # Node positions for a small 6-node directed graph
+    # Node positions – compact networks with clear gap for swap arrow
     nodes_left = {
-        "A": (0.08, 0.78), "B": (0.36, 0.78),
-        "C": (0.08, 0.55), "D": (0.36, 0.55),
-        "E": (0.08, 0.32), "F": (0.36, 0.32),
+        "A": (0.05, 0.78), "B": (0.29, 0.78),
+        "C": (0.05, 0.55), "D": (0.29, 0.55),
+        "E": (0.05, 0.32), "F": (0.29, 0.32),
     }
 
     # Edges (directed): u→v
@@ -73,7 +73,7 @@ def draw_panel_a(ax):
 
     def draw_graph(ax, nodes, edges, highlight_edges=None, highlight_color=None,
                    node_labels=True):
-        nr = 0.035
+        nr = 0.032
         for name, (x, y) in nodes.items():
             circle = plt.Circle((x, y), nr, facecolor=C["node"],
                                 edgecolor=C["node_edge"], linewidth=1.5,
@@ -106,29 +106,29 @@ def draw_panel_a(ax):
                highlight_edges=swap_edges, highlight_color=C["edge_new"])
 
     # Label the highlighted edges
-    ax.text(0.28, 0.69, "A→D", ha="center", va="center", fontsize=7,
+    ax.text(0.23, 0.69, "A→D", ha="center", va="center", fontsize=7,
             color=C["edge_new"], fontweight="bold", rotation=-35)
-    ax.text(0.02, 0.45, "C→E", ha="center", va="center", fontsize=7,
+    ax.text(-0.01, 0.45, "C→E", ha="center", va="center", fontsize=7,
             color=C["edge_new"], fontweight="bold", rotation=-35)
 
     # --- Arrow in between ---
-    ax.annotate("", xy=(0.72, 0.55), xytext=(0.50, 0.55),
+    ax.annotate("", xy=(0.62, 0.55), xytext=(0.40, 0.55),
                 arrowprops=dict(arrowstyle="-|>", color=C["swap_arrow"],
                                 lw=2.5, shrinkA=5, shrinkB=5),
                 zorder=2)
-    ax.text(0.61, 0.61, "Edge Swap", ha="center", va="bottom",
+    ax.text(0.51, 0.61, "Edge Swap", ha="center", va="bottom",
             fontsize=9, fontweight="bold", color=C["swap_arrow"])
-    ax.text(0.61, 0.49, "Degree preserved", ha="center", va="top",
+    ax.text(0.51, 0.49, "Degree preserved", ha="center", va="top",
             fontsize=7.5, color=C["swap_arrow"], fontstyle="italic")
 
     # --- Right: Rewired graph ---
-    ax.text(0.85, 0.97, "Rewired Network", ha="center", va="top",
-            fontsize=10, fontweight="bold", color=C["text"])
+    ax.text(0.83, 0.97, "Rewired Network", ha="center", va="top",
+            fontsize=9, fontweight="bold", color=C["text"])
 
     nodes_right = {
-        "A": (0.70, 0.78), "B": (0.98, 0.78),
-        "C": (0.70, 0.55), "D": (0.98, 0.55),
-        "E": (0.70, 0.32), "F": (0.98, 0.32),
+        "A": (0.71, 0.78), "B": (0.95, 0.78),
+        "C": (0.71, 0.55), "D": (0.95, 0.55),
+        "E": (0.71, 0.32), "F": (0.95, 0.32),
     }
 
     # After swap: A→D becomes A→E, C→E becomes C→D
@@ -144,9 +144,9 @@ def draw_panel_a(ax):
     draw_graph(ax, nodes_right, edges_rewired,
                highlight_edges=new_edges, highlight_color=C["edge_new"])
 
-    ax.text(0.64, 0.56, "A→E", ha="center", va="center", fontsize=7,
+    ax.text(0.65, 0.56, "A→E", ha="center", va="center", fontsize=7,
             color=C["edge_new"], fontweight="bold", rotation=-35)
-    ax.text(0.90, 0.57, "C→D", ha="center", va="center", fontsize=7,
+    ax.text(0.88, 0.57, "C→D", ha="center", va="center", fontsize=7,
             color=C["edge_new"], fontweight="bold", rotation=0)
 
     # Degree table
