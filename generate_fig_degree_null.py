@@ -150,24 +150,24 @@ def draw_panel_b(ax, data):
                label=f"Observed ({observed}/5 cancers)")
     ax.axvspan(observed - 0.3, 5.5, alpha=0.07, color=RED, zorder=1)
 
-    # p-value box
+    # p-value box  (top-right corner)
     ptxt = "p < 0.05" if p_val == 0.0 else f"p = {p_val:.3f}"
     ax.text(0.96, 0.94, ptxt, transform=ax.transAxes, ha="right", va="top",
             fontsize=11, fontweight="bold", color=RED,
             bbox=dict(boxstyle="round,pad=0.3", fc="white", ec=RED, alpha=0.9))
 
-    # observed callout
+    # observed callout  (moved left to avoid overlap with p-value box)
     ax.annotate(
         f"Observed: {observed}/5",
-        xy=(observed, max(counts) * 0.65),
-        xytext=(observed - 1.5, max(counts) * 0.88),
+        xy=(observed, max(counts) * 0.55),
+        xytext=(observed - 2.8, max(counts) * 0.55),
         fontsize=9, fontweight="bold", color=RED,
         arrowprops=dict(arrowstyle="-|>", color=RED, lw=1.4), zorder=6,
     )
 
-    # null stats
-    ax.text(0.96, 0.78, f"Null: {null_mean:.1f} \u00b1 {null_std:.1f}",
-            transform=ax.transAxes, ha="right", va="top", fontsize=8.5,
+    # null stats  (bottom-left, away from other annotations)
+    ax.text(0.04, 0.55, f"Null: {null_mean:.1f} \u00b1 {null_std:.1f}",
+            transform=ax.transAxes, ha="left", va="top", fontsize=8.5,
             color=BLUE,
             bbox=dict(boxstyle="round,pad=0.3", fc=LBLUE, ec=BLUE, alpha=0.45))
 
@@ -219,18 +219,18 @@ def draw_panel_c(ax, data):
     ax.set_ylabel("Frequency (%)", fontsize=10)
     ax.set_xticks(x)
     ax.set_xticklabels(genes, fontsize=8.5, rotation=30, ha="right")
-    ax.set_ylim(0, 118)
-    ax.legend(loc="upper right", fontsize=8, framealpha=0.9)
+    ax.set_ylim(0, 125)
+    ax.legend(loc="upper left", fontsize=7.5, framealpha=0.9)
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
 
-    # Insight callout
+    # Insight callout  (placed top-right, away from legend)
     ax.annotate("STAT3: 100% observed\nvs. 12% in null",
                 xy=(x[0] + w / 2, obs_pct[0]),
-                xytext=(x[2], 105),
+                xytext=(x[5], 115),
                 fontsize=8, fontweight="bold", color=RED,
                 arrowprops=dict(arrowstyle="-|>", color=RED, lw=1.3,
-                                connectionstyle="arc3,rad=-0.2"),
+                                connectionstyle="arc3,rad=-0.25"),
                 bbox=dict(boxstyle="round,pad=0.3", fc="white", ec=RED,
                           alpha=0.9),
                 zorder=6)
