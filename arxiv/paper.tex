@@ -1,32 +1,12 @@
-% Prefer the fallback `article` class unless an explicit marker enables the
-% vendor class. To force the vendor class create an empty file named
-% `USE_VENDOR_CLASS` in the project root. This prevents class-provided package
-% load-order issues (e.g., cleveref vs hyperref) during automatic builds.
-\IfFileExists{zHenriquesLab-StyleBioRxiv.cls}{%
-  \IfFileExists{USE_VENDOR_CLASS}{%
-    \documentclass[times, twoside, watermark]{zHenriquesLab-StyleBioRxiv}
-  }{%
-    \documentclass[11pt]{article}
-    \usepackage[margin=1in]{geometry}
-    % Provide compatibility shims when the vendor class is absent (Overleaf/fallback)
-    \usepackage{authblk}
-    \providecommand{\leadauthor}[1]{}
-    \providecommand{\shorttitle}[1]{}
-    \providecommand{\corrauthor}[1]{}
-    \providecommand{\Letter}{}
-    \renewcommand\Affilfont{\small}
-  }
-}{%
-  \documentclass[11pt]{article}
-  \usepackage[margin=1in]{geometry}
-  % Provide compatibility shims when the vendor class is absent (Overleaf/fallback)
-  \usepackage{authblk}
-  \providecommand{\leadauthor}[1]{}
-  \providecommand{\shorttitle}[1]{}
-  \providecommand{\corrauthor}[1]{}
-  \providecommand{\Letter}{}
-  \renewcommand\Affilfont{\small}
-}
+\pdfoutput=1
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{authblk}
+\providecommand{\leadauthor}[1]{}
+\providecommand{\shorttitle}[1]{}
+\providecommand{\corrauthor}[1]{}
+\providecommand{\Letter}{}
+\renewcommand\Affilfont{\small}
 
 % Core packages
 \usepackage{graphicx}
@@ -151,7 +131,7 @@ Component definitions are provided in Supplementary Methods~S3. I employ a solve
 
 \begin{figure*}[!htb]
 \centering
-\includegraphics[width=0.95\linewidth]{../figures/fig1_pipeline_schematic}
+\includegraphics[width=0.95\linewidth]{figures/fig1_pipeline_schematic}
 \vspace{-6pt}
 \caption{\textbf{ALIN Framework overview.} \textbf{(A)} Computational pipeline: DepMap CRISPR essentiality data and OmniPath signaling networks are integrated to infer cancer-specific survival mechanisms via five complementary modules. Minimal hitting sets (MHS) identify the smallest target set covering all inferred mechanisms; ranked triples are scored for estimated synergy, resistance risk, combo-toxicity, pathway coverage, and hub-gene penalty. Multi-source evidence integration (PubMed, STRING, ClinicalTrials.gov, PRISM, DrugComb synergy) provides orthogonal support. \textbf{(B)} Tri-axial inhibition principle (Liaki et al., 2025): tumors maintain viability through three independent signaling axes. Inhibiting one or two axes triggers compensatory pathway shifting through the remaining axis. Only simultaneous tri-axial blockade prevented resistance in PDAC; ALIN tests whether this principle generalizes computationally.}
 \label{fig:pipeline}
@@ -239,7 +219,7 @@ Exploratory: success/failure AUC & 0.69 (bootstrap CI [0.46--0.88]; suggestive, 
 
 \begin{figure*}[htbp]
 \centering
-\includegraphics[width=0.95\linewidth]{../figures/fig6_mhs_distribution}
+\includegraphics[width=0.95\linewidth]{figures/fig6_mhs_distribution}
 \caption{\textbf{MHS size and target frequency.} \textbf{(A)} Distribution of optimal MHS sizes across 77 cancer types. Most cancers (50/77, 65\%) require exactly 2 targets for complete survival mechanism coverage; 11 require only 1 target, 14 require 3, and 2 require 4. \textbf{(B)} Top 10 most frequent MHS target genes, colored by assigned tri-axial role: candidate orthogonal survival hub (green), downstream cell cycle effector (blue), upstream oncogenic driver (orange). STAT3 dominates (78\% of cancers), followed by CCND1 (23\%). Tri-axial role assignments are post-hoc functional annotations, not algorithmically derived.}
 \label{fig:mhs_dist}
 \end{figure*}
@@ -259,7 +239,7 @@ Post-hoc, these targets group into three functional categories--STAT3 as a survi
 
 \begin{figure*}[htbp]
 \centering
-\includegraphics[width=0.85\linewidth]{../figures/fig2_xnode_concept}
+\includegraphics[width=0.85\linewidth]{figures/fig2_xnode_concept}
 \caption{\textbf{Pan-cancer target architecture.} \textbf{(A)} Target frequency across 77 cancer types with MHS predictions. Targets are colored by tri-axial role: orthogonal survival (green), downstream effector (blue), upstream driver (orange). STAT3 is the most frequent orthogonal-position target (78\% of cancers), consistent with its known constitutive activation~\cite{Yu2004} and algorithmic hub preference (see Limitations). Cell cycle regulators (CCND1, CDK4, CDK6) function as downstream effectors, and cancer-specific oncogenes (KRAS, EGFR, BRAF) serve as upstream drivers. \textbf{(B)} Tri-axial classification of the most frequent targets, showing gene counts per functional category.}
 \label{fig:xnode}
 \end{figure*}
@@ -277,7 +257,7 @@ Representative cancer-specific MHS predictions (\cref{fig:heatmap}; full results
 
 \begin{figure*}[htbp]
 \centering
-\includegraphics[width=0.95\linewidth]{../figures/fig5_cancer_target_heatmap}
+\includegraphics[width=0.95\linewidth]{figures/fig5_cancer_target_heatmap}
 \caption{\textbf{Cancer--target heatmap.} Binary presence/absence of MHS targets (columns) across the 20 cancer types with the most cell lines (rows). Cells are colored by assigned tri-axial role: candidate orthogonal (green), downstream (blue), upstream (orange). Column headers show overall target frequency (number of cancers). The heatmap illustrates STAT3's recurrence as a candidate orthogonal node alongside cancer-specific target diversity. Role assignments are post-hoc functional annotations.}
 \label{fig:heatmap}
 \end{figure*}
@@ -324,7 +304,7 @@ ALIN achieves exact target concordance for 3/43 entries (7.0\%): BRAF+EGFR in co
 
 \begin{figure*}[htbp]
 \centering
-\includegraphics[width=0.85\linewidth]{../figures/fig3_benchmark_comparison}
+\includegraphics[width=0.85\linewidth]{figures/fig3_benchmark_comparison}
 \caption{\textbf{Benchmark performance.} \textbf{(A)} Recall of ALIN ranked combinations against 43 independently curated gold-standard combinations spanning 25 cancer types: 7.0\% exact recall (3/43), 9.3\% superset recall (4/43), 30.2\% pair-overlap recall (13/43), 44.2\% any-overlap recall (19/43). On 35 testable entries: 54.3\% any-overlap, 37.1\% pair-overlap. \textbf{(B)} Match breakdown. \textbf{(C)} Baseline comparison (pair-overlap): ALIN 30.2\% surpasses driver-gene 16.3\%, random-global 8.7\%, random-candidate 0.0\%.}
 \label{fig:benchmark}
 \end{figure*}
@@ -366,7 +346,7 @@ OmniPath signaling paths are the single most important module: removing them col
 
 \begin{figure*}[htbp]
 \centering
-\includegraphics[width=0.95\linewidth]{../figures/fig_degree_null}
+\includegraphics[width=0.95\linewidth]{figures/fig_degree_null}
 \caption{\textbf{Degree-preserving network null model.} \textbf{(A)} Edge-swap schematic: pairs of directed edges are swapped while preserving every node's in- and out-degree, destroying biological wiring while retaining network topology. $10 \times |E|$ swaps per permutation, 20 permutations total. \textbf{(B)} STAT3 frequency across 5 test cancers under the null: STAT3 appears in 5/5 cancers in the real network (red dashed line) but only $0.60 \pm 1.07$ under the null ($p < 0.05$). \textbf{(C)} Gene frequency comparison: STAT3's dominance (100\% observed vs.\ 12\% null) contrasts sharply with hub-degree--independent genes (CCND1: 96\% null; CDK4: 58\% null) that persist under rewiring, confirming that STAT3's pan-cancer recurrence reflects specific biological pathway topology, not hub degree alone.}
 \label{fig:degree_null}
 \end{figure*}
@@ -469,355 +449,10 @@ I thank Liaki et al.~\cite{Liaki2025} for the foundational tri-axial combination
 \end{acknowledgements}
 
 \section*{Bibliography}
-% Use the provided .bib if present; otherwise fall back to a minimal manual bibliography
-\IfFileExists{alin_refs.bib}{%
-  \bibliographystyle{unsrt}
-  \bibliography{alin_refs}
-}{%
-  \begin{thebibliography}{9}
-  \bibitem{Liaki2025} Liaki V, Barrambana S, et al. 2025. A targeted combination therapy achieves effective pancreatic cancer regression. \textit{Proc Natl Acad Sci USA} 122(51):e2412835122.
-  \bibitem{DepMap} DepMap: depmap.org
-  \bibitem{OmniPath} OmniPath: omnipathdb.org
-  \end{thebibliography}
-}
+\bibliographystyle{unsrt}
+\bibliography{alin_refs}
 
 \section*{Supplementary Information}
 Full Supplementary Information--including Supplementary Methods (S1--S6: data sources, survival mechanism inference mathematics, MHS cost components, triple scoring definitions, ODE model parameters, benchmark methodology), Supplementary Results (MHS non-uniqueness, novel combinations, validation, dual-vs.-triple validation, exploratory discrimination, hub-handling strategies, evidence calibration, negative controls, translational feasibility, end-to-end case studies, pathway shifting simulation, additional limitations 7--13), Supplementary Figures (S1--S16), and Supplementary Tables (S1--S7)--is provided in the companion document \texttt{supplementary.pdf}.
 
 \end{document}
-
-%% -- Content below moved to supplementary.tex --
-%% Retained here as comments for reference during review.
-
-\iffalse  % Moved to supplementary
-\subsubsection*{S1. Data sources and version control}
-All data were accessed in January 2026 and cached locally for reproducibility. DepMap release 24Q4 was downloaded from \url{https://depmap.org/portal/download/all/} (files: CRISPRGeneEffect.csv, Model.csv, OmicsDefaultModelProfiles.csv). The OmniPath directed signaling network was obtained via the OmniPath Python client (v1.0.8; \url{https://omnipathdb.org}). PRISM secondary repurposing screen data (19Q4) were downloaded from \url{https://depmap.org/repurposing/}. GDSC drug sensitivity data (IC$_{50}$ and AUC) were obtained from \url{https://www.cancerrxgene.org}. Exact file URLs, SHA-256 checksums, and download dates are recorded in the repository file DATA\_AVAILABILITY.md to enable precise data provenance tracking.
-
-\subsubsection*{S2. Survival mechanism inference: mathematical definitions}
-
-\paragraph{Essentiality threshold.} Gene $g$ is essential in cell line $\ell$ if its Chronos score satisfies $D_{g,\ell} < \theta_{\text{dep}}$ where $\theta_{\text{dep}} = -0.5$ (standard DepMap threshold for gene essentiality). Gene $g$ is selective for cancer type $c$ if it is essential in at least fraction $\theta_{\text{sel}} = 0.30$ of cell lines within $c$:
-\[
-\resizebox{\columnwidth}{!}{$\displaystyle
-\text{Selective}(g, c) = \mathbb{1}\!\left[\frac{|\{\ell \in L_c : D_{g,\ell} < \theta_{\text{dep}}\}|}{|L_c|} \geq \theta_{\text{sel}}\right]
-$}
-\]
-where $L_c$ is the set of cell lines annotated to cancer type $c$. Pan-essential genes, those essential in $>$90\% of all cell lines across all cancer types, are excluded to remove housekeeping dependencies.
-
-\paragraph{Co-essentiality (Jaccard index).} For genes $g_i, g_j$ in cancer $c$, let $E_i = \{\ell \in L_c : D_{g_i,\ell} < \theta_{\text{dep}}\}$. The co-essentiality score is:
-\[
-\text{CoEss}(g_i, g_j) = \frac{|E_i \cap E_j|}{|E_i \cup E_j|}
-\]
-This Jaccard index ranges from 0 (no shared essentiality) to 1 (identical essentiality profiles). The resulting pairwise distance matrix ($1 - \text{CoEss}$) is clustered using Ward's agglomerative method with a dynamic tree cut producing 3--15 modules per cancer type. Each module constitutes a survival mechanism (referred to as a ``viability path'' in the MHS formulation for consistency with the hitting set literature).
-
-\paragraph{Pearson co-essentiality comparison.} As an alternative to Jaccard binarization, I computed pairwise Pearson correlation on continuous Chronos dependency scores for each cancer type, converting to a distance matrix $d_{ij} = 1 - |r_{ij}|$. Both Jaccard and Pearson distance matrices were clustered with Ward's method for $k \in \{3, 4, \ldots, 15\}$, and agreement was measured by normalized mutual information (NMI) between the two partitions~\cite{Vinh2010}. Silhouette scores were computed for each clustering to assess internal cohesion. Across 10 cancer types with $\geq$74 cell lines (range 74--165; 949--1,340 selective genes), mean NMI was $0.20 \pm 0.07$, increasing modestly with $k$ (0.16 at $k{=}3$ to 0.22 at $k{=}15$). Per-cancer NMI ranged from 0.08 (Lung Neuroendocrine Tumor) to 0.30 (Diffuse Glioma). Jaccard clusterings yielded higher silhouette scores than Pearson at all $k$ values (mean 0.054 vs.\ 0.025), indicating tighter module boundaries under discretized profiles. These results confirm that Jaccard binarization and Pearson correlation capture complementary co-essentiality signals; the choice of Jaccard for ALIN is supported by its superior internal cohesion and interpretability for discrete module recovery.
-
-\paragraph{Signaling path scoring.} For a directed path $p = (g_1 \to g_2 \to \cdots \to g_k)$ in the OmniPath network (maximum $k = 4$ hops), the dependency score is:
-\[
-S_{\text{path}}(p) = \frac{1}{k} \sum_{i=1}^{k} |\bar{D}_{g_i,c}|
-\]
-where $\bar{D}_{g_i,c}$ is the mean Chronos score of gene $g_i$ across cell lines of cancer $c$. Paths with $S_{\text{path}} < 0.3$ are pruned as insufficiently essential.
-
-\paragraph{Cancer-specific statistical testing.} Gene $g$ is cancer-specific for cancer $c$ if it satisfies:
-\begin{enumerate}
-\item Welch's $t$-test: $q_{g,c} < 0.05$ (Benjamini--Hochberg FDR-corrected~\cite{Benjamini1995}; comparing Chronos scores of $g$ in $L_c$ vs.\ all other cell lines);
-\item Effect size: Cohen's $d_{g,c} > 0.3$ (small-to-medium effect size threshold).
-\end{enumerate}
-Genes passing both criteria form an additional survival mechanism capturing lineage-specific vulnerabilities.
-
-\paragraph{Lineage-aware regression alternative.} To control for shared lineage dependencies, I implemented an OLS regression model for each gene $g$:
-\[
-D_{g,\ell} = \beta_0 + \sum_{j=1}^{33} \beta_j \, \text{lin}_{j,\ell} + \beta_{\text{cancer}} \, \mathbb{1}_{\ell \in L_c} + \varepsilon_{g,\ell}
-\]
-where $\text{lin}_{j,\ell}$ are OncotreeLineage dummy variables (34 lineages, one dropped) and $\mathbb{1}_{\ell \in L_c} = 1$ if cell line $\ell$ belongs to the target cancer type. $\beta_{\text{cancer}}$ captures cancer-type-specific essentiality after removing lineage effects. Genes with BH-corrected $q_{\beta_{\text{cancer}}} < 0.05$ and $|\beta_{\text{cancer}}| > 0.3$ form the lineage-controlled cancer-specific survival mechanism.
-
-Across 17 gold-standard cancer types, the lineage-aware model identifies substantially different gene sets from the Welch $t$-test (median Jaccard similarity = 0.051, mean = 0.118), reflecting removal of shared lineage dependencies. Nevertheless, final triple predictions change for only 2/17 cancer types (11.8\%): Colorectal Adenocarcinoma (EGFR+KRAS+MET $\to$ BRAF+EGFR+KRAS) and Invasive Breast Carcinoma (BCL2L1+EGFR+MAP2K1 $\to$ CDK4+ERBB2+PIK3CA). Benchmark concordance increases modestly from 46.5\% to 48.8\% any-overlap (Supplementary Figure~S9). The robustness of final predictions despite large gene-level changes confirms that the MHS + scoring modules are the dominant determinant of output quality.
-
-\paragraph{Perturbation-response signatures (literature-curated).} I manually curate published perturbation data from $\sim$15 kinase-inhibitor studies (phosphoproteomics and transcriptional profiling after treatment) to identify feedback and bypass genes. For each inhibitor--gene pair, a response signature is defined as a set of genes whose expression or phosphorylation changes significantly upon treatment (e.g., EGFR phosphorylation increases upon KRAS inhibition, representing feedback reactivation). Where target-specific data are unavailable, isoform aliases share profiles from a related kinase (e.g., CDK6 shares the CDK4 profile; MAP2K1/MAP2K2 share MEK1; FYN shares SRC), a biologically dubious simplification given distinct substrate specificities (see Limitations~\#6). Essential genes overlapping with perturbation responders form additional survival mechanisms. Combinations that target perturbation-identified feedback genes receive a perturbation bonus $\beta_{\text{pert}} = 0.05$ per feedback gene covered, up to a maximum of 0.15. Confidence scores (0.85--0.95) assigned to each curated signature are author-assigned heuristics reflecting perceived study quality and replication, not formal statistical measures. This module does not integrate systematic high-throughput perturbation databases (e.g., LINCS L1000~\cite{Subramanian2017}; see Limitations~\#6).
-
-\subsubsection*{S3. MHS cost function components}
-
-The weighted cost for including gene $g$ in the MHS for cancer $c$ (Equation~2 in main text) comprises four terms:
-
-\textbf{Toxicity} $\tau(g)$: Derived from OpenTargets safety data and DrugTargetDB adverse event profiles. Scores range from 0.0 (no known toxicity) to 1.0 (severe dose-limiting toxicities in clinical use). For genes without drug safety data, a default of 0.3 is assigned.
-
-\textbf{Tumor specificity} $s(g,c)$: The selectivity of gene $g$ for cancer $c$ relative to all cancers:
-\[
-s(g,c) = \frac{f_{\text{ess}}(g,c) - \bar{f}_{\text{ess}}(g)}{\max_c f_{\text{ess}}(g,c) - \min_c f_{\text{ess}}(g,c) + \epsilon}
-\]
-where $f_{\text{ess}}(g,c)$ is the fraction of cell lines essential for $g$ in cancer $c$, $\bar{f}_{\text{ess}}(g)$ is the pan-cancer mean, and $\epsilon = 0.01$ prevents division by zero. Higher values indicate greater tumor selectivity.
-
-\textbf{Druggability} $d(g)$: Binary-graded assessment: $d(g) = 1.0$ if an FDA-approved inhibitor exists; $d(g) = 0.6$ for compounds in Phase 2/3 trials; $d(g) = 0.3$ for Phase 1; $d(g) = 0.2$ for preclinical-only compounds; $d(g) = 0.0$ for undruggable targets.
-
-\textbf{Pan-essentiality penalty} $\mathbb{1}_{\text{pan}}$: Equals 1 if the gene is essential in $>$90\% of all cell lines (indicating a housekeeping gene dependency); 0 otherwise. The $\times 2$ multiplier strongly penalizes selection of pan-essential genes.
-
-\subsubsection*{S4. Ranked triple scoring: component definitions}
-
-The composite ranking score (Equation~3 in main text) combines five components:
-
-\textbf{Synergy score.} Derived from two sources: (1) known synergistic pairs from curated clinical data (e.g., BRAF+MEK: synergy = 0.9; BRAF+MAP2K1: synergy = 0.95; EGFR+MET: synergy = 0.90; CDK4+endocrine: synergy = 0.8) and (2) pathway diversity, quantified as the number of distinct biological pathways (MAPK, cell cycle, JAK/STAT, PI3K/AKT, apoptosis) covered by the triple, normalized to $[0, 1]$. When clinical evidence is available for at least one gene pair: weight 0.7 $\times$ known synergy + 0.3 $\times$ pathway diversity; otherwise: 0.6 $\times$ pathway diversity. This evidence-adaptive weighting ensures that FDA-approved and Phase~III-validated combinations receive appropriate credit relative to pathway-diversity heuristics.
-
-\textbf{Resistance probability.} Estimated from curated resistance mechanisms: for each target in the triple, if known bypass mechanisms exist (e.g., EGFR $\to$ MET amplification upon EGFR inhibition), and the bypass gene is \emph{not} covered by another target in the triple, resistance probability increases by 0.15 per uncovered bypass. Triples covering their own bypass mechanisms score 0 (best).
-
-\textbf{Combination toxicity (combo-tox).} Computed as:
-\[
-\resizebox{\columnwidth}{!}{$\displaystyle
-\text{combo-tox} = \sum_{\text{DDI pairs}} w_{\text{DDI}} + \sum_{\text{shared tox}} w_{\text{overlap}}
-$}
-\]
-where $w_{\text{DDI}} \in \{0.4 \text{ (major)}, 0.2 \text{ (moderate)}, 0.1 \text{ (minor)}\}$ and $w_{\text{overlap}} \in [0.08, 0.15]$ depending on the severity class of overlapping toxicities (e.g., myelosuppression = 0.15, hepatotoxicity = 0.12, QT prolongation = 0.15, dermatologic = 0.08).
-
-\textbf{Path coverage.} Fraction of all inferred survival mechanisms for cancer $c$ that are intersected by at least one gene in the triple. Triples with coverage $< 0.70$ are excluded from ranking.
-
-\textbf{Druggability count} $n_{\text{drugs}}$: Number of genes in the triple with FDA-approved or clinical-stage inhibitors (0, 1, 2, or 3).
-
-\subsubsection*{S5. ODE model parameters and justification}
-
-\begin{table*}[htbp]
-\centering
-\small
-\caption{ODE model parameter values and biological justification.}
-\begin{tabular}{@{}llll@{}}
-\toprule
-\textbf{Parameter} & \textbf{Symbol} & \textbf{Value} & \textbf{Justification} \\
-\midrule
-Basal production (drivers) & $b_i$ & 0.25--0.50 & Constitutive oncogene activation \\
-Basal production (cascade) & $b_i$ & 0.03--0.08 & Dependent on upstream signaling \\
-Basal production (orthogonal) & $b_i$ & 0.05--0.10 & Independent but regulatable \\
-Degradation rate & $d_i$ & 0.05 h$^{-1}$ & Protein half-life $\sim$14 h \\
-Hill coefficient & $n$ & 2 & Standard cooperativity \\
-Hill half-max & $K$ & 0.5 & Normalized activity scale \\
-Drug strength & $s_i$ & 0.92 & 92\% maximal inhibition \\
-Drug onset rate & $\alpha$ & 0.15 h$^{-1}$ & $t_{1/2} \approx 4.6$ h to steady state \\
-Compensatory gain (orthogonal) & $g_i$ & 0.4--0.7 & FYN$\to$STAT3 de-repression \\
-Compensatory gain (cascade) & $g_i$ & 0.1--0.2 & Limited compensatory capacity \\
-Simulation duration & $T$ & 4800 h & 200 days (Liaki observation window) \\
-Integration method & ,  & RK45 & Adaptive step-size (scipy) \\
-\bottomrule
-\end{tabular}
-\end{table*}
-
-\textbf{Parameter sensitivity (robustness of the deductive structure).} Because the ODE parameters are assigned by biological role rather than fit to data, the sensitivity analysis characterizes the \emph{robustness of the tautology}, not the validity of the underlying assumptions. I performed univariate sensitivity analysis, varying each parameter $\pm$25\% from its nominal value. The qualitative ordering (tri-axial $<$ MHS $<$ single $<$ untreated) was preserved across all parameter perturbations. The steady-state viability difference between tri-axial and MHS strategies varied from 22.1\% (low compensatory gain $g_i = 0.3$) to 41.3\% (high compensatory gain $g_i = 0.9$), confirming that stronger assumed compensatory signaling increases the modeled advantage of tri-axial therapy. Drug strength had the largest absolute impact: $s_i = 0.80$ (80\% inhibition) reduced the tri-axial vs.\ MHS advantage to 18.5\%, while $s_i = 0.98$ (near-complete inhibition) increased it to 38.9\%. These ranges define the uncertainty envelope of the illustration, but do not constitute empirical validation of the compensatory gain assumptions themselves.
-
-\subsubsection*{S6. Benchmark methodology}
-
-The 43 multi-target ($\geq$2 gene) gold-standard combinations spanning 25 cancer types were independently curated from clinical sources without reference to ALIN outputs~\cite{Long2014,Planchard2016,Kopetz2019,Larkin2014,Park2021,Sequist2020,Baselga2012,Turner2015,Motzer2015,Daver2022,Ciruelos2024,Bhardwaj2019,Liaki2025}. Each entry requires at least two distinct gene targets to ensure combination-level evaluation. Evidence tiers:
-\begin{enumerate}
-\item \textbf{FDA-approved} (7 entries): Combinations with regulatory approval for the indicated cancer type (e.g., dabrafenib + trametinib for BRAF V600E melanoma; palbociclib + letrozole for ER+ breast cancer).
-\item \textbf{Phase 2/3 clinical trials} (5 entries): Combinations with published positive efficacy data from randomized controlled trials (e.g., amivantamab + lazertinib for EGFR-mutant NSCLC; BEACON CRC).
-\item \textbf{Preclinical validation} (1 entry): The Liaki et al.\ PDAC KRAS+EGFR+STAT3 triple~\cite{Liaki2025}, explicitly labeled as preclinical.
-\end{enumerate}
-
-\textbf{Match criteria.} The primary metric is \emph{any-overlap recall}: a predicted set $T$ matches gold-standard entry $G$ if $|G \cap T| \geq 1$~\cite{Julkunen2023}. A stricter \emph{pair-overlap recall} requires $|G \cap T| \geq 2$. Secondary metrics: ``Superset'' indicates $G \subseteq T$; ``Exact'' indicates $G = T$. Gene equivalences (MAP2K1$\leftrightarrow$MAP2K2, CDK4$\leftrightarrow$CDK6) are applied during matching.
-
-\needspace{5\baselineskip}
-\subsection*{Supplementary Figures}
-
-\textbf{Fig.\ S1: ALIN pipeline detailed flowchart.}
-End-to-end computational workflow from DepMap 24Q4 data ingestion (17,634 genes $\times$ 1,100 cell lines) and OmniPath network download through five survival mechanism inference methods (co-essentiality clustering, signaling topology, cancer-specific testing, perturbation signatures, driver landscaping), MHS optimization (greedy + ILP solvers), ranked triple scoring, and multi-source validation (PubMed, STRING, ClinicalTrials.gov, PRISM). Full pipeline executes in $\sim$45 minutes on a single CPU (Apple M2, 16~GB RAM).
-
-\textbf{Fig.\ S2: Co-essentiality clustering methodology.}
-\textbf{(A)} Binary essentiality matrix thresholded at Chronos $< -0.5$, filtered for selectivity ($\geq$30\% of lines) and pan-essentiality exclusion ($\leq$90\%). \textbf{(B)} Pairwise Jaccard co-essentiality computation. \textbf{(C)} Ward's hierarchical clustering with dynamic tree cut (3--15 modules per cancer). \textbf{(D)} Example melanoma modules: MAPK cascade (BRAF, MAP2K1, MAP2K2; mean Jaccard = 0.78), cell cycle (CDK4, CCND1, RB1; 0.65), JAK/STAT (STAT3, JAK1, FYN; 0.52).
-
-\textbf{Fig.\ S3: Network path inference from OmniPath.}
-\textbf{(A)} OmniPath directed subgraph for melanoma seeded from driver genes (BRAF, NRAS, EGFR), expanded up to 4 hops, pruned to nodes with mean Chronos $< -0.3$. Nodes colored by essentiality; edges weighted by OmniPath confidence ($\geq 0.5$ retained). \textbf{(B)} Dependency-weighted path scoring: $S_{\text{path}} = \frac{1}{|p|} \sum_{g \in p} |D_g|$; paths with $S_{\text{path}} < 0.3$ pruned. \textbf{(C)} Top melanoma paths: BRAF$\rightarrow$MEK$\rightarrow$ERK$\rightarrow$CCND1 ($S = 0.82$), EGFR$\rightarrow$KRAS$\rightarrow$BRAF ($S = 0.71$), JAK1$\rightarrow$STAT3 ($S = 0.58$).
-
-\textbf{Fig.\ S4: Benchmark rank distribution.}
-\textbf{(A)} Distribution of match types against 43 gold-standard entries: 3 exact, 1 superset, 9 pair-overlap, 6 any-overlap, 24 unmatched. \textbf{(B)} Baseline comparison: ALIN pair-overlap 30.2\% exceeds driver-gene 16.3\% ($1.85\times$) and global-frequency 27.9\%; ALIN is the only method with exact matches. \textbf{(C)} Unmatched entries involve subtype-specific dependencies, mutation-driven targets (FLT3), or modalities (VEGFR2, mTOR) not captured by pan-cancer DepMap data.
-
-\textbf{Fig.\ S5: MHS combination size distribution.}
-\textbf{(A)} MHS sizes across 77 cancers: 1~target (14.3\%), 2~targets (64.9\%), 3~targets (18.2\%), 4~targets (2.6\%); median = 2. \textbf{(B)} No significant difference across lineages (solid, hematologic, CNS, sarcoma; Kruskal--Wallis $p = 0.42$). \textbf{(C)} Positive correlation between cell line count and MHS size (Spearman $\rho = 0.31$, $p = 0.006$), reflecting increased statistical power rather than inherent complexity.
-
-\textbf{Fig.\ S6: Perturbation-response path coverage (literature-curated).}
-\textbf{(A)} Perturbation-derived survival mechanisms per cancer type (range: 0--8; mean: 3.2), reflecting knowledge bias toward well-studied kinases (13 curated signatures vs.\ $>$1.3M L1000 profiles~\cite{Subramanian2017}). \textbf{(B)} 35\% overlap with co-essentiality modules; 65\% capture unique feedback/bypass mechanisms. \textbf{(C)} Ablation: perturbation data changed MHS targets in 23\% (18/77) of cancers, adding resistance-relevant genes (EGFR, MET, CDK2).
-
-\textbf{Fig.\ S7: Driver mutation landscape heatmap.}
-Mutation frequencies of 10 driver genes across the 20 most well-powered cancer types ($\geq$30 cell lines). Data sourced from TCGA (cBioPortal), COSMIC, and OncoKB driver annotations. KRAS dominates PDAC (93.5\%); BRAF V600E dominates melanoma (68.7\%); TP53 LoF is the most frequent pan-cancer alteration (median 58\%). These frequencies inform upstream axis assignment in the ranked triple scoring step: driver genes with high mutation frequency in a cancer type receive scoring bonuses as candidate upstream targets. The integration is algorithmic (a scoring term proportional to mutation frequency), not a hard mapping rule.
-
-\textbf{Fig.\ S9: Lineage-stratified benchmark concordance.}
-\textbf{(A)} ALIN recall (any-overlap, pair-overlap, exact) stratified by lineage across all 43 gold-standard entries. All concordance derives from carcinomas ($n{=}32$); hematologic ($n{=}7$), CNS ($n{=}2$), and sarcoma ($n{=}2$) entries yield 0\% concordance. Dashed line: pooled any-overlap (44.2\%). \textbf{(B)} Testable entries only (35/43; pharmacological criterion): carcinoma recall is 67.9\% any-overlap and 46.4\% pair-overlap ($n{=}28$ testable carcinomas). \textbf{(C)} Per-cancer match level within each lineage, showing that misses concentrate in modality-specific targets (BCL2, FLT3, KDR) and small-sample lineages. Fisher's exact test: carcinoma vs.\ rest $p = 0.0008$; heterogeneity $\chi^2 = 11.7$, $p = 0.009$.
-
-\textbf{Fig.\ S8: Jaccard vs.\ Pearson co-essentiality comparison.}
-\textbf{(A)} NMI between Jaccard-binarized and Pearson-correlation Ward clusterings as a function of cluster count $k$ (3--15), averaged across 10 cancer types with $\geq$74 cell lines. Mean NMI increases modestly from 0.16 ($k{=}3$) to 0.22 ($k{=}15$), indicating low overall agreement. Shaded band shows $\pm$1 s.d.\ across cancer types. \textbf{(B)} Per-cancer mean NMI (across all $k$): Diffuse Glioma shows highest agreement (0.30); Lung Neuroendocrine Tumor lowest (0.08). \textbf{(C)} Silhouette score comparison: Jaccard consistently outperforms Pearson (mean 0.054 vs.\ 0.025), supporting tighter module boundaries under binary essentiality profiles.
-
-\textbf{Fig.\ S10: Lineage-aware vs.\ Welch cancer-specific dependency comparison.}
-\textbf{(A)} Per-cancer Jaccard similarity between cancer-specific gene sets identified by Welch $t$-test and lineage-aware OLS regression (median = 0.051, mean = 0.118). Low Jaccard indicates that the two methods identify substantially different gene sets, confirming that lineage effects dominate the Welch comparison. \textbf{(B)} Number of cancer-specific genes per method per cancer type. \textbf{(C)} Benchmark concordance: any-overlap increases from 46.5\% (Welch) to 48.8\% (lineage-aware); pair-overlap and exact remain unchanged. The two changed predictions (Colorectal: MET $\to$ BRAF; Breast: BCL2L1+EGFR+MAP2K1 $\to$ CDK4+ERBB2+PIK3CA) are both biologically improved.
-
-\textbf{Fig.\ S11: MHS-to-triple target redistribution.}
-\textbf{(A)} Overlap category distribution: 94.1\% of cancer types show fully disjoint MHS and triple target sets; 5.9\% show partial overlap. No cancer type has triple $\subseteq$ MHS or MHS $\subseteq$ triple. \textbf{(B)} STAT3 tracking across pipeline stages: present in 64.7\% of MHS predictions but only 5.9\% of ranked triples (removed in 11/17 cancer types). \textbf{(C)} Hub penalty comparison: genes removed from MHS carry higher hub penalties (violin plot) than those retained in triples. \textbf{(D)} MHS cost vs.\ triple combined score scatter (Pearson $r = 0.21$, $p = 0.43$): the two measures are uncorrelated, confirming that triple scoring captures distinct information from cost-minimization. \textbf{(E)} Per-cancer target changes: targets shared, added, and removed between MHS and triple for each cancer type. \textbf{(F)} Gene frequency comparison: top-12 genes ranked by total frequency across MHS and triples, showing systematic redistribution from cell cycle hubs (CCND1, STAT3) to cancer-specific druggable targets (EGFR, MAP2K1, CDK6).
-
-\onecolumn
-\subsection*{Supplementary Tables}
-
-\noindent
-\captionof{table}{\textbf{Table S1.} Representative MHS combinations for 15 of 77 cancer types, spanning diverse lineages and MHS sizes. STAT3 appears in 78\% (60/77) and cell cycle regulators in 65\% (50/77) of MHS sets. Full results in Supplementary Data File 1.}
-\scriptsize
-\setlength{\tabcolsep}{4pt}
-\begin{tabular}{@{}p{2.8cm}lcp{5.8cm}r@{}}
-\toprule
-\textbf{Cancer Type} & \textbf{MHS Targets} & \textbf{Size} & \textbf{Druggable Targets} & \textbf{Cost} \\
-\midrule
-
-NSCLC & CCND1+CDK2+MCL1 & 3 & CDK2 (dinaciclib), MCL1 (AMG-176) & 4.15 \\
-Melanoma & BRAF+CCND1+STAT3 & 3 & BRAF (vemurafenib), STAT3 (napabucasin) & 2.96 \\
-Colorectal Adeno. & CDK4+CTNNB1+KRAS+STAT3 & 4 & CDK4 (palbociclib), KRAS (sotorasib), STAT3 (napabucasin) & 3.96 \\
-PDAC & CCND1+KRAS & 2 & KRAS (sotorasib) & 1.94 \\
-Breast (Invasive) & CDK4+PPP1R15B+STAT3 & 3 & CDK4 (palbociclib), STAT3 (napabucasin) & 3.17 \\
-AML & CDK6+DNM2+STAT3 & 3 & CDK6 (palbociclib), STAT3 (napabucasin) & 2.89 \\
-Diffuse Glioma & CDK6+CHMP4B+STAT3 & 3 & CDK6 (palbociclib), STAT3 (napabucasin) & 3.34 \\
-Ewing Sarcoma & CDK4+FLI1+STAT3 & 3 & CDK4 (palbociclib), STAT3 (napabucasin) & 2.71 \\
-Pleural Mesothel. & CCND1+FGFR1+MDM2+STAT3 & 4 & FGFR1 (erdafitinib), STAT3 (napabucasin) & 4.57 \\
-Chondrosarcoma & MCL1 & 1 & MCL1 (AMG-176) & 0.96 \\
-MPN & ABL1+CDK4+STAT3 & 3 & CDK4 (palbociclib), STAT3 (napabucasin) & 3.10 \\
-Retinoblastoma & OTX2+STAT3 & 2 & STAT3 (napabucasin) & 2.03 \\
-HCC & GRB2+STAT3 & 2 & STAT3 (napabucasin) & 2.28 \\
-Prostate Adeno. & CDK4+STAT3 & 2 & CDK4 (palbociclib), STAT3 (napabucasin) & 1.68 \\
-Cervical (Mixed) & ERBB2 & 1 & ERBB2 (trastuzumab) & 0.90 \\
-\multicolumn{5}{@{}l}{\textit{$\ldots$ 62 additional cancer types; full table in supplementary CSV}} \\
-\bottomrule
-\end{tabular}
-\normalsize
-\setlength{\tabcolsep}{6pt}
-
-\vspace{1.5em}
-\noindent
-\captionof{table}{\textbf{Table S2.} Gold-standard benchmark: 43 independently curated multi-target clinically validated combinations spanning 25 cancer types~\cite{Long2014,Planchard2016,Kopetz2019,Larkin2014,Park2021,Sequist2020,Baselga2012,Turner2015,Motzer2015,Daver2022,Ciruelos2024,Bhardwaj2019,Liaki2025}. Gene equivalences (MAP2K1$\leftrightarrow$MAP2K2, CDK4$\leftrightarrow$CDK6) applied during matching.}
-\footnotesize
-\begin{tabular}{@{}p{2.5cm}p{2.7cm}lp{3.8cm}p{2.4cm}@{}}
-\toprule
-\textbf{Cancer} & \textbf{Gold Targets} & \textbf{Evidence} & \textbf{Ranked Triple} & \textbf{Match} \\
-\midrule
-
-Melanoma & BRAF+MAP2K1 & FDA & BRAF+MAP2K1+STAT3 & Yes (superset) \\
-Melanoma & BRAF+MAP2K2 & FDA & BRAF+MAP2K1+STAT3 & Yes (superset) \\
-NSCLC & EGFR+MET & Breakthrough & \textemdash & No \\
-NSCLC & ALK & FDA & \textemdash & No \\
-Lung Neuroendocrine & KRAS & FDA & KRAS+MET+STAT3 & Yes (superset) \\
-Breast (Invasive) & CDK4+CDK6 & FDA & CDK4+KRAS+STAT3 & Yes (superset) \\
-Breast (Invasive) & CDK4+KRAS & Trial & CDK4+KRAS+STAT3 & Yes (superset) \\
-Breast & ERBB2 & FDA & \textemdash & No \\
-Colorectal & EGFR & FDA & \textemdash & No \\
-Colorectal & BRAF+EGFR & Trial & \textemdash & No \\
-Colorectal & KRAS & Trial & BRAF+KRAS+STAT3 & Yes (superset) \\
-Ampullary & KRAS+STAT3 & Preclin & EGFR+KRAS+STAT3 & Yes (superset) \\
-Adenosq.\\ PDAC & FYN+SRC+\\mbox{STAT3} & Preclin & CDK6+FYN+STAT3 & Yes (pair-overlap) \\
-Ampullary & KRAS & FDA & EGFR+KRAS+STAT3 & Yes (superset) \\
-AML & FLT3 & FDA & \textemdash & No \\
-AML & CDK6+KRAS & Trial & CDK6+KRAS+STAT3 & Yes (superset) \\
-RCC & MTOR & FDA & \textemdash & No \\
-RCC & MTOR+VEGFR2 & Trial & \textemdash & No \\
-HNSCC & EGFR+MET & Trial & CDK6+EGFR+MET & Yes (superset) \\
-Diffuse Glioma & CDK4+CDK6 & Trial & CDK6+FYN+STAT3 & Yes (superset) \\
-Synovial Sarcoma & CDK4+CDK6 & Trial & CDK6+FYN+STAT3 & Yes (superset) \\
-Ampullary & EGFR & Trial & EGFR+KRAS+STAT3 & Yes (superset) \\
-HCC & EGFR+MET & Trial & \textemdash & No \\
-\bottomrule
-\end{tabular}
-\normalsize
-
-\vspace{1.5em}
-\noindent
-\captionof{table}{\textbf{Table S3.} Priority MHS combinations for preclinical validation. Selection criteria: biological novelty, low MHS cost, availability of clinical-stage drugs, and cancer types where tri-axial inhibition can be tested against dual-therapy standards of care. For PDAC, I recommend adding STAT3 as a third axis per Liaki et al.~\cite{Liaki2025}.}
-\vspace{0.5em}
-\scriptsize
-\setlength{\tabcolsep}{4pt}
-\begin{tabular}{@{}p{2.2cm}lrp{6.8cm}@{}}
-\toprule
-\textbf{Cancer Type} & \textbf{MHS Targets} & \textbf{Cost} & \textbf{Rationale} \\
-\midrule
-Chondrosarcoma & MCL1 & 0.96 & Simplest MHS; single target; chemo-resistant tumor type \\
-Ewing Sarcoma & CDK4+FLI1+STAT3 & 2.71 & Includes cancer-defining EWS-FLI1 fusion target \\
-Melanoma & BRAF+CCND1+STAT3 & 2.96 & Extends BRAF inhibition; 68.7\% BRAF V600E \\
-PDAC & CCND1+KRAS & 1.94 & 2-target MHS; add STAT3 as third axis per Liaki et al.~\cite{Liaki2025} \\
-Retinoblastoma & OTX2+STAT3 & 2.03 & Cancer-specific OTX2; rare pediatric tumor \\
-\bottomrule
-\end{tabular}
-\setlength{\tabcolsep}{6pt}
-\normalsize
-
-\begin{table*}[t]
-\caption{\textbf{Table S4.} MHS-to-triple target redistribution across 17 gold-standard cancer types. For each cancer, the table shows the best MHS solution (cost-minimizing mechanism coverage), the top ranked triple (scored by Equation~3), and the target changes between them. STAT3 status indicates whether STAT3 appears in MHS only, triple only, both, or neither. 94.1\% of cancer types show fully disjoint MHS and triple targets, reflecting the hub-gene penalty redistribution from network hubs to cancer-specific druggable targets.}
-\label{tab:s4_mhs_triple}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{lcrlllll}
-\toprule
-\textbf{Cancer Type} & \textbf{MHS Targets} & \textbf{Cost} & \textbf{Top Triple} & \textbf{Added} & \textbf{Removed} & \textbf{Overlap} & \textbf{STAT3} \\
-\midrule
-AML & CDK6+SOS1+SPI1+STAT3 & 4.16 & CDK4+CDK6+MCL1 & CDK4, MCL1 & SOS1, SPI1, STAT3 & partial & mhs only \\
-Anapl.\ Thyroid & BRAF+STAT3 & 2.06 & CDK6+EGFR+MAP2K1 & CDK6, EGFR, MAP2K1 & BRAF, STAT3 & disjoint & mhs only \\
-Bladder & CCND1+STAT3 & 2.52 & CDK2+EGFR+MAP2K1 & CDK2, EGFR, MAP2K1 & CCND1, STAT3 & disjoint & mhs only \\
-Colorectal & CCND1+STAT3 & 2.52 & EGFR+KRAS+MET & EGFR, KRAS, MET & CCND1, STAT3 & disjoint & mhs only \\
-Diff.\ Glioma & CCND1+STAT3 & 2.52 & CDK2+EGFR+MAP2K1 & CDK2, EGFR, MAP2K1 & CCND1, STAT3 & disjoint & mhs only \\
-Endometrial & CCND1+STAT3 & 2.52 & CDK2+EGFR+MET & CDK2, EGFR, MET & CCND1, STAT3 & disjoint & mhs only \\
-Esophagogastric & CCND1+STAT3 & 2.34 & CDK6+EGFR+PIK3CA & CDK6, EGFR, PIK3CA & CCND1, STAT3 & disjoint & mhs only \\
-HNSCC & EGFR+STAT3 & 2.14 & CDK4+CDK6+ERBB2 & CDK4, CDK6, ERBB2 & EGFR, STAT3 & disjoint & mhs only \\
-HCC & CCND1+CDK4 & 2.28 & BCL2L1+EGFR+MAP2K1 & BCL2L1, EGFR, MAP2K1 & CCND1, CDK4 & disjoint & neither \\
-Breast & CCND1+STAT3 & 2.30 & BCL2L1+EGFR+MAP2K1 & BCL2L1, EGFR, MAP2K1 & CCND1, STAT3 & disjoint & mhs only \\
-Liposarcoma & CCND1+CDK4 & 1.84 & EGFR+FGFR1+MET & EGFR, FGFR1, MET & CCND1, CDK4 & disjoint & neither \\
-Melanoma & CCND1+CDK4 & 2.13 & CDK6+EGFR+MAP2K1 & CDK6, EGFR, MAP2K1 & CCND1, CDK4 & disjoint & neither \\
-NSCLC & CCND1+STAT3 & 2.46 & CDK6+EGFR+MAP2K1 & CDK6, EGFR, MAP2K1 & CCND1, STAT3 & disjoint & mhs only \\
-Ovarian & CCND1+CDK4+STAT3 & 3.59 & CDK6+EGFR+MET & CDK6, EGFR, MET & CCND1, CDK4, STAT3 & disjoint & mhs only \\
-PDAC & CCND1+CDK6 & 2.24 & FYN+KRAS+STAT3 & FYN, KRAS, STAT3 & CCND1, CDK6 & disjoint & triple only \\
-Prostate & CCND1+CDK4 & 1.54 & CDK2+EGFR+MAP2K1 & CDK2, EGFR, MAP2K1 & CCND1, CDK4 & disjoint & neither \\
-Renal & CCND1+ZNF316 & 2.32 & CDK6+EGFR+MAP2K1 & CDK6, EGFR, MAP2K1 & CCND1, ZNF316 & disjoint & neither \\
-\bottomrule
-\end{tabular}}
-\end{table*}
-
-\vspace{1.5em}
-\noindent
-\captionof{table}{\textbf{Table S5.} Known failed drug combinations evaluated against ALIN predictions. For each clinically documented failure, the table shows the failed target set, ALIN's prediction for the same cancer, the overlap verdict, and the clinical outcome. ``Predicts'' = ALIN's top-1 prediction fully contains the failed target(s); ``Partial'' = $\geq$1 target overlaps; ``Avoids'' = no overlap. References: \cite{Gordon2009,Chapman2011,Dummer2018,Jonker2018,Shimizu2012,Caenepeel2018,Nabhan2009,Carvajal2018}.}
-\label{tab:s5_failed_combos}
-\scriptsize
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{@{}p{1.8cm}p{2.2cm}p{1.5cm}p{2.4cm}lp{3.8cm}@{}}
-\toprule
-\textbf{Cancer} & \textbf{Failed Combo} & \textbf{Trial} & \textbf{ALIN Prediction} & \textbf{Verdict} & \textbf{Outcome / Failure Reason} \\
-\midrule
-RCC & EGFR (erlotinib) & Phase~2 & EGFR+MET & Predicts & ORR $<$5\%; EGFR not a RCC driver \\
-Prostate & EGFR (erlotinib) & Phase~2 & CDK2+EGFR+MAP2K1 & Predicts & No responses in CRPC; EGFR non-driver \\
-AML & MCL1 (AMG-176) & Phase~1 & CDK4+CDK6+MCL1 & Predicts & Dose-limiting cardiotoxicity; development paused \\
-Melanoma & BRAF mono (no MEK) & Phase~3 & BRAF+EGFR (combo) & Predicts & PFS 5--8~mo; paradoxical MAPK reactivation \\
-\midrule
-Melanoma & BRAF+MEK+CDK4/6 & Phase~1/2 & CDK6+EGFR+MAP2K1 & Partial & ORR 52\% $<$ 64\% doublet; 24\% discontinuation \\
-Melanoma & CDK4/6+BRAF & Phase~1/2 & BRAF+EGFR (combo) & Partial & Excess haematotoxicity; inferior to BRAF+MEK \\
-\midrule
-CRC & STAT3 (napabucasin) & Phase~3 & BRAF+EGFR+KRAS & Avoids & Failed primary OS endpoint (CanStem111P) \\
-Ovarian & PIK3CA+MAP2K1 & Phase~1/2 & EGFR+MET & Avoids & ORR 4.7\%; DCR 19.2\%; dose-limiting toxicity \\
-\bottomrule
-\end{tabular}
-\normalsize
-\setlength{\tabcolsep}{6pt}
-
-\vspace{1.5em}
-\noindent
-\captionof{table}{\textbf{Table S7.} Translational feasibility scoring for all 17 benchmark cancer predictions. For each triple, the table shows per-target drug mapping, component feasibility scores (drug availability, selectivity, combination toxicity feasibility, clinical precedent), the composite feasibility score $F$, and red flags (overlapping organ toxicities and known DDIs). Red flags: OOT = overlapping organ toxicity; DDI = drug--drug interaction. Clinical stages: A = approved, P2/P3 = Phase 2/3.}
-\label{tab:s7_feasibility}
-\scriptsize
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{@{}p{2cm}p{2.5cm}p{2.6cm}cccccp{3.3cm}@{}}
-\toprule
-\textbf{Cancer} & \textbf{Triple} & \textbf{Drug mapping} & \textbf{Avail} & \textbf{Select} & \textbf{ToxF} & \textbf{Prec} & $F$ & \textbf{Red flags} \\
-\midrule
-Pancreatic & BRAF+KRAS+STAT3 & vem(A)+sot(A)+nap(P2) & 0.85 & 1.00 & 0.85 & 0.10 & 0.74 & OOT-GI: KRAS+STAT3; DDI(minor): sot+nap \\
-Colorectal & BRAF+EGFR+KRAS & vem(A)+erl(A)+sot(A) & 0.97 & 1.00 & 0.90 & 1.00 & 0.95 & OOT-derm: EGFR+BRAF; OOT-GI: EGFR+KRAS \\
-NSCLC & CDK6+EGFR+MAP2K1 & pal(A)+erl(A)+tra(A) & 1.00 & 1.00 & 0.95 & 1.00 & 0.99 & OOT-derm: EGFR+MAP2K1 \\
-ATC & CDK6+EGFR+MAP2K1 & pal(A)+erl(A)+tra(A) & 1.00 & 1.00 & 0.95 & 0.50 & 0.89 & OOT-derm: EGFR+MAP2K1 \\
-Melanoma & CDK6+EGFR+MAP2K1 & pal(A)+erl(A)+tra(A) & 1.00 & 1.00 & 0.95 & 0.50 & 0.89 & OOT-derm: EGFR+MAP2K1 \\
-Breast & BCL2L1+EGFR+MAP2K1 & nav(P2)+erl(A)+tra(A) & 0.85 & 0.88 & 0.95 & 0.50 & 0.79 & OOT-derm: EGFR+MAP2K1 \\
-RCC & CDK6+EGFR+MAP2K1 & pal(A)+erl(A)+tra(A) & 1.00 & 1.00 & 0.95 & 0.00 & 0.79 & OOT-derm: EGFR+MAP2K1 \\
-Ovarian & CDK6+EGFR+MET & pal(A)+erl(A)+cap(A) & 1.00 & 1.00 & 0.90 & 0.00 & 0.76 & OOT-GI: EGFR+MET \\
-Liposarcoma & EGFR+FGFR1+MET & erl(A)+erd(A)+cap(A) & 1.00 & 1.00 & 0.90 & 0.00 & 0.75 & OOT-GI: EGFR+MET \\
-Glioma & EGFR+FGFR1+MET & erl(A)+erd(A)+cap(A) & 1.00 & 1.00 & 0.90 & 0.00 & 0.75 & OOT-GI: EGFR+MET \\
-Bladder & CDK2+EGFR+MAP2K1 & din(P2)+erl(A)+tra(A) & 0.87 & 0.80 & 0.95 & 0.30 & 0.75 & OOT-derm: EGFR+MAP2K1; CDK2 narrow TW \\
-Esophago. & CDK6+EGFR+PIK3CA & pal(A)+erl(A)+alp(A) & 1.00 & 1.00 & 0.65 & 0.00 & 0.73 & OOT-derm,GI: EGFR+PIK3CA; DDI(mod): erl+alp \\
-HCC & EGFR+FGFR1+MET & erl(A)+erd(A)+cap(A) & 1.00 & 1.00 & 0.90 & 0.50 & 0.95 & OOT-GI: EGFR+MET \\
-Prostate & CDK2+EGFR+MAP2K1 & din(P2)+erl(A)+tra(A) & 0.87 & 0.80 & 0.95 & 0.00 & 0.69 & OOT-derm: EGFR+MAP2K1; CDK2 narrow TW \\
-Endometrial & CDK2+EGFR+MET & din(P2)+erl(A)+cap(A) & 0.87 & 0.88 & 0.90 & 0.00 & 0.65 & OOT-GI: EGFR+MET; CDK2 narrow TW \\
-HNSCC & CDK4+CDK6+ERBB2 & pal(A)+pal(A)+tras(A) & 0.93 & 0.75 & 0.75 & 0.00 & 0.68 & OOT-myelo: CDK4+CDK6; shared drug: pal \\
-AML & CDK4+CDK6+MCL1 & pal(A)+pal(A)+AMG(P1) & 0.73 & 0.63 & 0.75 & 0.00 & 0.58 & OOT-myelo: CDK4+CDK6; MCL1 cardiotox; shared drug \\
-\bottomrule
-\end{tabular}
-\normalsize
-\setlength{\tabcolsep}{6pt}
-
-\fi  % End of \iffalse block (supplementary content retained for reference)
