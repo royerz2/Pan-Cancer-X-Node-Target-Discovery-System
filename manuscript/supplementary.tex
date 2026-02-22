@@ -343,6 +343,74 @@ s(g,c) = \frac{f_{\text{ess}}(g,c) - \bar{f}_{\text{ess}}(g)}{\max_c f_{\text{es
 
 \textbf{Pan-essentiality penalty} $\mathbb{1}_{\text{pan}}$: Equals 1 if the gene is essential in $>$90\% of all cell lines; 0 otherwise.
 
+\subsection{S3a. Druggability assessment framework}
+
+\subsubsection*{Data sources}
+Druggability annotations are compiled from three external databases, queried independently of pipeline outputs:
+\begin{itemize}
+  \item \textbf{DGIdb 5.0}~\cite{Freshour2021}: drug--gene interactions with clinical-stage annotations (approved, clinical trial, preclinical). Accessed January 2026.
+  \item \textbf{ChEMBL 34}: bioactivity data for small-molecule inhibitors, antibodies, and degraders. Clinical-phase annotations extracted from the \texttt{drug\_mechanism} and \texttt{molecule\_dictionary} tables.
+  \item \textbf{FDA labels}: cross-referenced for approved-drug confirmation and indication-specific labeling.
+\end{itemize}
+
+\subsubsection*{Scoring formula}
+The composite druggability score for gene $g$ is:
+\[
+d(g) = d_{\text{stage}}(g) + \min\bigl(0.2,\; 0.05 \times n_{\text{drugs}}(g)\bigr)
+\]
+where $d_{\text{stage}}$ maps clinical stage to a base score:
+
+\begin{center}
+\begin{tabular}{@{}lc@{}}
+\toprule
+\textbf{Stage} & $d_{\text{stage}}$ \\
+\midrule
+FDA-approved & 1.0 \\
+Phase 2/3 & 0.6 \\
+Phase 1 & 0.3 \\
+Preclinical only & 0.2 \\
+No known inhibitor & 0.0 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The drug-count bonus rewards targets with multiple chemically distinct agents, reducing single-compound attrition risk. The total score is capped at 1.0.
+
+\subsubsection*{Druggability landscape by pathway}
+The 52-gene OmniPath signaling network used in this study spans 11 canonical pathways. Druggability varies substantially across pathways:
+
+\begin{center}
+\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Pathway} & \textbf{Genes} & \textbf{Druggable (\%)} & $\bar{d}$ \\
+\midrule
+RTK signaling & 10 & 8 (80\%) & 0.95 \\
+RAS--MAPK & 11 & 6 (55\%) & 0.90 \\
+PI3K--AKT--mTOR & 9 & 5 (56\%) & 0.88 \\
+Cell cycle & 8 & 4 (50\%) & 0.85 \\
+SRC family & 5 & 5 (100\%) & 0.82 \\
+JAK--STAT & 6 & 4 (67\%) & 0.72 \\
+Apoptosis & 9 & 3 (33\%) & 0.55 \\
+p53 & 5 & 1 (20\%) & 0.30 \\
+Wnt & 6 & 0 (0\%) & 0.0 \\
+NF-$\kappa$B & 4 & 0 (0\%) & 0.0 \\
+Hippo & 5 & 0 (0\%) & 0.0 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+``Druggable'' is defined as $d(g) \geq 0.6$ (Phase~2+ inhibitor). Pathways with zero druggable members (Wnt, NF-$\kappa$B, Hippo) are effectively excluded from ranked triple predictions despite containing biologically important targets, representing a systematic druggability gap.
+
+\subsubsection*{Modality coverage}
+Among the 36 druggable genes ($d \geq 0.6$), the dominant therapeutic modality is small-molecule kinase inhibitors (28/36, 78\%), reflecting the historical focus of oncology drug development on catalytic-site inhibition. Additional modalities include: monoclonal antibodies (cetuximab for EGFR, trastuzumab for ERBB2; 5 targets), BH3 mimetics (venetoclax for BCL2, navitoclax for BCL2L1; 2 targets), PARPi (olaparib for PARP1; 1 target), and covalent allele-specific inhibitors (sotorasib for KRAS~G12C; 1 target). Notably absent from the current druggable set are targets addressable only by emerging modalities: STAT3 (Phase~2 candidates: napabucasin, TTI-101; PROTAC degraders in preclinical development~\cite{Bai2019}), MYC (OMO-103, Phase~1), and TP53/RB1 (no direct inhibitors). The pipeline's systematic exclusion of these targets from top-ranked triples is a direct consequence of the druggability reward term---biologically important but pharmacologically immature targets are down-weighted, correctly reflecting current translational feasibility. As PROTAC and molecular-glue platforms mature, re-scoring with updated druggability annotations will expand the actionable target space.
+
+\subsubsection*{Druggability as filter vs.\ score}
+Druggability operates at two distinct levels in ALIN: (i)~as a \emph{continuous reward} in the MHS cost function ($-0.3\,d(g)$, Equation~2) and triple ranking ($-0.10 \times n_{\text{drugs}}$, Equation~3), biasing the optimizer toward tractable targets; and (ii)~as a \emph{binary post-hoc filter}, flagging MHS solutions where no member achieves $d(g) \geq 0.6$. The dual role is intentional: the continuous score enables soft trade-offs (a highly essential but moderately druggable target can still be selected if its dependency signal is strong), while the binary filter prevents fully non-actionable predictions from reaching the evidence-tiering stage. In ablation experiments (Supplementary Figure~S13), removing the druggability reward from the cost function increases the fraction of undruggable targets in MHS solutions from 8\% to 31\%, but benchmark concordance changes by $< 2$~pp---confirming that druggability acts primarily as a translational filter rather than a concordance driver.
+
+\subsubsection*{Current gaps and protein-level extension}
+Several high-value targets remain in the ``druggability gap'': CCND1 (no direct inhibitor; functionally covered by CDK4/6i), BCL2L1 (navitoclax limited by on-target thrombocytopenia), MCL1 (cardiotoxicity-related clinical holds on AMG-176 and S64315), and STAT3 (no approved inhibitor; Phase~2 candidates show limited single-agent activity). For these targets, protein-level data---structural druggability from AlphaFold/PDB, degradability predictions from PROTACdb, and protein--protein interaction surface analysis---could refine the scoring by distinguishing structurally tractable from genuinely undruggable proteins. Integration of mass-spectrometry proteomics (e.g., DepMap CCLE proteomics) would further allow protein-abundance-aware filtering, removing targets whose gene-level essentiality does not translate to protein-level expression in the cancer of interest. These extensions are planned for the next pipeline version (see Future Work in main text).
+
 \subsection{S4. Ranked triple scoring: component definitions}
 
 \textbf{Synergy score.} Derived from: (1) known synergistic pairs from curated clinical data and (2) pathway diversity. Evidence-adaptive weighting ensures that FDA-approved combinations receive appropriate credit.

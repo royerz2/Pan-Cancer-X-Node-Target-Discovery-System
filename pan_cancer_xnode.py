@@ -1232,13 +1232,21 @@ class CostFunction:
     2. OpenTargets API (off-target safety liabilities)
     3. Tissue expression weight (OpenTargets baseline expression; higher expression in healthy tissue increases weight)
     4. FDA FAERS (OpenFDA API) for known ADRs used when assessing drug safety
+    
+    Druggability sources:
+    1. Gene-level: clinical stage + drug count (DrugTargetDB)
+    2. Protein-level (optional): structural, abundance, degradability, PPI
+       via ProteinDruggabilityScorer
     """
     
     def __init__(self, depmap: DepMapLoader, drug_db: DrugTargetDB,
-                 toxicity_cache_dir: Optional[str] = None):
+                 toxicity_cache_dir: Optional[str] = None,
+                 protein_scorer=None):
         self.depmap = depmap
         self.drug_db = drug_db
         self.toxicity_cache_dir = toxicity_cache_dir
+        self.protein_scorer = protein_scorer
+        self._protein_scores = {}  # gene → ProteinDruggabilityScore (lazy cache)
         self._pan_essential = None
         
     def _get_pan_essential(self) -> Set[str]:
@@ -1294,9 +1302,22 @@ class CostFunction:
             toxicity_score=toxicity,
             tumor_specificity=specificity,
             druggability_score=druggability,
+            protein_druggability_score=self._get_protein_score(gene),
             pan_essential_penalty=pan_penalty,
             base_penalty=1.0
         )
+    
+    def _get_protein_score(self, gene: str) -> Optional[float]:
+        """Get protein-level druggability score if scorer is available."""
+        if self.protein_scorer is None:
+            return None
+        if gene not in self._protein_scores:
+            try:
+                result = self.protein_scorer.score_gene(gene)
+                self._protein_scores[gene] = result.protein_score
+            except Exception:
+                self._protein_scores[gene] = None
+        return self._protein_scores.get(gene)
 
 # ============================================================================
 # MINIMAL HITTING SET SOLVER

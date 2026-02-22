@@ -33,6 +33,8 @@ class NodeCost:
         toxicity_score: 0-1, higher = more toxic
         tumor_specificity: 0-1, higher = more tumor-specific
         druggability_score: 0-1, higher = more druggable
+        protein_druggability_score: 0-1, protein-level druggability
+            (structural + abundance + degradability + PPI). None if not computed.
         pan_essential_penalty: Penalty if gene is pan-essential
         base_penalty: Base cost per node
     """
@@ -40,14 +42,30 @@ class NodeCost:
     toxicity_score: float
     tumor_specificity: float
     druggability_score: float
+    protein_druggability_score: Optional[float] = None
     pan_essential_penalty: float = 0.0
     base_penalty: float = 1.0
+    
+    @property
+    def effective_druggability(self) -> float:
+        """Blended druggability: gene-level + protein-level when available.
+        
+        d_eff(g) = α·d_gene(g) + (1−α)·p(g)  where α = 0.6
+        Falls back to d_gene(g) when protein score is absent.
+        """
+        if self.protein_druggability_score is not None:
+            alpha = 0.6
+            return alpha * self.druggability_score + (1 - alpha) * self.protein_druggability_score
+        return self.druggability_score
     
     def total_cost(self, alpha=1.0, beta=0.5, gamma=0.3, delta=2.0, lambda_base=1.0) -> float:
         """
         Compute weighted total cost.
         
-        Formula: c(g,c) = α*τ(g) - β*s(g,c) - γ*d(g) + δ*pan + λ
+        Formula: c(g,c) = α*τ(g) - β*s(g,c) - γ*d_eff(g) + δ*pan + λ
+        
+        Uses effective_druggability (blended gene + protein score) when
+        protein scoring data is available; otherwise uses gene-level only.
         
         Args:
             alpha: Weight for toxicity (penalize toxic targets)
@@ -62,7 +80,7 @@ class NodeCost:
         return (
             alpha * self.toxicity_score 
             - beta * self.tumor_specificity 
-            - gamma * self.druggability_score 
+            - gamma * self.effective_druggability 
             + delta * self.pan_essential_penalty
             + lambda_base * self.base_penalty
         )

@@ -19,3 +19,4 @@ __all__ = [
 # - alin.clinical_trials: ClinicalTrialMatcher
 # - alin.patient_stratification: PatientStratifier
 # - alin.toxicity: get_opentargets_toxicity, etc.
+# - alin.protein_scoring: ProteinDruggabilityScorer
