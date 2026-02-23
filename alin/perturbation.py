@@ -478,8 +478,53 @@ for _alias, _source in _ALIAS_MAP.items():
 del _alias, _source, _sig  # clean up module namespace
 
 
+# =============================================================================
+# LINCS L1000 integration (optional, data-driven)
+# =============================================================================
+# When LINCS data is present in lincs_data/, the module-level functions below
+# will prefer LINCS-derived consensus signatures over the curated dictionary.
+# This gives genome-scale coverage (~thousands of targets) with measured
+# transcriptomic responses.  The curated dictionary is kept as a fallback
+# for targets not covered by LINCS or when LINCS data is unavailable.
+#
+# To enable: download LINCS data, then either:
+#   (a) run LINCSSignatureDB("lincs_data").build_index()  once, or
+#   (b) simply call any perturbation function — it auto-initialises.
+# =============================================================================
+
+_LINCS_DB = None  # lazy singleton
+_LINCS_INIT_ATTEMPTED = False
+
+
+def _get_lincs_db():
+    """Lazily initialise the LINCS signature database (singleton)."""
+    global _LINCS_DB, _LINCS_INIT_ATTEMPTED
+    if _LINCS_INIT_ATTEMPTED:
+        return _LINCS_DB
+    _LINCS_INIT_ATTEMPTED = True
+    try:
+        from alin.lincs import get_default_db
+        _LINCS_DB = get_default_db()  # returns None if dir missing
+        if _LINCS_DB is not None:
+            logger.info("LINCS L1000 database available — will prefer data-driven signatures")
+    except Exception as exc:
+        logger.debug("LINCS module not available: %s", exc)
+    return _LINCS_DB
+
+
 def get_perturbation_signature(target: str) -> Optional[PerturbationSignature]:
-    """Get perturbation signature for a target gene."""
+    """Get perturbation signature for a target gene.
+
+    Prefers LINCS L1000 data-driven signatures when available,
+    falls back to the curated dictionary otherwise.
+    """
+    # Try LINCS first (data-driven, genome-scale)
+    db = _get_lincs_db()
+    if db is not None:
+        sig = db.get_perturbation_signature(target)
+        if sig is not None:
+            return sig
+    # Fallback to curated
     return PERTURBATION_SIGNATURES.get(target)
 
 
@@ -559,6 +604,9 @@ def build_perturbation_response_paths(
     For each target with a signature, find essential genes that are
     in the perturbation response. These form a 'perturbation-response path'.
     
+    When LINCS data is available, this covers thousands of targets
+    (data-driven).  Otherwise falls back to the 13 curated signatures.
+    
     Args:
         essential_genes: Set of essential genes (from DepMap)
         targets: Specific targets to check (default: all with signatures)
@@ -567,6 +615,41 @@ def build_perturbation_response_paths(
     Returns:
         List of (target, path_genes, confidence) tuples
     """
+    # Try LINCS first for broader coverage
+    db = _get_lincs_db()
+    if db is not None:
+        lincs_paths = db.build_perturbation_response_paths(
+            essential_genes, targets=targets, min_overlap=min_overlap
+        )
+        if lincs_paths:
+            # Supplement with curated paths for targets not in LINCS
+            lincs_targets = {t for t, _, _ in lincs_paths}
+            curated_targets = (
+                list(PERTURBATION_SIGNATURES.keys()) if targets is None
+                else targets
+            )
+            for ct in curated_targets:
+                if ct in lincs_targets:
+                    continue
+                sig = PERTURBATION_SIGNATURES.get(ct)
+                if sig is None:
+                    continue
+                responders = sig.all_responders
+                essential_responders = essential_genes & responders
+                if len(essential_responders) >= min_overlap:
+                    direct = essential_responders & sig.direct_effectors
+                    n_direct = len(direct)
+                    confidence = sig.confidence * (
+                        0.5 + 0.5 * n_direct / max(len(essential_responders), 1)
+                    )
+                    lincs_paths.append((
+                        ct,
+                        essential_responders | {ct},
+                        round(confidence, 2),
+                    ))
+            return lincs_paths
+
+    # Fallback: curated only
     if targets is None:
         targets = list(PERTURBATION_SIGNATURES.keys())
     
@@ -619,10 +702,21 @@ def score_combination_by_perturbation(
     """
     Score a combination by how well it covers perturbation responses.
     
+    Uses LINCS data-driven signatures when available, otherwise curated.
+    
     A good combination should:
     1. Cover downstream effectors of each target
     2. Cover resistance/feedback genes that emerge when targets are inhibited
     """
+    # Try LINCS database first for genome-scale scoring
+    db = _get_lincs_db()
+    if db is not None:
+        # Check if LINCS has consensus for ANY of these targets
+        has_lincs = any(db.get_consensus(t) is not None for t in targets)
+        if has_lincs:
+            return db.score_combination_by_perturbation(targets, essential_genes)
+
+    # Fallback: curated signatures
     all_effectors = set()
     all_feedback = set()
     total_responders = set()

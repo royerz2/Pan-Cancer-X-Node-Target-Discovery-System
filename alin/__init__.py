@@ -20,3 +20,4 @@ __all__ = [
 # - alin.patient_stratification: PatientStratifier
 # - alin.toxicity: get_opentargets_toxicity, etc.
 # - alin.protein_scoring: ProteinDruggabilityScorer
+# - alin.lincs: LINCSSignatureDB (requires h5py; optional)

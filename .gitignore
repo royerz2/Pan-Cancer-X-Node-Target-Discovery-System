@@ -76,4 +76,5 @@ depmap_data/
 drug_sensitivity_data/
 synergy_data/
 validation_data/
+lincs_data/
 ALIN.code-workspace

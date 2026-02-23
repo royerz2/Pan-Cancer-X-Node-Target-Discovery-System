@@ -25,3 +25,8 @@ reportlab>=4.0.0
 
 # Project tracker (xlsx)
 openpyxl>=3.1.0
+
+# Optional: LINCS L1000 integration (GCTX format)
+# Install these to enable data-driven perturbation signatures:
+# h5py>=3.0.0
+# cmapPy>=4.0.0
