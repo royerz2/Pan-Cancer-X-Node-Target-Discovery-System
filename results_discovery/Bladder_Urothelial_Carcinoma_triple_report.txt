@@ -1,0 +1,39 @@
+================================================================================
+TRIPLE COMBINATION REPORT: Bladder Urothelial Carcinoma
+================================================================================
+
+TARGETS: CCND1, FYN, YAP1
+
+SCORES:
+  Combined Score: 1.691 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.00 (lower is better)
+  Combo Toxicity: 0.00 (lower is better)
+  Path Coverage: 50.0%
+  Total Cost: 4.46
+  Druggable Targets: 1/3
+
+DRUG INFORMATION:
+  CCND1: No approved drugs (research target)
+  FYN:
+    Drugs: dasatinib, saracatinib
+    Stage: approved
+    Toxicities: myelosuppression
+  YAP1: No approved drugs (research target)
+
+COMBINATION TOXICITY ASSESSMENT:
+  No known major drug-drug interactions
+  No major overlapping toxicity classes
+  Component Scores: DDI=0.00, Overlap=0.00
+
+PATHWAY COVERAGE:
+  SRC family: 20%
+  Hippo: 17%
+  Cell cycle: 12%
+
+RATIONALE:
+  This triple combination targets multiple signaling nodes to achieve
+  complete pathway inhibition while minimizing resistance probability.
+  The combination covers 3 pathways
+  with 1 clinically druggable targets.
+================================================================================

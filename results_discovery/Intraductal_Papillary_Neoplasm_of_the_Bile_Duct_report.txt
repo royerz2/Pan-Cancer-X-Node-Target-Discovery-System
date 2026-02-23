@@ -1,0 +1,110 @@
+
+================================================================================
+X-NODE TARGET DISCOVERY REPORT
+Cancer Type: Intraductal Papillary Neoplasm of the Bile Duct
+Lineage: Biliary Tract
+Cell Lines Analyzed: 37
+Viability Paths Identified: 63
+================================================================================
+
+DRIVER MUTATION LANDSCAPE:
+--------------------------------------------------------------------------------
+TP53_LoF: 71.4% of cell lines
+CDKN2A_LoF: 42.9% of cell lines
+KRAS: 35.7% of cell lines
+KRASp.G12: 28.6% of cell lines
+KRASp.G12D: 21.4% of cell lines
+PTEN_LoF: 10.7% of cell lines
+BRAFp.V600E: 7.1% of cell lines
+KRASp.G13: 3.6% of cell lines
+KRASp.Q61: 3.6% of cell lines
+PIK3CA: 3.6% of cell lines
+
+================================================================================
+TOP ESSENTIAL GENES (Cancer-Specific):
+--------------------------------------------------------------------------------
+SNRPD3: -5.612 (dependency score)
+RPL15: -5.355 (dependency score)
+PRIM2: -4.390 (dependency score)
+RAN: -4.167 (dependency score)
+HSPE1: -3.961 (dependency score)
+RPL17: -3.885 (dependency score)
+RPL21: -3.549 (dependency score)
+RPS8: -3.390 (dependency score)
+SNRPF: -3.377 (dependency score)
+RRM1: -3.350 (dependency score)
+
+================================================================================
+RECOMMENDED X-NODE TARGET COMBINATION:
+--------------------------------------------------------------------------------
+Optimal 3-node combination:
+  • GRB2
+  • SLC2A1
+  • STAT3 (phase2): napabucasin, TTI-101, stattic
+
+Cost Score: 2.67
+Path Coverage: 87.0%
+Paths Covered: 47/63
+
+================================================================================
+ALTERNATIVE X-NODE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+Option 1: {CCND1, CDK4}
+  Cost: 2.77, Size: 2 targets
+
+Option 2: {CCND1, SMG1, STAT3}
+  Cost: 3.71, Size: 3 targets
+
+Option 3: {CCND1, CDK4, SMG1}
+  Cost: 3.81, Size: 3 targets
+
+Option 4: {ACOT1, CCND1, STAT3}
+  Cost: 3.82, Size: 3 targets
+
+Option 5: {CCND1, LIMS1, STAT3}
+  Cost: 3.85, Size: 3 targets
+
+================================================================================
+SYSTEMS BIOLOGY TRIPLE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+BEST TRIPLE COMBINATION: GRB2, SLC2A1, STAT3
+  Combined Score: 1.731 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.35 (lower is better)
+  Path Coverage: 55.6%
+  Druggable Targets: 1/3
+
+Drug Details:
+  • GRB2: Research target (no approved drugs)
+  • SLC2A1: Research target (no approved drugs)
+  • STAT3 (phase2): napabucasin, TTI-101, stattic
+
+Pathway Coverage:
+  JAK-STAT: 17%
+
+Alternative Triple Combinations:
+  1. GRB2, MAPK1, STAT3 (score: 1.733, synergy: 0.94)
+  2. FYN, GRB2, STAT3 (score: 1.734, synergy: 0.94)
+  3. ATP5ME, GRB2, STAT3 (score: 1.735, synergy: 0.94)
+  4. GRB2, ISCA1, STAT3 (score: 1.737, synergy: 0.94)
+
+================================================================================
+VIABILITY PATH SUMMARY:
+--------------------------------------------------------------------------------
+Total paths: 63
+Unique gene nodes: 1719
+
+Paths by type:
+  co_essential_module: 15
+  signaling_path: 34
+  perturbation_response: 14
+
+Sample paths:
+  [co_essential_module] Intraductal Papillary Neoplasm of the Bile Duct_coessential_cluster_5: {POLG2, FARS2, STARD7, MRPS14, ATP5ME, ISCA1...}
+  [co_essential_module] Intraductal Papillary Neoplasm of the Bile Duct_coessential_cluster_2: {MRPL34, GRB2, DNM2, RPL15, POLR2K, RPL21...}
+  [co_essential_module] Intraductal Papillary Neoplasm of the Bile Duct_coessential_cluster_1: {ADAMTS7, ANKUB1, NPIPB11, PGBD5, AQP7B, ZSCAN5B...}
+  [co_essential_module] Intraductal Papillary Neoplasm of the Bile Duct_coessential_cluster_4: {VPS35, NDUFA4, TFAP4, METTL17, MRPL16, MRPS22...}
+  [co_essential_module] Intraductal Papillary Neoplasm of the Bile Duct_coessential_cluster_14: {JMJD6, TIPARP, PITRM1, EIF5AL1, CPNE7, NGDN...}
+================================================================================

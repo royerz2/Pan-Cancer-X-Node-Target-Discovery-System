@@ -1,0 +1,111 @@
+
+================================================================================
+X-NODE TARGET DISCOVERY REPORT
+Cancer Type: Esophagogastric Adenocarcinoma
+Lineage: Esophagus/Stomach
+Cell Lines Analyzed: 74
+Viability Paths Identified: 58
+================================================================================
+
+DRIVER MUTATION LANDSCAPE:
+--------------------------------------------------------------------------------
+TP53_LoF: 73.3% of cell lines
+CDKN2A_LoF: 26.7% of cell lines
+KRAS: 15.6% of cell lines
+KRASp.G12: 13.3% of cell lines
+PIK3CA: 11.1% of cell lines
+KRASp.G12D: 8.9% of cell lines
+PIK3CAp.E542: 8.9% of cell lines
+PTEN_LoF: 6.7% of cell lines
+KRASp.Q61: 2.2% of cell lines
+PIK3CAp.E545: 2.2% of cell lines
+
+================================================================================
+TOP ESSENTIAL GENES (Cancer-Specific):
+--------------------------------------------------------------------------------
+RPL15: -5.842 (dependency score)
+SNRPD3: -5.628 (dependency score)
+RAN: -4.184 (dependency score)
+HSPE1: -4.097 (dependency score)
+RPL17: -3.779 (dependency score)
+SNRPF: -3.416 (dependency score)
+RPL21: -3.405 (dependency score)
+SNRPA1: -3.302 (dependency score)
+RPS8: -3.292 (dependency score)
+PSMA6: -3.256 (dependency score)
+
+================================================================================
+RECOMMENDED X-NODE TARGET COMBINATION:
+--------------------------------------------------------------------------------
+Optimal 3-node combination:
+  • CCND1
+  • RAB10
+  • SNAP23
+
+Cost Score: 2.63
+Path Coverage: 91.1%
+Paths Covered: 41/58
+
+================================================================================
+ALTERNATIVE X-NODE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+Option 1: {CCND1, CDK4}
+  Cost: 2.72, Size: 2 targets
+
+Option 2: {CCND1, STAT3, SYN2}
+  Cost: 3.63, Size: 3 targets
+
+Option 3: {CCND1, RECQL4, STAT3}
+  Cost: 3.63, Size: 3 targets
+
+Option 4: {ANKUB1, CCND1, STAT3}
+  Cost: 3.63, Size: 3 targets
+
+Option 5: {CCND1, OVOL3, STAT3}
+  Cost: 3.63, Size: 3 targets
+
+================================================================================
+SYSTEMS BIOLOGY TRIPLE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+BEST TRIPLE COMBINATION: CCND1, RAB10, SNAP23
+  Combined Score: 1.699 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.00 (lower is better)
+  Path Coverage: 56.9%
+  Druggable Targets: 0/3
+
+Drug Details:
+  • CCND1: Research target (no approved drugs)
+  • RAB10: Research target (no approved drugs)
+  • SNAP23: Research target (no approved drugs)
+
+Pathway Coverage:
+  Cell cycle: 12%
+
+Alternative Triple Combinations:
+  1. EGFR, MAP2K1, RAB10 (score: 1.702, synergy: 0.94)
+  2. EGFR, MAP2K1, SNAP23 (score: 1.703, synergy: 0.94)
+  3. ADSL, CCND1, RAB10 (score: 1.708, synergy: 0.94)
+  4. CCND1, KLF5, RAB10 (score: 1.709, synergy: 0.94)
+
+================================================================================
+VIABILITY PATH SUMMARY:
+--------------------------------------------------------------------------------
+Total paths: 58
+Unique gene nodes: 1795
+
+Paths by type:
+  co_essential_module: 15
+  signaling_path: 34
+  cancer_specific: 1
+  perturbation_response: 8
+
+Sample paths:
+  [co_essential_module] Esophagogastric Adenocarcinoma_coessential_cluster_6: {EXOC5, APC, MIX23, NSMCE2, H2AC6, RAB7A...}
+  [co_essential_module] Esophagogastric Adenocarcinoma_coessential_cluster_1: {FARS2, METTL17, ATP5ME, MRPS7, BCS1L, WARS2...}
+  [co_essential_module] Esophagogastric Adenocarcinoma_coessential_cluster_4: {ARGLU1, VBP1, MLST8, TYMS, SMC6, WTAP...}
+  [co_essential_module] Esophagogastric Adenocarcinoma_coessential_cluster_15: {MRPL34, DNM2, ANKUB1, NPIPB11, RPL21, PGBD5...}
+  [co_essential_module] Esophagogastric Adenocarcinoma_coessential_cluster_3: {SNRPB2, MYH9, TTF2, NOLC1, CUL2, WDR73...}
+================================================================================

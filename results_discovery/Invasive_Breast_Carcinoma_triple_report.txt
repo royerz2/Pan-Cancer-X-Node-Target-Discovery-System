@@ -1,0 +1,37 @@
+================================================================================
+TRIPLE COMBINATION REPORT: Invasive Breast Carcinoma
+================================================================================
+
+TARGETS: FOXA1, PPP1R15B, STAT3
+
+SCORES:
+  Combined Score: 1.583 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.35 (lower is better)
+  Combo Toxicity: 0.00 (lower is better)
+  Path Coverage: 50.0%
+  Total Cost: 3.74
+  Druggable Targets: 1/3
+
+DRUG INFORMATION:
+  FOXA1: No approved drugs (research target)
+  PPP1R15B: No approved drugs (research target)
+  STAT3:
+    Drugs: napabucasin, TTI-101, stattic
+    Stage: phase2
+    Toxicities: GI toxicity
+
+COMBINATION TOXICITY ASSESSMENT:
+  No known major drug-drug interactions
+  No major overlapping toxicity classes
+  Component Scores: DDI=0.00, Overlap=0.00
+
+PATHWAY COVERAGE:
+  JAK-STAT: 17%
+
+RATIONALE:
+  This triple combination targets multiple signaling nodes to achieve
+  complete pathway inhibition while minimizing resistance probability.
+  The combination covers 1 pathways
+  with 1 clinically druggable targets.
+================================================================================

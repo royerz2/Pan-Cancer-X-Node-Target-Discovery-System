@@ -1,0 +1,90 @@
+
+================================================================================
+X-NODE TARGET DISCOVERY REPORT
+Cancer Type: Salivary Carcinoma
+Lineage: Head and Neck
+Cell Lines Analyzed: 2
+Viability Paths Identified: 50
+================================================================================
+
+DRIVER MUTATION LANDSCAPE:
+--------------------------------------------------------------------------------
+CDKN2A_LoF: 50.0% of cell lines
+TP53_LoF: 50.0% of cell lines
+
+================================================================================
+TOP ESSENTIAL GENES (Cancer-Specific):
+--------------------------------------------------------------------------------
+RPL15: -5.849 (dependency score)
+SNRPD3: -5.279 (dependency score)
+RAN: -4.386 (dependency score)
+PRIM2: -4.156 (dependency score)
+HSPE1: -4.089 (dependency score)
+SNRPA1: -3.835 (dependency score)
+RPS8: -3.557 (dependency score)
+VPS25: -3.539 (dependency score)
+POLR2L: -3.460 (dependency score)
+PSMB3: -3.379 (dependency score)
+
+================================================================================
+RECOMMENDED X-NODE TARGET COMBINATION:
+--------------------------------------------------------------------------------
+Optimal 3-node combination:
+  • CDK4 (approved): palbociclib, ribociclib, abemaciclib
+  • CDK6 (approved): palbociclib, ribociclib, abemaciclib
+  • MCL1 (phase1): AMG-176, S64315
+
+Cost Score: 2.32
+Path Coverage: 84.0%
+Paths Covered: 42/50
+
+================================================================================
+ALTERNATIVE X-NODE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+Option 1: {CCND1, CDK4, CDK6, STAT3}
+  Cost: 4.93, Size: 4 targets
+
+================================================================================
+SYSTEMS BIOLOGY TRIPLE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+BEST TRIPLE COMBINATION: CDK4, CDK6, MCL1
+  Combined Score: 1.560 (lower is better)
+  Synergy Score: 0.81 (higher is better)
+  Resistance Score: 0.26 (lower is better)
+  Path Coverage: 52.0%
+  Druggable Targets: 2/3
+
+Drug Details:
+  • CDK4 (approved): palbociclib, ribociclib, abemaciclib
+  • CDK6 (approved): palbociclib, ribociclib, abemaciclib
+  • MCL1 (phase1): AMG-176, S64315
+
+Pathway Coverage:
+  Cell cycle: 25%
+  Apoptosis: 11%
+
+Alternative Triple Combinations:
+  1. CDK4, CDK6, ERBB2 (score: 1.710, synergy: 0.81)
+  2. MEK1, PTK2, STAT3 (score: 1.806, synergy: 0.94)
+  3. GRB2, MEK1, STAT3 (score: 1.814, synergy: 0.94)
+  4. MEK1, SHC1, STAT3 (score: 1.818, synergy: 0.94)
+
+================================================================================
+VIABILITY PATH SUMMARY:
+--------------------------------------------------------------------------------
+Total paths: 50
+Unique gene nodes: 31
+
+Paths by type:
+  signaling_path: 34
+  perturbation_response: 16
+
+Sample paths:
+  [signaling_path] Salivary Carcinoma_EGFR_STAT3_MYC_CCND1_CDK6: {MYC, CDK6, STAT3, EGFR, CCND1}
+  [signaling_path] Salivary Carcinoma_EGFR_STAT3_CCND1_CDK6: {CDK6, CCND1, STAT3, EGFR}
+  [signaling_path] Salivary Carcinoma_EGFR_SRC_STAT3_CCND1_CDK6: {CDK6, SRC, STAT3, EGFR, CCND1}
+  [signaling_path] Salivary Carcinoma_EGFR_STAT3_MYC_CDK4: {MYC, CDK4, STAT3, EGFR}
+  [signaling_path] Salivary Carcinoma_EGFR_STAT3_MYC_CCND1_CDK4: {MYC, STAT3, EGFR, CDK4, CCND1}
+================================================================================

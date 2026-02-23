@@ -1,0 +1,46 @@
+================================================================================
+TRIPLE COMBINATION REPORT: Poorly Differentiated Thyroid Cancer
+================================================================================
+
+TARGETS: BCL2L1, BRAF, MET
+
+SCORES:
+  Combined Score: 1.314 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.39 (lower is better)
+  Combo Toxicity: 0.03 (lower is better)
+  Path Coverage: 51.4%
+  Total Cost: 3.98
+  Druggable Targets: 3/3
+
+DRUG INFORMATION:
+  BCL2L1:
+    Drugs: navitoclax
+    Stage: phase2
+    Toxicities: thrombocytopenia
+  BRAF:
+    Drugs: vemurafenib, dabrafenib, encorafenib
+    Stage: approved
+    Toxicities: rash, photosensitivity
+  MET:
+    Drugs: capmatinib, tepotinib, crizotinib
+    Stage: approved
+    Toxicities: edema, nausea
+
+COMBINATION TOXICITY ASSESSMENT:
+  No known major drug-drug interactions
+  Overlapping Toxicity Classes:
+    - dermatologic: 2 drugs share this toxicity
+  Component Scores: DDI=0.00, Overlap=0.08
+
+PATHWAY COVERAGE:
+  Apoptosis: 11%
+  RTK signaling: 10%
+  RAS-MAPK: 9%
+
+RATIONALE:
+  This triple combination targets multiple signaling nodes to achieve
+  complete pathway inhibition while minimizing resistance probability.
+  The combination covers 3 pathways
+  with 3 clinically druggable targets.
+================================================================================

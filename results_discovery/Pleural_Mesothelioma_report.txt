@@ -1,0 +1,105 @@
+
+================================================================================
+X-NODE TARGET DISCOVERY REPORT
+Cancer Type: Pleural Mesothelioma
+Lineage: Pleura
+Cell Lines Analyzed: 36
+Viability Paths Identified: 58
+================================================================================
+
+DRIVER MUTATION LANDSCAPE:
+--------------------------------------------------------------------------------
+CDKN2A_LoF: 85.7% of cell lines
+TP53_LoF: 28.6% of cell lines
+PTEN_LoF: 4.8% of cell lines
+
+================================================================================
+TOP ESSENTIAL GENES (Cancer-Specific):
+--------------------------------------------------------------------------------
+RPL15: -5.725 (dependency score)
+SNRPD3: -5.498 (dependency score)
+RAN: -3.979 (dependency score)
+RPL17: -3.874 (dependency score)
+HSPE1: -3.854 (dependency score)
+RPL21: -3.705 (dependency score)
+RRN3: -3.510 (dependency score)
+RPS3A: -3.420 (dependency score)
+RPS8: -3.274 (dependency score)
+SNRPA1: -3.258 (dependency score)
+
+================================================================================
+RECOMMENDED X-NODE TARGET COMBINATION:
+--------------------------------------------------------------------------------
+Optimal 3-node combination:
+  • EGFR (approved): erlotinib, gefitinib, osimertinib
+  • ELMO2
+  • MAP2K1 (approved): trametinib, cobimetinib, binimetinib
+
+Cost Score: 2.79
+Path Coverage: 91.1%
+Paths Covered: 41/58
+
+================================================================================
+ALTERNATIVE X-NODE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+Option 1: {CCND1, CDK4}
+  Cost: 2.90, Size: 2 targets
+
+Option 2: {CCND1, STAT3, SYN2}
+  Cost: 3.79, Size: 3 targets
+
+Option 3: {CCND1, RECQL4, STAT3}
+  Cost: 3.79, Size: 3 targets
+
+Option 4: {ANKUB1, CCND1, STAT3}
+  Cost: 3.79, Size: 3 targets
+
+Option 5: {CCND1, OVOL3, STAT3}
+  Cost: 3.79, Size: 3 targets
+
+================================================================================
+SYSTEMS BIOLOGY TRIPLE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+BEST TRIPLE COMBINATION: EGFR, ELMO2, MAP2K1
+  Combined Score: 1.722 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.42 (lower is better)
+  Path Coverage: 50.0%
+  Druggable Targets: 2/3
+
+Drug Details:
+  • EGFR (approved): erlotinib, gefitinib, osimertinib
+  • ELMO2: Research target (no approved drugs)
+  • MAP2K1 (approved): trametinib, cobimetinib, binimetinib
+
+Pathway Coverage:
+  RTK signaling: 10%
+  RAS-MAPK: 9%
+
+Alternative Triple Combinations:
+  1. EGFR, MAP2K1, XYLT2 (score: 1.724, synergy: 0.94)
+  2. EGFR, EXT2, MAP2K1 (score: 1.725, synergy: 0.94)
+  3. BRAF, EGFR, ELMO2 (score: 1.731, synergy: 0.94)
+  4. BRAF, EGFR, XYLT2 (score: 1.733, synergy: 0.94)
+
+================================================================================
+VIABILITY PATH SUMMARY:
+--------------------------------------------------------------------------------
+Total paths: 58
+Unique gene nodes: 1791
+
+Paths by type:
+  co_essential_module: 15
+  signaling_path: 34
+  cancer_specific: 1
+  perturbation_response: 8
+
+Sample paths:
+  [co_essential_module] Pleural Mesothelioma_coessential_cluster_8: {APC, EXOC1, PCNX3, PPY, MEMO1, H2AC4...}
+  [co_essential_module] Pleural Mesothelioma_coessential_cluster_1: {ANKUB1, ATP5ME, PGBD5, AQP7B, MRPS34, HMGB3...}
+  [co_essential_module] Pleural Mesothelioma_coessential_cluster_3: {FARS2, MRPS2, MRPS7, MRPL16, HSD17B10, MRPL18...}
+  [co_essential_module] Pleural Mesothelioma_coessential_cluster_2: {MYH9, SMC6, FAF2, CUL2, MVD, C19orf25 (148223)...}
+  [co_essential_module] Pleural Mesothelioma_coessential_cluster_4: {UQCRC2, LMNA, ITGB1, TNPO1, EPC1, BRAT1...}
+================================================================================

@@ -1,0 +1,42 @@
+================================================================================
+TRIPLE COMBINATION REPORT: Leiomyosarcoma
+================================================================================
+
+TARGETS: EGFR, KRAS, PTK2
+
+SCORES:
+  Combined Score: 1.747 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.35 (lower is better)
+  Combo Toxicity: 0.06 (lower is better)
+  Path Coverage: 50.0%
+  Total Cost: 4.11
+  Druggable Targets: 2/3
+
+DRUG INFORMATION:
+  EGFR:
+    Drugs: erlotinib, gefitinib, osimertinib
+    Stage: approved
+    Toxicities: rash, diarrhea, ILD
+  KRAS:
+    Drugs: sotorasib, adagrasib
+    Stage: approved
+    Toxicities: diarrhea, hepatotoxicity
+  PTK2: No approved drugs (research target)
+
+COMBINATION TOXICITY ASSESSMENT:
+  No known major drug-drug interactions
+  Overlapping Toxicity Classes:
+    - gi_toxicity: 3 drugs share this toxicity
+  Component Scores: DDI=0.00, Overlap=0.16
+
+PATHWAY COVERAGE:
+  RTK signaling: 10%
+  RAS-MAPK: 9%
+
+RATIONALE:
+  This triple combination targets multiple signaling nodes to achieve
+  complete pathway inhibition while minimizing resistance probability.
+  The combination covers 2 pathways
+  with 2 clinically druggable targets.
+================================================================================

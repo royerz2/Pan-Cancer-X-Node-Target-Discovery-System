@@ -1,0 +1,90 @@
+
+================================================================================
+X-NODE TARGET DISCOVERY REPORT
+Cancer Type: Glassy Cell Carcinoma of the Cervix
+Lineage: Cervix
+Cell Lines Analyzed: 1
+Viability Paths Identified: 44
+================================================================================
+
+DRIVER MUTATION LANDSCAPE:
+--------------------------------------------------------------------------------
+No mutation data available
+
+================================================================================
+TOP ESSENTIAL GENES (Cancer-Specific):
+--------------------------------------------------------------------------------
+RAN: -4.421 (dependency score)
+HSPE1: -4.010 (dependency score)
+RPL17: -3.666 (dependency score)
+SNRPA1: -3.656 (dependency score)
+PCNA: -3.475 (dependency score)
+RPS19: -3.457 (dependency score)
+RPS3A: -3.452 (dependency score)
+KIF11: -3.431 (dependency score)
+PSMB3: -3.425 (dependency score)
+PSMA6: -3.402 (dependency score)
+
+================================================================================
+RECOMMENDED X-NODE TARGET COMBINATION:
+--------------------------------------------------------------------------------
+Optimal 3-node combination:
+  • CDK4 (approved): palbociclib, ribociclib, abemaciclib
+  • MAP2K1 (approved): trametinib, cobimetinib, binimetinib
+  • MCL1 (phase1): AMG-176, S64315
+
+Cost Score: 2.42
+Path Coverage: 81.8%
+Paths Covered: 36/44
+
+================================================================================
+ALTERNATIVE X-NODE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+Option 1: {CCND1, CDK4, E2F3, STAT3}
+  Cost: 5.34, Size: 4 targets
+
+================================================================================
+SYSTEMS BIOLOGY TRIPLE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+BEST TRIPLE COMBINATION: CDK4, MAP2K1, MCL1
+  Combined Score: 1.636 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.39 (lower is better)
+  Path Coverage: 50.0%
+  Druggable Targets: 2/3
+
+Drug Details:
+  • CDK4 (approved): palbociclib, ribociclib, abemaciclib
+  • MAP2K1 (approved): trametinib, cobimetinib, binimetinib
+  • MCL1 (phase1): AMG-176, S64315
+
+Pathway Coverage:
+  Cell cycle: 12%
+  Apoptosis: 11%
+  RAS-MAPK: 9%
+
+Alternative Triple Combinations:
+  1. BCL2L1, CDK4, MCL1 (score: 1.653, synergy: 0.81)
+  2. GRB2, MEK1, STAT3 (score: 1.654, synergy: 0.94)
+  3. GRB2, SNAI2, STAT3 (score: 1.665, synergy: 0.94)
+  4. BRAF, CDK4, MCL1 (score: 1.670, synergy: 0.94)
+
+================================================================================
+VIABILITY PATH SUMMARY:
+--------------------------------------------------------------------------------
+Total paths: 44
+Unique gene nodes: 28
+
+Paths by type:
+  signaling_path: 28
+  perturbation_response: 16
+
+Sample paths:
+  [signaling_path] Glassy Cell Carcinoma of the Cervix_EGFR_STAT3_MYC_CDK4: {MYC, CDK4, STAT3, EGFR}
+  [signaling_path] Glassy Cell Carcinoma of the Cervix_EGFR_STAT3_MYC_CCND1_CDK4: {MYC, STAT3, EGFR, CDK4, CCND1}
+  [signaling_path] Glassy Cell Carcinoma of the Cervix_EGFR_STAT3_CCND1_CDK4: {CDK4, CCND1, STAT3, EGFR}
+  [signaling_path] Glassy Cell Carcinoma of the Cervix_EGFR_SRC_STAT3_MYC_CDK4: {MYC, SRC, STAT3, EGFR, CDK4}
+  [signaling_path] Glassy Cell Carcinoma of the Cervix_EGFR_SRC_STAT3_CCND1_CDK4: {SRC, STAT3, EGFR, CDK4, CCND1}
+================================================================================

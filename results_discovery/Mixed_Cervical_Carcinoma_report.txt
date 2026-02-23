@@ -1,0 +1,98 @@
+
+================================================================================
+X-NODE TARGET DISCOVERY REPORT
+Cancer Type: Mixed Cervical Carcinoma
+Lineage: Cervix
+Cell Lines Analyzed: 1
+Viability Paths Identified: 6
+================================================================================
+
+DRIVER MUTATION LANDSCAPE:
+--------------------------------------------------------------------------------
+No mutation data available
+
+================================================================================
+TOP ESSENTIAL GENES (Cancer-Specific):
+--------------------------------------------------------------------------------
+RAN: -4.228 (dependency score)
+HSPE1: -3.754 (dependency score)
+SNRPA1: -3.696 (dependency score)
+RPL12: -3.595 (dependency score)
+PUF60: -3.530 (dependency score)
+VCP: -3.511 (dependency score)
+SNU13: -3.487 (dependency score)
+RPL17: -3.395 (dependency score)
+PSMB3: -3.362 (dependency score)
+RPS11: -3.358 (dependency score)
+
+================================================================================
+RECOMMENDED X-NODE TARGET COMBINATION:
+--------------------------------------------------------------------------------
+Optimal 3-node combination:
+  • GRB2
+  • MEK1
+  • SREBF1
+
+Cost Score: 1.20
+Path Coverage: 100.0%
+Paths Covered: 6/6
+
+================================================================================
+ALTERNATIVE X-NODE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+Option 1: {ERBB3}
+  Cost: 1.28, Size: 1 targets
+
+Option 2: {EGFR}
+  Cost: 1.43, Size: 1 targets
+
+Option 3: {ERBB2, MEK1}
+  Cost: 2.45, Size: 2 targets
+
+Option 4: {ERBB2, ERBB3}
+  Cost: 2.47, Size: 2 targets
+
+Option 5: {ERBB2, GRB2}
+  Cost: 2.50, Size: 2 targets
+
+================================================================================
+SYSTEMS BIOLOGY TRIPLE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+BEST TRIPLE COMBINATION: GRB2, MEK1, SREBF1
+  Combined Score: 0.921 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.00 (lower is better)
+  Path Coverage: 50.0%
+  Druggable Targets: 0/3
+
+Drug Details:
+  • GRB2: Research target (no approved drugs)
+  • MEK1: Research target (no approved drugs)
+  • SREBF1: Research target (no approved drugs)
+
+Pathway Coverage:
+
+Alternative Triple Combinations:
+  1. GRB2, MAP2K2, MEK1 (score: 0.962, synergy: 0.94)
+  2. GRB2, MAP2K1, MEK1 (score: 0.962, synergy: 0.94)
+  3. MAP2K2, MEK1, SREBF1 (score: 0.964, synergy: 0.94)
+  4. MAP2K1, MEK1, SREBF1 (score: 0.964, synergy: 0.94)
+
+================================================================================
+VIABILITY PATH SUMMARY:
+--------------------------------------------------------------------------------
+Total paths: 6
+Unique gene nodes: 12
+
+Paths by type:
+  perturbation_response: 6
+
+Sample paths:
+  [perturbation_response] Mixed Cervical Carcinoma_perturbation_KRAS: {ERBB3, KRAS, EGFR, ERBB2, JUNB}
+  [perturbation_response] Mixed Cervical Carcinoma_perturbation_EGFR: {GRB2, ERBB3, BCL2L1, EGFR, ERBB2}
+  [perturbation_response] Mixed Cervical Carcinoma_perturbation_MEK1: {ERBB3, EGFR, ERBB2, MEK1, JUNB}
+  [perturbation_response] Mixed Cervical Carcinoma_perturbation_MAP2K1: {ERBB3, MAP2K1, EGFR, ERBB2, JUNB}
+  [perturbation_response] Mixed Cervical Carcinoma_perturbation_MTOR: {ERBB2, MTOR, SREBF1, EGFR}
+================================================================================

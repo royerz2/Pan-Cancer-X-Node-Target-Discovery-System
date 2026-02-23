@@ -1,0 +1,103 @@
+
+================================================================================
+X-NODE TARGET DISCOVERY REPORT
+Cancer Type: Prostate Adenocarcinoma
+Lineage: Prostate
+Cell Lines Analyzed: 6
+Viability Paths Identified: 54
+================================================================================
+
+DRIVER MUTATION LANDSCAPE:
+--------------------------------------------------------------------------------
+TP53_LoF: 80.0% of cell lines
+PTEN_LoF: 40.0% of cell lines
+CDKN2A_LoF: 20.0% of cell lines
+
+================================================================================
+TOP ESSENTIAL GENES (Cancer-Specific):
+--------------------------------------------------------------------------------
+RPL15: -5.981 (dependency score)
+SNRPD3: -5.433 (dependency score)
+RAN: -4.260 (dependency score)
+HSPE1: -4.136 (dependency score)
+RPL17: -3.765 (dependency score)
+RPL21: -3.579 (dependency score)
+PSMA6: -3.578 (dependency score)
+SNRPF: -3.451 (dependency score)
+PRELID1: -3.436 (dependency score)
+SMU1: -3.409 (dependency score)
+
+================================================================================
+RECOMMENDED X-NODE TARGET COMBINATION:
+--------------------------------------------------------------------------------
+Optimal 3-node combination:
+  • ANKUB1
+  • CCND1
+  • NPIPB11
+
+Cost Score: 1.90
+Path Coverage: 82.9%
+Paths Covered: 34/54
+
+================================================================================
+ALTERNATIVE X-NODE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+Option 1: {CCND1, STAT3}
+  Cost: 2.29, Size: 2 targets
+
+Option 2: {CCND1, CDK4, MDFIC2}
+  Cost: 2.90, Size: 3 targets
+
+Option 3: {CCND1, CDK4, OVOL3}
+  Cost: 2.90, Size: 3 targets
+
+Option 4: {CCND1, CDK4, TEX51}
+  Cost: 2.90, Size: 3 targets
+
+Option 5: {CCND1, CDK4, SPACA6}
+  Cost: 2.90, Size: 3 targets
+
+================================================================================
+SYSTEMS BIOLOGY TRIPLE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+BEST TRIPLE COMBINATION: ANKUB1, CCND1, NPIPB11
+  Combined Score: 1.435 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.00 (lower is better)
+  Path Coverage: 50.0%
+  Druggable Targets: 0/3
+
+Drug Details:
+  • ANKUB1: Research target (no approved drugs)
+  • CCND1: Research target (no approved drugs)
+  • NPIPB11: Research target (no approved drugs)
+
+Pathway Coverage:
+  Cell cycle: 12%
+
+Alternative Triple Combinations:
+  1. ANKUB1, CCND1, PGBD5 (score: 1.435, synergy: 0.94)
+  2. ANKUB1, AQP7B, CCND1 (score: 1.435, synergy: 0.94)
+  3. CCND1, NPIPB11, PGBD5 (score: 1.435, synergy: 0.94)
+  4. AQP7B, CCND1, NPIPB11 (score: 1.435, synergy: 0.94)
+
+================================================================================
+VIABILITY PATH SUMMARY:
+--------------------------------------------------------------------------------
+Total paths: 54
+Unique gene nodes: 3395
+
+Paths by type:
+  co_essential_module: 15
+  signaling_path: 28
+  perturbation_response: 11
+
+Sample paths:
+  [co_essential_module] Prostate Adenocarcinoma_coessential_cluster_12: {APC, DNM2, ANKUB1, NPIPB11, RPL21, PGBD5...}
+  [co_essential_module] Prostate Adenocarcinoma_coessential_cluster_3: {OR10A2, OR2T6, OR52E6, OR6V1, FRG2B, TUBA3E...}
+  [co_essential_module] Prostate Adenocarcinoma_coessential_cluster_9: {FARS2, ATP5ME, MRPS7, IARS2, MRPL16, ZFAND5...}
+  [co_essential_module] Prostate Adenocarcinoma_coessential_cluster_15: {MYH9, RAB1B, OR1E1, SMC6, TAF2, WTAP...}
+  [co_essential_module] Prostate Adenocarcinoma_coessential_cluster_4: {NGLY1, VCPIP1, EGLN1, BEST2, MYF6, PCDH10...}
+================================================================================

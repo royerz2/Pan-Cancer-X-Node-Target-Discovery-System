@@ -1,0 +1,105 @@
+
+================================================================================
+X-NODE TARGET DISCOVERY REPORT
+Cancer Type: Head and Neck Carcinoma, Other
+Lineage: Head and Neck
+Cell Lines Analyzed: 3
+Viability Paths Identified: 42
+================================================================================
+
+DRIVER MUTATION LANDSCAPE:
+--------------------------------------------------------------------------------
+CDKN2A_LoF: 33.3% of cell lines
+TP53_LoF: 33.3% of cell lines
+
+================================================================================
+TOP ESSENTIAL GENES (Cancer-Specific):
+--------------------------------------------------------------------------------
+RPL15: -5.731 (dependency score)
+SNRPD3: -5.419 (dependency score)
+HSPE1: -4.173 (dependency score)
+RAN: -4.134 (dependency score)
+RPL17: -3.887 (dependency score)
+PRIM2: -3.802 (dependency score)
+RPL21: -3.671 (dependency score)
+PRELID1: -3.550 (dependency score)
+DNA2: -3.383 (dependency score)
+SNRPA1: -3.363 (dependency score)
+
+================================================================================
+RECOMMENDED X-NODE TARGET COMBINATION:
+--------------------------------------------------------------------------------
+Optimal 3-node combination:
+  • CDK6 (approved): palbociclib, ribociclib, abemaciclib
+  • ERBB2 (approved): trastuzumab, pertuzumab, lapatinib
+  • YAP1
+
+Cost Score: 2.80
+Path Coverage: 83.3%
+Paths Covered: 35/42
+
+================================================================================
+ALTERNATIVE X-NODE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+Option 1: {CCND1, NUTM1, STAT3}
+  Cost: 3.87, Size: 3 targets
+
+Option 2: {CCND1, SNRPE, STAT3}
+  Cost: 3.90, Size: 3 targets
+
+Option 3: {CCND1, MRPS35, STAT3}
+  Cost: 4.00, Size: 3 targets
+
+Option 4: {CCND1, GNB1, STAT3}
+  Cost: 4.00, Size: 3 targets
+
+Option 5: {CCND1, SMARCB1, STAT3}
+  Cost: 4.00, Size: 3 targets
+
+================================================================================
+SYSTEMS BIOLOGY TRIPLE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+BEST TRIPLE COMBINATION: CDK6, ERBB2, YAP1
+  Combined Score: 1.710 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.00 (lower is better)
+  Path Coverage: 54.8%
+  Druggable Targets: 2/3
+
+Drug Details:
+  • CDK6 (approved): palbociclib, ribociclib, abemaciclib
+  • ERBB2 (approved): trastuzumab, pertuzumab, lapatinib
+  • YAP1: Research target (no approved drugs)
+
+Pathway Coverage:
+  Hippo: 17%
+  Cell cycle: 12%
+  RTK signaling: 10%
+
+Alternative Triple Combinations:
+  1. CDK6, ERBB2, MRPL30 (score: 1.711, synergy: 0.94)
+  2. CDK6, ERBB3, MCL1 (score: 1.711, synergy: 0.94)
+  3. CASP3, IGF1R, STAT3 (score: 1.713, synergy: 0.94)
+  4. CDK6, ERBB2, RBFOX2 (score: 1.716, synergy: 0.94)
+
+================================================================================
+VIABILITY PATH SUMMARY:
+--------------------------------------------------------------------------------
+Total paths: 42
+Unique gene nodes: 3082
+
+Paths by type:
+  co_essential_module: 7
+  signaling_path: 22
+  cancer_specific: 1
+  perturbation_response: 12
+
+Sample paths:
+  [co_essential_module] Head and Neck Carcinoma, Other_coessential_cluster_1: {TRAPPC13, APC, RBFOX2, OR52E6, EML4, CBX5...}
+  [co_essential_module] Head and Neck Carcinoma, Other_coessential_cluster_5: {TFAP4, OR10A2, PPIAL4G, DNM2, NRDC, NUDT10...}
+  [co_essential_module] Head and Neck Carcinoma, Other_coessential_cluster_3: {ADAMTS7, TADA2B, ZC3H3, RNASEH2B, SERF2, TYW1B...}
+  [co_essential_module] Head and Neck Carcinoma, Other_coessential_cluster_4: {MRPL34, GRB2, RPL15, POLR2K, ATP5ME, RPL21...}
+  [co_essential_module] Head and Neck Carcinoma, Other_coessential_cluster_7: {KRT6A, WAPL, EXOC4, ASH1L, WTAP, OCM2...}
+================================================================================

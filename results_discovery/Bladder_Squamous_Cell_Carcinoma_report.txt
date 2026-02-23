@@ -1,0 +1,91 @@
+
+================================================================================
+X-NODE TARGET DISCOVERY REPORT
+Cancer Type: Bladder Squamous Cell Carcinoma
+Lineage: Bladder/Urinary Tract
+Cell Lines Analyzed: 2
+Viability Paths Identified: 38
+================================================================================
+
+DRIVER MUTATION LANDSCAPE:
+--------------------------------------------------------------------------------
+CDKN2A_LoF: 100.0% of cell lines
+TP53_LoF: 100.0% of cell lines
+PIK3CA: 50.0% of cell lines
+PIK3CAp.E545: 50.0% of cell lines
+
+================================================================================
+TOP ESSENTIAL GENES (Cancer-Specific):
+--------------------------------------------------------------------------------
+HSPE1: -3.963 (dependency score)
+RPL17: -3.850 (dependency score)
+RAN: -3.777 (dependency score)
+RPS8: -3.598 (dependency score)
+RPS11: -3.455 (dependency score)
+RPS3A: -3.419 (dependency score)
+PRELID1: -3.276 (dependency score)
+WEE1: -3.230 (dependency score)
+RPS20: -3.229 (dependency score)
+RPS29: -3.171 (dependency score)
+
+================================================================================
+RECOMMENDED X-NODE TARGET COMBINATION:
+--------------------------------------------------------------------------------
+Optimal 3-node combination:
+  • E2F3
+  • ERBB2 (approved): trastuzumab, pertuzumab, lapatinib
+  • PXN
+
+Cost Score: 1.20
+Path Coverage: 81.6%
+Paths Covered: 31/38
+
+================================================================================
+ALTERNATIVE X-NODE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+Option 1: {CCND1, E2F3, STAT3}
+  Cost: 3.91, Size: 3 targets
+
+================================================================================
+SYSTEMS BIOLOGY TRIPLE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+BEST TRIPLE COMBINATION: E2F3, ERBB2, PXN
+  Combined Score: 1.524 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.00 (lower is better)
+  Path Coverage: 50.0%
+  Druggable Targets: 1/3
+
+Drug Details:
+  • E2F3: Research target (no approved drugs)
+  • ERBB2 (approved): trastuzumab, pertuzumab, lapatinib
+  • PXN: Research target (no approved drugs)
+
+Pathway Coverage:
+  RTK signaling: 10%
+
+Alternative Triple Combinations:
+  1. CDK2, ERBB2, PXN (score: 1.540, synergy: 0.94)
+  2. ERBB2, MAP2K1, PXN (score: 1.577, synergy: 0.94)
+  3. E2F3, ERBB2, MAP2K1 (score: 1.584, synergy: 0.94)
+  4. EGFR, PXN, SNAI2 (score: 1.599, synergy: 0.94)
+
+================================================================================
+VIABILITY PATH SUMMARY:
+--------------------------------------------------------------------------------
+Total paths: 38
+Unique gene nodes: 30
+
+Paths by type:
+  signaling_path: 22
+  perturbation_response: 16
+
+Sample paths:
+  [signaling_path] Bladder Squamous Cell Carcinoma_EGFR_STAT3_MYC_CCND1_CDK6: {MYC, CDK6, STAT3, EGFR, CCND1}
+  [signaling_path] Bladder Squamous Cell Carcinoma_EGFR_STAT3_CCND1_CDK6: {CDK6, CCND1, STAT3, EGFR}
+  [signaling_path] Bladder Squamous Cell Carcinoma_EGFR_SRC_STAT3_CCND1_CDK6: {CDK6, SRC, STAT3, EGFR, CCND1}
+  [signaling_path] Bladder Squamous Cell Carcinoma_EGFR_STAT3_MCL1: {MCL1, STAT3, EGFR}
+  [signaling_path] Bladder Squamous Cell Carcinoma_EGFR_SRC_STAT3_MCL1: {MCL1, SRC, STAT3, EGFR}
+================================================================================

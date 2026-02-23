@@ -1,0 +1,104 @@
+
+================================================================================
+X-NODE TARGET DISCOVERY REPORT
+Cancer Type: Rhabdomyosarcoma
+Lineage: Soft Tissue
+Cell Lines Analyzed: 25
+Viability Paths Identified: 41
+================================================================================
+
+DRIVER MUTATION LANDSCAPE:
+--------------------------------------------------------------------------------
+TP53_LoF: 66.7% of cell lines
+CDKN2A_LoF: 25.0% of cell lines
+
+================================================================================
+TOP ESSENTIAL GENES (Cancer-Specific):
+--------------------------------------------------------------------------------
+RAN: -4.183 (dependency score)
+HSPE1: -4.057 (dependency score)
+RPL17: -3.791 (dependency score)
+RPS8: -3.440 (dependency score)
+RPS3A: -3.399 (dependency score)
+RRM1: -3.392 (dependency score)
+FAU: -3.375 (dependency score)
+SNRPA1: -3.368 (dependency score)
+RPL12: -3.301 (dependency score)
+SNRPF: -3.226 (dependency score)
+
+================================================================================
+RECOMMENDED X-NODE TARGET COMBINATION:
+--------------------------------------------------------------------------------
+Optimal 3-node combination:
+  • CCND1
+  • MCL1 (phase1): AMG-176, S64315
+  • MMGT1
+
+Cost Score: 2.55
+Path Coverage: 82.8%
+Paths Covered: 24/41
+
+================================================================================
+ALTERNATIVE X-NODE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+Option 1: {CDK4, STAT3}
+  Cost: 2.70, Size: 2 targets
+
+Option 2: {GRB2, STAT3}
+  Cost: 2.80, Size: 2 targets
+
+Option 3: {MMGT1, STAT3, SYN2}
+  Cost: 3.55, Size: 3 targets
+
+Option 4: {MMGT1, RECQL4, STAT3}
+  Cost: 3.55, Size: 3 targets
+
+Option 5: {ANKUB1, MMGT1, STAT3}
+  Cost: 3.55, Size: 3 targets
+
+================================================================================
+SYSTEMS BIOLOGY TRIPLE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+BEST TRIPLE COMBINATION: CCND1, MCL1, MMGT1
+  Combined Score: 1.587 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.00 (lower is better)
+  Path Coverage: 51.2%
+  Druggable Targets: 0/3
+
+Drug Details:
+  • CCND1: Research target (no approved drugs)
+  • MCL1 (phase1): AMG-176, S64315
+  • MMGT1: Research target (no approved drugs)
+
+Pathway Coverage:
+  Cell cycle: 12%
+  Apoptosis: 11%
+
+Alternative Triple Combinations:
+  1. CCND1, IGF1R, MCL1 (score: 1.591, synergy: 0.94)
+  2. CCND1, EMC6, MCL1 (score: 1.597, synergy: 0.94)
+  3. CDK4, CDK6, MMGT1 (score: 1.602, synergy: 0.81)
+  4. ATP5F1E, CCND1, MCL1 (score: 1.607, synergy: 0.94)
+
+================================================================================
+VIABILITY PATH SUMMARY:
+--------------------------------------------------------------------------------
+Total paths: 41
+Unique gene nodes: 1989
+
+Paths by type:
+  co_essential_module: 15
+  signaling_path: 23
+  cancer_specific: 1
+  perturbation_response: 2
+
+Sample paths:
+  [co_essential_module] Rhabdomyosarcoma_coessential_cluster_3: {MRPL34, ATP5ME, TRIM28, SMC6, MRPL16, TBCE...}
+  [co_essential_module] Rhabdomyosarcoma_coessential_cluster_8: {MYH9, NUP58, RHOA, WTAP, TSPYL5, SLC31A1...}
+  [co_essential_module] Rhabdomyosarcoma_coessential_cluster_1: {ANKUB1, PGBD5, AQP7B, MRPS34, CUL2, HMGB3...}
+  [co_essential_module] Rhabdomyosarcoma_coessential_cluster_11: {EXOC2, POC1A, H2AC6, ARGLU1, QRICH1, EGLN1...}
+  [co_essential_module] Rhabdomyosarcoma_coessential_cluster_5: {FAM210A, RAC1, UTP3, DDX28, MRPL53, AGAP9...}
+================================================================================

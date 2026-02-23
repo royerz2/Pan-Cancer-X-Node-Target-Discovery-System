@@ -1,0 +1,102 @@
+
+================================================================================
+X-NODE TARGET DISCOVERY REPORT
+Cancer Type: Epithelioid Sarcoma
+Lineage: Soft Tissue
+Cell Lines Analyzed: 2
+Viability Paths Identified: 36
+================================================================================
+
+DRIVER MUTATION LANDSCAPE:
+--------------------------------------------------------------------------------
+CDKN2A_LoF: 50.0% of cell lines
+TP53_LoF: 50.0% of cell lines
+
+================================================================================
+TOP ESSENTIAL GENES (Cancer-Specific):
+--------------------------------------------------------------------------------
+RAN: -4.361 (dependency score)
+RPL17: -3.879 (dependency score)
+HSPE1: -3.817 (dependency score)
+SNRPF: -3.487 (dependency score)
+RRM1: -3.453 (dependency score)
+RPS8: -3.385 (dependency score)
+FAU: -3.310 (dependency score)
+PUF60: -3.283 (dependency score)
+RPL12: -3.230 (dependency score)
+SNRPA1: -3.226 (dependency score)
+
+================================================================================
+RECOMMENDED X-NODE TARGET COMBINATION:
+--------------------------------------------------------------------------------
+Optimal 3-node combination:
+  • ERBB2 (approved): trastuzumab, pertuzumab, lapatinib
+  • MAP2K1 (approved): trametinib, cobimetinib, binimetinib
+  • MET (approved): capmatinib, tepotinib, crizotinib
+
+Cost Score: 1.50
+Path Coverage: 83.3%
+Paths Covered: 30/36
+
+================================================================================
+ALTERNATIVE X-NODE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+Option 1: {PTK2, STAT3}
+  Cost: 2.66, Size: 2 targets
+
+Option 2: {CCND1, GRB2}
+  Cost: 2.69, Size: 2 targets
+
+Option 3: {MAP2K1, STAT3}
+  Cost: 2.80, Size: 2 targets
+
+Option 4: {BRAF, STAT3}
+  Cost: 2.80, Size: 2 targets
+
+Option 5: {CCND1, STAT3}
+  Cost: 2.80, Size: 2 targets
+
+================================================================================
+SYSTEMS BIOLOGY TRIPLE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+BEST TRIPLE COMBINATION: ERBB2, MAP2K1, MET
+  Combined Score: 1.318 (lower is better)
+  Synergy Score: 0.81 (higher is better)
+  Resistance Score: 0.00 (lower is better)
+  Path Coverage: 50.0%
+  Druggable Targets: 3/3
+
+Drug Details:
+  • ERBB2 (approved): trastuzumab, pertuzumab, lapatinib
+  • MAP2K1 (approved): trametinib, cobimetinib, binimetinib
+  • MET (approved): capmatinib, tepotinib, crizotinib
+
+Pathway Coverage:
+  RTK signaling: 20%
+  RAS-MAPK: 9%
+
+Alternative Triple Combinations:
+  1. BCL2L1, ERBB2, MET (score: 1.338, synergy: 0.81)
+  2. BRAF, ERBB2, MET (score: 1.385, synergy: 0.81)
+  3. CDK4, MAP2K1, PTK2 (score: 1.432, synergy: 0.94)
+  4. BRAF, CDK4, PTK2 (score: 1.447, synergy: 0.94)
+
+================================================================================
+VIABILITY PATH SUMMARY:
+--------------------------------------------------------------------------------
+Total paths: 36
+Unique gene nodes: 20
+
+Paths by type:
+  signaling_path: 29
+  perturbation_response: 7
+
+Sample paths:
+  [signaling_path] Epithelioid Sarcoma_EGFR_STAT3_MYC_CCND1_CDK6: {MYC, CDK6, STAT3, EGFR, CCND1}
+  [signaling_path] Epithelioid Sarcoma_EGFR_STAT3_CCND1_CDK6: {CDK6, CCND1, STAT3, EGFR}
+  [signaling_path] Epithelioid Sarcoma_EGFR_SRC_STAT3_CCND1_CDK6: {CDK6, SRC, STAT3, EGFR, CCND1}
+  [signaling_path] Epithelioid Sarcoma_EGFR_STAT3_MYC_CDK4: {MYC, CDK4, STAT3, EGFR}
+  [signaling_path] Epithelioid Sarcoma_EGFR_STAT3_MYC_CCND1_CDK4: {MYC, STAT3, EGFR, CDK4, CCND1}
+================================================================================

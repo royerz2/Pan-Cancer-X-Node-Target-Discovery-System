@@ -1,0 +1,78 @@
+Cancer_Type,X_Node_Targets,Suggested_Drug_Protocol,All_Targets_Druggable,Cell_Lines_Analyzed,Viability_Paths
+Non-Small Cell Lung Cancer,EGFR + MAP2K1 + SLC2A1,EGFR: erlotinib + MAP2K1: trametinib + SLC2A1: [no approved drug],False,165,57
+Non-Cancerous,E2F3 + EGFR + JUNB,E2F3: [no approved drug] + EGFR: erlotinib + JUNB: [no approved drug],False,151,63
+Melanoma,FERMT2 + SOX10 + STAT3,FERMT2: [no approved drug] + SOX10: [no approved drug] + STAT3: napabucasin,False,135,63
+Mature B-Cell Neoplasms,CCND1 + MCL1 + POU2AF1,CCND1: [no approved drug] + MCL1: AMG-176 + POU2AF1: [no approved drug],False,130,42
+Diffuse Glioma,CCND1 + CHMP4B + RPP25L,CCND1: [no approved drug] + CHMP4B: [no approved drug] + RPP25L: [no approved drug],False,96,59
+Colorectal Adenocarcinoma,CCND1 + CTNNB1 + KLF5,CCND1: [no approved drug] + CTNNB1: [no approved drug] + KLF5: [no approved drug],False,96,50
+Head and Neck Squamous Cell Carcinoma,ITGB1 + PPP1R12A + STAT3,ITGB1: [no approved drug] + PPP1R12A: [no approved drug] + STAT3: napabucasin,False,89,64
+Lung Neuroendocrine Tumor,E2F1 + SKP2 + STAT3,E2F1: [no approved drug] + SKP2: [no approved drug] + STAT3: napabucasin,False,85,39
+Invasive Breast Carcinoma,FOXA1 + PPP1R15B + STAT3,FOXA1: [no approved drug] + PPP1R15B: [no approved drug] + STAT3: napabucasin,False,82,56
+Esophagogastric Adenocarcinoma,CCND1 + RAB10 + SNAP23,CCND1: [no approved drug] + RAB10: [no approved drug] + SNAP23: [no approved drug],False,74,58
+Ovarian Epithelial Tumor,CCND1 + CFLAR + PAX8,CCND1: [no approved drug] + CFLAR: [no approved drug] + PAX8: [no approved drug],False,71,51
+Acute Myeloid Leukemia,CBFB + SPI1 + STAT3,CBFB: [no approved drug] + SPI1: [no approved drug] + STAT3: napabucasin,False,64,29
+Pancreatic Adenocarcinoma,KRAS + STAT3 + UROD,KRAS: sotorasib + STAT3: napabucasin + UROD: [no approved drug],False,64,54
+Renal Cell Carcinoma,CFLAR + HNF1B + STAT3,CFLAR: [no approved drug] + HNF1B: [no approved drug] + STAT3: napabucasin,False,56,52
+Neuroblastoma,CCND1 + GATA3 + LDB1,CCND1: [no approved drug] + GATA3: [no approved drug] + LDB1: [no approved drug],False,51,58
+Ewing Sarcoma,CCND1 + EEFSEC + FLI1,CCND1: [no approved drug] + EEFSEC: [no approved drug] + FLI1: [no approved drug],False,51,49
+Intraductal Papillary Neoplasm of the Bile Duct,GRB2 + SLC2A1 + STAT3,GRB2: [no approved drug] + SLC2A1: [no approved drug] + STAT3: napabucasin,False,37,63
+Endometrial Carcinoma,MAPK3 + PAX8 + STAT3,MAPK3: [no approved drug] + PAX8: [no approved drug] + STAT3: napabucasin,False,37,58
+Pleural Mesothelioma,EGFR + ELMO2 + MAP2K1,EGFR: erlotinib + ELMO2: [no approved drug] + MAP2K1: trametinib,False,36,58
+Bladder Urothelial Carcinoma,CCND1 + FYN + YAP1,CCND1: [no approved drug] + FYN: dasatinib + YAP1: [no approved drug],False,35,52
+B-Cell Acute Lymphoblastic Leukemia,CCND3 + GCLC + STAT3,CCND3: [no approved drug] + GCLC: [no approved drug] + STAT3: napabucasin,False,32,29
+Esophageal Squamous Cell Carcinoma,ADAR + STAT3 + STX4,ADAR: [no approved drug] + STAT3: napabucasin + STX4: [no approved drug],False,30,64
+Osteosarcoma,CCND1 + FXN + HNRNPH1,CCND1: [no approved drug] + FXN: [no approved drug] + HNRNPH1: [no approved drug],False,29,53
+T-Lymphoblastic Leukemia/Lymphoma,CCND1 + LCK + NKX2-3,CCND1: [no approved drug] + LCK: [no approved drug] + NKX2-3: [no approved drug],False,27,54
+Rhabdomyosarcoma,CCND1 + MCL1 + MMGT1,CCND1: [no approved drug] + MCL1: AMG-176 + MMGT1: [no approved drug],False,25,41
+Hepatocellular Carcinoma,CCND1 + FYN + GRB2,CCND1: [no approved drug] + FYN: dasatinib + GRB2: [no approved drug],False,24,51
+Embryonal Tumor,CDK4 + CDK6 + MCL1,CDK4: palbociclib + CDK6: palbociclib + MCL1: AMG-176,True,21,53
+Myeloproliferative Neoplasms,GAB2 + SOS1 + STAT3,GAB2: [no approved drug] + SOS1: [no approved drug] + STAT3: napabucasin,False,18,46
+Mature T and NK Neoplasms,RPL15 + RPL21 + STAT3,RPL15: [no approved drug] + RPL21: [no approved drug] + STAT3: napabucasin,False,17,47
+Non-Hodgkin Lymphoma,CDK4 + CDK6 + NFKB1,CDK4: palbociclib + CDK6: palbociclib + NFKB1: [no approved drug],False,16,39
+Rhabdoid Cancer,CCND1 + DCLRE1B + UBE2D3,CCND1: [no approved drug] + DCLRE1B: [no approved drug] + UBE2D3: [no approved drug],False,16,51
+Ocular Melanoma,ANKUB1 + CCND1 + E2F3,ANKUB1: [no approved drug] + CCND1: [no approved drug] + E2F3: [no approved drug],False,15,50
+Cervical Squamous Cell Carcinoma,E2F3 + STAT3 + ZER1,ZER1: [no approved drug] + E2F3: [no approved drug] + STAT3: napabucasin,False,15,25
+Liposarcoma,CCND1 + FGFR1 + GRB2,CCND1: [no approved drug] + FGFR1: erdafitinib + GRB2: [no approved drug],False,13,54
+Anaplastic Thyroid Cancer,SEPHS2 + STAT3 + YAP1,SEPHS2: [no approved drug] + STAT3: napabucasin + YAP1: [no approved drug],False,13,62
+Non-Seminomatous Germ Cell Tumor,CCND1 + FYN + PARP1,CCND1: [no approved drug] + FYN: dasatinib + PARP1: olaparib,False,12,50
+Leiomyosarcoma,EGFR + KRAS + PTK2,EGFR: erlotinib + KRAS: sotorasib + PTK2: [no approved drug],False,11,56
+Synovial Sarcoma,SPECC1L + STAT3 + YAP1,SPECC1L: [no approved drug] + STAT3: napabucasin + YAP1: [no approved drug],False,10,51
+Chondrosarcoma,BCAR1 + CCNE2 + MET,BCAR1: [no approved drug] + CCNE2: [no approved drug] + MET: capmatinib,False,9,12
+Nerve Sheath Tumor,CCND1 + FGFR1 + GRB2,CCND1: [no approved drug] + FGFR1: erdafitinib + GRB2: [no approved drug],False,9,56
+Hodgkin Lymphoma,CCND1 + CFL1 + JAK1,CCND1: [no approved drug] + CFL1: [no approved drug] + JAK1: ruxolitinib,False,9,34
+Well-Differentiated Thyroid Cancer,E2F3 + EGFR + SOCS3,E2F3: [no approved drug] + EGFR: erlotinib + SOCS3: [no approved drug],False,9,49
+Undifferentiated Pleomorphic Sarcoma/Malignant Fibrous Histiocytoma/High-Grade Spindle Cell Sarcoma,CCND1 + FGFR1 + FYN,CCND1: [no approved drug] + FGFR1: erdafitinib + FYN: dasatinib,False,9,50
+Merkel Cell Carcinoma,CCNE1 + PTK2 + YAP1,CCNE1: [no approved drug] + PTK2: [no approved drug] + YAP1: [no approved drug],False,8,20
+Intracholecystic Papillary Neoplasm,RAF1 + SREBF1 + STAT3,RAF1: [no approved drug] + SREBF1: [no approved drug] + STAT3: napabucasin,False,7,58
+Cervical Adenocarcinoma,CTNNB1 + EGFR + TGIF1,CTNNB1: [no approved drug] + EGFR: erlotinib + TGIF1: [no approved drug],False,7,42
+Cutaneous Squamous Cell Carcinoma,PXN + SNAI2 + STAT3,PXN: [no approved drug] + SNAI2: [no approved drug] + STAT3: napabucasin,False,6,51
+Breast Ductal Carcinoma In Situ,ERBB2 + MET + SREBF1,ERBB2: trastuzumab + MET: capmatinib + SREBF1: [no approved drug],False,6,47
+Prostate Adenocarcinoma,ANKUB1 + CCND1 + NPIPB11,ANKUB1: [no approved drug] + CCND1: [no approved drug] + NPIPB11: [no approved drug],False,6,54
+Ampullary Carcinoma,CTNNB1 + SLC2A1 + STAT3,CTNNB1: [no approved drug] + SLC2A1: [no approved drug] + STAT3: napabucasin,False,5,58
+"Breast Neoplasm, NOS",BCL2L1 + MET + PXN,BCL2L1: navitoclax + MET: capmatinib + PXN: [no approved drug],False,4,18
+Uterine Sarcoma/Mesenchymal,E2F3 + EGFR + TFCP2L1,E2F3: [no approved drug] + EGFR: erlotinib + TFCP2L1: [no approved drug],False,4,32
+Meningothelial Tumor,CDK4 + CDK6 + MCL1,CDK4: palbociclib + CDK6: palbociclib + MCL1: AMG-176,True,4,55
+SMARCA4-deficient undifferentiated tumor,CDK6 + ERBB2 + PTK2,CDK6: palbociclib + ERBB2: trastuzumab + PTK2: [no approved drug],False,4,30
+Acute Leukemias of Ambiguous Lineage,CDK6 + MAP2K1 + STAT5A,CDK6: palbociclib + MAP2K1: trametinib + STAT5A: [no approved drug],False,3,27
+Mucosal Melanoma of the Vulva/Vagina,BRAF + CDK6 + ERBB2,BRAF: vemurafenib + CDK6: palbociclib + ERBB2: trastuzumab,True,3,42
+Hepatoblastoma,MAPK1 + MCL1 + MEK1,MAPK1: [no approved drug] + MCL1: AMG-176 + MEK1: [no approved drug],False,3,30
+"Head and Neck Carcinoma, Other",CDK6 + ERBB2 + YAP1,CDK6: palbociclib + ERBB2: trastuzumab + YAP1: [no approved drug],False,3,42
+Fibrosarcoma,ERBB2 + MAPK1 + MET,ERBB2: trastuzumab + MAPK1: [no approved drug] + MET: capmatinib,False,3,51
+Gestational Trophoblastic Disease,CCND1 + MCL1 + YAP1,CCND1: [no approved drug] + MCL1: AMG-176 + YAP1: [no approved drug],False,3,29
+Epithelioid Sarcoma,ERBB2 + MAP2K1 + MET,ERBB2: trastuzumab + MAP2K1: trametinib + MET: capmatinib,True,2,36
+Salivary Carcinoma,CDK4 + CDK6 + MCL1,CDK4: palbociclib + CDK6: palbociclib + MCL1: AMG-176,True,2,50
+Extra Gonadal Germ Cell Tumor,CCNE1 + MCL1 + RPS6KB1,CCNE1: [no approved drug] + MCL1: AMG-176 + RPS6KB1: [no approved drug],False,2,27
+Adenosquamous Carcinoma of the Pancreas,CDK6 + ERBB2 + PTK2,CDK6: palbociclib + ERBB2: trastuzumab + PTK2: [no approved drug],False,2,43
+Clear Cell Sarcoma,CDK4 + ERBB3 + GRB2,CDK4: palbociclib + ERBB3: [no approved drug] + GRB2: [no approved drug],False,2,38
+Adrenocortical Carcinoma,CCNE1 + CDK6 + MCL1,CCNE1: [no approved drug] + CDK6: palbociclib + MCL1: AMG-176,False,2,36
+Squamous Cell Carcinoma of the Vulva/Vagina,CDK6 + ERBB2 + PXN,CDK6: palbociclib + ERBB2: trastuzumab + PXN: [no approved drug],False,2,44
+Bladder Squamous Cell Carcinoma,E2F3 + ERBB2 + PXN,E2F3: [no approved drug] + ERBB2: trastuzumab + PXN: [no approved drug],False,2,38
+Urethral Cancer,ERBB2 + MAP2K1 + MET,ERBB2: trastuzumab + MAP2K1: trametinib + MET: capmatinib,True,2,35
+Retinoblastoma,FOXM1 + IRS2 + STAT5A,FOXM1: [no approved drug] + IRS2: [no approved drug] + STAT5A: [no approved drug],False,2,12
+Poorly Differentiated Thyroid Cancer,BCL2L1 + BRAF + MET,BCL2L1: navitoclax + BRAF: vemurafenib + MET: capmatinib,True,1,37
+Mixed Cervical Carcinoma,GRB2 + MEK1 + SREBF1,GRB2: [no approved drug] + MEK1: [no approved drug] + SREBF1: [no approved drug],False,1,6
+Glassy Cell Carcinoma of the Cervix,CDK4 + MAP2K1 + MCL1,CDK4: palbociclib + MAP2K1: trametinib + MCL1: AMG-176,True,1,44
+Hepatocellular Carcinoma plus Intrahepatic Cholangiocarcinoma,GAB2 + MAP2K2 + STAT3,GAB2: [no approved drug] + MAP2K2: trametinib + STAT3: napabucasin,False,1,25
+"Sarcoma, NOS",CDK6 + ERBB2 + MET,CDK6: palbociclib + ERBB2: trastuzumab + MET: capmatinib,True,1,38
+Ovarian Germ Cell Tumor,CDK4 + DUSP6 + PTK2,CDK4: palbociclib + DUSP6: [no approved drug] + PTK2: [no approved drug],False,1,43
+Giant Cell Tumor of Bone,CDK4 + CDK6 + PTK2,CDK4: palbociclib + CDK6: palbociclib + PTK2: [no approved drug],False,1,43

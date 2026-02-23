@@ -1,0 +1,106 @@
+
+================================================================================
+X-NODE TARGET DISCOVERY REPORT
+Cancer Type: T-Lymphoblastic Leukemia/Lymphoma
+Lineage: Lymphoid
+Cell Lines Analyzed: 27
+Viability Paths Identified: 54
+================================================================================
+
+DRIVER MUTATION LANDSCAPE:
+--------------------------------------------------------------------------------
+CDKN2A_LoF: 66.7% of cell lines
+TP53_LoF: 33.3% of cell lines
+PIK3CA: 16.7% of cell lines
+PIK3CAp.E545: 16.7% of cell lines
+PTEN_LoF: 16.7% of cell lines
+
+================================================================================
+TOP ESSENTIAL GENES (Cancer-Specific):
+--------------------------------------------------------------------------------
+RAN: -4.280 (dependency score)
+HSPE1: -4.125 (dependency score)
+RPL17: -3.807 (dependency score)
+RRM1: -3.567 (dependency score)
+SNRPA1: -3.408 (dependency score)
+RPS8: -3.385 (dependency score)
+SNRPD1: -3.384 (dependency score)
+RPL12: -3.317 (dependency score)
+PUF60: -3.284 (dependency score)
+KIF11: -3.280 (dependency score)
+
+================================================================================
+RECOMMENDED X-NODE TARGET COMBINATION:
+--------------------------------------------------------------------------------
+Optimal 3-node combination:
+  • CCND1
+  • LCK
+  • NKX2-3
+
+Cost Score: 2.70
+Path Coverage: 82.9%
+Paths Covered: 34/54
+
+================================================================================
+ALTERNATIVE X-NODE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+Option 1: {CCND1, STAT3}
+  Cost: 2.80, Size: 2 targets
+
+Option 2: {CCND1, CDK4}
+  Cost: 2.90, Size: 2 targets
+
+Option 3: {CDK4, MDFIC2, STAT3}
+  Cost: 3.70, Size: 3 targets
+
+Option 4: {CDK4, STAT3, TIMM8B}
+  Cost: 3.70, Size: 3 targets
+
+Option 5: {CDK4, OVOL3, STAT3}
+  Cost: 3.70, Size: 3 targets
+
+================================================================================
+SYSTEMS BIOLOGY TRIPLE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+BEST TRIPLE COMBINATION: CCND1, LCK, NKX2-3
+  Combined Score: 1.799 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.00 (lower is better)
+  Path Coverage: 57.4%
+  Druggable Targets: 0/3
+
+Drug Details:
+  • CCND1: Research target (no approved drugs)
+  • LCK: Research target (no approved drugs)
+  • NKX2-3: Research target (no approved drugs)
+
+Pathway Coverage:
+  SRC family: 20%
+  Cell cycle: 12%
+
+Alternative Triple Combinations:
+  1. CCND1, GPC1, LCK (score: 1.802, synergy: 0.94)
+  2. CCND1, LCK, PCDHAC2 (score: 1.805, synergy: 0.94)
+  3. CCND1, LCK, TRIM54 (score: 1.805, synergy: 0.94)
+  4. APC, CCND1, LCK (score: 1.805, synergy: 0.94)
+
+================================================================================
+VIABILITY PATH SUMMARY:
+--------------------------------------------------------------------------------
+Total paths: 54
+Unique gene nodes: 2962
+
+Paths by type:
+  co_essential_module: 15
+  signaling_path: 34
+  perturbation_response: 5
+
+Sample paths:
+  [co_essential_module] T-Lymphoblastic Leukemia/Lymphoma_coessential_cluster_13: {APC, ZNF280A, PGGT1B, TRIM54, SEPTIN2, SELENOO...}
+  [co_essential_module] T-Lymphoblastic Leukemia/Lymphoma_coessential_cluster_12: {TMEM245, PINLYP, MYH9, GRB2, DLX2, EXOC4...}
+  [co_essential_module] T-Lymphoblastic Leukemia/Lymphoma_coessential_cluster_6: {OSBPL7, ZC3H3, OR9A2, HTR7, GZMH, EPC1...}
+  [co_essential_module] T-Lymphoblastic Leukemia/Lymphoma_coessential_cluster_4: {NDOR1, ATP5ME, RAB10, SRRM2, FRG1, BACC1...}
+  [co_essential_module] T-Lymphoblastic Leukemia/Lymphoma_coessential_cluster_8: {ANKUB1, SLC6A8, WTAP, PGBD5, AQP7B, CUL2...}
+================================================================================

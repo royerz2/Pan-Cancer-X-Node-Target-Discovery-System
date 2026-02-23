@@ -1,0 +1,107 @@
+
+================================================================================
+X-NODE TARGET DISCOVERY REPORT
+Cancer Type: Renal Cell Carcinoma
+Lineage: Kidney
+Cell Lines Analyzed: 56
+Viability Paths Identified: 52
+================================================================================
+
+DRIVER MUTATION LANDSCAPE:
+--------------------------------------------------------------------------------
+CDKN2A_LoF: 55.2% of cell lines
+TP53_LoF: 17.2% of cell lines
+PTEN_LoF: 13.8% of cell lines
+PIK3CA: 6.9% of cell lines
+PIK3CAp.E545: 3.4% of cell lines
+PIK3CAp.H1047: 3.4% of cell lines
+
+================================================================================
+TOP ESSENTIAL GENES (Cancer-Specific):
+--------------------------------------------------------------------------------
+RPL15: -5.923 (dependency score)
+SNRPD3: -5.653 (dependency score)
+RAN: -4.271 (dependency score)
+HSPE1: -3.798 (dependency score)
+RPL17: -3.713 (dependency score)
+RRM1: -3.440 (dependency score)
+SNRPF: -3.432 (dependency score)
+SNRPA1: -3.383 (dependency score)
+RPL21: -3.283 (dependency score)
+RPS3A: -3.272 (dependency score)
+
+================================================================================
+RECOMMENDED X-NODE TARGET COMBINATION:
+--------------------------------------------------------------------------------
+Optimal 3-node combination:
+  • CFLAR
+  • HNF1B
+  • STAT3 (phase2): napabucasin, TTI-101, stattic
+
+Cost Score: 2.73
+Path Coverage: 82.5%
+Paths Covered: 33/52
+
+================================================================================
+ALTERNATIVE X-NODE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+Option 1: {CCND1, HAPSTR1}
+  Cost: 2.74, Size: 2 targets
+
+Option 2: {CCND1, CDK4}
+  Cost: 2.84, Size: 2 targets
+
+Option 3: {CCND1, CDH2, SYN2}
+  Cost: 3.73, Size: 3 targets
+
+Option 4: {CCND1, CDH2, RECQL4}
+  Cost: 3.73, Size: 3 targets
+
+Option 5: {ANKUB1, CCND1, CDH2}
+  Cost: 3.73, Size: 3 targets
+
+================================================================================
+SYSTEMS BIOLOGY TRIPLE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+BEST TRIPLE COMBINATION: CFLAR, HNF1B, STAT3
+  Combined Score: 1.557 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.35 (lower is better)
+  Path Coverage: 53.8%
+  Druggable Targets: 1/3
+
+Drug Details:
+  • CFLAR: Research target (no approved drugs)
+  • HNF1B: Research target (no approved drugs)
+  • STAT3 (phase2): napabucasin, TTI-101, stattic
+
+Pathway Coverage:
+  JAK-STAT: 17%
+
+Alternative Triple Combinations:
+  1. HNF1B, PAX8, STAT3 (score: 1.564, synergy: 0.94)
+  2. CFLAR, PAX8, STAT3 (score: 1.564, synergy: 0.94)
+  3. FERMT2, HNF1B, STAT3 (score: 1.587, synergy: 0.94)
+  4. CFLAR, FERMT2, STAT3 (score: 1.587, synergy: 0.94)
+
+================================================================================
+VIABILITY PATH SUMMARY:
+--------------------------------------------------------------------------------
+Total paths: 52
+Unique gene nodes: 1708
+
+Paths by type:
+  co_essential_module: 15
+  signaling_path: 29
+  cancer_specific: 1
+  perturbation_response: 7
+
+Sample paths:
+  [co_essential_module] Renal Cell Carcinoma_coessential_cluster_12: {METTL17, MRPS14, ATP5ME, UQCRC2, MRPL32, MRPL16...}
+  [co_essential_module] Renal Cell Carcinoma_coessential_cluster_2: {MRPL34, ADAMTS7, DNM2, ANKUB1, NPIPB11, RPL21...}
+  [co_essential_module] Renal Cell Carcinoma_coessential_cluster_9: {EXOC5, RPL41, EXOC1, PARD3, STARD7, RAB10...}
+  [co_essential_module] Renal Cell Carcinoma_coessential_cluster_4: {TRAPPC13, POC1A, NSMCE2, NUP58, VPS16, APEX2...}
+  [co_essential_module] Renal Cell Carcinoma_coessential_cluster_3: {LENG1, ATP23, RANBP2, HAMP, CENPM, POT1...}
+================================================================================

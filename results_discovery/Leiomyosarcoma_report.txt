@@ -1,0 +1,105 @@
+
+================================================================================
+X-NODE TARGET DISCOVERY REPORT
+Cancer Type: Leiomyosarcoma
+Lineage: Soft Tissue
+Cell Lines Analyzed: 11
+Viability Paths Identified: 56
+================================================================================
+
+DRIVER MUTATION LANDSCAPE:
+--------------------------------------------------------------------------------
+TP53_LoF: 100.0% of cell lines
+CDKN2A_LoF: 25.0% of cell lines
+KRAS: 25.0% of cell lines
+KRASp.G12: 25.0% of cell lines
+
+================================================================================
+TOP ESSENTIAL GENES (Cancer-Specific):
+--------------------------------------------------------------------------------
+SNRPD3: -5.500 (dependency score)
+RPL15: -5.215 (dependency score)
+RAN: -4.396 (dependency score)
+SNRPA1: -3.743 (dependency score)
+HSPE1: -3.707 (dependency score)
+PRIM2: -3.581 (dependency score)
+SNRPF: -3.566 (dependency score)
+RRM1: -3.543 (dependency score)
+PSMA3: -3.518 (dependency score)
+RPL17: -3.471 (dependency score)
+
+================================================================================
+RECOMMENDED X-NODE TARGET COMBINATION:
+--------------------------------------------------------------------------------
+Optimal 3-node combination:
+  • EGFR (approved): erlotinib, gefitinib, osimertinib
+  • KRAS (approved): sotorasib, adagrasib
+  • PTK2
+
+Cost Score: 2.74
+Path Coverage: 81.6%
+Paths Covered: 40/56
+
+================================================================================
+ALTERNATIVE X-NODE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+Option 1: {CCND1, PPP2R1A, STAT3}
+  Cost: 3.75, Size: 3 targets
+
+Option 2: {CCND1, ITGAV, STAT3}
+  Cost: 3.82, Size: 3 targets
+
+Option 3: {CCND1, SMG1, STAT3}
+  Cost: 3.84, Size: 3 targets
+
+Option 4: {CCND1, PRB3, STAT3}
+  Cost: 3.87, Size: 3 targets
+
+Option 5: {CCND1, GABRR3, STAT3}
+  Cost: 3.87, Size: 3 targets
+
+================================================================================
+SYSTEMS BIOLOGY TRIPLE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+BEST TRIPLE COMBINATION: EGFR, KRAS, PTK2
+  Combined Score: 1.747 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.35 (lower is better)
+  Path Coverage: 50.0%
+  Druggable Targets: 2/3
+
+Drug Details:
+  • EGFR (approved): erlotinib, gefitinib, osimertinib
+  • KRAS (approved): sotorasib, adagrasib
+  • PTK2: Research target (no approved drugs)
+
+Pathway Coverage:
+  RTK signaling: 10%
+  RAS-MAPK: 9%
+
+Alternative Triple Combinations:
+  1. CCND1, FYN, YAP1 (score: 1.788, synergy: 0.94)
+  2. EGFR, PTK2, YAP1 (score: 1.794, synergy: 0.94)
+  3. BRAF, EGFR, KRAS (score: 1.794, synergy: 0.81)
+  4. CCND1, FYN, UBE3D (score: 1.798, synergy: 0.94)
+
+================================================================================
+VIABILITY PATH SUMMARY:
+--------------------------------------------------------------------------------
+Total paths: 56
+Unique gene nodes: 2021
+
+Paths by type:
+  co_essential_module: 15
+  signaling_path: 34
+  perturbation_response: 7
+
+Sample paths:
+  [co_essential_module] Leiomyosarcoma_coessential_cluster_6: {IL1R1, APC, EXOC5, RNF123, LEO1, EGLN1...}
+  [co_essential_module] Leiomyosarcoma_coessential_cluster_1: {KRT6A, OR10A2, RAB7A, EXOC4, PRAMEF14, WTAP...}
+  [co_essential_module] Leiomyosarcoma_coessential_cluster_4: {ANKUB1, NPIPB11, PGBD5, AQP7B, RARS1, UBTFL1...}
+  [co_essential_module] Leiomyosarcoma_coessential_cluster_15: {SUPT4H1, BUD13, PCNX3, PGS1, DHX36, BRAT1...}
+  [co_essential_module] Leiomyosarcoma_coessential_cluster_3: {VRK1, ADRM1, CASC3, VCPIP1, MPC2, SEPTIN2...}
+================================================================================

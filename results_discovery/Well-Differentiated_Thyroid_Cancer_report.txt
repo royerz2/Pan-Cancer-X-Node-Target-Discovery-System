@@ -1,0 +1,104 @@
+
+================================================================================
+X-NODE TARGET DISCOVERY REPORT
+Cancer Type: Well-Differentiated Thyroid Cancer
+Lineage: Thyroid
+Cell Lines Analyzed: 9
+Viability Paths Identified: 49
+================================================================================
+
+DRIVER MUTATION LANDSCAPE:
+--------------------------------------------------------------------------------
+TP53_LoF: 66.7% of cell lines
+BRAFp.V600E: 33.3% of cell lines
+CDKN2A_LoF: 33.3% of cell lines
+PTEN_LoF: 33.3% of cell lines
+
+================================================================================
+TOP ESSENTIAL GENES (Cancer-Specific):
+--------------------------------------------------------------------------------
+RAN: -4.194 (dependency score)
+RPL17: -4.072 (dependency score)
+HSPE1: -4.010 (dependency score)
+RPS8: -3.721 (dependency score)
+RRM1: -3.595 (dependency score)
+RPS3A: -3.534 (dependency score)
+RPL12: -3.463 (dependency score)
+SNRPA1: -3.395 (dependency score)
+RPL4: -3.206 (dependency score)
+SNRPF: -3.200 (dependency score)
+
+================================================================================
+RECOMMENDED X-NODE TARGET COMBINATION:
+--------------------------------------------------------------------------------
+Optimal 3-node combination:
+  • E2F3
+  • EGFR (approved): erlotinib, gefitinib, osimertinib
+  • SOCS3
+
+Cost Score: 2.80
+Path Coverage: 84.8%
+Paths Covered: 39/49
+
+================================================================================
+ALTERNATIVE X-NODE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+Option 1: {CCND1, STAT3, ZSWIM9}
+  Cost: 3.80, Size: 3 targets
+
+Option 2: {CCND1, STAT3, SYN2}
+  Cost: 3.80, Size: 3 targets
+
+Option 3: {CCND1, RECQL4, STAT3}
+  Cost: 3.80, Size: 3 targets
+
+Option 4: {ANKUB1, CCND1, STAT3}
+  Cost: 3.80, Size: 3 targets
+
+Option 5: {CCND1, OVOL3, STAT3}
+  Cost: 3.80, Size: 3 targets
+
+================================================================================
+SYSTEMS BIOLOGY TRIPLE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+BEST TRIPLE COMBINATION: E2F3, EGFR, SOCS3
+  Combined Score: 1.700 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.42 (lower is better)
+  Path Coverage: 51.0%
+  Druggable Targets: 1/3
+
+Drug Details:
+  • E2F3: Research target (no approved drugs)
+  • EGFR (approved): erlotinib, gefitinib, osimertinib
+  • SOCS3: Research target (no approved drugs)
+
+Pathway Coverage:
+  RTK signaling: 10%
+
+Alternative Triple Combinations:
+  1. EGFR, MAPK1, SOCS3 (score: 1.705, synergy: 0.94)
+  2. CDK2, EGFR, SOCS3 (score: 1.710, synergy: 0.94)
+  3. E2F3, EGFR, MAPK1 (score: 1.713, synergy: 0.94)
+  4. CDK2, EGFR, MAPK1 (score: 1.723, synergy: 0.94)
+
+================================================================================
+VIABILITY PATH SUMMARY:
+--------------------------------------------------------------------------------
+Total paths: 49
+Unique gene nodes: 2140
+
+Paths by type:
+  co_essential_module: 7
+  signaling_path: 28
+  perturbation_response: 14
+
+Sample paths:
+  [co_essential_module] Well-Differentiated Thyroid Cancer_coessential_cluster_2: {KRT6A, APC, SERF2, RFK, SLC6A8, SMC6...}
+  [co_essential_module] Well-Differentiated Thyroid Cancer_coessential_cluster_7: {ANKUB1, ATP5ME, PGBD5, MRPL16, AQP7B, CUL2...}
+  [co_essential_module] Well-Differentiated Thyroid Cancer_coessential_cluster_5: {SNRPB2, H2AC6, NDUFA4, NDUFAF7, METTL17, STARD7...}
+  [co_essential_module] Well-Differentiated Thyroid Cancer_coessential_cluster_1: {EXOC4, EGLN1, UBE3D, UBAP2L, PDHB, RPS19BP1...}
+  [co_essential_module] Well-Differentiated Thyroid Cancer_coessential_cluster_4: {PCNX3, FNBP4, WARS2, RARS1, FPGS, CCND1...}
+================================================================================

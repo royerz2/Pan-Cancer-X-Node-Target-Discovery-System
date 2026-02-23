@@ -1,0 +1,102 @@
+
+================================================================================
+X-NODE TARGET DISCOVERY REPORT
+Cancer Type: Rhabdoid Cancer
+Lineage: Kidney
+Cell Lines Analyzed: 16
+Viability Paths Identified: 51
+================================================================================
+
+DRIVER MUTATION LANDSCAPE:
+--------------------------------------------------------------------------------
+No mutation data available
+
+================================================================================
+TOP ESSENTIAL GENES (Cancer-Specific):
+--------------------------------------------------------------------------------
+HSPE1: -4.024 (dependency score)
+RAN: -3.959 (dependency score)
+RPL17: -3.924 (dependency score)
+RPS3A: -3.447 (dependency score)
+RPS8: -3.420 (dependency score)
+RPL12: -3.245 (dependency score)
+RPS19: -3.224 (dependency score)
+PSMA6: -3.220 (dependency score)
+FAU: -3.173 (dependency score)
+RPL4: -3.168 (dependency score)
+
+================================================================================
+RECOMMENDED X-NODE TARGET COMBINATION:
+--------------------------------------------------------------------------------
+Optimal 3-node combination:
+  • CCND1
+  • DCLRE1B
+  • UBE2D3
+
+Cost Score: 2.68
+Path Coverage: 81.6%
+Paths Covered: 31/51
+
+================================================================================
+ALTERNATIVE X-NODE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+Option 1: {CCND1, STAT3}
+  Cost: 2.74, Size: 2 targets
+
+Option 2: {CCND1, CDK4, SYN2}
+  Cost: 3.68, Size: 3 targets
+
+Option 3: {CCND1, CDK4, RECQL4}
+  Cost: 3.68, Size: 3 targets
+
+Option 4: {ANKUB1, CCND1, CDK4}
+  Cost: 3.68, Size: 3 targets
+
+Option 5: {CCND1, CDK4, OVOL3}
+  Cost: 3.68, Size: 3 targets
+
+================================================================================
+SYSTEMS BIOLOGY TRIPLE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+BEST TRIPLE COMBINATION: CCND1, DCLRE1B, UBE2D3
+  Combined Score: 1.595 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.00 (lower is better)
+  Path Coverage: 51.0%
+  Druggable Targets: 0/3
+
+Drug Details:
+  • CCND1: Research target (no approved drugs)
+  • DCLRE1B: Research target (no approved drugs)
+  • UBE2D3: Research target (no approved drugs)
+
+Pathway Coverage:
+  Cell cycle: 12%
+
+Alternative Triple Combinations:
+  1. CCND1, DCLRE1B, POLR1E (score: 1.599, synergy: 0.94)
+  2. CCND1, DCLRE1B, SMARCD1 (score: 1.602, synergy: 0.94)
+  3. CCND1, DCLRE1B, USP7 (score: 1.603, synergy: 0.94)
+  4. CCND1, POLR1E, UBE2D3 (score: 1.609, synergy: 0.94)
+
+================================================================================
+VIABILITY PATH SUMMARY:
+--------------------------------------------------------------------------------
+Total paths: 51
+Unique gene nodes: 2026
+
+Paths by type:
+  co_essential_module: 15
+  signaling_path: 28
+  cancer_specific: 1
+  perturbation_response: 7
+
+Sample paths:
+  [co_essential_module] Rhabdoid Cancer_coessential_cluster_7: {FANCE, ZC3H3, UQCRC2, UBE2K, INO80, FAAP24...}
+  [co_essential_module] Rhabdoid Cancer_coessential_cluster_1: {SNRPB2, TFAP4, RRP1, ATP5ME, FAAP100, H2AC4...}
+  [co_essential_module] Rhabdoid Cancer_coessential_cluster_14: {CENPU, GAK, CPAP, FRG2C, ICE1, UBAP2L...}
+  [co_essential_module] Rhabdoid Cancer_coessential_cluster_6: {MYH9, WTAP, PAXIP1, LIG3, PSME2, SEC61B...}
+  [co_essential_module] Rhabdoid Cancer_coessential_cluster_3: {ANKUB1, PGBD5, AQP7B, HMGB3, UBTFL1, TTC6...}
+================================================================================

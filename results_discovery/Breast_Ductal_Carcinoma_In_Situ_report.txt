@@ -1,0 +1,105 @@
+
+================================================================================
+X-NODE TARGET DISCOVERY REPORT
+Cancer Type: Breast Ductal Carcinoma In Situ
+Lineage: Breast
+Cell Lines Analyzed: 6
+Viability Paths Identified: 47
+================================================================================
+
+DRIVER MUTATION LANDSCAPE:
+--------------------------------------------------------------------------------
+TP53_LoF: 100.0% of cell lines
+PIK3CA: 66.7% of cell lines
+CDKN2A_LoF: 33.3% of cell lines
+PIK3CAp.E545: 33.3% of cell lines
+PIK3CAp.H1047: 33.3% of cell lines
+
+================================================================================
+TOP ESSENTIAL GENES (Cancer-Specific):
+--------------------------------------------------------------------------------
+RPL15: -5.610 (dependency score)
+SNRPD3: -5.417 (dependency score)
+RAN: -4.495 (dependency score)
+HSPE1: -4.021 (dependency score)
+RPL17: -3.886 (dependency score)
+KIF11: -3.679 (dependency score)
+SNRPF: -3.658 (dependency score)
+PSMA6: -3.500 (dependency score)
+PCNA: -3.491 (dependency score)
+SNRPA1: -3.464 (dependency score)
+
+================================================================================
+RECOMMENDED X-NODE TARGET COMBINATION:
+--------------------------------------------------------------------------------
+Optimal 3-node combination:
+  • ERBB2 (approved): trastuzumab, pertuzumab, lapatinib
+  • MET (approved): capmatinib, tepotinib, crizotinib
+  • SREBF1
+
+Cost Score: 2.72
+Path Coverage: 83.0%
+Paths Covered: 39/47
+
+================================================================================
+ALTERNATIVE X-NODE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+Option 1: {CCND1, CDK4}
+  Cost: 2.77, Size: 2 targets
+
+Option 2: {CCND1, STAT3, SYN2}
+  Cost: 3.72, Size: 3 targets
+
+Option 3: {CCND1, RECQL4, STAT3}
+  Cost: 3.72, Size: 3 targets
+
+Option 4: {ANKUB1, CCND1, STAT3}
+  Cost: 3.72, Size: 3 targets
+
+Option 5: {CCND1, OVOL3, STAT3}
+  Cost: 3.72, Size: 3 targets
+
+================================================================================
+SYSTEMS BIOLOGY TRIPLE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+BEST TRIPLE COMBINATION: ERBB2, MET, SREBF1
+  Combined Score: 1.592 (lower is better)
+  Synergy Score: 0.81 (higher is better)
+  Resistance Score: 0.00 (lower is better)
+  Path Coverage: 51.1%
+  Druggable Targets: 2/3
+
+Drug Details:
+  • ERBB2 (approved): trastuzumab, pertuzumab, lapatinib
+  • MET (approved): capmatinib, tepotinib, crizotinib
+  • SREBF1: Research target (no approved drugs)
+
+Pathway Coverage:
+  RTK signaling: 20%
+
+Alternative Triple Combinations:
+  1. ERBB2, MET, SLC2A1 (score: 1.609, synergy: 0.81)
+  2. ERBB2, MET, SNRPA (score: 1.619, synergy: 0.81)
+  3. ERBB2, GPATCH1, MET (score: 1.621, synergy: 0.81)
+  4. ERBB2, MET, TRIM28 (score: 1.624, synergy: 0.81)
+
+================================================================================
+VIABILITY PATH SUMMARY:
+--------------------------------------------------------------------------------
+Total paths: 47
+Unique gene nodes: 2122
+
+Paths by type:
+  co_essential_module: 7
+  signaling_path: 28
+  perturbation_response: 12
+
+Sample paths:
+  [co_essential_module] Breast Ductal Carcinoma In Situ_coessential_cluster_3: {NGLY1, VRK1, ATP5ME, LEO1, TRIM28, TAF2...}
+  [co_essential_module] Breast Ductal Carcinoma In Situ_coessential_cluster_7: {MRPL34, DNM2, ANKUB1, NPIPB11, RPL21, WTAP...}
+  [co_essential_module] Breast Ductal Carcinoma In Situ_coessential_cluster_1: {ADAMTS7, TADA2B, TYW1B, ASH1L, UBAP2L, SHMT1...}
+  [co_essential_module] Breast Ductal Carcinoma In Situ_coessential_cluster_4: {MYH9, ATIC, STARD7, RFK, SMC6, IARS2...}
+  [co_essential_module] Breast Ductal Carcinoma In Situ_coessential_cluster_2: {RAB7A, NKD2, FOXM1, OR4A47, WARS2, RARS1...}
+================================================================================

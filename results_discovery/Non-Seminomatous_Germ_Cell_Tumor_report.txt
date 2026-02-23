@@ -1,0 +1,103 @@
+
+================================================================================
+X-NODE TARGET DISCOVERY REPORT
+Cancer Type: Non-Seminomatous Germ Cell Tumor
+Lineage: Testis
+Cell Lines Analyzed: 12
+Viability Paths Identified: 50
+================================================================================
+
+DRIVER MUTATION LANDSCAPE:
+--------------------------------------------------------------------------------
+PTEN_LoF: 20.0% of cell lines
+TP53_LoF: 20.0% of cell lines
+
+================================================================================
+TOP ESSENTIAL GENES (Cancer-Specific):
+--------------------------------------------------------------------------------
+SNRPD3: -5.178 (dependency score)
+HSPE1: -4.157 (dependency score)
+RAN: -4.080 (dependency score)
+RPL17: -3.848 (dependency score)
+PRIM2: -3.823 (dependency score)
+RPS3A: -3.442 (dependency score)
+RPL21: -3.388 (dependency score)
+PRELID1: -3.282 (dependency score)
+RRM1: -3.276 (dependency score)
+SNRPD1: -3.239 (dependency score)
+
+================================================================================
+RECOMMENDED X-NODE TARGET COMBINATION:
+--------------------------------------------------------------------------------
+Optimal 3-node combination:
+  • CCND1
+  • FYN (approved): dasatinib, saracatinib
+  • PARP1 (approved): olaparib, rucaparib, niraparib
+
+Cost Score: 4.18
+Path Coverage: 84.1%
+Paths Covered: 37/50
+
+================================================================================
+ALTERNATIVE X-NODE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+Option 1: {CCND1, RPL15, SLC25A28, STAT3}
+  Cost: 5.06, Size: 4 targets
+
+Option 2: {CCND1, SIGLEC14, SLC25A28, STAT3}
+  Cost: 5.06, Size: 4 targets
+
+Option 3: {CCND1, GRAP, SLC25A28, STAT3}
+  Cost: 5.06, Size: 4 targets
+
+Option 4: {CCND1, LCE2C, SLC25A28, STAT3}
+  Cost: 5.06, Size: 4 targets
+
+Option 5: {CCND1, PAGE2B, SLC25A28, STAT3}
+  Cost: 5.06, Size: 4 targets
+
+================================================================================
+SYSTEMS BIOLOGY TRIPLE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+BEST TRIPLE COMBINATION: CCND1, FYN, PARP1
+  Combined Score: 1.732 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.00 (lower is better)
+  Path Coverage: 52.0%
+  Druggable Targets: 2/3
+
+Drug Details:
+  • CCND1: Research target (no approved drugs)
+  • FYN (approved): dasatinib, saracatinib
+  • PARP1 (approved): olaparib, rucaparib, niraparib
+
+Pathway Coverage:
+  SRC family: 20%
+  Cell cycle: 12%
+
+Alternative Triple Combinations:
+  1. ANKUB1, CCND1, FYN (score: 1.734, synergy: 0.94)
+  2. CCND1, FYN, YAP1 (score: 1.739, synergy: 0.94)
+  3. CCND1, FYN, ZSCAN5B (score: 1.739, synergy: 0.94)
+  4. ADAMTS7, CCND1, FYN (score: 1.744, synergy: 0.94)
+
+================================================================================
+VIABILITY PATH SUMMARY:
+--------------------------------------------------------------------------------
+Total paths: 50
+Unique gene nodes: 2880
+
+Paths by type:
+  co_essential_module: 15
+  signaling_path: 28
+  perturbation_response: 7
+
+Sample paths:
+  [co_essential_module] Non-Seminomatous Germ Cell Tumor_coessential_cluster_3: {APC, ADAMTS7, ANKUB1, NPIPB11, PGBD5, AQP7B...}
+  [co_essential_module] Non-Seminomatous Germ Cell Tumor_coessential_cluster_10: {RRAGA, PTDSS1, ARHGDIA, ZFC3H1, RAB1B, NCKAP1...}
+  [co_essential_module] Non-Seminomatous Germ Cell Tumor_coessential_cluster_13: {XAGE3, OR10A2, PPIAL4G, NUDT10, CPAP, PRAMEF14...}
+  [co_essential_module] Non-Seminomatous Germ Cell Tumor_coessential_cluster_6: {SNRPB2, METTL17, ATP5ME, NKAPD1, MYBL2, RARS1...}
+  [co_essential_module] Non-Seminomatous Germ Cell Tumor_coessential_cluster_12: {SELENBP1, DNAH1, SH3D21, NCAN, UBE3D, WDR47...}
+================================================================================

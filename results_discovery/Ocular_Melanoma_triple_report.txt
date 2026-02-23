@@ -1,0 +1,34 @@
+================================================================================
+TRIPLE COMBINATION REPORT: Ocular Melanoma
+================================================================================
+
+TARGETS: ANKUB1, CCND1, E2F3
+
+SCORES:
+  Combined Score: 1.563 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.00 (lower is better)
+  Combo Toxicity: 0.00 (lower is better)
+  Path Coverage: 50.0%
+  Total Cost: 3.46
+  Druggable Targets: 0/3
+
+DRUG INFORMATION:
+  ANKUB1: No approved drugs (research target)
+  CCND1: No approved drugs (research target)
+  E2F3: No approved drugs (research target)
+
+COMBINATION TOXICITY ASSESSMENT:
+  No known major drug-drug interactions
+  No major overlapping toxicity classes
+  Component Scores: DDI=0.00, Overlap=0.00
+
+PATHWAY COVERAGE:
+  Cell cycle: 12%
+
+RATIONALE:
+  This triple combination targets multiple signaling nodes to achieve
+  complete pathway inhibition while minimizing resistance probability.
+  The combination covers 1 pathways
+  with 0 clinically druggable targets.
+================================================================================

@@ -1,0 +1,89 @@
+
+================================================================================
+X-NODE TARGET DISCOVERY REPORT
+Cancer Type: Hepatoblastoma
+Lineage: Liver
+Cell Lines Analyzed: 3
+Viability Paths Identified: 30
+================================================================================
+
+DRIVER MUTATION LANDSCAPE:
+--------------------------------------------------------------------------------
+No mutation data available
+
+================================================================================
+TOP ESSENTIAL GENES (Cancer-Specific):
+--------------------------------------------------------------------------------
+RAN: -4.376 (dependency score)
+HSPE1: -3.894 (dependency score)
+RPL17: -3.882 (dependency score)
+RPS8: -3.672 (dependency score)
+FAU: -3.575 (dependency score)
+RPL12: -3.533 (dependency score)
+SNRPF: -3.499 (dependency score)
+RRM1: -3.484 (dependency score)
+PUF60: -3.368 (dependency score)
+RPL23: -3.352 (dependency score)
+
+================================================================================
+RECOMMENDED X-NODE TARGET COMBINATION:
+--------------------------------------------------------------------------------
+Optimal 3-node combination:
+  • MAPK1
+  • MCL1 (phase1): AMG-176, S64315
+  • MEK1
+
+Cost Score: 1.00
+Path Coverage: 83.3%
+Paths Covered: 25/30
+
+================================================================================
+ALTERNATIVE X-NODE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+Option 1: {CCND1, MCL1}
+  Cost: 2.23, Size: 2 targets
+
+================================================================================
+SYSTEMS BIOLOGY TRIPLE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+BEST TRIPLE COMBINATION: MAPK1, MCL1, MEK1
+  Combined Score: 1.428 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.00 (lower is better)
+  Path Coverage: 50.0%
+  Druggable Targets: 0/3
+
+Drug Details:
+  • MAPK1: Research target (no approved drugs)
+  • MCL1 (phase1): AMG-176, S64315
+  • MEK1: Research target (no approved drugs)
+
+Pathway Coverage:
+  Apoptosis: 11%
+  RAS-MAPK: 9%
+
+Alternative Triple Combinations:
+  1. BRAF, MCL1, PXN (score: 1.432, synergy: 0.94)
+  2. IRS1, MAPK1, MCL1 (score: 1.434, synergy: 0.94)
+  3. MAPK1, MCL1, RAF1 (score: 1.446, synergy: 0.81)
+  4. MAPK1, MCL1, SLC2A1 (score: 1.448, synergy: 0.94)
+
+================================================================================
+VIABILITY PATH SUMMARY:
+--------------------------------------------------------------------------------
+Total paths: 30
+Unique gene nodes: 29
+
+Paths by type:
+  signaling_path: 16
+  perturbation_response: 14
+
+Sample paths:
+  [signaling_path] Hepatoblastoma_EGFR_STAT3_MCL1: {MCL1, STAT3, EGFR}
+  [signaling_path] Hepatoblastoma_EGFR_SRC_STAT3_MCL1: {MCL1, SRC, STAT3, EGFR}
+  [signaling_path] Hepatoblastoma_EGFR_STAT3_MYC_CCND1: {MYC, CCND1, STAT3, EGFR}
+  [signaling_path] Hepatoblastoma_EGFR_STAT3_CCND1: {CCND1, STAT3, EGFR}
+  [signaling_path] Hepatoblastoma_EGFR_SRC_STAT3_MYC_CCND1: {MYC, SRC, STAT3, EGFR, CCND1}
+================================================================================

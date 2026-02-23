@@ -1,0 +1,101 @@
+
+================================================================================
+X-NODE TARGET DISCOVERY REPORT
+Cancer Type: Breast Neoplasm, NOS
+Lineage: Breast
+Cell Lines Analyzed: 4
+Viability Paths Identified: 18
+================================================================================
+
+DRIVER MUTATION LANDSCAPE:
+--------------------------------------------------------------------------------
+TP53_LoF: 100.0% of cell lines
+
+================================================================================
+TOP ESSENTIAL GENES (Cancer-Specific):
+--------------------------------------------------------------------------------
+SNRPD3: -5.893 (dependency score)
+RPL15: -5.598 (dependency score)
+HSPE1: -4.725 (dependency score)
+RAN: -4.605 (dependency score)
+ATP6V0C: -4.032 (dependency score)
+INTS6: -3.643 (dependency score)
+PSMA3: -3.636 (dependency score)
+SNRPD1: -3.611 (dependency score)
+PSMB3: -3.551 (dependency score)
+RPL17: -3.519 (dependency score)
+
+================================================================================
+RECOMMENDED X-NODE TARGET COMBINATION:
+--------------------------------------------------------------------------------
+Optimal 3-node combination:
+  • BCL2L1 (phase2): navitoclax
+  • MET (approved): capmatinib, tepotinib, crizotinib
+  • PXN
+
+Cost Score: 2.52
+Path Coverage: 83.3%
+Paths Covered: 15/18
+
+================================================================================
+ALTERNATIVE X-NODE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+Option 1: {BCL2, PTK2, STAT3}
+  Cost: 3.62, Size: 3 targets
+
+Option 2: {BCL2, SNAI2, STAT3}
+  Cost: 3.66, Size: 3 targets
+
+Option 3: {BCL2, ERBB2, PTK2}
+  Cost: 3.74, Size: 3 targets
+
+Option 4: {PTK2, SNAI2, STAT3}
+  Cost: 3.79, Size: 3 targets
+
+Option 5: {BCL2, PXN, STAT3}
+  Cost: 3.79, Size: 3 targets
+
+================================================================================
+SYSTEMS BIOLOGY TRIPLE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+BEST TRIPLE COMBINATION: BCL2L1, MET, PXN
+  Combined Score: 1.169 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.00 (lower is better)
+  Path Coverage: 50.0%
+  Druggable Targets: 2/3
+
+Drug Details:
+  • BCL2L1 (phase2): navitoclax
+  • MET (approved): capmatinib, tepotinib, crizotinib
+  • PXN: Research target (no approved drugs)
+
+Pathway Coverage:
+  Apoptosis: 11%
+  RTK signaling: 10%
+
+Alternative Triple Combinations:
+  1. BCL2L1, MET, PTK2 (score: 1.216, synergy: 0.94)
+  2. MCL1, PXN, SNAI2 (score: 1.263, synergy: 0.94)
+  3. FYN, MET, SRC (score: 1.302, synergy: 0.81)
+  4. MCL1, PTK2, SNAI2 (score: 1.302, synergy: 0.94)
+
+================================================================================
+VIABILITY PATH SUMMARY:
+--------------------------------------------------------------------------------
+Total paths: 18
+Unique gene nodes: 17
+
+Paths by type:
+  signaling_path: 10
+  perturbation_response: 8
+
+Sample paths:
+  [signaling_path] Breast Neoplasm, NOS_EGFR_STAT3_MCL1: {MCL1, STAT3, EGFR}
+  [signaling_path] Breast Neoplasm, NOS_EGFR_SRC_STAT3_MCL1: {MCL1, SRC, STAT3, EGFR}
+  [signaling_path] Breast Neoplasm, NOS_EGFR_STAT3_BCL2: {STAT3, BCL2, EGFR}
+  [signaling_path] Breast Neoplasm, NOS_EGFR_SRC_STAT3_BCL2: {SRC, STAT3, BCL2, EGFR}
+  [signaling_path] Breast Neoplasm, NOS_ERBB2_EGFR_STAT3_MCL1: {ERBB2, MCL1, STAT3, EGFR}
+================================================================================

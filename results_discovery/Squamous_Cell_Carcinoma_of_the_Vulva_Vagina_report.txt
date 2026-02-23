@@ -1,0 +1,89 @@
+
+================================================================================
+X-NODE TARGET DISCOVERY REPORT
+Cancer Type: Squamous Cell Carcinoma of the Vulva/Vagina
+Lineage: Vulva/Vagina
+Cell Lines Analyzed: 2
+Viability Paths Identified: 44
+================================================================================
+
+DRIVER MUTATION LANDSCAPE:
+--------------------------------------------------------------------------------
+TP53_LoF: 100.0% of cell lines
+
+================================================================================
+TOP ESSENTIAL GENES (Cancer-Specific):
+--------------------------------------------------------------------------------
+RAN: -3.969 (dependency score)
+HSPE1: -3.833 (dependency score)
+SNRPF: -3.677 (dependency score)
+RPL17: -3.501 (dependency score)
+PSMA6: -3.431 (dependency score)
+PHF5A: -3.379 (dependency score)
+SNRPA1: -3.275 (dependency score)
+RRM1: -3.212 (dependency score)
+PRELID1: -3.192 (dependency score)
+RPS3A: -3.144 (dependency score)
+
+================================================================================
+RECOMMENDED X-NODE TARGET COMBINATION:
+--------------------------------------------------------------------------------
+Optimal 3-node combination:
+  • CDK6 (approved): palbociclib, ribociclib, abemaciclib
+  • ERBB2 (approved): trastuzumab, pertuzumab, lapatinib
+  • PXN
+
+Cost Score: 1.50
+Path Coverage: 86.4%
+Paths Covered: 38/44
+
+================================================================================
+ALTERNATIVE X-NODE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+Option 1: {CCND1, CDK4}
+  Cost: 2.87, Size: 2 targets
+
+================================================================================
+SYSTEMS BIOLOGY TRIPLE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+BEST TRIPLE COMBINATION: CDK6, ERBB2, PXN
+  Combined Score: 1.352 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.00 (lower is better)
+  Path Coverage: 50.0%
+  Druggable Targets: 2/3
+
+Drug Details:
+  • CDK6 (approved): palbociclib, ribociclib, abemaciclib
+  • ERBB2 (approved): trastuzumab, pertuzumab, lapatinib
+  • PXN: Research target (no approved drugs)
+
+Pathway Coverage:
+  Cell cycle: 12%
+  RTK signaling: 10%
+
+Alternative Triple Combinations:
+  1. CDK4, FOSL1, STAT5A (score: 1.372, synergy: 0.94)
+  2. CDK4, CDK6, FOSL1 (score: 1.391, synergy: 0.81)
+  3. CDK4, JUNB, STAT5A (score: 1.395, synergy: 0.94)
+  4. CDK4, ERBB3, PXN (score: 1.397, synergy: 0.94)
+
+================================================================================
+VIABILITY PATH SUMMARY:
+--------------------------------------------------------------------------------
+Total paths: 44
+Unique gene nodes: 32
+
+Paths by type:
+  signaling_path: 29
+  perturbation_response: 15
+
+Sample paths:
+  [signaling_path] Squamous Cell Carcinoma of the Vulva/Vagina_EGFR_STAT3_MYC_CCND1_CDK6: {MYC, CDK6, STAT3, EGFR, CCND1}
+  [signaling_path] Squamous Cell Carcinoma of the Vulva/Vagina_EGFR_STAT3_CCND1_CDK6: {CDK6, CCND1, STAT3, EGFR}
+  [signaling_path] Squamous Cell Carcinoma of the Vulva/Vagina_EGFR_SRC_STAT3_CCND1_CDK6: {CDK6, SRC, STAT3, EGFR, CCND1}
+  [signaling_path] Squamous Cell Carcinoma of the Vulva/Vagina_EGFR_STAT3_MYC_CDK4: {MYC, CDK4, STAT3, EGFR}
+  [signaling_path] Squamous Cell Carcinoma of the Vulva/Vagina_EGFR_STAT3_MYC_CCND1_CDK4: {MYC, STAT3, EGFR, CDK4, CCND1}
+================================================================================

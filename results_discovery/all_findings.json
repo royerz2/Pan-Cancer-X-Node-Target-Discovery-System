@@ -1,0 +1,3901 @@
+{
+  "analysis_date": "2026-02-23 13:18:47.138087",
+  "total_cancer_types": 96,
+  "total_with_combinations": 77,
+  "total_with_triples": 76,
+  "results": {
+    "Non-Small Cell Lung Cancer": {
+      "cancer_type": "Non-Small Cell Lung Cancer",
+      "lineage": "Lung",
+      "n_cell_lines": 165,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.5408163265306123,
+        "EGFR": 0.061224489795918366,
+        "EGFRexon19del": 0.05102040816326531,
+        "EGFRp.L858R": 0.01020408163265306,
+        "KRAS": 0.3673469387755102,
+        "KRASp.G12": 0.2755102040816326,
+        "KRASp.G12C": 0.1326530612244898,
+        "KRASp.G12D": 0.02040816326530612,
+        "KRASp.G13": 0.05102040816326531,
+        "KRASp.Q61": 0.04081632653061224,
+        "PIK3CA": 0.030612244897959183,
+        "PIK3CAp.E545": 0.02040816326530612,
+        "PIK3CAp.H1047": 0.01020408163265306,
+        "PTEN_LoF": 0.030612244897959183,
+        "TP53_LoF": 0.8367346938775511
+      },
+      "recommended_combination": [
+        "EGFR",
+        "MAP2K1",
+        "SLC2A1"
+      ],
+      "combination_cost": 2.7483459899600193,
+      "path_coverage": 0.9111111111111111,
+      "n_viability_paths": 57,
+      "top_essential_genes": {
+        "RPL15": -5.709756308166139,
+        "SNRPD3": -5.515587784490886,
+        "RAN": -4.230882810982018,
+        "PRIM2": -3.9791307344718945,
+        "HSPE1": -3.9658693754193113,
+        "RPL17": -3.8331980069826517,
+        "DNA2": -3.4069332261876855,
+        "RRM1": -3.3482186634611497,
+        "SNRPF": -3.3095161912807405,
+        "RPL21": -3.2864355474339515
+      },
+      "best_triple_combination": {
+        "targets": [
+          "EGFR",
+          "MAP2K1",
+          "SLC2A1"
+        ],
+        "combined_score": 1.7592352916107314,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.42105263157894735,
+        "path_coverage": 0.5087719298245614,
+        "druggable_count": 2,
+        "pathways_covered": {
+          "RAS-MAPK": 0.09090909090909091,
+          "RTK signaling": 0.1
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Non-Cancerous": {
+      "cancer_type": "Non-Cancerous",
+      "lineage": "Lymphoid",
+      "n_cell_lines": 151,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.375,
+        "TP53_LoF": 0.1875
+      },
+      "recommended_combination": [
+        "E2F3",
+        "EGFR",
+        "JUNB"
+      ],
+      "combination_cost": 2.771315909274281,
+      "path_coverage": 0.8823529411764706,
+      "n_viability_paths": 63,
+      "top_essential_genes": {
+        "RPL15": -6.0285425254780325,
+        "SNRPD3": -4.862574287298759,
+        "RAN": -4.0122538369985,
+        "HSPE1": -3.960960858018737,
+        "RPL17": -3.9409748063945234,
+        "RPS3A": -3.4436839742575778,
+        "RPL21": -3.4195471256400314,
+        "SNRPA1": -3.3593702329355306,
+        "RPL12": -3.327712951734963,
+        "RPS29": -3.225760058126664
+      },
+      "best_triple_combination": {
+        "targets": [
+          "E2F3",
+          "EGFR",
+          "JUNB"
+        ],
+        "combined_score": 1.722092817304255,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.42105263157894735,
+        "path_coverage": 0.5079365079365079,
+        "druggable_count": 1,
+        "pathways_covered": {
+          "RTK signaling": 0.1
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Melanoma": {
+      "cancer_type": "Melanoma",
+      "lineage": "Skin",
+      "n_cell_lines": 135,
+      "driver_mutations": {
+        "BRAFp.V600E": 0.6865671641791045,
+        "CDKN2A_LoF": 0.7164179104477612,
+        "PTEN_LoF": 0.19402985074626866,
+        "TP53_LoF": 0.2537313432835821
+      },
+      "recommended_combination": [
+        "FERMT2",
+        "SOX10",
+        "STAT3"
+      ],
+      "combination_cost": 2.490302841913934,
+      "path_coverage": 0.8148148148148148,
+      "n_viability_paths": 63,
+      "top_essential_genes": {
+        "RPL15": -5.5828432940295,
+        "SNRPD3": -5.016278194353082,
+        "RAN": -4.307598394619586,
+        "HSPE1": -4.008737999214082,
+        "RPL17": -3.8570330513205415,
+        "PRIM2": -3.5324307010358993,
+        "RRM1": -3.5072829782717023,
+        "RPS8": -3.465337460372072,
+        "SNRPF": -3.4441519648443673,
+        "RPL21": -3.3229705609275433
+      },
+      "best_triple_combination": {
+        "targets": [
+          "FERMT2",
+          "SOX10",
+          "STAT3"
+        ],
+        "combined_score": 1.5961208045285669,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.3508771929824561,
+        "path_coverage": 0.5396825396825397,
+        "druggable_count": 1,
+        "pathways_covered": {
+          "JAK-STAT": 0.16666666666666666
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Mature B-Cell Neoplasms": {
+      "cancer_type": "Mature B-Cell Neoplasms",
+      "lineage": "Lymphoid",
+      "n_cell_lines": 130,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.14285714285714285,
+        "KRAS": 0.05357142857142857,
+        "KRASp.G12": 0.05357142857142857,
+        "PIK3CA": 0.017857142857142856,
+        "PIK3CAp.E545": 0.017857142857142856,
+        "PTEN_LoF": 0.10714285714285714,
+        "TP53_LoF": 0.5178571428571429
+      },
+      "recommended_combination": [
+        "CCND1",
+        "MCL1",
+        "POU2AF1"
+      ],
+      "combination_cost": 3.951050292545602,
+      "path_coverage": 0.8235294117647058,
+      "n_viability_paths": 42,
+      "top_essential_genes": {
+        "RPL15": -5.707515457265268,
+        "SNRPD3": -5.303225600131147,
+        "RAN": -4.1253222568098895,
+        "HSPE1": -4.083835620383101,
+        "PRIM2": -3.9956435503509815,
+        "RPL17": -3.8472873839995594,
+        "RPS3A": -3.404465176874288,
+        "DCAF13": -3.3804673796752223,
+        "PRELID1": -3.2674997500438074,
+        "RPS8": -3.261962406726202
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CCND1",
+          "MCL1",
+          "POU2AF1"
+        ],
+        "combined_score": 1.5266061464653697,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5,
+        "druggable_count": 0,
+        "pathways_covered": {
+          "Cell cycle": 0.125,
+          "Apoptosis": 0.1111111111111111
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Diffuse Glioma": {
+      "cancer_type": "Diffuse Glioma",
+      "lineage": "CNS/Brain",
+      "n_cell_lines": 96,
+      "driver_mutations": {
+        "BRAFp.V600E": 0.04225352112676056,
+        "CDKN2A_LoF": 0.5915492957746479,
+        "KRAS": 0.014084507042253521,
+        "KRASp.G12": 0.014084507042253521,
+        "KRASp.G12D": 0.014084507042253521,
+        "PIK3CA": 0.014084507042253521,
+        "PIK3CAp.H1047": 0.014084507042253521,
+        "PTEN_LoF": 0.4647887323943662,
+        "TP53_LoF": 0.7183098591549296
+      },
+      "recommended_combination": [
+        "CCND1",
+        "CHMP4B",
+        "RPP25L"
+      ],
+      "combination_cost": 2.8,
+      "path_coverage": 0.8163265306122449,
+      "n_viability_paths": 59,
+      "top_essential_genes": {
+        "RPL15": -5.619144783021229,
+        "SNRPD3": -5.407771382765569,
+        "PRIM2": -4.462579048103914,
+        "RAN": -4.099877027692332,
+        "HSPE1": -4.004165767114615,
+        "RPL17": -3.8337156715984655,
+        "SNRPA1": -3.3496829858113584,
+        "SNRPF": -3.34253042195909,
+        "RPL21": -3.294107059421833,
+        "RPS8": -3.2547478497842994
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CCND1",
+          "CHMP4B",
+          "RPP25L"
+        ],
+        "combined_score": 1.6802902137918285,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5423728813559322,
+        "druggable_count": 0,
+        "pathways_covered": {
+          "Cell cycle": 0.125
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Colorectal Adenocarcinoma": {
+      "cancer_type": "Colorectal Adenocarcinoma",
+      "lineage": "Bowel",
+      "n_cell_lines": 96,
+      "driver_mutations": {
+        "BRAFp.V600E": 0.1746031746031746,
+        "CDKN2A_LoF": 0.07936507936507936,
+        "KRAS": 0.4603174603174603,
+        "KRASp.G12": 0.3333333333333333,
+        "KRASp.G12C": 0.06349206349206349,
+        "KRASp.G12D": 0.12698412698412698,
+        "KRASp.G13": 0.09523809523809523,
+        "KRASp.Q61": 0.031746031746031744,
+        "PIK3CA": 0.20634920634920634,
+        "PIK3CAp.E542": 0.015873015873015872,
+        "PIK3CAp.E545": 0.07936507936507936,
+        "PIK3CAp.H1047": 0.1111111111111111,
+        "PTEN_LoF": 0.06349206349206349,
+        "TP53_LoF": 0.7142857142857143
+      },
+      "recommended_combination": [
+        "CCND1",
+        "CTNNB1",
+        "KLF5"
+      ],
+      "combination_cost": 2.8,
+      "path_coverage": 0.8048780487804879,
+      "n_viability_paths": 50,
+      "top_essential_genes": {
+        "SNRPD3": -5.799549257323175,
+        "RPL15": -5.718002280358091,
+        "RAN": -4.303377133760017,
+        "PRIM2": -4.0070545764119645,
+        "HSPE1": -3.944286880303451,
+        "RPL17": -3.7965291403496604,
+        "RPL21": -3.4605018514502714,
+        "DNA2": -3.4564321012453294,
+        "SNRPF": -3.413343469172485,
+        "RPS8": -3.300173175250119
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CCND1",
+          "CTNNB1",
+          "KLF5"
+        ],
+        "combined_score": 1.5639140058046999,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5,
+        "druggable_count": 0,
+        "pathways_covered": {
+          "Cell cycle": 0.125,
+          "Wnt": 0.16666666666666666
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Head and Neck Squamous Cell Carcinoma": {
+      "cancer_type": "Head and Neck Squamous Cell Carcinoma",
+      "lineage": "Head and Neck",
+      "n_cell_lines": 89,
+      "driver_mutations": {
+        "BRAFp.V600E": 0.013888888888888888,
+        "CDKN2A_LoF": 0.5555555555555556,
+        "PIK3CA": 0.1111111111111111,
+        "PIK3CAp.E545": 0.041666666666666664,
+        "PIK3CAp.H1047": 0.06944444444444445,
+        "PTEN_LoF": 0.041666666666666664,
+        "TP53_LoF": 0.8611111111111112
+      },
+      "recommended_combination": [
+        "ITGB1",
+        "PPP1R12A",
+        "STAT3"
+      ],
+      "combination_cost": 2.731986071428877,
+      "path_coverage": 0.9038461538461539,
+      "n_viability_paths": 64,
+      "top_essential_genes": {
+        "RPL15": -5.745297192793527,
+        "SNRPD3": -5.029977936308802,
+        "RAN": -4.329630383781275,
+        "HSPE1": -4.1109350859170135,
+        "RPL17": -3.7562032894530577,
+        "PRIM2": -3.6516418921823903,
+        "RPL21": -3.508559654220093,
+        "SNRPF": -3.3670123113901576,
+        "SNRPA1": -3.3559288920468404,
+        "RPL12": -3.334710455251482
+      },
+      "best_triple_combination": {
+        "targets": [
+          "ITGB1",
+          "PPP1R12A",
+          "STAT3"
+        ],
+        "combined_score": 1.675231879002403,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.3508771929824561,
+        "path_coverage": 0.515625,
+        "druggable_count": 1,
+        "pathways_covered": {
+          "JAK-STAT": 0.16666666666666666
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Lung Neuroendocrine Tumor": {
+      "cancer_type": "Lung Neuroendocrine Tumor",
+      "lineage": "Lung",
+      "n_cell_lines": 85,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.038461538461538464,
+        "KRAS": 0.07692307692307693,
+        "KRASp.G12": 0.07692307692307693,
+        "PIK3CA": 0.038461538461538464,
+        "PIK3CAp.H1047": 0.038461538461538464,
+        "PTEN_LoF": 0.15384615384615385,
+        "TP53_LoF": 0.9230769230769231
+      },
+      "recommended_combination": [
+        "E2F1",
+        "SKP2",
+        "STAT3"
+      ],
+      "combination_cost": 4.04069584897955,
+      "path_coverage": 0.8064516129032258,
+      "n_viability_paths": 39,
+      "top_essential_genes": {
+        "SNRPD3": -5.481738724308377,
+        "RAN": -4.331117577347717,
+        "HSPE1": -4.005743851862881,
+        "RPL17": -3.7752520703388806,
+        "RPL21": -3.6230096537786842,
+        "PRIM2": -3.6166712764137525,
+        "SNRPA1": -3.428354294387312,
+        "RRM1": -3.4165881208006774,
+        "RPS3A": -3.3552925948601486,
+        "RPS8": -3.291191209220746
+      },
+      "best_triple_combination": {
+        "targets": [
+          "E2F1",
+          "SKP2",
+          "STAT3"
+        ],
+        "combined_score": 1.5133975149046641,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.3508771929824561,
+        "path_coverage": 0.5128205128205128,
+        "druggable_count": 1,
+        "pathways_covered": {
+          "JAK-STAT": 0.16666666666666666,
+          "Cell cycle": 0.125
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Invasive Breast Carcinoma": {
+      "cancer_type": "Invasive Breast Carcinoma",
+      "lineage": "Breast",
+      "n_cell_lines": 82,
+      "driver_mutations": {
+        "BRAFp.V600E": 0.02040816326530612,
+        "CDKN2A_LoF": 0.24489795918367346,
+        "KRAS": 0.061224489795918366,
+        "KRASp.G12": 0.04081632653061224,
+        "KRASp.G12D": 0.02040816326530612,
+        "KRASp.G13": 0.02040816326530612,
+        "PIK3CA": 0.30612244897959184,
+        "PIK3CAp.E542": 0.02040816326530612,
+        "PIK3CAp.E545": 0.061224489795918366,
+        "PIK3CAp.H1047": 0.22448979591836735,
+        "PTEN_LoF": 0.20408163265306123,
+        "TP53_LoF": 0.8367346938775511
+      },
+      "recommended_combination": [
+        "FOXA1",
+        "PPP1R15B",
+        "STAT3"
+      ],
+      "combination_cost": 3.761042790451996,
+      "path_coverage": 0.8571428571428571,
+      "n_viability_paths": 56,
+      "top_essential_genes": {
+        "SNRPD3": -5.645136175267213,
+        "RPL15": -5.58765367512671,
+        "RAN": -4.446881321581465,
+        "HSPE1": -4.063778823684539,
+        "RPL17": -3.6946539261286646,
+        "PRIM2": -3.5599892848848613,
+        "SNRPF": -3.541016666604956,
+        "SNRPA1": -3.469480455835236,
+        "SMU1": -3.4312941636849676,
+        "PSMA6": -3.3797593321121937
+      },
+      "best_triple_combination": {
+        "targets": [
+          "FOXA1",
+          "PPP1R15B",
+          "STAT3"
+        ],
+        "combined_score": 1.582685635432401,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.3508771929824561,
+        "path_coverage": 0.5,
+        "druggable_count": 1,
+        "pathways_covered": {
+          "JAK-STAT": 0.16666666666666666
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Esophagogastric Adenocarcinoma": {
+      "cancer_type": "Esophagogastric Adenocarcinoma",
+      "lineage": "Esophagus/Stomach",
+      "n_cell_lines": 74,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.26666666666666666,
+        "KRAS": 0.15555555555555556,
+        "KRASp.G12": 0.13333333333333333,
+        "KRASp.G12D": 0.08888888888888889,
+        "KRASp.Q61": 0.022222222222222223,
+        "PIK3CA": 0.1111111111111111,
+        "PIK3CAp.E542": 0.08888888888888889,
+        "PIK3CAp.E545": 0.022222222222222223,
+        "PTEN_LoF": 0.06666666666666667,
+        "TP53_LoF": 0.7333333333333333
+      },
+      "recommended_combination": [
+        "CCND1",
+        "RAB10",
+        "SNAP23"
+      ],
+      "combination_cost": 2.6265541427958494,
+      "path_coverage": 0.9111111111111111,
+      "n_viability_paths": 58,
+      "top_essential_genes": {
+        "RPL15": -5.841756296480616,
+        "SNRPD3": -5.628242056020243,
+        "RAN": -4.184424125595903,
+        "HSPE1": -4.097168129722468,
+        "RPL17": -3.779067438736894,
+        "SNRPF": -3.4164329394670467,
+        "RPL21": -3.404550840708219,
+        "SNRPA1": -3.301565418907203,
+        "RPS8": -3.2915679202819845,
+        "PSMA6": -3.2561282315714166
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CCND1",
+          "RAB10",
+          "SNAP23"
+        ],
+        "combined_score": 1.6993950282088175,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5689655172413793,
+        "druggable_count": 0,
+        "pathways_covered": {
+          "Cell cycle": 0.125
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Ovarian Epithelial Tumor": {
+      "cancer_type": "Ovarian Epithelial Tumor",
+      "lineage": "Ovary/Fallopian Tube",
+      "n_cell_lines": 71,
+      "driver_mutations": {
+        "BRAFp.V600E": 0.034482758620689655,
+        "CDKN2A_LoF": 0.3275862068965517,
+        "KRAS": 0.13793103448275862,
+        "KRASp.G12": 0.1206896551724138,
+        "KRASp.G12D": 0.10344827586206896,
+        "KRASp.G13": 0.017241379310344827,
+        "PIK3CA": 0.1206896551724138,
+        "PIK3CAp.E545": 0.017241379310344827,
+        "PIK3CAp.H1047": 0.10344827586206896,
+        "PTEN_LoF": 0.10344827586206896,
+        "TP53_LoF": 0.6379310344827587
+      },
+      "recommended_combination": [
+        "CCND1",
+        "CFLAR",
+        "PAX8"
+      ],
+      "combination_cost": 3.8663722494860604,
+      "path_coverage": 0.813953488372093,
+      "n_viability_paths": 51,
+      "top_essential_genes": {
+        "RPL15": -5.56452903481246,
+        "SNRPD3": -5.486777725272555,
+        "RAN": -4.337284547496573,
+        "HSPE1": -3.9202684341724985,
+        "RPL17": -3.8220487861288226,
+        "PRIM2": -3.5565964490905975,
+        "SNRPF": -3.474996454525416,
+        "SNRPA1": -3.3230685669240625,
+        "PSMA6": -3.3200069536107533,
+        "RRM1": -3.308134036697089
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CCND1",
+          "CFLAR",
+          "PAX8"
+        ],
+        "combined_score": 1.6289917748503393,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5490196078431373,
+        "druggable_count": 0,
+        "pathways_covered": {
+          "Cell cycle": 0.125
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Acute Myeloid Leukemia": {
+      "cancer_type": "Acute Myeloid Leukemia",
+      "lineage": "Myeloid",
+      "n_cell_lines": 64,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.4,
+        "KRAS": 0.06666666666666667,
+        "KRASp.G13": 0.03333333333333333,
+        "KRASp.Q61": 0.03333333333333333,
+        "PTEN_LoF": 0.1,
+        "TP53_LoF": 0.6666666666666666
+      },
+      "recommended_combination": [
+        "CBFB",
+        "SPI1",
+        "STAT3"
+      ],
+      "combination_cost": 4.7859875641224985,
+      "path_coverage": 0.5862068965517242,
+      "n_viability_paths": 29,
+      "top_essential_genes": {
+        "RPL15": -6.102371378174151,
+        "SNRPD3": -5.261656539012634,
+        "RAN": -4.281858239352104,
+        "HSPE1": -4.09011571993585,
+        "RPL17": -3.9149426045731985,
+        "PRIM2": -3.8966406112768297,
+        "RPL21": -3.586975025898539,
+        "RPS8": -3.3658622339421,
+        "RPS3A": -3.365558635443718,
+        "RPL12": -3.294811148867462
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CBFB",
+          "SPI1",
+          "STAT3"
+        ],
+        "combined_score": 1.4159797076365301,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.3508771929824561,
+        "path_coverage": 0.5172413793103449,
+        "druggable_count": 1,
+        "pathways_covered": {
+          "JAK-STAT": 0.16666666666666666
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Pancreatic Adenocarcinoma": {
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "lineage": "Pancreas",
+      "n_cell_lines": 64,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.6956521739130435,
+        "KRAS": 0.9347826086956522,
+        "KRASp.G12": 0.8913043478260869,
+        "KRASp.G12C": 0.021739130434782608,
+        "KRASp.G12D": 0.41304347826086957,
+        "KRASp.Q61": 0.043478260869565216,
+        "TP53_LoF": 0.8260869565217391
+      },
+      "recommended_combination": [
+        "KRAS",
+        "STAT3",
+        "UROD"
+      ],
+      "combination_cost": 2.597068461102688,
+      "path_coverage": 0.8636363636363636,
+      "n_viability_paths": 54,
+      "top_essential_genes": {
+        "SNRPD3": -5.736142398774947,
+        "RPL15": -5.554355572084715,
+        "RAN": -4.244503732287909,
+        "HSPE1": -4.133792783498967,
+        "PRIM2": -3.883593318998283,
+        "RPL17": -3.775916906474538,
+        "RRM1": -3.3768923357521747,
+        "SNRPF": -3.31685119808824,
+        "PSMA6": -3.2853722762782245,
+        "PSMB3": -3.267526113612114
+      },
+      "best_triple_combination": {
+        "targets": [
+          "KRAS",
+          "STAT3",
+          "UROD"
+        ],
+        "combined_score": 0.9632206320244078,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.43859649122807015,
+        "path_coverage": 0.5370370370370371,
+        "druggable_count": 2,
+        "pathways_covered": {
+          "RAS-MAPK": 0.09090909090909091,
+          "JAK-STAT": 0.16666666666666666
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Renal Cell Carcinoma": {
+      "cancer_type": "Renal Cell Carcinoma",
+      "lineage": "Kidney",
+      "n_cell_lines": 56,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.5517241379310345,
+        "PIK3CA": 0.06896551724137931,
+        "PIK3CAp.E545": 0.034482758620689655,
+        "PIK3CAp.H1047": 0.034482758620689655,
+        "PTEN_LoF": 0.13793103448275862,
+        "TP53_LoF": 0.1724137931034483
+      },
+      "recommended_combination": [
+        "CFLAR",
+        "HNF1B",
+        "STAT3"
+      ],
+      "combination_cost": 2.7299257871222373,
+      "path_coverage": 0.825,
+      "n_viability_paths": 52,
+      "top_essential_genes": {
+        "RPL15": -5.923099777619046,
+        "SNRPD3": -5.653144760475368,
+        "RAN": -4.2709046970132265,
+        "HSPE1": -3.7982156556542668,
+        "RPL17": -3.7125332433485965,
+        "RRM1": -3.4396602437253643,
+        "SNRPF": -3.432326893530016,
+        "SNRPA1": -3.38252361745349,
+        "RPL21": -3.2834523442692785,
+        "RPS3A": -3.272166076384161
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CFLAR",
+          "HNF1B",
+          "STAT3"
+        ],
+        "combined_score": 1.5570457626920047,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.3508771929824561,
+        "path_coverage": 0.5384615384615384,
+        "druggable_count": 1,
+        "pathways_covered": {
+          "JAK-STAT": 0.16666666666666666
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Neuroblastoma": {
+      "cancer_type": "Neuroblastoma",
+      "lineage": "Peripheral Nervous System",
+      "n_cell_lines": 51,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.05128205128205128,
+        "KRAS": 0.02564102564102564,
+        "KRASp.G12": 0.02564102564102564,
+        "PIK3CA": 0.02564102564102564,
+        "PIK3CAp.E542": 0.02564102564102564,
+        "TP53_LoF": 0.38461538461538464
+      },
+      "recommended_combination": [
+        "CCND1",
+        "GATA3",
+        "LDB1"
+      ],
+      "combination_cost": 2.424495039477919,
+      "path_coverage": 0.8235294117647058,
+      "n_viability_paths": 58,
+      "top_essential_genes": {
+        "RPL15": -5.986751482559115,
+        "SNRPD3": -5.469962688853954,
+        "RAN": -4.155444492475741,
+        "HSPE1": -4.08847119813165,
+        "RPL17": -3.825655626206319,
+        "PRIM2": -3.6986325717757182,
+        "SNRPF": -3.3544946135556177,
+        "RPS8": -3.281342275983008,
+        "RPS3A": -3.2347069888241666,
+        "DNA2": -3.2326150898185495
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CCND1",
+          "GATA3",
+          "LDB1"
+        ],
+        "combined_score": 1.6470877273748563,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5862068965517241,
+        "druggable_count": 0,
+        "pathways_covered": {
+          "Cell cycle": 0.125
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Ewing Sarcoma": {
+      "cancer_type": "Ewing Sarcoma",
+      "lineage": "Bone",
+      "n_cell_lines": 51,
+      "driver_mutations": {
+        "BRAFp.V600E": 0.037037037037037035,
+        "CDKN2A_LoF": 0.3333333333333333,
+        "PTEN_LoF": 0.037037037037037035,
+        "TP53_LoF": 0.6666666666666666
+      },
+      "recommended_combination": [
+        "CCND1",
+        "EEFSEC",
+        "FLI1"
+      ],
+      "combination_cost": 3.5270116643479454,
+      "path_coverage": 0.8536585365853658,
+      "n_viability_paths": 49,
+      "top_essential_genes": {
+        "RPL15": -5.8741654165592445,
+        "SNRPD3": -5.383583630402035,
+        "RAN": -4.25613322523571,
+        "PRIM2": -4.079741034900768,
+        "HSPE1": -4.076726750302819,
+        "RPL17": -3.6780175897078533,
+        "RPS3A": -3.3262431872823557,
+        "RPL21": -3.3138871877298297,
+        "RPS8": -3.2896249708589274,
+        "RRM1": -3.283230380759309
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CCND1",
+          "EEFSEC",
+          "FLI1"
+        ],
+        "combined_score": 1.488683979700586,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5102040816326531,
+        "druggable_count": 0,
+        "pathways_covered": {
+          "Cell cycle": 0.125
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Intraductal Papillary Neoplasm of the Bile Duct": {
+      "cancer_type": "Intraductal Papillary Neoplasm of the Bile Duct",
+      "lineage": "Biliary Tract",
+      "n_cell_lines": 37,
+      "driver_mutations": {
+        "BRAFp.V600E": 0.07142857142857142,
+        "CDKN2A_LoF": 0.42857142857142855,
+        "KRAS": 0.35714285714285715,
+        "KRASp.G12": 0.2857142857142857,
+        "KRASp.G12D": 0.21428571428571427,
+        "KRASp.G13": 0.03571428571428571,
+        "KRASp.Q61": 0.03571428571428571,
+        "PIK3CA": 0.03571428571428571,
+        "PIK3CAp.E545": 0.03571428571428571,
+        "PTEN_LoF": 0.10714285714285714,
+        "TP53_LoF": 0.7142857142857143
+      },
+      "recommended_combination": [
+        "GRB2",
+        "SLC2A1",
+        "STAT3"
+      ],
+      "combination_cost": 2.6743061265802446,
+      "path_coverage": 0.8703703703703703,
+      "n_viability_paths": 63,
+      "top_essential_genes": {
+        "SNRPD3": -5.611665283121496,
+        "RPL15": -5.355189464379626,
+        "PRIM2": -4.390040018411324,
+        "RAN": -4.166553012810029,
+        "HSPE1": -3.9608801278523345,
+        "RPL17": -3.885216889632992,
+        "RPL21": -3.5494152931793073,
+        "RPS8": -3.389785689055294,
+        "SNRPF": -3.377025795953554,
+        "RRM1": -3.3495202563232147
+      },
+      "best_triple_combination": {
+        "targets": [
+          "GRB2",
+          "SLC2A1",
+          "STAT3"
+        ],
+        "combined_score": 1.730818540849015,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.3508771929824561,
+        "path_coverage": 0.5555555555555556,
+        "druggable_count": 1,
+        "pathways_covered": {
+          "JAK-STAT": 0.16666666666666666
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Endometrial Carcinoma": {
+      "cancer_type": "Endometrial Carcinoma",
+      "lineage": "Uterus",
+      "n_cell_lines": 37,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.07142857142857142,
+        "KRAS": 0.21428571428571427,
+        "KRASp.G12": 0.21428571428571427,
+        "KRASp.G12D": 0.10714285714285714,
+        "PIK3CA": 0.03571428571428571,
+        "PIK3CAp.H1047": 0.03571428571428571,
+        "PTEN_LoF": 0.5714285714285714,
+        "TP53_LoF": 0.5714285714285714
+      },
+      "recommended_combination": [
+        "MAPK3",
+        "PAX8",
+        "STAT3"
+      ],
+      "combination_cost": 2.8,
+      "path_coverage": 0.8863636363636364,
+      "n_viability_paths": 58,
+      "top_essential_genes": {
+        "RPL15": -5.714250528154752,
+        "SNRPD3": -5.680034247298027,
+        "RAN": -4.287906961473422,
+        "HSPE1": -3.9650222409728952,
+        "RPL17": -3.7762918673851393,
+        "RPL21": -3.616677290563484,
+        "SNRPA1": -3.410226901025376,
+        "PSMA6": -3.336556889374027,
+        "RPS8": -3.3346666818731054,
+        "RRM1": -3.310981992830247
+      },
+      "best_triple_combination": {
+        "targets": [
+          "MAPK3",
+          "PAX8",
+          "STAT3"
+        ],
+        "combined_score": 1.6174581404913408,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.3508771929824561,
+        "path_coverage": 0.5,
+        "druggable_count": 1,
+        "pathways_covered": {
+          "RAS-MAPK": 0.09090909090909091,
+          "JAK-STAT": 0.16666666666666666
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Pleural Mesothelioma": {
+      "cancer_type": "Pleural Mesothelioma",
+      "lineage": "Pleura",
+      "n_cell_lines": 36,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.8571428571428571,
+        "PTEN_LoF": 0.047619047619047616,
+        "TP53_LoF": 0.2857142857142857
+      },
+      "recommended_combination": [
+        "EGFR",
+        "ELMO2",
+        "MAP2K1"
+      ],
+      "combination_cost": 2.7861856341251903,
+      "path_coverage": 0.9111111111111111,
+      "n_viability_paths": 58,
+      "top_essential_genes": {
+        "RPL15": -5.724760289274465,
+        "SNRPD3": -5.498393996519671,
+        "RAN": -3.9793834617898294,
+        "RPL17": -3.873673135903906,
+        "HSPE1": -3.854017605320803,
+        "RPL21": -3.705202861605083,
+        "RRN3": -3.510319306300577,
+        "RPS3A": -3.4197923059241324,
+        "RPS8": -3.274404940569118,
+        "SNRPA1": -3.257919347148425
+      },
+      "best_triple_combination": {
+        "targets": [
+          "EGFR",
+          "ELMO2",
+          "MAP2K1"
+        ],
+        "combined_score": 1.7217737001995572,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.42105263157894735,
+        "path_coverage": 0.5,
+        "druggable_count": 2,
+        "pathways_covered": {
+          "RAS-MAPK": 0.09090909090909091,
+          "RTK signaling": 0.1
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Bladder Urothelial Carcinoma": {
+      "cancer_type": "Bladder Urothelial Carcinoma",
+      "lineage": "Bladder/Urinary Tract",
+      "n_cell_lines": 35,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.4,
+        "KRAS": 0.03333333333333333,
+        "KRASp.G12": 0.03333333333333333,
+        "KRASp.G12C": 0.03333333333333333,
+        "PIK3CA": 0.3,
+        "PIK3CAp.E542": 0.03333333333333333,
+        "PIK3CAp.E545": 0.2,
+        "PIK3CAp.H1047": 0.06666666666666667,
+        "PTEN_LoF": 0.1,
+        "TP53_LoF": 0.7666666666666667
+      },
+      "recommended_combination": [
+        "CCND1",
+        "FYN",
+        "YAP1"
+      ],
+      "combination_cost": 2.8,
+      "path_coverage": 0.85,
+      "n_viability_paths": 52,
+      "top_essential_genes": {
+        "RAN": -4.236355768092498,
+        "HSPE1": -3.8699565575022588,
+        "RPL17": -3.8288458602724513,
+        "SNRPF": -3.4087138909827304,
+        "PSMA6": -3.260020396174598,
+        "RPS8": -3.2568704196052947,
+        "SNRPA1": -3.2211930808220237,
+        "SMU1": -3.2108219853527786,
+        "RPL12": -3.1915888957680636,
+        "RRM1": -3.1883095984110414
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CCND1",
+          "FYN",
+          "YAP1"
+        ],
+        "combined_score": 1.6913041016641426,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5,
+        "druggable_count": 1,
+        "pathways_covered": {
+          "Cell cycle": 0.125,
+          "SRC family": 0.2,
+          "Hippo": 0.16666666666666666
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "B-Cell Acute Lymphoblastic Leukemia": {
+      "cancer_type": "B-Cell Acute Lymphoblastic Leukemia",
+      "lineage": "Lymphoid",
+      "n_cell_lines": 32,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.5833333333333334,
+        "TP53_LoF": 0.25
+      },
+      "recommended_combination": [
+        "CCND3",
+        "GCLC",
+        "STAT3"
+      ],
+      "combination_cost": 3.8,
+      "path_coverage": 0.8,
+      "n_viability_paths": 29,
+      "top_essential_genes": {
+        "SNRPD3": -4.99779447576613,
+        "HSPE1": -4.115448064695781,
+        "RAN": -3.9564679462250267,
+        "RPL17": -3.8338315214056755,
+        "PRIM2": -3.6166106940744953,
+        "RPS8": -3.4581359139489387,
+        "RPL21": -3.394391201540145,
+        "RPS3A": -3.325639138477751,
+        "PRELID1": -3.299761381945722,
+        "POLR2L": -3.285878224827911
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CCND3",
+          "GCLC",
+          "STAT3"
+        ],
+        "combined_score": 1.4130907642978445,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.3508771929824561,
+        "path_coverage": 0.5172413793103449,
+        "druggable_count": 1,
+        "pathways_covered": {
+          "JAK-STAT": 0.16666666666666666
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Esophageal Squamous Cell Carcinoma": {
+      "cancer_type": "Esophageal Squamous Cell Carcinoma",
+      "lineage": "Esophagus/Stomach",
+      "n_cell_lines": 30,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.5416666666666666,
+        "KRAS": 0.041666666666666664,
+        "KRASp.G12": 0.041666666666666664,
+        "KRASp.G12C": 0.041666666666666664,
+        "PIK3CA": 0.08333333333333333,
+        "PIK3CAp.E545": 0.08333333333333333,
+        "PTEN_LoF": 0.041666666666666664,
+        "TP53_LoF": 0.8333333333333334
+      },
+      "recommended_combination": [
+        "ADAR",
+        "STAT3",
+        "STX4"
+      ],
+      "combination_cost": 2.5493606921213523,
+      "path_coverage": 0.9038461538461539,
+      "n_viability_paths": 64,
+      "top_essential_genes": {
+        "RPL15": -5.596833667584461,
+        "SNRPD3": -5.4822236625976695,
+        "RAN": -4.42565040228903,
+        "HSPE1": -4.132629972155525,
+        "RPL17": -3.8104670306770534,
+        "RPL21": -3.458050079027947,
+        "SNRPF": -3.382568337743494,
+        "SARS1": -3.3575177217565133,
+        "SNRPA1": -3.344716806401292,
+        "FAU": -3.3065635213979903
+      },
+      "best_triple_combination": {
+        "targets": [
+          "ADAR",
+          "STAT3",
+          "STX4"
+        ],
+        "combined_score": 1.6554083816531713,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.3508771929824561,
+        "path_coverage": 0.53125,
+        "druggable_count": 1,
+        "pathways_covered": {
+          "JAK-STAT": 0.16666666666666666
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Osteosarcoma": {
+      "cancer_type": "Osteosarcoma",
+      "lineage": "Bone",
+      "n_cell_lines": 29,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.3,
+        "KRAS": 0.05,
+        "KRASp.G12": 0.05,
+        "PTEN_LoF": 0.05,
+        "TP53_LoF": 0.3
+      },
+      "recommended_combination": [
+        "CCND1",
+        "FXN",
+        "HNRNPH1"
+      ],
+      "combination_cost": 4.164968047866209,
+      "path_coverage": 0.8085106382978723,
+      "n_viability_paths": 53,
+      "top_essential_genes": {
+        "RPL15": -5.685800328951563,
+        "SNRPD3": -5.367605664708556,
+        "RAN": -4.198720022195078,
+        "HSPE1": -3.9246532993869754,
+        "PRIM2": -3.8650039972007058,
+        "RPL17": -3.6269167205248016,
+        "RPL21": -3.486459771009633,
+        "RPS8": -3.329950006767535,
+        "SNRPA1": -3.2900383514572327,
+        "PSMA6": -3.2551776740326774
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CCND1",
+          "FXN",
+          "HNRNPH1"
+        ],
+        "combined_score": 1.6318929049343485,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5283018867924528,
+        "druggable_count": 0,
+        "pathways_covered": {
+          "Cell cycle": 0.125
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "T-Lymphoblastic Leukemia/Lymphoma": {
+      "cancer_type": "T-Lymphoblastic Leukemia/Lymphoma",
+      "lineage": "Lymphoid",
+      "n_cell_lines": 27,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.6666666666666666,
+        "PIK3CA": 0.16666666666666666,
+        "PIK3CAp.E545": 0.16666666666666666,
+        "PTEN_LoF": 0.16666666666666666,
+        "TP53_LoF": 0.3333333333333333
+      },
+      "recommended_combination": [
+        "CCND1",
+        "LCK",
+        "NKX2-3"
+      ],
+      "combination_cost": 2.7,
+      "path_coverage": 0.8292682926829268,
+      "n_viability_paths": 54,
+      "top_essential_genes": {
+        "RAN": -4.279736884810729,
+        "HSPE1": -4.124939441890604,
+        "RPL17": -3.806609685433699,
+        "RRM1": -3.566730069949322,
+        "SNRPA1": -3.407723183486303,
+        "RPS8": -3.3853167110455264,
+        "SNRPD1": -3.3841657230897035,
+        "RPL12": -3.316504585850757,
+        "PUF60": -3.28398505173056,
+        "KIF11": -3.279978199021992
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CCND1",
+          "LCK",
+          "NKX2-3"
+        ],
+        "combined_score": 1.799330048678328,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5740740740740741,
+        "druggable_count": 0,
+        "pathways_covered": {
+          "Cell cycle": 0.125,
+          "SRC family": 0.2
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Rhabdomyosarcoma": {
+      "cancer_type": "Rhabdomyosarcoma",
+      "lineage": "Soft Tissue",
+      "n_cell_lines": 25,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.25,
+        "TP53_LoF": 0.6666666666666666
+      },
+      "recommended_combination": [
+        "CCND1",
+        "MCL1",
+        "MMGT1"
+      ],
+      "combination_cost": 2.5507183783664082,
+      "path_coverage": 0.8275862068965517,
+      "n_viability_paths": 41,
+      "top_essential_genes": {
+        "RAN": -4.182983699174096,
+        "HSPE1": -4.057082697208675,
+        "RPL17": -3.790844509512523,
+        "RPS8": -3.439606783060448,
+        "RPS3A": -3.3991912787024003,
+        "RRM1": -3.392273145476631,
+        "FAU": -3.3748786801773725,
+        "SNRPA1": -3.3683127994963287,
+        "RPL12": -3.3009784250129512,
+        "SNRPF": -3.2260408994836247
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CCND1",
+          "MCL1",
+          "MMGT1"
+        ],
+        "combined_score": 1.5866113696832957,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5121951219512195,
+        "druggable_count": 0,
+        "pathways_covered": {
+          "Cell cycle": 0.125,
+          "Apoptosis": 0.1111111111111111
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Hepatocellular Carcinoma": {
+      "cancer_type": "Hepatocellular Carcinoma",
+      "lineage": "Liver",
+      "n_cell_lines": 24,
+      "driver_mutations": {
+        "BRAFp.V600E": 0.047619047619047616,
+        "CDKN2A_LoF": 0.23809523809523808,
+        "PTEN_LoF": 0.047619047619047616,
+        "TP53_LoF": 0.7619047619047619
+      },
+      "recommended_combination": [
+        "CCND1",
+        "FYN",
+        "GRB2"
+      ],
+      "combination_cost": 2.6080232553772174,
+      "path_coverage": 0.8974358974358975,
+      "n_viability_paths": 51,
+      "top_essential_genes": {
+        "RAN": -4.095496484342388,
+        "HSPE1": -4.038311901152996,
+        "RPL17": -3.7945658296570937,
+        "SNRPF": -3.501738975733549,
+        "RPS8": -3.4184696314665777,
+        "SNRPA1": -3.3441772845897644,
+        "SNRPD1": -3.313639123638527,
+        "RRM1": -3.2900625497595364,
+        "PSMA6": -3.269226280169457,
+        "PSMB3": -3.236471390213578
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CCND1",
+          "FYN",
+          "GRB2"
+        ],
+        "combined_score": 1.7038944246417551,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5098039215686274,
+        "druggable_count": 1,
+        "pathways_covered": {
+          "Cell cycle": 0.125,
+          "SRC family": 0.2
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Embryonal Tumor": {
+      "cancer_type": "Embryonal Tumor",
+      "lineage": "CNS/Brain",
+      "n_cell_lines": 21,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.26666666666666666,
+        "PTEN_LoF": 0.06666666666666667,
+        "TP53_LoF": 0.4
+      },
+      "recommended_combination": [
+        "CDK4",
+        "CDK6",
+        "MCL1"
+      ],
+      "combination_cost": 2.7,
+      "path_coverage": 0.8292682926829268,
+      "n_viability_paths": 53,
+      "top_essential_genes": {
+        "RAN": -4.06461650968778,
+        "HSPE1": -3.965109110703187,
+        "RPL17": -3.881336627708536,
+        "RPS8": -3.4933857954236998,
+        "RRM1": -3.384015564289397,
+        "RPS3A": -3.3346864118723594,
+        "RPL12": -3.312862458161958,
+        "RPS19": -3.232552370700652,
+        "RPS29": -3.200631110325392,
+        "POLR2L": -3.1784143315667044
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CDK4",
+          "CDK6",
+          "MCL1"
+        ],
+        "combined_score": 1.7835126187678805,
+        "synergy_score": 0.8066666666666666,
+        "resistance_score": 0.2631578947368421,
+        "path_coverage": 0.5094339622641509,
+        "druggable_count": 2,
+        "pathways_covered": {
+          "Cell cycle": 0.25,
+          "Apoptosis": 0.1111111111111111
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Myeloproliferative Neoplasms": {
+      "cancer_type": "Myeloproliferative Neoplasms",
+      "lineage": "Myeloid",
+      "n_cell_lines": 18,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.4,
+        "PIK3CA": 0.1,
+        "PIK3CAp.E545": 0.1,
+        "PTEN_LoF": 0.1,
+        "TP53_LoF": 0.8
+      },
+      "recommended_combination": [
+        "GAB2",
+        "SOS1",
+        "STAT3"
+      ],
+      "combination_cost": 2.7678846493494715,
+      "path_coverage": 0.8571428571428571,
+      "n_viability_paths": 46,
+      "top_essential_genes": {
+        "SNRPD3": -5.326221911565911,
+        "RAN": -4.2589189181063976,
+        "PRIM2": -4.135479607469878,
+        "HSPE1": -4.087881778762087,
+        "RPL17": -3.870641447618347,
+        "RPL21": -3.779462750159012,
+        "DNA2": -3.75654741943545,
+        "RRM1": -3.436959351187929,
+        "SNRPF": -3.346084266699537,
+        "RPS8": -3.308273518353895
+      },
+      "best_triple_combination": {
+        "targets": [
+          "GAB2",
+          "SOS1",
+          "STAT3"
+        ],
+        "combined_score": 1.5860258536708283,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.3508771929824561,
+        "path_coverage": 0.5,
+        "druggable_count": 1,
+        "pathways_covered": {
+          "JAK-STAT": 0.16666666666666666
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Mature T and NK Neoplasms": {
+      "cancer_type": "Mature T and NK Neoplasms",
+      "lineage": "Lymphoid",
+      "n_cell_lines": 17,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.125,
+        "TP53_LoF": 0.625
+      },
+      "recommended_combination": [
+        "RPL15",
+        "RPL21",
+        "STAT3"
+      ],
+      "combination_cost": 0.8,
+      "path_coverage": 0.8378378378378378,
+      "n_viability_paths": 47,
+      "top_essential_genes": {
+        "SNRPD3": -5.089162429566722,
+        "RPL21": -4.0857288352570045,
+        "PRIM2": -4.061789324170832,
+        "RAN": -3.9519828075710928,
+        "RPL17": -3.8602213583340212,
+        "HSPE1": -3.8545624386528026,
+        "RPS3A": -3.508624513339913,
+        "PSMA6": -3.4562784616737074,
+        "RPL12": -3.4397010781847372,
+        "RPS8": -3.4366751138735054
+      },
+      "best_triple_combination": {
+        "targets": [
+          "RPL15",
+          "RPL21",
+          "STAT3"
+        ],
+        "combined_score": 1.719323857393256,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.3508771929824561,
+        "path_coverage": 0.6808510638297872,
+        "druggable_count": 1,
+        "pathways_covered": {
+          "JAK-STAT": 0.16666666666666666
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Non-Hodgkin Lymphoma": {
+      "cancer_type": "Non-Hodgkin Lymphoma",
+      "lineage": "Lymphoid",
+      "n_cell_lines": 16,
+      "driver_mutations": {
+        "PTEN_LoF": 0.16666666666666666,
+        "TP53_LoF": 0.5
+      },
+      "recommended_combination": [
+        "CDK4",
+        "CDK6",
+        "NFKB1"
+      ],
+      "combination_cost": 2.6206388625974664,
+      "path_coverage": 0.8125,
+      "n_viability_paths": 39,
+      "top_essential_genes": {
+        "SNRPD3": -5.423870228509126,
+        "PRIM2": -4.037658116687045,
+        "HSPE1": -3.9765582990871393,
+        "RPL17": -3.8663662314888794,
+        "RPL21": -3.5886339458765475,
+        "EEF1A1": -3.566329951419802,
+        "RAN": -3.546767526805933,
+        "RPS8": -3.5020788060192642,
+        "RPS3A": -3.3804531801611777,
+        "RPS29": -3.3696657394999434
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CDK4",
+          "CDK6",
+          "NFKB1"
+        ],
+        "combined_score": 1.7533538762349263,
+        "synergy_score": 0.8066666666666666,
+        "resistance_score": 0.2631578947368421,
+        "path_coverage": 0.5384615384615384,
+        "druggable_count": 2,
+        "pathways_covered": {
+          "Cell cycle": 0.25,
+          "NF-kB": 0.25
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Rhabdoid Cancer": {
+      "cancer_type": "Rhabdoid Cancer",
+      "lineage": "Kidney",
+      "n_cell_lines": 16,
+      "driver_mutations": {},
+      "recommended_combination": [
+        "CCND1",
+        "DCLRE1B",
+        "UBE2D3"
+      ],
+      "combination_cost": 2.683511422632967,
+      "path_coverage": 0.8157894736842105,
+      "n_viability_paths": 51,
+      "top_essential_genes": {
+        "HSPE1": -4.024289410998557,
+        "RAN": -3.959052671560765,
+        "RPL17": -3.9240535495414157,
+        "RPS3A": -3.4472313937565118,
+        "RPS8": -3.420418377083126,
+        "RPL12": -3.2446797221035615,
+        "RPS19": -3.224250934208116,
+        "PSMA6": -3.2200062253294086,
+        "FAU": -3.1733755029501673,
+        "RPL4": -3.168144826166354
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CCND1",
+          "DCLRE1B",
+          "UBE2D3"
+        ],
+        "combined_score": 1.5947215224109907,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5098039215686274,
+        "druggable_count": 0,
+        "pathways_covered": {
+          "Cell cycle": 0.125
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Ocular Melanoma": {
+      "cancer_type": "Ocular Melanoma",
+      "lineage": "Eye",
+      "n_cell_lines": 15,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.125
+      },
+      "recommended_combination": [
+        "ANKUB1",
+        "CCND1",
+        "E2F3"
+      ],
+      "combination_cost": 2.2865686585759866,
+      "path_coverage": 0.8333333333333334,
+      "n_viability_paths": 50,
+      "top_essential_genes": {
+        "RAN": -4.363097916531357,
+        "HSPE1": -3.9991633570420086,
+        "RPL17": -3.9290676863088283,
+        "SNRPF": -3.6200557601089236,
+        "RPS3A": -3.5071237840319105,
+        "RPS8": -3.4652726592687855,
+        "SNRPA1": -3.4489900499791153,
+        "RRM1": -3.3874648428023457,
+        "PSMB3": -3.285227886720775,
+        "RPL23": -3.265267773154673
+      },
+      "best_triple_combination": {
+        "targets": [
+          "ANKUB1",
+          "CCND1",
+          "E2F3"
+        ],
+        "combined_score": 1.562598189943289,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5,
+        "druggable_count": 0,
+        "pathways_covered": {
+          "Cell cycle": 0.125
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Cervical Squamous Cell Carcinoma": {
+      "cancer_type": "Cervical Squamous Cell Carcinoma",
+      "lineage": "Cervix",
+      "n_cell_lines": 15,
+      "driver_mutations": {
+        "KRAS": 0.07692307692307693,
+        "KRASp.G12": 0.07692307692307693,
+        "KRASp.G12C": 0.07692307692307693,
+        "PIK3CA": 0.15384615384615385,
+        "PIK3CAp.E545": 0.15384615384615385,
+        "TP53_LoF": 0.07692307692307693
+      },
+      "recommended_combination": [
+        "ZER1",
+        "E2F3",
+        "STAT3"
+      ],
+      "combination_cost": 3.643024076828029,
+      "path_coverage": 0.8461538461538461,
+      "n_viability_paths": 25,
+      "top_essential_genes": {
+        "RAN": -4.3792999266408295,
+        "HSPE1": -3.9091529396723455,
+        "RPL17": -3.739214589967855,
+        "SNRPF": -3.4635323391816466,
+        "SNRPA1": -3.416646252385083,
+        "RPS3A": -3.3429748271636646,
+        "RRM1": -3.3281135682800977,
+        "PCNA": -3.2975315323326466,
+        "PSMB3": -3.2739411767469786,
+        "PSMA6": -3.263682697717137
+      },
+      "best_triple_combination": null,
+      "n_triple_alternatives": 0
+    },
+    "Liposarcoma": {
+      "cancer_type": "Liposarcoma",
+      "lineage": "Soft Tissue",
+      "n_cell_lines": 13,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.1111111111111111,
+        "TP53_LoF": 0.2222222222222222
+      },
+      "recommended_combination": [
+        "CCND1",
+        "FGFR1",
+        "GRB2"
+      ],
+      "combination_cost": 2.195475695643614,
+      "path_coverage": 0.8536585365853658,
+      "n_viability_paths": 54,
+      "top_essential_genes": {
+        "RAN": -4.309051690679216,
+        "HSPE1": -4.0314546738986765,
+        "RPL17": -3.574554405620466,
+        "RRM1": -3.5568528140595714,
+        "SNRPF": -3.4596805796471966,
+        "RPS8": -3.4401846185112532,
+        "SNRPA1": -3.3989484125994194,
+        "RPL23": -3.280368501689107,
+        "PSMA6": -3.1982129887238826,
+        "PSMB3": -3.174786986364781
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CCND1",
+          "FGFR1",
+          "GRB2"
+        ],
+        "combined_score": 1.5904950114041503,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5370370370370371,
+        "druggable_count": 1,
+        "pathways_covered": {
+          "Cell cycle": 0.125,
+          "RTK signaling": 0.1
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Anaplastic Thyroid Cancer": {
+      "cancer_type": "Anaplastic Thyroid Cancer",
+      "lineage": "Thyroid",
+      "n_cell_lines": 13,
+      "driver_mutations": {
+        "BRAFp.V600E": 0.42857142857142855,
+        "CDKN2A_LoF": 0.14285714285714285,
+        "KRAS": 0.14285714285714285,
+        "KRASp.G12": 0.14285714285714285,
+        "PTEN_LoF": 0.14285714285714285,
+        "TP53_LoF": 1.0
+      },
+      "recommended_combination": [
+        "SEPHS2",
+        "STAT3",
+        "YAP1"
+      ],
+      "combination_cost": 2.57975628586496,
+      "path_coverage": 0.82,
+      "n_viability_paths": 62,
+      "top_essential_genes": {
+        "RAN": -4.192173031016982,
+        "RPL17": -3.797086517054638,
+        "HSPE1": -3.689163156599809,
+        "RRM1": -3.5129728623991396,
+        "RPS8": -3.505979655024334,
+        "RPS3A": -3.4174907496627425,
+        "SNRPA1": -3.2704368771473815,
+        "RPS29": -3.231657042522484,
+        "RPS20": -3.2306324216746596,
+        "PSMA6": -3.21636009371036
+      },
+      "best_triple_combination": {
+        "targets": [
+          "SEPHS2",
+          "STAT3",
+          "YAP1"
+        ],
+        "combined_score": 1.7284216360025428,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.3508771929824561,
+        "path_coverage": 0.532258064516129,
+        "druggable_count": 1,
+        "pathways_covered": {
+          "JAK-STAT": 0.16666666666666666,
+          "Hippo": 0.16666666666666666
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Non-Seminomatous Germ Cell Tumor": {
+      "cancer_type": "Non-Seminomatous Germ Cell Tumor",
+      "lineage": "Testis",
+      "n_cell_lines": 12,
+      "driver_mutations": {
+        "PTEN_LoF": 0.2,
+        "TP53_LoF": 0.2
+      },
+      "recommended_combination": [
+        "CCND1",
+        "FYN",
+        "PARP1"
+      ],
+      "combination_cost": 4.1841861126939826,
+      "path_coverage": 0.8409090909090909,
+      "n_viability_paths": 50,
+      "top_essential_genes": {
+        "SNRPD3": -5.17751471474037,
+        "HSPE1": -4.156785253340867,
+        "RAN": -4.079934582786459,
+        "RPL17": -3.8482870176842057,
+        "PRIM2": -3.822601717393908,
+        "RPS3A": -3.4420672918122306,
+        "RPL21": -3.3884079516130434,
+        "PRELID1": -3.282155296845744,
+        "RRM1": -3.2758866411897136,
+        "SNRPD1": -3.2388919639691514
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CCND1",
+          "FYN",
+          "PARP1"
+        ],
+        "combined_score": 1.7323171003882796,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.52,
+        "druggable_count": 2,
+        "pathways_covered": {
+          "Cell cycle": 0.125,
+          "SRC family": 0.2
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Leiomyosarcoma": {
+      "cancer_type": "Leiomyosarcoma",
+      "lineage": "Soft Tissue",
+      "n_cell_lines": 11,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.25,
+        "KRAS": 0.25,
+        "KRASp.G12": 0.25,
+        "TP53_LoF": 1.0
+      },
+      "recommended_combination": [
+        "EGFR",
+        "KRAS",
+        "PTK2"
+      ],
+      "combination_cost": 2.73867063585225,
+      "path_coverage": 0.8163265306122449,
+      "n_viability_paths": 56,
+      "top_essential_genes": {
+        "SNRPD3": -5.499738589237106,
+        "RPL15": -5.2146524814343795,
+        "RAN": -4.395612553058387,
+        "SNRPA1": -3.7426276493757933,
+        "HSPE1": -3.707151777554691,
+        "PRIM2": -3.5808420720827914,
+        "SNRPF": -3.5658537318267527,
+        "RRM1": -3.542679834218447,
+        "PSMA3": -3.5180383387388527,
+        "RPL17": -3.470650920160505
+      },
+      "best_triple_combination": {
+        "targets": [
+          "EGFR",
+          "KRAS",
+          "PTK2"
+        ],
+        "combined_score": 1.7471572755723492,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.3508771929824561,
+        "path_coverage": 0.5,
+        "druggable_count": 2,
+        "pathways_covered": {
+          "RAS-MAPK": 0.09090909090909091,
+          "RTK signaling": 0.1
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Synovial Sarcoma": {
+      "cancer_type": "Synovial Sarcoma",
+      "lineage": "Soft Tissue",
+      "n_cell_lines": 10,
+      "driver_mutations": {
+        "BRAFp.V600E": 0.2,
+        "CDKN2A_LoF": 0.2,
+        "PIK3CA": 0.2,
+        "PIK3CAp.H1047": 0.2,
+        "TP53_LoF": 0.2
+      },
+      "recommended_combination": [
+        "SPECC1L",
+        "STAT3",
+        "YAP1"
+      ],
+      "combination_cost": 2.772519028214595,
+      "path_coverage": 0.8974358974358975,
+      "n_viability_paths": 51,
+      "top_essential_genes": {
+        "HSPE1": -3.9031594263618965,
+        "RAN": -3.8507362388605118,
+        "RPL17": -3.7845430263091493,
+        "RPS8": -3.3857855214154946,
+        "SNRPA1": -3.2221367726594954,
+        "RRM1": -3.219200010398491,
+        "PSMA6": -3.2113492709833786,
+        "RPL12": -3.1792303419107366,
+        "RPS3A": -3.172668953586208,
+        "RPS29": -3.143620111500528
+      },
+      "best_triple_combination": {
+        "targets": [
+          "SPECC1L",
+          "STAT3",
+          "YAP1"
+        ],
+        "combined_score": 1.7264979920143293,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.3508771929824561,
+        "path_coverage": 0.5294117647058824,
+        "druggable_count": 1,
+        "pathways_covered": {
+          "JAK-STAT": 0.16666666666666666,
+          "Hippo": 0.16666666666666666
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Chondrosarcoma": {
+      "cancer_type": "Chondrosarcoma",
+      "lineage": "Bone",
+      "n_cell_lines": 9,
+      "driver_mutations": {
+        "CDKN2A_LoF": 1.0
+      },
+      "recommended_combination": [
+        "BCAR1",
+        "CCNE2",
+        "MET"
+      ],
+      "combination_cost": 2.173311885465501,
+      "path_coverage": 0.8333333333333334,
+      "n_viability_paths": 12,
+      "top_essential_genes": {
+        "RAN": -4.001336935091874,
+        "SNRPA1": -3.6739814123162726,
+        "HSPE1": -3.612611446310302,
+        "WEE1": -3.538519259983173,
+        "KIF11": -3.5172677885944106,
+        "RRM1": -3.4988420200460864,
+        "PRELID1": -3.4844048853810197,
+        "PSMB3": -3.4220285133183164,
+        "RPS3A": -3.413279421838995,
+        "SMU1": -3.3957353300844506
+      },
+      "best_triple_combination": {
+        "targets": [
+          "BCAR1",
+          "CCNE2",
+          "MET"
+        ],
+        "combined_score": 0.9330797287883279,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5,
+        "druggable_count": 1,
+        "pathways_covered": {
+          "RTK signaling": 0.1
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Nerve Sheath Tumor": {
+      "cancer_type": "Nerve Sheath Tumor",
+      "lineage": "Peripheral Nervous System",
+      "n_cell_lines": 9,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.3333333333333333,
+        "TP53_LoF": 0.6666666666666666
+      },
+      "recommended_combination": [
+        "CCND1",
+        "FGFR1",
+        "GRB2"
+      ],
+      "combination_cost": 2.8,
+      "path_coverage": 0.9302325581395349,
+      "n_viability_paths": 56,
+      "top_essential_genes": {
+        "RAN": -4.467158268481359,
+        "HSPE1": -3.967737128002637,
+        "RPL17": -3.743213052404293,
+        "SNRPA1": -3.551864534593476,
+        "SNRPF": -3.4993459178663593,
+        "RRM1": -3.491326199187855,
+        "SMU1": -3.3421108398170944,
+        "PCNA": -3.323634628278499,
+        "PLK1": -3.297973839862813,
+        "PSMB3": -3.2444193103583134
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CCND1",
+          "FGFR1",
+          "GRB2"
+        ],
+        "combined_score": 1.7030332888901993,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5892857142857143,
+        "druggable_count": 1,
+        "pathways_covered": {
+          "Cell cycle": 0.125,
+          "RTK signaling": 0.1
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Hodgkin Lymphoma": {
+      "cancer_type": "Hodgkin Lymphoma",
+      "lineage": "Lymphoid",
+      "n_cell_lines": 9,
+      "driver_mutations": {},
+      "recommended_combination": [
+        "CCND1",
+        "CFL1",
+        "JAK1"
+      ],
+      "combination_cost": 2.3,
+      "path_coverage": 0.8275862068965517,
+      "n_viability_paths": 34,
+      "top_essential_genes": {
+        "RAN": -4.146758041253858,
+        "HSPE1": -3.8207560571272783,
+        "RPL17": -3.7626200510191263,
+        "RPS19": -3.649947945791021,
+        "PUF60": -3.5018423949235946,
+        "SNRPF": -3.487714597214103,
+        "SMU1": -3.4122678718832056,
+        "PSMA6": -3.377834059667523,
+        "RPS3A": -3.3437726528919955,
+        "SNRPA1": -3.259249843832174
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CCND1",
+          "CFL1",
+          "JAK1"
+        ],
+        "combined_score": 1.3685977221561192,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5,
+        "druggable_count": 1,
+        "pathways_covered": {
+          "JAK-STAT": 0.16666666666666666,
+          "Cell cycle": 0.125
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Well-Differentiated Thyroid Cancer": {
+      "cancer_type": "Well-Differentiated Thyroid Cancer",
+      "lineage": "Thyroid",
+      "n_cell_lines": 9,
+      "driver_mutations": {
+        "BRAFp.V600E": 0.3333333333333333,
+        "CDKN2A_LoF": 0.3333333333333333,
+        "PTEN_LoF": 0.3333333333333333,
+        "TP53_LoF": 0.6666666666666666
+      },
+      "recommended_combination": [
+        "E2F3",
+        "EGFR",
+        "SOCS3"
+      ],
+      "combination_cost": 2.8,
+      "path_coverage": 0.8478260869565217,
+      "n_viability_paths": 49,
+      "top_essential_genes": {
+        "RAN": -4.193667603925633,
+        "RPL17": -4.0719611595013365,
+        "HSPE1": -4.009537691226498,
+        "RPS8": -3.720958715660577,
+        "RRM1": -3.595116460120407,
+        "RPS3A": -3.534218593440384,
+        "RPL12": -3.4631363490352727,
+        "SNRPA1": -3.395422920719279,
+        "RPL4": -3.206086127147406,
+        "SNRPF": -3.2002223436490733
+      },
+      "best_triple_combination": {
+        "targets": [
+          "E2F3",
+          "EGFR",
+          "SOCS3"
+        ],
+        "combined_score": 1.7000401084786803,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.42105263157894735,
+        "path_coverage": 0.5102040816326531,
+        "druggable_count": 1,
+        "pathways_covered": {
+          "RTK signaling": 0.1
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Undifferentiated Pleomorphic Sarcoma/Malignant Fibrous Histiocytoma/High-Grade Spindle Cell Sarcoma": {
+      "cancer_type": "Undifferentiated Pleomorphic Sarcoma/Malignant Fibrous Histiocytoma/High-Grade Spindle Cell Sarcoma",
+      "lineage": "Soft Tissue",
+      "n_cell_lines": 9,
+      "driver_mutations": {
+        "BRAFp.V600E": 0.16666666666666666,
+        "CDKN2A_LoF": 0.6666666666666666,
+        "TP53_LoF": 0.5
+      },
+      "recommended_combination": [
+        "CCND1",
+        "FGFR1",
+        "FYN"
+      ],
+      "combination_cost": 2.5279683117254987,
+      "path_coverage": 0.8292682926829268,
+      "n_viability_paths": 50,
+      "top_essential_genes": {
+        "SNRPD3": -5.412867332700569,
+        "RAN": -4.258379039858258,
+        "PRIM2": -4.207419458739908,
+        "HSPE1": -4.0387145722177245,
+        "EEF1A1": -3.634829685473676,
+        "RPL17": -3.5191242131505547,
+        "RPS8": -3.4222684113717805,
+        "RPL21": -3.3495628745114043,
+        "RPL12": -3.304910978169097,
+        "RPS29": -3.2720634164185776
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CCND1",
+          "FGFR1",
+          "FYN"
+        ],
+        "combined_score": 1.68283689484928,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.52,
+        "druggable_count": 2,
+        "pathways_covered": {
+          "Cell cycle": 0.125,
+          "RTK signaling": 0.1,
+          "SRC family": 0.2
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Merkel Cell Carcinoma": {
+      "cancer_type": "Merkel Cell Carcinoma",
+      "lineage": "Skin",
+      "n_cell_lines": 8,
+      "driver_mutations": {
+        "PIK3CA": 0.3333333333333333,
+        "PIK3CAp.E542": 0.3333333333333333,
+        "TP53_LoF": 0.6666666666666666
+      },
+      "recommended_combination": [
+        "CCNE1",
+        "PTK2",
+        "YAP1"
+      ],
+      "combination_cost": 2.5994629236926374,
+      "path_coverage": 0.8125,
+      "n_viability_paths": 20,
+      "top_essential_genes": {
+        "HSPE1": -3.975174165314794,
+        "RAN": -3.9102100082392375,
+        "RPL17": -3.65458657060041,
+        "RPS8": -3.4226463865073122,
+        "PSMA6": -3.3563856715335523,
+        "RPS3A": -3.3332115984164195,
+        "RPS11": -3.1673065814383405,
+        "PUF60": -3.1654958101646833,
+        "SNRPA1": -3.144307220367216,
+        "SRSF3": -3.134796788342108
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CCNE1",
+          "PTK2",
+          "YAP1"
+        ],
+        "combined_score": 1.4418219848120413,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5,
+        "druggable_count": 0,
+        "pathways_covered": {
+          "Cell cycle": 0.125,
+          "Hippo": 0.16666666666666666
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Intracholecystic Papillary Neoplasm": {
+      "cancer_type": "Intracholecystic Papillary Neoplasm",
+      "lineage": "Biliary Tract",
+      "n_cell_lines": 7,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.3333333333333333,
+        "KRAS": 0.3333333333333333,
+        "KRASp.G12": 0.16666666666666666,
+        "KRASp.G13": 0.16666666666666666,
+        "TP53_LoF": 0.8333333333333334
+      },
+      "recommended_combination": [
+        "RAF1",
+        "SREBF1",
+        "STAT3"
+      ],
+      "combination_cost": 1.2552318305531802,
+      "path_coverage": 0.8085106382978723,
+      "n_viability_paths": 58,
+      "top_essential_genes": {
+        "SNRPD3": -5.152089533163506,
+        "RAN": -4.6055939684431895,
+        "HSPE1": -4.079297651092844,
+        "RPL21": -3.99342470391744,
+        "RPL17": -3.9256135383539337,
+        "PRIM2": -3.885824832430327,
+        "PSMA6": -3.6181250463485113,
+        "RRM1": -3.57303680278444,
+        "SNRPF": -3.4032820439314206,
+        "RPS8": -3.3944279569299307
+      },
+      "best_triple_combination": {
+        "targets": [
+          "RAF1",
+          "SREBF1",
+          "STAT3"
+        ],
+        "combined_score": 1.581379399238657,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.3508771929824561,
+        "path_coverage": 0.5,
+        "druggable_count": 1,
+        "pathways_covered": {
+          "RAS-MAPK": 0.09090909090909091,
+          "JAK-STAT": 0.16666666666666666
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Cervical Adenocarcinoma": {
+      "cancer_type": "Cervical Adenocarcinoma",
+      "lineage": "Cervix",
+      "n_cell_lines": 7,
+      "driver_mutations": {
+        "KRAS": 0.3333333333333333,
+        "KRASp.G12": 0.3333333333333333,
+        "KRASp.G12D": 0.3333333333333333,
+        "TP53_LoF": 0.6666666666666666
+      },
+      "recommended_combination": [
+        "CTNNB1",
+        "EGFR",
+        "TGIF1"
+      ],
+      "combination_cost": 2.7571980591974907,
+      "path_coverage": 0.8095238095238095,
+      "n_viability_paths": 42,
+      "top_essential_genes": {
+        "HSPE1": -4.008788641089698,
+        "RPL17": -3.9276756481306507,
+        "RAN": -3.720015752828644,
+        "RRM1": -3.513145229606721,
+        "PUF60": -3.423986137061964,
+        "PRPF19": -3.320159040334556,
+        "PRELID1": -3.2635817674385628,
+        "PHF5A": -3.2535211610587655,
+        "KIF11": -3.250967974234142,
+        "RPL12": -3.2312703557006137
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CTNNB1",
+          "EGFR",
+          "TGIF1"
+        ],
+        "combined_score": 1.74720570702973,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.42105263157894735,
+        "path_coverage": 0.5,
+        "druggable_count": 1,
+        "pathways_covered": {
+          "RTK signaling": 0.1,
+          "Wnt": 0.16666666666666666
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Cutaneous Squamous Cell Carcinoma": {
+      "cancer_type": "Cutaneous Squamous Cell Carcinoma",
+      "lineage": "Skin",
+      "n_cell_lines": 6,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.6,
+        "KRAS": 0.2,
+        "KRASp.G12": 0.2,
+        "PIK3CA": 0.2,
+        "PIK3CAp.E545": 0.2,
+        "TP53_LoF": 0.8
+      },
+      "recommended_combination": [
+        "PXN",
+        "SNAI2",
+        "STAT3"
+      ],
+      "combination_cost": 1.4859552337274198,
+      "path_coverage": 0.8205128205128205,
+      "n_viability_paths": 51,
+      "top_essential_genes": {
+        "RAN": -4.240206871609093,
+        "HSPE1": -3.969194453319625,
+        "RPL17": -3.8860700420099925,
+        "RPS19": -3.468145847275461,
+        "RRM1": -3.4208486327335605,
+        "RPS29": -3.274338885814116,
+        "RPS8": -3.2598829244297534,
+        "FAU": -3.2442664288555063,
+        "PCNA": -3.232559663696873,
+        "KIF11": -3.2220805271370287
+      },
+      "best_triple_combination": {
+        "targets": [
+          "PXN",
+          "SNAI2",
+          "STAT3"
+        ],
+        "combined_score": 1.5751247835008981,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.3508771929824561,
+        "path_coverage": 0.5098039215686274,
+        "druggable_count": 1,
+        "pathways_covered": {
+          "JAK-STAT": 0.16666666666666666
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Breast Ductal Carcinoma In Situ": {
+      "cancer_type": "Breast Ductal Carcinoma In Situ",
+      "lineage": "Breast",
+      "n_cell_lines": 6,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.3333333333333333,
+        "PIK3CA": 0.6666666666666666,
+        "PIK3CAp.E545": 0.3333333333333333,
+        "PIK3CAp.H1047": 0.3333333333333333,
+        "TP53_LoF": 1.0
+      },
+      "recommended_combination": [
+        "ERBB2",
+        "MET",
+        "SREBF1"
+      ],
+      "combination_cost": 2.7234508902955152,
+      "path_coverage": 0.8297872340425532,
+      "n_viability_paths": 47,
+      "top_essential_genes": {
+        "RPL15": -5.610423074489407,
+        "SNRPD3": -5.416811795902731,
+        "RAN": -4.494893601669628,
+        "HSPE1": -4.021018814374841,
+        "RPL17": -3.8861368846205444,
+        "KIF11": -3.6794427225055526,
+        "SNRPF": -3.65849166472538,
+        "PSMA6": -3.500153109975164,
+        "PCNA": -3.4908412199287846,
+        "SNRPA1": -3.4635940248616275
+      },
+      "best_triple_combination": {
+        "targets": [
+          "ERBB2",
+          "MET",
+          "SREBF1"
+        ],
+        "combined_score": 1.5920553216713378,
+        "synergy_score": 0.8066666666666666,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5106382978723404,
+        "druggable_count": 2,
+        "pathways_covered": {
+          "RTK signaling": 0.2
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Prostate Adenocarcinoma": {
+      "cancer_type": "Prostate Adenocarcinoma",
+      "lineage": "Prostate",
+      "n_cell_lines": 6,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.2,
+        "PTEN_LoF": 0.4,
+        "TP53_LoF": 0.8
+      },
+      "recommended_combination": [
+        "ANKUB1",
+        "CCND1",
+        "NPIPB11"
+      ],
+      "combination_cost": 1.9,
+      "path_coverage": 0.8292682926829268,
+      "n_viability_paths": 54,
+      "top_essential_genes": {
+        "RPL15": -5.980952397917409,
+        "SNRPD3": -5.43313216639926,
+        "RAN": -4.259509734161627,
+        "HSPE1": -4.135565262561069,
+        "RPL17": -3.764959071961814,
+        "RPL21": -3.5792303954803564,
+        "PSMA6": -3.577647465455599,
+        "SNRPF": -3.4510416715974124,
+        "PRELID1": -3.436458901463614,
+        "SMU1": -3.40936535840511
+      },
+      "best_triple_combination": {
+        "targets": [
+          "ANKUB1",
+          "CCND1",
+          "NPIPB11"
+        ],
+        "combined_score": 1.4352444444444445,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5,
+        "druggable_count": 0,
+        "pathways_covered": {
+          "Cell cycle": 0.125
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Ampullary Carcinoma": {
+      "cancer_type": "Ampullary Carcinoma",
+      "lineage": "Ampulla of Vater",
+      "n_cell_lines": 5,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.8,
+        "KRAS": 0.4,
+        "KRASp.G12": 0.4,
+        "KRASp.G12D": 0.4,
+        "PIK3CA": 0.2,
+        "PIK3CAp.E545": 0.2,
+        "TP53_LoF": 0.6
+      },
+      "recommended_combination": [
+        "CTNNB1",
+        "SLC2A1",
+        "STAT3"
+      ],
+      "combination_cost": 1.3017517870118636,
+      "path_coverage": 0.8085106382978723,
+      "n_viability_paths": 58,
+      "top_essential_genes": {
+        "RAN": -3.9499249504750074,
+        "RPL17": -3.916650658151254,
+        "HSPE1": -3.83460387831708,
+        "RRM1": -3.4323227789319346,
+        "RPS3A": -3.3803004415163214,
+        "PSMA6": -3.3753908720037993,
+        "POLR2L": -3.2644732961312135,
+        "PCNA": -3.263086092136061,
+        "SNRPA1": -3.2297759416771576,
+        "RPS8": -3.2246790772247045
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CTNNB1",
+          "SLC2A1",
+          "STAT3"
+        ],
+        "combined_score": 1.6124551568137067,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.3508771929824561,
+        "path_coverage": 0.5,
+        "druggable_count": 1,
+        "pathways_covered": {
+          "JAK-STAT": 0.16666666666666666,
+          "Wnt": 0.16666666666666666
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Wilms' Tumor": {
+      "cancer_type": "Wilms' Tumor",
+      "lineage": "Kidney",
+      "n_cell_lines": 5,
+      "driver_mutations": {},
+      "recommended_combination": null,
+      "combination_cost": null,
+      "path_coverage": null,
+      "n_viability_paths": 0,
+      "top_essential_genes": {},
+      "best_triple_combination": null,
+      "n_triple_alternatives": 0
+    },
+    "Breast Neoplasm, NOS": {
+      "cancer_type": "Breast Neoplasm, NOS",
+      "lineage": "Breast",
+      "n_cell_lines": 4,
+      "driver_mutations": {
+        "TP53_LoF": 1.0
+      },
+      "recommended_combination": [
+        "BCL2L1",
+        "MET",
+        "PXN"
+      ],
+      "combination_cost": 2.5221769392486215,
+      "path_coverage": 0.8333333333333334,
+      "n_viability_paths": 18,
+      "top_essential_genes": {
+        "SNRPD3": -5.893075897265812,
+        "RPL15": -5.59805482377851,
+        "HSPE1": -4.725128569244837,
+        "RAN": -4.60509794696135,
+        "ATP6V0C": -4.0321655234120355,
+        "INTS6": -3.6432566474921617,
+        "PSMA3": -3.636029535393967,
+        "SNRPD1": -3.6106671442704106,
+        "PSMB3": -3.5507295182010905,
+        "RPL17": -3.518897810252616
+      },
+      "best_triple_combination": {
+        "targets": [
+          "BCL2L1",
+          "MET",
+          "PXN"
+        ],
+        "combined_score": 1.168517456017238,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5,
+        "druggable_count": 2,
+        "pathways_covered": {
+          "RTK signaling": 0.1,
+          "Apoptosis": 0.1111111111111111
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Uterine Sarcoma/Mesenchymal": {
+      "cancer_type": "Uterine Sarcoma/Mesenchymal",
+      "lineage": "Uterus",
+      "n_cell_lines": 4,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.3333333333333333,
+        "PIK3CA": 0.3333333333333333,
+        "PIK3CAp.E545": 0.3333333333333333,
+        "PTEN_LoF": 0.6666666666666666,
+        "TP53_LoF": 1.0
+      },
+      "recommended_combination": [
+        "E2F3",
+        "EGFR",
+        "TFCP2L1"
+      ],
+      "combination_cost": 2.8,
+      "path_coverage": 0.8571428571428571,
+      "n_viability_paths": 32,
+      "top_essential_genes": {
+        "RPL15": -5.609158323911356,
+        "SNRPD3": -5.156090112826094,
+        "HSPE1": -4.215768784985298,
+        "RAN": -4.165758176325492,
+        "RPL17": -3.9992630319292,
+        "SNRPF": -3.686828624510332,
+        "RPL21": -3.667394703032491,
+        "RPS8": -3.5367634971691904,
+        "PSMB3": -3.5061904978577307,
+        "RRM1": -3.4747386617545666
+      },
+      "best_triple_combination": {
+        "targets": [
+          "E2F3",
+          "EGFR",
+          "TFCP2L1"
+        ],
+        "combined_score": 1.6872208475556862,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.42105263157894735,
+        "path_coverage": 0.5,
+        "druggable_count": 1,
+        "pathways_covered": {
+          "RTK signaling": 0.1
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Meningothelial Tumor": {
+      "cancer_type": "Meningothelial Tumor",
+      "lineage": "CNS/Brain",
+      "n_cell_lines": 4,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.6666666666666666,
+        "KRAS": 0.3333333333333333,
+        "KRASp.G12": 0.3333333333333333,
+        "KRASp.G12D": 0.3333333333333333,
+        "PTEN_LoF": 0.3333333333333333,
+        "TP53_LoF": 0.3333333333333333
+      },
+      "recommended_combination": [
+        "CDK4",
+        "CDK6",
+        "MCL1"
+      ],
+      "combination_cost": 2.668953694238823,
+      "path_coverage": 0.8181818181818182,
+      "n_viability_paths": 55,
+      "top_essential_genes": {
+        "SNRPD3": -5.2343692573564695,
+        "PRIM2": -4.2210855231658355,
+        "RPL17": -3.9763044123071505,
+        "RAN": -3.8209374377669327,
+        "RPS8": -3.767905039301962,
+        "RPL12": -3.601778785726914,
+        "EEF1A1": -3.547152686650197,
+        "RPL21": -3.541474703793624,
+        "HSPE1": -3.4572264775510217,
+        "RPS11": -3.4527261446535036
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CDK4",
+          "CDK6",
+          "MCL1"
+        ],
+        "combined_score": 1.6523312503494658,
+        "synergy_score": 0.8066666666666666,
+        "resistance_score": 0.2631578947368421,
+        "path_coverage": 0.5272727272727272,
+        "druggable_count": 2,
+        "pathways_covered": {
+          "Cell cycle": 0.25,
+          "Apoptosis": 0.1111111111111111
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "SMARCA4-deficient undifferentiated tumor": {
+      "cancer_type": "SMARCA4-deficient undifferentiated tumor",
+      "lineage": "Lung",
+      "n_cell_lines": 4,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.5,
+        "TP53_LoF": 1.0
+      },
+      "recommended_combination": [
+        "CDK6",
+        "ERBB2",
+        "PTK2"
+      ],
+      "combination_cost": 1.481383379923133,
+      "path_coverage": 0.8333333333333334,
+      "n_viability_paths": 30,
+      "top_essential_genes": {
+        "SNRPD3": -5.671644417120092,
+        "RAN": -4.093699888273823,
+        "PRIM2": -3.9371676029570497,
+        "HSPE1": -3.9342040745779308,
+        "RPL17": -3.930041793330323,
+        "RRM1": -3.5388638579075655,
+        "RPL21": -3.4778996764111416,
+        "SNRPF": -3.477811600121827,
+        "RPS8": -3.4502561529349953,
+        "RPS3A": -3.288358837319956
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CDK6",
+          "ERBB2",
+          "PTK2"
+        ],
+        "combined_score": 1.1732818985278437,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5,
+        "druggable_count": 2,
+        "pathways_covered": {
+          "Cell cycle": 0.125,
+          "RTK signaling": 0.1
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "CIC-DUX4 Sarcoma": {
+      "cancer_type": "CIC-DUX4 Sarcoma",
+      "lineage": "Soft Tissue",
+      "n_cell_lines": 3,
+      "driver_mutations": {},
+      "recommended_combination": null,
+      "combination_cost": null,
+      "path_coverage": null,
+      "n_viability_paths": 0,
+      "top_essential_genes": {},
+      "best_triple_combination": null,
+      "n_triple_alternatives": 0
+    },
+    "Desmoid/Aggressive Fibromatosis": {
+      "cancer_type": "Desmoid/Aggressive Fibromatosis",
+      "lineage": "Soft Tissue",
+      "n_cell_lines": 3,
+      "driver_mutations": {},
+      "recommended_combination": null,
+      "combination_cost": null,
+      "path_coverage": null,
+      "n_viability_paths": 0,
+      "top_essential_genes": {},
+      "best_triple_combination": null,
+      "n_triple_alternatives": 0
+    },
+    "Chordoma": {
+      "cancer_type": "Chordoma",
+      "lineage": "Bone",
+      "n_cell_lines": 3,
+      "driver_mutations": {},
+      "recommended_combination": null,
+      "combination_cost": null,
+      "path_coverage": null,
+      "n_viability_paths": 0,
+      "top_essential_genes": {},
+      "best_triple_combination": null,
+      "n_triple_alternatives": 0
+    },
+    "Acute Leukemias of Ambiguous Lineage": {
+      "cancer_type": "Acute Leukemias of Ambiguous Lineage",
+      "lineage": "Myeloid",
+      "n_cell_lines": 3,
+      "driver_mutations": {
+        "CDKN2A_LoF": 1.0
+      },
+      "recommended_combination": [
+        "CDK6",
+        "MAP2K1",
+        "STAT5A"
+      ],
+      "combination_cost": 1.5,
+      "path_coverage": 1.0,
+      "n_viability_paths": 27,
+      "top_essential_genes": {
+        "RAN": -3.949865924760924,
+        "HSPE1": -3.8322175025054257,
+        "RPL17": -3.696528355231984,
+        "RPS8": -3.2393235601020756,
+        "SNRPF": -3.2238870691527755,
+        "PSMA6": -3.21589586523624,
+        "RPS3A": -3.20212740339642,
+        "RRM1": -3.199381552180983,
+        "PHF5A": -3.1642647995367557,
+        "SMU1": -3.151204891977339
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CDK6",
+          "MAP2K1",
+          "STAT5A"
+        ],
+        "combined_score": 1.403474164533202,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5185185185185185,
+        "druggable_count": 2,
+        "pathways_covered": {
+          "RAS-MAPK": 0.09090909090909091,
+          "JAK-STAT": 0.16666666666666666,
+          "Cell cycle": 0.125
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Mucosal Melanoma of the Vulva/Vagina": {
+      "cancer_type": "Mucosal Melanoma of the Vulva/Vagina",
+      "lineage": "Vulva/Vagina",
+      "n_cell_lines": 3,
+      "driver_mutations": {},
+      "recommended_combination": [
+        "BRAF",
+        "CDK6",
+        "ERBB2"
+      ],
+      "combination_cost": 1.0,
+      "path_coverage": 0.8095238095238095,
+      "n_viability_paths": 42,
+      "top_essential_genes": {
+        "RAN": -4.834387665839719,
+        "SARS1": -4.230166312523875,
+        "SNRPF": -4.1110722802179165,
+        "RPS8": -4.097801984012455,
+        "KIF11": -4.060130916171476,
+        "RPL17": -3.9405853417934833,
+        "HSPE1": -3.7348254020920537,
+        "RPL23": -3.690667026838367,
+        "RRM1": -3.65191635931802,
+        "RPL18A": -3.57771903840285
+      },
+      "best_triple_combination": {
+        "targets": [
+          "BRAF",
+          "CDK6",
+          "ERBB2"
+        ],
+        "combined_score": 1.26105798425298,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.39473684210526316,
+        "path_coverage": 0.5,
+        "druggable_count": 3,
+        "pathways_covered": {
+          "RAS-MAPK": 0.09090909090909091,
+          "Cell cycle": 0.125,
+          "RTK signaling": 0.1
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Hepatoblastoma": {
+      "cancer_type": "Hepatoblastoma",
+      "lineage": "Liver",
+      "n_cell_lines": 3,
+      "driver_mutations": {},
+      "recommended_combination": [
+        "MAPK1",
+        "MCL1",
+        "MEK1"
+      ],
+      "combination_cost": 1.0,
+      "path_coverage": 0.8333333333333334,
+      "n_viability_paths": 30,
+      "top_essential_genes": {
+        "RAN": -4.3761819843911915,
+        "HSPE1": -3.8938021680828214,
+        "RPL17": -3.881717710916525,
+        "RPS8": -3.6715836265677613,
+        "FAU": -3.5746333924171276,
+        "RPL12": -3.532696624433402,
+        "SNRPF": -3.4985736745040255,
+        "RRM1": -3.4840425091714495,
+        "PUF60": -3.368361182697244,
+        "RPL23": -3.3515943572736857
+      },
+      "best_triple_combination": {
+        "targets": [
+          "MAPK1",
+          "MCL1",
+          "MEK1"
+        ],
+        "combined_score": 1.4277395373369328,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5,
+        "druggable_count": 0,
+        "pathways_covered": {
+          "RAS-MAPK": 0.09090909090909091,
+          "Apoptosis": 0.1111111111111111
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Head and Neck Carcinoma, Other": {
+      "cancer_type": "Head and Neck Carcinoma, Other",
+      "lineage": "Head and Neck",
+      "n_cell_lines": 3,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.3333333333333333,
+        "TP53_LoF": 0.3333333333333333
+      },
+      "recommended_combination": [
+        "CDK6",
+        "ERBB2",
+        "YAP1"
+      ],
+      "combination_cost": 2.8,
+      "path_coverage": 0.8333333333333334,
+      "n_viability_paths": 42,
+      "top_essential_genes": {
+        "RPL15": -5.731011348755478,
+        "SNRPD3": -5.418887017738621,
+        "HSPE1": -4.173290256875816,
+        "RAN": -4.134492839815466,
+        "RPL17": -3.887141799418533,
+        "PRIM2": -3.802371929601996,
+        "RPL21": -3.6707618287912815,
+        "PRELID1": -3.5496034418025553,
+        "DNA2": -3.3834084082482843,
+        "SNRPA1": -3.3632530138884693
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CDK6",
+          "ERBB2",
+          "YAP1"
+        ],
+        "combined_score": 1.7095867956390316,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5476190476190477,
+        "druggable_count": 2,
+        "pathways_covered": {
+          "Cell cycle": 0.125,
+          "RTK signaling": 0.1,
+          "Hippo": 0.16666666666666666
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Fibrosarcoma": {
+      "cancer_type": "Fibrosarcoma",
+      "lineage": "Soft Tissue",
+      "n_cell_lines": 3,
+      "driver_mutations": {
+        "CDKN2A_LoF": 1.0
+      },
+      "recommended_combination": [
+        "ERBB2",
+        "MAPK1",
+        "MET"
+      ],
+      "combination_cost": 2.541766048816171,
+      "path_coverage": 0.803921568627451,
+      "n_viability_paths": 51,
+      "top_essential_genes": {
+        "RPL17": -3.964436717744251,
+        "RPS20": -3.6762862826125713,
+        "RRM1": -3.640129685570738,
+        "SNRPA1": -3.584293325100376,
+        "RAN": -3.550421641846423,
+        "RPS8": -3.4419429539587103,
+        "SNRPF": -3.4327081275782416,
+        "RPL3": -3.4245015176582427,
+        "RPL31": -3.4179329903143687,
+        "RPL4": -3.3682813036899137
+      },
+      "best_triple_combination": {
+        "targets": [
+          "ERBB2",
+          "MAPK1",
+          "MET"
+        ],
+        "combined_score": 1.4529901747294136,
+        "synergy_score": 0.8066666666666666,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5098039215686274,
+        "druggable_count": 2,
+        "pathways_covered": {
+          "RAS-MAPK": 0.09090909090909091,
+          "RTK signaling": 0.2
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Gestational Trophoblastic Disease": {
+      "cancer_type": "Gestational Trophoblastic Disease",
+      "lineage": "Uterus",
+      "n_cell_lines": 3,
+      "driver_mutations": {},
+      "recommended_combination": [
+        "CCND1",
+        "MCL1",
+        "YAP1"
+      ],
+      "combination_cost": 2.7,
+      "path_coverage": 0.8333333333333334,
+      "n_viability_paths": 29,
+      "top_essential_genes": {
+        "RAN": -4.503663736987053,
+        "HSPE1": -4.057095514684801,
+        "RPL17": -3.8645167362323214,
+        "RRM1": -3.801425371258457,
+        "SARS1": -3.767220250391676,
+        "RPS8": -3.6887228170938546,
+        "SNRPF": -3.6540370839139324,
+        "RPL12": -3.548172760848718,
+        "KIF11": -3.4957313858501777,
+        "SNRPA1": -3.435094191800944
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CCND1",
+          "MCL1",
+          "YAP1"
+        ],
+        "combined_score": 1.5697788778554247,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5172413793103449,
+        "druggable_count": 0,
+        "pathways_covered": {
+          "Cell cycle": 0.125,
+          "Apoptosis": 0.1111111111111111,
+          "Hippo": 0.16666666666666666
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Epithelioid Sarcoma": {
+      "cancer_type": "Epithelioid Sarcoma",
+      "lineage": "Soft Tissue",
+      "n_cell_lines": 2,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.5,
+        "TP53_LoF": 0.5
+      },
+      "recommended_combination": [
+        "ERBB2",
+        "MAP2K1",
+        "MET"
+      ],
+      "combination_cost": 1.5,
+      "path_coverage": 0.8333333333333334,
+      "n_viability_paths": 36,
+      "top_essential_genes": {
+        "RAN": -4.3606524657981875,
+        "RPL17": -3.878695561291986,
+        "HSPE1": -3.816895427116479,
+        "SNRPF": -3.4869730107712122,
+        "RRM1": -3.4525688081223658,
+        "RPS8": -3.3853607297621133,
+        "FAU": -3.3104557825715517,
+        "PUF60": -3.282827058338677,
+        "RPL12": -3.230471414656751,
+        "SNRPA1": -3.2260556028804652
+      },
+      "best_triple_combination": {
+        "targets": [
+          "ERBB2",
+          "MAP2K1",
+          "MET"
+        ],
+        "combined_score": 1.3177758081324584,
+        "synergy_score": 0.8066666666666666,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5,
+        "druggable_count": 3,
+        "pathways_covered": {
+          "RAS-MAPK": 0.09090909090909091,
+          "RTK signaling": 0.2
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Myxofibrosarcoma": {
+      "cancer_type": "Myxofibrosarcoma",
+      "lineage": "Soft Tissue",
+      "n_cell_lines": 2,
+      "driver_mutations": {},
+      "recommended_combination": null,
+      "combination_cost": null,
+      "path_coverage": null,
+      "n_viability_paths": 0,
+      "top_essential_genes": {},
+      "best_triple_combination": null,
+      "n_triple_alternatives": 0
+    },
+    "Salivary Carcinoma": {
+      "cancer_type": "Salivary Carcinoma",
+      "lineage": "Head and Neck",
+      "n_cell_lines": 2,
+      "driver_mutations": {
+        "CDKN2A_LoF": 0.5,
+        "TP53_LoF": 0.5
+      },
+      "recommended_combination": [
+        "CDK4",
+        "CDK6",
+        "MCL1"
+      ],
+      "combination_cost": 2.324177193361787,
+      "path_coverage": 0.84,
+      "n_viability_paths": 50,
+      "top_essential_genes": {
+        "RPL15": -5.849182795618294,
+        "SNRPD3": -5.279116343936428,
+        "RAN": -4.386116493979671,
+        "PRIM2": -4.155544086012964,
+        "HSPE1": -4.08890612505811,
+        "SNRPA1": -3.8350439794592246,
+        "RPS8": -3.5571685487244276,
+        "VPS25": -3.5393349038668562,
+        "POLR2L": -3.460340923536011,
+        "PSMB3": -3.3793156606536243
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CDK4",
+          "CDK6",
+          "MCL1"
+        ],
+        "combined_score": 1.5595542939819964,
+        "synergy_score": 0.8066666666666666,
+        "resistance_score": 0.2631578947368421,
+        "path_coverage": 0.52,
+        "druggable_count": 2,
+        "pathways_covered": {
+          "Cell cycle": 0.25,
+          "Apoptosis": 0.1111111111111111
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Extra Gonadal Germ Cell Tumor": {
+      "cancer_type": "Extra Gonadal Germ Cell Tumor",
+      "lineage": "Other",
+      "n_cell_lines": 2,
+      "driver_mutations": {},
+      "recommended_combination": [
+        "CCNE1",
+        "MCL1",
+        "RPS6KB1"
+      ],
+      "combination_cost": 2.475336470452436,
+      "path_coverage": 0.8148148148148148,
+      "n_viability_paths": 27,
+      "top_essential_genes": {
+        "RPL15": -5.740648320152315,
+        "SNRPD3": -5.483903842276653,
+        "RAN": -4.244634786973836,
+        "HSPE1": -3.9334809074699217,
+        "RPL17": -3.601246697005976,
+        "SNRPA1": -3.508534890652427,
+        "RPL21": -3.504626052320977,
+        "PSMA6": -3.4122790447629505,
+        "RPS29": -3.3214290402859064,
+        "RPS8": -3.304786186418308
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CCNE1",
+          "MCL1",
+          "RPS6KB1"
+        ],
+        "combined_score": 1.3051401458514202,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5185185185185185,
+        "druggable_count": 0,
+        "pathways_covered": {
+          "Cell cycle": 0.125,
+          "Apoptosis": 0.1111111111111111
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Adenosquamous Carcinoma of the Pancreas": {
+      "cancer_type": "Adenosquamous Carcinoma of the Pancreas",
+      "lineage": "Pancreas",
+      "n_cell_lines": 2,
+      "driver_mutations": {
+        "KRAS": 1.0,
+        "KRASp.G12": 1.0,
+        "KRASp.G12D": 0.5,
+        "TP53_LoF": 1.0
+      },
+      "recommended_combination": [
+        "CDK6",
+        "ERBB2",
+        "PTK2"
+      ],
+      "combination_cost": 1.0,
+      "path_coverage": 0.8604651162790697,
+      "n_viability_paths": 43,
+      "top_essential_genes": {
+        "SNRPD3": -5.9318336611871,
+        "RPL15": -5.462527003815849,
+        "RAN": -4.886613832124821,
+        "RPL17": -3.9179137927575525,
+        "SNRPA1": -3.8409083536342274,
+        "SNRPF": -3.766887277724952,
+        "RRM1": -3.7253873099551074,
+        "HSPE1": -3.657055075964995,
+        "RPS8": -3.581814990294842,
+        "RPL23": -3.5089051234643422
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CDK6",
+          "ERBB2",
+          "PTK2"
+        ],
+        "combined_score": 1.4087452471741027,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5116279069767442,
+        "druggable_count": 2,
+        "pathways_covered": {
+          "Cell cycle": 0.125,
+          "RTK signaling": 0.1
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Clear Cell Sarcoma": {
+      "cancer_type": "Clear Cell Sarcoma",
+      "lineage": "Soft Tissue",
+      "n_cell_lines": 2,
+      "driver_mutations": {
+        "TP53_LoF": 1.0
+      },
+      "recommended_combination": [
+        "CDK4",
+        "ERBB3",
+        "GRB2"
+      ],
+      "combination_cost": 1.0,
+      "path_coverage": 0.8421052631578947,
+      "n_viability_paths": 38,
+      "top_essential_genes": {
+        "RAN": -4.485133330016697,
+        "RPL17": -4.009973047268329,
+        "HSPE1": -3.966475876707125,
+        "SNRPA1": -3.704868146793389,
+        "PLK1": -3.638961199758667,
+        "RPL23": -3.619255533573511,
+        "PRELID1": -3.597105935220121,
+        "RPS8": -3.531794080181779,
+        "PSMB3": -3.474569130632954,
+        "SF3B5": -3.4281529352741336
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CDK4",
+          "ERBB3",
+          "GRB2"
+        ],
+        "combined_score": 1.4177473684210526,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.39473684210526316,
+        "path_coverage": 0.5263157894736842,
+        "druggable_count": 1,
+        "pathways_covered": {
+          "Cell cycle": 0.125,
+          "RTK signaling": 0.1
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Adrenocortical Carcinoma": {
+      "cancer_type": "Adrenocortical Carcinoma",
+      "lineage": "Adrenal Gland",
+      "n_cell_lines": 2,
+      "driver_mutations": {
+        "TP53_LoF": 1.0
+      },
+      "recommended_combination": [
+        "CCNE1",
+        "CDK6",
+        "MCL1"
+      ],
+      "combination_cost": 1.5,
+      "path_coverage": 0.8055555555555556,
+      "n_viability_paths": 36,
+      "top_essential_genes": {
+        "SNRPD3": -5.250979566345057,
+        "RPL17": -3.992063082620371,
+        "SNRPF": -3.9613691627330594,
+        "PRIM2": -3.913187499196448,
+        "RAN": -3.821564674772473,
+        "HSPE1": -3.794330259176639,
+        "RPL21": -3.6367769165964896,
+        "PUF60": -3.5435682876107264,
+        "PHF5A": -3.440838879717177,
+        "SNRPA1": -3.433452344803387
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CCNE1",
+          "CDK6",
+          "MCL1"
+        ],
+        "combined_score": 1.423642367303497,
+        "synergy_score": 0.8066666666666666,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5277777777777778,
+        "druggable_count": 1,
+        "pathways_covered": {
+          "Cell cycle": 0.25,
+          "Apoptosis": 0.1111111111111111
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Squamous Cell Carcinoma of the Vulva/Vagina": {
+      "cancer_type": "Squamous Cell Carcinoma of the Vulva/Vagina",
+      "lineage": "Vulva/Vagina",
+      "n_cell_lines": 2,
+      "driver_mutations": {
+        "TP53_LoF": 1.0
+      },
+      "recommended_combination": [
+        "CDK6",
+        "ERBB2",
+        "PXN"
+      ],
+      "combination_cost": 1.5,
+      "path_coverage": 0.8636363636363636,
+      "n_viability_paths": 44,
+      "top_essential_genes": {
+        "RAN": -3.9691388127097023,
+        "HSPE1": -3.832599027675759,
+        "SNRPF": -3.676659653270788,
+        "RPL17": -3.5012208784183927,
+        "PSMA6": -3.4306232628031625,
+        "PHF5A": -3.378572061469197,
+        "SNRPA1": -3.2751695971835173,
+        "RRM1": -3.2115695411769685,
+        "PRELID1": -3.191934005444273,
+        "RPS3A": -3.144209409890784
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CDK6",
+          "ERBB2",
+          "PXN"
+        ],
+        "combined_score": 1.3523197094043395,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5,
+        "druggable_count": 2,
+        "pathways_covered": {
+          "Cell cycle": 0.125,
+          "RTK signaling": 0.1
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Bladder Squamous Cell Carcinoma": {
+      "cancer_type": "Bladder Squamous Cell Carcinoma",
+      "lineage": "Bladder/Urinary Tract",
+      "n_cell_lines": 2,
+      "driver_mutations": {
+        "CDKN2A_LoF": 1.0,
+        "PIK3CA": 0.5,
+        "PIK3CAp.E545": 0.5,
+        "TP53_LoF": 1.0
+      },
+      "recommended_combination": [
+        "E2F3",
+        "ERBB2",
+        "PXN"
+      ],
+      "combination_cost": 1.2016632542638983,
+      "path_coverage": 0.8157894736842105,
+      "n_viability_paths": 38,
+      "top_essential_genes": {
+        "HSPE1": -3.9627560190264686,
+        "RPL17": -3.849689699301098,
+        "RAN": -3.776906769568716,
+        "RPS8": -3.5978521733388265,
+        "RPS11": -3.4545308371887975,
+        "RPS3A": -3.418794985788696,
+        "PRELID1": -3.2762821400964564,
+        "WEE1": -3.230450804581759,
+        "RPS20": -3.228634472321829,
+        "RPS29": -3.170762917806228
+      },
+      "best_triple_combination": {
+        "targets": [
+          "E2F3",
+          "ERBB2",
+          "PXN"
+        ],
+        "combined_score": 1.5236562816822197,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5,
+        "druggable_count": 1,
+        "pathways_covered": {
+          "RTK signaling": 0.1
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Urethral Cancer": {
+      "cancer_type": "Urethral Cancer",
+      "lineage": "Bladder/Urinary Tract",
+      "n_cell_lines": 2,
+      "driver_mutations": {
+        "PTEN_LoF": 0.5,
+        "TP53_LoF": 1.0
+      },
+      "recommended_combination": [
+        "ERBB2",
+        "MAP2K1",
+        "MET"
+      ],
+      "combination_cost": 2.710118194302308,
+      "path_coverage": 0.8285714285714286,
+      "n_viability_paths": 35,
+      "top_essential_genes": {
+        "RAN": -4.315686441111532,
+        "HSPE1": -4.13415118976412,
+        "SNRPA1": -3.7499395006290728,
+        "RPL17": -3.7346986821681876,
+        "RPS8": -3.6191819823556766,
+        "RRM1": -3.615797163332058,
+        "SNRPF": -3.5137391477615454,
+        "PSMB3": -3.4354955431811978,
+        "KIF11": -3.314541324980748,
+        "RPL12": -3.3103986340975187
+      },
+      "best_triple_combination": {
+        "targets": [
+          "ERBB2",
+          "MAP2K1",
+          "MET"
+        ],
+        "combined_score": 1.3450471982605436,
+        "synergy_score": 0.8066666666666666,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5142857142857142,
+        "druggable_count": 3,
+        "pathways_covered": {
+          "RAS-MAPK": 0.09090909090909091,
+          "RTK signaling": 0.2
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Medullary Thyroid Cancer": {
+      "cancer_type": "Medullary Thyroid Cancer",
+      "lineage": "Thyroid",
+      "n_cell_lines": 2,
+      "driver_mutations": {},
+      "recommended_combination": null,
+      "combination_cost": null,
+      "path_coverage": null,
+      "n_viability_paths": 0,
+      "top_essential_genes": {},
+      "best_triple_combination": null,
+      "n_triple_alternatives": 0
+    },
+    "Retinoblastoma": {
+      "cancer_type": "Retinoblastoma",
+      "lineage": "Eye",
+      "n_cell_lines": 2,
+      "driver_mutations": {},
+      "recommended_combination": [
+        "FOXM1",
+        "IRS2",
+        "STAT5A"
+      ],
+      "combination_cost": 3.9038154026380987,
+      "path_coverage": 0.9166666666666666,
+      "n_viability_paths": 12,
+      "top_essential_genes": {
+        "RAN": -4.276796429419347,
+        "HSPE1": -4.138432156311196,
+        "RPL17": -3.959976329430491,
+        "SNRPA1": -3.754067253795891,
+        "SNRPF": -3.6569286605167144,
+        "RPS8": -3.624999424948154,
+        "POLR2L": -3.474084269486079,
+        "FAU": -3.4144269947681405,
+        "RPS19": -3.3485385138529007,
+        "RPL4": -3.286733859776369
+      },
+      "best_triple_combination": {
+        "targets": [
+          "FOXM1",
+          "IRS2",
+          "STAT5A"
+        ],
+        "combined_score": 1.0698916138374073,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5,
+        "druggable_count": 0,
+        "pathways_covered": {
+          "JAK-STAT": 0.16666666666666666
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Small Bowel Cancer": {
+      "cancer_type": "Small Bowel Cancer",
+      "lineage": "Bowel",
+      "n_cell_lines": 2,
+      "driver_mutations": {},
+      "recommended_combination": null,
+      "combination_cost": null,
+      "path_coverage": null,
+      "n_viability_paths": 0,
+      "top_essential_genes": {},
+      "best_triple_combination": null,
+      "n_triple_alternatives": 0
+    },
+    "Small Cell Neuroendocrine Carcinoma of the Cervix": {
+      "cancer_type": "Small Cell Neuroendocrine Carcinoma of the Cervix",
+      "lineage": "Cervix",
+      "n_cell_lines": 1,
+      "driver_mutations": {},
+      "recommended_combination": null,
+      "combination_cost": null,
+      "path_coverage": null,
+      "n_viability_paths": 0,
+      "top_essential_genes": {},
+      "best_triple_combination": null,
+      "n_triple_alternatives": 0
+    },
+    "Poorly Differentiated Thyroid Cancer": {
+      "cancer_type": "Poorly Differentiated Thyroid Cancer",
+      "lineage": "Thyroid",
+      "n_cell_lines": 1,
+      "driver_mutations": {
+        "BRAFp.V600E": 1.0,
+        "TP53_LoF": 1.0
+      },
+      "recommended_combination": [
+        "BCL2L1",
+        "BRAF",
+        "MET"
+      ],
+      "combination_cost": 1.4289771576373318,
+      "path_coverage": 0.8378378378378378,
+      "n_viability_paths": 37,
+      "top_essential_genes": {
+        "RAN": -4.815336353813735,
+        "HSPE1": -4.119373375443631,
+        "RPL17": -3.970058673051573,
+        "PCNA": -3.860312189457389,
+        "RPS29": -3.833706979271164,
+        "RPL23": -3.8085702502327656,
+        "FAU": -3.791283239999028,
+        "RPS3A": -3.6858593053795263,
+        "SARS1": -3.627380565449673,
+        "BUB3": -3.616142080256647
+      },
+      "best_triple_combination": {
+        "targets": [
+          "BCL2L1",
+          "BRAF",
+          "MET"
+        ],
+        "combined_score": 1.3136793991828595,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.39473684210526316,
+        "path_coverage": 0.5135135135135135,
+        "druggable_count": 3,
+        "pathways_covered": {
+          "RAS-MAPK": 0.09090909090909091,
+          "RTK signaling": 0.1,
+          "Apoptosis": 0.1111111111111111
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Alveolar Soft Part Sarcoma": {
+      "cancer_type": "Alveolar Soft Part Sarcoma",
+      "lineage": "Soft Tissue",
+      "n_cell_lines": 1,
+      "driver_mutations": {},
+      "recommended_combination": null,
+      "combination_cost": null,
+      "path_coverage": null,
+      "n_viability_paths": 0,
+      "top_essential_genes": {},
+      "best_triple_combination": null,
+      "n_triple_alternatives": 0
+    },
+    "Prostate Neuroendocrine Carcinoma": {
+      "cancer_type": "Prostate Neuroendocrine Carcinoma",
+      "lineage": "Prostate",
+      "n_cell_lines": 1,
+      "driver_mutations": {},
+      "recommended_combination": null,
+      "combination_cost": null,
+      "path_coverage": null,
+      "n_viability_paths": 0,
+      "top_essential_genes": {},
+      "best_triple_combination": null,
+      "n_triple_alternatives": 0
+    },
+    "Dermatofibrosarcoma Protuberans": {
+      "cancer_type": "Dermatofibrosarcoma Protuberans",
+      "lineage": "Skin",
+      "n_cell_lines": 1,
+      "driver_mutations": {},
+      "recommended_combination": null,
+      "combination_cost": null,
+      "path_coverage": null,
+      "n_viability_paths": 0,
+      "top_essential_genes": {},
+      "best_triple_combination": null,
+      "n_triple_alternatives": 0
+    },
+    "Gastrointestinal Neuroendocrine Tumors": {
+      "cancer_type": "Gastrointestinal Neuroendocrine Tumors",
+      "lineage": "Bowel",
+      "n_cell_lines": 1,
+      "driver_mutations": {},
+      "recommended_combination": null,
+      "combination_cost": null,
+      "path_coverage": null,
+      "n_viability_paths": 0,
+      "top_essential_genes": {},
+      "best_triple_combination": null,
+      "n_triple_alternatives": 0
+    },
+    "Gastrointestinal Stromal Tumor": {
+      "cancer_type": "Gastrointestinal Stromal Tumor",
+      "lineage": "Soft Tissue",
+      "n_cell_lines": 1,
+      "driver_mutations": {},
+      "recommended_combination": null,
+      "combination_cost": null,
+      "path_coverage": null,
+      "n_viability_paths": 0,
+      "top_essential_genes": {},
+      "best_triple_combination": null,
+      "n_triple_alternatives": 0
+    },
+    "Hereditary Spherocytosis": {
+      "cancer_type": "Hereditary Spherocytosis",
+      "lineage": "Myeloid",
+      "n_cell_lines": 1,
+      "driver_mutations": {},
+      "recommended_combination": null,
+      "combination_cost": null,
+      "path_coverage": null,
+      "n_viability_paths": 0,
+      "top_essential_genes": {},
+      "best_triple_combination": null,
+      "n_triple_alternatives": 0
+    },
+    "Sex Cord Stromal Tumor": {
+      "cancer_type": "Sex Cord Stromal Tumor",
+      "lineage": "Ovary/Fallopian Tube",
+      "n_cell_lines": 1,
+      "driver_mutations": {},
+      "recommended_combination": null,
+      "combination_cost": null,
+      "path_coverage": null,
+      "n_viability_paths": 0,
+      "top_essential_genes": {},
+      "best_triple_combination": null,
+      "n_triple_alternatives": 0
+    },
+    "Small Cell Carcinoma of the Cervix": {
+      "cancer_type": "Small Cell Carcinoma of the Cervix",
+      "lineage": "Cervix",
+      "n_cell_lines": 1,
+      "driver_mutations": {},
+      "recommended_combination": null,
+      "combination_cost": null,
+      "path_coverage": null,
+      "n_viability_paths": 0,
+      "top_essential_genes": {},
+      "best_triple_combination": null,
+      "n_triple_alternatives": 0
+    },
+    "Prostate Small Cell Carcinoma": {
+      "cancer_type": "Prostate Small Cell Carcinoma",
+      "lineage": "Prostate",
+      "n_cell_lines": 1,
+      "driver_mutations": {},
+      "recommended_combination": null,
+      "combination_cost": null,
+      "path_coverage": null,
+      "n_viability_paths": 0,
+      "top_essential_genes": {},
+      "best_triple_combination": null,
+      "n_triple_alternatives": 0
+    },
+    "Pancreatic Neuroendocrine Tumor": {
+      "cancer_type": "Pancreatic Neuroendocrine Tumor",
+      "lineage": "Pancreas",
+      "n_cell_lines": 1,
+      "driver_mutations": {},
+      "recommended_combination": null,
+      "combination_cost": null,
+      "path_coverage": null,
+      "n_viability_paths": 0,
+      "top_essential_genes": {},
+      "best_triple_combination": null,
+      "n_triple_alternatives": 0
+    },
+    "Mixed Cervical Carcinoma": {
+      "cancer_type": "Mixed Cervical Carcinoma",
+      "lineage": "Cervix",
+      "n_cell_lines": 1,
+      "driver_mutations": {},
+      "recommended_combination": [
+        "GRB2",
+        "MEK1",
+        "SREBF1"
+      ],
+      "combination_cost": 1.1962964832558536,
+      "path_coverage": 1.0,
+      "n_viability_paths": 6,
+      "top_essential_genes": {
+        "RAN": -4.227789327376208,
+        "HSPE1": -3.753545273013069,
+        "SNRPA1": -3.6957648680181654,
+        "RPL12": -3.5945415429089156,
+        "PUF60": -3.5301541268091534,
+        "VCP": -3.5109903591005307,
+        "SNU13": -3.4869186693116565,
+        "RPL17": -3.395441076752608,
+        "PSMB3": -3.3618907464158423,
+        "RPS11": -3.3580430119578666
+      },
+      "best_triple_combination": {
+        "targets": [
+          "GRB2",
+          "MEK1",
+          "SREBF1"
+        ],
+        "combined_score": 0.9208118829759905,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5,
+        "druggable_count": 0,
+        "pathways_covered": {}
+      },
+      "n_triple_alternatives": 10
+    },
+    "Ovarian Cancer, Other": {
+      "cancer_type": "Ovarian Cancer, Other",
+      "lineage": "Ovary/Fallopian Tube",
+      "n_cell_lines": 1,
+      "driver_mutations": {},
+      "recommended_combination": null,
+      "combination_cost": null,
+      "path_coverage": null,
+      "n_viability_paths": 0,
+      "top_essential_genes": {},
+      "best_triple_combination": null,
+      "n_triple_alternatives": 0
+    },
+    "Glassy Cell Carcinoma of the Cervix": {
+      "cancer_type": "Glassy Cell Carcinoma of the Cervix",
+      "lineage": "Cervix",
+      "n_cell_lines": 1,
+      "driver_mutations": {},
+      "recommended_combination": [
+        "CDK4",
+        "MAP2K1",
+        "MCL1"
+      ],
+      "combination_cost": 2.417348876597407,
+      "path_coverage": 0.8181818181818182,
+      "n_viability_paths": 44,
+      "top_essential_genes": {
+        "RAN": -4.420720749975913,
+        "HSPE1": -4.009612259301809,
+        "RPL17": -3.666106045878635,
+        "SNRPA1": -3.655964353816712,
+        "PCNA": -3.4747946058062382,
+        "RPS19": -3.456930915311584,
+        "RPS3A": -3.45159360802314,
+        "KIF11": -3.4311714401211892,
+        "PSMB3": -3.424589950437791,
+        "PSMA6": -3.402155100028944
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CDK4",
+          "MAP2K1",
+          "MCL1"
+        ],
+        "combined_score": 1.6355811359071009,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.39473684210526316,
+        "path_coverage": 0.5,
+        "druggable_count": 2,
+        "pathways_covered": {
+          "RAS-MAPK": 0.09090909090909091,
+          "Cell cycle": 0.125,
+          "Apoptosis": 0.1111111111111111
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Hepatocellular Carcinoma plus Intrahepatic Cholangiocarcinoma": {
+      "cancer_type": "Hepatocellular Carcinoma plus Intrahepatic Cholangiocarcinoma",
+      "lineage": "Liver",
+      "n_cell_lines": 1,
+      "driver_mutations": {
+        "CDKN2A_LoF": 1.0
+      },
+      "recommended_combination": [
+        "GAB2",
+        "MAP2K2",
+        "STAT3"
+      ],
+      "combination_cost": 1.5,
+      "path_coverage": 1.0,
+      "n_viability_paths": 25,
+      "top_essential_genes": {
+        "RAN": -4.143706847393452,
+        "HSPE1": -3.995925148673519,
+        "RPL17": -3.927985446525166,
+        "SNRPA1": -3.7115921472428433,
+        "SRSF3": -3.4844890481902784,
+        "RPL12": -3.4395053900108916,
+        "RPS3A": -3.435890710815777,
+        "RPS20": -3.3616560638966444,
+        "BUB3": -3.327272640363775,
+        "RPS8": -3.299967304961987
+      },
+      "best_triple_combination": {
+        "targets": [
+          "GAB2",
+          "MAP2K2",
+          "STAT3"
+        ],
+        "combined_score": 1.6375591940795329,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.3508771929824561,
+        "path_coverage": 0.56,
+        "druggable_count": 2,
+        "pathways_covered": {
+          "RAS-MAPK": 0.09090909090909091,
+          "JAK-STAT": 0.16666666666666666
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Sarcoma, NOS": {
+      "cancer_type": "Sarcoma, NOS",
+      "lineage": "Soft Tissue",
+      "n_cell_lines": 1,
+      "driver_mutations": {
+        "CDKN2A_LoF": 1.0,
+        "TP53_LoF": 1.0
+      },
+      "recommended_combination": [
+        "CDK6",
+        "ERBB2",
+        "MET"
+      ],
+      "combination_cost": 1.3,
+      "path_coverage": 0.8157894736842105,
+      "n_viability_paths": 38,
+      "top_essential_genes": {
+        "RAN": -4.565655101819985,
+        "SNRPA1": -4.095100479511138,
+        "SNRPF": -4.07690956483832,
+        "SARS1": -3.99505372334111,
+        "SMU1": -3.9340290207076634,
+        "PSMB3": -3.931135325368936,
+        "RPS8": -3.929484443717836,
+        "FAU": -3.878924985050448,
+        "PLK1": -3.844851996794264,
+        "RPL23": -3.790613399627026
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CDK6",
+          "ERBB2",
+          "MET"
+        ],
+        "combined_score": 1.1881445500052692,
+        "synergy_score": 0.8066666666666666,
+        "resistance_score": 0.0,
+        "path_coverage": 0.5,
+        "druggable_count": 3,
+        "pathways_covered": {
+          "Cell cycle": 0.125,
+          "RTK signaling": 0.2
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Ovarian Germ Cell Tumor": {
+      "cancer_type": "Ovarian Germ Cell Tumor",
+      "lineage": "Ovary/Fallopian Tube",
+      "n_cell_lines": 1,
+      "driver_mutations": {},
+      "recommended_combination": [
+        "CDK4",
+        "DUSP6",
+        "PTK2"
+      ],
+      "combination_cost": 2.711422957174882,
+      "path_coverage": 0.8604651162790697,
+      "n_viability_paths": 43,
+      "top_essential_genes": {
+        "HSPE1": -3.78396316116549,
+        "RPL17": -3.641378005576336,
+        "RAN": -3.6148589011745487,
+        "SNRPF": -3.437074475011179,
+        "PSMA6": -3.417146306559653,
+        "SMU1": -3.3689497552371126,
+        "RRM1": -3.350820594572918,
+        "PUF60": -3.3212112328346803,
+        "VCP": -3.289319066673168,
+        "RPS29": -3.2287377946385885
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CDK4",
+          "DUSP6",
+          "PTK2"
+        ],
+        "combined_score": 1.537319224424695,
+        "synergy_score": 0.9400000000000001,
+        "resistance_score": 0.39473684210526316,
+        "path_coverage": 0.5116279069767442,
+        "druggable_count": 1,
+        "pathways_covered": {
+          "Cell cycle": 0.125
+        }
+      },
+      "n_triple_alternatives": 10
+    },
+    "Giant Cell Tumor of Bone": {
+      "cancer_type": "Giant Cell Tumor of Bone",
+      "lineage": "Bone",
+      "n_cell_lines": 1,
+      "driver_mutations": {
+        "TP53_LoF": 1.0
+      },
+      "recommended_combination": [
+        "CDK4",
+        "CDK6",
+        "PTK2"
+      ],
+      "combination_cost": 1.5,
+      "path_coverage": 0.8604651162790697,
+      "n_viability_paths": 43,
+      "top_essential_genes": {
+        "SNRPD3": -5.438733081989112,
+        "RAN": -4.156374785770354,
+        "PRIM2": -3.8568905135270986,
+        "RPL17": -3.6923943273412982,
+        "RPS8": -3.4834341059384273,
+        "RPL21": -3.4274229095549433,
+        "RPL23": -3.4035869791607984,
+        "RPL12": -3.348935136559023,
+        "SNRPF": -3.3194649476546454,
+        "PRELID1": -3.310909065013416
+      },
+      "best_triple_combination": {
+        "targets": [
+          "CDK4",
+          "CDK6",
+          "PTK2"
+        ],
+        "combined_score": 1.4632790377339333,
+        "synergy_score": 0.8066666666666666,
+        "resistance_score": 0.2631578947368421,
+        "path_coverage": 0.5116279069767442,
+        "druggable_count": 2,
+        "pathways_covered": {
+          "Cell cycle": 0.25
+        }
+      },
+      "n_triple_alternatives": 10
+    }
+  }
+}

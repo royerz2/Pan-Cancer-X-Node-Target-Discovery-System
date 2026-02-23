@@ -1,0 +1,105 @@
+
+================================================================================
+X-NODE TARGET DISCOVERY REPORT
+Cancer Type: Ewing Sarcoma
+Lineage: Bone
+Cell Lines Analyzed: 51
+Viability Paths Identified: 49
+================================================================================
+
+DRIVER MUTATION LANDSCAPE:
+--------------------------------------------------------------------------------
+TP53_LoF: 66.7% of cell lines
+CDKN2A_LoF: 33.3% of cell lines
+BRAFp.V600E: 3.7% of cell lines
+PTEN_LoF: 3.7% of cell lines
+
+================================================================================
+TOP ESSENTIAL GENES (Cancer-Specific):
+--------------------------------------------------------------------------------
+RPL15: -5.874 (dependency score)
+SNRPD3: -5.384 (dependency score)
+RAN: -4.256 (dependency score)
+PRIM2: -4.080 (dependency score)
+HSPE1: -4.077 (dependency score)
+RPL17: -3.678 (dependency score)
+RPS3A: -3.326 (dependency score)
+RPL21: -3.314 (dependency score)
+RPS8: -3.290 (dependency score)
+RRM1: -3.283 (dependency score)
+
+================================================================================
+RECOMMENDED X-NODE TARGET COMBINATION:
+--------------------------------------------------------------------------------
+Optimal 3-node combination:
+  • CCND1
+  • EEFSEC
+  • FLI1
+
+Cost Score: 3.53
+Path Coverage: 85.4%
+Paths Covered: 35/49
+
+================================================================================
+ALTERNATIVE X-NODE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+Option 1: {CCND1, FLI1, STAT3}
+  Cost: 3.54, Size: 3 targets
+
+Option 2: {CCND1, GPX4, STAT3}
+  Cost: 3.62, Size: 3 targets
+
+Option 3: {CCND1, CHMP4B, STAT3}
+  Cost: 3.64, Size: 3 targets
+
+Option 4: {CCND1, STAT3, TRIM8}
+  Cost: 3.69, Size: 3 targets
+
+Option 5: {CCND1, STAG1, STAT3}
+  Cost: 3.71, Size: 3 targets
+
+================================================================================
+SYSTEMS BIOLOGY TRIPLE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+BEST TRIPLE COMBINATION: CCND1, EEFSEC, FLI1
+  Combined Score: 1.489 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.00 (lower is better)
+  Path Coverage: 51.0%
+  Druggable Targets: 0/3
+
+Drug Details:
+  • CCND1: Research target (no approved drugs)
+  • EEFSEC: Research target (no approved drugs)
+  • FLI1: Research target (no approved drugs)
+
+Pathway Coverage:
+  Cell cycle: 12%
+
+Alternative Triple Combinations:
+  1. CCND1, FLI1, SEPSECS (score: 1.489, synergy: 0.94)
+  2. CCND1, FLI1, GLRX3 (score: 1.493, synergy: 0.94)
+  3. CCND1, DDX19A, FLI1 (score: 1.495, synergy: 0.94)
+  4. CCND1, FLI1, IGF1R (score: 1.495, synergy: 0.94)
+
+================================================================================
+VIABILITY PATH SUMMARY:
+--------------------------------------------------------------------------------
+Total paths: 49
+Unique gene nodes: 2264
+
+Paths by type:
+  co_essential_module: 15
+  signaling_path: 28
+  cancer_specific: 1
+  perturbation_response: 5
+
+Sample paths:
+  [co_essential_module] Ewing Sarcoma_coessential_cluster_1: {OR10A2, OR2T6, OR52E6, OR6V1, FRG2B, TUBA3E...}
+  [co_essential_module] Ewing Sarcoma_coessential_cluster_5: {ZC3H3, CCNL1, CWC25, H2BC5, REXO2, C1QBP...}
+  [co_essential_module] Ewing Sarcoma_coessential_cluster_2: {FARS2, MRPL22, NDUFAF7, METTL17, ATP5ME, MRPS2...}
+  [co_essential_module] Ewing Sarcoma_coessential_cluster_14: {DNM2, ANKUB1, NPIPB11, RPL21, WTAP, PGBD5...}
+  [co_essential_module] Ewing Sarcoma_coessential_cluster_10: {XAGE3, H2AC6, NUP58, KNTC1, POLR1H, ARHGEF5...}
+================================================================================

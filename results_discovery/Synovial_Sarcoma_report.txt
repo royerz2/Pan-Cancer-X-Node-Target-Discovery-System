@@ -1,0 +1,106 @@
+
+================================================================================
+X-NODE TARGET DISCOVERY REPORT
+Cancer Type: Synovial Sarcoma
+Lineage: Soft Tissue
+Cell Lines Analyzed: 10
+Viability Paths Identified: 51
+================================================================================
+
+DRIVER MUTATION LANDSCAPE:
+--------------------------------------------------------------------------------
+BRAFp.V600E: 20.0% of cell lines
+CDKN2A_LoF: 20.0% of cell lines
+PIK3CA: 20.0% of cell lines
+PIK3CAp.H1047: 20.0% of cell lines
+TP53_LoF: 20.0% of cell lines
+
+================================================================================
+TOP ESSENTIAL GENES (Cancer-Specific):
+--------------------------------------------------------------------------------
+HSPE1: -3.903 (dependency score)
+RAN: -3.851 (dependency score)
+RPL17: -3.785 (dependency score)
+RPS8: -3.386 (dependency score)
+SNRPA1: -3.222 (dependency score)
+RRM1: -3.219 (dependency score)
+PSMA6: -3.211 (dependency score)
+RPL12: -3.179 (dependency score)
+RPS3A: -3.173 (dependency score)
+RPS29: -3.144 (dependency score)
+
+================================================================================
+RECOMMENDED X-NODE TARGET COMBINATION:
+--------------------------------------------------------------------------------
+Optimal 3-node combination:
+  • SPECC1L
+  • STAT3 (phase2): napabucasin, TTI-101, stattic
+  • YAP1
+
+Cost Score: 2.77
+Path Coverage: 89.7%
+Paths Covered: 35/51
+
+================================================================================
+ALTERNATIVE X-NODE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+Option 1: {CCND1, CDK4}
+  Cost: 2.90, Size: 2 targets
+
+Option 2: {CCND1, MDFIC2, STAT3}
+  Cost: 3.77, Size: 3 targets
+
+Option 3: {CCND1, STAT3, TIMM8B}
+  Cost: 3.77, Size: 3 targets
+
+Option 4: {CCND1, OVOL3, STAT3}
+  Cost: 3.77, Size: 3 targets
+
+Option 5: {CCND1, STAT3, TEX51}
+  Cost: 3.77, Size: 3 targets
+
+================================================================================
+SYSTEMS BIOLOGY TRIPLE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+BEST TRIPLE COMBINATION: SPECC1L, STAT3, YAP1
+  Combined Score: 1.726 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.35 (lower is better)
+  Path Coverage: 52.9%
+  Druggable Targets: 1/3
+
+Drug Details:
+  • SPECC1L: Research target (no approved drugs)
+  • STAT3 (phase2): napabucasin, TTI-101, stattic
+  • YAP1: Research target (no approved drugs)
+
+Pathway Coverage:
+  JAK-STAT: 17%
+  Hippo: 17%
+
+Alternative Triple Combinations:
+  1. CLTB, STAT3, YAP1 (score: 1.731, synergy: 0.94)
+  2. CCND1, FYN, YAP1 (score: 1.733, synergy: 0.94)
+  3. SLIRP, STAT3, YAP1 (score: 1.734, synergy: 0.94)
+  4. STAT3, YAP1, ZNF205 (score: 1.735, synergy: 0.94)
+
+================================================================================
+VIABILITY PATH SUMMARY:
+--------------------------------------------------------------------------------
+Total paths: 51
+Unique gene nodes: 2941
+
+Paths by type:
+  co_essential_module: 15
+  signaling_path: 28
+  perturbation_response: 8
+
+Sample paths:
+  [co_essential_module] Synovial Sarcoma_coessential_cluster_9: {MRPL22, APC, SLIRP, MRPS2, LST1, DPH1...}
+  [co_essential_module] Synovial Sarcoma_coessential_cluster_2: {FARS2, NGLY1, RNASEH2B, PLIN4, CPAP, WDR93...}
+  [co_essential_module] Synovial Sarcoma_coessential_cluster_7: {ATP5ME, RNF123, POLE4, LACTB, EXOC4, UBE3D...}
+  [co_essential_module] Synovial Sarcoma_coessential_cluster_15: {RPL41, SLC6A8, TRIM28, EGLN1, HECTD1, FOXM1...}
+  [co_essential_module] Synovial Sarcoma_coessential_cluster_10: {MIX23, CASC3, WTAP, OR4A47, WDR4, HEMK2...}
+================================================================================

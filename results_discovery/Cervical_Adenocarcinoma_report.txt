@@ -1,0 +1,105 @@
+
+================================================================================
+X-NODE TARGET DISCOVERY REPORT
+Cancer Type: Cervical Adenocarcinoma
+Lineage: Cervix
+Cell Lines Analyzed: 7
+Viability Paths Identified: 42
+================================================================================
+
+DRIVER MUTATION LANDSCAPE:
+--------------------------------------------------------------------------------
+TP53_LoF: 66.7% of cell lines
+KRAS: 33.3% of cell lines
+KRASp.G12: 33.3% of cell lines
+KRASp.G12D: 33.3% of cell lines
+
+================================================================================
+TOP ESSENTIAL GENES (Cancer-Specific):
+--------------------------------------------------------------------------------
+HSPE1: -4.009 (dependency score)
+RPL17: -3.928 (dependency score)
+RAN: -3.720 (dependency score)
+RRM1: -3.513 (dependency score)
+PUF60: -3.424 (dependency score)
+PRPF19: -3.320 (dependency score)
+PRELID1: -3.264 (dependency score)
+PHF5A: -3.254 (dependency score)
+KIF11: -3.251 (dependency score)
+RPL12: -3.231 (dependency score)
+
+================================================================================
+RECOMMENDED X-NODE TARGET COMBINATION:
+--------------------------------------------------------------------------------
+Optimal 3-node combination:
+  • CTNNB1
+  • EGFR (approved): erlotinib, gefitinib, osimertinib
+  • TGIF1
+
+Cost Score: 2.76
+Path Coverage: 81.0%
+Paths Covered: 34/42
+
+================================================================================
+ALTERNATIVE X-NODE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+Option 1: {CCND1, CDK4}
+  Cost: 2.90, Size: 2 targets
+
+Option 2: {CCND1, STAT3, SYN2}
+  Cost: 3.76, Size: 3 targets
+
+Option 3: {CCND1, RECQL4, STAT3}
+  Cost: 3.76, Size: 3 targets
+
+Option 4: {ANKUB1, CCND1, STAT3}
+  Cost: 3.76, Size: 3 targets
+
+Option 5: {CCND1, OVOL3, STAT3}
+  Cost: 3.76, Size: 3 targets
+
+================================================================================
+SYSTEMS BIOLOGY TRIPLE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+BEST TRIPLE COMBINATION: CTNNB1, EGFR, TGIF1
+  Combined Score: 1.747 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.42 (lower is better)
+  Path Coverage: 50.0%
+  Druggable Targets: 1/3
+
+Drug Details:
+  • CTNNB1: Research target (no approved drugs)
+  • EGFR (approved): erlotinib, gefitinib, osimertinib
+  • TGIF1: Research target (no approved drugs)
+
+Pathway Coverage:
+  Wnt: 17%
+  RTK signaling: 10%
+
+Alternative Triple Combinations:
+  1. ARHGDIA, CTNNB1, EGFR (score: 1.754, synergy: 0.94)
+  2. CDK6, EGFR, TGIF1 (score: 1.757, synergy: 0.94)
+  3. CDK2, EGFR, TGIF1 (score: 1.759, synergy: 0.94)
+  4. EGFR, FYN, TGIF1 (score: 1.760, synergy: 0.94)
+
+================================================================================
+VIABILITY PATH SUMMARY:
+--------------------------------------------------------------------------------
+Total paths: 42
+Unique gene nodes: 2083
+
+Paths by type:
+  co_essential_module: 7
+  signaling_path: 28
+  perturbation_response: 7
+
+Sample paths:
+  [co_essential_module] Cervical Adenocarcinoma_coessential_cluster_2: {APC, ARHGDIA, EXOC4, UBE3D, PGGT1B, DPH1...}
+  [co_essential_module] Cervical Adenocarcinoma_coessential_cluster_7: {ADAMTS7, DNM2, ANKUB1, ATP5ME, NPIPB11, RPL21...}
+  [co_essential_module] Cervical Adenocarcinoma_coessential_cluster_1: {STARD7, POLE4, EGLN1, MRPS7, FOXM1, KCTD5...}
+  [co_essential_module] Cervical Adenocarcinoma_coessential_cluster_3: {XAGE3, RPL41, METTL17, VRK1, NUP58, FAM210A...}
+  [co_essential_module] Cervical Adenocarcinoma_coessential_cluster_4: {MYH9, RAB7A, TAF2, IARS2, CUL2, RPS19BP1...}
+================================================================================

@@ -1,0 +1,41 @@
+================================================================================
+TRIPLE COMBINATION REPORT: Breast Neoplasm, NOS
+================================================================================
+
+TARGETS: BCL2L1, MET, PXN
+
+SCORES:
+  Combined Score: 1.169 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.00 (lower is better)
+  Combo Toxicity: 0.00 (lower is better)
+  Path Coverage: 50.0%
+  Total Cost: 4.57
+  Druggable Targets: 2/3
+
+DRUG INFORMATION:
+  BCL2L1:
+    Drugs: navitoclax
+    Stage: phase2
+    Toxicities: thrombocytopenia
+  MET:
+    Drugs: capmatinib, tepotinib, crizotinib
+    Stage: approved
+    Toxicities: edema, nausea
+  PXN: No approved drugs (research target)
+
+COMBINATION TOXICITY ASSESSMENT:
+  No known major drug-drug interactions
+  No major overlapping toxicity classes
+  Component Scores: DDI=0.00, Overlap=0.00
+
+PATHWAY COVERAGE:
+  Apoptosis: 11%
+  RTK signaling: 10%
+
+RATIONALE:
+  This triple combination targets multiple signaling nodes to achieve
+  complete pathway inhibition while minimizing resistance probability.
+  The combination covers 2 pathways
+  with 2 clinically druggable targets.
+================================================================================

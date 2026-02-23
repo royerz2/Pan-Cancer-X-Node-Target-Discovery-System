@@ -1,0 +1,34 @@
+================================================================================
+TRIPLE COMBINATION REPORT: Retinoblastoma
+================================================================================
+
+TARGETS: FOXM1, IRS2, STAT5A
+
+SCORES:
+  Combined Score: 1.070 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.00 (lower is better)
+  Combo Toxicity: 0.00 (lower is better)
+  Path Coverage: 50.0%
+  Total Cost: 3.93
+  Druggable Targets: 0/3
+
+DRUG INFORMATION:
+  FOXM1: No approved drugs (research target)
+  IRS2: No approved drugs (research target)
+  STAT5A: No approved drugs (research target)
+
+COMBINATION TOXICITY ASSESSMENT:
+  No known major drug-drug interactions
+  No major overlapping toxicity classes
+  Component Scores: DDI=0.00, Overlap=0.00
+
+PATHWAY COVERAGE:
+  JAK-STAT: 17%
+
+RATIONALE:
+  This triple combination targets multiple signaling nodes to achieve
+  complete pathway inhibition while minimizing resistance probability.
+  The combination covers 1 pathways
+  with 0 clinically druggable targets.
+================================================================================

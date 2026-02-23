@@ -1,0 +1,104 @@
+
+================================================================================
+X-NODE TARGET DISCOVERY REPORT
+Cancer Type: Embryonal Tumor
+Lineage: CNS/Brain
+Cell Lines Analyzed: 21
+Viability Paths Identified: 53
+================================================================================
+
+DRIVER MUTATION LANDSCAPE:
+--------------------------------------------------------------------------------
+TP53_LoF: 40.0% of cell lines
+CDKN2A_LoF: 26.7% of cell lines
+PTEN_LoF: 6.7% of cell lines
+
+================================================================================
+TOP ESSENTIAL GENES (Cancer-Specific):
+--------------------------------------------------------------------------------
+RAN: -4.065 (dependency score)
+HSPE1: -3.965 (dependency score)
+RPL17: -3.881 (dependency score)
+RPS8: -3.493 (dependency score)
+RRM1: -3.384 (dependency score)
+RPS3A: -3.335 (dependency score)
+RPL12: -3.313 (dependency score)
+RPS19: -3.233 (dependency score)
+RPS29: -3.201 (dependency score)
+POLR2L: -3.178 (dependency score)
+
+================================================================================
+RECOMMENDED X-NODE TARGET COMBINATION:
+--------------------------------------------------------------------------------
+Optimal 3-node combination:
+  • CDK4 (approved): palbociclib, ribociclib, abemaciclib
+  • CDK6 (approved): palbociclib, ribociclib, abemaciclib
+  • MCL1 (phase1): AMG-176, S64315
+
+Cost Score: 2.70
+Path Coverage: 82.9%
+Paths Covered: 34/53
+
+================================================================================
+ALTERNATIVE X-NODE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+Option 1: {CCND1, STAT3}
+  Cost: 2.80, Size: 2 targets
+
+Option 2: {CCND1, CDK4}
+  Cost: 2.90, Size: 2 targets
+
+Option 3: {CDK4, STAT3, SYN2}
+  Cost: 3.70, Size: 3 targets
+
+Option 4: {CDK4, RECQL4, STAT3}
+  Cost: 3.70, Size: 3 targets
+
+Option 5: {ANKUB1, CDK4, STAT3}
+  Cost: 3.70, Size: 3 targets
+
+================================================================================
+SYSTEMS BIOLOGY TRIPLE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+BEST TRIPLE COMBINATION: CDK4, CDK6, MCL1
+  Combined Score: 1.784 (lower is better)
+  Synergy Score: 0.81 (higher is better)
+  Resistance Score: 0.26 (lower is better)
+  Path Coverage: 50.9%
+  Druggable Targets: 2/3
+
+Drug Details:
+  • CDK4 (approved): palbociclib, ribociclib, abemaciclib
+  • CDK6 (approved): palbociclib, ribociclib, abemaciclib
+  • MCL1 (phase1): AMG-176, S64315
+
+Pathway Coverage:
+  Cell cycle: 25%
+  Apoptosis: 11%
+
+Alternative Triple Combinations:
+  1. CCND1, TRUB2, WAC (score: 1.807, synergy: 0.94)
+  2. CCND1, POLG, TRUB2 (score: 1.810, synergy: 0.94)
+  3. CCND1, SLC25A28, TRUB2 (score: 1.810, synergy: 0.94)
+  4. CCND1, POLG, WAC (score: 1.811, synergy: 0.94)
+
+================================================================================
+VIABILITY PATH SUMMARY:
+--------------------------------------------------------------------------------
+Total paths: 53
+Unique gene nodes: 1902
+
+Paths by type:
+  co_essential_module: 15
+  signaling_path: 34
+  perturbation_response: 4
+
+Sample paths:
+  [co_essential_module] Embryonal Tumor_coessential_cluster_4: {SNRPB2, POLG2, WAC, TRUB2, ATP5ME, SLC25A28...}
+  [co_essential_module] Embryonal Tumor_coessential_cluster_9: {WTAP, FNBP4, MRPS34, MYBL2, UBAP1, RARS1...}
+  [co_essential_module] Embryonal Tumor_coessential_cluster_1: {ANKUB1, PGBD5, MRPL16, AQP7B, CUL2, HMGB3...}
+  [co_essential_module] Embryonal Tumor_coessential_cluster_10: {MT2A, PTTG1, JMJD6, RANBP3, EPC2, EPC1...}
+  [co_essential_module] Embryonal Tumor_coessential_cluster_13: {ATIC, PCNX3, EIF5B, WDR4, FPGS, ZFAND5...}
+================================================================================

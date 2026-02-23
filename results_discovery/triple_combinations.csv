@@ -1,0 +1,77 @@
+Cancer_Type,Lineage,Cell_Lines,Triple_Targets,Target_1,Target_2,Target_3,Combined_Score,Synergy_Score,Resistance_Score,Path_Coverage,Druggable_Count,Drug_1,Drug_2,Drug_3,Pathways_Covered
+Mature B-Cell Neoplasms,Lymphoid,130,CCND1 + MCL1 + POU2AF1,CCND1,MCL1,POU2AF1,1.527,0.94,0.00,50.0%,0,N/A,AMG-176,N/A,2
+Diffuse Glioma,CNS/Brain,96,CCND1 + CHMP4B + RPP25L,CCND1,CHMP4B,RPP25L,1.680,0.94,0.00,54.2%,0,N/A,N/A,N/A,1
+Colorectal Adenocarcinoma,Bowel,96,CCND1 + CTNNB1 + KLF5,CCND1,CTNNB1,KLF5,1.564,0.94,0.00,50.0%,0,N/A,N/A,N/A,2
+Esophagogastric Adenocarcinoma,Esophagus/Stomach,74,CCND1 + RAB10 + SNAP23,CCND1,RAB10,SNAP23,1.699,0.94,0.00,56.9%,0,N/A,N/A,N/A,1
+Ovarian Epithelial Tumor,Ovary/Fallopian Tube,71,CCND1 + CFLAR + PAX8,CCND1,CFLAR,PAX8,1.629,0.94,0.00,54.9%,0,N/A,N/A,N/A,1
+Neuroblastoma,Peripheral Nervous System,51,CCND1 + GATA3 + LDB1,CCND1,GATA3,LDB1,1.647,0.94,0.00,58.6%,0,N/A,N/A,N/A,1
+Ewing Sarcoma,Bone,51,CCND1 + EEFSEC + FLI1,CCND1,EEFSEC,FLI1,1.489,0.94,0.00,51.0%,0,N/A,N/A,N/A,1
+Bladder Urothelial Carcinoma,Bladder/Urinary Tract,35,CCND1 + FYN + YAP1,CCND1,FYN,YAP1,1.691,0.94,0.00,50.0%,1,N/A,dasatinib,N/A,3
+Osteosarcoma,Bone,29,CCND1 + FXN + HNRNPH1,CCND1,FXN,HNRNPH1,1.632,0.94,0.00,52.8%,0,N/A,N/A,N/A,1
+T-Lymphoblastic Leukemia/Lymphoma,Lymphoid,27,CCND1 + LCK + NKX2-3,CCND1,LCK,NKX2-3,1.799,0.94,0.00,57.4%,0,N/A,N/A,N/A,2
+Rhabdomyosarcoma,Soft Tissue,25,CCND1 + MCL1 + MMGT1,CCND1,MCL1,MMGT1,1.587,0.94,0.00,51.2%,0,N/A,AMG-176,N/A,2
+Hepatocellular Carcinoma,Liver,24,CCND1 + FYN + GRB2,CCND1,FYN,GRB2,1.704,0.94,0.00,51.0%,1,N/A,dasatinib,N/A,2
+Rhabdoid Cancer,Kidney,16,CCND1 + DCLRE1B + UBE2D3,CCND1,DCLRE1B,UBE2D3,1.595,0.94,0.00,51.0%,0,N/A,N/A,N/A,1
+Ocular Melanoma,Eye,15,ANKUB1 + CCND1 + E2F3,ANKUB1,CCND1,E2F3,1.563,0.94,0.00,50.0%,0,N/A,N/A,N/A,1
+Liposarcoma,Soft Tissue,13,CCND1 + FGFR1 + GRB2,CCND1,FGFR1,GRB2,1.590,0.94,0.00,53.7%,1,N/A,erdafitinib,N/A,2
+Non-Seminomatous Germ Cell Tumor,Testis,12,CCND1 + FYN + PARP1,CCND1,FYN,PARP1,1.732,0.94,0.00,52.0%,2,N/A,dasatinib,olaparib,2
+Chondrosarcoma,Bone,9,BCAR1 + CCNE2 + MET,BCAR1,CCNE2,MET,0.933,0.94,0.00,50.0%,1,N/A,N/A,capmatinib,1
+Nerve Sheath Tumor,Peripheral Nervous System,9,CCND1 + FGFR1 + GRB2,CCND1,FGFR1,GRB2,1.703,0.94,0.00,58.9%,1,N/A,erdafitinib,N/A,2
+Hodgkin Lymphoma,Lymphoid,9,CCND1 + CFL1 + JAK1,CCND1,CFL1,JAK1,1.369,0.94,0.00,50.0%,1,N/A,N/A,ruxolitinib,2
+Undifferentiated Pleomorphic Sarcoma/Malignant Fibrous Histiocytoma/High-Grade Spindle Cell Sarcoma,Soft Tissue,9,CCND1 + FGFR1 + FYN,CCND1,FGFR1,FYN,1.683,0.94,0.00,52.0%,2,N/A,erdafitinib,dasatinib,3
+Merkel Cell Carcinoma,Skin,8,CCNE1 + PTK2 + YAP1,CCNE1,PTK2,YAP1,1.442,0.94,0.00,50.0%,0,N/A,N/A,N/A,2
+Prostate Adenocarcinoma,Prostate,6,ANKUB1 + CCND1 + NPIPB11,ANKUB1,CCND1,NPIPB11,1.435,0.94,0.00,50.0%,0,N/A,N/A,N/A,1
+"Breast Neoplasm, NOS",Breast,4,BCL2L1 + MET + PXN,BCL2L1,MET,PXN,1.169,0.94,0.00,50.0%,2,navitoclax,capmatinib,N/A,2
+SMARCA4-deficient undifferentiated tumor,Lung,4,CDK6 + ERBB2 + PTK2,CDK6,ERBB2,PTK2,1.173,0.94,0.00,50.0%,2,palbociclib,trastuzumab,N/A,2
+Acute Leukemias of Ambiguous Lineage,Myeloid,3,CDK6 + MAP2K1 + STAT5A,CDK6,MAP2K1,STAT5A,1.403,0.94,0.00,51.9%,2,palbociclib,trametinib,N/A,3
+Hepatoblastoma,Liver,3,MAPK1 + MCL1 + MEK1,MAPK1,MCL1,MEK1,1.428,0.94,0.00,50.0%,0,N/A,AMG-176,N/A,2
+"Head and Neck Carcinoma, Other",Head and Neck,3,CDK6 + ERBB2 + YAP1,CDK6,ERBB2,YAP1,1.710,0.94,0.00,54.8%,2,palbociclib,trastuzumab,N/A,3
+Gestational Trophoblastic Disease,Uterus,3,CCND1 + MCL1 + YAP1,CCND1,MCL1,YAP1,1.570,0.94,0.00,51.7%,0,N/A,AMG-176,N/A,3
+Extra Gonadal Germ Cell Tumor,Other,2,CCNE1 + MCL1 + RPS6KB1,CCNE1,MCL1,RPS6KB1,1.305,0.94,0.00,51.9%,0,N/A,AMG-176,N/A,2
+Adenosquamous Carcinoma of the Pancreas,Pancreas,2,CDK6 + ERBB2 + PTK2,CDK6,ERBB2,PTK2,1.409,0.94,0.00,51.2%,2,palbociclib,trastuzumab,N/A,2
+Squamous Cell Carcinoma of the Vulva/Vagina,Vulva/Vagina,2,CDK6 + ERBB2 + PXN,CDK6,ERBB2,PXN,1.352,0.94,0.00,50.0%,2,palbociclib,trastuzumab,N/A,2
+Bladder Squamous Cell Carcinoma,Bladder/Urinary Tract,2,E2F3 + ERBB2 + PXN,E2F3,ERBB2,PXN,1.524,0.94,0.00,50.0%,1,N/A,trastuzumab,N/A,1
+Retinoblastoma,Eye,2,FOXM1 + IRS2 + STAT5A,FOXM1,IRS2,STAT5A,1.070,0.94,0.00,50.0%,0,N/A,N/A,N/A,1
+Mixed Cervical Carcinoma,Cervix,1,GRB2 + MEK1 + SREBF1,GRB2,MEK1,SREBF1,0.921,0.94,0.00,50.0%,0,N/A,N/A,N/A,0
+Melanoma,Skin,135,FERMT2 + SOX10 + STAT3,FERMT2,SOX10,STAT3,1.596,0.94,0.35,54.0%,1,N/A,N/A,napabucasin,1
+Head and Neck Squamous Cell Carcinoma,Head and Neck,89,ITGB1 + PPP1R12A + STAT3,ITGB1,PPP1R12A,STAT3,1.675,0.94,0.35,51.6%,1,N/A,N/A,napabucasin,1
+Lung Neuroendocrine Tumor,Lung,85,E2F1 + SKP2 + STAT3,E2F1,SKP2,STAT3,1.513,0.94,0.35,51.3%,1,N/A,N/A,napabucasin,2
+Invasive Breast Carcinoma,Breast,82,FOXA1 + PPP1R15B + STAT3,FOXA1,PPP1R15B,STAT3,1.583,0.94,0.35,50.0%,1,N/A,N/A,napabucasin,1
+Acute Myeloid Leukemia,Myeloid,64,CBFB + SPI1 + STAT3,CBFB,SPI1,STAT3,1.416,0.94,0.35,51.7%,1,N/A,N/A,napabucasin,1
+Renal Cell Carcinoma,Kidney,56,CFLAR + HNF1B + STAT3,CFLAR,HNF1B,STAT3,1.557,0.94,0.35,53.8%,1,N/A,N/A,napabucasin,1
+Intraductal Papillary Neoplasm of the Bile Duct,Biliary Tract,37,GRB2 + SLC2A1 + STAT3,GRB2,SLC2A1,STAT3,1.731,0.94,0.35,55.6%,1,N/A,N/A,napabucasin,1
+Endometrial Carcinoma,Uterus,37,MAPK3 + PAX8 + STAT3,MAPK3,PAX8,STAT3,1.617,0.94,0.35,50.0%,1,N/A,N/A,napabucasin,2
+B-Cell Acute Lymphoblastic Leukemia,Lymphoid,32,CCND3 + GCLC + STAT3,CCND3,GCLC,STAT3,1.413,0.94,0.35,51.7%,1,N/A,N/A,napabucasin,1
+Esophageal Squamous Cell Carcinoma,Esophagus/Stomach,30,ADAR + STAT3 + STX4,ADAR,STAT3,STX4,1.655,0.94,0.35,53.1%,1,N/A,napabucasin,N/A,1
+Myeloproliferative Neoplasms,Myeloid,18,GAB2 + SOS1 + STAT3,GAB2,SOS1,STAT3,1.586,0.94,0.35,50.0%,1,N/A,N/A,napabucasin,1
+Mature T and NK Neoplasms,Lymphoid,17,RPL15 + RPL21 + STAT3,RPL15,RPL21,STAT3,1.719,0.94,0.35,68.1%,1,N/A,N/A,napabucasin,1
+Anaplastic Thyroid Cancer,Thyroid,13,SEPHS2 + STAT3 + YAP1,SEPHS2,STAT3,YAP1,1.728,0.94,0.35,53.2%,1,N/A,napabucasin,N/A,2
+Leiomyosarcoma,Soft Tissue,11,EGFR + KRAS + PTK2,EGFR,KRAS,PTK2,1.747,0.94,0.35,50.0%,2,erlotinib,sotorasib,N/A,2
+Synovial Sarcoma,Soft Tissue,10,SPECC1L + STAT3 + YAP1,SPECC1L,STAT3,YAP1,1.726,0.94,0.35,52.9%,1,N/A,napabucasin,N/A,2
+Intracholecystic Papillary Neoplasm,Biliary Tract,7,RAF1 + SREBF1 + STAT3,RAF1,SREBF1,STAT3,1.581,0.94,0.35,50.0%,1,N/A,N/A,napabucasin,2
+Cutaneous Squamous Cell Carcinoma,Skin,6,PXN + SNAI2 + STAT3,PXN,SNAI2,STAT3,1.575,0.94,0.35,51.0%,1,N/A,N/A,napabucasin,1
+Ampullary Carcinoma,Ampulla of Vater,5,CTNNB1 + SLC2A1 + STAT3,CTNNB1,SLC2A1,STAT3,1.612,0.94,0.35,50.0%,1,N/A,N/A,napabucasin,2
+Hepatocellular Carcinoma plus Intrahepatic Cholangiocarcinoma,Liver,1,GAB2 + MAP2K2 + STAT3,GAB2,MAP2K2,STAT3,1.638,0.94,0.35,56.0%,2,N/A,trametinib,napabucasin,2
+Mucosal Melanoma of the Vulva/Vagina,Vulva/Vagina,3,BRAF + CDK6 + ERBB2,BRAF,CDK6,ERBB2,1.261,0.94,0.39,50.0%,3,vemurafenib,palbociclib,trastuzumab,3
+Clear Cell Sarcoma,Soft Tissue,2,CDK4 + ERBB3 + GRB2,CDK4,ERBB3,GRB2,1.418,0.94,0.39,52.6%,1,palbociclib,N/A,N/A,2
+Poorly Differentiated Thyroid Cancer,Thyroid,1,BCL2L1 + BRAF + MET,BCL2L1,BRAF,MET,1.314,0.94,0.39,51.4%,3,navitoclax,vemurafenib,capmatinib,3
+Glassy Cell Carcinoma of the Cervix,Cervix,1,CDK4 + MAP2K1 + MCL1,CDK4,MAP2K1,MCL1,1.636,0.94,0.39,50.0%,2,palbociclib,trametinib,AMG-176,3
+Ovarian Germ Cell Tumor,Ovary/Fallopian Tube,1,CDK4 + DUSP6 + PTK2,CDK4,DUSP6,PTK2,1.537,0.94,0.39,51.2%,1,palbociclib,N/A,N/A,1
+Non-Small Cell Lung Cancer,Lung,165,EGFR + MAP2K1 + SLC2A1,EGFR,MAP2K1,SLC2A1,1.759,0.94,0.42,50.9%,2,erlotinib,trametinib,N/A,2
+Non-Cancerous,Lymphoid,151,E2F3 + EGFR + JUNB,E2F3,EGFR,JUNB,1.722,0.94,0.42,50.8%,1,N/A,erlotinib,N/A,1
+Pleural Mesothelioma,Pleura,36,EGFR + ELMO2 + MAP2K1,EGFR,ELMO2,MAP2K1,1.722,0.94,0.42,50.0%,2,erlotinib,N/A,trametinib,2
+Well-Differentiated Thyroid Cancer,Thyroid,9,E2F3 + EGFR + SOCS3,E2F3,EGFR,SOCS3,1.700,0.94,0.42,51.0%,1,N/A,erlotinib,N/A,1
+Cervical Adenocarcinoma,Cervix,7,CTNNB1 + EGFR + TGIF1,CTNNB1,EGFR,TGIF1,1.747,0.94,0.42,50.0%,1,N/A,erlotinib,N/A,2
+Uterine Sarcoma/Mesenchymal,Uterus,4,E2F3 + EGFR + TFCP2L1,E2F3,EGFR,TFCP2L1,1.687,0.94,0.42,50.0%,1,N/A,erlotinib,N/A,1
+Pancreatic Adenocarcinoma,Pancreas,64,KRAS + STAT3 + UROD,KRAS,STAT3,UROD,0.963,0.94,0.44,53.7%,2,sotorasib,napabucasin,N/A,2
+Breast Ductal Carcinoma In Situ,Breast,6,ERBB2 + MET + SREBF1,ERBB2,MET,SREBF1,1.592,0.81,0.00,51.1%,2,trastuzumab,capmatinib,N/A,1
+Fibrosarcoma,Soft Tissue,3,ERBB2 + MAPK1 + MET,ERBB2,MAPK1,MET,1.453,0.81,0.00,51.0%,2,trastuzumab,N/A,capmatinib,2
+Epithelioid Sarcoma,Soft Tissue,2,ERBB2 + MAP2K1 + MET,ERBB2,MAP2K1,MET,1.318,0.81,0.00,50.0%,3,trastuzumab,trametinib,capmatinib,2
+Adrenocortical Carcinoma,Adrenal Gland,2,CCNE1 + CDK6 + MCL1,CCNE1,CDK6,MCL1,1.424,0.81,0.00,52.8%,1,N/A,palbociclib,AMG-176,2
+Urethral Cancer,Bladder/Urinary Tract,2,ERBB2 + MAP2K1 + MET,ERBB2,MAP2K1,MET,1.345,0.81,0.00,51.4%,3,trastuzumab,trametinib,capmatinib,2
+"Sarcoma, NOS",Soft Tissue,1,CDK6 + ERBB2 + MET,CDK6,ERBB2,MET,1.188,0.81,0.00,50.0%,3,palbociclib,trastuzumab,capmatinib,2
+Embryonal Tumor,CNS/Brain,21,CDK4 + CDK6 + MCL1,CDK4,CDK6,MCL1,1.784,0.81,0.26,50.9%,2,palbociclib,palbociclib,AMG-176,2
+Non-Hodgkin Lymphoma,Lymphoid,16,CDK4 + CDK6 + NFKB1,CDK4,CDK6,NFKB1,1.753,0.81,0.26,53.8%,2,palbociclib,palbociclib,N/A,2
+Meningothelial Tumor,CNS/Brain,4,CDK4 + CDK6 + MCL1,CDK4,CDK6,MCL1,1.652,0.81,0.26,52.7%,2,palbociclib,palbociclib,AMG-176,2
+Salivary Carcinoma,Head and Neck,2,CDK4 + CDK6 + MCL1,CDK4,CDK6,MCL1,1.560,0.81,0.26,52.0%,2,palbociclib,palbociclib,AMG-176,2
+Giant Cell Tumor of Bone,Bone,1,CDK4 + CDK6 + PTK2,CDK4,CDK6,PTK2,1.463,0.81,0.26,51.2%,2,palbociclib,palbociclib,N/A,1

@@ -1,0 +1,104 @@
+
+================================================================================
+X-NODE TARGET DISCOVERY REPORT
+Cancer Type: Gestational Trophoblastic Disease
+Lineage: Uterus
+Cell Lines Analyzed: 3
+Viability Paths Identified: 29
+================================================================================
+
+DRIVER MUTATION LANDSCAPE:
+--------------------------------------------------------------------------------
+No mutation data available
+
+================================================================================
+TOP ESSENTIAL GENES (Cancer-Specific):
+--------------------------------------------------------------------------------
+RAN: -4.504 (dependency score)
+HSPE1: -4.057 (dependency score)
+RPL17: -3.865 (dependency score)
+RRM1: -3.801 (dependency score)
+SARS1: -3.767 (dependency score)
+RPS8: -3.689 (dependency score)
+SNRPF: -3.654 (dependency score)
+RPL12: -3.548 (dependency score)
+KIF11: -3.496 (dependency score)
+SNRPA1: -3.435 (dependency score)
+
+================================================================================
+RECOMMENDED X-NODE TARGET COMBINATION:
+--------------------------------------------------------------------------------
+Optimal 3-node combination:
+  • CCND1
+  • MCL1 (phase1): AMG-176, S64315
+  • YAP1
+
+Cost Score: 2.70
+Path Coverage: 83.3%
+Paths Covered: 20/29
+
+================================================================================
+ALTERNATIVE X-NODE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+Option 1: {CDK4, MDFIC2, STAT3}
+  Cost: 3.70, Size: 3 targets
+
+Option 2: {CDK4, STAT3, TIMM8B}
+  Cost: 3.70, Size: 3 targets
+
+Option 3: {CDK4, OVOL3, STAT3}
+  Cost: 3.70, Size: 3 targets
+
+Option 4: {CDK4, STAT3, TEX51}
+  Cost: 3.70, Size: 3 targets
+
+Option 5: {ADORA3, CDK4, STAT3}
+  Cost: 3.70, Size: 3 targets
+
+================================================================================
+SYSTEMS BIOLOGY TRIPLE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+BEST TRIPLE COMBINATION: CCND1, MCL1, YAP1
+  Combined Score: 1.570 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.00 (lower is better)
+  Path Coverage: 51.7%
+  Druggable Targets: 0/3
+
+Drug Details:
+  • CCND1: Research target (no approved drugs)
+  • MCL1 (phase1): AMG-176, S64315
+  • YAP1: Research target (no approved drugs)
+
+Pathway Coverage:
+  Hippo: 17%
+  Cell cycle: 12%
+  Apoptosis: 11%
+
+Alternative Triple Combinations:
+  1. CCND1, CTNNB1, MCL1 (score: 1.581, synergy: 0.94)
+  2. CCND1, MAPK1, MCL1 (score: 1.601, synergy: 0.94)
+  3. CCND1, MAPK3, MCL1 (score: 1.601, synergy: 0.94)
+  4. CCND1, MCL1, NR6A1 (score: 1.604, synergy: 0.94)
+
+================================================================================
+VIABILITY PATH SUMMARY:
+--------------------------------------------------------------------------------
+Total paths: 29
+Unique gene nodes: 2369
+
+Paths by type:
+  co_essential_module: 7
+  signaling_path: 17
+  cancer_specific: 1
+  perturbation_response: 4
+
+Sample paths:
+  [co_essential_module] Gestational Trophoblastic Disease_coessential_cluster_1: {DCAF10, GRB2, GATA2, LEO1, PPARG, EGLN1...}
+  [co_essential_module] Gestational Trophoblastic Disease_coessential_cluster_3: {APC, ZC3H3, RNF123, PGGT1B, CASQ1, NASP...}
+  [co_essential_module] Gestational Trophoblastic Disease_coessential_cluster_4: {MRPL34, ATP5ME, SMC6, MRPL16, HSD17B10, NUP54...}
+  [co_essential_module] Gestational Trophoblastic Disease_coessential_cluster_2: {TADA2B, MSH3, STARD7, UNC119B, HTR7, CPAP...}
+  [co_essential_module] Gestational Trophoblastic Disease_coessential_cluster_7: {ADAMTS7, DNM2, ANKUB1, NPIPB11, RPL21, WTAP...}
+================================================================================

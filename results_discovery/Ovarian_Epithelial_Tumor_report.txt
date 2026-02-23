@@ -1,0 +1,111 @@
+
+================================================================================
+X-NODE TARGET DISCOVERY REPORT
+Cancer Type: Ovarian Epithelial Tumor
+Lineage: Ovary/Fallopian Tube
+Cell Lines Analyzed: 71
+Viability Paths Identified: 51
+================================================================================
+
+DRIVER MUTATION LANDSCAPE:
+--------------------------------------------------------------------------------
+TP53_LoF: 63.8% of cell lines
+CDKN2A_LoF: 32.8% of cell lines
+KRAS: 13.8% of cell lines
+KRASp.G12: 12.1% of cell lines
+PIK3CA: 12.1% of cell lines
+KRASp.G12D: 10.3% of cell lines
+PIK3CAp.H1047: 10.3% of cell lines
+PTEN_LoF: 10.3% of cell lines
+BRAFp.V600E: 3.4% of cell lines
+KRASp.G13: 1.7% of cell lines
+
+================================================================================
+TOP ESSENTIAL GENES (Cancer-Specific):
+--------------------------------------------------------------------------------
+RPL15: -5.565 (dependency score)
+SNRPD3: -5.487 (dependency score)
+RAN: -4.337 (dependency score)
+HSPE1: -3.920 (dependency score)
+RPL17: -3.822 (dependency score)
+PRIM2: -3.557 (dependency score)
+SNRPF: -3.475 (dependency score)
+SNRPA1: -3.323 (dependency score)
+PSMA6: -3.320 (dependency score)
+RRM1: -3.308 (dependency score)
+
+================================================================================
+RECOMMENDED X-NODE TARGET COMBINATION:
+--------------------------------------------------------------------------------
+Optimal 3-node combination:
+  • CCND1
+  • CFLAR
+  • PAX8
+
+Cost Score: 3.87
+Path Coverage: 81.4%
+Paths Covered: 35/51
+
+================================================================================
+ALTERNATIVE X-NODE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+Option 1: {CCND1, EMG1, STAT3}
+  Cost: 3.87, Size: 3 targets
+
+Option 2: {CCND1, PAX8, STAT3}
+  Cost: 3.99, Size: 3 targets
+
+Option 3: {CCND1, STAT3, UHRF1}
+  Cost: 4.01, Size: 3 targets
+
+Option 4: {CCND1, DHRSX, STAT3}
+  Cost: 4.01, Size: 3 targets
+
+Option 5: {CCND1, SEPTIN7, STAT3}
+  Cost: 4.10, Size: 3 targets
+
+================================================================================
+SYSTEMS BIOLOGY TRIPLE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+BEST TRIPLE COMBINATION: CCND1, CFLAR, PAX8
+  Combined Score: 1.629 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.00 (lower is better)
+  Path Coverage: 54.9%
+  Druggable Targets: 0/3
+
+Drug Details:
+  • CCND1: Research target (no approved drugs)
+  • CFLAR: Research target (no approved drugs)
+  • PAX8: Research target (no approved drugs)
+
+Pathway Coverage:
+  Cell cycle: 12%
+
+Alternative Triple Combinations:
+  1. CCND1, FERMT2, PAX8 (score: 1.634, synergy: 0.94)
+  2. CCND1, FYN, PAX8 (score: 1.640, synergy: 0.94)
+  3. CCND1, DDX3X, PAX8 (score: 1.640, synergy: 0.94)
+  4. CCND1, PARD6B, PAX8 (score: 1.640, synergy: 0.94)
+
+================================================================================
+VIABILITY PATH SUMMARY:
+--------------------------------------------------------------------------------
+Total paths: 51
+Unique gene nodes: 1750
+
+Paths by type:
+  co_essential_module: 15
+  signaling_path: 28
+  cancer_specific: 1
+  perturbation_response: 7
+
+Sample paths:
+  [co_essential_module] Ovarian Epithelial Tumor_coessential_cluster_12: {EXOC2, ARGLU1, APC, NUP58, HECTD1, SMARCA5...}
+  [co_essential_module] Ovarian Epithelial Tumor_coessential_cluster_2: {METTL17, ATP5ME, MRPL16, MRPS34, ATP5F1C, MICOS10...}
+  [co_essential_module] Ovarian Epithelial Tumor_coessential_cluster_1: {MRPL34, DNM2, ANKUB1, NPIPB11, RPL21, WTAP...}
+  [co_essential_module] Ovarian Epithelial Tumor_coessential_cluster_3: {FOXD4, SMC6, IARS2, FAF2, CUL2, CCAR1...}
+  [co_essential_module] Ovarian Epithelial Tumor_coessential_cluster_14: {KCTD10, RAB10, RFK, VPS4B, ARHGEF7, RELA...}
+================================================================================

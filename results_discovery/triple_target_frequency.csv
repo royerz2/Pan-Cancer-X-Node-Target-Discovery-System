@@ -1,0 +1,90 @@
+Target_Gene,Appearances_in_Triples,Avg_Synergy_Score,Clinical_Stage,Available_Drugs,Cancer_Types
+CCND1,21,0.94,unknown,,Mature B-Cell Neoplasms; Diffuse Glioma; Colorectal Adenocarcinoma; Esophagogastric Adenocarcinoma; Ovarian Epithelial Tumor; Neuroblastoma; Ewing Sarcoma; Bladder Urothelial Carcinoma; Osteosarcoma; T-Lymphoblastic Leukemia/Lymphoma...
+STAT3,19,0.94,phase2,napabucasin; TTI-101; stattic,Melanoma; Head and Neck Squamous Cell Carcinoma; Lung Neuroendocrine Tumor; Invasive Breast Carcinoma; Acute Myeloid Leukemia; Pancreatic Adenocarcinoma; Renal Cell Carcinoma; Intraductal Papillary Neoplasm of the Bile Duct; Endometrial Carcinoma; B-Cell Acute Lymphoblastic Leukemia...
+CDK6,13,0.87,approved,palbociclib; ribociclib; abemaciclib,"Embryonal Tumor; Non-Hodgkin Lymphoma; Meningothelial Tumor; SMARCA4-deficient undifferentiated tumor; Acute Leukemias of Ambiguous Lineage; Mucosal Melanoma of the Vulva/Vagina; Head and Neck Carcinoma, Other; Salivary Carcinoma; Adenosquamous Carcinoma of the Pancreas; Adrenocortical Carcinoma..."
+ERBB2,11,0.88,approved,trastuzumab; pertuzumab; lapatinib,"Breast Ductal Carcinoma In Situ; SMARCA4-deficient undifferentiated tumor; Mucosal Melanoma of the Vulva/Vagina; Head and Neck Carcinoma, Other; Fibrosarcoma; Epithelioid Sarcoma; Adenosquamous Carcinoma of the Pancreas; Squamous Cell Carcinoma of the Vulva/Vagina; Bladder Squamous Cell Carcinoma; Urethral Cancer..."
+MCL1,10,0.89,phase1,AMG-176; S64315,Mature B-Cell Neoplasms; Rhabdomyosarcoma; Embryonal Tumor; Meningothelial Tumor; Hepatoblastoma; Gestational Trophoblastic Disease; Salivary Carcinoma; Extra Gonadal Germ Cell Tumor; Adrenocortical Carcinoma; Glassy Cell Carcinoma of the Cervix
+CDK4,8,0.86,approved,palbociclib; ribociclib; abemaciclib,Embryonal Tumor; Non-Hodgkin Lymphoma; Meningothelial Tumor; Salivary Carcinoma; Clear Cell Sarcoma; Glassy Cell Carcinoma of the Cervix; Ovarian Germ Cell Tumor; Giant Cell Tumor of Bone
+MET,8,0.86,approved,capmatinib; tepotinib; crizotinib,"Chondrosarcoma; Breast Ductal Carcinoma In Situ; Breast Neoplasm, NOS; Fibrosarcoma; Epithelioid Sarcoma; Urethral Cancer; Poorly Differentiated Thyroid Cancer; Sarcoma, NOS"
+EGFR,7,0.94,approved,erlotinib; gefitinib; osimertinib,Non-Small Cell Lung Cancer; Non-Cancerous; Pleural Mesothelioma; Leiomyosarcoma; Well-Differentiated Thyroid Cancer; Cervical Adenocarcinoma; Uterine Sarcoma/Mesenchymal
+MAP2K1,6,0.90,approved,trametinib; cobimetinib; binimetinib,Non-Small Cell Lung Cancer; Pleural Mesothelioma; Acute Leukemias of Ambiguous Lineage; Epithelioid Sarcoma; Urethral Cancer; Glassy Cell Carcinoma of the Cervix
+GRB2,6,0.94,unknown,,Intraductal Papillary Neoplasm of the Bile Duct; Hepatocellular Carcinoma; Liposarcoma; Nerve Sheath Tumor; Clear Cell Sarcoma; Mixed Cervical Carcinoma
+YAP1,6,0.94,unknown,,"Bladder Urothelial Carcinoma; Anaplastic Thyroid Cancer; Synovial Sarcoma; Merkel Cell Carcinoma; Head and Neck Carcinoma, Other; Gestational Trophoblastic Disease"
+PTK2,6,0.92,unknown,,Leiomyosarcoma; Merkel Cell Carcinoma; SMARCA4-deficient undifferentiated tumor; Adenosquamous Carcinoma of the Pancreas; Ovarian Germ Cell Tumor; Giant Cell Tumor of Bone
+E2F3,5,0.94,unknown,,Non-Cancerous; Ocular Melanoma; Well-Differentiated Thyroid Cancer; Uterine Sarcoma/Mesenchymal; Bladder Squamous Cell Carcinoma
+FYN,4,0.94,approved,dasatinib; saracatinib,Bladder Urothelial Carcinoma; Hepatocellular Carcinoma; Non-Seminomatous Germ Cell Tumor; Undifferentiated Pleomorphic Sarcoma/Malignant Fibrous Histiocytoma/High-Grade Spindle Cell Sarcoma
+PXN,4,0.94,unknown,,"Cutaneous Squamous Cell Carcinoma; Breast Neoplasm, NOS; Squamous Cell Carcinoma of the Vulva/Vagina; Bladder Squamous Cell Carcinoma"
+SLC2A1,3,0.94,unknown,,Non-Small Cell Lung Cancer; Intraductal Papillary Neoplasm of the Bile Duct; Ampullary Carcinoma
+CTNNB1,3,0.94,unknown,,Colorectal Adenocarcinoma; Cervical Adenocarcinoma; Ampullary Carcinoma
+FGFR1,3,0.94,approved,erdafitinib; pemigatinib,Liposarcoma; Nerve Sheath Tumor; Undifferentiated Pleomorphic Sarcoma/Malignant Fibrous Histiocytoma/High-Grade Spindle Cell Sarcoma
+CCNE1,3,0.90,unknown,,Merkel Cell Carcinoma; Extra Gonadal Germ Cell Tumor; Adrenocortical Carcinoma
+SREBF1,3,0.90,unknown,,Intracholecystic Papillary Neoplasm; Breast Ductal Carcinoma In Situ; Mixed Cervical Carcinoma
+CFLAR,2,0.94,unknown,,Ovarian Epithelial Tumor; Renal Cell Carcinoma
+PAX8,2,0.94,unknown,,Ovarian Epithelial Tumor; Endometrial Carcinoma
+KRAS,2,0.94,approved,sotorasib; adagrasib,Pancreatic Adenocarcinoma; Leiomyosarcoma
+GAB2,2,0.94,unknown,,Myeloproliferative Neoplasms; Hepatocellular Carcinoma plus Intrahepatic Cholangiocarcinoma
+ANKUB1,2,0.94,unknown,,Ocular Melanoma; Prostate Adenocarcinoma
+BCL2L1,2,0.94,phase2,navitoclax,"Breast Neoplasm, NOS; Poorly Differentiated Thyroid Cancer"
+STAT5A,2,0.94,unknown,,Acute Leukemias of Ambiguous Lineage; Retinoblastoma
+BRAF,2,0.94,approved,vemurafenib; dabrafenib; encorafenib,Mucosal Melanoma of the Vulva/Vagina; Poorly Differentiated Thyroid Cancer
+MAPK1,2,0.87,unknown,,Hepatoblastoma; Fibrosarcoma
+MEK1,2,0.94,unknown,,Hepatoblastoma; Mixed Cervical Carcinoma
+JUNB,1,0.94,unknown,,Non-Cancerous
+FERMT2,1,0.94,unknown,,Melanoma
+SOX10,1,0.94,unknown,,Melanoma
+POU2AF1,1,0.94,unknown,,Mature B-Cell Neoplasms
+CHMP4B,1,0.94,unknown,,Diffuse Glioma
+RPP25L,1,0.94,unknown,,Diffuse Glioma
+KLF5,1,0.94,unknown,,Colorectal Adenocarcinoma
+ITGB1,1,0.94,unknown,,Head and Neck Squamous Cell Carcinoma
+PPP1R12A,1,0.94,unknown,,Head and Neck Squamous Cell Carcinoma
+E2F1,1,0.94,unknown,,Lung Neuroendocrine Tumor
+SKP2,1,0.94,unknown,,Lung Neuroendocrine Tumor
+FOXA1,1,0.94,unknown,,Invasive Breast Carcinoma
+PPP1R15B,1,0.94,unknown,,Invasive Breast Carcinoma
+RAB10,1,0.94,unknown,,Esophagogastric Adenocarcinoma
+SNAP23,1,0.94,unknown,,Esophagogastric Adenocarcinoma
+CBFB,1,0.94,unknown,,Acute Myeloid Leukemia
+SPI1,1,0.94,unknown,,Acute Myeloid Leukemia
+UROD,1,0.94,unknown,,Pancreatic Adenocarcinoma
+HNF1B,1,0.94,unknown,,Renal Cell Carcinoma
+GATA3,1,0.94,unknown,,Neuroblastoma
+LDB1,1,0.94,unknown,,Neuroblastoma
+EEFSEC,1,0.94,unknown,,Ewing Sarcoma
+FLI1,1,0.94,unknown,,Ewing Sarcoma
+MAPK3,1,0.94,unknown,,Endometrial Carcinoma
+ELMO2,1,0.94,unknown,,Pleural Mesothelioma
+CCND3,1,0.94,unknown,,B-Cell Acute Lymphoblastic Leukemia
+GCLC,1,0.94,unknown,,B-Cell Acute Lymphoblastic Leukemia
+ADAR,1,0.94,unknown,,Esophageal Squamous Cell Carcinoma
+STX4,1,0.94,unknown,,Esophageal Squamous Cell Carcinoma
+FXN,1,0.94,unknown,,Osteosarcoma
+HNRNPH1,1,0.94,unknown,,Osteosarcoma
+LCK,1,0.94,unknown,,T-Lymphoblastic Leukemia/Lymphoma
+NKX2-3,1,0.94,unknown,,T-Lymphoblastic Leukemia/Lymphoma
+MMGT1,1,0.94,unknown,,Rhabdomyosarcoma
+SOS1,1,0.94,unknown,,Myeloproliferative Neoplasms
+RPL15,1,0.94,unknown,,Mature T and NK Neoplasms
+RPL21,1,0.94,unknown,,Mature T and NK Neoplasms
+NFKB1,1,0.81,unknown,,Non-Hodgkin Lymphoma
+DCLRE1B,1,0.94,unknown,,Rhabdoid Cancer
+UBE2D3,1,0.94,unknown,,Rhabdoid Cancer
+SEPHS2,1,0.94,unknown,,Anaplastic Thyroid Cancer
+PARP1,1,0.94,approved,olaparib; rucaparib; niraparib,Non-Seminomatous Germ Cell Tumor
+SPECC1L,1,0.94,unknown,,Synovial Sarcoma
+BCAR1,1,0.94,unknown,,Chondrosarcoma
+CCNE2,1,0.94,unknown,,Chondrosarcoma
+CFL1,1,0.94,unknown,,Hodgkin Lymphoma
+JAK1,1,0.94,approved,ruxolitinib; tofacitinib; baricitinib,Hodgkin Lymphoma
+SOCS3,1,0.94,unknown,,Well-Differentiated Thyroid Cancer
+RAF1,1,0.94,unknown,,Intracholecystic Papillary Neoplasm
+TGIF1,1,0.94,unknown,,Cervical Adenocarcinoma
+SNAI2,1,0.94,unknown,,Cutaneous Squamous Cell Carcinoma
+NPIPB11,1,0.94,unknown,,Prostate Adenocarcinoma
+TFCP2L1,1,0.94,unknown,,Uterine Sarcoma/Mesenchymal
+RPS6KB1,1,0.94,unknown,,Extra Gonadal Germ Cell Tumor
+ERBB3,1,0.94,preclinical,,Clear Cell Sarcoma
+FOXM1,1,0.94,unknown,,Retinoblastoma
+IRS2,1,0.94,unknown,,Retinoblastoma
+MAP2K2,1,0.94,approved,trametinib; cobimetinib; binimetinib,Hepatocellular Carcinoma plus Intrahepatic Cholangiocarcinoma
+DUSP6,1,0.94,unknown,,Ovarian Germ Cell Tumor

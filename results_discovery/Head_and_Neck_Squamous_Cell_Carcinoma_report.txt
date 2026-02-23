@@ -1,0 +1,108 @@
+
+================================================================================
+X-NODE TARGET DISCOVERY REPORT
+Cancer Type: Head and Neck Squamous Cell Carcinoma
+Lineage: Head and Neck
+Cell Lines Analyzed: 89
+Viability Paths Identified: 64
+================================================================================
+
+DRIVER MUTATION LANDSCAPE:
+--------------------------------------------------------------------------------
+TP53_LoF: 86.1% of cell lines
+CDKN2A_LoF: 55.6% of cell lines
+PIK3CA: 11.1% of cell lines
+PIK3CAp.H1047: 6.9% of cell lines
+PIK3CAp.E545: 4.2% of cell lines
+PTEN_LoF: 4.2% of cell lines
+BRAFp.V600E: 1.4% of cell lines
+
+================================================================================
+TOP ESSENTIAL GENES (Cancer-Specific):
+--------------------------------------------------------------------------------
+RPL15: -5.745 (dependency score)
+SNRPD3: -5.030 (dependency score)
+RAN: -4.330 (dependency score)
+HSPE1: -4.111 (dependency score)
+RPL17: -3.756 (dependency score)
+PRIM2: -3.652 (dependency score)
+RPL21: -3.509 (dependency score)
+SNRPF: -3.367 (dependency score)
+SNRPA1: -3.356 (dependency score)
+RPL12: -3.335 (dependency score)
+
+================================================================================
+RECOMMENDED X-NODE TARGET COMBINATION:
+--------------------------------------------------------------------------------
+Optimal 3-node combination:
+  • ITGB1
+  • PPP1R12A
+  • STAT3 (phase2): napabucasin, TTI-101, stattic
+
+Cost Score: 2.73
+Path Coverage: 90.4%
+Paths Covered: 47/64
+
+================================================================================
+ALTERNATIVE X-NODE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+Option 1: {CCND1, CDK4}
+  Cost: 2.83, Size: 2 targets
+
+Option 2: {BAHCC1, CCND1, STAT3}
+  Cost: 3.73, Size: 3 targets
+
+Option 3: {CCND1, SAA2, STAT3}
+  Cost: 3.73, Size: 3 targets
+
+Option 4: {CCND1, PAGE3, STAT3}
+  Cost: 3.76, Size: 3 targets
+
+Option 5: {CCND1, MMP12, STAT3}
+  Cost: 3.79, Size: 3 targets
+
+================================================================================
+SYSTEMS BIOLOGY TRIPLE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+BEST TRIPLE COMBINATION: ITGB1, PPP1R12A, STAT3
+  Combined Score: 1.675 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.35 (lower is better)
+  Path Coverage: 51.6%
+  Druggable Targets: 1/3
+
+Drug Details:
+  • ITGB1: Research target (no approved drugs)
+  • PPP1R12A: Research target (no approved drugs)
+  • STAT3 (phase2): napabucasin, TTI-101, stattic
+
+Pathway Coverage:
+  JAK-STAT: 17%
+
+Alternative Triple Combinations:
+  1. ITGB1, PFDN1, STAT3 (score: 1.680, synergy: 0.94)
+  2. ATP6V0E1, ITGB1, STAT3 (score: 1.680, synergy: 0.94)
+  3. PFDN1, PPP1R12A, STAT3 (score: 1.683, synergy: 0.94)
+  4. ATP6V0E1, PPP1R12A, STAT3 (score: 1.683, synergy: 0.94)
+
+================================================================================
+VIABILITY PATH SUMMARY:
+--------------------------------------------------------------------------------
+Total paths: 64
+Unique gene nodes: 1766
+
+Paths by type:
+  co_essential_module: 15
+  signaling_path: 34
+  cancer_specific: 1
+  perturbation_response: 14
+
+Sample paths:
+  [co_essential_module] Head and Neck Squamous Cell Carcinoma_coessential_cluster_13: {POLG2, DNAJC11, VPS35, MLST8, TIMM17A, ATP5ME...}
+  [co_essential_module] Head and Neck Squamous Cell Carcinoma_coessential_cluster_15: {MRPL34, DNM2, ANKUB1, NPIPB11, RPL21, WTAP...}
+  [co_essential_module] Head and Neck Squamous Cell Carcinoma_coessential_cluster_14: {ADAMTS7, TYW1B, SRY, MST1, ST13, SIGLEC14...}
+  [co_essential_module] Head and Neck Squamous Cell Carcinoma_coessential_cluster_5: {RMP24, SRRM2, SMARCA5, LSM10, WWTR1, FAF2...}
+  [co_essential_module] Head and Neck Squamous Cell Carcinoma_coessential_cluster_3: {FARS2, PTCD1, MRPS2, C1QBP, TSFM, MRPL2...}
+================================================================================

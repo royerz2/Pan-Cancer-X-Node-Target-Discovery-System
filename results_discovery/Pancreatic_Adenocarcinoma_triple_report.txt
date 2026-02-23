@@ -1,0 +1,43 @@
+================================================================================
+TRIPLE COMBINATION REPORT: Pancreatic Adenocarcinoma
+================================================================================
+
+TARGETS: KRAS, STAT3, UROD
+
+SCORES:
+  Combined Score: 0.963 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.44 (lower is better)
+  Combo Toxicity: 0.13 (lower is better)
+  Path Coverage: 53.7%
+  Total Cost: 3.57
+  Druggable Targets: 2/3
+
+DRUG INFORMATION:
+  KRAS:
+    Drugs: sotorasib, adagrasib
+    Stage: approved
+    Toxicities: diarrhea, hepatotoxicity
+  STAT3:
+    Drugs: napabucasin, TTI-101, stattic
+    Stage: phase2
+    Toxicities: GI toxicity
+  UROD: No approved drugs (research target)
+
+COMBINATION TOXICITY ASSESSMENT:
+  Known Drug-Drug Interactions:
+    - napabucasin + sotorasib: minor (Additive GI toxicity)
+  Overlapping Toxicity Classes:
+    - gi_toxicity: 4 drugs share this toxicity
+  Component Scores: DDI=0.10, Overlap=0.24
+
+PATHWAY COVERAGE:
+  JAK-STAT: 17%
+  RAS-MAPK: 9%
+
+RATIONALE:
+  This triple combination targets multiple signaling nodes to achieve
+  complete pathway inhibition while minimizing resistance probability.
+  The combination covers 2 pathways
+  with 2 clinically druggable targets.
+================================================================================

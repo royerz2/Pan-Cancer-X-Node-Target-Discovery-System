@@ -1,0 +1,105 @@
+
+================================================================================
+X-NODE TARGET DISCOVERY REPORT
+Cancer Type: Undifferentiated Pleomorphic Sarcoma/Malignant Fibrous Histiocytoma/High-Grade Spindle Cell Sarcoma
+Lineage: Soft Tissue
+Cell Lines Analyzed: 9
+Viability Paths Identified: 50
+================================================================================
+
+DRIVER MUTATION LANDSCAPE:
+--------------------------------------------------------------------------------
+CDKN2A_LoF: 66.7% of cell lines
+TP53_LoF: 50.0% of cell lines
+BRAFp.V600E: 16.7% of cell lines
+
+================================================================================
+TOP ESSENTIAL GENES (Cancer-Specific):
+--------------------------------------------------------------------------------
+SNRPD3: -5.413 (dependency score)
+RAN: -4.258 (dependency score)
+PRIM2: -4.207 (dependency score)
+HSPE1: -4.039 (dependency score)
+EEF1A1: -3.635 (dependency score)
+RPL17: -3.519 (dependency score)
+RPS8: -3.422 (dependency score)
+RPL21: -3.350 (dependency score)
+RPL12: -3.305 (dependency score)
+RPS29: -3.272 (dependency score)
+
+================================================================================
+RECOMMENDED X-NODE TARGET COMBINATION:
+--------------------------------------------------------------------------------
+Optimal 3-node combination:
+  • CCND1
+  • FGFR1 (approved): erdafitinib, pemigatinib
+  • FYN (approved): dasatinib, saracatinib
+
+Cost Score: 2.53
+Path Coverage: 82.9%
+Paths Covered: 34/50
+
+================================================================================
+ALTERNATIVE X-NODE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+Option 1: {CCND1, RPL15, STAT3}
+  Cost: 3.53, Size: 3 targets
+
+Option 2: {CCND1, SIGLEC14, STAT3}
+  Cost: 3.53, Size: 3 targets
+
+Option 3: {CCND1, GRAP, STAT3}
+  Cost: 3.53, Size: 3 targets
+
+Option 4: {CCND1, LCE2C, STAT3}
+  Cost: 3.53, Size: 3 targets
+
+Option 5: {CCND1, PAGE2B, STAT3}
+  Cost: 3.53, Size: 3 targets
+
+================================================================================
+SYSTEMS BIOLOGY TRIPLE COMBINATIONS:
+--------------------------------------------------------------------------------
+
+BEST TRIPLE COMBINATION: CCND1, FGFR1, FYN
+  Combined Score: 1.683 (lower is better)
+  Synergy Score: 0.94 (higher is better)
+  Resistance Score: 0.00 (lower is better)
+  Path Coverage: 52.0%
+  Druggable Targets: 2/3
+
+Drug Details:
+  • CCND1: Research target (no approved drugs)
+  • FGFR1 (approved): erdafitinib, pemigatinib
+  • FYN (approved): dasatinib, saracatinib
+
+Pathway Coverage:
+  SRC family: 20%
+  Cell cycle: 12%
+  RTK signaling: 10%
+
+Alternative Triple Combinations:
+  1. CCND1, CEP97, FYN (score: 1.685, synergy: 0.94)
+  2. CCND1, FYN, PARP1 (score: 1.688, synergy: 0.94)
+  3. ANKRD52, CCND1, FYN (score: 1.690, synergy: 0.94)
+  4. CCND1, FYN, QSER1 (score: 1.692, synergy: 0.94)
+
+================================================================================
+VIABILITY PATH SUMMARY:
+--------------------------------------------------------------------------------
+Total paths: 50
+Unique gene nodes: 2767
+
+Paths by type:
+  co_essential_module: 15
+  signaling_path: 28
+  perturbation_response: 7
+
+Sample paths:
+  [co_essential_module] Undifferentiated Pleomorphic Sarcoma/Malignant Fibrous Histiocytoma/High-Grade Spindle Cell Sarcoma_coessential_cluster_1: {SPAG17, CPT1A, DUSP12, C19orf67 (646457), ANKRD52, QSER1...}
+  [co_essential_module] Undifferentiated Pleomorphic Sarcoma/Malignant Fibrous Histiocytoma/High-Grade Spindle Cell Sarcoma_coessential_cluster_15: {APC, ADAMTS7, ANKUB1, NPIPB11, PGBD5, AQP7B...}
+  [co_essential_module] Undifferentiated Pleomorphic Sarcoma/Malignant Fibrous Histiocytoma/High-Grade Spindle Cell Sarcoma_coessential_cluster_2: {KRT6A, OR10A2, PRAMEF14, PGGT1B, FRG2B, TUBA3E...}
+  [co_essential_module] Undifferentiated Pleomorphic Sarcoma/Malignant Fibrous Histiocytoma/High-Grade Spindle Cell Sarcoma_coessential_cluster_5: {DAOA, EDEM2, CYP4B1, UBE3D, MCRIP2, NR2C2...}
+  [co_essential_module] Undifferentiated Pleomorphic Sarcoma/Malignant Fibrous Histiocytoma/High-Grade Spindle Cell Sarcoma_coessential_cluster_9: {TFAP4, ATF7IP, SCG5, ATP5ME, TRIM28, SMARCA5...}
+================================================================================
