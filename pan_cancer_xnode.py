@@ -1387,6 +1387,11 @@ class MinimalHittingSetSolver:
             f"{n_candidates} candidate genes, max_size={max_size}"
         )
         
+        # Pre-resolve UniProt IDs for all candidate genes (batch)
+        if (self.cost_fn.protein_scorer is not None
+                and hasattr(self.cost_fn.protein_scorer, 'pre_resolve_genes')):
+            self.cost_fn.protein_scorer.pre_resolve_genes(list(all_genes))
+
         # Compute costs
         gene_costs = {}
         for gene in all_genes:
@@ -1998,16 +2003,19 @@ class TripleCombinationFinder:
     def __init__(self, depmap: DepMapLoader, omnipath: OmniPathLoader, drug_db: DrugTargetDB,
                  toxicity_cache_dir: Optional[str] = None,
                  use_known_synergies: bool = True,
-                 disable_hub_penalty: bool = False):
+                 disable_hub_penalty: bool = False,
+                 protein_scorer=None):
         self.depmap = depmap
         self.omnipath = omnipath
         self.drug_db = drug_db
         self.use_known_synergies = use_known_synergies
         self.disable_hub_penalty = disable_hub_penalty
+        self.protein_scorer = protein_scorer
         self.network_analyzer = XNodeNetworkAnalyzer(omnipath)
         self.synergy_scorer = SynergyScorer(omnipath, use_known_synergies=use_known_synergies)
         self.resistance_estimator = ResistanceProbabilityEstimator(omnipath, depmap)
-        self.cost_fn = CostFunction(depmap, drug_db, toxicity_cache_dir=toxicity_cache_dir)
+        self.cost_fn = CostFunction(depmap, drug_db, toxicity_cache_dir=toxicity_cache_dir,
+                                    protein_scorer=protein_scorer)
 
         # Evidence-backed hub-penalty exemptions: genes with Tier 1 experimental
         # evidence in a specific cancer type are exempt from the hub penalty
@@ -2103,6 +2111,10 @@ class TripleCombinationFinder:
         
         logger.info(f"Evaluating combinations from {len(candidate_genes)} candidate genes")
         
+        # Pre-resolve UniProt IDs for the candidate pool (batch is faster)
+        if self.protein_scorer is not None and hasattr(self.protein_scorer, 'pre_resolve_genes'):
+            self.protein_scorer.pre_resolve_genes(candidate_genes)
+
         # Compute individual costs
         gene_costs = {}
         for gene in candidate_genes:
@@ -2609,11 +2621,28 @@ class PanCancerXNodeAnalyzer:
         )
         self.cost_fn = CostFunction(self.depmap, self.drug_db, toxicity_cache_dir=toxicity_cache_dir)
         self.solver = MinimalHittingSetSolver(self.cost_fn)
+
+        # Build multi-omics protein scorer if data is available
+        self._protein_scorer = None
+        try:
+            from alin.protein_scoring import ProteinDruggabilityScorer, GENE_TO_UNIPROT
+            self._protein_scorer = ProteinDruggabilityScorer(
+                genes=list(GENE_TO_UNIPROT.keys()),
+                gene_druggability_fn=self.drug_db.get_druggability_score,
+                cache_dir='./api_cache/protein',
+                proteomics_dir=data_dir,
+            )
+            self.cost_fn.protein_scorer = self._protein_scorer
+            logger.info('Multi-omics protein scorer enabled')
+        except Exception as e:
+            logger.info(f'Protein scorer not available: {e}')
+
         self.triple_finder = TripleCombinationFinder(
             self.depmap, self.omnipath, self.drug_db,
             toxicity_cache_dir=toxicity_cache_dir,
             use_known_synergies=use_known_synergies,
             disable_hub_penalty=disable_hub_penalty,
+            protein_scorer=self._protein_scorer,
         )
         self.validation_integrator = XNodeValidationIntegrator(validation_data_dir)
         
@@ -3190,6 +3219,24 @@ def export_comprehensive_findings(results: Dict[str, CancerTypeAnalysis], output
     print(f"  6. all_findings.json               - Complete analysis data")
     print(f"  7. pan_cancer_summary.csv          - Summary table")
     print(f"  8. [CancerType]_report.txt         - Individual reports")
+
+    # 7. Unresolved gene report (protein scoring gaps → wet-lab priorities)
+    try:
+        from alin.protein_scoring import get_unresolved_genes
+        unresolved = get_unresolved_genes()
+        if unresolved:
+            unresolved_sorted = sorted(unresolved)
+            with open(output_path / "unresolved_genes_wetlab_gaps.txt", 'w') as f:
+                f.write("# Genes with no reviewed human UniProt (Swiss-Prot) entry\n")
+                f.write("# These genes received fallback protein druggability scores.\n")
+                f.write("# Wet-lab characterization (structure, abundance, degradability)\n")
+                f.write("# would improve scoring accuracy for these targets.\n")
+                f.write(f"# Total: {len(unresolved_sorted)} genes\n\n")
+                for g in unresolved_sorted:
+                    f.write(f"{g}\n")
+            print(f"  9. unresolved_genes_wetlab_gaps.txt - {len(unresolved_sorted)} genes needing wet-lab data")
+    except Exception:
+        pass
     print(f"{'='*80}")
 
 

@@ -1,0 +1,4655 @@
+{
+  "AKT1": {
+    "gene": "AKT1",
+    "protein_score": 0.8085,
+    "blended_score": 0.8561,
+    "gene_druggability": 0.9,
+    "structural": {
+      "gene": "AKT1",
+      "uniprot_id": "P31749",
+      "mean_plddt": 83.04720833333334,
+      "domain_plddt": {},
+      "n_pdb_structures": 42,
+      "n_ligand_bound": 38,
+      "has_pocket": true,
+      "structural_score": 0.9583333333333334
+    },
+    "degradability": {
+      "gene": "AKT1",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "INY-03-041",
+      "n_surface_lysines": 13,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "AKT1",
+      "n_pdb_complexes": 18,
+      "has_interface_data": true,
+      "disordered_fraction": 0.1,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "AKT1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 4,
+      "mean_abundance": 0.3754,
+      "detection_fraction": 0.2222,
+      "abundance_score": 0.2307,
+      "confidence_weight": 0.5,
+      "rna_imputed": true
+    },
+    "rna_expression": {
+      "gene": "AKT1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 6.2735,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "AKT1",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.4954,
+      "spearman_pvalue": 1.5511095584808827e-13,
+      "concordance_tier": "moderate",
+      "concordance_score": 0.6
+    }
+  },
+  "AKT2": {
+    "gene": "AKT2",
+    "protein_score": 0.7801,
+    "blended_score": 0.3844,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "AKT2",
+      "uniprot_id": "P31751",
+      "mean_plddt": 82.27068607068607,
+      "domain_plddt": {},
+      "n_pdb_structures": 19,
+      "n_ligand_bound": 13,
+      "has_pocket": true,
+      "structural_score": 0.9516632016632016
+    },
+    "degradability": {
+      "gene": "AKT2",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "INY-04-026-01",
+      "n_surface_lysines": 13,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "AKT2",
+      "n_pdb_complexes": 10,
+      "has_interface_data": true,
+      "disordered_fraction": 0.104,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "AKT2",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 6,
+      "mean_abundance": 0.6806,
+      "detection_fraction": 0.3333,
+      "abundance_score": 0.3733,
+      "confidence_weight": 0.6,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "AKT2",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 5.8637,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "AKT2",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.2974,
+      "spearman_pvalue": 2.3091007593095887e-05,
+      "concordance_tier": "low",
+      "concordance_score": 0.3
+    }
+  },
+  "ALK": {
+    "gene": "ALK",
+    "protein_score": 0.6159,
+    "blended_score": 0.8464,
+    "gene_druggability": 1.0,
+    "structural": {
+      "gene": "ALK",
+      "uniprot_id": "Q9UM73",
+      "mean_plddt": 68.19397530864197,
+      "domain_plddt": {},
+      "n_pdb_structures": 79,
+      "n_ligand_bound": 65,
+      "has_pocket": true,
+      "structural_score": 0.8167592592592593
+    },
+    "degradability": {
+      "gene": "ALK",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "MS4077",
+      "n_surface_lysines": 30,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "ALK",
+      "n_pdb_complexes": 8,
+      "has_interface_data": true,
+      "disordered_fraction": 0.271,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "ALK",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 1,
+      "mean_abundance": 0.2294,
+      "detection_fraction": 0.0556,
+      "abundance_score": 0.0424,
+      "confidence_weight": 0.1,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "ALK",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 0,
+      "mean_expression": 0.0,
+      "expression_fraction": 0.0,
+      "expression_score": 0.1
+    },
+    "rna_protein_concordance": {
+      "gene": "ALK",
+      "n_matched_lines": 46,
+      "spearman_rho": 0.127,
+      "spearman_pvalue": 0.40046656842104134,
+      "concordance_tier": "low",
+      "concordance_score": 0.3
+    }
+  },
+  "APC": {
+    "gene": "APC",
+    "protein_score": 0.5352,
+    "blended_score": 0.3341,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "APC",
+      "uniprot_id": "P25054",
+      "mean_plddt": 75.0,
+      "domain_plddt": {},
+      "n_pdb_structures": 31,
+      "n_ligand_bound": 14,
+      "has_pocket": true,
+      "structural_score": 0.775
+    },
+    "degradability": {
+      "gene": "APC",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 0,
+      "degradability_score": 0.1
+    },
+    "ppi": {
+      "gene": "APC",
+      "n_pdb_complexes": 24,
+      "has_interface_data": true,
+      "disordered_fraction": 0.3,
+      "ppi_score": 0.6
+    },
+    "abundance": {
+      "gene": "APC",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 5,
+      "mean_abundance": 0.5422,
+      "detection_fraction": 0.2778,
+      "abundance_score": 0.2547,
+      "confidence_weight": 0.5,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "APC",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 27,
+      "mean_expression": 2.9303,
+      "expression_fraction": 1.0,
+      "expression_score": 0.85
+    },
+    "rna_protein_concordance": {
+      "gene": "APC",
+      "n_matched_lines": 191,
+      "spearman_rho": 0.2399,
+      "spearman_pvalue": 0.000827813493114947,
+      "concordance_tier": "low",
+      "concordance_score": 0.3
+    }
+  },
+  "AXL": {
+    "gene": "AXL",
+    "protein_score": 0.8291,
+    "blended_score": 0.762,
+    "gene_druggability": 0.7,
+    "structural": {
+      "gene": "AXL",
+      "uniprot_id": "P30530",
+      "mean_plddt": 75.05656599552573,
+      "domain_plddt": {},
+      "n_pdb_structures": 4,
+      "n_ligand_bound": 4,
+      "has_pocket": true,
+      "structural_score": 0.7363534675615213
+    },
+    "degradability": {
+      "gene": "AXL",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "PROTAC compound (DB #4370)",
+      "n_surface_lysines": 20,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "AXL",
+      "n_pdb_complexes": 3,
+      "has_interface_data": true,
+      "disordered_fraction": 0.2036,
+      "ppi_score": 0.6
+    },
+    "abundance": {
+      "gene": "AXL",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 14,
+      "mean_abundance": 1.3307,
+      "detection_fraction": 0.7778,
+      "abundance_score": 1.0,
+      "confidence_weight": 1.0,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "AXL",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 26,
+      "mean_expression": 4.9725,
+      "expression_fraction": 0.963,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "AXL",
+      "n_matched_lines": 186,
+      "spearman_rho": 0.8294,
+      "spearman_pvalue": 2.0959735084764986e-48,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "BAK1": {
+    "gene": "BAK1",
+    "protein_score": 0.9062,
+    "blended_score": 0.4131,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "BAK1",
+      "uniprot_id": "Q16611",
+      "mean_plddt": 81.30928909952608,
+      "domain_plddt": {},
+      "n_pdb_structures": 55,
+      "n_ligand_bound": 33,
+      "has_pocket": true,
+      "structural_score": 0.9248815165876778
+    },
+    "degradability": {
+      "gene": "BAK1",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 5,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "BAK1",
+      "n_pdb_complexes": 36,
+      "has_interface_data": true,
+      "disordered_fraction": 0.019,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "BAK1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 14,
+      "mean_abundance": 0.725,
+      "detection_fraction": 0.7778,
+      "abundance_score": 1.0,
+      "confidence_weight": 1.0,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "BAK1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 4.6429,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "BAK1",
+      "n_matched_lines": 189,
+      "spearman_rho": 0.5201,
+      "spearman_pvalue": 1.7124088658893076e-14,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "BAX": {
+    "gene": "BAX",
+    "protein_score": 0.839,
+    "blended_score": 0.3981,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "BAX",
+      "uniprot_id": "Q07812",
+      "mean_plddt": 85.95302083333333,
+      "domain_plddt": {},
+      "n_pdb_structures": 37,
+      "n_ligand_bound": 19,
+      "has_pocket": true,
+      "structural_score": 0.9812500000000001
+    },
+    "degradability": {
+      "gene": "BAX",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 5,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "BAX",
+      "n_pdb_complexes": 20,
+      "has_interface_data": true,
+      "disordered_fraction": 0.0521,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "BAX",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 7,
+      "mean_abundance": 0.3212,
+      "detection_fraction": 0.3889,
+      "abundance_score": 0.4883,
+      "confidence_weight": 0.7,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "BAX",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 6.7158,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "BAX",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.5396,
+      "spearman_pvalue": 3.322359399642375e-16,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "BBC3": {
+    "gene": "BBC3",
+    "protein_score": 0.5524,
+    "blended_score": 0.341,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "BBC3",
+      "uniprot_id": "Q9BXH1",
+      "mean_plddt": 59.179274611398974,
+      "domain_plddt": {},
+      "n_pdb_structures": 13,
+      "n_ligand_bound": 9,
+      "has_pocket": true,
+      "structural_score": 0.6282383419689119
+    },
+    "degradability": {
+      "gene": "BBC3",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 1,
+      "degradability_score": 0.1
+    },
+    "ppi": {
+      "gene": "BBC3",
+      "n_pdb_complexes": 13,
+      "has_interface_data": true,
+      "disordered_fraction": 0.4145,
+      "ppi_score": 0.6
+    },
+    "abundance": {
+      "gene": "BBC3",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 7,
+      "mean_abundance": 0.508,
+      "detection_fraction": 0.3889,
+      "abundance_score": 0.4977,
+      "confidence_weight": 0.7,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "BBC3",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 27,
+      "mean_expression": 2.9955,
+      "expression_fraction": 1.0,
+      "expression_score": 0.85
+    },
+    "rna_protein_concordance": {
+      "gene": "BBC3",
+      "n_matched_lines": 155,
+      "spearman_rho": 0.4501,
+      "spearman_pvalue": 4.192919680318902e-09,
+      "concordance_tier": "moderate",
+      "concordance_score": 0.6
+    }
+  },
+  "BCL2": {
+    "gene": "BCL2",
+    "protein_score": 0.6576,
+    "blended_score": 0.863,
+    "gene_druggability": 1.0,
+    "structural": {
+      "gene": "BCL2",
+      "uniprot_id": "P10415",
+      "mean_plddt": 72.02326359832635,
+      "domain_plddt": {},
+      "n_pdb_structures": 55,
+      "n_ligand_bound": 40,
+      "has_pocket": true,
+      "structural_score": 0.8221757322175732
+    },
+    "degradability": {
+      "gene": "BCL2",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "PROTAC compound (DB #503)",
+      "n_surface_lysines": 4,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "BCL2",
+      "n_pdb_complexes": 22,
+      "has_interface_data": true,
+      "disordered_fraction": 0.251,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "BCL2",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 4,
+      "mean_abundance": 0.397,
+      "detection_fraction": 0.2222,
+      "abundance_score": 0.1644,
+      "confidence_weight": 0.4,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "BCL2",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 9,
+      "mean_expression": 1.357,
+      "expression_fraction": 0.3333,
+      "expression_score": 0.3
+    },
+    "rna_protein_concordance": {
+      "gene": "BCL2",
+      "n_matched_lines": 93,
+      "spearman_rho": 0.4549,
+      "spearman_pvalue": 4.641625505974371e-06,
+      "concordance_tier": "moderate",
+      "concordance_score": 0.6
+    }
+  },
+  "BCL2L1": {
+    "gene": "BCL2L1",
+    "protein_score": 0.8479,
+    "blended_score": 0.745,
+    "gene_druggability": 0.65,
+    "structural": {
+      "gene": "BCL2L1",
+      "uniprot_id": "Q07817",
+      "mean_plddt": 72.4807296137339,
+      "domain_plddt": {},
+      "n_pdb_structures": 118,
+      "n_ligand_bound": 73,
+      "has_pocket": true,
+      "structural_score": 0.811587982832618
+    },
+    "degradability": {
+      "gene": "BCL2L1",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "DT2216",
+      "n_surface_lysines": 4,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "BCL2L1",
+      "n_pdb_complexes": 52,
+      "has_interface_data": true,
+      "disordered_fraction": 0.3133,
+      "ppi_score": 0.6
+    },
+    "abundance": {
+      "gene": "BCL2L1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 15,
+      "mean_abundance": 0.6471,
+      "detection_fraction": 0.8333,
+      "abundance_score": 1.0,
+      "confidence_weight": 1.0,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "BCL2L1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 7.2129,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "BCL2L1",
+      "n_matched_lines": 185,
+      "spearman_rho": 0.7218,
+      "spearman_pvalue": 4.585397417537509e-31,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "BRAF": {
+    "gene": "BRAF",
+    "protein_score": 0.6798,
+    "blended_score": 0.8719,
+    "gene_druggability": 1.0,
+    "structural": {
+      "gene": "BRAF",
+      "uniprot_id": "P15056",
+      "mean_plddt": 66.39011749347259,
+      "domain_plddt": {},
+      "n_pdb_structures": 131,
+      "n_ligand_bound": 120,
+      "has_pocket": true,
+      "structural_score": 0.8037206266318538
+    },
+    "degradability": {
+      "gene": "BRAF",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "P5B",
+      "n_surface_lysines": 13,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "BRAF",
+      "n_pdb_complexes": 41,
+      "has_interface_data": true,
+      "disordered_fraction": 0.3864,
+      "ppi_score": 0.6
+    },
+    "abundance": {
+      "gene": "BRAF",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 6,
+      "mean_abundance": 0.2081,
+      "detection_fraction": 0.3333,
+      "abundance_score": 0.3496,
+      "confidence_weight": 0.6,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "BRAF",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 3.1608,
+      "expression_fraction": 1.037,
+      "expression_score": 0.85
+    },
+    "rna_protein_concordance": {
+      "gene": "BRAF",
+      "n_matched_lines": 192,
+      "spearman_rho": 0.3704,
+      "spearman_pvalue": 1.232382221187758e-07,
+      "concordance_tier": "moderate",
+      "concordance_score": 0.6
+    }
+  },
+  "CASP3": {
+    "gene": "CASP3",
+    "protein_score": 0.8355,
+    "blended_score": 0.3973,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "CASP3",
+      "uniprot_id": "P42574",
+      "mean_plddt": 85.83194945848375,
+      "domain_plddt": {},
+      "n_pdb_structures": 135,
+      "n_ligand_bound": 64,
+      "has_pocket": true,
+      "structural_score": 0.9507220216606498
+    },
+    "degradability": {
+      "gene": "CASP3",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 7,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "CASP3",
+      "n_pdb_complexes": 125,
+      "has_interface_data": true,
+      "disordered_fraction": 0.1552,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "CASP3",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 3,
+      "mean_abundance": 0.6633,
+      "detection_fraction": 0.1667,
+      "abundance_score": 0.3929,
+      "confidence_weight": 0.5,
+      "rna_imputed": true
+    },
+    "rna_expression": {
+      "gene": "CASP3",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 4.525,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "CASP3",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.5818,
+      "spearman_pvalue": 3.7822240684078198e-19,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "CASP9": {
+    "gene": "CASP9",
+    "protein_score": 0.7146,
+    "blended_score": 0.3685,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "CASP9",
+      "uniprot_id": "P55211",
+      "mean_plddt": 80.32372596153846,
+      "domain_plddt": {},
+      "n_pdb_structures": 10,
+      "n_ligand_bound": 7,
+      "has_pocket": true,
+      "structural_score": 0.9349759615384616
+    },
+    "degradability": {
+      "gene": "CASP9",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 10,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "CASP9",
+      "n_pdb_complexes": 9,
+      "has_interface_data": true,
+      "disordered_fraction": 0.1755,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "CASP9",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 4,
+      "mean_abundance": 0.2657,
+      "detection_fraction": 0.2222,
+      "abundance_score": 0.1579,
+      "confidence_weight": 0.4,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "CASP9",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 3.0414,
+      "expression_fraction": 1.037,
+      "expression_score": 0.85
+    },
+    "rna_protein_concordance": {
+      "gene": "CASP9",
+      "n_matched_lines": 145,
+      "spearman_rho": 0.2993,
+      "spearman_pvalue": 0.00025549076087706105,
+      "concordance_tier": "low",
+      "concordance_score": 0.3
+    }
+  },
+  "CCND1": {
+    "gene": "CCND1",
+    "protein_score": 0.7985,
+    "blended_score": 0.3887,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "CCND1",
+      "uniprot_id": "P24385",
+      "mean_plddt": 87.31769491525424,
+      "domain_plddt": {},
+      "n_pdb_structures": 11,
+      "n_ligand_bound": 4,
+      "has_pocket": true,
+      "structural_score": 0.8216949152542373
+    },
+    "degradability": {
+      "gene": "CCND1",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 8,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "CCND1",
+      "n_pdb_complexes": 11,
+      "has_interface_data": true,
+      "disordered_fraction": 0.0814,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "CCND1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 7,
+      "mean_abundance": 0.5813,
+      "detection_fraction": 0.3889,
+      "abundance_score": 0.5013,
+      "confidence_weight": 0.7,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "CCND1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 7.1305,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "CCND1",
+      "n_matched_lines": 182,
+      "spearman_rho": 0.6911,
+      "spearman_pvalue": 3.5776923446761e-27,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "CCNE1": {
+    "gene": "CCNE1",
+    "protein_score": 0.7978,
+    "blended_score": 0.3886,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "CCNE1",
+      "uniprot_id": "P24864",
+      "mean_plddt": 79.52660975609757,
+      "domain_plddt": {},
+      "n_pdb_structures": 21,
+      "n_ligand_bound": 20,
+      "has_pocket": true,
+      "structural_score": 0.8836585365853659
+    },
+    "degradability": {
+      "gene": "CCNE1",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 9,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "CCNE1",
+      "n_pdb_complexes": 21,
+      "has_interface_data": true,
+      "disordered_fraction": 0.2463,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "CCNE1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 2,
+      "mean_abundance": 0.8575,
+      "detection_fraction": 0.1111,
+      "abundance_score": 0.4462,
+      "confidence_weight": 0.5,
+      "rna_imputed": true
+    },
+    "rna_expression": {
+      "gene": "CCNE1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 3.5892,
+      "expression_fraction": 1.037,
+      "expression_score": 0.85
+    },
+    "rna_protein_concordance": {
+      "gene": "CCNE1",
+      "n_matched_lines": 54,
+      "spearman_rho": 0.6003,
+      "spearman_pvalue": 1.601054527231514e-06,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "CDK2": {
+    "gene": "CDK2",
+    "protein_score": 0.8162,
+    "blended_score": 0.7298,
+    "gene_druggability": 0.65,
+    "structural": {
+      "gene": "CDK2",
+      "uniprot_id": "P24941",
+      "mean_plddt": 88.46268456375839,
+      "domain_plddt": {},
+      "n_pdb_structures": 516,
+      "n_ligand_bound": 481,
+      "has_pocket": true,
+      "structural_score": 0.9872483221476511
+    },
+    "degradability": {
+      "gene": "CDK2",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "TMX-4116",
+      "n_surface_lysines": 8,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "CDK2",
+      "n_pdb_complexes": 190,
+      "has_interface_data": true,
+      "disordered_fraction": 0.0268,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "CDK2",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 4,
+      "mean_abundance": 0.3111,
+      "detection_fraction": 0.2222,
+      "abundance_score": 0.2281,
+      "confidence_weight": 0.5,
+      "rna_imputed": true
+    },
+    "rna_expression": {
+      "gene": "CDK2",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 5.3965,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "CDK2",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.4728,
+      "spearman_pvalue": 2.6005402921280286e-12,
+      "concordance_tier": "moderate",
+      "concordance_score": 0.6
+    }
+  },
+  "CDK4": {
+    "gene": "CDK4",
+    "protein_score": 0.8112,
+    "blended_score": 0.9094,
+    "gene_druggability": 1.0,
+    "structural": {
+      "gene": "CDK4",
+      "uniprot_id": "P11802",
+      "mean_plddt": 86.80643564356436,
+      "domain_plddt": {},
+      "n_pdb_structures": 15,
+      "n_ligand_bound": 8,
+      "has_pocket": true,
+      "structural_score": 0.9701320132013203
+    },
+    "degradability": {
+      "gene": "CDK4",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "BSJ-03-123",
+      "n_surface_lysines": 8,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "CDK4",
+      "n_pdb_complexes": 15,
+      "has_interface_data": true,
+      "disordered_fraction": 0.0693,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "CDK4",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 4,
+      "mean_abundance": 0.2539,
+      "detection_fraction": 0.2222,
+      "abundance_score": 0.2258,
+      "confidence_weight": 0.5,
+      "rna_imputed": true
+    },
+    "rna_expression": {
+      "gene": "CDK4",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 7.4979,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "CDK4",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.352,
+      "spearman_pvalue": 4.2171919002546744e-07,
+      "concordance_tier": "moderate",
+      "concordance_score": 0.6
+    }
+  },
+  "CDK6": {
+    "gene": "CDK6",
+    "protein_score": 0.8334,
+    "blended_score": 0.9201,
+    "gene_druggability": 1.0,
+    "structural": {
+      "gene": "CDK6",
+      "uniprot_id": "Q00534",
+      "mean_plddt": 85.39610429447853,
+      "domain_plddt": {},
+      "n_pdb_structures": 22,
+      "n_ligand_bound": 18,
+      "has_pocket": true,
+      "structural_score": 0.9605828220858896
+    },
+    "degradability": {
+      "gene": "CDK6",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "BSJ-03-123",
+      "n_surface_lysines": 9,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "CDK6",
+      "n_pdb_complexes": 9,
+      "has_interface_data": true,
+      "disordered_fraction": 0.0859,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "CDK6",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 6,
+      "mean_abundance": 0.5685,
+      "detection_fraction": 0.3333,
+      "abundance_score": 0.3677,
+      "confidence_weight": 0.6,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "CDK6",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 3.9299,
+      "expression_fraction": 1.037,
+      "expression_score": 0.85
+    },
+    "rna_protein_concordance": {
+      "gene": "CDK6",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.6519,
+      "spearman_pvalue": 4.309391709277884e-25,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "CDKN1A": {
+    "gene": "CDKN1A",
+    "protein_score": 0.7184,
+    "blended_score": 0.3695,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "CDKN1A",
+      "uniprot_id": "P38936",
+      "mean_plddt": 69.00341463414635,
+      "domain_plddt": {},
+      "n_pdb_structures": 13,
+      "n_ligand_bound": 3,
+      "has_pocket": true,
+      "structural_score": 0.598170731707317
+    },
+    "degradability": {
+      "gene": "CDKN1A",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 2,
+      "degradability_score": 0.1
+    },
+    "ppi": {
+      "gene": "CDKN1A",
+      "n_pdb_complexes": 10,
+      "has_interface_data": true,
+      "disordered_fraction": 0.25,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "CDKN1A",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 9,
+      "mean_abundance": 0.8722,
+      "detection_fraction": 0.5,
+      "abundance_score": 0.7747,
+      "confidence_weight": 0.9,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "CDKN1A",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 27,
+      "mean_expression": 5.1935,
+      "expression_fraction": 1.0,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "CDKN1A",
+      "n_matched_lines": 149,
+      "spearman_rho": 0.7403,
+      "spearman_pvalue": 3.979100464906195e-27,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "CDKN2A": {
+    "gene": "CDKN2A",
+    "protein_score": 0.5081,
+    "blended_score": 0.3232,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "CDKN2A",
+      "uniprot_id": "P42771",
+      "mean_plddt": 76.30288461538461,
+      "domain_plddt": {},
+      "n_pdb_structures": 5,
+      "n_ligand_bound": 0,
+      "has_pocket": false,
+      "structural_score": 0.569551282051282
+    },
+    "degradability": {
+      "gene": "CDKN2A",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 3,
+      "degradability_score": 0.3
+    },
+    "ppi": {
+      "gene": "CDKN2A",
+      "n_pdb_complexes": 2,
+      "has_interface_data": true,
+      "disordered_fraction": 0.1282,
+      "ppi_score": 0.6
+    },
+    "abundance": {
+      "gene": "CDKN2A",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 2,
+      "mean_abundance": 1.1515,
+      "detection_fraction": 0.1111,
+      "abundance_score": 0.1103,
+      "confidence_weight": 0.2,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "CDKN2A",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 13,
+      "mean_expression": 5.9736,
+      "expression_fraction": 0.4815,
+      "expression_score": 0.3
+    },
+    "rna_protein_concordance": {
+      "gene": "CDKN2A",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.6006,
+      "spearman_pvalue": 1.3471513627457773e-20,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "CHUK": {
+    "gene": "CHUK",
+    "protein_score": 0.6736,
+    "blended_score": 0.3251,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "CHUK",
+      "uniprot_id": "O15111",
+      "mean_plddt": 83.82693959731543,
+      "domain_plddt": {},
+      "n_pdb_structures": 5,
+      "n_ligand_bound": 1,
+      "has_pocket": true,
+      "structural_score": 0.8047651006711409
+    },
+    "degradability": {
+      "gene": "CHUK",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 20,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "CHUK",
+      "n_pdb_complexes": 1,
+      "has_interface_data": true,
+      "disordered_fraction": 0.0993,
+      "ppi_score": 0.6
+    },
+    "abundance": {
+      "gene": "CHUK",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 6,
+      "mean_abundance": 0.4636,
+      "detection_fraction": 0.3333,
+      "abundance_score": 0.3624,
+      "confidence_weight": 0.6,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "CHUK",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 4.0575,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "CHUK",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.4685,
+      "spearman_pvalue": 4.3830185150565495e-12,
+      "concordance_tier": "moderate",
+      "concordance_score": 0.6
+    }
+  },
+  "CTNNB1": {
+    "gene": "CTNNB1",
+    "protein_score": 0.8233,
+    "blended_score": 0.3945,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "CTNNB1",
+      "uniprot_id": "P35222",
+      "mean_plddt": 81.05594110115237,
+      "domain_plddt": {},
+      "n_pdb_structures": 50,
+      "n_ligand_bound": 30,
+      "has_pocket": true,
+      "structural_score": 0.9140845070422536
+    },
+    "degradability": {
+      "gene": "CTNNB1",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 19,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "CTNNB1",
+      "n_pdb_complexes": 38,
+      "has_interface_data": true,
+      "disordered_fraction": 0.1869,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "CTNNB1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 11,
+      "mean_abundance": 1.1419,
+      "detection_fraction": 0.6111,
+      "abundance_score": 0.9491,
+      "confidence_weight": 1.0,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "CTNNB1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 7.1787,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "CTNNB1",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.24,
+      "spearman_pvalue": 0.0007051548552950436,
+      "concordance_tier": "low",
+      "concordance_score": 0.3
+    }
+  },
+  "DVL1": {
+    "gene": "DVL1",
+    "protein_score": 0.6207,
+    "blended_score": 0.3146,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "DVL1",
+      "uniprot_id": "O14640",
+      "mean_plddt": 59.84810071942446,
+      "domain_plddt": {},
+      "n_pdb_structures": 3,
+      "n_ligand_bound": 3,
+      "has_pocket": true,
+      "structural_score": 0.5589208633093525
+    },
+    "degradability": {
+      "gene": "DVL1",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 8,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "DVL1",
+      "n_pdb_complexes": 1,
+      "has_interface_data": true,
+      "disordered_fraction": 0.5554,
+      "ppi_score": 0.6
+    },
+    "abundance": {
+      "gene": "DVL1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 7,
+      "mean_abundance": 0.3752,
+      "detection_fraction": 0.3889,
+      "abundance_score": 0.491,
+      "confidence_weight": 0.7,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "DVL1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 5.1912,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "DVL1",
+      "n_matched_lines": 109,
+      "spearman_rho": 0.3706,
+      "spearman_pvalue": 7.27335574042799e-05,
+      "concordance_tier": "moderate",
+      "concordance_score": 0.6
+    }
+  },
+  "E2F1": {
+    "gene": "E2F1",
+    "protein_score": 0.6168,
+    "blended_score": 0.3138,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "E2F1",
+      "uniprot_id": "Q01094",
+      "mean_plddt": 62.02848970251716,
+      "domain_plddt": {},
+      "n_pdb_structures": 8,
+      "n_ligand_bound": 2,
+      "has_pocket": true,
+      "structural_score": 0.5576659038901601
+    },
+    "degradability": {
+      "gene": "E2F1",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 5,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "E2F1",
+      "n_pdb_complexes": 8,
+      "has_interface_data": true,
+      "disordered_fraction": 0.4256,
+      "ppi_score": 0.6
+    },
+    "abundance": {
+      "gene": "E2F1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 1,
+      "mean_abundance": 0.0748,
+      "detection_fraction": 0.0556,
+      "abundance_score": 0.4069,
+      "confidence_weight": 0.5,
+      "rna_imputed": true
+    },
+    "rna_expression": {
+      "gene": "E2F1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 4.4445,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "E2F1",
+      "n_matched_lines": 40,
+      "spearman_rho": 0.4486,
+      "spearman_pvalue": 0.003693453389874738,
+      "concordance_tier": "moderate",
+      "concordance_score": 0.6
+    }
+  },
+  "EGFR": {
+    "gene": "EGFR",
+    "protein_score": 0.9191,
+    "blended_score": 0.9612,
+    "gene_druggability": 1.0,
+    "structural": {
+      "gene": "EGFR",
+      "uniprot_id": "P00533",
+      "mean_plddt": 75.94988429752065,
+      "domain_plddt": {},
+      "n_pdb_structures": 378,
+      "n_ligand_bound": 337,
+      "has_pocket": true,
+      "structural_score": 0.8886363636363637
+    },
+    "degradability": {
+      "gene": "EGFR",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "PROTAC-EGFR",
+      "n_surface_lysines": 28,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "EGFR",
+      "n_pdb_complexes": 69,
+      "has_interface_data": true,
+      "disordered_fraction": 0.2281,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "EGFR",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 13,
+      "mean_abundance": 1.1942,
+      "detection_fraction": 0.7222,
+      "abundance_score": 1.0,
+      "confidence_weight": 1.0,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "EGFR",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 4.8563,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    }
+  },
+  "ERBB2": {
+    "gene": "ERBB2",
+    "protein_score": 0.9219,
+    "blended_score": 0.9625,
+    "gene_druggability": 1.0,
+    "structural": {
+      "gene": "ERBB2",
+      "uniprot_id": "P04626",
+      "mean_plddt": 73.98320318725098,
+      "domain_plddt": {},
+      "n_pdb_structures": 61,
+      "n_ligand_bound": 32,
+      "has_pocket": true,
+      "structural_score": 0.8676892430278885
+    },
+    "degradability": {
+      "gene": "ERBB2",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "compound 7",
+      "n_surface_lysines": 27,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "ERBB2",
+      "n_pdb_complexes": 47,
+      "has_interface_data": true,
+      "disordered_fraction": 0.2454,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "ERBB2",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 13,
+      "mean_abundance": 0.9156,
+      "detection_fraction": 0.7222,
+      "abundance_score": 1.0,
+      "confidence_weight": 1.0,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "ERBB2",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 5.3084,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "ERBB2",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.8094,
+      "spearman_pvalue": 9.86223691874635e-47,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "ERBB3": {
+    "gene": "ERBB3",
+    "protein_score": 0.8572,
+    "blended_score": 0.4022,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "ERBB3",
+      "uniprot_id": "P21860",
+      "mean_plddt": 72.45775707898659,
+      "domain_plddt": {},
+      "n_pdb_structures": 23,
+      "n_ligand_bound": 21,
+      "has_pocket": true,
+      "structural_score": 0.8622950819672132
+    },
+    "degradability": {
+      "gene": "ERBB3",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 29,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "ERBB3",
+      "n_pdb_complexes": 17,
+      "has_interface_data": true,
+      "disordered_fraction": 0.2973,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "ERBB3",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 9,
+      "mean_abundance": 1.9847,
+      "detection_fraction": 0.5,
+      "abundance_score": 0.8303,
+      "confidence_weight": 0.9,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "ERBB3",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 4.9937,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "ERBB3",
+      "n_matched_lines": 167,
+      "spearman_rho": 0.7934,
+      "spearman_pvalue": 2.1011968275911226e-37,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "FGFR1": {
+    "gene": "FGFR1",
+    "protein_score": 0.7787,
+    "blended_score": 0.8938,
+    "gene_druggability": 1.0,
+    "structural": {
+      "gene": "FGFR1",
+      "uniprot_id": "P11362",
+      "mean_plddt": 73.84475669099757,
+      "domain_plddt": {},
+      "n_pdb_structures": 81,
+      "n_ligand_bound": 73,
+      "has_pocket": true,
+      "structural_score": 0.8833941605839416
+    },
+    "degradability": {
+      "gene": "FGFR1",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "FMF-06-098-1",
+      "n_surface_lysines": 18,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "FGFR1",
+      "n_pdb_complexes": 10,
+      "has_interface_data": true,
+      "disordered_fraction": 0.2336,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "FGFR1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 7,
+      "mean_abundance": 0.3619,
+      "detection_fraction": 0.3889,
+      "abundance_score": 0.4903,
+      "confidence_weight": 0.7,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "FGFR1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 23,
+      "mean_expression": 3.9266,
+      "expression_fraction": 0.8519,
+      "expression_score": 0.85
+    },
+    "rna_protein_concordance": {
+      "gene": "FGFR1",
+      "n_matched_lines": 165,
+      "spearman_rho": 0.4287,
+      "spearman_pvalue": 9.1889818756335e-09,
+      "concordance_tier": "moderate",
+      "concordance_score": 0.6
+    }
+  },
+  "FGFR2": {
+    "gene": "FGFR2",
+    "protein_score": 0.7654,
+    "blended_score": 0.8874,
+    "gene_druggability": 1.0,
+    "structural": {
+      "gene": "FGFR2",
+      "uniprot_id": "P21802",
+      "mean_plddt": 73.90936662606578,
+      "domain_plddt": {},
+      "n_pdb_structures": 59,
+      "n_ligand_bound": 49,
+      "has_pocket": true,
+      "structural_score": 0.8697929354445798
+    },
+    "degradability": {
+      "gene": "FGFR2",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "NJH-05-123",
+      "n_surface_lysines": 18,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "FGFR2",
+      "n_pdb_complexes": 14,
+      "has_interface_data": true,
+      "disordered_fraction": 0.2546,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "FGFR2",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 3,
+      "mean_abundance": 0.6391,
+      "detection_fraction": 0.1667,
+      "abundance_score": 0.2642,
+      "confidence_weight": 0.5,
+      "rna_imputed": true
+    },
+    "rna_expression": {
+      "gene": "FGFR2",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 19,
+      "mean_expression": 2.9427,
+      "expression_fraction": 0.7037,
+      "expression_score": 0.6
+    },
+    "rna_protein_concordance": {
+      "gene": "FGFR2",
+      "n_matched_lines": 88,
+      "spearman_rho": 0.6969,
+      "spearman_pvalue": 4.6658353525403e-14,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "FLT3": {
+    "gene": "FLT3",
+    "protein_score": 0.6019,
+    "blended_score": 0.8407,
+    "gene_druggability": 1.0,
+    "structural": {
+      "gene": "FLT3",
+      "uniprot_id": "P36888",
+      "mean_plddt": 75.9210372608258,
+      "domain_plddt": {},
+      "n_pdb_structures": 11,
+      "n_ligand_bound": 9,
+      "has_pocket": true,
+      "structural_score": 0.8910372608257805
+    },
+    "degradability": {
+      "gene": "FLT3",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "FLT3-PROTAC",
+      "n_surface_lysines": 23,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "FLT3",
+      "n_pdb_complexes": 4,
+      "has_interface_data": true,
+      "disordered_fraction": 0.1561,
+      "ppi_score": 0.6
+    },
+    "abundance": {
+      "gene": "FLT3",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 1,
+      "mean_abundance": 0.1405,
+      "detection_fraction": 0.0556,
+      "abundance_score": 0.038,
+      "confidence_weight": 0.1,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "FLT3",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 0,
+      "mean_expression": 0.0,
+      "expression_fraction": 0.0,
+      "expression_score": 0.1
+    },
+    "rna_protein_concordance": {
+      "gene": "FLT3",
+      "n_matched_lines": 51,
+      "spearman_rho": 0.3479,
+      "spearman_pvalue": 0.012371737879910303,
+      "concordance_tier": "moderate",
+      "concordance_score": 0.6
+    }
+  },
+  "FYN": {
+    "gene": "FYN",
+    "protein_score": 0.7786,
+    "blended_score": 0.8937,
+    "gene_druggability": 1.0,
+    "structural": {
+      "gene": "FYN",
+      "uniprot_id": "P06241",
+      "mean_plddt": 80.8392923649907,
+      "domain_plddt": {},
+      "n_pdb_structures": 52,
+      "n_ligand_bound": 27,
+      "has_pocket": true,
+      "structural_score": 0.9383612662942272
+    },
+    "degradability": {
+      "gene": "FYN",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "SB1-G-200",
+      "n_surface_lysines": 14,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "FYN",
+      "n_pdb_complexes": 21,
+      "has_interface_data": true,
+      "disordered_fraction": 0.1546,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "FYN",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 3,
+      "mean_abundance": 0.4516,
+      "detection_fraction": 0.1667,
+      "abundance_score": 0.2366,
+      "confidence_weight": 0.5,
+      "rna_imputed": true
+    },
+    "rna_expression": {
+      "gene": "FYN",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 27,
+      "mean_expression": 3.6847,
+      "expression_fraction": 1.0,
+      "expression_score": 0.85
+    },
+    "rna_protein_concordance": {
+      "gene": "FYN",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.433,
+      "spearman_pvalue": 2.3247440155615768e-10,
+      "concordance_tier": "moderate",
+      "concordance_score": 0.6
+    }
+  },
+  "GSK3B": {
+    "gene": "GSK3B",
+    "protein_score": 0.781,
+    "blended_score": 0.3846,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "GSK3B",
+      "uniprot_id": "P49841",
+      "mean_plddt": 88.22559523809524,
+      "domain_plddt": {},
+      "n_pdb_structures": 122,
+      "n_ligand_bound": 122,
+      "has_pocket": true,
+      "structural_score": 0.9753571428571429
+    },
+    "degradability": {
+      "gene": "GSK3B",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 11,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "GSK3B",
+      "n_pdb_complexes": 44,
+      "has_interface_data": true,
+      "disordered_fraction": 0.1214,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "GSK3B",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 5,
+      "mean_abundance": 0.2621,
+      "detection_fraction": 0.2778,
+      "abundance_score": 0.2407,
+      "confidence_weight": 0.5,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "GSK3B",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 4.6971,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "GSK3B",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.3273,
+      "spearman_pvalue": 2.8277434780126564e-06,
+      "concordance_tier": "moderate",
+      "concordance_score": 0.6
+    }
+  },
+  "HRAS": {
+    "gene": "HRAS",
+    "protein_score": 0.885,
+    "blended_score": 0.4084,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "HRAS",
+      "uniprot_id": "P01112",
+      "mean_plddt": 91.94629629629628,
+      "domain_plddt": {},
+      "n_pdb_structures": 234,
+      "n_ligand_bound": 227,
+      "has_pocket": true,
+      "structural_score": 1.0
+    },
+    "degradability": {
+      "gene": "HRAS",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 5,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "HRAS",
+      "n_pdb_complexes": 80,
+      "has_interface_data": true,
+      "disordered_fraction": 0.0476,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "HRAS",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 16,
+      "mean_abundance": 0.6456,
+      "detection_fraction": 0.8889,
+      "abundance_score": 1.0,
+      "confidence_weight": 1.0,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "HRAS",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 5.2494,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "HRAS",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.394,
+      "spearman_pvalue": 1.10371357361059e-08,
+      "concordance_tier": "moderate",
+      "concordance_score": 0.6
+    }
+  },
+  "IDH1": {
+    "gene": "IDH1",
+    "protein_score": 0.8201,
+    "blended_score": 0.9136,
+    "gene_druggability": 1.0,
+    "structural": {
+      "gene": "IDH1",
+      "uniprot_id": "O75874",
+      "mean_plddt": 95.8507729468599,
+      "domain_plddt": {},
+      "n_pdb_structures": 60,
+      "n_ligand_bound": 60,
+      "has_pocket": true,
+      "structural_score": 1.0
+    },
+    "degradability": {
+      "gene": "IDH1",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 13,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "IDH1",
+      "n_pdb_complexes": 3,
+      "has_interface_data": true,
+      "disordered_fraction": 0.0,
+      "ppi_score": 0.6
+    },
+    "abundance": {
+      "gene": "IDH1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 9,
+      "mean_abundance": 0.7861,
+      "detection_fraction": 0.5,
+      "abundance_score": 0.7704,
+      "confidence_weight": 0.9,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "IDH1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 7.0773,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "IDH1",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.6727,
+      "spearman_pvalue": 3.5191347733808274e-27,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "IDH2": {
+    "gene": "IDH2",
+    "protein_score": 0.7974,
+    "blended_score": 0.9028,
+    "gene_druggability": 1.0,
+    "structural": {
+      "gene": "IDH2",
+      "uniprot_id": "P48735",
+      "mean_plddt": 91.86920353982302,
+      "domain_plddt": {},
+      "n_pdb_structures": 11,
+      "n_ligand_bound": 11,
+      "has_pocket": true,
+      "structural_score": 1.0
+    },
+    "degradability": {
+      "gene": "IDH2",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 13,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "IDH2",
+      "n_pdb_complexes": 4,
+      "has_interface_data": true,
+      "disordered_fraction": 0.0752,
+      "ppi_score": 0.6
+    },
+    "abundance": {
+      "gene": "IDH2",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 8,
+      "mean_abundance": 0.3799,
+      "detection_fraction": 0.4444,
+      "abundance_score": 0.6283,
+      "confidence_weight": 0.8,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "IDH2",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 4.7569,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "IDH2",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.8001,
+      "spearman_pvalue": 6.289706198941928e-45,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "IGF1R": {
+    "gene": "IGF1R",
+    "protein_score": 0.8638,
+    "blended_score": 0.4037,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "IGF1R",
+      "uniprot_id": "P08069",
+      "mean_plddt": 78.01789319678127,
+      "domain_plddt": {},
+      "n_pdb_structures": 46,
+      "n_ligand_bound": 37,
+      "has_pocket": true,
+      "structural_score": 0.9136064374542794
+    },
+    "degradability": {
+      "gene": "IGF1R",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 33,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "IGF1R",
+      "n_pdb_complexes": 14,
+      "has_interface_data": true,
+      "disordered_fraction": 0.1573,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "IGF1R",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 11,
+      "mean_abundance": 0.4525,
+      "detection_fraction": 0.6111,
+      "abundance_score": 0.9146,
+      "confidence_weight": 1.0,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "IGF1R",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 25,
+      "mean_expression": 2.7964,
+      "expression_fraction": 0.9259,
+      "expression_score": 0.85
+    },
+    "rna_protein_concordance": {
+      "gene": "IGF1R",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.6448,
+      "spearman_pvalue": 2.0057634344798282e-24,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "IKBKB": {
+    "gene": "IKBKB",
+    "protein_score": 0.7224,
+    "blended_score": 0.3705,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "IKBKB",
+      "uniprot_id": "O14920",
+      "mean_plddt": 86.54374338624339,
+      "domain_plddt": {},
+      "n_pdb_structures": 5,
+      "n_ligand_bound": 1,
+      "has_pocket": true,
+      "structural_score": 0.8214285714285714
+    },
+    "degradability": {
+      "gene": "IKBKB",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 21,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "IKBKB",
+      "n_pdb_complexes": 3,
+      "has_interface_data": true,
+      "disordered_fraction": 0.0807,
+      "ppi_score": 0.6
+    },
+    "abundance": {
+      "gene": "IKBKB",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 4,
+      "mean_abundance": 0.5662,
+      "detection_fraction": 0.2222,
+      "abundance_score": 0.2983,
+      "confidence_weight": 0.5,
+      "rna_imputed": true
+    },
+    "rna_expression": {
+      "gene": "IKBKB",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 4.485,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "IKBKB",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.5735,
+      "spearman_pvalue": 1.5556479423268943e-18,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "JAK1": {
+    "gene": "JAK1",
+    "protein_score": 0.8852,
+    "blended_score": 0.9449,
+    "gene_druggability": 1.0,
+    "structural": {
+      "gene": "JAK1",
+      "uniprot_id": "P23458",
+      "mean_plddt": 85.5702512998267,
+      "domain_plddt": {},
+      "n_pdb_structures": 51,
+      "n_ligand_bound": 46,
+      "has_pocket": true,
+      "structural_score": 0.9756499133448874
+    },
+    "degradability": {
+      "gene": "JAK1",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "PROTAC compound (DB #774)",
+      "n_surface_lysines": 32,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "JAK1",
+      "n_pdb_complexes": 7,
+      "has_interface_data": true,
+      "disordered_fraction": 0.0728,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "JAK1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 8,
+      "mean_abundance": 0.4188,
+      "detection_fraction": 0.4444,
+      "abundance_score": 0.6303,
+      "confidence_weight": 0.8,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "JAK1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 5.0206,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "JAK1",
+      "n_matched_lines": 192,
+      "spearman_rho": 0.5553,
+      "spearman_pvalue": 6.293764893425164e-17,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "JAK2": {
+    "gene": "JAK2",
+    "protein_score": 0.8599,
+    "blended_score": 0.9327,
+    "gene_druggability": 1.0,
+    "structural": {
+      "gene": "JAK2",
+      "uniprot_id": "O60674",
+      "mean_plddt": 86.88294169611306,
+      "domain_plddt": {},
+      "n_pdb_structures": 164,
+      "n_ligand_bound": 161,
+      "has_pocket": true,
+      "structural_score": 0.991696113074205
+    },
+    "degradability": {
+      "gene": "JAK2",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "PROTAC compound (DB #774)",
+      "n_surface_lysines": 33,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "JAK2",
+      "n_pdb_complexes": 7,
+      "has_interface_data": true,
+      "disordered_fraction": 0.0645,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "JAK2",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 2,
+      "mean_abundance": 0.2819,
+      "detection_fraction": 0.1111,
+      "abundance_score": 0.4347,
+      "confidence_weight": 0.5,
+      "rna_imputed": true
+    },
+    "rna_expression": {
+      "gene": "JAK2",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 26,
+      "mean_expression": 1.9284,
+      "expression_fraction": 0.963,
+      "expression_score": 0.85
+    },
+    "rna_protein_concordance": {
+      "gene": "JAK2",
+      "n_matched_lines": 61,
+      "spearman_rho": 0.5976,
+      "spearman_pvalue": 3.6878027993523433e-07,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "KIT": {
+    "gene": "KIT",
+    "protein_score": 0.6425,
+    "blended_score": 0.319,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "KIT",
+      "uniprot_id": "P10721",
+      "mean_plddt": 78.18652663934427,
+      "domain_plddt": {},
+      "n_pdb_structures": 52,
+      "n_ligand_bound": 50,
+      "has_pocket": true,
+      "structural_score": 0.9046106557377049
+    },
+    "degradability": {
+      "gene": "KIT",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "PROTAC compound (DB #1422)",
+      "n_surface_lysines": 23,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "KIT",
+      "n_pdb_complexes": 9,
+      "has_interface_data": true,
+      "disordered_fraction": 0.1619,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "KIT",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 1,
+      "mean_abundance": 0.0831,
+      "detection_fraction": 0.0556,
+      "abundance_score": 0.0351,
+      "confidence_weight": 0.1,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "KIT",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 2,
+      "mean_expression": 1.4974,
+      "expression_fraction": 0.0741,
+      "expression_score": 0.1
+    },
+    "rna_protein_concordance": {
+      "gene": "KIT",
+      "n_matched_lines": 68,
+      "spearman_rho": 0.2129,
+      "spearman_pvalue": 0.08126497676981356,
+      "concordance_tier": "low",
+      "concordance_score": 0.3
+    }
+  },
+  "KRAS": {
+    "gene": "KRAS",
+    "protein_score": 0.915,
+    "blended_score": 0.9592,
+    "gene_druggability": 1.0,
+    "structural": {
+      "gene": "KRAS",
+      "uniprot_id": "P01116",
+      "mean_plddt": 91.52386243386245,
+      "domain_plddt": {},
+      "n_pdb_structures": 459,
+      "n_ligand_bound": 442,
+      "has_pocket": true,
+      "structural_score": 1.0
+    },
+    "degradability": {
+      "gene": "KRAS",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "LC-2",
+      "n_surface_lysines": 5,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "KRAS",
+      "n_pdb_complexes": 177,
+      "has_interface_data": true,
+      "disordered_fraction": 0.0212,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "KRAS",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 14,
+      "mean_abundance": 0.8983,
+      "detection_fraction": 0.7778,
+      "abundance_score": 1.0,
+      "confidence_weight": 1.0,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "KRAS",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 4.6007,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "KRAS",
+      "n_matched_lines": 162,
+      "spearman_rho": 0.3178,
+      "spearman_pvalue": 3.7652731168465066e-05,
+      "concordance_tier": "moderate",
+      "concordance_score": 0.6
+    }
+  },
+  "LATS1": {
+    "gene": "LATS1",
+    "protein_score": 0.6011,
+    "blended_score": 0.3106,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "LATS1",
+      "uniprot_id": "O95835",
+      "mean_plddt": 55.314584070796464,
+      "domain_plddt": {},
+      "n_pdb_structures": 4,
+      "n_ligand_bound": 3,
+      "has_pocket": true,
+      "structural_score": 0.5349557522123893
+    },
+    "degradability": {
+      "gene": "LATS1",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "RSS0680",
+      "n_surface_lysines": 12,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "LATS1",
+      "n_pdb_complexes": 4,
+      "has_interface_data": true,
+      "disordered_fraction": 0.5814,
+      "ppi_score": 0.6
+    },
+    "abundance": {
+      "gene": "LATS1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 5,
+      "mean_abundance": 0.3953,
+      "detection_fraction": 0.2778,
+      "abundance_score": 0.2473,
+      "confidence_weight": 0.5,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "LATS1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 3.0744,
+      "expression_fraction": 1.037,
+      "expression_score": 0.85
+    },
+    "rna_protein_concordance": {
+      "gene": "LATS1",
+      "n_matched_lines": 138,
+      "spearman_rho": 0.4819,
+      "spearman_pvalue": 2.176254244468595e-09,
+      "concordance_tier": "moderate",
+      "concordance_score": 0.6
+    }
+  },
+  "LATS2": {
+    "gene": "LATS2",
+    "protein_score": 0.5807,
+    "blended_score": 0.3523,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "LATS2",
+      "uniprot_id": "Q9NRM7",
+      "mean_plddt": 55.80682904411765,
+      "domain_plddt": {},
+      "n_pdb_structures": 1,
+      "n_ligand_bound": 0,
+      "has_pocket": false,
+      "structural_score": 0.34411764705882353
+    },
+    "degradability": {
+      "gene": "LATS2",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 12,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "LATS2",
+      "n_pdb_complexes": 1,
+      "has_interface_data": true,
+      "disordered_fraction": 0.5873,
+      "ppi_score": 0.6
+    },
+    "abundance": {
+      "gene": "LATS2",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 2,
+      "mean_abundance": 0.5922,
+      "detection_fraction": 0.1111,
+      "abundance_score": 0.4409,
+      "confidence_weight": 0.5,
+      "rna_imputed": true
+    },
+    "rna_expression": {
+      "gene": "LATS2",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 2.7157,
+      "expression_fraction": 1.037,
+      "expression_score": 0.85
+    },
+    "rna_protein_concordance": {
+      "gene": "LATS2",
+      "n_matched_lines": 48,
+      "spearman_rho": 0.5952,
+      "spearman_pvalue": 8.120300603845625e-06,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "LCK": {
+    "gene": "LCK",
+    "protein_score": 0.7549,
+    "blended_score": 0.3784,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "LCK",
+      "uniprot_id": "P06239",
+      "mean_plddt": 83.59485265225933,
+      "domain_plddt": {},
+      "n_pdb_structures": 57,
+      "n_ligand_bound": 48,
+      "has_pocket": true,
+      "structural_score": 0.9516699410609037
+    },
+    "degradability": {
+      "gene": "LCK",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "DB0614",
+      "n_surface_lysines": 13,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "LCK",
+      "n_pdb_complexes": 15,
+      "has_interface_data": true,
+      "disordered_fraction": 0.1238,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "LCK",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 3,
+      "mean_abundance": 3.6892,
+      "detection_fraction": 0.1667,
+      "abundance_score": 0.1884,
+      "confidence_weight": 0.3,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "LCK",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 11,
+      "mean_expression": 2.5846,
+      "expression_fraction": 0.4074,
+      "expression_score": 0.3
+    },
+    "rna_protein_concordance": {
+      "gene": "LCK",
+      "n_matched_lines": 58,
+      "spearman_rho": 0.5635,
+      "spearman_pvalue": 4.107886063716678e-06,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "LYN": {
+    "gene": "LYN",
+    "protein_score": 0.756,
+    "blended_score": 0.8829,
+    "gene_druggability": 1.0,
+    "structural": {
+      "gene": "LYN",
+      "uniprot_id": "P07948",
+      "mean_plddt": 83.1450390625,
+      "domain_plddt": {},
+      "n_pdb_structures": 6,
+      "n_ligand_bound": 3,
+      "has_pocket": true,
+      "structural_score": 0.80224609375
+    },
+    "degradability": {
+      "gene": "LYN",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "DB0646",
+      "n_surface_lysines": 13,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "LYN",
+      "n_pdb_complexes": 1,
+      "has_interface_data": true,
+      "disordered_fraction": 0.1406,
+      "ppi_score": 0.6
+    },
+    "abundance": {
+      "gene": "LYN",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 8,
+      "mean_abundance": 0.6531,
+      "detection_fraction": 0.4444,
+      "abundance_score": 0.642,
+      "confidence_weight": 0.8,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "LYN",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 2.9474,
+      "expression_fraction": 1.037,
+      "expression_score": 0.85
+    },
+    "rna_protein_concordance": {
+      "gene": "LYN",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.8005,
+      "spearman_pvalue": 5.15575473804593e-45,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "MAP2K1": {
+    "gene": "MAP2K1",
+    "protein_score": 0.7761,
+    "blended_score": 0.8925,
+    "gene_druggability": 1.0,
+    "structural": {
+      "gene": "MAP2K1",
+      "uniprot_id": "Q02750",
+      "mean_plddt": 83.2224427480916,
+      "domain_plddt": {},
+      "n_pdb_structures": 89,
+      "n_ligand_bound": 89,
+      "has_pocket": true,
+      "structural_score": 0.9450381679389314
+    },
+    "degradability": {
+      "gene": "MAP2K1",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 10,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "MAP2K1",
+      "n_pdb_complexes": 40,
+      "has_interface_data": true,
+      "disordered_fraction": 0.1221,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "MAP2K1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 3,
+      "mean_abundance": 0.6544,
+      "detection_fraction": 0.1667,
+      "abundance_score": 0.2727,
+      "confidence_weight": 0.5,
+      "rna_imputed": true
+    },
+    "rna_expression": {
+      "gene": "MAP2K1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 5.7109,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "MAP2K1",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.3188,
+      "spearman_pvalue": 5.248897493947434e-06,
+      "concordance_tier": "moderate",
+      "concordance_score": 0.6
+    }
+  },
+  "MAP2K2": {
+    "gene": "MAP2K2",
+    "protein_score": 0.6581,
+    "blended_score": 0.8632,
+    "gene_druggability": 1.0,
+    "structural": {
+      "gene": "MAP2K2",
+      "uniprot_id": "P36507",
+      "mean_plddt": 81.635225,
+      "domain_plddt": {},
+      "n_pdb_structures": 3,
+      "n_ligand_bound": 2,
+      "has_pocket": true,
+      "structural_score": 0.774875
+    },
+    "degradability": {
+      "gene": "MAP2K2",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 10,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "MAP2K2",
+      "n_pdb_complexes": 2,
+      "has_interface_data": true,
+      "disordered_fraction": 0.1725,
+      "ppi_score": 0.6
+    },
+    "abundance": {
+      "gene": "MAP2K2",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 5,
+      "mean_abundance": 0.1597,
+      "detection_fraction": 0.2778,
+      "abundance_score": 0.2355,
+      "confidence_weight": 0.5,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "MAP2K2",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 5.7517,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "MAP2K2",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.3995,
+      "spearman_pvalue": 6.602034463085284e-09,
+      "concordance_tier": "moderate",
+      "concordance_score": 0.6
+    }
+  },
+  "MAPK1": {
+    "gene": "MAPK1",
+    "protein_score": 0.7914,
+    "blended_score": 0.387,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "MAPK1",
+      "uniprot_id": "P28482",
+      "mean_plddt": 90.37444444444444,
+      "domain_plddt": {},
+      "n_pdb_structures": 159,
+      "n_ligand_bound": 155,
+      "has_pocket": true,
+      "structural_score": 1.0
+    },
+    "degradability": {
+      "gene": "MAPK1",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 10,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "MAPK1",
+      "n_pdb_complexes": 20,
+      "has_interface_data": true,
+      "disordered_fraction": 0.0417,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "MAPK1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 6,
+      "mean_abundance": 0.3974,
+      "detection_fraction": 0.3333,
+      "abundance_score": 0.3591,
+      "confidence_weight": 0.6,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "MAPK1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 5.5357,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "MAPK1",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.4894,
+      "spearman_pvalue": 3.3776315143731216e-13,
+      "concordance_tier": "moderate",
+      "concordance_score": 0.6
+    }
+  },
+  "MAPK3": {
+    "gene": "MAPK3",
+    "protein_score": 0.633,
+    "blended_score": 0.3171,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "MAPK3",
+      "uniprot_id": "P27361",
+      "mean_plddt": 87.98240105540897,
+      "domain_plddt": {},
+      "n_pdb_structures": 3,
+      "n_ligand_bound": 3,
+      "has_pocket": true,
+      "structural_score": 0.833245382585752
+    },
+    "degradability": {
+      "gene": "MAPK3",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 10,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "MAPK3",
+      "n_pdb_complexes": 0,
+      "has_interface_data": false,
+      "disordered_fraction": 0.0792,
+      "ppi_score": 0.3
+    },
+    "abundance": {
+      "gene": "MAPK3",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 6,
+      "mean_abundance": 0.5621,
+      "detection_fraction": 0.3333,
+      "abundance_score": 0.3673,
+      "confidence_weight": 0.6,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "MAPK3",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 5.3167,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "MAPK3",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.397,
+      "spearman_pvalue": 8.356782291806745e-09,
+      "concordance_tier": "moderate",
+      "concordance_score": 0.6
+    }
+  },
+  "MCL1": {
+    "gene": "MCL1",
+    "protein_score": 0.7695,
+    "blended_score": 0.6294,
+    "gene_druggability": 0.5,
+    "structural": {
+      "gene": "MCL1",
+      "uniprot_id": "Q07820",
+      "mean_plddt": 63.62662857142857,
+      "domain_plddt": {},
+      "n_pdb_structures": 143,
+      "n_ligand_bound": 123,
+      "has_pocket": true,
+      "structural_score": 0.7357142857142858
+    },
+    "degradability": {
+      "gene": "MCL1",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "dMCL1-2",
+      "n_surface_lysines": 4,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "MCL1",
+      "n_pdb_complexes": 49,
+      "has_interface_data": true,
+      "disordered_fraction": 0.4686,
+      "ppi_score": 0.6
+    },
+    "abundance": {
+      "gene": "MCL1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 11,
+      "mean_abundance": 0.2211,
+      "detection_fraction": 0.6111,
+      "abundance_score": 0.903,
+      "confidence_weight": 1.0,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "MCL1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 6.7845,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "MCL1",
+      "n_matched_lines": 180,
+      "spearman_rho": 0.3546,
+      "spearman_pvalue": 1.0399575663727796e-06,
+      "concordance_tier": "moderate",
+      "concordance_score": 0.6
+    }
+  },
+  "MDM2": {
+    "gene": "MDM2",
+    "protein_score": 0.724,
+    "blended_score": 0.3709,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "MDM2",
+      "uniprot_id": "Q00987",
+      "mean_plddt": 62.58448065173117,
+      "domain_plddt": {},
+      "n_pdb_structures": 146,
+      "n_ligand_bound": 122,
+      "has_pocket": true,
+      "structural_score": 0.7094704684317719
+    },
+    "degradability": {
+      "gene": "MDM2",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "MD-224",
+      "n_surface_lysines": 6,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "MDM2",
+      "n_pdb_complexes": 64,
+      "has_interface_data": true,
+      "disordered_fraction": 0.4766,
+      "ppi_score": 0.6
+    },
+    "abundance": {
+      "gene": "MDM2",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 4,
+      "mean_abundance": 0.4239,
+      "detection_fraction": 0.2222,
+      "abundance_score": 0.2926,
+      "confidence_weight": 0.5,
+      "rna_imputed": true
+    },
+    "rna_expression": {
+      "gene": "MDM2",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 4.7338,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "MDM2",
+      "n_matched_lines": 110,
+      "spearman_rho": 0.5847,
+      "spearman_pvalue": 1.9893905648231022e-11,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "MET": {
+    "gene": "MET",
+    "protein_score": 0.938,
+    "blended_score": 0.9703,
+    "gene_druggability": 1.0,
+    "structural": {
+      "gene": "MET",
+      "uniprot_id": "P08581",
+      "mean_plddt": 79.22879856115108,
+      "domain_plddt": {},
+      "n_pdb_structures": 129,
+      "n_ligand_bound": 112,
+      "has_pocket": true,
+      "structural_score": 0.9320863309352518
+    },
+    "degradability": {
+      "gene": "MET",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "PROTAC-MET",
+      "n_surface_lysines": 36,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "MET",
+      "n_pdb_complexes": 17,
+      "has_interface_data": true,
+      "disordered_fraction": 0.1388,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "MET",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 17,
+      "mean_abundance": 1.3936,
+      "detection_fraction": 0.9444,
+      "abundance_score": 1.0,
+      "confidence_weight": 1.0,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "MET",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 6.4384,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "MET",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.7954,
+      "spearman_pvalue": 4.6830447731258e-44,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "MTOR": {
+    "gene": "MTOR",
+    "protein_score": 0.7781,
+    "blended_score": 0.8935,
+    "gene_druggability": 1.0,
+    "structural": {
+      "gene": "MTOR",
+      "uniprot_id": "P42345",
+      "mean_plddt": 77.97040800313849,
+      "domain_plddt": {},
+      "n_pdb_structures": 61,
+      "n_ligand_bound": 47,
+      "has_pocket": true,
+      "structural_score": 0.9518242448018832
+    },
+    "degradability": {
+      "gene": "MTOR",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "PROTAC compound (DB #4695)",
+      "n_surface_lysines": 69,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "MTOR",
+      "n_pdb_complexes": 56,
+      "has_interface_data": true,
+      "disordered_fraction": 0.0985,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "MTOR",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 6,
+      "mean_abundance": 0.3699,
+      "detection_fraction": 0.3333,
+      "abundance_score": 0.3577,
+      "confidence_weight": 0.6,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "MTOR",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 4.1821,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "MTOR",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.0556,
+      "spearman_pvalue": 0.43853717631396905,
+      "concordance_tier": "low",
+      "concordance_score": 0.3
+    }
+  },
+  "MYC": {
+    "gene": "MYC",
+    "protein_score": 0.6716,
+    "blended_score": 0.5387,
+    "gene_druggability": 0.45,
+    "structural": {
+      "gene": "MYC",
+      "uniprot_id": "P01106",
+      "mean_plddt": 60.408480176211455,
+      "domain_plddt": {},
+      "n_pdb_structures": 25,
+      "n_ligand_bound": 11,
+      "has_pocket": true,
+      "structural_score": 0.6272026431718062
+    },
+    "degradability": {
+      "gene": "MYC",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "MDEG-541",
+      "n_surface_lysines": 3,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "MYC",
+      "n_pdb_complexes": 17,
+      "has_interface_data": true,
+      "disordered_fraction": 0.4053,
+      "ppi_score": 0.6
+    },
+    "abundance": {
+      "gene": "MYC",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 7,
+      "mean_abundance": 0.4891,
+      "detection_fraction": 0.3889,
+      "abundance_score": 0.4967,
+      "confidence_weight": 0.7,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "MYC",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 6.2619,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "MYC",
+      "n_matched_lines": 140,
+      "spearman_rho": 0.3976,
+      "spearman_pvalue": 1.1517516137700517e-06,
+      "concordance_tier": "moderate",
+      "concordance_score": 0.6
+    }
+  },
+  "NFKB1": {
+    "gene": "NFKB1",
+    "protein_score": 0.7563,
+    "blended_score": 0.3787,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "NFKB1",
+      "uniprot_id": "P19838",
+      "mean_plddt": 73.17747933884297,
+      "domain_plddt": {},
+      "n_pdb_structures": 15,
+      "n_ligand_bound": 1,
+      "has_pocket": true,
+      "structural_score": 0.7244318181818181
+    },
+    "degradability": {
+      "gene": "NFKB1",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 21,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "NFKB1",
+      "n_pdb_complexes": 12,
+      "has_interface_data": true,
+      "disordered_fraction": 0.2758,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "NFKB1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 5,
+      "mean_abundance": 0.3541,
+      "detection_fraction": 0.2778,
+      "abundance_score": 0.2453,
+      "confidence_weight": 0.5,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "NFKB1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 4.1569,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "NFKB1",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.5218,
+      "spearman_pvalue": 4.4319603353569725e-15,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "NRAS": {
+    "gene": "NRAS",
+    "protein_score": 0.8359,
+    "blended_score": 0.3974,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "NRAS",
+      "uniprot_id": "P01111",
+      "mean_plddt": 92.04449735449734,
+      "domain_plddt": {},
+      "n_pdb_structures": 29,
+      "n_ligand_bound": 21,
+      "has_pocket": true,
+      "structural_score": 1.0
+    },
+    "degradability": {
+      "gene": "NRAS",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 5,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "NRAS",
+      "n_pdb_complexes": 19,
+      "has_interface_data": true,
+      "disordered_fraction": 0.0423,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "NRAS",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 9,
+      "mean_abundance": 0.2927,
+      "detection_fraction": 0.5,
+      "abundance_score": 0.7457,
+      "confidence_weight": 0.9,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "NRAS",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 4.9138,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "NRAS",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.3942,
+      "spearman_pvalue": 1.085560127433808e-08,
+      "concordance_tier": "moderate",
+      "concordance_score": 0.6
+    }
+  },
+  "PARP1": {
+    "gene": "PARP1",
+    "protein_score": 0.8832,
+    "blended_score": 0.9439,
+    "gene_druggability": 1.0,
+    "structural": {
+      "gene": "PARP1",
+      "uniprot_id": "P09874",
+      "mean_plddt": 82.38227810650888,
+      "domain_plddt": {},
+      "n_pdb_structures": 103,
+      "n_ligand_bound": 99,
+      "has_pocket": true,
+      "structural_score": 0.955621301775148
+    },
+    "degradability": {
+      "gene": "PARP1",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "iRucaparib-AP6",
+      "n_surface_lysines": 27,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "PARP1",
+      "n_pdb_complexes": 15,
+      "has_interface_data": true,
+      "disordered_fraction": 0.1105,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "PARP1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 2,
+      "mean_abundance": 0.4252,
+      "detection_fraction": 0.1111,
+      "abundance_score": 0.5096,
+      "confidence_weight": 0.5,
+      "rna_imputed": true
+    },
+    "rna_expression": {
+      "gene": "PARP1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 5.8182,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "PARP1",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.6107,
+      "spearman_pvalue": 2.0290150877110084e-21,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "PIK3CA": {
+    "gene": "PIK3CA",
+    "protein_score": 0.7646,
+    "blended_score": 0.887,
+    "gene_druggability": 1.0,
+    "structural": {
+      "gene": "PIK3CA",
+      "uniprot_id": "P42336",
+      "mean_plddt": 92.36351123595506,
+      "domain_plddt": {},
+      "n_pdb_structures": 125,
+      "n_ligand_bound": 107,
+      "has_pocket": true,
+      "structural_score": 1.0
+    },
+    "degradability": {
+      "gene": "PIK3CA",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 33,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "PIK3CA",
+      "n_pdb_complexes": 90,
+      "has_interface_data": true,
+      "disordered_fraction": 0.0112,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "PIK3CA",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 5,
+      "mean_abundance": 0.5685,
+      "detection_fraction": 0.2778,
+      "abundance_score": 0.256,
+      "confidence_weight": 0.5,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "PIK3CA",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 3.5431,
+      "expression_fraction": 1.037,
+      "expression_score": 0.85
+    },
+    "rna_protein_concordance": {
+      "gene": "PIK3CA",
+      "n_matched_lines": 167,
+      "spearman_rho": 0.3137,
+      "spearman_pvalue": 3.653374718624276e-05,
+      "concordance_tier": "moderate",
+      "concordance_score": 0.6
+    }
+  },
+  "PIK3CB": {
+    "gene": "PIK3CB",
+    "protein_score": 0.5369,
+    "blended_score": 0.3348,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "PIK3CB",
+      "uniprot_id": "P42338",
+      "mean_plddt": 86.34905607476635,
+      "domain_plddt": {},
+      "n_pdb_structures": 0,
+      "n_ligand_bound": 0,
+      "has_pocket": false,
+      "structural_score": 0.4826635514018692
+    },
+    "degradability": {
+      "gene": "PIK3CB",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 30,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "PIK3CB",
+      "n_pdb_complexes": 0,
+      "has_interface_data": false,
+      "disordered_fraction": 0.0505,
+      "ppi_score": 0.3
+    },
+    "abundance": {
+      "gene": "PIK3CB",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 6,
+      "mean_abundance": 0.4322,
+      "detection_fraction": 0.3333,
+      "abundance_score": 0.3609,
+      "confidence_weight": 0.6,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "PIK3CB",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 4.4404,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "PIK3CB",
+      "n_matched_lines": 171,
+      "spearman_rho": 0.3716,
+      "spearman_pvalue": 5.631584305798682e-07,
+      "concordance_tier": "moderate",
+      "concordance_score": 0.6
+    }
+  },
+  "PIK3R1": {
+    "gene": "PIK3R1",
+    "protein_score": 0.8097,
+    "blended_score": 0.3913,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "PIK3R1",
+      "uniprot_id": "P27986",
+      "mean_plddt": 83.16009668508288,
+      "domain_plddt": {},
+      "n_pdb_structures": 102,
+      "n_ligand_bound": 75,
+      "has_pocket": true,
+      "structural_score": 0.9740331491712708
+    },
+    "degradability": {
+      "gene": "PIK3R1",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 20,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "PIK3R1",
+      "n_pdb_complexes": 95,
+      "has_interface_data": true,
+      "disordered_fraction": 0.0981,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "PIK3R1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 3,
+      "mean_abundance": 0.0604,
+      "detection_fraction": 0.1667,
+      "abundance_score": 0.3269,
+      "confidence_weight": 0.5,
+      "rna_imputed": true
+    },
+    "rna_expression": {
+      "gene": "PIK3R1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 27,
+      "mean_expression": 2.9367,
+      "expression_fraction": 1.0,
+      "expression_score": 0.85
+    },
+    "rna_protein_concordance": {
+      "gene": "PIK3R1",
+      "n_matched_lines": 191,
+      "spearman_rho": 0.5547,
+      "spearman_pvalue": 8.392183941641927e-17,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "PTEN": {
+    "gene": "PTEN",
+    "protein_score": 0.7192,
+    "blended_score": 0.3697,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "PTEN",
+      "uniprot_id": "P60484",
+      "mean_plddt": 83.02808933002481,
+      "domain_plddt": {},
+      "n_pdb_structures": 28,
+      "n_ligand_bound": 7,
+      "has_pocket": true,
+      "structural_score": 0.9271712158808934
+    },
+    "degradability": {
+      "gene": "PTEN",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 10,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "PTEN",
+      "n_pdb_complexes": 4,
+      "has_interface_data": true,
+      "disordered_fraction": 0.1712,
+      "ppi_score": 0.6
+    },
+    "abundance": {
+      "gene": "PTEN",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 7,
+      "mean_abundance": 0.4436,
+      "detection_fraction": 0.3889,
+      "abundance_score": 0.4944,
+      "confidence_weight": 0.7,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "PTEN",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 4.93,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "PTEN",
+      "n_matched_lines": 148,
+      "spearman_rho": 0.4023,
+      "spearman_pvalue": 4.0191059462457485e-07,
+      "concordance_tier": "moderate",
+      "concordance_score": 0.6
+    }
+  },
+  "RAF1": {
+    "gene": "RAF1",
+    "protein_score": 0.6689,
+    "blended_score": 0.3242,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "RAF1",
+      "uniprot_id": "P04049",
+      "mean_plddt": 67.50760802469136,
+      "domain_plddt": {},
+      "n_pdb_structures": 67,
+      "n_ligand_bound": 60,
+      "has_pocket": true,
+      "structural_score": 0.8123456790123457
+    },
+    "degradability": {
+      "gene": "RAF1",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 12,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "RAF1",
+      "n_pdb_complexes": 59,
+      "has_interface_data": true,
+      "disordered_fraction": 0.3549,
+      "ppi_score": 0.6
+    },
+    "abundance": {
+      "gene": "RAF1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 5,
+      "mean_abundance": 0.239,
+      "detection_fraction": 0.2778,
+      "abundance_score": 0.2395,
+      "confidence_weight": 0.5,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "RAF1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 5.6022,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "RAF1",
+      "n_matched_lines": 188,
+      "spearman_rho": 0.4841,
+      "spearman_pvalue": 1.941360340390916e-12,
+      "concordance_tier": "moderate",
+      "concordance_score": 0.6
+    }
+  },
+  "RB1": {
+    "gene": "RB1",
+    "protein_score": 0.8038,
+    "blended_score": 0.39,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "RB1",
+      "uniprot_id": "P06400",
+      "mean_plddt": 76.06631465517242,
+      "domain_plddt": {},
+      "n_pdb_structures": 19,
+      "n_ligand_bound": 2,
+      "has_pocket": true,
+      "structural_score": 0.7032327586206897
+    },
+    "degradability": {
+      "gene": "RB1",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 19,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "RB1",
+      "n_pdb_complexes": 10,
+      "has_interface_data": true,
+      "disordered_fraction": 0.2155,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "RB1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 9,
+      "mean_abundance": 0.5935,
+      "detection_fraction": 0.5,
+      "abundance_score": 0.7607,
+      "confidence_weight": 0.9,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "RB1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 4.338,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "RB1",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.5322,
+      "spearman_pvalue": 1.0008227571086008e-15,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "RELA": {
+    "gene": "RELA",
+    "protein_score": 0.686,
+    "blended_score": 0.3274,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "RELA",
+      "uniprot_id": "Q04206",
+      "mean_plddt": 72.19050816696915,
+      "domain_plddt": {},
+      "n_pdb_structures": 88,
+      "n_ligand_bound": 77,
+      "has_pocket": true,
+      "structural_score": 0.8024500907441017
+    },
+    "degradability": {
+      "gene": "RELA",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 9,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "RELA",
+      "n_pdb_complexes": 88,
+      "has_interface_data": true,
+      "disordered_fraction": 0.343,
+      "ppi_score": 0.6
+    },
+    "abundance": {
+      "gene": "RELA",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 7,
+      "mean_abundance": 0.4415,
+      "detection_fraction": 0.3889,
+      "abundance_score": 0.4943,
+      "confidence_weight": 0.7,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "RELA",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 5.5519,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "RELA",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.4318,
+      "spearman_pvalue": 2.6279557071903205e-10,
+      "concordance_tier": "moderate",
+      "concordance_score": 0.6
+    }
+  },
+  "RET": {
+    "gene": "RET",
+    "protein_score": 0.6004,
+    "blended_score": 0.8402,
+    "gene_druggability": 1.0,
+    "structural": {
+      "gene": "RET",
+      "uniprot_id": "P07949",
+      "mean_plddt": 78.79307001795333,
+      "domain_plddt": {},
+      "n_pdb_structures": 34,
+      "n_ligand_bound": 33,
+      "has_pocket": true,
+      "structural_score": 0.9250897666068223
+    },
+    "degradability": {
+      "gene": "RET",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 28,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "RET",
+      "n_pdb_complexes": 7,
+      "has_interface_data": true,
+      "disordered_fraction": 0.1876,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "RET",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 2,
+      "mean_abundance": 0.4884,
+      "detection_fraction": 0.1111,
+      "abundance_score": 0.0771,
+      "confidence_weight": 0.2,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "RET",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 1,
+      "mean_expression": 2.5942,
+      "expression_fraction": 0.037,
+      "expression_score": 0.1
+    },
+    "rna_protein_concordance": {
+      "gene": "RET",
+      "n_matched_lines": 30,
+      "spearman_rho": 0.2458,
+      "spearman_pvalue": 0.19038286009853816,
+      "concordance_tier": "low",
+      "concordance_score": 0.3
+    }
+  },
+  "ROS1": {
+    "gene": "ROS1",
+    "protein_score": 0.4539,
+    "blended_score": 0.7291,
+    "gene_druggability": 1.0,
+    "structural": {
+      "gene": "ROS1",
+      "uniprot_id": "P08922",
+      "mean_plddt": 72.21682147422241,
+      "domain_plddt": {},
+      "n_pdb_structures": 5,
+      "n_ligand_bound": 5,
+      "has_pocket": true,
+      "structural_score": 0.8782275244993609
+    },
+    "degradability": {
+      "gene": "ROS1",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 53,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "ROS1",
+      "n_pdb_complexes": 0,
+      "has_interface_data": false,
+      "disordered_fraction": 0.1436,
+      "ppi_score": 0.3
+    },
+    "abundance": {
+      "gene": "ROS1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 3,
+      "mean_abundance": 0.1783,
+      "detection_fraction": 0.1667,
+      "abundance_score": 0.0973,
+      "confidence_weight": 0.3,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "ROS1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 1,
+      "mean_expression": 3.5695,
+      "expression_fraction": 0.037,
+      "expression_score": 0.1
+    },
+    "rna_protein_concordance": {
+      "gene": "ROS1",
+      "n_matched_lines": 114,
+      "spearman_rho": 0.072,
+      "spearman_pvalue": 0.44649364647382395,
+      "concordance_tier": "low",
+      "concordance_score": 0.3
+    }
+  },
+  "SRC": {
+    "gene": "SRC",
+    "protein_score": 0.9396,
+    "blended_score": 0.971,
+    "gene_druggability": 1.0,
+    "structural": {
+      "gene": "SRC",
+      "uniprot_id": "P12931",
+      "mean_plddt": 83.46263059701492,
+      "domain_plddt": {},
+      "n_pdb_structures": 78,
+      "n_ligand_bound": 56,
+      "has_pocket": true,
+      "structural_score": 0.9432835820895522
+    },
+    "degradability": {
+      "gene": "SRC",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "dasatinib-PROTAC",
+      "n_surface_lysines": 14,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "SRC",
+      "n_pdb_complexes": 16,
+      "has_interface_data": true,
+      "disordered_fraction": 0.1549,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "SRC",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 13,
+      "mean_abundance": 0.6459,
+      "detection_fraction": 0.7222,
+      "abundance_score": 0.994,
+      "confidence_weight": 1.0,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "SRC",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 4.5978,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "SRC",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.6954,
+      "spearman_pvalue": 1.1966704671234503e-29,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "STAT3": {
+    "gene": "STAT3",
+    "protein_score": 0.8382,
+    "blended_score": 0.7923,
+    "gene_druggability": 0.75,
+    "structural": {
+      "gene": "STAT3",
+      "uniprot_id": "P40763",
+      "mean_plddt": 84.85115584415584,
+      "domain_plddt": {},
+      "n_pdb_structures": 6,
+      "n_ligand_bound": 3,
+      "has_pocket": true,
+      "structural_score": 0.8057142857142858
+    },
+    "degradability": {
+      "gene": "STAT3",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "SD-36",
+      "n_surface_lysines": 21,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "STAT3",
+      "n_pdb_complexes": 3,
+      "has_interface_data": true,
+      "disordered_fraction": 0.1039,
+      "ppi_score": 0.6
+    },
+    "abundance": {
+      "gene": "STAT3",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 12,
+      "mean_abundance": 0.4725,
+      "detection_fraction": 0.6667,
+      "abundance_score": 0.9587,
+      "confidence_weight": 1.0,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "STAT3",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 5.1793,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "STAT3",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.5824,
+      "spearman_pvalue": 3.4117345230078947e-19,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "STAT5A": {
+    "gene": "STAT5A",
+    "protein_score": 0.6806,
+    "blended_score": 0.3264,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "STAT5A",
+      "uniprot_id": "P42229",
+      "mean_plddt": 85.0555289672544,
+      "domain_plddt": {},
+      "n_pdb_structures": 5,
+      "n_ligand_bound": 5,
+      "has_pocket": true,
+      "structural_score": 0.9627204030226701
+    },
+    "degradability": {
+      "gene": "STAT5A",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 22,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "STAT5A",
+      "n_pdb_complexes": 0,
+      "has_interface_data": false,
+      "disordered_fraction": 0.1071,
+      "ppi_score": 0.3
+    },
+    "abundance": {
+      "gene": "STAT5A",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 5,
+      "mean_abundance": 0.3128,
+      "detection_fraction": 0.2778,
+      "abundance_score": 0.2432,
+      "confidence_weight": 0.5,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "STAT5A",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 25,
+      "mean_expression": 2.4285,
+      "expression_fraction": 0.9259,
+      "expression_score": 0.85
+    },
+    "rna_protein_concordance": {
+      "gene": "STAT5A",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.5206,
+      "spearman_pvalue": 5.1920890776082476e-15,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "STAT5B": {
+    "gene": "STAT5B",
+    "protein_score": 0.638,
+    "blended_score": 0.3181,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "STAT5B",
+      "uniprot_id": "P51692",
+      "mean_plddt": 85.1761626429479,
+      "domain_plddt": {},
+      "n_pdb_structures": 2,
+      "n_ligand_bound": 0,
+      "has_pocket": false,
+      "structural_score": 0.615438373570521
+    },
+    "degradability": {
+      "gene": "STAT5B",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "AK-2292",
+      "n_surface_lysines": 21,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "STAT5B",
+      "n_pdb_complexes": 0,
+      "has_interface_data": false,
+      "disordered_fraction": 0.1042,
+      "ppi_score": 0.3
+    },
+    "abundance": {
+      "gene": "STAT5B",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 7,
+      "mean_abundance": 0.3235,
+      "detection_fraction": 0.3889,
+      "abundance_score": 0.4884,
+      "confidence_weight": 0.7,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "STAT5B",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 3.8787,
+      "expression_fraction": 1.037,
+      "expression_score": 0.85
+    },
+    "rna_protein_concordance": {
+      "gene": "STAT5B",
+      "n_matched_lines": 155,
+      "spearman_rho": 0.597,
+      "spearman_pvalue": 2.429177111332529e-16,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "STK3": {
+    "gene": "STK3",
+    "protein_score": 0.8396,
+    "blended_score": 0.3982,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "STK3",
+      "uniprot_id": "Q13188",
+      "mean_plddt": 76.34938900203666,
+      "domain_plddt": {},
+      "n_pdb_structures": 11,
+      "n_ligand_bound": 6,
+      "has_pocket": true,
+      "structural_score": 0.8819755600814665
+    },
+    "degradability": {
+      "gene": "STK3",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 11,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "STK3",
+      "n_pdb_complexes": 6,
+      "has_interface_data": true,
+      "disordered_fraction": 0.2485,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "STK3",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 11,
+      "mean_abundance": 0.5699,
+      "detection_fraction": 0.6111,
+      "abundance_score": 0.9205,
+      "confidence_weight": 1.0,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "STK3",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 4.3938,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "STK3",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.4507,
+      "spearman_pvalue": 3.37250295495054e-11,
+      "concordance_tier": "moderate",
+      "concordance_score": 0.6
+    }
+  },
+  "STK4": {
+    "gene": "STK4",
+    "protein_score": 0.8445,
+    "blended_score": 0.3993,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "STK4",
+      "uniprot_id": "Q13043",
+      "mean_plddt": 75.92831622176591,
+      "domain_plddt": {},
+      "n_pdb_structures": 16,
+      "n_ligand_bound": 10,
+      "has_pocket": true,
+      "structural_score": 0.8749486652977413
+    },
+    "degradability": {
+      "gene": "STK4",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "WH-10417-099",
+      "n_surface_lysines": 10,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "STK4",
+      "n_pdb_complexes": 9,
+      "has_interface_data": true,
+      "disordered_fraction": 0.2382,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "STK4",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 7,
+      "mean_abundance": 0.5739,
+      "detection_fraction": 0.3889,
+      "abundance_score": 0.5009,
+      "confidence_weight": 0.7,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "STK4",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 4.1356,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "STK4",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.5814,
+      "spearman_pvalue": 4.068646588845943e-19,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "TP53": {
+    "gene": "TP53",
+    "protein_score": 0.8719,
+    "blended_score": 0.4055,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "TP53",
+      "uniprot_id": "P04637",
+      "mean_plddt": 75.05012722646309,
+      "domain_plddt": {},
+      "n_pdb_structures": 298,
+      "n_ligand_bound": 241,
+      "has_pocket": true,
+      "structural_score": 0.8288804071246819
+    },
+    "degradability": {
+      "gene": "TP53",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 7,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "TP53",
+      "n_pdb_complexes": 115,
+      "has_interface_data": true,
+      "disordered_fraction": 0.2977,
+      "ppi_score": 1.0
+    },
+    "abundance": {
+      "gene": "TP53",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 11,
+      "mean_abundance": 1.1334,
+      "detection_fraction": 0.6111,
+      "abundance_score": 0.9486,
+      "confidence_weight": 1.0,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "TP53",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 4.6455,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "TP53",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.5962,
+      "spearman_pvalue": 2.978294325860728e-20,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "TSC1": {
+    "gene": "TSC1",
+    "protein_score": 0.6019,
+    "blended_score": 0.3108,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "TSC1",
+      "uniprot_id": "Q92574",
+      "mean_plddt": 62.06341924398626,
+      "domain_plddt": {},
+      "n_pdb_structures": 5,
+      "n_ligand_bound": 0,
+      "has_pocket": false,
+      "structural_score": 0.4108247422680412
+    },
+    "degradability": {
+      "gene": "TSC1",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 18,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "TSC1",
+      "n_pdb_complexes": 5,
+      "has_interface_data": true,
+      "disordered_fraction": 0.4287,
+      "ppi_score": 0.6
+    },
+    "abundance": {
+      "gene": "TSC1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 9,
+      "mean_abundance": 0.3437,
+      "detection_fraction": 0.5,
+      "abundance_score": 0.7482,
+      "confidence_weight": 0.9,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "TSC1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 3.8775,
+      "expression_fraction": 1.037,
+      "expression_score": 0.85
+    },
+    "rna_protein_concordance": {
+      "gene": "TSC1",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.4201,
+      "spearman_pvalue": 8.83729255568083e-10,
+      "concordance_tier": "moderate",
+      "concordance_score": 0.6
+    }
+  },
+  "TSC2": {
+    "gene": "TSC2",
+    "protein_score": 0.5949,
+    "blended_score": 0.358,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "TSC2",
+      "uniprot_id": "P49815",
+      "mean_plddt": 67.87280575539569,
+      "domain_plddt": {},
+      "n_pdb_structures": 2,
+      "n_ligand_bound": 0,
+      "has_pocket": false,
+      "structural_score": 0.502158273381295
+    },
+    "degradability": {
+      "gene": "TSC2",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 38,
+      "degradability_score": 0.5
+    },
+    "ppi": {
+      "gene": "TSC2",
+      "n_pdb_complexes": 2,
+      "has_interface_data": true,
+      "disordered_fraction": 0.3016,
+      "ppi_score": 0.6
+    },
+    "abundance": {
+      "gene": "TSC2",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 8,
+      "mean_abundance": 0.3807,
+      "detection_fraction": 0.4444,
+      "abundance_score": 0.6284,
+      "confidence_weight": 0.8,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "TSC2",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 4.9403,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "TSC2",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.146,
+      "spearman_pvalue": 0.04110303010917034,
+      "concordance_tier": "low",
+      "concordance_score": 0.3
+    }
+  },
+  "TYK2": {
+    "gene": "TYK2",
+    "protein_score": 0.71,
+    "blended_score": 0.3674,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "TYK2",
+      "uniprot_id": "P29597",
+      "mean_plddt": 81.76899747262004,
+      "domain_plddt": {},
+      "n_pdb_structures": 52,
+      "n_ligand_bound": 51,
+      "has_pocket": true,
+      "structural_score": 0.9550126368997474
+    },
+    "degradability": {
+      "gene": "TYK2",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "JWG-148",
+      "n_surface_lysines": 32,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "TYK2",
+      "n_pdb_complexes": 3,
+      "has_interface_data": true,
+      "disordered_fraction": 0.1314,
+      "ppi_score": 0.6
+    },
+    "abundance": {
+      "gene": "TYK2",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 5,
+      "mean_abundance": 0.4921,
+      "detection_fraction": 0.2778,
+      "abundance_score": 0.2521,
+      "confidence_weight": 0.5,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "TYK2",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 5.3646,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "TYK2",
+      "n_matched_lines": 174,
+      "spearman_rho": 0.2723,
+      "spearman_pvalue": 0.0002782586349146713,
+      "concordance_tier": "low",
+      "concordance_score": 0.3
+    }
+  },
+  "WWTR1": {
+    "gene": "WWTR1",
+    "protein_score": 0.7502,
+    "blended_score": 0.3772,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "WWTR1",
+      "uniprot_id": "Q9GZV5",
+      "mean_plddt": 59.14265,
+      "domain_plddt": {},
+      "n_pdb_structures": 11,
+      "n_ligand_bound": 11,
+      "has_pocket": true,
+      "structural_score": 0.6677500000000001
+    },
+    "degradability": {
+      "gene": "WWTR1",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 4,
+      "degradability_score": 0.3
+    },
+    "ppi": {
+      "gene": "WWTR1",
+      "n_pdb_complexes": 11,
+      "has_interface_data": true,
+      "disordered_fraction": 0.515,
+      "ppi_score": 0.6
+    },
+    "abundance": {
+      "gene": "WWTR1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 12,
+      "mean_abundance": 1.1231,
+      "detection_fraction": 0.6667,
+      "abundance_score": 0.9912,
+      "confidence_weight": 1.0,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "WWTR1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 5.4102,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "WWTR1",
+      "n_matched_lines": 184,
+      "spearman_rho": 0.7777,
+      "spearman_pvalue": 1.5283575221327077e-38,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "YAP1": {
+    "gene": "YAP1",
+    "protein_score": 0.746,
+    "blended_score": 0.3762,
+    "gene_druggability": 0.2,
+    "structural": {
+      "gene": "YAP1",
+      "uniprot_id": "P46937",
+      "mean_plddt": 57.402023809523804,
+      "domain_plddt": {},
+      "n_pdb_structures": 41,
+      "n_ligand_bound": 29,
+      "has_pocket": true,
+      "structural_score": 0.6440476190476191
+    },
+    "degradability": {
+      "gene": "YAP1",
+      "has_known_degrader": false,
+      "degrader_status": "none",
+      "degrader_exemplar": "",
+      "n_surface_lysines": 4,
+      "degradability_score": 0.3
+    },
+    "ppi": {
+      "gene": "YAP1",
+      "n_pdb_complexes": 37,
+      "has_interface_data": true,
+      "disordered_fraction": 0.4484,
+      "ppi_score": 0.6
+    },
+    "abundance": {
+      "gene": "YAP1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 13,
+      "mean_abundance": 0.8639,
+      "detection_fraction": 0.7222,
+      "abundance_score": 1.0,
+      "confidence_weight": 1.0,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "YAP1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 5.8188,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "YAP1",
+      "n_matched_lines": 179,
+      "spearman_rho": 0.6566,
+      "spearman_pvalue": 1.905748051857375e-23,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  },
+  "YES1": {
+    "gene": "YES1",
+    "protein_score": 0.7966,
+    "blended_score": 0.9024,
+    "gene_druggability": 1.0,
+    "structural": {
+      "gene": "YES1",
+      "uniprot_id": "P07947",
+      "mean_plddt": 81.87834254143647,
+      "domain_plddt": {},
+      "n_pdb_structures": 1,
+      "n_ligand_bound": 1,
+      "has_pocket": true,
+      "structural_score": 0.7865561694290977
+    },
+    "degradability": {
+      "gene": "YES1",
+      "has_known_degrader": true,
+      "degrader_status": "preclinical",
+      "degrader_exemplar": "TL12-186",
+      "n_surface_lysines": 14,
+      "degradability_score": 0.7
+    },
+    "ppi": {
+      "gene": "YES1",
+      "n_pdb_complexes": 0,
+      "has_interface_data": false,
+      "disordered_fraction": 0.1694,
+      "ppi_score": 0.3
+    },
+    "abundance": {
+      "gene": "YES1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 18,
+      "n_detected": 14,
+      "mean_abundance": 0.4437,
+      "detection_fraction": 0.7778,
+      "abundance_score": 0.9998,
+      "confidence_weight": 1.0,
+      "rna_imputed": false
+    },
+    "rna_expression": {
+      "gene": "YES1",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_cell_lines": 27,
+      "n_expressed": 28,
+      "mean_expression": 5.0344,
+      "expression_fraction": 1.037,
+      "expression_score": 1.0
+    },
+    "rna_protein_concordance": {
+      "gene": "YES1",
+      "n_matched_lines": 196,
+      "spearman_rho": 0.6692,
+      "spearman_pvalue": 8.139436492413635e-27,
+      "concordance_tier": "high",
+      "concordance_score": 1.0
+    }
+  }
+}

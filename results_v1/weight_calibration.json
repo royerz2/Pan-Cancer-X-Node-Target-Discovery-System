@@ -1,0 +1,32 @@
+{
+  "nominal_weights": {
+    "structural": 0.25,
+    "degradability": 0.15,
+    "ppi": 0.15,
+    "abundance": 0.2,
+    "rna_expression": 0.15,
+    "concordance": 0.1
+  },
+  "optimized_weights": {
+    "structural": 0.2383,
+    "degradability": 0.3315,
+    "ppi": 0.2838,
+    "abundance": 0.0551,
+    "rna_expression": 0.0431,
+    "concordance": 0.0481
+  },
+  "nominal_auc": 0.6071,
+  "optimized_auc": 0.7452,
+  "rank_stability_mean_rho": 0.9936,
+  "rank_stability_std_rho": 0.0042,
+  "weight_sensitivity": {
+    "structural": 0.0675,
+    "degradability": 0.0714,
+    "ppi": 0.0079,
+    "abundance": -0.0556,
+    "rna_expression": -0.0437,
+    "concordance": -0.0079
+  },
+  "n_positive_genes": 28,
+  "n_negative_genes": 45
+}

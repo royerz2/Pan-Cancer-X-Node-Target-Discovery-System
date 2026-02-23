@@ -1,0 +1,47 @@
+
+================================================================================
+COMBINED X-NODE DISCOVERY & VALIDATION REPORT
+================================================================================
+Cancer Type: Pancreatic Adenocarcinoma
+Cell Lines: 64
+Lineage: Pancreas
+
+================================================================================
+X-NODE DISCOVERY RESULTS
+================================================================================
+Recommended Combination: FYN, KRAS, STAT3
+
+Best Triple Combination: FYN, KRAS, STAT3
+  Synergy Score: 0.94
+  Resistance Score: 0.44
+  Path Coverage: 53.7%
+  Druggable Targets: 3/3
+
+================================================================================
+VALIDATION RESULTS
+================================================================================
+Overall Validation Score: 0.680
+Confidence Level: MEDIUM - Moderate validation evidence
+
+Literature Evidence:
+  PubMed Publications: 0
+  Clinical Trials: 0
+
+Network Evidence:
+  Protein Interaction Confidence: 0.000
+  Pathway Overlap Score: 0.000
+
+Detailed Evidence (2 sources):
+  1. [Curated Knowledge Base (FYN+STAT3)] Pairwise: FYN-STAT3 validated in pancreatic cancer X-node paper (score: 0.68)
+  2. [Curated Knowledge Base (KRAS+STAT3)] Pairwise: KRAS-STAT3 axis validated in pancreatic cancer (score: 0.56)
+
+================================================================================
+CLINICAL ACTIONABILITY ASSESSMENT
+================================================================================
+Targets with Approved Drugs (3):
+  • FYN: dasatinib (approved)
+  • KRAS: sotorasib (approved)
+  • STAT3: napabucasin (phase2)
+
+Clinical Actionability: HIGH - Ready for clinical consideration
+================================================================================

@@ -1,0 +1,38 @@
+Non-normalized: (10137, 69)
+Cell lines: 18, data cols: 60
+Raw CVs: 9018 genes
+  Median=0.4394, Mean=0.4814
+  25th=0.3192, 75th=0.6042
+
+Reading normalized xlsx...
+Normalized: (10137, 66)
+Norm cell lines: 18
+Norm CVs: 9011 genes
+  Median=1.2002, Mean=3.4970
+
+Shared genes: 9011
+Spearman r=0.1151, p=5.89e-28
+Pearson  r=-0.0119, p=2.58e-01
+
+Gene       Norm_CV      Raw_CV       Ratio     
+EGFR       0.3378       0.3254       0.96      
+KRAS       2.2998       0.6902       0.30      
+TP53       0.2433       0.5615       2.31      
+BRAF       3.2099       0.6217       0.19      
+CDK4       1.0086       0.7012       0.70      
+MAP2K1     0.6360       0.3825       0.60      
+CDK6       2.4822       0.5858       0.24      
+BCL2L1     0.5797       0.4298       0.74      
+PIK3CA     1.2658       0.7561       0.60      
+STAT3      2.1373       0.4456       0.21      
+
+Bridge columns: 6
+Proteins with bridge CV: 9649
+Bridge median CV: 0.4194
+
+Extra genes in raw only: 7
+Extra genes in norm only: 0
+
+=== RECOMMENDATION ===
+Low Spearman (0.115): Raw and norm CVs diverge significantly
+→ Keep both as independent quality layers

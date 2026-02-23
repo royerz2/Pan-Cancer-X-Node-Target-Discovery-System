@@ -48,6 +48,7 @@ class TestSolverHierarchy:
             """Cost function that returns fixed costs per gene."""
             def __init__(self, costs: Dict[str, float]):
                 self._costs = costs
+                self.protein_scorer = None
 
             def compute_cost(self, gene, cancer_type):
                 cost_val = self._costs.get(gene, 1.0)

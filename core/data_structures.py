@@ -50,12 +50,16 @@ class NodeCost:
     def effective_druggability(self) -> float:
         """Blended druggability: gene-level + protein-level when available.
         
-        d_eff(g) = α·d_gene(g) + (1−α)·p(g)  where α = 0.6
+        Uses adaptive blending with discordance penalty (v2):
+        - When gene and protein scores diverge by >0.4, switches to
+          geometric mean so low protein truly penalises.
+        - Low-protein veto: caps blended at 0.5 if protein < 0.25.
         Falls back to d_gene(g) when protein score is absent.
         """
         if self.protein_druggability_score is not None:
-            alpha = 0.6
-            return alpha * self.druggability_score + (1 - alpha) * self.protein_druggability_score
+            from alin.protein_scoring import _adaptive_blend
+            return _adaptive_blend(self.druggability_score,
+                                   self.protein_druggability_score)
         return self.druggability_score
     
     def total_cost(self, alpha=1.0, beta=0.5, gamma=0.3, delta=2.0, lambda_base=1.0) -> float:
