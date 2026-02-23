@@ -1248,6 +1248,7 @@ class CostFunction:
         self.protein_scorer = protein_scorer
         self._protein_scores = {}  # gene → ProteinDruggabilityScore (lazy cache)
         self._pan_essential = None
+        self.discovery_mode = False  # set externally for discovery-mode runs
         
     def _get_pan_essential(self) -> Set[str]:
         if self._pan_essential is None:
@@ -1393,10 +1394,14 @@ class MinimalHittingSetSolver:
             self.cost_fn.protein_scorer.pre_resolve_genes(list(all_genes))
 
         # Compute costs
+        # In discovery mode, gamma=0 removes the druggability reward so
+        # the hitting set solver treats druggable and undruggable targets
+        # equally.
+        _disc = getattr(self.cost_fn, 'discovery_mode', False)
         gene_costs = {}
         for gene in all_genes:
             cost_obj = self.cost_fn.compute_cost(gene, cancer_type)
-            gene_costs[gene] = cost_obj.total_cost()
+            gene_costs[gene] = cost_obj.total_cost(gamma=0.0) if _disc else cost_obj.total_cost()
         
         solutions = []
         methods_used = []
@@ -2004,18 +2009,21 @@ class TripleCombinationFinder:
                  toxicity_cache_dir: Optional[str] = None,
                  use_known_synergies: bool = True,
                  disable_hub_penalty: bool = False,
-                 protein_scorer=None):
+                 protein_scorer=None,
+                 discovery_mode: bool = False):
         self.depmap = depmap
         self.omnipath = omnipath
         self.drug_db = drug_db
         self.use_known_synergies = use_known_synergies
         self.disable_hub_penalty = disable_hub_penalty
         self.protein_scorer = protein_scorer
+        self.discovery_mode = discovery_mode
         self.network_analyzer = XNodeNetworkAnalyzer(omnipath)
         self.synergy_scorer = SynergyScorer(omnipath, use_known_synergies=use_known_synergies)
         self.resistance_estimator = ResistanceProbabilityEstimator(omnipath, depmap)
         self.cost_fn = CostFunction(depmap, drug_db, toxicity_cache_dir=toxicity_cache_dir,
                                     protein_scorer=protein_scorer)
+        self.cost_fn.discovery_mode = discovery_mode
 
         # Evidence-backed hub-penalty exemptions: genes with Tier 1 experimental
         # evidence in a specific cancer type are exempt from the hub penalty
@@ -2036,7 +2044,8 @@ class TripleCombinationFinder:
                                   cancer_type: str,
                                   top_n: int = 20,
                                   min_coverage: float = 0.7,
-                                  prefer_druggable: bool = True) -> List[TripleCombination]:
+                                  prefer_druggable: bool = True,
+                                  discovery_mode: Optional[bool] = None) -> List[TripleCombination]:
         """
         Find optimal triple combinations using systems biology scoring
         
@@ -2050,6 +2059,12 @@ class TripleCombinationFinder:
         Returns:
             List of TripleCombination objects sorted by combined_score
         """
+        # Resolve discovery mode: explicit argument > instance attribute > default
+        _discovery = discovery_mode if discovery_mode is not None else self.discovery_mode
+        if _discovery:
+            prefer_druggable = False
+            logger.info("DISCOVERY MODE: druggability bias disabled — biology-first ranking")
+
         if len(paths) == 0:
             logger.warning("No viability paths provided")
             return []
@@ -2086,6 +2101,19 @@ class TripleCombinationFinder:
         
         priority_genes |= druggable_path_genes
         logger.info(f"Injected {len(druggable_path_genes)} druggable path genes into candidates")
+
+        # Discovery mode: also inject frequent path genes regardless of
+        # druggability so biology-first targets enter the candidate pool.
+        if _discovery:
+            gene_frequency_all = defaultdict(int)
+            for path in paths:
+                for gene in path.nodes:
+                    gene_frequency_all[gene] += 1
+            frequent_all = sorted(gene_frequency_all.items(), key=lambda x: x[1], reverse=True)
+            # Top-30 most frequent path genes enter the pool unconditionally
+            discovery_inject = {g for g, _ in frequent_all[:30]}
+            priority_genes |= discovery_inject
+            logger.info(f"Discovery mode: injected {len(discovery_inject)} frequent path genes")
         # ---- END EXPANDED CANDIDATE INJECTION ----
         
         if len(priority_genes) < 10:
@@ -2119,7 +2147,8 @@ class TripleCombinationFinder:
         gene_costs = {}
         for gene in candidate_genes:
             cost_obj = self.cost_fn.compute_cost(gene, cancer_type)
-            gene_costs[gene] = cost_obj.total_cost()
+            # Discovery mode: gamma=0 removes druggability reward from cost
+            gene_costs[gene] = cost_obj.total_cost(gamma=0.0) if _discovery else cost_obj.total_cost()
         
         # Pre-compute per-gene path frequencies for hub penalty
         gene_path_freqs = {}
@@ -2226,6 +2255,9 @@ class TripleCombinationFinder:
             # Combined score (lower is better)
             # Weights: cost (0.22), synergy (-0.18), resistance (0.18),
             #          coverage (-0.14), combo_tox (0.18), hub (penalty)
+            # Discovery mode: zero out the druggability bonus so undruggable
+            # targets with strong biology are not penalised.
+            drug_bonus = 0.0 if _discovery else druggable_count * 0.1
             combined_score = (
                 total_cost * 0.22 +
                 (1 - synergy) * 0.18 +  # Invert synergy (higher synergy = better)
@@ -2233,7 +2265,7 @@ class TripleCombinationFinder:
                 (1 - coverage) * 0.14 +
                 combo_tox_score * 0.18 +
                 hub_penalty -             # Penalty for pan-cancer hubs
-                druggable_count * 0.1 -   # Bonus for druggability
+                drug_bonus -              # Bonus for druggability (0 in discovery)
                 perturbation_bonus        # Bonus for targeting feedback genes
             )
             
@@ -2607,7 +2639,9 @@ class PanCancerXNodeAnalyzer:
                  disable_coessentiality: bool = False,
                  disable_statistical: bool = False,
                  disable_hub_penalty: bool = False,
-                 use_lineage_aware_statistical: bool = False):
+                 use_lineage_aware_statistical: bool = False,
+                 discovery_mode: bool = False):
+        self.discovery_mode = discovery_mode
         self.depmap = DepMapLoader(data_dir)
         self.omnipath = OmniPathLoader(data_dir)
         self.drug_db = DrugTargetDB()
@@ -2620,6 +2654,7 @@ class PanCancerXNodeAnalyzer:
             use_lineage_aware_statistical=use_lineage_aware_statistical,
         )
         self.cost_fn = CostFunction(self.depmap, self.drug_db, toxicity_cache_dir=toxicity_cache_dir)
+        self.cost_fn.discovery_mode = discovery_mode
         self.solver = MinimalHittingSetSolver(self.cost_fn)
 
         # Build multi-omics protein scorer if data is available
@@ -2643,6 +2678,7 @@ class PanCancerXNodeAnalyzer:
             use_known_synergies=use_known_synergies,
             disable_hub_penalty=disable_hub_penalty,
             protein_scorer=self._protein_scorer,
+            discovery_mode=discovery_mode,
         )
         self.validation_integrator = XNodeValidationIntegrator(validation_data_dir)
         
@@ -3362,6 +3398,7 @@ Examples:
   python pan_cancer_xnode.py --all-cancers --top-n 10
   python pan_cancer_xnode.py --all-cancers --triples  # Focus on triple combinations
   python pan_cancer_xnode.py --all-cancers --validate  # Run with validation
+  python pan_cancer_xnode.py --all-cancers --triples --discovery-mode  # Biology-first (no druggability bias)
   python pan_cancer_xnode.py --list-cancers
 
 Triple Combination Analysis:
@@ -3407,6 +3444,9 @@ Validation:
                              'grid (full search), all (everything)')
     parser.add_argument('--tune-sample', type=int, default=None,
                         help='For grid tuning: randomly sample N configs (faster)')
+    parser.add_argument('--discovery-mode', action='store_true',
+                        help='Discovery mode: disable druggability bias to reveal '
+                             'biology-first targets (drug-development priorities)')
     
     args = parser.parse_args()
     
@@ -3436,8 +3476,12 @@ Validation:
     # Initialize analyzer
     analyzer = PanCancerXNodeAnalyzer(
         data_dir=args.data_dir, 
-        validation_data_dir=args.validation_dir
+        validation_data_dir=args.validation_dir,
+        discovery_mode=args.discovery_mode,
     )
+    
+    if args.discovery_mode:
+        logger.info("*** DISCOVERY MODE ACTIVE: druggability bias disabled ***")
     
     # Validate-only mode: load existing results and run validation
     if args.validate_only:
