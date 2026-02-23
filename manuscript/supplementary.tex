@@ -813,4 +813,57 @@ AML & CDK4+CDK6+MCL1 & pal(A)+pal(A)+AMG(P1) & 0.73 & 0.63 & 0.75 & 0.00 & 0.58 
 \normalsize
 \end{table}
 
+%% ============================================================
+%% Table S8: Translational vs. Discovery per-cancer comparison
+%% ============================================================
+\begin{table}[htbp]
+\centering
+\caption{\textbf{Supplementary Table~S8: Translational vs.\ Discovery per-cancer comparison.} For each of 76 cancer types, the top-ranked triple identified by the druggability-weighted translational pipeline and the druggability-neutral discovery pipeline are shown, along with associated drug mappings and the degree of target overlap. ``Agreement'' indicates whether the two triples are IDENTICAL (all three targets match), PARTIAL (at least one shared target), or DIFFERENT (no shared targets). The 8 identical-triple cancers represent convergence candidates whose target selection is robust to the removal of all pharmacological priors. Full data available in \texttt{Table\_S8\_translational\_vs\_discovery.csv}.}
+\label{tab:s8_dual_track}
+\scriptsize
+\begin{tabular}{p{3.2cm}p{3cm}p{3cm}cp{1.2cm}}
+\toprule
+\textbf{Cancer Type} & \textbf{Translational Triple} & \textbf{Discovery Triple} & \textbf{Shared} & \textbf{Agreement} \\
+\midrule
+Embryonal Tumor & CDK6+ERBB2+MAP2K1 & CDK6+ERBB2+MAP2K1 & 3 & IDENTICAL \\
+Epithelioid Sarcoma & CDK6+ERBB2+MAP2K1 & CDK6+ERBB2+MAP2K1 & 3 & IDENTICAL \\
+Glassy Cell Ca.\ Cervix & CDK6+ERBB2+MAP2K1 & CDK6+ERBB2+MAP2K1 & 3 & IDENTICAL \\
+Meningothelial Tumor & CDK6+ERBB2+MAP2K1 & CDK6+ERBB2+MAP2K1 & 3 & IDENTICAL \\
+Mucosal Melanoma V/V & CDK6+ERBB2+MAP2K1 & CDK6+ERBB2+MAP2K1 & 3 & IDENTICAL \\
+Salivary Gland Ca. & CDK6+ERBB2+MAP2K1 & CDK6+ERBB2+MAP2K1 & 3 & IDENTICAL \\
+Sarcoma NOS & CDK6+ERBB2+MAP2K1 & CDK6+ERBB2+MAP2K1 & 3 & IDENTICAL \\
+Urethral Cancer & CDK6+ERBB2+MAP2K1 & CDK6+ERBB2+MAP2K1 & 3 & IDENTICAL \\
+\midrule
+\multicolumn{5}{l}{\textit{26 cancers with partial overlap (1--2 shared targets) and 42 cancers with no overlap omitted;}} \\
+\multicolumn{5}{l}{\textit{see CSV for complete data.}} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%% ============================================================
+%% Table S9: Discovery-only drug development priorities
+%% ============================================================
+\begin{table}[htbp]
+\centering
+\caption{\textbf{Supplementary Table~S9: Drug development priorities from discovery-mode targets.} The 73 targets identified exclusively by the druggability-neutral discovery pipeline, ranked by the number of cancer types in which each target appears. These targets are biologically validated (selected by CRISPR essentiality and network topology) but pharmacologically underserved, defining a ranked drug-development agenda. ``Modality Opportunity'' indicates the therapeutic modality most likely to enable targeting. Full data available in \texttt{Table\_S9\_discovery\_drug\_priorities.csv}.}
+\label{tab:s9_discovery_priorities}
+\scriptsize
+\begin{tabular}{lcclp{3cm}}
+\toprule
+\textbf{Target} & \textbf{Frequency} & \textbf{Cancer Types} & \textbf{Drug Status} & \textbf{Modality} \\
+\midrule
+CCND1 & 21 & 21 & Indirect (CDK4/6i) & CDK4/6 inhibitors \\
+STAT3 & 19 & 19 & No approved & PROTAC / molecular glue \\
+MCL1 & 10 & 10 & Phase 1 & BH3 mimetics \\
+RAC1 & 9 & 9 & No approved & Allosteric inhibitor \\
+RHOA & 8 & 8 & No approved & Allosteric inhibitor \\
+CDC42 & 7 & 7 & No approved & Allosteric inhibitor \\
+CTNNB1 & 6 & 6 & No approved & PROTAC / PPI disruptor \\
+NRAS & 5 & 5 & No approved & PROTAC \\
+\midrule
+\multicolumn{5}{l}{\textit{65 additional targets omitted; see CSV for complete ranked list.}} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \end{document}
