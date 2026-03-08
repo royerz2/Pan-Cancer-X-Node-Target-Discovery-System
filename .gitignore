@@ -78,3 +78,16 @@ synergy_data/
 validation_data/
 lincs_data/
 ALIN.code-workspace
+
+# ─── Root workbench artifacts ───
+/*_stdout.txt
+/*_stderr.txt
+/*_output.txt
+/*test*.txt
+/*_err.txt
+/_probe_baselines.log
+/v10e_orchestrator.log
+/UTF8
+
+# ─── Auxiliary report outputs ───
+outputs/reports/validation_reports/*.json

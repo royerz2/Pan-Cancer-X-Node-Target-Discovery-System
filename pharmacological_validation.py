@@ -749,7 +749,7 @@ class PharmacologicalValidator:
     def export_validation_report(
         self,
         results: Dict[str, ValidationResult],
-        output_path: str = "validation_report.json",
+        output_path: str = "outputs/reports/validation_reports/validation_report.json",
     ) -> str:
         """Export validation results to JSON."""
         report = {}
@@ -791,6 +791,7 @@ class PharmacologicalValidator:
             }
 
         output = Path(output_path)
+        output.parent.mkdir(parents=True, exist_ok=True)
         with open(output, 'w') as f:
             json.dump(report, f, indent=2)
 
@@ -824,7 +825,7 @@ def main():
         help="Directory containing PRISM/GDSC data files"
     )
     parser.add_argument(
-        "--output", default="validation_report.json",
+        "--output", default="outputs/reports/validation_reports/validation_report.json",
         help="Output JSON report path"
     )
     parser.add_argument(

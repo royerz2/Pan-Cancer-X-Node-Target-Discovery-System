@@ -42,6 +42,17 @@ The pipeline extends the PDAC-specific approach to:
 - **Validated** — 44.2% any-overlap recall vs. 43-entry clinical gold standard (54.3% on 35 testable entries; p < 0.001 vs. random); DrugComb synergy validation (ZIP: Δ = +2.59, p = 0.0001).
 - **Novel discovery** — Multiple combinations with no existing clinical trials.
 
+## Repository Layout
+
+- `pan_cancer_xnode.py` — main public discovery CLI.
+- `scripts/run_pipeline.py` — reproducibility runner for the gold-standard benchmark cancers.
+- `docs/` — data availability, versioning, and release-oriented documentation.
+- Top-level `*_results/` directories — preserved published analysis artifacts used for benchmarking, calibration, and manuscript support.
+- `outputs/` — canonical home for newly generated auxiliary reports that should not accumulate in the repository root.
+
+See [docs/REPOSITORY_LAYOUT.md](docs/REPOSITORY_LAYOUT.md) for the release-oriented directory map and [scripts/README.md](scripts/README.md) for the script surface.
+See [outputs/README.md](outputs/README.md) for the non-root auxiliary report layout.
+
 ---
 
 ## Methods
@@ -227,7 +238,13 @@ benchmark_results/
 ├── benchmark_results.csv
 ├── benchmark_metrics.json
 └── benchmark_report.txt
+
+outputs/reports/validation_reports/
+└── validation_report.json       # Pharmacological validation export
 ```
+
+The committed top-level result bundles in this repository are preserved release artifacts.
+New auxiliary reports should be written under `outputs/` instead of the repository root.
 
 ---
 
@@ -269,8 +286,11 @@ Against 43 independently curated FDA-approved and Phase 2/3-validated multi-targ
 ├── manuscript/                  # LaTeX source (paper.tex, supplementary.tex)
 ├── docs/                        # Documentation (DATA_AVAILABILITY, VERSION_INFO)
 ├── figures/                     # Generated figures (PNG/PDF)
-└── results/                     # Pipeline output
+├── results/                     # Primary quick-start pipeline output
+└── outputs/                     # New auxiliary reports and future non-root runtime artifacts
 ```
+
+Additional top-level `*_results/` directories are preserved publication artifacts rather than scratch workbench output.
 
 ---
 
