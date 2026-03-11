@@ -39,9 +39,14 @@ from scipy import stats
 np.random.seed(42)
 
 BASE = Path(__file__).parent
-FIG_DIR = BASE / "figures"
-RESULTS_DIR = BASE / "validation_results"
-RESULTS_DIR.mkdir(exist_ok=True)
+OUTPUT_ROOT = BASE / "outputs" / "outcome_benchmark"
+FIG_DIR = OUTPUT_ROOT / "figures"
+RESULTS_DIR = OUTPUT_ROOT / "reports"
+
+
+def _ensure_output_dirs() -> None:
+    FIG_DIR.mkdir(exist_ok=True, parents=True)
+    RESULTS_DIR.mkdir(exist_ok=True, parents=True)
 
 # Gene equivalents (same as alin/constants.py)
 GENE_EQUIVALENTS = {
@@ -963,6 +968,7 @@ def run_benchmark_b(scorer):
 
 def generate_figures(bench_a_df, bench_a_stats, bench_b_df):
     """Generate Figure S13: outcome-oriented benchmarks."""
+    _ensure_output_dirs()
     plt.rcParams.update({
         'font.size': 9,
         'axes.titlesize': 11,
@@ -1143,6 +1149,7 @@ def generate_figures(bench_a_df, bench_a_stats, bench_b_df):
 
 def write_summary(bench_a_df, bench_a_stats, bench_b_df):
     """Write LaTeX-ready summary stats."""
+    _ensure_output_dirs()
     summary = {
         'benchmark_a': {
             'n_successes': int((bench_a_df['outcome'] == 'success').sum()),

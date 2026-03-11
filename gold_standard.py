@@ -26,9 +26,8 @@ The gold standard is used ONLY for post-hoc evaluation, never for training
 or weight fitting.  Specifically:
 
 1. Pipeline weights (combined_score in pan_cancer_xnode.py) were calibrated
-   on a separate calibration dataset (calibration_results/) using SHAP
-   feature-importance, leave-one-cancer-out evaluation, and logistic
-   regression — all reported in calibration_results/calibration_summary.json.
+    on a separate calibration dataset using SHAP feature-importance,
+    leave-one-cancer-out evaluation, and logistic regression.
    The gold standard was NOT part of the calibration objective.
 
 2. The pipeline is mechanistic + data-driven: DepMap CRISPR dependencies →
@@ -36,12 +35,10 @@ or weight fitting.  Specifically:
    cost-function scoring ± LINCS L1000 perturbation evidence.  No step
    fits parameters to the gold standard.
 
-3. Three formal circularity/leakage ablation tests are in
-   scripts/circularity_ablation.py:
-     (a) Ablation 1 — remove all literature-curated features.
-     (b) Ablation 2 — degree-matched random null.
-     (c) Ablation 3 — network-scramble null (edge-swap).
-   Results in validation_results/circularity_ablation_summary.json.
+3. Historical circularity/leakage ablations removed literature-curated
+    features, compared against degree-matched random nulls, and used
+    network-scramble controls. These checks are separate from the routine
+    public pipeline workflow.
 
 4. A fourth circularity test (KNOWN_SYNERGIES ablation) is in this file's
    own __main__ block, demonstrating recall stability with vs. without the

@@ -2,58 +2,46 @@
 
 **Adaptive Lethal Intersection Network**
 
-A computational pipeline for discovering optimal triple drug combinations across cancer types using systems biology and minimal hitting set optimization.
+A pan-cancer target-discovery pipeline for ranking triple drug combinations with DepMap dependencies, signaling topology, and downstream validation layers.
 
-**Reference:** Methodology extrapolated from Liaki et al. (2025). A targeted combination therapy achieves effective pancreatic cancer regression and prevents tumor resistance. bioRxiv doi: 10.1101/2025.08.04.668325.
+This public repository is intentionally scoped to the runnable pipeline: code, setup helpers, docs, and tests. It does not bundle manuscript assets, generated figure trees, or historical release result directories.
+
+**Method reference:** Methodology extrapolated from Liaki et al. (2025). A targeted combination therapy achieves effective pancreatic cancer regression and prevents tumor resistance. bioRxiv doi: 10.1101/2025.08.04.668325.
 
 ---
 
-## Introduction
+## Repository Scope
 
-### Background and Motivation
+Use this repo to:
 
-Cancer drug resistance remains a major obstacle to durable therapeutic responses. Single-agent therapies often fail due to tumor heterogeneity, adaptive bypass mechanisms, and pre-existing resistant clones. **Combination therapy** addresses this by simultaneously targeting multiple nodes in tumor viability networks, reducing the probability of resistance emergence and improving outcomes.
+- run single-cancer or pan-cancer discovery
+- compare actionable and exploratory modes
+- benchmark generated triples against the clinical gold standard
+- export validation, comparison, and audit reports under `outputs/`
 
-However, identifying *optimal* combination targets is challenging: the combinatorial space is vast, and empirical screening is costly. Rational design requires integrating (1) tumor-specific dependencies, (2) network topology, (3) known synergy/resistance mechanisms, and (4) druggability.
+Fresh outputs are generated locally under `results/`, `results_exploratory/`, `benchmark_results/`, and `outputs/`. The tracked repository content is the pipeline itself, not precomputed artifact bundles.
 
-### X-Node Concept and Theoretical Foundation
+## Scientific Overview
 
-The **X-node** term (coined here) formalizes combination target discovery as a **minimal hitting set problem** over tumor viability networks:
+ALIN frames combination-target discovery as a minimal hitting set problem over tumor viability paths. In practice, the pipeline combines:
 
-- **Viability paths** = functional pathways that support tumor survival (e.g., essential gene modules, signaling cascades).
-- **X-nodes** = minimal sets of targets that "hit" (intersect) every viability path.
-- **Rationale:** Hitting all paths maximizes tumor kill; minimizing the number of nodes reduces toxicity and side effects.
+- cancer-specific dependency signals from DepMap
+- signaling and bypass topology from OmniPath
+- druggability, validation, and benchmarking layers for ranking candidate triples
 
-The approach is extrapolated from Liaki et al. (bioRxiv doi: 10.1101/2025.08.04.668325), who demonstrated that targeting RAF1 + EGFR + STAT3 (downstream, upstream, and orthogonal KRAS signaling) achieved effective pancreatic cancer regression and prevented resistance in preclinical models. This framework **generalizes that methodology to all cancer types** in DepMap, enabling pan-cancer discovery.
+The public workflow supports both actionable and exploratory modes, plus focused comparison and audit entry points for the supported benchmark surface.
 
-### Pan-Cancer Generalization
-
-The pipeline extends the PDAC-specific approach to:
-
-1. **All DepMap cancer types** — Cancer type mapping via OncoTree (OncotreePrimaryDisease).
-2. **Triple combinations** — Systems biology scoring for synergy, resistance, and pathway coverage.
-3. **Multi-source validation** — PubMed, STRING, ClinicalTrials.gov, PRISM drug sensitivity.
-4. **Benchmarking** — Comparison against FDA-approved and clinically validated combinations.
-
-### Key Contributions
-
-- **Integrated pipeline** — End-to-end from DepMap + OmniPath to ranked triple combinations.
-- **Reproducible** — Pinned dependencies, data availability documentation, full pipeline script.
-- **Validated** — 44.2% any-overlap recall vs. 43-entry clinical gold standard (54.3% on 35 testable entries; p < 0.001 vs. random); DrugComb synergy validation (ZIP: Δ = +2.59, p = 0.0001).
-- **Novel discovery** — Multiple combinations with no existing clinical trials.
-
-## Repository Layout
+## Primary Entry Points
 
 - `pan_cancer_xnode.py` — main public discovery CLI
 - `run_full_pipeline.sh` / `run_full_pipeline.ps1` — cross-platform wrappers for the latest public strategy-arm workflow
 - `scripts/run_pipeline.py` — focused benchmark-cancer runner
 - `scripts/pipelines/run_strategy_arm_comparison.py` — fresh actionable vs exploratory arm comparison workflow
 - `scripts/pipelines/run_benchmark_viability_audit.py` — focused benchmark audit for one prediction set
-- `docs/` — data availability, versioning, and release-oriented documentation
+- `docs/` — pipeline documentation and data availability notes
 - `outputs/` — runtime home for generated comparisons, audits, and validation reports
-- Top-level `*_results/` directories — preserved published analysis artifacts used for benchmarking, calibration, and manuscript support
 
-See [docs/REPOSITORY_LAYOUT.md](docs/REPOSITORY_LAYOUT.md) for the release-oriented directory map, [scripts/README.md](scripts/README.md) for the script surface, and [outputs/README.md](outputs/README.md) for the non-root report layout.
+See [docs/REPOSITORY_LAYOUT.md](docs/REPOSITORY_LAYOUT.md) for the pipeline-oriented directory map, [scripts/README.md](scripts/README.md) for the script surface, and [outputs/README.md](outputs/README.md) for the non-root report layout.
 
 ---
 
@@ -158,7 +146,7 @@ Predictions are compared against a **gold standard** of 43 FDA-approved and clin
 
 ```bash
 git clone https://github.com/royerz2/Pan-Cancer-X-Node-Target-Discovery-System.git
-cd "Pan-Cancer X-Node Target Discovery System"
+cd Pan-Cancer-X-Node-Target-Discovery-System
 pip install -r requirements.txt
 ```
 
@@ -196,7 +184,12 @@ Place DepMap files in `depmap_data/`, LINCS files in `lincs_data/`, and PRISM in
 
 ## Quick Start
 
+For the public repo, the wrapper workflow is the default entry point for full comparisons. Use the lower-level CLIs when you want a direct discovery run or a focused benchmark step.
+
 ```bash
+# Preferred public comparison workflow
+bash run_full_pipeline.sh
+
 # Single cancer (e.g., pancreatic)
 python pan_cancer_xnode.py --cancer-type "Pancreatic Adenocarcinoma" --output results/
 
@@ -223,9 +216,6 @@ python scripts/pipelines/run_strategy_arm_comparison.py --skip-historical --no-a
 
 # Focused benchmark viability audit for one result set
 python scripts/pipelines/run_benchmark_viability_audit.py --triples results/triple_combinations.csv
-
-# Cross-platform wrapper for the public strategy-arm workflow
-bash run_full_pipeline.sh
 ```
 
 On Windows PowerShell, run `./run_full_pipeline.ps1`.
@@ -288,36 +278,28 @@ results_exploratory/
 ├── pan_cancer_summary.csv
 └── all_findings.json
 
+benchmark_results/
+└── ... generated benchmark CSV and JSON outputs
+
 outputs/
 ├── comparisons/                 # Strategy-arm comparison runs
 ├── benchmark_audits/            # Focused benchmark viability audits
+├── outcome_benchmark/           # Direct outcome benchmark figures and summaries
 └── reports/
-        └── validation_reports/
-                └── validation_report.json
+        ├── validation_reports/
+        │       └── validation_report.json
+        └── validation_results/
 ```
 
-The committed top-level result bundles in this repository are preserved release artifacts. New generated comparisons, audits, and validation reports should be written under `outputs/` instead of the repository root.
+`results/`, `results_exploratory/`, and `benchmark_results/` are created locally when you run the pipeline. Generated comparisons, audits, and validation reports should be written under `outputs/` instead of the repository root.
 
 `run_full_pipeline.sh` and `run_full_pipeline.ps1` default to `--skip-historical` because the dev-only historical comparison directories are not bundled in this public repo.
 
 ---
 
-## Public Workflow Surface
+## Reference Benchmark Snapshot
 
-Treat the following as the stable public-facing entry points:
-
-- `pan_cancer_xnode.py` — main discovery CLI
-- `run_full_pipeline.sh` and `run_full_pipeline.ps1` — cross-platform wrappers for fresh arm comparisons
-- `scripts/run_pipeline.py` — focused benchmark-cancer runner
-- `scripts/post_pipeline_validation.py` — post-run validation entry point
-- `scripts/compare_modes.py` and `scripts/sensitivity_exploratory.py` — mode analysis tools
-- `scripts/pipelines/run_strategy_arm_comparison.py` and `scripts/pipelines/run_benchmark_viability_audit.py` — latest comparison and audit workflows
-
-Other scripts are preserved for manuscript generation, ablations, null models, or exploratory analysis rather than as the primary public CLI surface.
-
----
-
-## Benchmark Results
+These benchmark numbers are retained as reference performance for the validated pipeline configuration. The supporting release-era result bundles are not committed in this repository.
 
 Against 43 independently curated FDA-approved and Phase 2/3-validated multi-target combinations:
 
@@ -354,15 +336,12 @@ Against 43 independently curated FDA-approved and Phase 2/3-validated multi-targ
 ├── alin/                        # Core library package
 ├── core/                        # Data structures, statistics
 ├── tests/                       # Unit and integration tests
-├── scripts/                     # Stable workflows plus preserved research utilities
-├── manuscript/                  # LaTeX source (paper.tex, supplementary.tex)
-├── docs/                        # Documentation (DATA_AVAILABILITY, VERSION_INFO)
-├── figures/                     # Generated figures (PNG/PDF)
-├── results/                     # Primary quick-start pipeline output
+├── scripts/                     # Supported workflow entry points
+├── docs/                        # Documentation (DATA_AVAILABILITY, REPOSITORY_LAYOUT)
+├── results/                     # Generated locally by discovery runs
+├── benchmark_results/           # Generated locally by benchmarking runs
 └── outputs/                     # Generated comparisons, audits, and validation reports
 ```
-
-Additional top-level `*_results/` directories are preserved publication artifacts rather than scratch workbench output.
 
 ---
 

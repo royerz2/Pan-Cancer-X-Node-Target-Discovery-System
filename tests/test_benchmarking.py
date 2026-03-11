@@ -16,7 +16,7 @@ import numpy as np
 import pandas as pd
 from pathlib import Path
 
-TRIPLES_CSV = 'results/triple_combinations.csv'
+TRIPLES_CSV = str(Path(__file__).parent / 'data' / 'benchmark_triples.csv')
 
 
 # ============================================================================
@@ -100,7 +100,7 @@ class TestDriverBaseline:
             'TP53', 'APC', 'NRAS', 'NF1', 'IDH1', 'IDH2', 'CDKN2A',
             'BRCA1', 'BRCA2', 'AKT1', 'KIT', 'NPM1', 'DNMT3A', 'STAT3',
             'SMAD4', 'VEGFR2', 'PBRM1', 'BAP1', 'SETD2', 'ROS1', 'RET',
-            'STK11', 'FGFR1', 'CDH1', 'RUNX1',
+            'STK11', 'FGFR1', 'CDH1', 'RUNX1', 'MDM2', 'HMGA2',
         }
         for cancer, genes in CANCER_DRIVER_GENES.items():
             for g in genes:
@@ -535,30 +535,3 @@ class TestRecallOrdering:
         assert r['recall_pairwise'] >= r['recall_superset'] >= r['recall_exact']
 
 
-# ============================================================================
-# Paper consistency
-# ============================================================================
-
-class TestPaperConsistency:
-    """Verify paper reports baseline metrics accurately."""
-
-    def test_paper_mentions_driver_baseline(self):
-        paper = Path('manuscript/paper.tex').read_text()
-        assert 'driver' in paper.lower(), \
-            "Paper must mention the driver-gene baseline"
-
-    def test_paper_mentions_essentiality_baseline(self):
-        paper = Path('manuscript/paper.tex').read_text()
-        assert 'essentiality' in paper.lower(), \
-            "Paper must mention the essentiality baseline"
-
-    def test_paper_reports_pairwise_for_baselines(self):
-        """Paper should report pairwise recall for baselines, not just superset."""
-        paper = Path('manuscript/paper.tex').read_text()
-        # The paper should mention "pairwise" near baseline results
-        assert 'pairwise' in paper.lower()
-
-    def test_paper_mentions_frequency_baseline_tie(self):
-        """Paper should honestly acknowledge the frequency baseline tie."""
-        paper = Path('manuscript/paper.tex').read_text()
-        assert 'frequency' in paper.lower()

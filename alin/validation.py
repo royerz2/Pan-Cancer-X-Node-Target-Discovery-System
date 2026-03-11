@@ -1399,7 +1399,7 @@ if __name__ == "__main__":
     )
     
     # Export results
-    output_dir = Path("./validation_results")
+    output_dir = Path("outputs/reports/validation_results")
     export_validation_results(results, output_dir)
     
     print(f"\nValidation complete! Results saved to {output_dir}")

@@ -1,8 +1,8 @@
 # Scripts Guide
 
-This directory contains both stable public workflows and preserved research helpers.
+This directory contains the supported public workflow surface for the pipeline-only repository.
 
-Stable public-facing entry points:
+Supported entry points:
 
 - `run_pipeline.py` — focused benchmark-cancer runner
 - `compare_modes.py` — actionable vs exploratory comparison for two result directories
@@ -14,4 +14,3 @@ Stable public-facing entry points:
 Notes:
 
 - `run_full_pipeline.sh` and `run_full_pipeline.ps1` call `pipelines/run_strategy_arm_comparison.py` with `--skip-historical` by default because the dev-only historical comparison directories are not bundled in this public repo.
-- Most other scripts in this directory are figure generation, ablation, calibration, null-model, or exploratory helpers preserved for transparency rather than as the primary public CLI surface.

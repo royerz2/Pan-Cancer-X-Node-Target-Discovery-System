@@ -1,55 +1,28 @@
 # Repository Layout
 
-This public repository preserves both the runnable ALIN framework and the main result bundles that support the manuscript, benchmark analyses, and follow-on validation work.
+This public repository is scoped to the runnable ALIN pipeline. It keeps the source tree, setup helpers, tests, and a small supported workflow surface. Manuscript assets, release-era analysis bundles, and precomputed result directories are intentionally excluded.
 
 ## Primary Entry Points
 
 - `pan_cancer_xnode.py` — main discovery CLI for single-cancer and pan-cancer runs
-- `scripts/run_pipeline.py` — reproducibility runner for the gold-standard benchmark cancers
-- `benchmarking_module.py` — benchmark and baseline evaluation over generated triples
-- `pharmacological_validation.py` — pharmacological validation export, now writing JSON reports under `outputs/reports/validation_reports/`
-- `run_full_pipeline.sh` — compact shell entrypoint for the public reproducibility path
+- `scripts/run_pipeline.py` — focused benchmark-cancer runner
+- `scripts/pipelines/run_strategy_arm_comparison.py` — public comparison workflow for actionable and exploratory runs
+- `scripts/pipelines/run_benchmark_viability_audit.py` — focused benchmark viability audit for one prediction set
+- `run_full_pipeline.sh` / `run_full_pipeline.ps1` — cross-platform wrappers for the public comparison workflow
+- `pharmacological_validation.py` — pharmacological validation export to `outputs/reports/validation_reports/`
 
-## Stable Top-Level Areas
+## Retained Top-Level Areas
 
 - `alin/` — core library package
-- `core/` — lower-level data structures and statistics utilities
-- `docs/` — release-facing documentation
-- `manuscript/` — paper and supplementary source files
-- `figures/` — generated figure assets used in the manuscript
-- `tests/` — unit and integration tests
-- `results/` — default quick-start discovery output location
-- `benchmark_results/` — default benchmark output location when the benchmark CLI is run locally
-- `outputs/` — canonical home for newly generated auxiliary reports and non-root runtime artifacts
+- `core/` — shared data structures and statistics utilities
+- `docs/` — pipeline documentation and data availability notes
+- `outputs/` — canonical home for generated comparisons, benchmark audits, and validation reports
+- `scripts/` — supported workflow entry points documented in [scripts/README.md](../scripts/README.md)
+- `tests/` — unit and integration tests for the supported public surface
 
-## Preserved Published Artifact Bundles
+## Output Conventions
 
-These top-level directories are intentionally kept in the public repository because they back manuscript figures, ablation studies, calibration experiments, lineage analyses, and other release-era evaluations:
-
-- `ablation_results/`
-- `benchmark_hardening_results/`
-- `calibration_results/`
-- `feasibility_results/`
-- `hub_strategy_results/`
-- `lineage_control_results/`
-- `lineage_evaluation_results/`
-- `mhs_nonuniqueness_results/`
-- `mhs_triple_results/`
-- `negative_controls_results/`
-- `pearson_comparison_results/`
-- `results_discovery/`
-- `validation_results/`
-
-Treat these as preserved release artifacts, not as the preferred destination for new ad hoc runtime outputs.
-
-## Script Surface
-
-Most files under `scripts/` are analysis, figure-generation, or study-specific helper scripts. They remain public for transparency and reproducibility, but they are not all equal entry points.
-
-Use [scripts/README.md](../scripts/README.md) to identify the small subset that matters for routine public use.
-
-## Output Hygiene
-
-- Keep new auxiliary validation exports under `outputs/`
-- Avoid writing one-off logs and JSON captures into the repository root
-- Leave preserved published artifact directories in place unless there is a deliberate release curation pass
+- Quick-start discovery runs still default to `results/`
+- Benchmark CLI examples still default to `benchmark_results/`
+- Auxiliary comparisons, audits, and validation exports should go under `outputs/`
+- Avoid writing new logs, JSON captures, or ad hoc reports into the repository root

@@ -1007,16 +1007,16 @@ def run_loco_cv(triples_csv, summary_csv=None):
     held-out cancer's data excluded from DepMap at each fold, which is
     computationally expensive and is flagged as future work.
 
-    We retain the ``run_loco_cv`` name for backward compatibility but report
-    results as "LOCO partitioned evaluation" (not "cross-validation") in the
-    manuscript.
+        We retain the ``run_loco_cv`` name for backward compatibility but report
+        results as "LOCO partitioned evaluation" (not "cross-validation") to
+        avoid overstating generalization.
 
     See also
     --------
-    - scripts/circularity_ablation.py : three formal leakage tests
-      (no-literature, degree-matched null, network-scramble null).
     - gold_standard.py docstring "No-Training Guarantee": the gold standard
       is never used for weight fitting or parameter optimization.
+        - Historical leakage/null analyses were kept separate from the routine
+            public pipeline workflow.
 
     For each unique cancer type in the gold standard:
       - Hold out all gold-standard entries for that cancer.
@@ -1396,6 +1396,8 @@ CANCER_DRIVER_GENES = {
                                              'CDKN2A', 'MET', 'FGFR1'],
     'Pancreatic Adenocarcinoma': ['KRAS', 'TP53', 'CDKN2A', 'SMAD4',
                                  'BRCA2', 'EGFR', 'STAT3'],
+    'Anaplastic Thyroid Cancer': ['BRAF', 'MAP2K1', 'KRAS'],
+    'Liposarcoma': ['CDK4', 'MDM2', 'HMGA2'],
 }
 
 

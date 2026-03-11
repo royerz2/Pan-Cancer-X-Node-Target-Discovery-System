@@ -1,0 +1,10 @@
+Cancer_Type,Target_1,Target_2,Target_3
+Melanoma,BRAF,MAP2K1,CDK4
+Non-Small Cell Lung Cancer,EGFR,MET,MAP2K1
+Colorectal Adenocarcinoma,BRAF,EGFR,MAP2K1
+Invasive Breast Carcinoma,ERBB2,CDK4,PIK3CA
+Renal Cell Carcinoma,VEGFR2,MTOR,MET
+Acute Myeloid Leukemia,FLT3,BCL2,IDH1
+Head and Neck Squamous Cell Carcinoma,EGFR,PIK3CA,FGFR1
+Pancreatic Adenocarcinoma,KRAS,EGFR,STAT3
+Liposarcoma,CDK4,MDM2,HMGA2
