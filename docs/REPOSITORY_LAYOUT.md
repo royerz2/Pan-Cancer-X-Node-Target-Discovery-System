@@ -38,7 +38,6 @@ These top-level directories are intentionally kept in the public repository beca
 - `negative_controls_results/`
 - `pearson_comparison_results/`
 - `results_discovery/`
-- `results_v1/`
 - `validation_results/`
 
 Treat these as preserved release artifacts, not as the preferred destination for new ad hoc runtime outputs.

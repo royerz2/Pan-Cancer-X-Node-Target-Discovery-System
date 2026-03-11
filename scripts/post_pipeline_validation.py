@@ -13,12 +13,12 @@ Also produces:
   - Full score-component distribution statistics
   - Target diversity metrics
   - LINCS perturbation-bonus impact analysis
-  - v1 → v2 comparison (if results_v1/ exists)
+    - Optional legacy result comparison (if a legacy result directory is provided)
   - Per-cancer quality flags
 
 Usage:
     python scripts/post_pipeline_validation.py [--results-dir results/]
-                                                [--v1-dir results_v1/]
+                                                [--v1-dir path/to/legacy_results]
                                                 [--output outputs/reports/validation_reports/validation_report.json]
 """
 
@@ -326,12 +326,12 @@ def check_lincs_impact(findings: Dict) -> Dict[str, Any]:
 
 
 # ───────────────────────────────────────────────────────────────────────
-# 6. v1 → v2 Comparison
+# 6. Legacy Comparison
 # ───────────────────────────────────────────────────────────────────────
 
 def compare_with_v1(v2_df: pd.DataFrame, v1_path: str) -> Optional[Dict[str, Any]]:
     """
-    Compare v2 results with v1 if results_v1/triple_combinations.csv exists.
+    Compare current results with a legacy result bundle when one is provided.
     """
     if not os.path.exists(v1_path):
         return None
@@ -493,14 +493,14 @@ def target_diversity_index(df: pd.DataFrame) -> Dict[str, Any]:
 
 def run_validation(
     results_dir: str = "results",
-    v1_dir: str = "results_v1",
+    v1_dir: Optional[str] = None,
     output_path: Optional[str] = None,
 ) -> Dict[str, Any]:
     """Run all validation checks and return a structured report."""
 
     triples_path = os.path.join(results_dir, "triple_combinations.csv")
     findings_path = os.path.join(results_dir, "all_findings.json")
-    v1_triples_path = os.path.join(v1_dir, "triple_combinations.csv")
+    v1_triples_path = os.path.join(v1_dir, "triple_combinations.csv") if v1_dir else ""
 
     if not os.path.exists(triples_path):
         print(f"ERROR: {triples_path} not found. Has the pipeline finished?")
@@ -583,14 +583,17 @@ def run_validation(
     print(f"  LINCS influence:     {lincs['lincs_influence_estimate']}")
     print()
 
-    # ── 6. v1 comparison ───────────────────────────────────────────
+    # ── 6. legacy comparison ───────────────────────────────────────
     print("─" * 70)
-    print("6. v1 → v2 COMPARISON")
+    print("6. LEGACY COMPARISON (OPTIONAL)")
     print("─" * 70)
     comp = compare_with_v1(df, v1_triples_path)
     report["v1_comparison"] = comp
     if comp is None:
-        print(f"  SKIPPED: {v1_triples_path} not found")
+        if v1_triples_path:
+            print(f"  SKIPPED: {v1_triples_path} not found")
+        else:
+            print("  SKIPPED: no legacy results directory provided")
     else:
         print(f"  Shared cancers: {comp['shared_cancer_types']}")
         print(f"  Combos changed: {comp['combos_changed']} / {comp['shared_cancer_types']}"
@@ -665,7 +668,7 @@ def run_validation(
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Post-pipeline validation")
     parser.add_argument("--results-dir", default="results", help="Pipeline results directory")
-    parser.add_argument("--v1-dir", default="results_v1", help="v1 results for comparison")
+    parser.add_argument("--v1-dir", default="", help="Optional legacy results directory for comparison")
     parser.add_argument(
         "--output",
         default="outputs/reports/validation_reports/validation_report.json",
