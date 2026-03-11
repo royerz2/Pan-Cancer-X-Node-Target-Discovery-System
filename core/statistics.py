@@ -148,27 +148,40 @@ def sensitivity_analysis(base_weights: Dict[str, float],
     
     Args:
         base_weights: Dict of weight names to values (e.g., {'cost': 0.3, 'synergy': 0.25})
-        score_function: Function that takes weights dict and returns score
+        score_function: Function that takes weights dict and returns a scalar score
+                        **or** a 1-D numpy array of scores (one per item).  When an
+                        array is returned, Spearman ρ between base and perturbed
+                        rankings is computed as a proper rank-order stability metric.
         perturbation: Fraction to perturb weights (default 0.2 = ±20%)
         n_samples: Number of random perturbations to test
         random_state: Random seed
         
     Returns:
         Dict with:
-            - 'base_score': Score with original weights
+            - 'base_score': Score with original weights (scalar, or mean of array)
             - 'mean_score': Mean score across perturbations
             - 'std_score': Standard deviation
             - 'ci_95': 95% confidence interval
-            - 'rank_stability': Fraction of runs with same rank order
+            - 'rank_stability': Fraction of runs with same rank order (scalar mode)
+              **or** mean Spearman ρ across perturbations (array mode)
+            - 'rank_stability_std': std of Spearman ρ (array mode only)
             - 'weight_sensitivity': Dict of weight name to sensitivity score
     """
     rng = np.random.RandomState(random_state)
     
-    # Base score
-    base_score = score_function(base_weights)
+    # Base score — may be scalar or array
+    base_result = score_function(base_weights)
+    is_array = isinstance(base_result, np.ndarray) and base_result.ndim >= 1 and len(base_result) > 1
+    if is_array:
+        base_score = float(np.mean(base_result))
+        base_ranks = stats.rankdata(base_result)
+    else:
+        base_score = float(base_result)
+        base_ranks = None
     
     # Perturbed scores
     perturbed_scores = []
+    spearman_rhos = []
     weight_names = list(base_weights.keys())
     
     for _ in range(n_samples):
@@ -179,8 +192,13 @@ def sensitivity_analysis(base_weights: Dict[str, float],
             perturbed[name] = value * factor
         
         try:
-            score = score_function(perturbed)
-            perturbed_scores.append(score)
+            result = score_function(perturbed)
+            if is_array:
+                perturbed_scores.append(float(np.mean(result)))
+                rho, _ = stats.spearmanr(base_ranks, stats.rankdata(result))
+                spearman_rhos.append(rho)
+            else:
+                perturbed_scores.append(float(result))
         except Exception:
             continue
     
@@ -204,22 +222,34 @@ def sensitivity_analysis(base_weights: Dict[str, float],
         minus_weights[name] *= (1 - perturbation)
         
         try:
-            plus_score = score_function(plus_weights)
-            minus_score = score_function(minus_weights)
+            plus_result = score_function(plus_weights)
+            minus_result = score_function(minus_weights)
+            if is_array:
+                plus_score = float(np.mean(plus_result))
+                minus_score = float(np.mean(minus_result))
+            else:
+                plus_score = float(plus_result)
+                minus_score = float(minus_result)
             sensitivity = abs(plus_score - minus_score) / (2 * perturbation * base_weights[name])
         except Exception:
             sensitivity = 0.0
         
         weight_sensitivity[name] = sensitivity
     
-    return {
+    out = {
         'base_score': base_score,
         'mean_score': np.mean(perturbed_scores),
         'std_score': np.std(perturbed_scores),
         'ci_95': (np.percentile(perturbed_scores, 2.5), np.percentile(perturbed_scores, 97.5)),
-        'rank_stability': np.mean([1 if abs(s - base_score) < 0.1 else 0 for s in perturbed_scores]),
-        'weight_sensitivity': weight_sensitivity
+        'weight_sensitivity': weight_sensitivity,
     }
+    if is_array and spearman_rhos:
+        out['rank_stability'] = float(np.mean(spearman_rhos))
+        out['rank_stability_std'] = float(np.std(spearman_rhos))
+    else:
+        out['rank_stability'] = float(np.mean([1 if abs(s - base_score) < 0.1 else 0
+                                                for s in perturbed_scores]))
+    return out
 
 
 def permutation_test(group1: List[float], 
@@ -334,3 +364,52 @@ def cohens_d(group1: List[float], group2: List[float]) -> float:
         return 0.0
     
     return (mean1 - mean2) / pooled_std
+
+
+def compute_silhouette(distance_matrix: np.ndarray,
+                       labels: np.ndarray) -> Optional[float]:
+    """
+    Compute mean silhouette score for a clustering given a pre-computed
+    distance matrix.
+
+    Returns None if sklearn is unavailable or there are fewer than
+    2 clusters.  Values near +1 indicate well-separated clusters;
+    near 0 means overlapping; negative means potential mis-assignment.
+
+    Args:
+        distance_matrix: Square symmetric distance matrix (n × n).
+        labels: Cluster label for each of the n items.
+
+    Returns:
+        Mean silhouette score in [-1, 1], or None on error.
+    """
+    if len(set(labels)) < 2:
+        return None
+    try:
+        from sklearn.metrics import silhouette_score
+        return float(silhouette_score(distance_matrix, labels,
+                                      metric='precomputed'))
+    except ImportError:
+        return None
+
+
+def evidence_tier(n_cell_lines: int) -> Tuple[int, str]:
+    """
+    Classify statistical-power tier based on the number of cell lines
+    available for a cancer type.
+
+    Returns:
+        (tier_number, tier_label) where:
+        - Tier 1 (≥30): robust — most statistical tests are well-powered
+        - Tier 2 (15–29): adequate — sufficient for primary analyses
+        - Tier 3 (10–14): marginal — some tests may be underpowered
+        - Tier 4 (<10): low_power — results are hypothesis-generating only
+    """
+    if n_cell_lines >= 30:
+        return 1, 'robust'
+    elif n_cell_lines >= 15:
+        return 2, 'adequate'
+    elif n_cell_lines >= 10:
+        return 3, 'marginal'
+    else:
+        return 4, 'low_power'

@@ -13,6 +13,7 @@ Verifies that:
 
 import pytest
 import numpy as np
+import pandas as pd
 from pathlib import Path
 
 TRIPLES_CSV = 'results/triple_combinations.csv'
@@ -180,6 +181,282 @@ class TestCheckMatch:
             {'BRAF', 'MAP2K2'}, {'BRAF', 'MAP2K1'}
         )
         assert matched, "Gene equivalents (MAP2K1<->MAP2K2) should match"
+
+
+class TestPredictionParsing:
+    """Verify benchmark ingestion respects explicit rank and best-combo metadata."""
+
+    def test_build_cancer_predictions_uses_explicit_rank(self, tmp_path):
+        from benchmarking_module import _build_cancer_predictions
+
+        csv_path = tmp_path / 'ranked_triples.csv'
+        pd.DataFrame([
+            {
+                'Cancer_Type': 'Melanoma',
+                'Rank': 2,
+                'Target_1': 'BRAF',
+                'Target_2': 'MAP2K1',
+                'Target_3': 'STAT3',
+            },
+            {
+                'Cancer_Type': 'Melanoma',
+                'Rank': 1,
+                'Target_1': 'BRAF',
+                'Target_2': 'EGFR',
+                'Target_3': 'STAT3',
+            },
+        ]).to_csv(csv_path, index=False)
+
+        predictions = _build_cancer_predictions(str(csv_path))
+
+        assert predictions['Melanoma'][0] == frozenset({'BRAF', 'EGFR', 'STAT3'})
+        assert predictions['Melanoma'][1] == frozenset({'BRAF', 'MAP2K1', 'STAT3'})
+
+    def test_build_cancer_predictions_injects_best_combo_first(self, tmp_path):
+        from benchmarking_module import _build_cancer_predictions
+
+        csv_path = tmp_path / 'ranked_triples.csv'
+        pd.DataFrame([
+            {
+                'Cancer_Type': 'Colorectal Adenocarcinoma',
+                'Rank': 1,
+                'Target_1': 'BRAF',
+                'Target_2': 'MAP2K1',
+                'Target_3': 'STAT3',
+                'Best_Combo_Size': 2,
+                'Best_Combo_1': 'BRAF',
+                'Best_Combo_2': 'EGFR',
+                'Best_Combo_3': '',
+            },
+            {
+                'Cancer_Type': 'Colorectal Adenocarcinoma',
+                'Rank': 2,
+                'Target_1': 'BRAF',
+                'Target_2': 'EGFR',
+                'Target_3': 'KRAS',
+                'Best_Combo_Size': 2,
+                'Best_Combo_1': 'BRAF',
+                'Best_Combo_2': 'EGFR',
+                'Best_Combo_3': '',
+            },
+        ]).to_csv(csv_path, index=False)
+
+        predictions = _build_cancer_predictions(str(csv_path))
+
+        assert predictions['Colorectal Adenocarcinoma'][0] == frozenset({'BRAF', 'EGFR'})
+        assert predictions['Colorectal Adenocarcinoma'][1] == frozenset({'BRAF', 'MAP2K1', 'STAT3'})
+        assert predictions['Colorectal Adenocarcinoma'][2] == frozenset({'BRAF', 'EGFR', 'KRAS'})
+
+    def test_build_cancer_predictions_prefers_ranked_companion(self, tmp_path):
+        from benchmarking_module import _build_cancer_predictions
+
+        triple_path = tmp_path / 'triple_combinations.csv'
+        ranked_path = tmp_path / 'ranked_triple_combinations.csv'
+
+        pd.DataFrame([
+            {
+                'Cancer_Type': 'Melanoma',
+                'Rank': 1,
+                'Target_1': 'BRAF',
+                'Target_2': 'STAT3',
+                'Target_3': 'AKT1',
+                'Best_Combo_Size': 2,
+                'Best_Combo_1': 'BRAF',
+                'Best_Combo_2': 'EGFR',
+                'Best_Combo_3': '',
+            },
+        ]).to_csv(triple_path, index=False)
+
+        pd.DataFrame([
+            {
+                'Cancer_Type': 'Melanoma',
+                'Rank': 2,
+                'Target_1': 'BRAF',
+                'Target_2': 'MAP2K1',
+                'Target_3': 'STAT3',
+            },
+            {
+                'Cancer_Type': 'Melanoma',
+                'Rank': 1,
+                'Target_1': 'BRAF',
+                'Target_2': 'EGFR',
+                'Target_3': 'STAT3',
+            },
+        ]).to_csv(ranked_path, index=False)
+
+        predictions = _build_cancer_predictions(str(triple_path))
+
+        assert predictions['Melanoma'] == [
+            frozenset({'BRAF', 'EGFR', 'STAT3'}),
+            frozenset({'BRAF', 'MAP2K1', 'STAT3'}),
+        ]
+
+    def test_gold_standard_benchmark_prefers_ranked_companion(self, tmp_path, monkeypatch):
+        import gold_standard
+
+        triple_path = tmp_path / 'triple_combinations.csv'
+        ranked_path = tmp_path / 'ranked_triple_combinations.csv'
+
+        pd.DataFrame([
+            {
+                'Cancer_Type': 'Melanoma',
+                'Rank': 1,
+                'Target_1': 'BRAF',
+                'Target_2': 'STAT3',
+                'Target_3': 'AKT1',
+                'Best_Combo_Size': 2,
+                'Best_Combo_1': 'BRAF',
+                'Best_Combo_2': 'EGFR',
+                'Best_Combo_3': '',
+            },
+        ]).to_csv(triple_path, index=False)
+
+        pd.DataFrame([
+            {
+                'Cancer_Type': 'Melanoma',
+                'Rank': 1,
+                'Target_1': 'BRAF',
+                'Target_2': 'EGFR',
+                'Target_3': 'STAT3',
+            },
+            {
+                'Cancer_Type': 'Melanoma',
+                'Rank': 2,
+                'Target_1': 'BRAF',
+                'Target_2': 'MAP2K1',
+                'Target_3': 'STAT3',
+            },
+        ]).to_csv(ranked_path, index=False)
+
+        monkeypatch.setattr(
+            gold_standard,
+            'GOLD_STANDARD',
+            [{
+                'cancer': 'Melanoma',
+                'targets': frozenset({'BRAF', 'MAP2K1', 'STAT3'}),
+                'evidence': 'Phase_2',
+                'description': 'test entry',
+            }],
+        )
+
+        result = gold_standard.run_benchmark(
+            str(triple_path),
+            tier1=True,
+            tier2=False,
+            verbose=False,
+        )
+
+        assert result['predictions_source'].endswith('ranked_triple_combinations.csv')
+        assert result['results'][0]['best_rank'] == 2.0
+        assert result['results'][0]['predicted'] == frozenset({'BRAF', 'MAP2K1', 'STAT3'})
+
+
+class TestBenchmarkAudit:
+    """Benchmark audit utilities should surface semantic conflicts clearly."""
+
+    def test_audit_benchmark_matches_surfaces_off_rank_exact(self, tmp_path):
+        from benchmarking_module import audit_benchmark_matches
+
+        csv_path = tmp_path / 'ranked_triples.csv'
+        pd.DataFrame([
+            {
+                'Cancer_Type': 'Melanoma',
+                'Rank': 1,
+                'Target_1': 'BRAF',
+                'Target_2': 'STAT3',
+                'Target_3': 'AKT1',
+            },
+            {
+                'Cancer_Type': 'Melanoma',
+                'Rank': 2,
+                'Target_1': 'BRAF',
+                'Target_2': 'MAP2K1',
+                'Target_3': '',
+            },
+        ]).to_csv(csv_path, index=False)
+
+        rows, summary = audit_benchmark_matches(
+            str(csv_path),
+            gold_standard=[{
+                'cancer': 'Melanoma',
+                'targets': frozenset({'BRAF', 'MAP2K1'}),
+                'evidence': 'test',
+                'description': 'test entry',
+            }],
+        )
+
+        assert len(rows) == 1
+        row = rows[0]
+        assert row['top_prediction_match_type'] == 'any_overlap'
+        assert row['current_benchmark_match_type'] == 'any_overlap'
+        assert row['strongest_available_match_type'] == 'exact'
+        assert row['rank_semantic_conflict'] is True
+        assert row['gap_classification'] == 'exact_available_off_rank'
+        assert summary['rank_semantic_conflicts'] == 1
+        assert summary['exact_available_off_rank'] == 1
+
+    def test_run_baseline_calibration_normalizes_outputs(self, monkeypatch):
+        import benchmarking_module as bm
+
+        monkeypatch.setattr(bm, 'run_random_baseline', lambda *args, **kwargs: {
+            'method': 'random',
+            'mean_recall_exact': 0.1,
+            'mean_recall_superset': 0.2,
+            'mean_recall_pair_overlap': 0.3,
+            'mean_recall_any_overlap': 0.4,
+            'std_recall_exact': 0.01,
+            'std_recall_superset': 0.02,
+            'std_recall_pair_overlap': 0.03,
+            'std_recall_any_overlap': 0.04,
+            'n_trials': 5,
+        })
+        monkeypatch.setattr(bm, 'run_poolmatched_baseline', lambda *args, **kwargs: {
+            'method': 'pool_matched',
+            'mean_recall_exact': 0.05,
+            'mean_recall_superset': 0.1,
+            'mean_recall_pair_overlap': 0.15,
+            'mean_recall_any_overlap': 0.2,
+            'n_trials': 5,
+        })
+        monkeypatch.setattr(bm, 'run_frequency_baseline', lambda *args, **kwargs: {
+            'method': 'frequency',
+            'recall_exact': 0.11,
+            'recall_superset': 0.22,
+            'recall_pair_overlap': 0.33,
+            'recall_any_overlap': 0.44,
+        })
+        monkeypatch.setattr(bm, 'run_topgenes_baseline', lambda *args, **kwargs: {
+            'method': 'top_genes',
+            'recall_exact': 0.12,
+            'recall_superset': 0.23,
+            'recall_pair_overlap': 0.34,
+            'recall_any_overlap': 0.45,
+        })
+        monkeypatch.setattr(bm, 'run_driver_baseline', lambda *args, **kwargs: {
+            'method': 'driver_genes',
+            'recall_exact': 0.13,
+            'recall_superset': 0.24,
+            'recall_pair_overlap': 0.35,
+            'recall_any_overlap': 0.46,
+            'n_cancers_with_drivers': 8,
+        })
+        monkeypatch.setattr(bm, 'run_essentiality_baseline', lambda *args, **kwargs: {
+            'method': 'essentiality',
+            'recall_exact': 0.0,
+            'recall_superset': 0.0,
+            'recall_pair_overlap': 0.0,
+            'recall_any_overlap': 0.0,
+            'error': 'missing data',
+        })
+
+        rows = bm.run_baseline_calibration('dummy.csv', n_trials=5)
+        by_method = {row['method']: row for row in rows}
+
+        assert by_method['random']['metric_source'] == 'monte_carlo_mean'
+        assert by_method['random']['recall_pair_overlap_or_better'] == 0.3
+        assert by_method['frequency']['metric_source'] == 'point_estimate'
+        assert by_method['driver_genes']['n_cancers_with_drivers'] == 8
+        assert by_method['essentiality']['error'] == 'missing data'
 
 
 # ============================================================================

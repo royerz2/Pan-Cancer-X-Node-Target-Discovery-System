@@ -21,3 +21,5 @@ __all__ = [
 # - alin.toxicity: get_opentargets_toxicity, etc.
 # - alin.protein_scoring: ProteinDruggabilityScorer
 # - alin.lincs: LINCSSignatureDB (requires h5py; optional)
+# - alin.chembl_data: ChEMBLDrugDB (requires data/chembl_cache.json.gz)
+# - alin.genomic_data: TCGAMutationLoader (requires data/mc3_mutation_summary.json.gz)

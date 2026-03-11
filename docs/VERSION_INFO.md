@@ -14,6 +14,26 @@ This document records the exact versions of data sources used in the ALIN Framew
 - **Total Cell Lines**: 1,095 (varies by release)
 - **Total Genes**: ~18,000
 
+## LINCS L1000 Perturbation Data
+
+- **Release**: LINCS Phase II (CMap 2020, Level 5 beta)
+- **Access Date**: 2026-02-20
+- **Download URL**: https://clue.io/data/CMap2020
+- **Files Used**:
+  - `level5_beta_trt_xpr_n142901x12328.gctx` — 142,901 CRISPR knockout profiles (804 unique targets)
+  - `level5_beta_trt_sh_n238351x12328.gctx` — 238,351 shRNA knockdown profiles (1,091 unique targets)
+  - `level5_beta_trt_cp_n720216x12328.gctx` — 720,216 compound profiles (199 mapped targets)
+  - `siginfo_beta.txt` — Signature metadata (~1.1M rows)
+  - `geneinfo_beta.txt` — Gene metadata (12,328 genes: 978 landmark + 11,350 inferred)
+- **Total Indexed Targets**: 2,042 unique genes
+- **Multi-Modal Targets**: 210 (data from ≥2 modalities)
+- **Index File**: `lincs_data/lincs_multimodal_index.pkl` (~450 MB)
+- **Index Build Time**: ~45 min on 32 GB RAM
+- **Z-Score Thresholds**: ±1.5 (LINCS consortium standard)
+- **Cell-Line Lineage Mapping**: 132 cell lines → 17 tissue lineages
+- **Cancer-Type Lineage Mapping**: 50+ OncotreePrimaryDisease → lineage
+- **Reference**: Subramanian et al. "A Next Generation Connectivity Map." Cell 171(6):1437–1452 (2017)
+
 ## OmniPath Network
 
 - **Version**: OmniPath database accessed via API
@@ -79,13 +99,15 @@ This document records the exact versions of data sources used in the ALIN Framew
 ## Software Environment
 
 ```
-Python: 3.13.5
+Python: 3.14.0
 numpy: 2.4.2
 pandas: 3.0.0
 scipy: 1.17.0
 networkx: 3.6.1
 scikit-learn: 1.8.0
 statsmodels: 0.14.4
+h5py: 3.13.0        (LINCS GCTX reader)
+cmapPy: (bundled)   (LINCS GCTx parsing)
 ```
 
 See `requirements-lock.txt` for complete dependency list.
@@ -105,6 +127,10 @@ See `requirements-lock.txt` for complete dependency list.
 | MHS solver | Greedy + ILP (≤500 genes) | Solver hierarchy |
 | Hub penalty coefficient | 1.5 | Proportional penalty for hub genes |
 | Perturbation bonus (β_pert) | 0.05/gene, max 0.15 | Bonus for feedback coverage |
+| LINCS z-score threshold | ±1.5 | Up/down gene classification |
+| LINCS synergy weights | 0.45/0.35/0.20 | Pathway independence / anti-resistance / z-anticorrelation |
+| LINCS relevance floor | 0.30 | Minimum weight for non-matching lineage |
+| LINCS blending (known+LINCS+path) | 0.40/0.35/0.25 | Synergy source weights |
 | Coverage threshold | 0.70 | Minimum path coverage for ranked triples |
 | Random seed | 42 | All stochastic components |
 

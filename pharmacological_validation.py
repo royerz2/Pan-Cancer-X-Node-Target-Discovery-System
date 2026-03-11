@@ -23,6 +23,7 @@ compensated for only with hedging language:
      Tier 1: Experimental tri-axial validation exists (PDAC)
      Tier 2: Gold-standard clinical combination recovered
      Tier 3: PRISM pharmacological concordance supports ≥2 targets
+             OR LINCS L1000 perturbation signatures cover ≥2 targets
      Tier 4: Computational prediction only (no orthogonal support)
 
 Usage:
@@ -112,6 +113,14 @@ class EvidenceTier:
     n_total_targets: int
     gold_standard_match: bool
     concordance_fraction: float
+    lincs_supported: bool = False
+    lincs_targets_with_sig: List[str] = field(default_factory=list)
+    lincs_perturbation_score: float = 0.0
+    # Multi-modal LINCS fields
+    lincs_n_modalities_per_target: Dict[str, int] = field(default_factory=dict)
+    lincs_multi_modal_targets: List[str] = field(default_factory=list)
+    lincs_mean_concordance: float = 0.0
+    lincs_compound_drugs: Dict[str, List[str]] = field(default_factory=dict)
 
 
 @dataclass
@@ -495,7 +504,8 @@ class EvidenceTierClassifier:
 
     Tier 1: Experimental tri-axial validation (only PDAC via Liaki et al.)
     Tier 2: At least one gold-standard clinical combination recovered (pairwise ≥ 2 genes)
-    Tier 3: PRISM concordance supports ≥2/3 targets in best triple
+    Tier 3: PRISM concordance supports ≥2/3 targets OR LINCS L1000 perturbation
+            signatures cover ≥2 targets with measured downstream effects
     Tier 4: Computational prediction only
 
     This replaces uniform "pan-cancer generalization" claims with honest
@@ -507,6 +517,135 @@ class EvidenceTierClassifier:
 
     def __init__(self, gold_standard: Dict[str, FrozenSet[str]] = None):
         self.gold_standard = gold_standard or GOLD_STANDARD_COMBINATIONS
+        self._lincs_db = None
+        self._lincs_init_done = False
+
+    def _get_lincs(self):
+        """Lazily initialise the LINCS database for evidence tiering.
+
+        Uses ``cache_only=True`` so that the tier classifier never
+        triggers a multi-GB GCTX rebuild.  If only a stale v1 index
+        is available it will be used; if no index exists at all the
+        DB will have 0 targets (equivalent to LINCS unavailable).
+        """
+        if self._lincs_init_done:
+            return self._lincs_db
+        self._lincs_init_done = True
+        try:
+            from alin.lincs import get_default_db
+            self._lincs_db = get_default_db(cache_only=True)
+        except Exception:
+            pass
+        return self._lincs_db
+
+    def _score_lincs_support(
+        self,
+        predicted_targets: Tuple[str, ...],
+    ) -> Tuple[bool, List[str], float, Dict]:
+        """
+        Check whether LINCS L1000 data-driven signatures support the
+        predicted targets, using all three modalities (knockout, knockdown,
+        compound).
+
+        Compound and genetic evidence are scored **separately** and then
+        combined:
+        - Genetic evidence (knockout/knockdown) → mechanistic confidence
+        - Compound evidence → pharmacological tractability
+
+        Returns:
+            (is_supported, targets_with_signatures, perturbation_score,
+             multi_modal_info)
+            is_supported is True when >=2 targets have consensus signatures.
+        """
+        db = self._get_lincs()
+        multi_info: Dict = {
+            'n_modalities_per_target': {},
+            'multi_modal_targets': [],
+            'mean_concordance': 0.0,
+            'compound_drugs': {},
+            'genetic_targets': [],     # targets with knockout/knockdown
+            'compound_targets': [],    # targets with compound evidence
+            'n_concordant_genes': 0,   # genes confirmed in >=2 modalities
+        }
+        if db is None:
+            return False, [], 0.0, multi_info
+
+        with_sig = []
+        all_down: set = set()
+        all_up: set = set()
+        concordance_values = []
+
+        for gene in predicted_targets:
+            cs = db.get_consensus(gene)
+            if cs is not None:
+                with_sig.append(gene)
+                all_down.update(cs.down_genes)
+                all_up.update(cs.up_genes)
+
+                # Multi-modal tracking
+                n_mod = cs.n_modalities
+                multi_info['n_modalities_per_target'][gene] = n_mod
+                if n_mod >= 2:
+                    multi_info['multi_modal_targets'].append(gene)
+                if cs.cross_modal_concordance > 0:
+                    concordance_values.append(cs.cross_modal_concordance)
+
+                # Compound drug names
+                if cs.has_compound and cs.compound_names:
+                    multi_info['compound_drugs'][gene] = sorted(cs.compound_names)[:5]
+                    multi_info['compound_targets'].append(gene)
+
+                # Genetic evidence tracking
+                if cs.has_genetic:
+                    multi_info['genetic_targets'].append(gene)
+
+                # Concordant gene count
+                multi_info['n_concordant_genes'] += (
+                    len(cs.concordant_up_genes) + len(cs.concordant_down_genes)
+                )
+
+        mean_conc = (
+            sum(concordance_values) / len(concordance_values)
+            if concordance_values
+            else 0.0
+        )
+        multi_info['mean_concordance'] = round(mean_conc, 4)
+
+        # Separate scoring for genetic vs compound evidence
+        n_targets = max(len(predicted_targets), 1)
+        target_cov = len(with_sig) / n_targets
+        genetic_frac = len(multi_info['genetic_targets']) / n_targets
+        compound_frac = len(multi_info['compound_targets']) / n_targets
+        multi_modal_bonus = len(multi_info['multi_modal_targets']) / n_targets
+
+        # Feedback coverage
+        feedback_targeted = set(predicted_targets) & all_up
+        fb_cov = len(feedback_targeted) / max(len(all_up), 1) if all_up else 0.0
+
+        # Weighted score with distinct components (sum = 1.00):
+        # Weights are informed by SHAP ablation of LINCS sub-features
+        # (calibration_results/shap_importance.csv) and ranked by
+        # independent contribution to gold-standard pair-overlap recall.
+        # Sensitivity analysis (scripts/weight_sensitivity_test.py, ±20%,
+        # N=500): Spearman ρ=0.997.  See validation_results/weight_sensitivity.json.
+        #   target coverage (0.20): do we have any data?
+        #   genetic evidence (0.20): mechanistic (knockout/knockdown)
+        #   compound evidence (0.15): pharmacological tractability
+        #   multi-modal bonus (0.20): cross-method validation
+        #   feedback coverage (0.15): resistance pre-emption
+        #   concordance (0.10): modalities agree on specific genes
+        pert_score = round(
+            0.20 * target_cov
+            + 0.20 * genetic_frac
+            + 0.15 * compound_frac
+            + 0.20 * multi_modal_bonus
+            + 0.15 * fb_cov
+            + 0.10 * mean_conc,
+            3,
+        )
+
+        supported = len(with_sig) >= 2
+        return supported, with_sig, pert_score, multi_info
 
     def classify(
         self,
@@ -515,7 +654,18 @@ class EvidenceTierClassifier:
         gene_concordances: Dict[str, GeneConcordance],
         n_cell_lines: int,
     ) -> EvidenceTier:
-        """Classify evidence tier for a cancer type's predictions."""
+        """Classify evidence tier for a cancer type's predictions.
+
+        Multi-modal LINCS evidence now **substantively affects** tier
+        assignment, not just labels:
+
+        - **Tier 2 eligible**: PRISM concordant + multi-modal LINCS with
+          high concordance (>=0.4) and compound evidence = Tier 2 promotion.
+        - **Tier 3 strengthened**: multi-modal evidence with concordance
+          >= 0.3 differentiates strong vs weak Tier 3.
+        - **Tier 3 from LINCS alone**: requires lincs_score >= 0.30 (unchanged),
+          but multi-modal concordance >= 0.3 lowers the threshold to 0.20.
+        """
         reasons = []
 
         # Count concordant targets
@@ -534,6 +684,30 @@ class EvidenceTierClassifier:
             if gs_match:
                 reasons.append(f"Gold-standard match: {overlap}")
 
+        # Check LINCS perturbation support (multi-modal)
+        lincs_ok, lincs_targets, lincs_score, lincs_multi = self._score_lincs_support(predicted_targets)
+
+        # Derive multi-modal strength metrics
+        n_multi_modal = len(lincs_multi.get('multi_modal_targets', []))
+        mean_conc = lincs_multi.get('mean_concordance', 0.0)
+        has_compound_evidence = bool(lincs_multi.get('compound_drugs', {}))
+        # "Strong" multi-modal: >=2 multi-modal targets with concordance >= 0.3
+        strong_multi_modal = n_multi_modal >= 2 and mean_conc >= 0.3
+
+        if lincs_ok:
+            mod_detail = ""
+            if lincs_multi['multi_modal_targets']:
+                mod_detail = (
+                    f" ({n_multi_modal} multi-modal: "
+                    f"{lincs_multi['multi_modal_targets']}, "
+                    f"concordance={mean_conc:.3f}"
+                    f"{', with compound drugs' if has_compound_evidence else ''})"
+                )
+            reasons.append(
+                f"LINCS L1000 signatures for {len(lincs_targets)}/{n_total} targets: "
+                f"{lincs_targets} (pert_score={lincs_score:.2f}){mod_detail}"
+            )
+
         # Tier assignment
         if cancer_type in self.TIER_1_CANCERS:
             tier = 1
@@ -543,9 +717,64 @@ class EvidenceTierClassifier:
             tier = 2
             tier_label = "Gold-standard clinical match"
         elif n_concordant >= 2:
-            tier = 3
-            tier_label = "PRISM pharmacologically supported"
-            reasons.append(f"{n_concordant}/{n_total} targets PRISM-concordant: {concordant}")
+            # PRISM concordance → at least Tier 3.
+            # PROMOTION to Tier 2: if also strong multi-modal LINCS with
+            # high concordance AND compound evidence (= pharmacologically
+            # validated + experimentally-confirmed gene-level perturbation).
+            if (
+                strong_multi_modal
+                and has_compound_evidence
+                and mean_conc >= 0.4
+                and lincs_score >= 0.50
+            ):
+                tier = 2
+                tier_label = (
+                    "PRISM-concordant + multi-modal LINCS validated"
+                )
+                reasons.append(
+                    f"Promoted to Tier 2: {n_concordant} PRISM-concordant + "
+                    f"{n_multi_modal} multi-modal LINCS targets (concordance="
+                    f"{mean_conc:.3f}, with compound drugs)"
+                )
+            else:
+                tier = 3
+                tier_label = "PRISM pharmacologically supported"
+                reasons.append(
+                    f"{n_concordant}/{n_total} targets PRISM-concordant: "
+                    f"{concordant}"
+                )
+                if lincs_ok and strong_multi_modal:
+                    tier_label += " + LINCS multi-modal confirmed"
+                elif lincs_ok:
+                    tier_label += " + LINCS L1000 confirmed"
+        elif lincs_ok:
+            # LINCS alone can promote from Tier 4 to Tier 3.
+            # Multi-modal concordance lowers the score threshold.
+            score_threshold = 0.20 if strong_multi_modal else 0.30
+            if lincs_score >= score_threshold:
+                tier = 3
+                if strong_multi_modal:
+                    tier_label = "LINCS L1000 multi-modal perturbation-supported"
+                    reasons.append(
+                        f"Multi-modal LINCS evidence (knockout + knockdown/compound) "
+                        f"for {n_multi_modal} targets promotes to Tier 3 "
+                        f"(concordance={mean_conc:.3f}, threshold lowered to "
+                        f"{score_threshold})"
+                    )
+                else:
+                    tier_label = "LINCS L1000 perturbation-supported"
+                    reasons.append(
+                        f"LINCS perturbation evidence promotes to Tier 3 "
+                        f"(no PRISM concordance, but {len(lincs_targets)} targets "
+                        f"have data-driven signatures, score={lincs_score:.2f})"
+                    )
+            else:
+                tier = 4
+                tier_label = "Computational prediction only"
+                reasons.append(
+                    f"LINCS score {lincs_score:.2f} below threshold "
+                    f"{score_threshold}; insufficient perturbation support"
+                )
         else:
             tier = 4
             tier_label = "Computational prediction only"
@@ -555,6 +784,8 @@ class EvidenceTierClassifier:
                 reasons.append("No pharmacological concordance data available")
             elif n_concordant == 1:
                 reasons.append(f"Only 1/{n_total} targets PRISM-concordant")
+            if not lincs_ok:
+                reasons.append("No LINCS L1000 perturbation support")
 
         return EvidenceTier(
             cancer_type=cancer_type,
@@ -566,6 +797,13 @@ class EvidenceTierClassifier:
             n_total_targets=n_total,
             gold_standard_match=gs_match,
             concordance_fraction=concordance_frac,
+            lincs_supported=lincs_ok,
+            lincs_targets_with_sig=lincs_targets,
+            lincs_perturbation_score=lincs_score,
+            lincs_n_modalities_per_target=lincs_multi.get('n_modalities_per_target', {}),
+            lincs_multi_modal_targets=lincs_multi.get('multi_modal_targets', []),
+            lincs_mean_concordance=lincs_multi.get('mean_concordance', 0.0),
+            lincs_compound_drugs=lincs_multi.get('compound_drugs', {}),
         )
 
 

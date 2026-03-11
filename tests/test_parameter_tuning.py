@@ -9,6 +9,7 @@ Tests cover:
 - Grid construction logic
 """
 
+import os
 import pytest
 import numpy as np
 
@@ -182,13 +183,14 @@ class TestGridConstruction:
 
     def test_stage1_grid_size(self):
         """Full grid should be product of all param values."""
+        import tempfile
         from parameter_tuning import PARAM_GRID, GridSearchTuner, PipelineEvaluator
         import unittest.mock as mock
 
         # Don't actually instantiate the evaluator
         with mock.patch.object(PipelineEvaluator, '__init__', lambda self, **kw: None):
             evaluator = PipelineEvaluator.__new__(PipelineEvaluator)
-            tuner = GridSearchTuner(evaluator, output_dir="/tmp/test_tuning")
+            tuner = GridSearchTuner(evaluator, output_dir=os.path.join(tempfile.gettempdir(), "test_tuning"))
 
         configs = tuner._build_stage1_grid()
         expected_size = 1
@@ -197,23 +199,25 @@ class TestGridConstruction:
         assert len(configs) == expected_size
 
     def test_stage1_sampling(self):
+        import tempfile
         from parameter_tuning import GridSearchTuner, PipelineEvaluator
         import unittest.mock as mock
 
         with mock.patch.object(PipelineEvaluator, '__init__', lambda self, **kw: None):
             evaluator = PipelineEvaluator.__new__(PipelineEvaluator)
-            tuner = GridSearchTuner(evaluator, output_dir="/tmp/test_tuning")
+            tuner = GridSearchTuner(evaluator, output_dir=os.path.join(tempfile.gettempdir(), "test_tuning"))
 
         configs = tuner._build_stage1_grid(sample_n=50)
         assert len(configs) == 50
 
     def test_stage2_grid_has_all_presets(self):
+        import tempfile
         from parameter_tuning import WEIGHT_PRESETS, GridSearchTuner, PipelineEvaluator
         import unittest.mock as mock
 
         with mock.patch.object(PipelineEvaluator, '__init__', lambda self, **kw: None):
             evaluator = PipelineEvaluator.__new__(PipelineEvaluator)
-            tuner = GridSearchTuner(evaluator, output_dir="/tmp/test_tuning")
+            tuner = GridSearchTuner(evaluator, output_dir=os.path.join(tempfile.gettempdir(), "test_tuning"))
 
         best_upstream = {'dependency_threshold': -0.5, 'weight_preset': 'original'}
         configs = tuner._build_stage2_grid(best_upstream)
@@ -222,12 +226,13 @@ class TestGridConstruction:
         assert preset_names == set(WEIGHT_PRESETS.keys())
 
     def test_all_configs_have_weight_preset(self):
+        import tempfile
         from parameter_tuning import GridSearchTuner, PipelineEvaluator
         import unittest.mock as mock
 
         with mock.patch.object(PipelineEvaluator, '__init__', lambda self, **kw: None):
             evaluator = PipelineEvaluator.__new__(PipelineEvaluator)
-            tuner = GridSearchTuner(evaluator, output_dir="/tmp/test_tuning")
+            tuner = GridSearchTuner(evaluator, output_dir=os.path.join(tempfile.gettempdir(), "test_tuning"))
 
         configs = tuner._build_stage1_grid(sample_n=10)
         for c in configs:

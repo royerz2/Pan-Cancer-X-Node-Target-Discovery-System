@@ -196,6 +196,16 @@ class TripleCombination:
     combo_tox_score: float = 0.0  # Combination-level toxicity (DDI, overlapping toxicities)
     combo_tox_details: Dict = field(default_factory=dict)  # Breakdown of combo toxicity
     confidence_interval: Optional[Tuple[float, float]] = None
+    resistance_implausible: bool = False  # True when resistance_score < 0.05 (biologically implausible)
+    druggability_tier: str = ''  # Per-combo tier: 'immediate', 'partial', 'research'
+    evidence_power: str = ''  # 'robust', 'adequate', 'suggestive', 'hypothesis'
+    # V6 fields
+    clinical_readiness: float = 0.0   # Translational: multiplier based on drug approval stage
+    novelty_score: float = 0.0        # Exploratory: bonus for non-gold-standard triples
+    pan_essential_penalty: float = 0.0 # Exploratory: penalty for over-represented genes
+    scoring_mode: str = 'additive'    # 'additive' or 'multiplicative'
+    strategy_arm: str = 'default'     # Comparison arm label for exports and reports
+    role_assignments: Dict[str, str] = field(default_factory=dict)  # structural role metadata
     
     def __lt__(self, other):
         return self.combined_score < other.combined_score

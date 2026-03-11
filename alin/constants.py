@@ -194,6 +194,8 @@ CANCER_BENCHMARK_ALIASES: Dict[str, List[str]] = {
     'Diffuse Glioma': ['Diffuse Glioma', 'Glioma', 'CNS'],
     'Liposarcoma': ['Liposarcoma', 'Sarcoma'],
     'Hepatocellular Carcinoma': ['Hepatocellular Carcinoma', 'HCC', 'Liver'],
+    'Anaplastic Thyroid Cancer': ['Anaplastic Thyroid Cancer', 'ATC', 'Thyroid'],
+    'Lung Neuroendocrine Tumor': ['Lung Neuroendocrine Tumor', 'Small Cell Lung', 'Neuroendocrine'],
 }
 
 

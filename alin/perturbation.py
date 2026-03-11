@@ -41,6 +41,17 @@ from dataclasses import dataclass, field
 
 logger = logging.getLogger(__name__)
 
+# ---------------------------------------------------------------------------
+# Named constants
+# ---------------------------------------------------------------------------
+#: Weights for the fallback (curated) perturbation composite score.
+FALLBACK_W_EFFECTOR: float = 0.6
+FALLBACK_W_FEEDBACK: float = 0.4
+#: Base and variable fractions for the direct-hit confidence adjustment.
+#: confidence = sig.confidence * (CONF_ADJ_BASE + CONF_ADJ_VARIABLE * ratio)
+CONF_ADJ_BASE: float = 0.5
+CONF_ADJ_VARIABLE: float = 0.5
+
 
 @dataclass
 class PerturbationSignature:
@@ -453,6 +464,351 @@ PERTURBATION_SIGNATURES: Dict[str, PerturbationSignature] = {
         confidence=0.90,
         source='ALK inhibitor studies',
     ),
+
+    # NRAS inhibition (no approved direct inhibitors; MEK/ERK are targets downstream)
+    # Same RTK feedback rebound as KRAS — RTK upregulation upon RAS inhibition is
+    # a class effect.  Source: Nazarian et al. 2010, Kemper et al. 2016.
+    'NRAS': PerturbationSignature(
+        target='NRAS',
+        perturbation_type='inhibitor',
+        phospho_decreased={
+            'ERK1', 'ERK2', 'MAPK1', 'MAPK3',
+            'RSK1', 'RPS6KA1',
+            'MEK1', 'MEK2', 'MAP2K1', 'MAP2K2',
+        },
+        phospho_increased={
+            'EGFR', 'ERBB2', 'ERBB3',  # RTK rebound (same mechanism as KRAS)
+            'MET',
+        },
+        expression_decreased={
+            'MYC', 'CCND1', 'CCNE1', 'FOSL1', 'JUNB',
+        },
+        expression_increased={
+            'BIM', 'BCL2L11', 'CDKN1A', 'CDKN1B',
+        },
+        confidence=0.88,
+        source='Nazarian et al. 2010; RTK rebound analogy from KRAS inhibitor data',
+    ),
+
+    # HRAS inhibition (farnesyl-transferase inhibitors; bladder, HNSCC)
+    'HRAS': PerturbationSignature(
+        target='HRAS',
+        perturbation_type='inhibitor',
+        phospho_decreased={
+            'ERK1', 'ERK2', 'MAPK1', 'MAPK3',
+            'AKT1', 'AKT2',
+            'MEK1', 'MEK2', 'MAP2K1', 'MAP2K2',
+        },
+        phospho_increased={
+            'EGFR', 'ERBB2', 'ERBB3',
+            'MET',
+        },
+        expression_decreased={
+            'MYC', 'CCND1',
+        },
+        expression_increased={
+            'CDKN1A', 'CDKN1B',
+        },
+        confidence=0.82,
+        source='RAS inhibitor analogy; Berndt et al. 2011',
+    ),
+
+    # ERBB2/HER2 inhibition (trastuzumab, lapatinib, pertuzumab, T-DM1)
+    # Sources: Sergina et al. 2007 (HER3 feedback), Nahta et al. 2005 (IGF1R),
+    #          Garrett et al. 2011 (MET upregulation)
+    'ERBB2': PerturbationSignature(
+        target='ERBB2',
+        perturbation_type='inhibitor',
+        phospho_decreased={
+            'ERBB2', 'ERBB3', 'ERBB4',
+            'AKT1', 'AKT2',
+            'ERK1', 'ERK2', 'MAPK1', 'MAPK3',
+            'SRC',
+        },
+        phospho_increased={
+            'EGFR',   # EGFR homodimers compensate for HER2 loss
+            'ERBB3',  # HER3 upregulation — major resistance node (Sergina 2007)
+            'IGF1R',  # IGF1R-driven bypass (Nahta 2005)
+            'MET',    # MET amplification/upregulation
+            'AXL',    # AXL-driven EMT/resistance
+        },
+        expression_decreased={
+            'MYC', 'CCND1', 'BCL2',
+        },
+        expression_increased={
+            'BIM', 'BCL2L11', 'FOXO3',
+        },
+        confidence=0.92,
+        source='Sergina et al. 2007 (HER3), Nahta et al. 2005 (IGF1R)',
+        pmid='17206155',
+    ),
+
+    # FLT3 inhibition (midostaurin, gilteritinib, quizartinib) — AML
+    # Sources: Park et al. 2019 (AXL), Smith et al. 2012 (FLT3-ITD resistance)
+    'FLT3': PerturbationSignature(
+        target='FLT3',
+        perturbation_type='inhibitor',
+        phospho_decreased={
+            'FLT3',
+            'STAT5A', 'STAT5B',
+            'AKT1',
+            'ERK1', 'ERK2', 'MAPK1', 'MAPK3',
+            'SRC',
+        },
+        phospho_increased={
+            'AXL',   # AXL upregulation — primary resistance RTK (Park 2019)
+            'SRC',   # SRC-family kinase activation
+            'EGFR',  # EGFR as escape RTK in some AML contexts
+        },
+        expression_decreased={
+            'MYC', 'CCND1', 'MCL1',
+        },
+        expression_increased={
+            'BIM', 'BCL2L11', 'CDKN1A',
+        },
+        confidence=0.85,
+        source='Park et al. 2019 (AXL feedback), Smith et al. 2012',
+        pmid='31558488',
+    ),
+
+    # RET inhibition (selpercatinib, pralsetinib, vandetanib) — thyroid, NSCLC
+    # Sources: Yoh et al. 2020 (resistance mechanisms), Mulligan 2014 (RET biology)
+    'RET': PerturbationSignature(
+        target='RET',
+        perturbation_type='inhibitor',
+        phospho_decreased={
+            'RET',
+            'ERK1', 'ERK2', 'MAPK1', 'MAPK3',
+            'AKT1', 'STAT3',
+        },
+        phospho_increased={
+            'EGFR',   # RTK feedback
+            'MET',    # MET upregulation (resistance)
+            'AXL',    # AXL-driven resistance
+            'FGFR1',  # FGFR autocrine upregulation in thyroid
+        },
+        expression_decreased={
+            'MYC', 'CCND1',
+        },
+        expression_increased={
+            'CDKN1A', 'BIM', 'BCL2L11',
+        },
+        confidence=0.83,
+        source='Yoh et al. 2020; Mulligan et al. 2014 (Nat Rev Cancer)',
+    ),
+
+    # FGFR1 inhibition (erdafitinib, pemigatinib, infigratinib)
+    # Sources: Formisano et al. 2019 (AXL/EGFR feedback), Harbinski et al. 2012
+    'FGFR1': PerturbationSignature(
+        target='FGFR1',
+        perturbation_type='inhibitor',
+        phospho_decreased={
+            'FGFR1',
+            'ERK1', 'ERK2', 'MAPK1', 'MAPK3',
+            'AKT1', 'STAT3', 'STAT1',
+            'PLCg1', 'PLCG1',
+        },
+        phospho_increased={
+            'EGFR',   # EGFR bypass (Formisano 2019)
+            'MET',    # MET upregulation
+            'AXL',    # AXL — primary resistance for FGFR inhibitors
+            'IGF1R',  # IGF1R bypass signaling
+        },
+        expression_decreased={
+            'MYC', 'CCND1',
+        },
+        expression_increased={
+            'CDKN1A',
+        },
+        confidence=0.85,
+        source='Formisano et al. 2019 (FGFR-i resistance)',
+        pmid='31160358',
+    ),
+
+    # FGFR2 inhibition — gastric, endometrial, cholangiocarcinoma
+    'FGFR2': PerturbationSignature(
+        target='FGFR2',
+        perturbation_type='inhibitor',
+        phospho_decreased={
+            'FGFR2',
+            'ERK1', 'ERK2', 'MAPK1', 'MAPK3',
+            'AKT1', 'STAT3',
+        },
+        phospho_increased={
+            'EGFR', 'MET', 'AXL', 'IGF1R',
+        },
+        expression_decreased={
+            'MYC', 'CCND1',
+        },
+        expression_increased={
+            'CDKN1A',
+        },
+        confidence=0.83,
+        source='Inferred from FGFR1 analogy; FGFR-i resistance literature',
+    ),
+
+    # FGFR3 inhibition — bladder, myeloma, cervical
+    'FGFR3': PerturbationSignature(
+        target='FGFR3',
+        perturbation_type='inhibitor',
+        phospho_decreased={
+            'FGFR3',
+            'ERK1', 'ERK2', 'MAPK1', 'MAPK3',
+            'AKT1',
+        },
+        phospho_increased={
+            'EGFR', 'MET', 'AXL', 'IGF1R',
+        },
+        expression_decreased={
+            'MYC', 'CCND1',
+        },
+        expression_increased={
+            'CDKN1A',
+        },
+        confidence=0.82,
+        source='Inferred from FGFR1 analogy; erdafitinib (bladder) resistance data',
+    ),
+
+    # AKT1 inhibition (ipatasertib, capivasertib) — pan-cancer PI3K pathway
+    # Sources: Chandarlapaty et al. 2011 (RTK upregulation upon AKT-i)
+    'AKT1': PerturbationSignature(
+        target='AKT1',
+        perturbation_type='inhibitor',
+        phospho_decreased={
+            'AKT1', 'AKT2', 'AKT3',
+            'MTOR', 'RPTOR',
+            'S6K1', 'RPS6KB1',
+            'S6', 'RPS6',
+            'FOXO1', 'FOXO3',
+            'GSK3A', 'GSK3B',
+        },
+        phospho_increased={
+            'EGFR',   # RTK rebound (Chandarlapaty 2011)
+            'ERBB3',  # HER3 — primary resistance node for AKT-i
+            'IGF1R',  # IGF1R feedback activation
+            'ERK1', 'ERK2',  # RAS/MAPK reactivation via released feedback
+        },
+        expression_decreased={
+            'MYC', 'CCND1',
+        },
+        expression_increased={
+            'FOXO1', 'FOXO3',
+            'CDKN1B', 'BIM', 'BCL2L11',
+        },
+        confidence=0.88,
+        source='Chandarlapaty et al. 2011 (PNAS): RTK upregulation upon AKT-i',
+        pmid='21427227',
+    ),
+
+    # KIT inhibition (imatinib, sunitinib) — GIST, AML (CBF), melanoma
+    # Sources: Mahadevan et al. 2007, Ramos et al. 2015 (RTK crosstalk)
+    'KIT': PerturbationSignature(
+        target='KIT',
+        perturbation_type='inhibitor',
+        phospho_decreased={
+            'KIT',
+            'AKT1', 'AKT2',
+            'ERK1', 'ERK2', 'MAPK1', 'MAPK3',
+            'STAT3', 'STAT5A',
+            'SRC',
+        },
+        phospho_increased={
+            'EGFR',   # Compensatory RTK activation
+            'MET',    # MET upregulation
+            'AXL',    # AXL-driven resistance
+            'FGFR1',  # FGF/FGFR autocrine upregulation
+        },
+        expression_decreased={
+            'MYC', 'CCND1', 'BCL2',
+        },
+        expression_increased={
+            'BIM', 'BCL2L11', 'CDKN1A',
+        },
+        confidence=0.83,
+        source='Mahadevan et al. 2007; GIST imatinib-resistance mechanisms',
+    ),
+
+    # PDGFRA inhibition (imatinib, avapritinib) — GIST, glioma
+    'PDGFRA': PerturbationSignature(
+        target='PDGFRA',
+        perturbation_type='inhibitor',
+        phospho_decreased={
+            'PDGFRA',
+            'AKT1',
+            'ERK1', 'ERK2', 'MAPK1', 'MAPK3',
+            'STAT3', 'SRC',
+        },
+        phospho_increased={
+            'EGFR',   # Compensatory RTK
+            'FGFR1',  # FGF/FGFR autocrine feedback
+            'MET',
+        },
+        expression_decreased={
+            'MYC', 'CCND1',
+        },
+        expression_increased={
+            'CDKN1A', 'BIM',
+        },
+        confidence=0.80,
+        source='PDGFR inhibitor resistance analogy; imatinib resistance literature',
+    ),
+
+    # CCND1 cycling — palbociclib/ribociclib target CDK4/CCND1 complex;
+    # CCND1 KO or CDK4/6-i causes CDK2/CCNE compensatory escape.
+    # Sources: O'Leary et al. 2018 (CCND1 in breast Ca), Finn et al. 2016.
+    'CCND1': PerturbationSignature(
+        target='CCND1',
+        perturbation_type='inhibitor',
+        phospho_decreased={
+            'RB1',
+            'E2F1', 'E2F2', 'E2F3',
+        },
+        phospho_increased={
+            'CDK2',   # CDK2/CCNE compensatory (major resistance)
+            'CCNE1',  # Cyclin E upregulation
+            'EGFR',   # EGFR-mediated G1 bypass
+            'ERBB2',  # HER2-mediated bypass
+        },
+        expression_decreased={
+            'CCND1', 'MYC', 'CCNE1', 'CDC6', 'MCM2',
+        },
+        expression_increased={
+            'CDKN1A', 'CDKN1B', 'CCNE1',
+        },
+        confidence=0.88,
+        source="O'Leary et al. 2018; Finn et al. 2016; CDK4/6-i resistance via CCNE/CDK2",
+        pmid='29420467',
+    ),
+
+    # ABL1 inhibition (imatinib, dasatinib, nilotinib) — CML, Ph+ ALL, sarcomas
+    # Sources: Donato et al. 2003 (SFK bypass), Gorre et al. 2001 (BCR-ABL resistance)
+    'ABL1': PerturbationSignature(
+        target='ABL1',
+        perturbation_type='inhibitor',
+        phospho_decreased={
+            'ABL1', 'BCR',
+            'CRKL', 'CRK',
+            'SHC1', 'GAB2',
+            'AKT1',
+            'ERK1', 'ERK2', 'MAPK1', 'MAPK3',
+            'STAT5A', 'STAT5B',
+        },
+        phospho_increased={
+            'SRC',    # SRC-family kinase activation — primary resistance (Donato 2003)
+            'LYN',    # LYN (SFK member, especially in CML)
+            'EGFR',   # EGFR-mediated bypass signaling
+            'FGFR1',  # FGF/FGFR autocrine upregulation
+        },
+        expression_decreased={
+            'MYC', 'CCND1', 'BCL2',
+        },
+        expression_increased={
+            'BIM', 'BCL2L11', 'CDKN1A',
+        },
+        confidence=0.90,
+        source='Donato et al. 2003 (SFK bypass); Gorre et al. 2001',
+        pmid='14559813',
+    ),
 }
 
 # --------------------------------------------------------------------------
@@ -468,6 +824,10 @@ _ALIAS_MAP: Dict[str, str] = {
     'CDK6':   'CDK4',
     'JAK2':   'JAK1',
     'FYN':    'SRC',
+    'AKT2':   'AKT1',
+    'AKT3':   'AKT1',
+    'PDGFRB': 'PDGFRA',
+    'KRAS2':  'KRAS',
 }
 
 for _alias, _source in _ALIAS_MAP.items():
@@ -476,6 +836,78 @@ for _alias, _source in _ALIAS_MAP.items():
     _sig.source = f'alias of {_source} (shared profile — distinct substrate specificity not modeled)'
     PERTURBATION_SIGNATURES[_alias] = _sig
 del _alias, _source, _sig  # clean up module namespace
+
+# --------------------------------------------------------------------------
+# Formal alias limitation registry (Supplementary Table S-ALIAS)
+# --------------------------------------------------------------------------
+# Each entry documents the biological approximation made when an alias
+# gene inherits the perturbation profile of its source gene.  This table
+# is exported by generate_alias_supplementary_table() for inclusion in
+# the paper's supplementary materials.
+KNOWN_ALIAS_LIMITATIONS: Dict[str, Dict[str, str]] = {
+    'MAP2K1': {
+        'source': 'MEK1',
+        'shared_family': 'MAP2K (dual-specificity MAPKK)',
+        'limitation': 'MAP2K1 and MEK1 are synonymous (HUGO alias); no approximation.',
+    },
+    'MAP2K2': {
+        'source': 'MEK1',
+        'shared_family': 'MAP2K (dual-specificity MAPKK)',
+        'limitation': 'MAP2K2 (MEK2) shares ~80 % kinase-domain identity with MEK1 '
+                      'but has distinct scaffolding interactions (KSR1 vs KSR2) and '
+                      'divergent feedback sensitivity to ERK-mediated phosphorylation.',
+    },
+    'CDK6': {
+        'source': 'CDK4',
+        'shared_family': 'Cyclin D-dependent kinase',
+        'limitation': 'CDK6 has non-catalytic transcription-factor roles (STAT3, AP-1) '
+                      'not shared by CDK4; palbociclib/ribociclib IC50 ratios differ ~3×.',
+    },
+    'JAK2': {
+        'source': 'JAK1',
+        'shared_family': 'Janus kinase',
+        'limitation': 'JAK2 uniquely phosphorylates STAT5 via the EPO/TPO receptor; '
+                      'JAK1 signals predominantly through STAT1/STAT3 in Type-I/II '
+                      'interferon pathways.  Shared profile underestimates haematological '
+                      'specificity of JAK2.',
+    },
+    'FYN': {
+        'source': 'SRC',
+        'shared_family': 'SRC-family kinase (SFK)',
+        'limitation': 'FYN is enriched in T-cell receptor signalling and myelin '
+                      'maintenance (CNS); SRC is enriched in integrin/FAK signalling.  '
+                      'Shared profile masks tissue-specific phosphoproteomics.',
+    },
+}
+
+
+def generate_alias_supplementary_table() -> 'pd.DataFrame':
+    """Generate Supplementary Table documenting alias approximations.
+
+    Returns a DataFrame suitable for inclusion in supplementary materials.
+    Columns: alias, source, shared_family, limitation, profile_fields_copied.
+    """
+    import pandas as pd
+
+    rows = []
+    for alias, info in KNOWN_ALIAS_LIMITATIONS.items():
+        source = info['source']
+        sig = PERTURBATION_SIGNATURES.get(alias)
+        fields_copied = []
+        if sig:
+            for attr in ('phospho_increased', 'phospho_decreased',
+                         'expression_increased', 'expression_decreased'):
+                val = getattr(sig, attr, None)
+                if val:
+                    fields_copied.append(f'{attr}({len(val)})')
+        rows.append({
+            'alias': alias,
+            'source': source,
+            'shared_family': info['shared_family'],
+            'limitation': info['limitation'],
+            'profile_fields_copied': ', '.join(fields_copied) if fields_copied else 'none',
+        })
+    return pd.DataFrame(rows)
 
 
 # =============================================================================
@@ -494,21 +926,32 @@ del _alias, _source, _sig  # clean up module namespace
 
 _LINCS_DB = None  # lazy singleton
 _LINCS_INIT_ATTEMPTED = False
+_LINCS_LOCK = __import__('threading').Lock()
 
 
 def _get_lincs_db():
-    """Lazily initialise the LINCS signature database (singleton)."""
+    """Lazily initialise the LINCS signature database (singleton).
+
+    Thread-safe: uses a lock to prevent race conditions where multiple
+    threads see ``_LINCS_INIT_ATTEMPTED=True`` but ``_LINCS_DB`` is
+    still ``None`` because loading hasn't finished yet.
+    """
     global _LINCS_DB, _LINCS_INIT_ATTEMPTED
     if _LINCS_INIT_ATTEMPTED:
         return _LINCS_DB
-    _LINCS_INIT_ATTEMPTED = True
-    try:
-        from alin.lincs import get_default_db
-        _LINCS_DB = get_default_db()  # returns None if dir missing
-        if _LINCS_DB is not None:
-            logger.info("LINCS L1000 database available — will prefer data-driven signatures")
-    except Exception as exc:
-        logger.debug("LINCS module not available: %s", exc)
+    with _LINCS_LOCK:
+        # Double-checked locking: re-test inside the lock in case
+        # another thread completed init while we were waiting.
+        if _LINCS_INIT_ATTEMPTED:
+            return _LINCS_DB
+        try:
+            from alin.lincs import get_default_db
+            _LINCS_DB = get_default_db()  # returns None if dir missing
+            if _LINCS_DB is not None:
+                logger.info("LINCS L1000 database available — will prefer data-driven signatures")
+        except Exception as exc:
+            logger.debug("LINCS module not available: %s", exc)
+        _LINCS_INIT_ATTEMPTED = True
     return _LINCS_DB
 
 
@@ -517,15 +960,36 @@ def get_perturbation_signature(target: str) -> Optional[PerturbationSignature]:
 
     Prefers LINCS L1000 data-driven signatures when available,
     falls back to the curated dictionary otherwise.
+
+    When both are available, **merges** them: LINCS provides genome-scale
+    transcriptional coverage, while curated provides phosphoproteomics
+    data that L1000 cannot measure (L1000 measures mRNA, not phospho).
+    This prevents the silent loss of phospho data when LINCS replaces
+    a curated entry.
     """
-    # Try LINCS first (data-driven, genome-scale)
+    curated = PERTURBATION_SIGNATURES.get(target)
+
+    # Try LINCS (data-driven, genome-scale)
     db = _get_lincs_db()
     if db is not None:
-        sig = db.get_perturbation_signature(target)
-        if sig is not None:
-            return sig
+        lincs_sig = db.get_perturbation_signature(target)
+        if lincs_sig is not None:
+            if curated is not None:
+                # MERGE: keep LINCS transcriptional + curated phospho
+                # LINCS has better expression data (genome-scale, measured);
+                # curated has phosphoproteomics (LINCS can't measure phospho).
+                lincs_sig.phospho_decreased = curated.phospho_decreased.copy()
+                lincs_sig.phospho_increased = curated.phospho_increased.copy()
+                # Union expression sets for completeness (LINCS is primary)
+                lincs_sig.expression_decreased |= curated.expression_decreased
+                lincs_sig.expression_increased |= curated.expression_increased
+                lincs_sig.source = (
+                    f"{lincs_sig.source} + curated_phospho"
+                )
+            return lincs_sig
+
     # Fallback to curated
-    return PERTURBATION_SIGNATURES.get(target)
+    return curated
 
 
 def get_perturbation_responders(target: str) -> Set[str]:
@@ -640,7 +1104,7 @@ def build_perturbation_response_paths(
                     direct = essential_responders & sig.direct_effectors
                     n_direct = len(direct)
                     confidence = sig.confidence * (
-                        0.5 + 0.5 * n_direct / max(len(essential_responders), 1)
+                        CONF_ADJ_BASE + CONF_ADJ_VARIABLE * n_direct / max(len(essential_responders), 1)
                     )
                     lincs_paths.append((
                         ct,
@@ -668,7 +1132,7 @@ def build_perturbation_response_paths(
             # Weight by how many are direct effectors vs feedback
             direct = essential_responders & sig.direct_effectors
             n_direct = len(direct)
-            confidence = sig.confidence * (0.5 + 0.5 * n_direct / max(len(essential_responders), 1))
+            confidence = sig.confidence * (CONF_ADJ_BASE + CONF_ADJ_VARIABLE * n_direct / max(len(essential_responders), 1))
             
             paths.append((
                 target,
@@ -744,5 +1208,5 @@ def score_combination_by_perturbation(
         'feedback_genes_targeted': feedback_targeted,
         'essential_effectors': essential_covered,
         'resistance_genes_untargeted': all_feedback - set(targets),
-        'perturbation_score': round(0.6 * effector_coverage + 0.4 * feedback_coverage, 3),
+        'perturbation_score': round(FALLBACK_W_EFFECTOR * effector_coverage + FALLBACK_W_FEEDBACK * feedback_coverage, 3),
     }

@@ -44,14 +44,16 @@ The pipeline extends the PDAC-specific approach to:
 
 ## Repository Layout
 
-- `pan_cancer_xnode.py` — main public discovery CLI.
-- `scripts/run_pipeline.py` — reproducibility runner for the gold-standard benchmark cancers.
-- `docs/` — data availability, versioning, and release-oriented documentation.
-- Top-level `*_results/` directories — preserved published analysis artifacts used for benchmarking, calibration, and manuscript support.
-- `outputs/` — canonical home for newly generated auxiliary reports that should not accumulate in the repository root.
+- `pan_cancer_xnode.py` — main public discovery CLI
+- `run_full_pipeline.sh` / `run_full_pipeline.ps1` — cross-platform wrappers for the latest public strategy-arm workflow
+- `scripts/run_pipeline.py` — focused benchmark-cancer runner
+- `scripts/pipelines/run_strategy_arm_comparison.py` — fresh actionable vs exploratory arm comparison workflow
+- `scripts/pipelines/run_benchmark_viability_audit.py` — focused benchmark audit for one prediction set
+- `docs/` — data availability, versioning, and release-oriented documentation
+- `outputs/` — runtime home for generated comparisons, audits, and validation reports
+- Top-level `*_results/` directories — preserved published analysis artifacts used for benchmarking, calibration, and manuscript support
 
-See [docs/REPOSITORY_LAYOUT.md](docs/REPOSITORY_LAYOUT.md) for the release-oriented directory map and [scripts/README.md](scripts/README.md) for the script surface.
-See [outputs/README.md](outputs/README.md) for the non-root auxiliary report layout.
+See [docs/REPOSITORY_LAYOUT.md](docs/REPOSITORY_LAYOUT.md) for the release-oriented directory map, [scripts/README.md](scripts/README.md) for the script surface, and [outputs/README.md](outputs/README.md) for the non-root report layout.
 
 ---
 
@@ -160,6 +162,23 @@ cd "Pan-Cancer X-Node Target Discovery System"
 pip install -r requirements.txt
 ```
 
+### Windows (PowerShell)
+
+Use the PowerShell wrapper for data setup:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\setup_data.ps1
+# Optional:
+.\setup_data.ps1 -lincs
+.\setup_data.ps1 -lincsFull
+```
+
+If Bash is not available, install one of:
+
+- Git for Windows (Git Bash): https://git-scm.com/download/win
+- WSL + a Linux distribution: `wsl --install`
+
 ---
 
 ## Data Requirements
@@ -167,10 +186,11 @@ pip install -r requirements.txt
 | Data | Source | Required |
 |------|--------|----------|
 | DepMap | [depmap.org](https://depmap.org) | Yes — Model.csv, CRISPRGeneEffect.csv, SubtypeMatrix.csv |
+| LINCS L1000 | [clue.io](https://clue.io/data/CMap2020) | Recommended — level5_beta_trt_*.gctx, siginfo_beta.txt, geneinfo_beta.txt |
 | PRISM | [depmap.org/repurposing](https://depmap.org/repurposing) | Optional — primary-screen-replicate-collapsed-*.csv, secondary-screen-dose-response-curve-parameters.csv |
 | OmniPath | Built-in / API | Built-in cancer signaling network |
 
-Place DepMap files in `depmap_data/`. PRISM in `drug_sensitivity_data/`. See [docs/DATA_AVAILABILITY.md](docs/DATA_AVAILABILITY.md) for URLs and licenses.
+Place DepMap files in `depmap_data/`, LINCS files in `lincs_data/`, and PRISM in `drug_sensitivity_data/`. LINCS is auto-indexed on first use or can be prepared explicitly with `python build_lincs_index.py`. See [docs/DATA_AVAILABILITY.md](docs/DATA_AVAILABILITY.md) for URLs and licenses.
 
 ---
 
@@ -198,9 +218,38 @@ python benchmarking_module.py --triples results/triple_combinations.csv --baseli
 # Gold standard pipeline (benchmark cancer types only)
 python scripts/run_pipeline.py
 
-# Full reproducibility pipeline
+# Fresh strategy-arm comparison workflow (public-safe defaults)
+python scripts/pipelines/run_strategy_arm_comparison.py --skip-historical --no-api --stream-subprocess-output
+
+# Focused benchmark viability audit for one result set
+python scripts/pipelines/run_benchmark_viability_audit.py --triples results/triple_combinations.csv
+
+# Cross-platform wrapper for the public strategy-arm workflow
 bash run_full_pipeline.sh
 ```
+
+On Windows PowerShell, run `./run_full_pipeline.ps1`.
+
+### Dual Pipeline Modes
+
+ALIN supports two run modes controlled by `--mode`:
+
+| | Actionable (default) | Exploratory |
+|---|---|---|
+| Goal | Translational / clinical-trial-ready | Discovery / biology-first |
+| Default arm | `liaki_role` | `default` |
+| Drug bias | Favours druggable targets | Removed |
+| Reward signals | druggability, synergy, coverage | essentiality, mutation, centrality |
+
+```bash
+python pan_cancer_xnode.py --all-cancers --triples --output results/ --mode actionable
+python pan_cancer_xnode.py --all-cancers --triples --output results_exploratory/ --mode exploratory
+python pan_cancer_xnode.py --all-cancers --triples --output results/ --mode actionable --strategy-arm default
+python scripts/compare_modes.py --actionable results/ --exploratory results_exploratory/
+python scripts/sensitivity_exploratory.py --cancers 10 --max-configs 20
+```
+
+When `--strategy-arm` is omitted, actionable defaults to `liaki_role` and exploratory defaults to `default`.
 
 ---
 
@@ -234,17 +283,37 @@ results/
 ├── all_findings.json            # Full export
 └── *_report.txt                 # Per-cancer reports
 
-benchmark_results/
-├── benchmark_results.csv
-├── benchmark_metrics.json
-└── benchmark_report.txt
+results_exploratory/
+├── triple_combinations.csv
+├── pan_cancer_summary.csv
+└── all_findings.json
 
-outputs/reports/validation_reports/
-└── validation_report.json       # Pharmacological validation export
+outputs/
+├── comparisons/                 # Strategy-arm comparison runs
+├── benchmark_audits/            # Focused benchmark viability audits
+└── reports/
+        └── validation_reports/
+                └── validation_report.json
 ```
 
-The committed top-level result bundles in this repository are preserved release artifacts.
-New auxiliary reports should be written under `outputs/` instead of the repository root.
+The committed top-level result bundles in this repository are preserved release artifacts. New generated comparisons, audits, and validation reports should be written under `outputs/` instead of the repository root.
+
+`run_full_pipeline.sh` and `run_full_pipeline.ps1` default to `--skip-historical` because the dev-only historical comparison directories are not bundled in this public repo.
+
+---
+
+## Public Workflow Surface
+
+Treat the following as the stable public-facing entry points:
+
+- `pan_cancer_xnode.py` — main discovery CLI
+- `run_full_pipeline.sh` and `run_full_pipeline.ps1` — cross-platform wrappers for fresh arm comparisons
+- `scripts/run_pipeline.py` — focused benchmark-cancer runner
+- `scripts/post_pipeline_validation.py` — post-run validation entry point
+- `scripts/compare_modes.py` and `scripts/sensitivity_exploratory.py` — mode analysis tools
+- `scripts/pipelines/run_strategy_arm_comparison.py` and `scripts/pipelines/run_benchmark_viability_audit.py` — latest comparison and audit workflows
+
+Other scripts are preserved for manuscript generation, ablations, null models, or exploratory analysis rather than as the primary public CLI surface.
 
 ---
 
@@ -271,6 +340,7 @@ Against 43 independently curated FDA-approved and Phase 2/3-validated multi-targ
 ## Repository Structure
 
 ```
+├── build_lincs_index.py         # Optional LINCS index builder
 ├── pan_cancer_xnode.py          # Main discovery engine
 ├── gold_standard.py             # Clinical gold standard + benchmark functions
 ├── benchmarking_module.py       # Gold standard comparison, baselines
@@ -278,16 +348,18 @@ Against 43 independently curated FDA-approved and Phase 2/3-validated multi-targ
 ├── parameter_tuning.py          # Scoring weight tuning
 ├── outcome_benchmark.py         # Outcome-based benchmarking
 ├── conftest.py                  # Pytest configuration
-├── run_full_pipeline.sh         # Full reproducibility entrypoint
+├── run_full_pipeline.sh         # Bash wrapper for the public workflow
+├── run_full_pipeline.ps1        # PowerShell wrapper for the public workflow
+├── setup_data.ps1               # Windows helper for setup_data.sh
 ├── alin/                        # Core library package
 ├── core/                        # Data structures, statistics
-├── tests/                       # Unit/integration tests (171 tests)
-├── scripts/                     # Analysis & figure generation scripts
+├── tests/                       # Unit and integration tests
+├── scripts/                     # Stable workflows plus preserved research utilities
 ├── manuscript/                  # LaTeX source (paper.tex, supplementary.tex)
 ├── docs/                        # Documentation (DATA_AVAILABILITY, VERSION_INFO)
 ├── figures/                     # Generated figures (PNG/PDF)
 ├── results/                     # Primary quick-start pipeline output
-└── outputs/                     # New auxiliary reports and future non-root runtime artifacts
+└── outputs/                     # Generated comparisons, audits, and validation reports
 ```
 
 Additional top-level `*_results/` directories are preserved publication artifacts rather than scratch workbench output.
@@ -301,13 +373,21 @@ Additional top-level `*_results/` directories are preserved publication artifact
 | `pan_cancer_xnode.py` | Main discovery engine (DepMap, OmniPath, hitting set, triple finder) |
 | `alin/validation.py` | Built-in validation (literature, PPI, drug synergy) |
 | `alin/api_validators.py` | PubMed + STRING API validation with caching |
+| `alin/genomic_data.py` | TCGA mutation loading and genomic relevance scoring |
 | `alin/drug_sensitivity.py` | PRISM/GDSC drug sensitivity, gene–drug correlation |
+| `alin/chembl_data.py` | ChEMBL-backed druggability lookup |
+| `alin/run_modes.py` | Actionable vs exploratory configuration presets |
+| `alin/strategy_arms.py` | Explicit strategy-arm selection and defaults |
+| `alin/structural_triples.py` | Liaki-style structural triple construction |
+| `alin/viability_scorecard.py` | Second-layer viability/support scorecard |
 | `alin/clinical_trials.py` | ClinicalTrials.gov search |
 | `alin/patient_stratification.py` | Patient subgroups, biomarkers, companion diagnostics |
 | `alin/toxicity.py` | OpenTargets toxicity, tissue expression (cost function) |
 | `alin/utils.py` | Shared utilities (sanitize_cancer_name, load_depmap_crispr_subset) |
 | `benchmarking_module.py` | Gold standard comparison, random/top-genes baselines |
 | `scripts/run_pipeline.py` | Run pipeline for gold standard cancer types |
+| `scripts/pipelines/run_strategy_arm_comparison.py` | Fresh arm comparison and benchmarking workflow |
+| `scripts/pipelines/run_benchmark_viability_audit.py` | Focused benchmark viability audit |
 | `gold_standard.py` | Clinical gold standard entries + benchmark functions |
 
 ---

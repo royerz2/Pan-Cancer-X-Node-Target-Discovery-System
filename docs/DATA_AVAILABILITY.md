@@ -27,6 +27,20 @@
   - Secondary (dose-response): https://ndownloader.figshare.com/files/20237739 (`secondary-screen-dose-response-curve-parameters.csv`)
 - Save into **`drug_sensitivity_data/`**
 
+### LINCS L1000 (recommended – perturbation signatures)
+- **Portal:** https://clue.io/data/CMap2020
+- **Direct downloads (Level 5 beta):**
+  - `level5_beta_trt_xpr_n142901x12328.gctx` (~7 GB) — CRISPR knockout profiles
+  - `level5_beta_trt_sh_n238351x12328.gctx` (~12 GB) — shRNA knockdown profiles
+  - `level5_beta_trt_cp_n720216x12328.gctx` (~35 GB) — Compound profiles
+  - `siginfo_beta.txt` (~200 MB) — Signature metadata
+  - `geneinfo_beta.txt` (~1 MB) — Gene metadata
+- **Total download:** ~55 GB
+- **Note:** Requires free LINCS/clue.io account. Place all files in **`lincs_data/`**
+- **First run:** Pipeline auto-builds index (`lincs_multimodal_index.pkl`, ~450 MB, ~45 min)
+- **Reference:** Subramanian et al., Cell 2017
+- **License:** CC BY 4.0
+
 ### DrugComb v1.5 (optional – synergy validation)
 - **Portal:** https://drugcomb.fimm.fi
 - **Download:** https://drugcomb.fimm.fi/jing/summary_v_1_5.csv (or via API)
@@ -42,6 +56,7 @@
 | Priority | What | Where to put it | Where to get it |
 |----------|------|-----------------|-----------------|
 | **Required** | DepMap (CRISPR + cell line metadata) | `depmap_data/` | [depmap.org/portal/download](https://depmap.org/portal/download/) → Model.csv, CRISPRGeneEffect.csv, SubtypeMatrix.csv |
+| **Recommended** | LINCS L1000 (perturbation signatures) | `lincs_data/` | [clue.io/data/CMap2020](https://clue.io/data/CMap2020) → level5_beta_trt_*.gctx, siginfo_beta.txt, geneinfo_beta.txt (~55 GB) |
 | Optional | Project Score (for Sanger validation) | `validation_data/` | [score.depmap.sanger.ac.uk/downloads](https://score.depmap.sanger.ac.uk/downloads) — or direct: [binaryDepScores.tsv.zip](https://cog.sanger.ac.uk/cmp/download/binaryDepScores.tsv.zip) |
 | Optional | O'Neil 2016 synergy (for synergy validation) | `validation_data/oneil_2016_synergy.csv` | [AACR article (supplementary)](https://aacrjournals.org/mct/article/15/6/1155/92159/An-Unbiased-Oncology-Compound-Screen-to-Identify) |
 | Optional | PRISM (drug sensitivity) | `drug_sensitivity_data/` | [depmap.org/repurposing](https://depmap.org/repurposing/) — or direct Figshare links above |
@@ -56,6 +71,7 @@
 | Dataset | Source | URL | Files |
 |---------|--------|-----|-------|
 | **DepMap** | Broad Institute | https://depmap.org/portal/download/ | Model.csv, CRISPRGeneEffect.csv, SubtypeMatrix.csv |
+| **LINCS L1000** | Broad/LINCS | https://clue.io/data/CMap2020 | level5_beta_trt_{xpr,sh,cp}_*.gctx, siginfo_beta.txt, geneinfo_beta.txt |
 | **OmniPath** | Built-in / API | https://omnipathdb.org | Cancer signaling network (built-in) |
 
 ## Optional Data (for validation and refinement)
@@ -78,5 +94,6 @@
 ## License
 
 - DepMap: CC BY 4.0
+- LINCS L1000: CC BY 4.0
 - PRISM: CC BY 4.0
 - OmniPath: CC BY 4.0

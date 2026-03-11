@@ -19,7 +19,33 @@ Inclusion criteria (same as benchmarking_module.py):
 
 Design: Entries ALIN cannot match are intentionally included to measure
         recall honestly — the gold standard is pipeline-agnostic.
-"""
+
+No-Training Guarantee
+---------------------
+The gold standard is used ONLY for post-hoc evaluation, never for training
+or weight fitting.  Specifically:
+
+1. Pipeline weights (combined_score in pan_cancer_xnode.py) were calibrated
+   on a separate calibration dataset (calibration_results/) using SHAP
+   feature-importance, leave-one-cancer-out evaluation, and logistic
+   regression — all reported in calibration_results/calibration_summary.json.
+   The gold standard was NOT part of the calibration objective.
+
+2. The pipeline is mechanistic + data-driven: DepMap CRISPR dependencies →
+   viability-path enumeration (OmniPath topology) → minimum hitting set →
+   cost-function scoring ± LINCS L1000 perturbation evidence.  No step
+   fits parameters to the gold standard.
+
+3. Three formal circularity/leakage ablation tests are in
+   scripts/circularity_ablation.py:
+     (a) Ablation 1 — remove all literature-curated features.
+     (b) Ablation 2 — degree-matched random null.
+     (c) Ablation 3 — network-scramble null (edge-swap).
+   Results in validation_results/circularity_ablation_summary.json.
+
+4. A fourth circularity test (KNOWN_SYNERGIES ablation) is in this file's
+   own __main__ block, demonstrating recall stability with vs. without the
+   synergy bonus."""
 
 import json
 import hashlib
@@ -32,6 +58,13 @@ import pandas as pd
 import numpy as np
 
 from alin.constants import GENE_EQUIVALENTS
+from alin.prediction_contract import (
+    clean_target_set as _contract_clean_prediction_targets,
+    extract_best_combo_targets as _contract_extract_best_combo_targets,
+    extract_primary_targets as _contract_extract_prediction_targets,
+    load_ranked_predictions as _contract_load_ranked_predictions,
+    prepare_prediction_rows as _contract_prepare_prediction_rows,
+)
 
 # ============================================================================
 # DRUG → GENE TARGET MAPPING (inverted from gene→drug, plus additional drugs)
@@ -896,7 +929,7 @@ def build_synergy_gold_standard(
 
     # Filter for reproducible synergy
     reproducible = grouped[grouped['n_cell_lines'] >= min_cell_lines]
-    print(f"Reproducible synergistic pairs (≥{min_cell_lines} cell lines): {len(reproducible)}")
+    print(f"Reproducible synergistic pairs (>={min_cell_lines} cell lines): {len(reproducible)}")
 
     # Map drugs to gene targets
     for _, row in reproducible.iterrows():
@@ -990,6 +1023,26 @@ def _resolve_pipeline_cancers(gold_cancer: str) -> Set[str]:
     # Remove empty strings
     result.discard('')
     return result
+
+
+def _clean_prediction_targets(values) -> frozenset:
+    """Normalize CSV target values into a frozenset of gene symbols."""
+    return _contract_clean_prediction_targets(values)
+
+
+def _extract_prediction_targets(row) -> frozenset:
+    """Extract the primary predicted target set from a normalized row."""
+    return _contract_extract_prediction_targets(row)
+
+
+def _extract_best_combo_targets(row) -> frozenset:
+    """Extract best-combination-of-any-size metadata when present."""
+    return _contract_extract_best_combo_targets(row)
+
+
+def _prepare_prediction_rows(df: pd.DataFrame) -> pd.DataFrame:
+    """Sort predictions by explicit rank when available, else preserve file order."""
+    return _contract_prepare_prediction_rows(df)
 
 
 def _expand_with_equivalents(targets: set) -> set:
@@ -1092,9 +1145,11 @@ def run_benchmark(
     Returns dict with recall metrics and per-entry results.
     """
     # Load predictions
-    df = pd.read_csv(predictions_csv)
-    # Normalize column names: accept both "Cancer Type" and "Cancer_Type" styles
-    df.columns = [c.replace(' ', '_') for c in df.columns]
+    loaded_predictions = _contract_load_ranked_predictions(
+        predictions_csv,
+        include_legacy_best_combo=True,
+    )
+    df = loaded_predictions.rows
 
     # Build gold standard
     gold_entries = []
@@ -1130,40 +1185,29 @@ def run_benchmark(
         # Find matching predictions by cancer type (exact matching only)
         pipeline_cancers = _resolve_pipeline_cancers(gold_cancer)
         matched_predictions = []
-        for _, row in df.iterrows():
-            if row['Cancer_Type'] in pipeline_cancers:
-                # Check the traditional triple prediction
-                pred_targets = frozenset({row['Target_1'], row['Target_2'], row['Target_3']})
-                match_type = check_match(pred_targets, gold_targets)
+        for pipeline_cancer in pipeline_cancers:
+            for prediction in loaded_predictions.predictions_by_cancer.get(pipeline_cancer, []):
                 matched_predictions.append({
-                    'cancer_type': row['Cancer_Type'],
-                    'predicted': pred_targets,
-                    'match_type': match_type,
+                    'cancer_type': pipeline_cancer,
+                    'predicted': prediction.targets,
+                    'match_type': check_match(prediction.targets, gold_targets),
+                    'rank': prediction.rank,
                 })
-                
-                # Also check best-combination columns (may be a doublet)
-                bc1 = row.get('Best_Combo_1', '')
-                bc2 = row.get('Best_Combo_2', '')
-                bc3 = row.get('Best_Combo_3', '')
-                if bc1 and str(bc1) != 'nan' and bc2 and str(bc2) != 'nan':
-                    combo_set = {str(bc1), str(bc2)}
-                    if bc3 and str(bc3) != 'nan' and str(bc3) != '':
-                        combo_set.add(str(bc3))
-                    combo_targets = frozenset(combo_set)
-                    if combo_targets != pred_targets:  # avoid double-counting
-                        combo_match = check_match(combo_targets, gold_targets)
-                        matched_predictions.append({
-                            'cancer_type': row['Cancer_Type'],
-                            'predicted': combo_targets,
-                            'match_type': combo_match,
-                        })
 
         # Best match
         match_priority = {'exact': 4, 'superset': 3, 'pair_overlap': 2, 'any_overlap': 1, 'none': 0}
         if matched_predictions:
-            best = max(matched_predictions, key=lambda x: match_priority[x['match_type']])
+            best = max(
+                matched_predictions,
+                key=lambda x: (match_priority[x['match_type']], -x.get('rank', 999)),
+            )
         else:
-            best = {'cancer_type': 'NO_PREDICTION', 'predicted': frozenset(), 'match_type': 'none'}
+            best = {
+                'cancer_type': 'NO_PREDICTION',
+                'predicted': frozenset(),
+                'match_type': 'none',
+                'rank': 999,
+            }
 
         results.append({
             'gold_cancer': gold_cancer,
@@ -1172,6 +1216,7 @@ def run_benchmark(
             'best_match': best['match_type'],
             'predicted': best['predicted'],
             'pipeline_cancer': best['cancer_type'],
+            'best_rank': best.get('rank', 999),
             'n_predictions': len(matched_predictions),
         })
 
@@ -1222,14 +1267,14 @@ def run_benchmark(
         print(f"  All {n} entries:")
         print(f"    Exact recall:        {recall['exact']:.1%} ({n_exact}/{n})")
         print(f"    Superset recall:     {recall['superset']:.1%} ({n_superset}/{n})")
-        print(f"    Pair-overlap recall: {recall['pair_overlap']:.1%} ({n_pair_overlap}/{n}) [|G∩T|≥2]")
-        print(f"    Any-overlap recall:  {recall['any_overlap']:.1%} ({n_any_overlap}/{n}) [|G∩T|≥1]")
+        print(f"    Pair-overlap recall: {recall['pair_overlap']:.1%} ({n_pair_overlap}/{n}) [|G&T|>=2]")
+        print(f"    Any-overlap recall:  {recall['any_overlap']:.1%} ({n_any_overlap}/{n}) [|G&T|>=1]")
         print(f"    No prediction:       {n_no_prediction}/{n} entries had no matching cancer type")
         print(f"  Testable {nt} entries (excl. {n - nt} structurally unmatchable):")
         print(f"    Exact recall:        {recall['testable_exact']:.1%} ({nt_exact}/{nt})")
         print(f"    Superset recall:     {recall['testable_superset']:.1%} ({nt_superset}/{nt})")
-        print(f"    Pair-overlap recall: {recall['testable_pair_overlap']:.1%} ({nt_pair_overlap}/{nt}) [|G∩T|≥2]")
-        print(f"    Any-overlap recall:  {recall['testable_any_overlap']:.1%} ({nt_any_overlap}/{nt}) [|G∩T|≥1]")
+        print(f"    Pair-overlap recall: {recall['testable_pair_overlap']:.1%} ({nt_pair_overlap}/{nt}) [|G&T|>=2]")
+        print(f"    Any-overlap recall:  {recall['testable_any_overlap']:.1%} ({nt_any_overlap}/{nt}) [|G&T|>=1]")
         print()
 
         # Show matches
@@ -1258,7 +1303,13 @@ def run_benchmark(
         print(f"    Testable: {prec['precision_testable']:.1%} "
               f"({prec['n_prec_hits_testable']}/{prec['n_evaluable_testable']})")
 
-    return {'recall': recall, 'results': results, 'gold_standard_stats': stats}
+    return {
+        'recall': recall,
+        'results': results,
+        'gold_standard_stats': stats,
+        'predictions_source': str(loaded_predictions.resolved_path),
+        'used_legacy_best_combo': loaded_predictions.used_legacy_best_combo,
+    }
 
 
 # ============================================================================

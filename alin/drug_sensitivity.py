@@ -278,6 +278,7 @@ class PRISMLoader:
         self._primary_lfc = None      # Rows=cell lines, Cols=column_name
         self._primary_treatment_info = None  # column_name -> name, target, etc.
         self._secondary_dr = None     # Long format: name, depmap_id, auc, ic50
+        self._secondary_target_to_drugs = {}  # V9: gene -> [drug_names] from secondary
         self._drug_to_columns = {}   # drug_name -> [column_names]
         
     def download_data(self, download_secondary: bool = False) -> bool:
@@ -290,15 +291,12 @@ class PRISMLoader:
         # Try standard PRISM filenames first
         primary_lfc = self.data_dir / "primary-screen-replicate-collapsed-logfold-change.csv"
         primary_info = self.data_dir / "primary-screen-replicate-collapsed-treatment-info.csv"
-        secondary_dr = self.data_dir / "secondary-screen-dose-response-curve-parameters.csv"
         
         # Fallback to simplified names
         if not primary_lfc.exists():
             primary_lfc = self.data_dir / "prism_primary.csv"
         if not primary_info.exists():
             primary_info = self.data_dir / "prism_treatment_info.csv"
-        if not secondary_dr.exists():
-            secondary_dr = self.data_dir / "prism_secondary_dr.csv"
         
         # Load primary LFC
         if primary_lfc.exists():
@@ -312,24 +310,62 @@ class PRISMLoader:
             else:
                 # Use column names as drug names if no treatment info
                 self._drug_to_columns = {c: [c] for c in self._primary_lfc.columns}
-            return True
         
-        # Auto-download from Figshare
-        logger.info("PRISM data not found. Attempting download from Figshare...")
-        try:
-            self._download_file(PRISM_FIGSHARE_URLS['primary_lfc'], primary_lfc)
-            self._download_file(PRISM_FIGSHARE_URLS['primary_treatment_info'], primary_info)
-            
-            self._primary_lfc = pd.read_csv(primary_lfc, index_col=0)
-            self._primary_treatment_info = pd.read_csv(primary_info)
-            self._build_drug_column_map()
+        # V9: Load secondary dose-response data (cached for fast per-gene lookups)
+        if download_secondary or self._secondary_dr is None:
+            self._load_secondary_data()
+        
+        if self._primary_lfc is not None or self._secondary_dr is not None:
             return True
-        except Exception as e:
-            logger.warning(f"PRISM download failed: {e}")
-            logger.info("Manual download: https://depmap.org/repurposing/")
-            logger.info("  - primary-screen-replicate-collapsed-logfold-change.csv")
-            logger.info("  - primary-screen-replicate-collapsed-treatment-info.csv")
-            return False
+
+        # Skip auto-download (can hang indefinitely); require local files
+        logger.info("PRISM data not found locally. Skipping network download.")
+        logger.info("Manual download: https://depmap.org/repurposing/")
+        return False
+
+    def _load_secondary_data(self):
+        """V9: Load and cache PRISM secondary dose-response data + build target index."""
+        # Search multiple directories for the secondary file
+        candidates = [
+            self.data_dir / "secondary-screen-dose-response-curve-parameters.csv",
+            self.data_dir / "prism_secondary_dr.csv",
+            Path("./data") / "secondary-screen-dose-response-curve-parameters.csv",
+            Path("./data") / "prism_secondary_dr.csv",
+        ]
+        secondary_file = None
+        for p in candidates:
+            if p.exists() and p.stat().st_size > 0:
+                secondary_file = p
+                break
+        if secondary_file is None:
+            logger.debug("PRISM secondary data not found in any search path.")
+            return
+
+        try:
+            logger.info("Loading PRISM secondary dose-response (%s)...", secondary_file.name)
+            self._secondary_dr = pd.read_csv(secondary_file)
+            # Build target -> [drug names] index for fast per-gene lookups
+            self._secondary_target_to_drugs = {}
+            name_col = 'name' if 'name' in self._secondary_dr.columns else 'Name'
+            target_col = 'target' if 'target' in self._secondary_dr.columns else 'Target'
+            if target_col in self._secondary_dr.columns:
+                for _, row in self._secondary_dr[[name_col, target_col]].drop_duplicates().iterrows():
+                    tgt = row.get(target_col)
+                    drug = row.get(name_col)
+                    if pd.isna(tgt) or pd.isna(drug):
+                        continue
+                    # Target column uses ', ' or ';' as separator
+                    for g in str(tgt).replace(';', ',').split(','):
+                        g = g.strip()
+                        if g:
+                            self._secondary_target_to_drugs.setdefault(g, set()).add(str(drug).lower())
+            n_genes = len(self._secondary_target_to_drugs)
+            n_drugs = len(set(d for ds in self._secondary_target_to_drugs.values() for d in ds))
+            logger.info("PRISM secondary loaded: %d rows, %d target genes, %d drugs indexed",
+                        len(self._secondary_dr), n_genes, n_drugs)
+        except Exception as exc:
+            logger.warning("PRISM secondary load failed: %s", exc)
+            self._secondary_dr = None
     
     def _download_file(self, url: str, dest: Path):
         """Download file from URL with progress"""
@@ -458,20 +494,14 @@ class PRISMLoader:
         """
         Get drug sensitivity from PRISM secondary screen (IC50, AUC).
         Better for correlation with DepMap - requires secondary data file.
+        V9: Uses cached DataFrame instead of re-reading 252 MB file each call.
         """
-        secondary_file = self.data_dir / "secondary-screen-dose-response-curve-parameters.csv"
-        if not secondary_file.exists():
-            secondary_file = self.data_dir / "prism_secondary_dr.csv"
-        
-        if not secondary_file.exists():
-            logger.info("PRISM secondary data not found. Download from depmap.org/repurposing/")
+        if self._secondary_dr is None:
+            self._load_secondary_data()
+        if self._secondary_dr is None:
             return None
         
-        try:
-            dr = pd.read_csv(secondary_file)
-        except Exception as e:
-            logger.warning(f"PRISM secondary load failed: {e}")
-            return None
+        dr = self._secondary_dr
         
         # Match drug by name
         name_col = 'name' if 'name' in dr.columns else 'Name'
@@ -504,6 +534,48 @@ class PRISMLoader:
             auc_values=auc_values,
             source='PRISM_secondary'
         )
+
+    def get_secondary_auc_for_gene(self, gene: str, cell_line_ids: Optional[List[str]] = None) -> float:
+        """
+        V9: Get mean AUC for drugs targeting *gene* from the secondary screen.
+        If cell_line_ids provided, restrict to those cell lines (cancer-specific).
+        Returns 0.0 if no data, else value in [0, 1] (higher = more sensitive).
+        """
+        if self._secondary_dr is None or not self._secondary_target_to_drugs:
+            return 0.0
+        drug_names = self._secondary_target_to_drugs.get(gene)
+        if not drug_names:
+            return 0.0
+
+        dr = self._secondary_dr
+        name_col = 'name' if 'name' in dr.columns else 'Name'
+        auc_col = 'auc' if 'auc' in dr.columns else 'AUC'
+        id_col = 'depmap_id' if 'depmap_id' in dr.columns else 'DepMap_ID'
+
+        # Filter to drugs targeting this gene
+        mask = dr[name_col].str.lower().isin(drug_names)
+        subset = dr.loc[mask]
+        if subset.empty:
+            return 0.0
+
+        # Filter to cancer-specific cell lines if provided
+        if cell_line_ids and id_col in subset.columns:
+            cl_set = set(cell_line_ids)
+            subset = subset[subset[id_col].isin(cl_set)]
+        if subset.empty:
+            return 0.0
+
+        if auc_col not in subset.columns:
+            return 0.0
+        auc_vals = subset[auc_col].dropna()
+        if auc_vals.empty:
+            return 0.0
+
+        mean_auc = float(auc_vals.mean())
+        # PRISM secondary AUC: LOWER = more sensitive (0.1 = strong killing, 1.0 = no effect)
+        # Convert to sensitivity score: 1 - AUC, clamped to [0, 1]
+        sensitivity = max(0.0, min(1.0, 1.0 - mean_auc))
+        return sensitivity
     
     def list_available_drugs(self, limit: int = 50) -> List[str]:
         """List drugs available in PRISM (for debugging)"""

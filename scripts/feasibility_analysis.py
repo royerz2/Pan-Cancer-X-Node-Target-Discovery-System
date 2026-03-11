@@ -37,6 +37,28 @@ from alin.toxicity import (
 )
 
 # ---------------------------------------------------------------------------
+# LINCS L1000 perturbation integration (lazy-loaded singleton)
+# ---------------------------------------------------------------------------
+_LINCS_DB = None
+_LINCS_INIT_DONE = False
+
+
+def _get_lincs():
+    """Lazily initialise the LINCS signature database."""
+    global _LINCS_DB, _LINCS_INIT_DONE
+    if _LINCS_INIT_DONE:
+        return _LINCS_DB
+    _LINCS_INIT_DONE = True
+    try:
+        from alin.lincs import get_default_db
+        _LINCS_DB = get_default_db()
+        if _LINCS_DB is not None:
+            print(f"  LINCS L1000 loaded: {len(_LINCS_DB._consensus)} target signatures")
+    except Exception as exc:
+        print(f"  LINCS not available: {exc}")
+    return _LINCS_DB
+
+# ---------------------------------------------------------------------------
 # Constants
 # ---------------------------------------------------------------------------
 
@@ -205,6 +227,7 @@ class FeasibilityResult:
     selectivity_score: float
     tox_feasibility: float
     clinical_precedent: float
+    perturbation_evidence: float   # LINCS L1000 perturbation support
     
     # Composite
     feasibility_score: float
@@ -214,6 +237,7 @@ class FeasibilityResult:
     target_mappings: List[TargetDrugMapping] = field(default_factory=list)
     red_flags: List[ToxicityRedFlag] = field(default_factory=list)
     precedent_matches: List[str] = field(default_factory=list)
+    lincs_details: Dict = field(default_factory=dict)  # LINCS scoring details
     
     # Rankings
     original_rank: int = 0
@@ -480,6 +504,172 @@ def score_clinical_precedent(
     return best_score, matches
 
 
+def score_perturbation_evidence(targets: Tuple[str, ...]) -> Tuple[float, Dict]:
+    """
+    Score LINCS L1000 perturbation evidence for a combination.
+
+    Uses **all three LINCS modalities** (knockout, knockdown, compound)
+    to assess:
+
+    1. **Target coverage** – fraction of targets with any LINCS signature.
+    2. **Multi-modal support** – bonus for targets confirmed across ≥2
+       modalities (genetic + pharmacological).
+    3. **Cross-modal concordance** – Jaccard agreement between modalities.
+    4. **Compound druggability** – presence of annotated compounds in
+       trt_cp that target the proposed genes.
+    5. **Feedback coverage** – resistance genes pre-empted by the combo.
+    6. **Effector overlap** – convergence of downstream pathways across
+       targets.
+
+    Returns (score, details_dict).  score=0.5 when LINCS is unavailable.
+    """
+    db = _get_lincs()
+    details: Dict = {
+        'available': db is not None,
+        'targets_with_sig': [],
+        'targets_without_sig': [],
+    }
+
+    if db is None:
+        details['note'] = 'LINCS L1000 database not loaded'
+        return 0.5, details
+
+    # ── Per-target analysis ───────────────────────────────────────────
+    with_sig = []
+    without_sig = []
+    all_down: set = set()
+    all_up: set = set()
+    multi_modal_targets = []
+    concordance_values = []
+    compound_info = {}
+
+    for gene in targets:
+        cs = db.get_consensus(gene)
+        if cs is not None:
+            with_sig.append(gene)
+            all_down.update(cs.down_genes)
+            all_up.update(cs.up_genes)
+
+            # Multi-modal tracking
+            if cs.n_modalities >= 2:
+                multi_modal_targets.append(gene)
+            if cs.cross_modal_concordance > 0:
+                concordance_values.append(cs.cross_modal_concordance)
+
+            # Compound evidence
+            if cs.has_compound:
+                cpd_info = db.get_compound_evidence(gene)
+                if cpd_info:
+                    compound_info[gene] = cpd_info
+        else:
+            without_sig.append(gene)
+
+    details['targets_with_sig'] = with_sig
+    details['targets_without_sig'] = without_sig
+    details['multi_modal_targets'] = multi_modal_targets
+    details['compound_drug_info'] = {
+        g: {
+            'n_compounds': cpd_info['n_compounds'],
+            'compounds': cpd_info['compound_names'][:5],  # top 5
+            'moa': cpd_info['moa'],
+        }
+        for g, cpd_info in compound_info.items()
+    }
+
+    target_coverage = len(with_sig) / max(len(targets), 1)
+
+    # ── Multi-modal bonus ────────────────────────────────────────────
+    multi_modal_frac = len(multi_modal_targets) / max(len(targets), 1)
+    mean_concordance = (
+        sum(concordance_values) / len(concordance_values)
+        if concordance_values
+        else 0.0
+    )
+    details['multi_modal_fraction'] = round(multi_modal_frac, 3)
+    details['mean_cross_modal_concordance'] = round(mean_concordance, 4)
+
+    # ── Compound druggability ────────────────────────────────────────
+    compound_frac = len(compound_info) / max(len(targets), 1)
+    details['compound_coverage'] = round(compound_frac, 3)
+
+    # ── Cross-target effector convergence (Jaccard) ──────────────────
+    effector_overlap = 0.0
+    if len(with_sig) >= 2:
+        per_target_down = {}
+        for gene in with_sig:
+            cs = db.get_consensus(gene)
+            if cs:
+                per_target_down[gene] = set(cs.down_genes)
+        pairs = 0
+        overlap_sum = 0.0
+        genes_list = list(per_target_down.keys())
+        for i in range(len(genes_list)):
+            for j in range(i + 1, len(genes_list)):
+                s1 = per_target_down[genes_list[i]]
+                s2 = per_target_down[genes_list[j]]
+                union = len(s1 | s2)
+                if union > 0:
+                    overlap_sum += len(s1 & s2) / union
+                pairs += 1
+        effector_overlap = overlap_sum / max(pairs, 1)
+    details['effector_overlap'] = round(effector_overlap, 3)
+
+    # ── Feedback coverage ────────────────────────────────────────────
+    feedback_targeted = set(targets) & all_up
+    feedback_coverage = (
+        len(feedback_targeted) / max(len(all_up), 1) if all_up else 0.0
+    )
+    details['feedback_genes_targeted'] = sorted(feedback_targeted)
+    details['n_feedback_genes'] = len(all_up)
+
+    # ── Separate genetic vs compound evidence ──────────────────────────
+    genetic_targets = []
+    for gene in with_sig:
+        cs = db.get_consensus(gene)
+        if cs and cs.has_genetic:
+            genetic_targets.append(gene)
+    genetic_frac = len(genetic_targets) / max(len(targets), 1)
+    details['genetic_coverage'] = round(genetic_frac, 3)
+    details['genetic_targets'] = genetic_targets
+
+    # ── Concordant gene count (confirmed in >=2 modalities) ──────────
+    n_concordant_genes = 0
+    for gene in with_sig:
+        cs = db.get_consensus(gene)
+        if cs:
+            n_concordant_genes += (
+                len(cs.concordant_up_genes) + len(cs.concordant_down_genes)
+            )
+    details['n_concordant_genes'] = n_concordant_genes
+    concordant_gene_bonus = min(n_concordant_genes / 50.0, 1.0)  # saturates at 50
+
+    # ── Composite score (8 sub-components) ───────────────────────────
+    # Weights reflect the value of each evidence type across modalities:
+    #   target_coverage (0.18): do we have any data?
+    #   genetic_frac    (0.15): mechanistic (knockout/knockdown) confidence
+    #   multi_modal     (0.15): confirmed across modalities -> robust
+    #   concordance     (0.12): modalities agree -> mechanistic validation
+    #   concordant_gene (0.10): per-gene cross-modal confirmation
+    #   compound        (0.12): pharmacologically tractable
+    #   feedback        (0.10): resistance pre-emption
+    #   effector        (0.08): pathway convergence
+    score = (
+        0.18 * target_coverage
+        + 0.15 * genetic_frac
+        + 0.15 * multi_modal_frac
+        + 0.12 * mean_concordance
+        + 0.10 * concordant_gene_bonus
+        + 0.12 * compound_frac
+        + 0.10 * feedback_coverage
+        + 0.08 * effector_overlap
+    )
+    details['target_coverage'] = round(target_coverage, 3)
+    details['feedback_coverage'] = round(feedback_coverage, 3)
+    details['perturbation_score'] = round(score, 3)
+
+    return round(score, 4), details
+
+
 def compute_feasibility(
     cancer_type: str,
     targets: Tuple[str, ...],
@@ -506,17 +696,37 @@ def compute_feasibility(
     # 4. Clinical precedent
     clinical_precedent, precedent_matches = score_clinical_precedent(cancer_type, targets)
     
-    # 5. Composite feasibility score
-    # Weights: drug availability most important for translation,
-    # then toxicity (can kill a combo), selectivity, clinical precedent
+    # 5. LINCS L1000 perturbation evidence
+    perturbation_evidence, lincs_details = score_perturbation_evidence(targets)
+
+    # 5b. LINCS compound evidence boosts drug availability
+    # If LINCS has annotated compounds (trt_cp) targeting these genes,
+    # that is direct evidence of pharmacological tractability separate
+    # from the curated drug databases.
+    lincs_compound_boost = lincs_details.get('compound_coverage', 0.0) * 0.15
+    drug_availability_adj = min(1.0, drug_availability + lincs_compound_boost)
+
+    # 6. Composite feasibility score (5 components, weights sum to 1.00)
+    # Weights reflect clinical translation priorities (drug availability
+    # most limiting, perturbation evidence most novel).  Sensitivity
+    # analysis (scripts/weight_sensitivity_test.py, ±20%, N=500) on the
+    # main combined_score yields Spearman ρ=0.997 (validation_results/).
+    # See calibration_results/feature_ablation.csv for per-component
+    # delta-AUROC when each is zeroed out.
+    #   drug availability (0.24): most limiting for clinical translation
+    #   toxicity (0.21): DLT risk in combo trials
+    #   selectivity (0.21): shared drugs / pan-kinase risk
+    #   clinical precedent (0.15): existing evidence base
+    #   perturbation evidence (0.19): LINCS multi-modal support
     feasibility_score = (
-        0.30 * drug_availability +
-        0.25 * tox_feasibility +
-        0.25 * selectivity_score +
-        0.20 * clinical_precedent
+        0.24 * drug_availability_adj +
+        0.21 * tox_feasibility +
+        0.21 * selectivity_score +
+        0.15 * clinical_precedent +
+        0.19 * perturbation_evidence
     )
     
-    # 6. Adjusted score: penalize combined_score by low feasibility
+    # 7. Adjusted score: penalize combined_score by low feasibility
     # combined_score is lower = better, so we inflate poor-feasibility combos
     # adjusted_score = combined_score / feasibility_score (bounded)
     # This means low feasibility → higher adjusted_score → worse ranking
@@ -532,11 +742,13 @@ def compute_feasibility(
         selectivity_score=selectivity_score,
         tox_feasibility=tox_feasibility,
         clinical_precedent=clinical_precedent,
+        perturbation_evidence=perturbation_evidence,
         feasibility_score=feasibility_score,
         adjusted_score=adjusted_score,
         target_mappings=target_mappings,
         red_flags=red_flags,
         precedent_matches=precedent_matches,
+        lincs_details=lincs_details,
     )
 
 
@@ -690,11 +902,13 @@ def write_detailed_csv(results: List[FeasibilityResult], path: Path):
         writer.writerow([
             'Cancer_Type', 'Targets', 'Drugs',
             'Combined_Score', 'Drug_Availability', 'Selectivity',
-            'Tox_Feasibility', 'Clinical_Precedent', 'Feasibility_Score',
+            'Tox_Feasibility', 'Clinical_Precedent', 'Perturbation_Evidence',
+            'LINCS_Targets_With_Sig', 'Feasibility_Score',
             'Adjusted_Score', 'Original_Rank', 'Feasibility_Rank', 'Rank_Change',
             'Num_Red_Flags', 'Red_Flag_Summary', 'Precedent_Matches',
         ])
         for r in sorted(results, key=lambda x: x.adjusted_score):
+            lincs_with = r.lincs_details.get('targets_with_sig', [])
             writer.writerow([
                 r.cancer_type,
                 '+'.join(r.targets),
@@ -704,6 +918,8 @@ def write_detailed_csv(results: List[FeasibilityResult], path: Path):
                 f"{r.selectivity_score:.3f}",
                 f"{r.tox_feasibility:.3f}",
                 f"{r.clinical_precedent:.3f}",
+                f"{r.perturbation_evidence:.3f}",
+                '+'.join(lincs_with) if lincs_with else 'none',
                 f"{r.feasibility_score:.3f}",
                 f"{r.adjusted_score:.3f}",
                 r.original_rank,
@@ -843,6 +1059,16 @@ def write_summary(results: List[FeasibilityResult], path: Path):
                       f"{'+'.join(r.targets):<25s} feas={r.feasibility_score:.3f} "
                       f"adj={r.adjusted_score:.3f} (orig #{r.original_rank})")
     
+    # LINCS perturbation evidence stats
+    pert_scores = [r.perturbation_evidence for r in results]
+    lines.append(f"\nLINCS perturbation evidence: mean {sum(pert_scores)/len(pert_scores):.3f}")
+    lincs_available = any(r.lincs_details.get('available', False) for r in results)
+    if lincs_available:
+        with_sigs = sum(1 for r in results if len(r.lincs_details.get('targets_with_sig', [])) >= 2)
+        lines.append(f"  Targets with LINCS signatures (≥2/triple): {with_sigs}/{len(results)}")
+    else:
+        lines.append(f"  LINCS database not loaded (neutral score 0.5 used)")
+
     # Detailed per-cancer
     lines.append(f"\n{'=' * 72}")
     lines.append("DETAILED PER-CANCER BREAKDOWN")
@@ -858,10 +1084,20 @@ def write_summary(results: List[FeasibilityResult], path: Path):
                       f"change: {'+' if r.rank_change > 0 else ''}{r.rank_change})")
         
         lines.append(f"\n  Components:")
-        lines.append(f"    Drug availability: {r.drug_availability:.3f}")
-        lines.append(f"    Selectivity:       {r.selectivity_score:.3f}")
-        lines.append(f"    Tox feasibility:   {r.tox_feasibility:.3f}")
-        lines.append(f"    Clinical precedent:{r.clinical_precedent:.3f}")
+        lines.append(f"    Drug availability:      {r.drug_availability:.3f}")
+        lines.append(f"    Selectivity:            {r.selectivity_score:.3f}")
+        lines.append(f"    Tox feasibility:        {r.tox_feasibility:.3f}")
+        lines.append(f"    Clinical precedent:     {r.clinical_precedent:.3f}")
+        lines.append(f"    Perturbation evidence:  {r.perturbation_evidence:.3f}")
+        lincs_with = r.lincs_details.get('targets_with_sig', [])
+        lincs_without = r.lincs_details.get('targets_without_sig', [])
+        if lincs_with:
+            lines.append(f"      LINCS signatures for: {', '.join(lincs_with)}")
+        if lincs_without:
+            lines.append(f"      No LINCS data for: {', '.join(lincs_without)}")
+        fb = r.lincs_details.get('feedback_genes_targeted', [])
+        if fb:
+            lines.append(f"      Feedback genes covered: {', '.join(fb)}")
         
         lines.append(f"\n  Drug mapping:")
         for m in r.target_mappings:

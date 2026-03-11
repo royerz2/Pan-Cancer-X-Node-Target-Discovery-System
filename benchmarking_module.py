@@ -33,20 +33,46 @@ import numpy as np
 from pathlib import Path
 from typing import Dict, List, Tuple, Set, Optional
 from dataclasses import dataclass, field
-from collections import defaultdict
+from collections import Counter, defaultdict
 import json
 
 from alin.constants import (
     CANCER_BENCHMARK_ALIASES as CANCER_ALIASES,
     GENE_EQUIVALENTS,
 )
+from alin.prediction_contract import (
+    clean_target_set as _contract_clean_target_set,
+    extract_best_combo_targets as _contract_extract_best_combo_targets,
+    extract_primary_targets as _contract_extract_primary_targets,
+    load_ranked_predictions as _contract_load_ranked_predictions,
+    prepare_prediction_rows as _contract_prepare_prediction_rows,
+    read_prediction_rows as _contract_read_prediction_rows,
+)
 
 
 def _read_triples(path) -> pd.DataFrame:
     """Read a triples CSV, normalizing 'Target 1' → 'Target_1' etc."""
-    df = pd.read_csv(path)
-    df.columns = [c.replace(' ', '_') for c in df.columns]
-    return df
+    return _contract_read_prediction_rows(path)
+
+
+def _clean_target_set(values) -> frozenset:
+    """Normalize a sequence of CSV values into a frozenset of gene symbols."""
+    return _contract_clean_target_set(values)
+
+
+def _extract_primary_targets(row) -> frozenset:
+    """Extract the main predicted triple from a normalized row."""
+    return _contract_extract_primary_targets(row)
+
+
+def _extract_best_combo_targets(row) -> frozenset:
+    """Extract best-of-any-size prediction metadata when present."""
+    return _contract_extract_best_combo_targets(row)
+
+
+def _prepare_prediction_rows(df: pd.DataFrame) -> pd.DataFrame:
+    """Sort prediction rows by explicit rank when available, else preserve file order."""
+    return _contract_prepare_prediction_rows(df)
 
 # ============================================================================
 # COMBINATION GOLD STANDARD  (>= 2 distinct targets, independently curated)
@@ -188,6 +214,91 @@ COMBINATION_GOLD_STANDARD = [
         'pmid': 'Liaki2025',
         'trial': 'Preclinical',
     },
+    # ------ BRAF + MEK in anaplastic thyroid ------
+    {
+        'cancer': 'Anaplastic Thyroid Cancer',
+        'targets': frozenset({'BRAF', 'MAP2K1'}),
+        'evidence': 'FDA_approved',
+        'description': ('Dabrafenib + trametinib for BRAF V600E anaplastic thyroid cancer. '
+                        'ROAR basket Phase 2: ORR 56 pct, CR 16 pct (Subbiah et al. JCO 2018).'),
+        'pmid': '29801025',
+        'trial': 'ROAR (NCT02034110)',
+    },
+    # ------ BRAF + MEK + EGFR triplet in CRC ------
+    {
+        'cancer': 'Colorectal Adenocarcinoma',
+        'targets': frozenset({'BRAF', 'MAP2K1', 'EGFR'}),
+        'evidence': 'FDA_approved',
+        'description': ('Encorafenib + binimetinib + cetuximab triplet for BRAF V600E mCRC. '
+                        'BEACON Phase 3 triplet arm: ORR 26 pct, OS 9.3 mo (Kopetz et al. NEJM 2019).'),
+        'pmid': '31566309',
+        'trial': 'BEACON CRC triplet (NCT02928224)',
+    },
+    # ------ KRAS + EGFR in CRC (CodeBreaK 300) ------
+    {
+        'cancer': 'Colorectal Adenocarcinoma',
+        'targets': frozenset({'KRAS', 'EGFR'}),
+        'evidence': 'Phase_3',
+        'description': ('Sotorasib + panitumumab for KRAS G12C metastatic CRC. '
+                        'CodeBreaK 300 Phase 3: PFS 5.6 vs 4.3 mo, ORR 26.4 pct '
+                        '(Fakih et al. NEJM 2024).'),
+        'pmid': '38507751',
+        'trial': 'CodeBreaK 300 (NCT04793958)',
+    },
+    # ------ KRAS + EGFR in CRC (KRYSTAL-1) ------
+    {
+        'cancer': 'Colorectal Adenocarcinoma',
+        'targets': frozenset({'KRAS', 'EGFR'}),
+        'evidence': 'Phase_2',
+        'description': ('Adagrasib + cetuximab for KRAS G12C metastatic CRC. '
+                        'KRYSTAL-1 Phase 2: ORR 46 pct (Yaeger et al. NEJM 2023).'),
+        'pmid': '36546659',
+        'trial': 'KRYSTAL-1 (NCT03785249)',
+    },
+    # ------ IDH1 + BCL2 in AML ------
+    {
+        'cancer': 'Acute Myeloid Leukemia',
+        'targets': frozenset({'IDH1', 'BCL2'}),
+        'evidence': 'Phase_2',
+        'description': ('Ivosidenib + venetoclax for IDH1-mutated AML. '
+                        'Phase 1b: CR/CRi rate 72 pct in newly diagnosed '
+                        '(DiNardo et al. Blood 2021).'),
+        'pmid': '34407543',
+        'trial': 'NCT03471260',
+    },
+    # ------ CDK4/6 + PIK3CA in breast ------
+    {
+        'cancer': 'Invasive Breast Carcinoma',
+        'targets': frozenset({'CDK4', 'CDK6', 'PIK3CA'}),
+        'evidence': 'Phase_2',
+        'description': ('Ribociclib (CDK4/6) + alpelisib (PIK3CA) + fulvestrant for '
+                        'PIK3CA-mut HR+ breast. TRINITI-1 Phase 1/2: CBR 28.6 pct '
+                        '(Juric et al. JCO 2021).'),
+        'pmid': '33119437',
+        'trial': 'TRINITI-1 (NCT02088684)',
+    },
+    # ------ BRAF + MEK + CDK4/6 triple in melanoma ------
+    {
+        'cancer': 'Melanoma',
+        'targets': frozenset({'BRAF', 'MAP2K1', 'CDK4'}),
+        'evidence': 'Phase_2',
+        'description': ('Encorafenib + binimetinib + ribociclib (CDK4/6) for BRAF V600 '
+                        'melanoma. Phase 1b/2: overcomes acquired BRAFi resistance '
+                        '(Sullivan et al. Ann Oncol 2019).'),
+        'pmid': '31383909',
+        'trial': 'NCT01543698',
+    },
+    # ------ CDK4 + MDM2 in liposarcoma ------
+    {
+        'cancer': 'Liposarcoma',
+        'targets': frozenset({'CDK4', 'MDM2'}),
+        'evidence': 'Phase_2',
+        'description': ('Palbociclib (CDK4/6) + milademetan (MDM2) for well-differentiated/'
+                        'dedifferentiated liposarcoma. Phase 1b: synergistic activity '
+                        '(Gluck et al. Clin Cancer Res 2020).'),
+        'pmid': '33093084',
+        'trial': 'NCT04116541',
+    },
 ]
 
 
@@ -257,6 +368,46 @@ SINGLE_TARGET_GOLD_STANDARD = [
                         '(Jaenne et al. NEJM 2022).'),
         'pmid': '35662385',
     },
+    {
+        'cancer': 'Diffuse Glioma',
+        'targets': frozenset({'IDH1'}),
+        'evidence': 'FDA_approved',
+        'description': ('Vorasidenib for IDH1/2-mutant low-grade glioma. '
+                        'INDIGO Phase 3: PFS HR 0.39 (Mellinghoff et al. NEJM 2023).'),
+        'pmid': '37272513',
+    },
+    {
+        'cancer': 'Non-Small Cell Lung Cancer',
+        'targets': frozenset({'ROS1'}),
+        'evidence': 'FDA_approved',
+        'description': ('Entrectinib for ROS1+ metastatic NSCLC. '
+                        'STARTRK-2: ORR 67 pct (Drilon et al. Lancet Oncol 2020).'),
+        'pmid': '31838015',
+    },
+    {
+        'cancer': 'Non-Small Cell Lung Cancer',
+        'targets': frozenset({'MET'}),
+        'evidence': 'FDA_approved',
+        'description': ('Capmatinib for MET exon 14 skipping NSCLC. '
+                        'GEOMETRY mono-1 Phase 2 (Wolf et al. NEJM 2020).'),
+        'pmid': '32877583',
+    },
+    {
+        'cancer': 'Acute Myeloid Leukemia',
+        'targets': frozenset({'IDH1'}),
+        'evidence': 'FDA_approved',
+        'description': ('Ivosidenib for IDH1-mutant relapsed/refractory AML '
+                        '(DiNardo et al. NEJM 2018).'),
+        'pmid': '29860938',
+    },
+    {
+        'cancer': 'Invasive Breast Carcinoma',
+        'targets': frozenset({'PIK3CA'}),
+        'evidence': 'FDA_approved',
+        'description': ('Alpelisib for PIK3CA-mutant HR+ breast cancer. '
+                        'SOLAR-1 Phase 3: PFS HR 0.65 (Andre et al. NEJM 2019).'),
+        'pmid': '31091374',
+    },
 ]
 
 
@@ -271,10 +422,81 @@ class BenchmarkResult:
     gold_targets: frozenset
     gold_evidence: str
     our_targets: frozenset
-    our_rank: int  # 1 = top prediction for this cancer
+    our_rank: float  # smaller is better; explicit rank when available
     match_type: str  # 'exact', 'superset', 'pair_overlap', 'any_overlap', 'none'
     matched_pairs: List[frozenset] = field(default_factory=list)
     description: str = ""
+
+
+MATCH_TYPE_PRIORITY = {
+    'none': 0,
+    'any_overlap': 1,
+    'pair_overlap': 2,
+    'superset': 3,
+    'exact': 4,
+}
+
+
+def _targets_to_str(targets: Set[str]) -> str:
+    """Render a target collection in a stable, CSV-friendly form."""
+    if not targets:
+        return ''
+    return ' + '.join(sorted(targets))
+
+
+def _current_rank_key(record: Dict[str, object]) -> Tuple[float, str, str]:
+    """Sort by explicit rank only, matching the current 21-entry benchmark policy."""
+    return (
+        float(record.get('rank', 999.0)),
+        str(record.get('cancer_type', '')),
+        _targets_to_str(record.get('targets', frozenset())),
+    )
+
+
+def _strongest_match_key(record: Dict[str, object]) -> Tuple[int, float, str, str]:
+    """Sort by match strength first, then prefer better rank within the same tier."""
+    return (
+        MATCH_TYPE_PRIORITY.get(str(record.get('match_type', 'none')), 0),
+        -float(record.get('rank', 999.0)),
+        str(record.get('cancer_type', '')),
+        _targets_to_str(record.get('targets', frozenset())),
+    )
+
+
+def _match_counts_to_metrics(match_counts: Counter, total_gold: int) -> Dict[str, object]:
+    """Convert mutually exclusive match counts into cumulative recall metrics."""
+    exact = int(match_counts.get('exact', 0))
+    superset = int(match_counts.get('superset', 0))
+    pair_overlap = int(match_counts.get('pair_overlap', 0))
+    any_overlap = int(match_counts.get('any_overlap', 0))
+    none = int(match_counts.get('none', 0))
+    denominator = total_gold if total_gold else 1
+
+    return {
+        'match_type_counts': {
+            'exact': exact,
+            'superset': superset,
+            'pair_overlap': pair_overlap,
+            'any_overlap': any_overlap,
+            'none': none,
+        },
+        'exact_matches': exact,
+        'superset_matches': superset,
+        'pair_overlap_matches': pair_overlap,
+        'any_overlap_matches': any_overlap,
+        'no_match': none,
+        'recall_exact': exact / denominator if total_gold else 0.0,
+        'recall_superset_or_better': (exact + superset) / denominator if total_gold else 0.0,
+        'recall_pair_overlap_or_better': (
+            exact + superset + pair_overlap
+        ) / denominator if total_gold else 0.0,
+        'recall_any_overlap_or_better': (
+            exact + superset + pair_overlap + any_overlap
+        ) / denominator if total_gold else 0.0,
+        'recall_pairwise_or_better': (
+            exact + superset + pair_overlap
+        ) / denominator if total_gold else 0.0,
+    }
 
 
 def match_cancer(our_cancer: str, gold_cancer: str) -> bool:
@@ -337,35 +559,27 @@ def check_match(our_targets: Set[str], gold_targets: Set[str]) -> Tuple[bool, st
     return False, 'none'
 
 
+def _build_ranked_cancer_predictions(triples_csv, summary_csv=None):
+    """Parse benchmark predictions into {cancer: [RankedPrediction,...]}."""
+    _ = summary_csv
+    loaded_predictions = _contract_load_ranked_predictions(
+        triples_csv,
+        include_legacy_best_combo=True,
+    )
+    return (
+        loaded_predictions.predictions_by_cancer,
+        loaded_predictions.resolved_path,
+        loaded_predictions.used_legacy_best_combo,
+    )
+
+
 def _build_cancer_predictions(triples_csv, summary_csv=None):
     """Parse triples CSV into {cancer: [ranked target sets]}."""
-    triples = _read_triples(triples_csv)
-    cancer_to_predictions = defaultdict(list)
-    for _, row in triples.iterrows():
-        cancer = row['Cancer_Type']
-        targets = frozenset([row['Target_1'], row['Target_2'], row['Target_3']])
-        cancer_to_predictions[cancer].append(targets)
-
-    # Deduplicate preserving rank order
-    for cancer in cancer_to_predictions:
-        seen = []
-        for t in cancer_to_predictions[cancer]:
-            if t not in seen:
-                seen.append(t)
-        cancer_to_predictions[cancer] = seen
-
-    # Inject "best triple" from summary CSV at rank 1
-    if summary_csv and Path(summary_csv).exists():
-        summary = pd.read_csv(summary_csv)
-        for _, row in summary.iterrows():
-            cancer = row.get('Cancer Type', row.get('Cancer_Type', ''))
-            best = row.get('Best Triple', row.get('Best_Triple', ''))
-            if pd.notna(best) and best:
-                targets = frozenset([t.strip() for t in str(best).split(',')])
-                if cancer not in cancer_to_predictions or targets not in cancer_to_predictions[cancer]:
-                    cancer_to_predictions[cancer] = [targets] + cancer_to_predictions[cancer]
-
-    return dict(cancer_to_predictions)
+    cancer_to_predictions, _, _ = _build_ranked_cancer_predictions(triples_csv, summary_csv)
+    return {
+        cancer: [prediction.targets for prediction in predictions]
+        for cancer, predictions in cancer_to_predictions.items()
+    }
 
 
 def run_benchmark(triples_csv, summary_csv=None, gold_standard=None):
@@ -384,7 +598,9 @@ def run_benchmark(triples_csv, summary_csv=None, gold_standard=None):
     if gold_standard is None:
         gold_standard = COMBINATION_GOLD_STANDARD
 
-    cancer_to_predictions = _build_cancer_predictions(triples_csv, summary_csv)
+    cancer_to_predictions, resolved_predictions_path, used_legacy_best_combo = (
+        _build_ranked_cancer_predictions(triples_csv, summary_csv)
+    )
 
     results = []
     tp_exact = tp_superset = tp_pair_overlap = tp_any_overlap = 0
@@ -395,19 +611,19 @@ def run_benchmark(triples_csv, summary_csv=None, gold_standard=None):
         gold_targets = gold['targets']
 
         best_match = None
-        best_rank = 999
+        best_rank = 999.0
         best_type = 'none'
 
         for our_cancer, our_predictions in cancer_to_predictions.items():
             if not match_cancer(our_cancer, gold_cancer):
                 continue
 
-            for rank, our_targets in enumerate(our_predictions, 1):
-                matched, match_type = check_match(our_targets, gold_targets)
-                if matched and rank < best_rank:
-                    best_rank = rank
+            for prediction in our_predictions:
+                matched, match_type = check_match(prediction.targets, gold_targets)
+                if matched and prediction.rank < best_rank:
+                    best_rank = prediction.rank
                     best_type = match_type
-                    best_match = (our_cancer, our_targets)
+                    best_match = (our_cancer, prediction.targets)
 
         if best_match:
             our_cancer, our_targets = best_match
@@ -466,9 +682,250 @@ def run_benchmark(triples_csv, summary_csv=None, gold_standard=None):
         'mean_rank_when_matched': (
             sum(matched_ranks) / len(matched_ranks) if matched_ranks else 0
         ),
+        'predictions_source': str(resolved_predictions_path),
+        'used_legacy_best_combo': used_legacy_best_combo,
     }
 
     return results, metrics
+
+
+def audit_benchmark_matches(triples_csv, summary_csv=None, gold_standard=None):
+    """
+    Audit benchmark semantics entry-by-entry without changing the existing score.
+
+    The audit surfaces three distinct views for each gold-standard entry:
+      - top_prediction: the lowest-rank prediction for the matching cancer.
+      - current_benchmark: the lowest-rank matched prediction, which is what the
+        current 21-entry benchmark counts.
+      - strongest_available: the strongest match tier at any rank, which mirrors
+        the expanded gold-standard policy.
+
+    Returns:
+        (rows, summary)
+    """
+    if gold_standard is None:
+        gold_standard = COMBINATION_GOLD_STANDARD
+
+    cancer_to_predictions, resolved_predictions_path, used_legacy_best_combo = (
+        _build_ranked_cancer_predictions(triples_csv, summary_csv)
+    )
+
+    rows = []
+    top_prediction_counts: Counter = Counter()
+    current_benchmark_counts: Counter = Counter()
+    strongest_available_counts: Counter = Counter()
+    gap_classification_counts: Counter = Counter()
+    rank_semantic_conflicts = 0
+    exact_available_off_rank = 0
+    top_prediction_missed_but_later_match_exists = 0
+
+    for gold in gold_standard:
+        gold_cancer = gold['cancer']
+        gold_targets = gold['targets']
+
+        candidate_records = []
+        pipeline_cancers = []
+        for our_cancer, predictions in cancer_to_predictions.items():
+            if not match_cancer(our_cancer, gold_cancer):
+                continue
+
+            pipeline_cancers.append(our_cancer)
+            for prediction in predictions:
+                _, match_type = check_match(prediction.targets, gold_targets)
+                candidate_records.append({
+                    'cancer_type': our_cancer,
+                    'targets': prediction.targets,
+                    'rank': float(prediction.rank),
+                    'match_type': match_type,
+                })
+
+        top_prediction = min(candidate_records, key=_current_rank_key) if candidate_records else None
+        matched_records = [record for record in candidate_records if record['match_type'] != 'none']
+        current_benchmark_record = (
+            min(matched_records, key=_current_rank_key) if matched_records else None
+        )
+        strongest_available_record = (
+            max(matched_records, key=_strongest_match_key) if matched_records else None
+        )
+
+        candidate_match_counts = Counter(record['match_type'] for record in candidate_records)
+        top_prediction_match_type = top_prediction['match_type'] if top_prediction else 'none'
+        current_benchmark_match_type = (
+            current_benchmark_record['match_type'] if current_benchmark_record else 'none'
+        )
+        strongest_available_match_type = (
+            strongest_available_record['match_type'] if strongest_available_record else 'none'
+        )
+
+        exact_available = candidate_match_counts.get('exact', 0) > 0
+        superset_available = candidate_match_counts.get('superset', 0) > 0
+        pair_overlap_available = candidate_match_counts.get('pair_overlap', 0) > 0
+        any_overlap_available = candidate_match_counts.get('any_overlap', 0) > 0
+        rank_semantic_conflict = (
+            current_benchmark_match_type != strongest_available_match_type
+        )
+        later_match_exists = (
+            top_prediction_match_type == 'none' and current_benchmark_match_type != 'none'
+        )
+
+        if not candidate_records:
+            gap_classification = 'no_prediction_for_cancer'
+        elif exact_available and current_benchmark_match_type != 'exact':
+            gap_classification = 'exact_available_off_rank'
+        elif strongest_available_match_type == 'exact':
+            gap_classification = 'exact'
+        elif strongest_available_match_type == 'superset':
+            gap_classification = 'superset_only'
+        elif strongest_available_match_type == 'pair_overlap':
+            gap_classification = 'pair_overlap_only'
+        elif strongest_available_match_type == 'any_overlap':
+            gap_classification = 'any_overlap_only'
+        else:
+            gap_classification = 'no_gene_overlap'
+
+        top_prediction_counts[top_prediction_match_type] += 1
+        current_benchmark_counts[current_benchmark_match_type] += 1
+        strongest_available_counts[strongest_available_match_type] += 1
+        gap_classification_counts[gap_classification] += 1
+        if rank_semantic_conflict:
+            rank_semantic_conflicts += 1
+        if gap_classification == 'exact_available_off_rank':
+            exact_available_off_rank += 1
+        if later_match_exists:
+            top_prediction_missed_but_later_match_exists += 1
+
+        rows.append({
+            'gold_cancer': gold_cancer,
+            'gold_targets': _targets_to_str(gold_targets),
+            'gold_evidence': gold.get('evidence', ''),
+            'pipeline_cancers': ' | '.join(sorted(set(pipeline_cancers))),
+            'n_pipeline_cancers': len(set(pipeline_cancers)),
+            'n_predictions_considered': len(candidate_records),
+            'n_matched_predictions': len(matched_records),
+            'top_prediction_cancer': top_prediction['cancer_type'] if top_prediction else '',
+            'top_prediction_targets': _targets_to_str(top_prediction['targets']) if top_prediction else '',
+            'top_prediction_match_type': top_prediction_match_type,
+            'top_prediction_rank': top_prediction['rank'] if top_prediction else 999.0,
+            'current_benchmark_cancer': (
+                current_benchmark_record['cancer_type'] if current_benchmark_record else ''
+            ),
+            'current_benchmark_targets': (
+                _targets_to_str(current_benchmark_record['targets']) if current_benchmark_record else ''
+            ),
+            'current_benchmark_match_type': current_benchmark_match_type,
+            'current_benchmark_rank': (
+                current_benchmark_record['rank'] if current_benchmark_record else 999.0
+            ),
+            'strongest_available_cancer': (
+                strongest_available_record['cancer_type'] if strongest_available_record else ''
+            ),
+            'strongest_available_targets': (
+                _targets_to_str(strongest_available_record['targets']) if strongest_available_record else ''
+            ),
+            'strongest_available_match_type': strongest_available_match_type,
+            'strongest_available_rank': (
+                strongest_available_record['rank'] if strongest_available_record else 999.0
+            ),
+            'exact_available_at_any_rank': exact_available,
+            'superset_available_at_any_rank': superset_available,
+            'pair_overlap_available_at_any_rank': pair_overlap_available,
+            'any_overlap_available_at_any_rank': any_overlap_available,
+            'n_exact_candidates': candidate_match_counts.get('exact', 0),
+            'n_superset_candidates': candidate_match_counts.get('superset', 0),
+            'n_pair_overlap_candidates': candidate_match_counts.get('pair_overlap', 0),
+            'n_any_overlap_candidates': candidate_match_counts.get('any_overlap', 0),
+            'rank_semantic_conflict': rank_semantic_conflict,
+            'top_prediction_missed_but_later_match_exists': later_match_exists,
+            'gap_classification': gap_classification,
+        })
+
+    total_gold = len(gold_standard)
+    summary = {
+        'total_gold_standard': total_gold,
+        'predictions_source': str(resolved_predictions_path),
+        'used_legacy_best_combo': used_legacy_best_combo,
+        'declared_primary_metric': 'exact-combination recall',
+        'selection_policies': {
+            'top_prediction': 'lowest-rank prediction across matching cancers, regardless of match type',
+            'current_benchmark': 'lowest-rank matched prediction (current 21-entry benchmark behavior)',
+            'strongest_available': 'highest match tier at any rank, then best rank (expanded gold-standard behavior)',
+        },
+        'top_prediction_metrics': _match_counts_to_metrics(top_prediction_counts, total_gold),
+        'current_benchmark_metrics': _match_counts_to_metrics(current_benchmark_counts, total_gold),
+        'strongest_available_metrics': _match_counts_to_metrics(strongest_available_counts, total_gold),
+        'gap_classification_counts': dict(sorted(gap_classification_counts.items())),
+        'rank_semantic_conflicts': rank_semantic_conflicts,
+        'exact_available_off_rank': exact_available_off_rank,
+        'top_prediction_missed_but_later_match_exists': top_prediction_missed_but_later_match_exists,
+    }
+
+    return rows, summary
+
+
+def _normalize_baseline_metrics(result: Dict[str, object]) -> Dict[str, object]:
+    """Normalize deterministic and Monte Carlo baselines to one common schema."""
+    uses_mean_metrics = 'mean_recall_exact' in result
+
+    return {
+        'method': result.get('method', 'unknown'),
+        'metric_source': 'monte_carlo_mean' if uses_mean_metrics else 'point_estimate',
+        'recall_exact': result.get('mean_recall_exact', result.get('recall_exact', 0.0)),
+        'recall_superset_or_better': result.get(
+            'mean_recall_superset', result.get('recall_superset', 0.0)
+        ),
+        'recall_pair_overlap_or_better': result.get(
+            'mean_recall_pair_overlap',
+            result.get('recall_pair_overlap', result.get('mean_recall_pairwise', result.get('recall_pairwise', 0.0))),
+        ),
+        'recall_any_overlap_or_better': result.get(
+            'mean_recall_any_overlap', result.get('recall_any_overlap', 0.0)
+        ),
+        'std_recall_exact': result.get('std_recall_exact'),
+        'std_recall_superset_or_better': result.get('std_recall_superset'),
+        'std_recall_pair_overlap_or_better': result.get(
+            'std_recall_pair_overlap', result.get('std_recall_pairwise')
+        ),
+        'std_recall_any_overlap_or_better': result.get('std_recall_any_overlap'),
+        'n_trials': result.get('n_trials'),
+        'n_cancers_with_data': result.get('n_cancers_with_data'),
+        'n_cancers_with_drivers': result.get('n_cancers_with_drivers'),
+        'median_pool_size': result.get('median_pool_size'),
+        'error': result.get('error', ''),
+    }
+
+
+def run_baseline_calibration(
+    triples_csv,
+    n_trials=1000,
+    seed=42,
+    reports_dir=None,
+    depmap_dir='./depmap_data',
+):
+    """Run the benchmark baselines and return one standardized calibration table."""
+    if reports_dir is None:
+        reports_dir = str(Path(triples_csv).parent)
+
+    baseline_results = [
+        _normalize_baseline_metrics(
+            run_random_baseline(triples_csv, n_trials=n_trials, seed=seed)
+        ),
+        _normalize_baseline_metrics(
+            run_poolmatched_baseline(
+                triples_csv,
+                n_trials=n_trials,
+                seed=seed,
+                reports_dir=reports_dir,
+            )
+        ),
+        _normalize_baseline_metrics(run_frequency_baseline(triples_csv)),
+        _normalize_baseline_metrics(run_topgenes_baseline(triples_csv)),
+        _normalize_baseline_metrics(run_driver_baseline(triples_csv)),
+        _normalize_baseline_metrics(
+            run_essentiality_baseline(triples_csv, depmap_dir=depmap_dir)
+        ),
+    ]
+
+    return baseline_results
 
 
 # ============================================================================
@@ -553,6 +1010,13 @@ def run_loco_cv(triples_csv, summary_csv=None):
     We retain the ``run_loco_cv`` name for backward compatibility but report
     results as "LOCO partitioned evaluation" (not "cross-validation") in the
     manuscript.
+
+    See also
+    --------
+    - scripts/circularity_ablation.py : three formal leakage tests
+      (no-literature, degree-matched null, network-scramble null).
+    - gold_standard.py docstring "No-Training Guarantee": the gold standard
+      is never used for weight fitting or parameter optimization.
 
     For each unique cancer type in the gold standard:
       - Hold out all gold-standard entries for that cancer.
@@ -1186,7 +1650,7 @@ def export_benchmark(results, metrics, output_path, loco_cv=None, target_priorit
         json.dump(export_metrics, f, indent=2, default=str)
 
     report = generate_benchmark_report(results, metrics)
-    with open(output_path / "benchmark_report.txt", 'w') as f:
+    with open(output_path / "benchmark_report.txt", 'w', encoding='utf-8') as f:
         f.write(report)
 
 
